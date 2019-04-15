@@ -1,0 +1,1 @@
+INSERT INTO mail_address_information (id,created_at,created_user_id,updated_at,updated_user_id,version,contract_electric_id,mail_identification,name,mail_address) VALUES (1,'2019/4/10','COTOS','2019/4/10','COTOS',1,1,'0','メールテスト太郎','test@example.com');
