@@ -14,6 +14,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBase;
+import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
+import jp.co.ricoh.cotos.electriccommonlib.repository.contract.BillingMailAddressInformationRepository;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -24,13 +26,14 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Table(name = "billing_mail_address_information")
-public class BillingMailAddressInformation extends EntityBase{
+@CotosComplementTarget(entity = BillingMailAddressInformation.class, repository = BillingMailAddressInformationRepository.class)
+public class BillingMailAddressInformation extends EntityBase {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "billing_mail_address_information_seq")
 	@SequenceGenerator(name = "billing_mail_address_information_seq", sequenceName = "billing_mail_address_information_seq", allocationSize = 1)
 	@ApiModelProperty(value = "ID", required = true, position = 1, allowableValues = "range[0,9223372036854775807]")
 	private long id;
-	
+
 	/**
 	 * 得意先情報M_ID
 	 */
@@ -39,21 +42,21 @@ public class BillingMailAddressInformation extends EntityBase{
 	@ApiModelProperty(value = "得意先情報M_ID", required = true, position = 2)
 	@JsonIgnore
 	private ClientMaster clientMaster;
-	
+
 	/**
 	 * 氏名
 	 */
 	@Column(nullable = false)
 	@ApiModelProperty(value = "氏名", required = true, position = 3, allowableValues = "range[0,255]")
 	private String name;
-	
+
 	/**
 	 * メールアドレス
 	 */
 	@Column(nullable = false)
 	@ApiModelProperty(value = "メールアドレス", required = true, position = 4, allowableValues = "range[0,255]")
 	private String mailAddress;
-	
+
 	/**
 	 * MyRICOHユーザーID
 	 */
