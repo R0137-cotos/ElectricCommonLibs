@@ -23,6 +23,8 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBase;
+import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
+import jp.co.ricoh.cotos.electriccommonlib.repository.contract.ContractElectricRepository;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -33,6 +35,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Table(name = "contract_electric")
+@CotosComplementTarget(entity = ContractElectric.class, repository = ContractElectricRepository.class)
 public class ContractElectric extends EntityBase {
 
 	public enum VoltageCategory {

@@ -24,6 +24,8 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBase;
+import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
+import jp.co.ricoh.cotos.electriccommonlib.repository.contract.CancellationInformationRepository;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -34,6 +36,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Table(name = "cancellation_information")
+@CotosComplementTarget(entity = CancellationInformation.class, repository = CancellationInformationRepository.class)
 public class CancellationInformation extends EntityBase {
 
 	public enum CancellationReason {

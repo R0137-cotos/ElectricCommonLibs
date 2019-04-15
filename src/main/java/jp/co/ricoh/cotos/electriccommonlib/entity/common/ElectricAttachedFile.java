@@ -13,7 +13,9 @@ import javax.validation.constraints.Size;
 
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBase;
+import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
 import jp.co.ricoh.cotos.electriccommonlib.entity.contract.ContractElectricAttachedFile;
+import jp.co.ricoh.cotos.electriccommonlib.repository.common.ElectricAttachedFileRepository;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -24,6 +26,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Table(name = "electric_attached_file")
+@CotosComplementTarget(entity = ElectricAttachedFile.class, repository = ElectricAttachedFileRepository.class)
 public class ElectricAttachedFile extends EntityBase {
 
 	@Id
@@ -65,7 +68,7 @@ public class ElectricAttachedFile extends EntityBase {
 	@Size(max = 1000)
 	@ApiModelProperty(value = "サーバーパス", required = true, position = 5, allowableValues = "range[0,1000]")
 	private String savedPath;
-	
+
 	/**
 	 * 添付ファイル(電力用)
 	 */

@@ -23,7 +23,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBase;
+import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
 import jp.co.ricoh.cotos.electriccommonlib.entity.common.ElectricAttachedFile;
+import jp.co.ricoh.cotos.electriccommonlib.repository.contract.ContractElectricAttachedFileRepository;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -34,6 +36,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Table(name = "contract_electric_attached_file")
+@CotosComplementTarget(entity = ContractElectricAttachedFile.class, repository = ContractElectricAttachedFileRepository.class)
 public class ContractElectricAttachedFile extends EntityBase {
 
 	@Id

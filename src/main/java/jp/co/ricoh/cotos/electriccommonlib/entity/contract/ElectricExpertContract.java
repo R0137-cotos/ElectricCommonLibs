@@ -14,6 +14,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBase;
+import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
+import jp.co.ricoh.cotos.electriccommonlib.repository.contract.ElectricExpertContractRepository;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -24,6 +26,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Table(name = "electric_expert_contract")
+@CotosComplementTarget(entity = ElectricExpertContract.class, repository = ElectricExpertContractRepository.class)
 public class ElectricExpertContract extends EntityBase {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "electric_expert_contract_seq")

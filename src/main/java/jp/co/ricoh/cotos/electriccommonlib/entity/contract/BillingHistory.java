@@ -26,6 +26,8 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBase;
+import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
+import jp.co.ricoh.cotos.electriccommonlib.repository.contract.BillingHistoryRepository;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -36,6 +38,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Table(name = "billing_history")
+@CotosComplementTarget(entity = BillingHistory.class, repository = BillingHistoryRepository.class)
 public class BillingHistory extends EntityBase {
 
 	public enum AccruedSection {
@@ -167,7 +170,7 @@ public class BillingHistory extends EntityBase {
 	@Column(nullable = true)
 	@ApiModelProperty(value = "請求NO", required = false, position = 14, allowableValues = "range[0,255]")
 	private String claimNumber;
-	
+
 	/**
 	 * 計上実績
 	 */
