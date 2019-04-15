@@ -1,0 +1,17 @@
+DELETE from mail_address_information;
+DELETE from entry_content_high_pressure;
+DELETE from entry_content_low_pressure;
+DELETE from cancellation_information;
+DELETE from contract_electric_attached_file;
+DELETE from unit_price_high_pressure;
+DELETE from unit_price_low_pressure;
+DELETE from electric_expert_contract;
+DELETE from electric_dealer_contract;
+DELETE from electric_appropriation;
+DELETE from billing_basic_information;
+DELETE from billing_mail_address_information;
+DELETE from client_master;
+DELETE from client_information;
+DELETE from electric_attached_file;
+DELETE from billing_history;
+DELETE from contract_electric;

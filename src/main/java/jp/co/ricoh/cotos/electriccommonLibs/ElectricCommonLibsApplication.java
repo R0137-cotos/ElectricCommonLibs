@@ -1,4 +1,4 @@
-package jp.co.ricoh.cotos.ElectricCommonLibs;
+package jp.co.ricoh.cotos.electriccommonLibs;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
