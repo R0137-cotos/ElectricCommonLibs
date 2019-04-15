@@ -1,7 +1,5 @@
 package jp.co.ricoh.cotos.electriccommonlib.entity.contract;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -43,7 +41,7 @@ public class ClientInformation extends EntityBase {
 	@JoinColumn(name = "contract_electric_id", referencedColumnName = "id")
 	@ApiModelProperty(value = "契約(電力用)", required = true, position = 2)
 	@JsonIgnore
-	private List<ContractElectric> contractElectricList;
+	private ContractElectric contractElectricList;
 
 	/**
 	 * 得意先CD
