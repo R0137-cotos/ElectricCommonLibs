@@ -7,5 +7,6 @@ import jp.co.ricoh.cotos.electriccommonlib.entity.contract.ContractElectric;
 
 @Repository
 public interface ContractElectricRepository extends CrudRepository<ContractElectric, Long> {
-
+	
+	public ContractElectric findByContractId(Long contractId);
 }
