@@ -29,7 +29,7 @@ import jp.co.ricoh.cotos.electriccommonlib.repository.nishiki.SettleUssDifferren
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-public class TestNishikiRepository {
+public class TestNishikiRepository extends RepositoryTestBase{
 
 	@Autowired
 	FeeCalcInterfaceRepository feeCalcInterfaceRepository;
@@ -64,7 +64,7 @@ public class TestNishikiRepository {
 	@AfterClass
 	public static void stopAPServer() throws InterruptedException {
 		if (null != context) {
-			//context.getBean(DBConfig.class).clearData();
+			context.getBean(DBConfig.class).clearData();
 			context.stop();
 		}
 	}
@@ -97,24 +97,6 @@ public class TestNishikiRepository {
 	@Test
 	public void 全てのカラムがNullではないことを確認_契約超過金() {
 		全てのカラムがNullではないことを確認_共通(excsChargeInfoHighVoltRepository, 1L);
-	}
-
-	@Transactional
-	private <T extends EntityBase, ID extends Serializable> void 全てのカラムがNullではないことを確認_共通(CrudRepository<T, ID> repository, @SuppressWarnings("unchecked") ID... ids) {
-
-		List<ID> idList = Arrays.asList(ids);
-
-		idList.stream().forEach(id -> {
-			// データが取得できることを確認
-			T found = repository.findOne(id);
-			Assert.assertNotNull(found);
-			// 全てのカラムがNullではないことを確認
-			try {
-				testTools.assertColumnsNotNull(found);
-			} catch (Exception e1) {
-				Assert.fail("例外が発生した場合、エラー");
-			}
-		});
 	}
 
 }
