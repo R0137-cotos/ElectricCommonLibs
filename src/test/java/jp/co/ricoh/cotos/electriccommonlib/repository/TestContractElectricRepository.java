@@ -20,6 +20,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBase;
 import jp.co.ricoh.cotos.electriccommonlib.DBConfig;
 import jp.co.ricoh.cotos.electriccommonlib.TestTools;
+import jp.co.ricoh.cotos.electriccommonlib.entity.contract.ContractElectric;
 import jp.co.ricoh.cotos.electriccommonlib.repository.common.ElectricAttachedFileRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.BillingBasicInformationRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.BillingHistoryRepository;
@@ -197,6 +198,20 @@ public class TestContractElectricRepository {
 	public void 全てのカラムがNullではないことを確認_添付ファイル() {
 		全てのカラムがNullではないことを確認_共通(electricAttachedFileRepository, 1L);
 	}
+	
+	@Test
+	public void 全てのカラムがNullではないことを確認_契約_電力用を契約IDより取得() {
+
+		// 契約IDにより契約(電力)を取得
+		ContractElectric contractElectric = contractElectricRepository.findByContractId(2L);
+		
+		// null項目なく取得できていることを確認
+		try {
+			testTools.assertColumnsNotNull(contractElectric);
+		} catch (Exception e1) {
+			Assert.fail("例外が発生した場合、エラー");
+		}
+	}
 
 	@Transactional
 	private <T extends EntityBase, ID extends Serializable> void 全てのカラムがNullではないことを確認_共通(CrudRepository<T, ID> repository, @SuppressWarnings("unchecked") ID... ids) {
@@ -215,5 +230,4 @@ public class TestContractElectricRepository {
 			}
 		});
 	}
-
 }
