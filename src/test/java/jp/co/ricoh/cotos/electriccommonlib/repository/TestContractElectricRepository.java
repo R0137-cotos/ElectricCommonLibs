@@ -40,7 +40,7 @@ import jp.co.ricoh.cotos.electriccommonlib.repository.contract.UnitPriceLowPress
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-public class TestElectricRepository {
+public class TestContractElectricRepository {
 
 	@Autowired
 	BillingBasicInformationRepository billingBasicInformationRepository;
