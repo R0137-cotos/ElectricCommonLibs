@@ -33,7 +33,7 @@ public class TestTools {
 		ROT00015,
 		/** Min：EntityCheckNumberMinError（{0}は最小値（{1}）を下回っています。） */
 		ROT00027,
-		/** Digits：EntityCheckNumberDigitsError（{0}は小数点以下{1}桁を超えています。）*/
+		/** Digits：EntityCheckNumberDigitsError（{0}は小数点以下{1}桁を超えています。） */
 		ROT00028;
 	}
 
@@ -66,13 +66,11 @@ public class TestTools {
 	}
 
 	/**
-	 * エンティティクラスのフィールドの設定値に null が含まれるかどうかを判定する
-	 * ただしフィールドの型がリスト、エンティティクラスだった場合、判定処理をスキップする
+	 * エンティティクラスのフィールドの設定値に null が含まれるかどうかを判定する ただしフィールドの型がリスト、エンティティクラスだった場合、判定処理をスキップする
 	 *
 	 * @param entity
 	 *            エンティティ
-	 * @return boolean 判定結果（true：フィールドの設定値が null の項目を含む false：フィールドの設定値はすべて null
-	 *         以外である）
+	 * @return boolean 判定結果（true：フィールドの設定値が null の項目を含む false：フィールドの設定値はすべて null 以外である）
 	 * @throws Exception
 	 */
 	public boolean hasNullColumn(EntityBaseMaster entity) throws Exception {
