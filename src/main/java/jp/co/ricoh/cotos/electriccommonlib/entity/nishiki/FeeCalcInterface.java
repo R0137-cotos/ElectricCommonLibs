@@ -1,0 +1,260 @@
+package jp.co.ricoh.cotos.electriccommonlib.entity.nishiki;
+
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+import io.swagger.annotations.ApiModelProperty;
+import jp.co.ricoh.cotos.commonlib.entity.EntityBase;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+/**
+ * NISHIKI料金計算結果
+ */
+@Entity
+@EqualsAndHashCode(callSuper = true)
+@Data
+@Table(name = "fee_calc_interface")
+public class FeeCalcInterface extends EntityBase {
+
+	/**
+	 * ID
+	 */
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "fee_calc_interface_seq")
+	@SequenceGenerator(name = "fee_calc_interface_seq", sequenceName = "fee_calc_interface_seq", allocationSize = 1)
+	@ApiModelProperty(value = "ID", required = true, position = 1)
+	private long id;
+
+	/**
+	 * 全体番号
+	 */
+	@Column(nullable = false)
+	@ApiModelProperty(value = "全体番号", required = true, position = 2)
+	private long feeClcAllBn;
+
+	/**
+	 * 料金区分
+	 */
+	@Column(nullable = false)
+	@ApiModelProperty(value = "料金区分", required = true, position = 3)
+	private String feeKbn;
+
+	/**
+	 * 料金計算実行番号
+	 */
+	@Column(nullable = false)
+	@ApiModelProperty(value = "料金計算実行番号", required = true, position = 4)
+	private String feeClcExecBn;
+
+	/**
+	 * 契約番号
+	 */
+	@Column(nullable = false)
+	@ApiModelProperty(value = "契約番号", required = true, position = 5)
+	private String ctctBn;
+
+	/**
+	 * 料金計算明細番号
+	 */
+	@Column(nullable = false)
+	@ApiModelProperty(value = "料金計算明細番号", required = true, position = 6)
+	private long feeClcDtlBn;
+
+	/**
+	 * 料金計算対象年月
+	 */
+	@Column(nullable = false)
+	@ApiModelProperty(value = "料金計算対象年月", required = true, position = 7)
+	private String feeClcYm;
+
+	/**
+	 * 需要家番号
+	 */
+	@Column(nullable = false)
+	@ApiModelProperty(value = "需要家番号", required = true, position = 8)
+	private String cstmrBn;
+
+	/**
+	 * 料金メニューコード
+	 */
+	@Column(nullable = false)
+	@ApiModelProperty(value = "料金メニューコード", required = true, position = 9)
+	private String feeMnuCd;
+
+	/**
+	 * 料金名称
+	 */
+	@Column(nullable = false)
+	@ApiModelProperty(value = "料金名称", required = true, position = 10)
+	private String feeMnuNms;
+
+	/**
+	 * 合計金額
+	 */
+	@Column(nullable = false)
+	@ApiModelProperty(value = "合計金額", required = true, position = 11)
+	private long sumMny;
+
+	/**
+	 * 課税対象税抜合計金額
+	 */
+	@Column(nullable = false)
+	@ApiModelProperty(value = "課税対象税抜合計金額", required = true, position = 12)
+	private long taxObjTaxOutSumMny;
+
+	/**
+	 * 税抜合計金額
+	 */
+	@Column(nullable = false)
+	@ApiModelProperty(value = "税抜合計金額", required = true, position = 13)
+	private long feeClcFeeTaxOut;
+
+	/**
+	 * 消費税
+	 */
+	@Column(nullable = false)
+	@ApiModelProperty(value = "消費税", required = true, position = 14)
+	private long taxMny;
+
+	/**
+	 * 消費税対象区分
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "消費税対象区分", required = false, position = 15)
+	private String taxAplyKbn;
+
+	/**
+	 * 料金計算明細種別コード
+	 */
+	@Column(nullable = false)
+	@ApiModelProperty(value = "料金計算明細種別コード", required = true, position = 16)
+	private String feeClcDtlClsCd;
+
+	/**
+	 * 明細種別名称
+	 */
+	@Column(nullable = false)
+	@ApiModelProperty(value = "明細種別名称", required = true, position = 17)
+	private String dtlClsNms;
+
+	/**
+	 * 料金計算単価
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "料金計算単価", required = false, position = 18)
+	private Long feeClcUprc;
+
+	/**
+	 * 料金計算数量
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "料金計算数量", required = false, position = 19)
+	private Long feeClcNum;
+
+	/**
+	 * 料金計算開始日時
+	 */
+	@Column(nullable = false)
+	@ApiModelProperty(value = "料金計算開始日時", required = true, position = 20)
+	private Date feeClcStrDatTim;
+
+	/**
+	 * 料金計算終了日時
+	 */
+	@Column(nullable = false)
+	@ApiModelProperty(value = "料金計算終了日時", required = true, position = 21)
+	private Date feeClcEndDatTim;
+
+	/**
+	 * 前月電力量
+	 */
+	@Column(nullable = false)
+	@ApiModelProperty(value = "前月電力量", required = true, position = 22)
+	private long lstMnthElc;
+
+	/**
+	 * 前年同月電力量
+	 */
+	@Column(nullable = false)
+	@ApiModelProperty(value = "前年同月電力量", required = true, position = 23)
+	private long lstYearsMnthElcNum;
+
+	/**
+	 * 料金計算対象開始日
+	 */
+	@Column(nullable = false)
+	@ApiModelProperty(value = "料金計算対象開始日", required = true, position = 24)
+	private String feeClcStryMd;
+
+	/**
+	 * 料金計算対象終了日
+	 */
+	@Column(nullable = false)
+	@ApiModelProperty(value = "料金計算対象終了日", required = true, position = 25)
+	private String feeClcSendMd;
+
+	/**
+	 * 単価アイテムコード
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "単価アイテムコード", required = false, position = 26)
+	private String unitItemCode;
+
+	/**
+	 * 発電種類コード
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "発電種類コード", required = false, position = 27)
+	private String pwrGnClsCd;
+
+	/**
+	 * 発電種類名
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "発電種類名", required = false, position = 28)
+	private String pwrGnClsNm;
+
+	/**
+	 * 出力対象年月
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "出力対象年月", required = false, position = 29, allowableValues = "range[0,]")
+	private String outputTargetYm;
+
+	/**
+	 * 請求書出力フラグ
+	 */
+	@Column(nullable = false)
+	@ApiModelProperty(value = "請求書出力フラグ", required = false, position = 30)
+	private Long outputFlg;
+
+	@OneToOne(mappedBy = "feeCalcInterface")
+	@ApiModelProperty(value = "計器情報(高圧)", required = false, position = 31)
+	private InstrumentInfoHighVolt instrumentInfoHighVolt;
+
+	@OneToOne(mappedBy = "feeCalcInterface")
+	@ApiModelProperty(value = "精算分電力量差異情報(高圧)", required = false, position = 32)
+	private SettleUssDifferrenceInfoHighVolt settleUssDifferrenceInfoHighVolt;
+
+	@OneToOne(mappedBy = "feeCalcInterface", optional = false)
+	@ApiModelProperty(value = "料金計算結果電力量	", required = true, position = 33)
+	private FeeClcUssInterface feeClcUssInterface;
+
+	@OneToOne(mappedBy = "feeCalcInterface")
+	@ApiModelProperty(value = "契約超過金情報(高圧)", required = false, position = 34)
+	private ExcsChargeInfoHighVolt excsChargeInfoHighVolt;
+
+	@OneToOne(mappedBy = "feeCalcInterface")
+	@ApiModelProperty(value = "最大需要電力量(高圧)", required = false, position = 35)
+	private MaximumDemandPowerHighVolt maximumDemandPowerHighVolt;
+
+}
