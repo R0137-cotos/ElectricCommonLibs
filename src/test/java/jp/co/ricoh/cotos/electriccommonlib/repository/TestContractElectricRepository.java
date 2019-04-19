@@ -30,6 +30,11 @@ import jp.co.ricoh.cotos.electriccommonlib.repository.contract.EntryContentLowPr
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.MailAddressInformationRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.UnitPriceHighPressureRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.UnitPriceLowPressureRepository;
+import jp.co.ricoh.cotos.electriccommonlib.repository.estimation.ElectricDealerEstimationRepository;
+import jp.co.ricoh.cotos.electriccommonlib.repository.estimation.ElectricExpertEstimationRepository;
+import jp.co.ricoh.cotos.electriccommonlib.repository.estimation.EstimationElectricRepository;
+import jp.co.ricoh.cotos.electriccommonlib.repository.estimation.FeeSimulationHeadRepository;
+import jp.co.ricoh.cotos.electriccommonlib.repository.estimation.FeeSimulationSalesRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
@@ -69,13 +74,28 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 	ElectricDealerContractRepository electricDealerContractRepository;
 
 	@Autowired
+	ElectricDealerEstimationRepository electricDealerEstimationRepository;
+
+	@Autowired
 	ElectricExpertContractRepository electricExpertContractRepository;
+
+	@Autowired
+	ElectricExpertEstimationRepository electricExpertEstimationRepository;
 
 	@Autowired
 	EntryContentHighPressureRepository entryContentHighPressureRepository;
 
 	@Autowired
 	EntryContentLowPressureRepository entryContentLowPressureRepository;
+
+	@Autowired
+	EstimationElectricRepository estimationElectricRepository;
+
+	@Autowired
+	FeeSimulationHeadRepository feeSimulationHeadRepository;
+
+	@Autowired
+	FeeSimulationSalesRepository feeSimulationSalesRepository;
 
 	@Autowired
 	MailAddressInformationRepository mailAddressInformationRepository;
@@ -96,6 +116,7 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 		context = injectContext;
 		context.getBean(DBConfig.class).clearData();
 		context.getBean(DBConfig.class).initTargetTestData("repository/contract/Electric.sql");
+		context.getBean(DBConfig.class).initTargetTestData("repository/estimation/EstimationElectric.sql");
 	}
 
 	@AfterClass
@@ -189,6 +210,31 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 	@Test
 	public void 全てのカラムがNullではないことを確認_添付ファイル() {
 		全てのカラムがNullではないことを確認_共通(electricAttachedFileRepository, 1L);
+	}
+
+	@Test
+	public void 全てのカラムがNullではないことを確認_見積_電力用() {
+		全てのカラムがNullではないことを確認_共通(estimationElectricRepository, 1L);
+	}
+
+	@Test
+	public void 全てのカラムがNullではないことを確認_見積_電力専任情報() {
+		全てのカラムがNullではないことを確認_共通(electricExpertEstimationRepository, 1L);
+	}
+
+	@Test
+	public void 全てのカラムがNullではないことを確認_見積_販売店情報() {
+		全てのカラムがNullではないことを確認_共通(electricDealerEstimationRepository, 1L);
+	}
+
+	@Test
+	public void 全てのカラムがNullではないことを確認_見積_料金シュミレーション_営業用() {
+		全てのカラムがNullではないことを確認_共通(feeSimulationHeadRepository, 1L);
+	}
+
+	@Test
+	public void 全てのカラムがNullではないことを確認_見積_料金シュミレーション_本部用() {
+		全てのカラムがNullではないことを確認_共通(feeSimulationSalesRepository, 1L);
 	}
 
 	@Test
