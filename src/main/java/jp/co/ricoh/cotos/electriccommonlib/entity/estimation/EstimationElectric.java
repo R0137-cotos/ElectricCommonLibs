@@ -8,17 +8,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBase;
-import jp.co.ricoh.cotos.commonlib.entity.estimation.Estimation;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -39,14 +34,6 @@ public class EstimationElectric extends EntityBase {
 @SequenceGenerator(name = "estimation_electric_seq", sequenceName = "estimation_electric_seq", allocationSize = 1)
 @ApiModelProperty(value = "ID", required = true, position = 1)
 private long id;
-
-/**
- * 見積ID
- */
-@OneToOne(optional = false)
-@JoinColumn(name = "estimationId", referencedColumnName = "id")
-@JsonIgnore
-private Estimation estimation;
 
 /**
  * 電力エリア

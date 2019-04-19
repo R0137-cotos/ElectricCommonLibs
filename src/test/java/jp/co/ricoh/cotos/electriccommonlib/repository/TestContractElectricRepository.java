@@ -116,6 +116,7 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 		context = injectContext;
 		context.getBean(DBConfig.class).clearData();
 		context.getBean(DBConfig.class).initTargetTestData("repository/contract/Electric.sql");
+		context.getBean(DBConfig.class).initTargetTestData("repository/estimation/EstimationElectric.sql");
 	}
 
 	@AfterClass
@@ -213,7 +214,7 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 
 	@Test
 	public void 全てのカラムがNullではないことを確認_見積_電力用() {
-		全てのカラムがNullではないことを確認_共通(electricDealerEstimationRepository, 1L);
+		全てのカラムがNullではないことを確認_共通(estimationElectricRepository, 1L);
 	}
 
 	@Test
@@ -223,7 +224,7 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 
 	@Test
 	public void 全てのカラムがNullではないことを確認_見積_販売店情報() {
-		全てのカラムがNullではないことを確認_共通(estimationElectricRepository, 1L);
+		全てのカラムがNullではないことを確認_共通(electricDealerEstimationRepository, 1L);
 	}
 
 	@Test
