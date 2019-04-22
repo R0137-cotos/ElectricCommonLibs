@@ -41,14 +41,6 @@ cotos:
       momEmpId: 99999999
       operatorName: dummy_batch_operator
       operatorOrgName: dummy_batch_operator_org
-  api:
-    internal:
-      estimation: https://dev-api-1.cotos.ricoh.co.jp/estimation/electric/api
-      contract: https://dev-api-1.cotos.ricoh.co.jp/contract/electric/api
-    external:
-      estimation: https://dev-api-1.cotos.ricoh.co.jp/estimation/api
-      contract: https://dev-api-1.cotos.ricoh.co.jp/contract/api
-      master: https://dev-api-1.cotos.ricoh.co.jp/master/api
 spring:
   datasource:
     url: jdbc:oracle:thin:@dev-db.cotos.ricoh.co.jp:1521/pdb1

@@ -18,14 +18,16 @@ import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 
+import jp.co.ricoh.cotos.commonlib.entity.master.SuperUserMaster;
 import jp.co.ricoh.cotos.commonlib.entity.master.UrlAuthMaster.ActionDiv;
 import jp.co.ricoh.cotos.commonlib.entity.master.UrlAuthMaster.AuthDiv;
 import jp.co.ricoh.cotos.commonlib.logic.message.MessageUtil;
-import jp.co.ricoh.cotos.commonlib.repository.master.SuperUserMasterRepository;
 import jp.co.ricoh.cotos.commonlib.security.mom.MomAuthorityService;
 import jp.co.ricoh.cotos.commonlib.security.mom.MomAuthorityService.AuthLevel;
 import jp.co.ricoh.cotos.commonlib.util.ClaimsProperties;
 import jp.co.ricoh.cotos.commonlib.util.JwtProperties;
+import jp.co.ricoh.cotos.electriccommonlib.util.RestTemplateCreator;
+import jp.co.ricoh.cotos.electriccommonlib.util.StandardProperties;
 
 @Component
 public class CotosElcUserDetailsService implements AuthenticationUserDetailsService<PreAuthenticatedAuthenticationToken> {
@@ -40,13 +42,16 @@ public class CotosElcUserDetailsService implements AuthenticationUserDetailsServ
 	ClaimsProperties claimsProperties;
 
 	@Autowired
+	StandardProperties standardProperties;
+
+	@Autowired
 	MomAuthorityService momAuthorityService;
 
 	@Autowired
 	MessageUtil messageUtil;
 
 	@Autowired
-	SuperUserMasterRepository superUserMasterRepository;
+	RestTemplateCreator restTemplateCreator;
 
 	@Override
 	public UserDetails loadUserDetails(PreAuthenticatedAuthenticationToken token) throws UsernameNotFoundException {
@@ -86,9 +91,9 @@ public class CotosElcUserDetailsService implements AuthenticationUserDetailsServ
 			DecodedJWT jwt = verifier.verify(jwtString);
 
 			// スーパーユーザーか判定
-			boolean isSuperUser = false;
-			// superUserMasterRepository.existsByUserId(jwt.getClaim(claimsProperties.getMomEmpId()).asString());
-			
+			SuperUserMaster superuserMaster = restTemplateCreator.getRestTemplate(jwtString).getForEntity(standardProperties.getMaster() + "/findSuperUserMaster/" + jwt.getClaim(claimsProperties.getMomEmpId()).asString(), SuperUserMaster.class).getBody();
+			boolean isSuperUser = superuserMaster != null;
+
 			// シングルユーザーIDに紐づく権限情報を取得
 			Map<ActionDiv, Map<AuthDiv, AuthLevel>> momAuthorities = momAuthorityService.searchAllMomAuthorities(jwt.getClaim(claimsProperties.getSingleUserId()).asString());
 
