@@ -22,7 +22,6 @@ import org.springframework.security.web.authentication.preauth.PreAuthenticatedA
 import org.springframework.security.web.authentication.preauth.PreAuthenticatedAuthenticationToken;
 
 import jp.co.ricoh.cotos.commonlib.security.AccessLogOutputFilter;
-import jp.co.ricoh.cotos.commonlib.security.CotosUserDetailsService;
 import jp.co.ricoh.cotos.commonlib.security.MultipleReadEnableFilter;
 import jp.co.ricoh.cotos.commonlib.security.PreAuthenticationFilter;
 
@@ -75,7 +74,7 @@ public class TestWebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Bean
 	public AuthenticationUserDetailsService<PreAuthenticatedAuthenticationToken> authenticationUserDetailsService() {
-		return new CotosUserDetailsService();
+		return new CotosElcUserDetailsService();
 	}
 
 	// フィルター登録

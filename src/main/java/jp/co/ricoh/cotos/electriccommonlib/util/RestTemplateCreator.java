@@ -19,7 +19,7 @@ import jp.co.ricoh.cotos.commonlib.security.CotosAuthenticationDetails;
 import jp.co.ricoh.cotos.commonlib.util.HeadersProperties;
 
 @Component
-public class CreateRestTemplate {
+public class RestTemplateCreator {
 
 	@Autowired
 	HeadersProperties headersProperties;
@@ -28,16 +28,27 @@ public class CreateRestTemplate {
 	RestTemplateBuilder restTemplateBuilder;
 
 	public RestTemplate getRestTemplate() {
-		return loadRestTemplate();
+		return loadRestTemplate(null);
 	}
 
-	private RestTemplate loadRestTemplate() {
+	/**
+	 * SecurityContextが存在しない場合の
+	 */
+	public RestTemplate getRestTemplate(String jwt) {
+		return loadRestTemplate(jwt);
+	}
+
+	private RestTemplate loadRestTemplate(String jwt) {
 		RestTemplate rest = restTemplateBuilder.build();
 		rest.setInterceptors(Stream.concat(rest.getInterceptors().stream(), Arrays.asList(new ClientHttpRequestInterceptor() {
 			@Override
 			public ClientHttpResponse intercept(HttpRequest request, byte[] body, ClientHttpRequestExecution execution) throws IOException {
-				CotosAuthenticationDetails userInfo = (CotosAuthenticationDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-				request.getHeaders().add(headersProperties.getAuthorization(), "Bearer " + userInfo.getJwt());
+				if (jwt == null) {
+					CotosAuthenticationDetails userInfo = (CotosAuthenticationDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+					request.getHeaders().add(headersProperties.getAuthorization(), "Bearer " + userInfo.getJwt());
+				} else {
+					request.getHeaders().add(headersProperties.getAuthorization(), "Bearer " + jwt);
+				}
 				return execution.execute(request, body);
 			}
 		}).stream()).collect(Collectors.toList()));
