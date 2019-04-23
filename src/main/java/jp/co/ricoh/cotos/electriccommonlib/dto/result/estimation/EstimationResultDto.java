@@ -1,4 +1,4 @@
-package jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation;
+package jp.co.ricoh.cotos.electriccommonlib.dto.result.estimation;
 
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.entity.estimation.Estimation;

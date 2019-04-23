@@ -27,20 +27,9 @@ cotos:
     electric:
       estimation: https://dev-api.cotos.ricoh.co.jp/estimaiton/electric/api
       contract: https://dev-api.cotos.ricoh.co.jp/contract/electric/api
-  file:
-    uploadFileDir: ./build/testTemp
-    fileMaxSize: 616110
-    fileNmMaxSize: 14
-    extension: xlsx, txt
-  search:
-    limitSize: 5
-  mail:
-    fromMailAddress: test@ricoh.co.jp
-  mom:
-    system:
-      momEmpId: 99999999
-      operatorName: dummy_batch_operator
-      operatorOrgName: dummy_batch_operator_org
+  external:
+    database:
+      schema: test_schema
 spring:
   datasource:
     url: jdbc:oracle:thin:@dev-db.cotos.ricoh.co.jp:1521/pdb1
@@ -63,12 +52,6 @@ spring:
   jackson:
     serialization:
       fail-on-empty-beans: false
-  mail:
-    default-encoding: UTF-8
-    host: shipyard.cotos.ricoh.co.jp
-    port: 1025
-    username: koike.shinichi
-    password: koike.shinichi
 remote:
   momauthority:
     url: http://165.96.254.183:10110/jmo/services/KengenService
