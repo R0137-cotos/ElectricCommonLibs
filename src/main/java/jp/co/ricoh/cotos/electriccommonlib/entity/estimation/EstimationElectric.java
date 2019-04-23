@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -36,90 +37,97 @@ public class EstimationElectric extends EntityBase {
 private long id;
 
 /**
- * 電力エリア
+ * 見積ID
  */
 @Column(nullable = false)
-@ApiModelProperty(value = "電力エリア", required = false, position = 2, allowableValues = "range[0,255]")
+@ApiModelProperty(value = "見積ID", required = true, position = 2, allowableValues = "range[0,9223372036854775807]")
+private long estimationId;
+
+/**
+ * 電力エリア
+ */
+@Column(nullable = true)
+@ApiModelProperty(value = "電力エリア", required = false, position = 3, allowableValues = "range[0,255]")
 private String electricArea;
 
 /**
  * 電力会社
  */
-@Column(nullable = false)
-@ApiModelProperty(value = "電力会社", required = false, position = 3, allowableValues = "range[0,255]")
+@Column(nullable = true)
+@ApiModelProperty(value = "電力会社", required = false, position = 4, allowableValues = "range[0,255]")
 private String electricCompany;
 
 /**
  * 電力区分
  */
 @Column(nullable = false)
-@ApiModelProperty(value = "電力区分", required = true, position = 4, allowableValues = "range[0,255]")
+@ApiModelProperty(value = "電力区分", required = true, position = 5, allowableValues = "range[0,255]")
 private String voltageCategory;
 
 /**
  * 電力メニュー
  */
-@Column(nullable = false)
-@ApiModelProperty(value = "電力メニュー", required = false, position = 5, allowableValues = "range[0,255]")
+@Column(nullable = true)
+@ApiModelProperty(value = "電力メニュー", required = false, position = 6, allowableValues = "range[0,255]")
 private String electricMenu;
 
 /**
  * 契約電力
  */
-@Column(nullable = false)
-@ApiModelProperty(value = "契約電力", required = false, position = 6, allowableValues = "range[0,255]")
+@Column(nullable = true)
+@ApiModelProperty(value = "契約電力", required = false, position = 7, allowableValues = "range[0,255]")
 private String contractPower;
 
 /**
  * 規模
  */
-@Column(nullable = false)
-@ApiModelProperty(value = "規模", required = false, position = 7, allowableValues = "range[0,255]")
+@Column(nullable = true)
+@ApiModelProperty(value = "規模", required = false, position = 8, allowableValues = "range[0,255]")
 private String scale;
 
 /**
  * 力率
  */
-@Column(nullable = false)
-@ApiModelProperty(value = "力率", required = false, position = 8, allowableValues = "range[0,255]")
+@Column(nullable = true)
+@ApiModelProperty(value = "力率", required = false, position = 9, allowableValues = "range[0,255]")
 private String powerRate;
 
 /**
  * 負荷率
  */
-@Column(nullable = false)
-@ApiModelProperty(value = "負荷率", required = false, position = 9, allowableValues = "range[0,255]")
+@Column(nullable = true)
+@ApiModelProperty(value = "負荷率", required = false, position = 10, allowableValues = "range[0,255]")
 private String loadFactor;
 
 /**
  * 供給開始予定日
  */
-@Column(nullable = false)
-@ApiModelProperty(value = "供給開始予定日", required = false, position = 10)
+@Column(nullable = true)
+@ApiModelProperty(value = "供給開始予定日", required = false, position = 11)
 private Date supplyStartScheduledDate;
 
 /**
  * 備考
  */
-@Column(nullable = false)
-@ApiModelProperty(value = "備考", required = false, position = 11, allowableValues = "range[0,255]")
+@Column(nullable = true)
+@ApiModelProperty(value = "備考", required = false, position = 12, allowableValues = "range[0,255]")
 private String notes;
 
-@OneToMany(mappedBy = "estimationElectric")
-@ApiModelProperty(value = "テスト", required = false, position = 12)
-private List<ElectricExpertEstimation> electricExpertEstimationList;
-
-@OneToMany(mappedBy = "estimationElectric")
+@OneToOne(mappedBy = "estimationElectric")
 @ApiModelProperty(value = "テスト", required = false, position = 13)
-private List<ElectricDealerEstimation> electricDealerEstimationList;
+private ElectricExpertEstimation electricExpertEstimation;
 
-@OneToMany(mappedBy = "estimationElectric")
+@OneToOne(mappedBy = "estimationElectric")
 @ApiModelProperty(value = "テスト", required = false, position = 14)
-private List<FeeSimulationSales> feeSimulationSalesList;
+private ElectricDealerEstimation electricDealerEstimation;
 
-@OneToMany(mappedBy = "estimationElectric")
+@OneToOne(mappedBy = "estimationElectric")
 @ApiModelProperty(value = "テスト", required = false, position = 15)
-private List<FeeSimulationHead> feeSimulationHeadList;
+private FeeSimulationSales feeSimulationSales;
+
+@OneToOne(mappedBy = "estimationElectric")
+@ApiModelProperty(value = "テスト", required = false, position = 16)
+private FeeSimulationHead feeSimulationHead;
 
 }
 

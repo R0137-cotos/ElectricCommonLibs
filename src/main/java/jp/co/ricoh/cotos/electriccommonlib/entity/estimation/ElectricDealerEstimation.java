@@ -46,49 +46,49 @@ private EstimationElectric estimationElectric;
 /**
  * 企業ID
  */
-@Column(nullable = false)
+@Column(nullable = true)
 @ApiModelProperty(value = "企業ID", required = false, position = 2, allowableValues = "range[0,]")
 private String companyId;
 
 /**
  * 事業所ID
  */
-@Column(nullable = false)
+@Column(nullable = true)
 @ApiModelProperty(value = "事業所ID", required = false, position = 3, allowableValues = "range[0,]")
 private String officeId;
 
 /**
  * 企事部ID
  */
-@Column(nullable = false)
+@Column(nullable = true)
 @ApiModelProperty(value = "企事部ID", required = false, position = 4, allowableValues = "range[0,]")
 private String custId;
 
 /**
  * 企業_事業所名
  */
-@Column(nullable = false)
+@Column(nullable = true)
 @ApiModelProperty(value = "企業_事業所名", required = false, position = 5, allowableValues = "range[0,]")
 private String companyBusinessName;
 
 /**
  * 事業所電話番号
  */
-@Column(nullable = false)
+@Column(nullable = true)
 @ApiModelProperty(value = "事業所電話番号", required = false, position = 6, allowableValues = "range[0,]")
 private String phoneNumber;
 
 /**
  * 郵便番号
  */
-@Column(nullable = false)
+@Column(nullable = true)
 @ApiModelProperty(value = "郵便番号", required = false, position = 7, allowableValues = "range[0,]")
 private String postNumber;
 
 /**
  * 住所
  */
-@Column(nullable = false)
+@Column(nullable = true)
 @ApiModelProperty(value = "住所", required = false, position = 8, allowableValues = "range[0,]")
 private String address;
 
