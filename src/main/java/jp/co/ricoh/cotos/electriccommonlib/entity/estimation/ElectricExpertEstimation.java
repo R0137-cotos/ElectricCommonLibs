@@ -46,35 +46,35 @@ private EstimationElectric estimationElectric;
 /**
  * 氏名
  */
-@Column(nullable = false)
+@Column(nullable = true)
 @ApiModelProperty(value = "氏名", required = false, position = 2, allowableValues = "range[0,]")
 private String name;
 
 /**
  * メールアドレス
  */
-@Column(nullable = false)
+@Column(nullable = true)
 @ApiModelProperty(value = "メールアドレス", required = false, position = 3, allowableValues = "range[0,]")
 private String mailAddress;
 
 /**
  * 電話番号
  */
-@Column(nullable = false)
+@Column(nullable = true)
 @ApiModelProperty(value = "電話番号", required = false, position = 4, allowableValues = "range[0,]")
 private String phoneNumber;
 
 /**
  * 所属課所コード
  */
-@Column(nullable = false)
+@Column(nullable = true)
 @ApiModelProperty(value = "所属課所コード", required = false, position = 5, allowableValues = "range[0,]")
 private String affiliationCode;
 
 /**
  * 所属
  */
-@Column(nullable = false)
+@Column(nullable = true)
 @ApiModelProperty(value = "所属", required = false, position = 6, allowableValues = "range[0,]")
 private String belongs;
 
