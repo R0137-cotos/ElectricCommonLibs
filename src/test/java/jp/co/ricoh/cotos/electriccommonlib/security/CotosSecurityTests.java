@@ -134,7 +134,7 @@ public class CotosSecurityTests {
 			Mockito.doReturn(new HashMap<ActionDiv, Map<AuthDiv, AuthLevel>>()).when(momAuthorityService).searchAllMomAuthorities(Mockito.anyString());
 			// モックサーバー用にrestテンプレートを差し替え
 			Mockito.doReturn(restTemplate).when(restTemplateCreator).getRestTemplate(Mockito.anyString());
-			mockServer.expect(ExpectedCount.manyTimes(), MockRestRequestMatchers.requestTo(new URI(standardProperties.getMaster() + "/findSuperUserMaster/mid"))).andExpect(MockRestRequestMatchers.method(HttpMethod.GET)).andRespond(MockRestResponseCreators.withSuccess("", MediaType.APPLICATION_JSON));
+			mockServer.expect(ExpectedCount.manyTimes(), MockRestRequestMatchers.requestTo(new URI(standardProperties.getMaster() + "/master/findSuperUserMaster/mid"))).andExpect(MockRestRequestMatchers.method(HttpMethod.GET)).andRespond(MockRestResponseCreators.withSuccess("", MediaType.APPLICATION_JSON));
 		} catch (Exception e) {
 			Assert.fail("モック差し替えに失敗");
 		}
@@ -152,7 +152,7 @@ public class CotosSecurityTests {
 		try {
 			// モックサーバー用にrestテンプレートを差し替え
 			Mockito.doReturn(restTemplate).when(restTemplateCreator).getRestTemplate(Mockito.anyString());
-			mockServer.expect(ExpectedCount.manyTimes(), MockRestRequestMatchers.requestTo(new URI(standardProperties.getMaster() + "/findSuperUserMaster/MOM_EMPLOYEE_ID"))).andExpect(MockRestRequestMatchers.method(HttpMethod.GET)).andRespond(MockRestResponseCreators.withSuccess("{}", MediaType.APPLICATION_JSON));
+			mockServer.expect(ExpectedCount.manyTimes(), MockRestRequestMatchers.requestTo(new URI(standardProperties.getMaster() + "/master/findSuperUserMaster/MOM_EMPLOYEE_ID"))).andExpect(MockRestRequestMatchers.method(HttpMethod.GET)).andRespond(MockRestResponseCreators.withSuccess("{}", MediaType.APPLICATION_JSON));
 		} catch (Exception e) {
 			Assert.fail("モック差し替えに失敗");
 		}

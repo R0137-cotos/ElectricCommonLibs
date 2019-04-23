@@ -426,42 +426,35 @@ public class ContractElectric extends EntityBase {
 	/**
 	 * Mailアドレス情報
 	 */
-	@OneToMany
+	@OneToMany(mappedBy = "contractElectric")
 	@ApiModelProperty(value = "Mailアドレス情報", required = false, position = 51)
 	private List<MailAddressInformation> mailAddressInformationList;
 
 	/**
 	 * 契約(電力)添付ファイル
 	 */
-	@OneToMany
+	@OneToMany(mappedBy = "contractElectric")
 	@ApiModelProperty(value = "契約(電力)添付ファイル", required = false, position = 52)
 	private List<ContractElectricAttachedFile> contractElectricAttachedFileList;
 
 	/**
-	 * 単価情報(高圧)o
+	 * 単価情報(高圧)
 	 */
-	@OneToMany
+	@OneToMany(mappedBy = "contractElectric")
 	@ApiModelProperty(value = "単価情報(高圧)", required = false, position = 53)
 	private List<UnitPriceHighPressure> unitPriceHighPressureList;
 
 	/**
 	 * 単価情報(低圧)
 	 */
-	@OneToMany
+	@OneToMany(mappedBy = "contractElectric")
 	@ApiModelProperty(value = "単価情報(低圧)", required = false, position = 54)
 	private List<UnitPriceLowPressure> unitPriceLowPressureList;
 
 	/**
 	 * 得意先情報
 	 */
-	@OneToMany
+	@OneToMany(mappedBy = "contractElectric")
 	@ApiModelProperty(value = "得意先情報", required = false, position = 55)
 	private List<ClientInformation> clientInformationList;
-
-	/**
-	 * 計上実績
-	 */
-	@OneToMany
-	@ApiModelProperty(value = "計上実績", required = false, position = 56)
-	private List<ElectricAppropriation> electricAppropriation;
 }
