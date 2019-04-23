@@ -1,4 +1,4 @@
-package jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract;
+package jp.co.ricoh.cotos.electriccommonlib.dto.result.contract;
 
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.entity.contract.Contract;
@@ -8,7 +8,7 @@ import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = false)
 @Data
-public class ContractFindOneResultDto {
+public class ContractResultDto {
 
 	/**
 	 * 契約(標準)
