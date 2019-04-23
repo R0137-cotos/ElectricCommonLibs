@@ -44,7 +44,7 @@ public class ClientInformation extends EntityBase {
 	@JoinColumn(name = "contract_electric_id", referencedColumnName = "id")
 	@ApiModelProperty(value = "契約(電力用)", required = true, position = 2)
 	@JsonIgnore
-	private ContractElectric contractElectricList;
+	private ContractElectric contractElectric;
 
 	/**
 	 * 得意先CD
@@ -56,11 +56,9 @@ public class ClientInformation extends EntityBase {
 	/**
 	 * 得意先情報M_ID
 	 */
-	@ManyToOne
-	@JoinColumn(name = "client_master_id", referencedColumnName = "id")
-	@ApiModelProperty(value = "得意先情報M_ID", required = true, position = 4)
-	@JsonIgnore
-	private ClientMaster clientMaster;
+	@Column(nullable = true)
+	@ApiModelProperty(value = "得意先情報M_ID", required = true, position = 4, allowableValues = "range[0,9223372036854775807]")
+	private long clientMasterId;
 
 	/**
 	 * アクティブflg
@@ -68,6 +66,6 @@ public class ClientInformation extends EntityBase {
 	@Column(nullable = true)
 	@Max(9)
 	@Min(0)
-	@ApiModelProperty(value = "アクティブflgグ", required = false, position = 5, allowableValues = "range[0,9]")
+	@ApiModelProperty(value = "アクティブflg", required = false, position = 5, allowableValues = "range[0,9]")
 	private Integer activeFlg;
 }

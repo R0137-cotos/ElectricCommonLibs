@@ -91,7 +91,7 @@ public class CotosElcUserDetailsService implements AuthenticationUserDetailsServ
 			DecodedJWT jwt = verifier.verify(jwtString);
 
 			// スーパーユーザーか判定
-			SuperUserMaster superuserMaster = restTemplateCreator.getRestTemplate(jwtString).getForEntity(standardProperties.getMaster() + "/findSuperUserMaster/" + jwt.getClaim(claimsProperties.getMomEmpId()).asString(), SuperUserMaster.class).getBody();
+			SuperUserMaster superuserMaster = restTemplateCreator.getRestTemplate(jwtString).getForEntity(standardProperties.getMaster() + "/master/findSuperUserMaster/" + jwt.getClaim(claimsProperties.getMomEmpId()).asString(), SuperUserMaster.class).getBody();
 			boolean isSuperUser = superuserMaster != null;
 
 			// シングルユーザーIDに紐づく権限情報を取得

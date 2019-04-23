@@ -44,7 +44,7 @@ public class ClientMaster extends EntityBase {
 	/**
 	 * 請求先Mailアドレス情報
 	 */
-	@OneToMany
+	@OneToMany(mappedBy = "clientMaster")
 	@ApiModelProperty(value = "請求先Mailアドレス情報", required = false, position = 3)
 	private List<BillingMailAddressInformation> BillingMailAddressInformationList;
 }
