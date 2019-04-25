@@ -16,3 +16,4 @@
 |10|外部データベース情報を取得する共通クラスを作成｜
 |11|OneToManyに対してmappedBy付与｜
 |12|NISHIKIエンティティにJsonPropertyを付与｜
+|13|NISHIKIエンティティのリレーション削除｜
