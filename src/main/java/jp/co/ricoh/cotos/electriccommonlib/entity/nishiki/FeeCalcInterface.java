@@ -1,5 +1,6 @@
 package jp.co.ricoh.cotos.electriccommonlib.entity.nishiki;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -114,7 +115,7 @@ public class FeeCalcInterface extends EntityBase {
 	@Column(nullable = false)
 	@ApiModelProperty(value = "合計金額", required = true, position = 11)
 	@JsonProperty("合計金額")
-	private long sumMny;
+	private BigDecimal sumMny;
 
 	/**
 	 * 課税対象税抜合計金額
@@ -170,7 +171,7 @@ public class FeeCalcInterface extends EntityBase {
 	@Column(nullable = true)
 	@ApiModelProperty(value = "料金計算単価", required = false, position = 18)
 	@JsonProperty("料金計算単価")
-	private Long feeClcUprc;
+	private BigDecimal feeClcUprc;
 
 	/**
 	 * 料金計算数量
