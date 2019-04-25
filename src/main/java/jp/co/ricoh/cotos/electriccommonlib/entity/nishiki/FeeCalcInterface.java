@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -268,25 +267,5 @@ public class FeeCalcInterface extends EntityBase {
 	@Column(nullable = false)
 	@ApiModelProperty(value = "請求書出力フラグ", required = false, position = 30)
 	private Long outputFlg;
-
-	@OneToOne(mappedBy = "feeCalcInterface")
-	@ApiModelProperty(value = "計器情報(高圧)", required = false, position = 31)
-	private InstrumentInfoHighVolt instrumentInfoHighVolt;
-
-	@OneToOne(mappedBy = "feeCalcInterface")
-	@ApiModelProperty(value = "精算分電力量差異情報(高圧)", required = false, position = 32)
-	private SettleUssDifferrenceInfoHighVolt settleUssDifferrenceInfoHighVolt;
-
-	@OneToOne(mappedBy = "feeCalcInterface", optional = false)
-	@ApiModelProperty(value = "料金計算結果電力量	", required = true, position = 33)
-	private FeeClcUssInterface feeClcUssInterface;
-
-	@OneToOne(mappedBy = "feeCalcInterface")
-	@ApiModelProperty(value = "契約超過金情報(高圧)", required = false, position = 34)
-	private ExcsChargeInfoHighVolt excsChargeInfoHighVolt;
-
-	@OneToOne(mappedBy = "feeCalcInterface")
-	@ApiModelProperty(value = "最大需要電力量(高圧)", required = false, position = 35)
-	private MaximumDemandPowerHighVolt maximumDemandPowerHighVolt;
 
 }
