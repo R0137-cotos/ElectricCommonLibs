@@ -5,12 +5,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import io.swagger.annotations.ApiModelProperty;
@@ -35,14 +32,6 @@ public class InstrumentInfoHighVolt extends EntityBase {
 	@SequenceGenerator(name = "instrument_info_high_volt_seq", sequenceName = "instrument_info_high_volt_seq", allocationSize = 1)
 	@ApiModelProperty(value = "ID", required = false, position = 1)
 	private long id;
-
-	/**
-	 * NISHIKI料金計算結果ID
-	 */
-	@OneToOne(optional = false)
-	@JoinColumn(name = "fee_calc_interface_id", referencedColumnName = "id")
-	@JsonIgnore
-	private FeeCalcInterface feeCalcInterface;
 
 	/**
 	 * 全体番号
