@@ -17,3 +17,4 @@
 |11|OneToManyに対してmappedBy付与｜
 |12|NISHIKIエンティティにJsonPropertyを付与｜
 |13|NISHIKIエンティティのリレーション削除｜
+|14|NISHIKI料金計算結果 金額項目の型変更｜
