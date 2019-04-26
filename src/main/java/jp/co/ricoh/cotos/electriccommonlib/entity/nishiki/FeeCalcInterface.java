@@ -47,11 +47,12 @@ public class FeeCalcInterface extends EntityBase {
 
 	/**
 	 * 料金区分
+	 * 必須項目であるが、import処理で必須チェックをかけるためにLongで定義
 	 */
 	@Column(nullable = false)
 	@ApiModelProperty(value = "料金区分", required = true, position = 3)
 	@JsonProperty("料金区分")
-	private long feeKbn;
+	private Long feeKbn;
 
 	/**
 	 * 料金計算実行番号
@@ -71,11 +72,12 @@ public class FeeCalcInterface extends EntityBase {
 
 	/**
 	 * 料金計算明細番号
+	 * 必須項目であるが、import処理で必須チェックをかけるためにLongで定義
 	 */
 	@Column(nullable = false)
 	@ApiModelProperty(value = "料金計算明細番号", required = true, position = 6)
 	@JsonProperty("料金計算明細番号")
-	private long feeClcDtlBn;
+	private Long feeClcDtlBn;
 
 	/**
 	 * 料金計算対象年月
@@ -119,27 +121,30 @@ public class FeeCalcInterface extends EntityBase {
 
 	/**
 	 * 課税対象税抜合計金額
+	 * 必須項目であるが、import処理で必須チェックをかけるためにLongで定義
 	 */
 	@Column(nullable = false)
 	@ApiModelProperty(value = "課税対象税抜合計金額", required = true, position = 12)
 	@JsonProperty("課税対象税抜合計金額")
-	private long taxObjTaxOutSumMny;
+	private Long taxObjTaxOutSumMny;
 
 	/**
 	 * 税抜合計金額
+	 * 必須項目であるが、import処理で必須チェックをかけるためにLongで定義
 	 */
 	@Column(nullable = false)
 	@ApiModelProperty(value = "税抜合計金額", required = true, position = 13)
 	@JsonProperty("税抜合計金額")
-	private long feeClcFeeTaxOut;
+	private Long feeClcFeeTaxOut;
 
 	/**
 	 * 消費税
+	 * 必須項目であるが、import処理で必須チェックをかけるためにLongで定義
 	 */
 	@Column(nullable = false)
 	@ApiModelProperty(value = "消費税", required = true, position = 14)
 	@JsonProperty("消費税")
-	private long taxMny;
+	private Long taxMny;
 
 	/**
 	 * 消費税対象区分
@@ -175,17 +180,18 @@ public class FeeCalcInterface extends EntityBase {
 
 	/**
 	 * 料金計算数量
+	 * 必須項目であるが、import処理で必須チェックをかけるためにLongで定義
 	 */
 	@Column(nullable = false)
 	@ApiModelProperty(value = "料金計算数量", required = true, position = 19)
 	@JsonProperty("料金計算数量")
-	private long feeClcNum;
+	private Long feeClcNum;
 
 	/**
 	 * 料金計算開始日時
 	 */
-	@Column(nullable = false)
-	@ApiModelProperty(value = "料金計算開始日時", required = true, position = 20)
+	@Column(nullable = true)
+	@ApiModelProperty(value = "料金計算開始日時", required = false, position = 20)
 	@JsonProperty("料金計算開始日時")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "JST")
 	private Date feeClcStrDatTim;
@@ -193,8 +199,8 @@ public class FeeCalcInterface extends EntityBase {
 	/**
 	 * 料金計算終了日時
 	 */
-	@Column(nullable = false)
-	@ApiModelProperty(value = "料金計算終了日時", required = true, position = 21)
+	@Column(nullable = true)
+	@ApiModelProperty(value = "料金計算終了日時", required = false, position = 21)
 	@JsonProperty("料金計算終了日時")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "JST")
 	private Date feeClcEndDatTim;
@@ -218,16 +224,16 @@ public class FeeCalcInterface extends EntityBase {
 	/**
 	 * 料金計算対象開始日
 	 */
-	@Column(nullable = false)
-	@ApiModelProperty(value = "料金計算対象開始日", required = true, position = 24)
+	@Column(nullable = true)
+	@ApiModelProperty(value = "料金計算対象開始日", required = false, position = 24)
 	@JsonProperty("料金計算対象開始日")
 	private String feeClcStryMd;
 
 	/**
 	 * 料金計算対象終了日
 	 */
-	@Column(nullable = false)
-	@ApiModelProperty(value = "料金計算対象終了日", required = true, position = 25)
+	@Column(nullable = true)
+	@ApiModelProperty(value = "料金計算対象終了日", required = false, position = 25)
 	@JsonProperty("料金計算対象終了日")
 	private String feeClcSendMd;
 
