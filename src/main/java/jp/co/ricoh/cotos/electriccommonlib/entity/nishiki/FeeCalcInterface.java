@@ -43,7 +43,7 @@ public class FeeCalcInterface extends EntityBase {
 	@Column(nullable = false)
 	@ApiModelProperty(value = "全体番号", required = true, position = 2)
 	@JsonProperty("全体番号")
-	private long feeClcAllBn;
+	private String feeClcAllBn;
 
 	/**
 	 * 料金区分
@@ -51,7 +51,7 @@ public class FeeCalcInterface extends EntityBase {
 	@Column(nullable = false)
 	@ApiModelProperty(value = "料金区分", required = true, position = 3)
 	@JsonProperty("料金区分")
-	private String feeKbn;
+	private long feeKbn;
 
 	/**
 	 * 料金計算実行番号
@@ -152,16 +152,16 @@ public class FeeCalcInterface extends EntityBase {
 	/**
 	 * 料金計算明細種別コード
 	 */
-	@Column(nullable = false)
-	@ApiModelProperty(value = "料金計算明細種別コード", required = true, position = 16)
+	@Column(nullable = true)
+	@ApiModelProperty(value = "料金計算明細種別コード", required = false, position = 16)
 	@JsonProperty("料金計算明細種別コード")
 	private String feeClcDtlClsCd;
 
 	/**
 	 * 明細種別名称
 	 */
-	@Column(nullable = false)
-	@ApiModelProperty(value = "明細種別名称", required = true, position = 17)
+	@Column(nullable = true)
+	@ApiModelProperty(value = "明細種別名称", required = false, position = 17)
 	@JsonProperty("明細種別名称")
 	private String dtlClsNms;
 
@@ -176,10 +176,10 @@ public class FeeCalcInterface extends EntityBase {
 	/**
 	 * 料金計算数量
 	 */
-	@Column(nullable = true)
-	@ApiModelProperty(value = "料金計算数量", required = false, position = 19)
+	@Column(nullable = false)
+	@ApiModelProperty(value = "料金計算数量", required = true, position = 19)
 	@JsonProperty("料金計算数量")
-	private Long feeClcNum;
+	private long feeClcNum;
 
 	/**
 	 * 料金計算開始日時
@@ -202,18 +202,18 @@ public class FeeCalcInterface extends EntityBase {
 	/**
 	 * 前月電力量
 	 */
-	@Column(nullable = false)
-	@ApiModelProperty(value = "前月電力量", required = true, position = 22)
+	@Column(nullable = true)
+	@ApiModelProperty(value = "前月電力量", required = false, position = 22)
 	@JsonProperty("前月電力量")
-	private long lstMnthElc;
+	private Long lstMnthElc;
 
 	/**
 	 * 前年同月電力量
 	 */
-	@Column(nullable = false)
-	@ApiModelProperty(value = "前年同月電力量", required = true, position = 23)
+	@Column(nullable = true)
+	@ApiModelProperty(value = "前年同月電力量", required = false, position = 23)
 	@JsonProperty("前年同月電力量")
-	private long lstYearsMnthElcNum;
+	private Long lstYearsMnthElcNum;
 
 	/**
 	 * 料金計算対象開始日
@@ -266,7 +266,7 @@ public class FeeCalcInterface extends EntityBase {
 	 * 請求書出力フラグ
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "請求書出力フラグ", required = false, position = 30)
-	private Long outputFlg;
+	@ApiModelProperty(value = "請求書出力フラグ", required = true, position = 30)
+	private long outputFlg;
 
 }
