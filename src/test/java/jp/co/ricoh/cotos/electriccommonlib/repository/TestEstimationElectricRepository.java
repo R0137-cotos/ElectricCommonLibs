@@ -1,7 +1,6 @@
 package jp.co.ricoh.cotos.electriccommonlib.repository;
 
 import org.junit.AfterClass;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +11,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import jp.co.ricoh.cotos.electriccommonlib.DBConfig;
 import jp.co.ricoh.cotos.electriccommonlib.TestTools;
-import jp.co.ricoh.cotos.electriccommonlib.entity.contract.ContractElectric;
 import jp.co.ricoh.cotos.electriccommonlib.repository.common.ElectricAttachedFileRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.BillingBasicInformationRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.BillingHistoryRepository;
@@ -42,7 +40,7 @@ import jp.co.ricoh.cotos.electriccommonlib.repository.master.ElectricCompanyMast
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-public class TestContractElectricRepository extends RepositoryTestBase {
+public class TestEstimationElectricRepository extends RepositoryTestBase {
 
 	@Autowired
 	BillingBasicInformationRepository billingBasicInformationRepository;
@@ -131,7 +129,7 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 	public void injectContext(ConfigurableApplicationContext injectContext) {
 		context = injectContext;
 		context.getBean(DBConfig.class).clearData();
-		context.getBean(DBConfig.class).initTargetTestData("repository/contract/Electric.sql");
+		context.getBean(DBConfig.class).initTargetTestData("repository/estimation/EstimationElectric.sql");
 	}
 
 	@AfterClass
@@ -143,102 +141,28 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 	}
 
 	@Test
-	public void 全てのカラムがNullではないことを確認_契約_電力用() {
-		全てのカラムがNullではないことを確認_共通(contractElectricRepository, 1L);
+	public void 全てのカラムがNullではないことを確認_見積_電力用() {
+		全てのカラムがNullではないことを確認_共通(estimationElectricRepository, 1L);
 	}
 
 	@Test
-	public void 全てのカラムがNullではないことを確認_Mailアドレス情報() {
-		全てのカラムがNullではないことを確認_共通(mailAddressInformationRepository, 1L);
+	public void 全てのカラムがNullではないことを確認_見積_電力専任情報() {
+		全てのカラムがNullではないことを確認_共通(electricExpertEstimationRepository, 1L);
 	}
 
 	@Test
-	public void 全てのカラムがNullではないことを確認_お申込み内容_高圧() {
-		全てのカラムがNullではないことを確認_共通(entryContentHighPressureRepository, 1L);
+	public void 全てのカラムがNullではないことを確認_見積_販売店情報() {
+		全てのカラムがNullではないことを確認_共通(electricDealerEstimationRepository, 1L);
 	}
 
 	@Test
-	public void 全てのカラムがNullではないことを確認_お申込み内容_低圧() {
-		全てのカラムがNullではないことを確認_共通(entryContentLowPressureRepository, 1L);
+	public void 全てのカラムがNullではないことを確認_見積_料金シュミレーション_営業用() {
+		全てのカラムがNullではないことを確認_共通(feeSimulationHeadRepository, 1L);
 	}
 
 	@Test
-	public void 全てのカラムがNullではないことを確認_契約_電力用_添付ファイル() {
-		全てのカラムがNullではないことを確認_共通(contractElectricAttachedFileRepository, 1L);
-	}
-
-	@Test
-	public void 全てのカラムがNullではないことを確認_単価情報_高圧() {
-		全てのカラムがNullではないことを確認_共通(unitPriceHighPressureRepository, 1L);
-	}
-
-	@Test
-	public void 全てのカラムがNullではないことを確認_単価情報_低圧() {
-		全てのカラムがNullではないことを確認_共通(unitPriceLowPressureRepository, 1L);
-	}
-
-	@Test
-	public void 全てのカラムがNullではないことを確認_解約情報() {
-		全てのカラムがNullではないことを確認_共通(cancellationInformationRepository, 1L);
-	}
-
-	@Test
-	public void 全てのカラムがNullではないことを確認_電力専任情報() {
-		全てのカラムがNullではないことを確認_共通(electricExpertContractRepository, 1L);
-	}
-
-	@Test
-	public void 全てのカラムがNullではないことを確認_販売店情報() {
-		全てのカラムがNullではないことを確認_共通(electricDealerContractRepository, 1L);
-	}
-
-	@Test
-	public void 全てのカラムがNullではないことを確認_得意先情報() {
-		全てのカラムがNullではないことを確認_共通(clientInformationRepository, 1L);
-	}
-
-	@Test
-	public void 全てのカラムがNullではないことを確認_得意先情報マスタ() {
-		全てのカラムがNullではないことを確認_共通(clientMasterRepository, 1L);
-	}
-
-	@Test
-	public void 全てのカラムがNullではないことを確認_請求先Mailアドレス情報() {
-		全てのカラムがNullではないことを確認_共通(billingMailAddressInformationRepository, 1L);
-	}
-
-	@Test
-	public void 全てのカラムがNullではないことを確認_請求基本情報() {
-		全てのカラムがNullではないことを確認_共通(billingBasicInformationRepository, 1L);
-	}
-
-	@Test
-	public void 全てのカラムがNullではないことを確認_請求実績() {
-		全てのカラムがNullではないことを確認_共通(billingHistoryRepository, 1L);
-	}
-
-	@Test
-	public void 全てのカラムがNullではないことを確認_計上実績() {
-		全てのカラムがNullではないことを確認_共通(electricAppropriationRepository, 1L);
-	}
-
-	@Test
-	public void 全てのカラムがNullではないことを確認_添付ファイル() {
-		全てのカラムがNullではないことを確認_共通(electricAttachedFileRepository, 1L);
-	}
-
-	@Test
-	public void 全てのカラムがNullではないことを確認_契約_電力用を契約IDより取得() {
-
-		// 契約IDにより契約(電力)を取得
-		ContractElectric contractElectric = contractElectricRepository.findByContractId(2L);
-
-		// null項目なく取得できていることを確認
-		try {
-			testTools.assertColumnsNotNull(contractElectric);
-		} catch (Exception e1) {
-			Assert.fail("例外が発生した場合、エラー");
-		}
+	public void 全てのカラムがNullではないことを確認_見積_料金シュミレーション_本部用() {
+		全てのカラムがNullではないことを確認_共通(feeSimulationSalesRepository, 1L);
 	}
 
 }

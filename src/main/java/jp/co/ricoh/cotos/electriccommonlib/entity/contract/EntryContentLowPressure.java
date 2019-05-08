@@ -2,6 +2,7 @@ package jp.co.ricoh.cotos.electriccommonlib.entity.contract;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,10 +13,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Digits;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -101,10 +102,10 @@ public class EntryContentLowPressure extends EntityBase {
 	 * 契約容量(従量電灯)
 	 */
 	@Column(nullable = true)
-	@Max(99999)
-	@Min(0)
-	@ApiModelProperty(value = "契約容量(従量電灯)", required = false, position = 3, allowableValues = "range[0,99999]")
-	private Integer contractCapacityUsage;
+	@DecimalMin("0.00")
+	@Digits(integer = 8, fraction = 2)
+	@ApiModelProperty(value = "契約容量(従量電灯)", required = false, position = 3, allowableValues = "range[0.00,99999999.99]")
+	private BigDecimal contractCapacityUsage;
 
 	/**
 	 * 契約容量単位
@@ -117,10 +118,10 @@ public class EntryContentLowPressure extends EntityBase {
 	 * 契約電流
 	 */
 	@Column(nullable = true)
-	@Max(99999)
-	@Min(0)
-	@ApiModelProperty(value = "契約電流", required = false, position = 5, allowableValues = "range[0,99999]")
-	private Integer contractElectricCurrent;
+	@DecimalMin("0.00")
+	@Digits(integer = 8, fraction = 2)
+	@ApiModelProperty(value = "契約電流", required = false, position = 5, allowableValues = "range[0.00,99999999.99]")
+	private BigDecimal contractElectricCurrent;
 
 	/**
 	 * 契約電流単位
@@ -133,10 +134,10 @@ public class EntryContentLowPressure extends EntityBase {
 	 * 契約電力
 	 */
 	@Column(nullable = true)
-	@Max(99999)
-	@Min(0)
-	@ApiModelProperty(value = "契約電力", required = false, position = 7, allowableValues = "range[0,99999]")
-	private Integer contractElectricPower;
+	@DecimalMin("0.00")
+	@Digits(integer = 8, fraction = 2)
+	@ApiModelProperty(value = "契約電力", required = false, position = 7, allowableValues = "range[0.00,99999999.99]")
+	private BigDecimal contractElectricPower;
 
 	/**
 	 * 負荷率
@@ -146,4 +147,19 @@ public class EntryContentLowPressure extends EntityBase {
 	@Digits(integer = 5, fraction = 2)
 	@ApiModelProperty(value = "負荷率", required = false, position = 8, allowableValues = "range[0.00,99999.99]")
 	private BigDecimal loadFactor;
+
+	/**
+	 * 基本検針日(低圧)
+	 */
+	@Column(nullable = false)
+	@ApiModelProperty(value = "基本検針日(低圧)", required = true, position = 9)
+	@Temporal(TemporalType.DATE)
+	private Date basicMeterReadingDate;
+
+	/**
+	 * 備考
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "備考", required = false, position = 10, allowableValues = "range[0,4000]")
+	private String notes;
 }

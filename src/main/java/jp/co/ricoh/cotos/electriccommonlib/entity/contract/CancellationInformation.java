@@ -83,6 +83,28 @@ public class CancellationInformation extends EntityBase {
 		}
 	}
 
+	public enum CancellationDiv {
+
+		消滅("1"), 他社への切り替え("2");
+
+		private final String text;
+
+		private CancellationDiv(final String text) {
+			this.text = text;
+		}
+
+		@Override
+		@JsonValue
+		public String toString() {
+			return this.text;
+		}
+
+		@JsonCreator
+		public static CancellationDiv fromString(String string) {
+			return Arrays.stream(values()).filter(v -> v.text.equals(string)).findFirst().orElseThrow(() -> new IllegalArgumentException(String.valueOf(string)));
+		}
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cancellation_information_seq")
 	@SequenceGenerator(name = "cancellation_information_seq", sequenceName = "cancellation_information_seq", allocationSize = 1)
@@ -220,4 +242,11 @@ public class CancellationInformation extends EntityBase {
 	@Min(0)
 	@ApiModelProperty(value = "上長確認フラグ", required = false, position = 17, allowableValues = "range[0,9]")
 	private Integer superiorConfirmFlg;
+
+	/**
+	 * 解約種別
+	 */
+	@Column(nullable = false)
+	@ApiModelProperty(value = "解約種別", required = true, position = 18, allowableValues = "消滅(\"1\"), 他社への切り替え(\"1\")", example = "1")
+	private CancellationDiv cancellationDiv;
 }

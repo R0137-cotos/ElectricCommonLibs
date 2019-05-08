@@ -1,5 +1,6 @@
 package jp.co.ricoh.cotos.electriccommonlib.entity.contract;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 
 import javax.persistence.Column;
@@ -11,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Digits;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -90,4 +93,13 @@ public class MailAddressInformation extends EntityBase {
 	@Column(nullable = false)
 	@ApiModelProperty(value = "メールアドレス", required = true, position = 5, allowableValues = "range[0,255]")
 	private String mailAddress;
+
+	/**
+	 * ピークアラートしきい値
+	 */
+	@Column(nullable = true)
+	@DecimalMin("0.00")
+	@Digits(integer = 8, fraction = 2)
+	@ApiModelProperty(value = "ピークアラートしきい値", required = false, position = 6, allowableValues = "range[0.00,99999999.99]")
+	private BigDecimal peakAlertThreshold;
 }
