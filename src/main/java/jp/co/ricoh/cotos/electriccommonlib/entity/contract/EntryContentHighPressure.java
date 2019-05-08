@@ -65,10 +65,10 @@ public class EntryContentHighPressure extends EntityBase {
 	 * 契約電力(高圧)
 	 */
 	@Column(nullable = true)
-	@Max(2147483647)
-	@Min(0)
-	@ApiModelProperty(value = "契約電力(高圧)", required = false, position = 4, allowableValues = "range[0,2147483647]")
-	private Integer contractPowerHigh;
+	@DecimalMin("0.00")
+	@Digits(integer = 8, fraction = 2)
+	@ApiModelProperty(value = "契約電力(高圧)", required = false, position = 4, allowableValues = "range[0.00,99999999.99]")
+	private BigDecimal contractPowerHigh;
 
 	/**
 	 * 規模

@@ -32,4 +32,26 @@ public class EnumType {
 		}
 	}
 
+	public enum ElectricCommercialFlowDiv {
+
+		直売("1"), 代売("2"), 社内("3");
+
+		private final String text;
+
+		private ElectricCommercialFlowDiv(final String text) {
+			this.text = text;
+		}
+
+		@Override
+		@JsonValue
+		public String toString() {
+			return this.text;
+		}
+		
+		@JsonCreator
+		public static ElectricCommercialFlowDiv fromString(String string) {
+			return Arrays.stream(values()).filter(v -> v.text.equals(string)).findFirst().orElseThrow(() -> new IllegalArgumentException(String.valueOf(string)));
+		}
+	}
+
 }

@@ -75,7 +75,7 @@ public class ElectricAppropriation extends EntityBase {
 	 */
 	@Column(nullable = false)
 	@ApiModelProperty(value = "請求年月", required = true, position = 5, allowableValues = "range[0,255]")
-	private String supplyYearMonth;
+	private String billingYearMonth;
 
 	/**
 	 * お客様識別番号
@@ -212,37 +212,37 @@ public class ElectricAppropriation extends EntityBase {
 	 * 基本電力量
 	 */
 	@Column(nullable = true)
-	@Max(2147483647)
-	@Min(0)
-	@ApiModelProperty(value = "基本電力量", required = false, position = 23, allowableValues = "range[0,2147483647]")
-	private Integer basicPowerAmount;
+	@DecimalMin("0.00")
+	@Digits(integer = 8, fraction = 2)
+	@ApiModelProperty(value = "基本電力量", required = false, position = 23, allowableValues = "range[0.00,99999999.99]")
+	private BigDecimal basicPowerAmount;
 
 	/**
 	 * 月間合計電力量(夏季)
 	 */
 	@Column(nullable = true)
-	@Max(2147483647)
-	@Min(0)
-	@ApiModelProperty(value = "月間合計電力量(夏季)", required = false, position = 24, allowableValues = "range[0,2147483647]")
-	private Integer monthlyTotalpowerAmountSummer;
+	@DecimalMin("0.00")
+	@Digits(integer = 8, fraction = 2)
+	@ApiModelProperty(value = "月間合計電力量(夏季)", required = false, position = 24, allowableValues = "range[0.00,99999999.99]")
+	private BigDecimal monthlyTotalpowerAmountSummer;
 
 	/**
 	 * 月間合計電力量(その他季)
 	 */
 	@Column(nullable = true)
-	@Max(2147483647)
-	@Min(0)
-	@ApiModelProperty(value = "月間合計電力量(その他季)", required = false, position = 25, allowableValues = "range[0,2147483647]")
-	private Integer monthlyTotalpowerAmountOtherSeason;
+	@DecimalMin("0.00")
+	@Digits(integer = 8, fraction = 2)
+	@ApiModelProperty(value = "月間合計電力量(その他季)", required = false, position = 25, allowableValues = "range[0.00,99999999.99]")
+	private BigDecimal monthlyTotalpowerAmountOtherSeason;
 
 	/**
 	 * 月間合計電力量(共通)
 	 */
 	@Column(nullable = true)
-	@Max(2147483647)
-	@Min(0)
-	@ApiModelProperty(value = "月間合計電力量(その他季)", required = false, position = 26, allowableValues = "range[0,2147483647]")
-	private Integer monthlyTotalpowerAmountCommon;
+	@DecimalMin("0.00")
+	@Digits(integer = 8, fraction = 2)
+	@ApiModelProperty(value = "月間合計電力量(共通)", required = false, position = 26, allowableValues = "range[0.00,99999999.99]")
+	private BigDecimal monthlyTotalpowerAmountCommon;
 
 	/**
 	 * 仕入基本単価
@@ -548,4 +548,47 @@ public class ElectricAppropriation extends EntityBase {
 	@Column(nullable = true)
 	@ApiModelProperty(value = "料金計算対象年月", required = false, position = 60, allowableValues = "range[0,255]")
 	private String calcDate;
+	
+	/**
+	 * No.
+	 */
+	@Column(nullable = true)
+	@Max(99999)
+	@ApiModelProperty(value = "No.", required = false, position = 61, allowableValues = "range[0,99999]")
+	private Long displaySequenceNumber;
+	
+	/**
+	 * 供給地点特定番号
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "供給地点特定番号", required = false, position = 62, allowableValues = "range[0,255]")
+	private String feedPointNumber;
+	
+	/**
+	 * 企業・事業所
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "企業・事業所", required = false, position = 63, allowableValues = "range[0,255]")
+	private String companyAndOffice;
+	
+	/**
+	 * 契約者・需要場所
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "契約者・需要場所", required = false, position = 64, allowableValues = "range[0,255]")
+	private String customerAndDemandPlace;
+	
+	/**
+	 * 供給年月
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "供給年月", required = false, position = 65, allowableValues = "range[0,255]")
+	private String supplyYearMonth;
+	
+	/**
+	 * 使用電力従量kWh
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "使用電力従量kWh", required = false, position = 66, allowableValues = "range[0,255]")
+	private String electricPowerConsumptionUsageFee;
 }

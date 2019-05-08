@@ -19,6 +19,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Digits;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -83,7 +85,7 @@ public class BillingHistory extends EntityBase {
 	 */
 	@Column(nullable = false)
 	@ApiModelProperty(value = "請求年月", required = true, position = 3, allowableValues = "range[0,255]")
-	private String supplyYearMonth;
+	private String billingYearMonth;
 
 	/**
 	 * 売上年月日
@@ -177,4 +179,43 @@ public class BillingHistory extends EntityBase {
 	@OneToMany
 	@ApiModelProperty(value = "計上実績", required = false, position = 15)
 	private List<ElectricAppropriation> electricAppropriation;
+	
+	/**
+	 * No.
+	 */
+	@Column(nullable = true)
+	@Max(99999)
+	@ApiModelProperty(value = "No.", required = false, position = 16, allowableValues = "range[0,99999]")
+	private Long displaySequenceNumber;
+	
+	/**
+	 * 未回収フラグ
+	 */
+	@Column(nullable = true)
+	@Max(9)
+	@Min(0)
+	@ApiModelProperty(value = "未回収フラグ", required = false, position = 17, allowableValues = "range[0,9]")
+	private Integer accruedFlg;
+	
+	/**
+	 * 未回収分回収日
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "未回収分回収日", required = false, position = 18)
+	@Temporal(TemporalType.DATE)
+	private Date accruedCollectionDate;
+	
+	/**
+	 * ファイル名
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "ファイル名", required = false, position = 19, allowableValues = "range[0,255]")
+	private String fileName;
+	
+	/**
+	 * ファイルパス
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "ファイルパス", required = false, position = 19, allowableValues = "range[0,1023]")
+	private String filePath;
 }

@@ -1,20 +1,19 @@
 package jp.co.ricoh.cotos.electriccommonlib.entity.estimation;
 
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBase;
+import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.ElectricCommercialFlowDiv;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -26,109 +25,161 @@ import lombok.EqualsAndHashCode;
 @Data
 @Table(name = "estimation_electric")
 public class EstimationElectric extends EntityBase {
+	/**
+	 * ID
+	 */
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "estimation_electric_seq")
+	@SequenceGenerator(name = "estimation_electric_seq", sequenceName = "estimation_electric_seq", allocationSize = 1)
+	@ApiModelProperty(value = "ID", required = true, position = 1)
+	private long id;
 
-/**
- * ID
- */
-@Id
-@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "estimation_electric_seq")
-@SequenceGenerator(name = "estimation_electric_seq", sequenceName = "estimation_electric_seq", allocationSize = 1)
-@ApiModelProperty(value = "ID", required = true, position = 1)
-private long id;
+	/**
+	 * 見積ID
+	 */
+	@Column(nullable = false)
+	@ApiModelProperty(value = "見積ID", required = true, position = 2, allowableValues = "range[0,9223372036854775807]")
+	private long estimationId;
 
-/**
- * 見積ID
- */
-@Column(nullable = false)
-@ApiModelProperty(value = "見積ID", required = true, position = 2, allowableValues = "range[0,9223372036854775807]")
-private long estimationId;
+	/**
+	 * 電力エリア
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "電力エリア", required = false, position = 3, allowableValues = "range[0,255]")
+	private String electricArea;
 
-/**
- * 電力エリア
- */
-@Column(nullable = true)
-@ApiModelProperty(value = "電力エリア", required = false, position = 3, allowableValues = "range[0,255]")
-private String electricArea;
+	/**
+	 * 電力会社
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "電力会社", required = false, position = 4, allowableValues = "range[0,255]")
+	private String electricCompany;
 
-/**
- * 電力会社
- */
-@Column(nullable = true)
-@ApiModelProperty(value = "電力会社", required = false, position = 4, allowableValues = "range[0,255]")
-private String electricCompany;
+	/**
+	 * 電力区分
+	 */
+	@Column(nullable = false)
+	@ApiModelProperty(value = "電力区分", required = true, position = 5, allowableValues = "range[0,255]")
+	private String voltageCategory;
 
-/**
- * 電力区分
- */
-@Column(nullable = false)
-@ApiModelProperty(value = "電力区分", required = true, position = 5, allowableValues = "range[0,255]")
-private String voltageCategory;
+	/**
+	 * 電力メニュー
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "電力メニュー", required = false, position = 6, allowableValues = "range[0,255]")
+	private String electricMenu;
 
-/**
- * 電力メニュー
- */
-@Column(nullable = true)
-@ApiModelProperty(value = "電力メニュー", required = false, position = 6, allowableValues = "range[0,255]")
-private String electricMenu;
+	/**
+	 * 契約電力
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "契約電力", required = false, position = 7, allowableValues = "range[0,255]")
+	private String contractPower;
 
-/**
- * 契約電力
- */
-@Column(nullable = true)
-@ApiModelProperty(value = "契約電力", required = false, position = 7, allowableValues = "range[0,255]")
-private String contractPower;
+	/**
+	 * 規模
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "規模", required = false, position = 8, allowableValues = "range[0,255]")
+	private String scale;
 
-/**
- * 規模
- */
-@Column(nullable = true)
-@ApiModelProperty(value = "規模", required = false, position = 8, allowableValues = "range[0,255]")
-private String scale;
+	/**
+	 * 力率
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "力率", required = false, position = 9, allowableValues = "range[0,255]")
+	private String powerRate;
 
-/**
- * 力率
- */
-@Column(nullable = true)
-@ApiModelProperty(value = "力率", required = false, position = 9, allowableValues = "range[0,255]")
-private String powerRate;
+	/**
+	 * 負荷率
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "負荷率", required = false, position = 10, allowableValues = "range[0,255]")
+	private String loadFactor;
 
-/**
- * 負荷率
- */
-@Column(nullable = true)
-@ApiModelProperty(value = "負荷率", required = false, position = 10, allowableValues = "range[0,255]")
-private String loadFactor;
+	/**
+	 * 供給開始予定日
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "供給開始予定日", required = false, position = 11)
+	private Date supplyStartScheduledDate;
 
-/**
- * 供給開始予定日
- */
-@Column(nullable = true)
-@ApiModelProperty(value = "供給開始予定日", required = false, position = 11)
-private Date supplyStartScheduledDate;
+	/**
+	 * 備考
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "備考", required = false, position = 12, allowableValues = "range[0,255]")
+	private String notes;
 
-/**
- * 備考
- */
-@Column(nullable = true)
-@ApiModelProperty(value = "備考", required = false, position = 12, allowableValues = "range[0,255]")
-private String notes;
+	@OneToOne(mappedBy = "estimationElectric")
+	@ApiModelProperty(value = "電力専任情報", required = false, position = 13)
+	private ElectricExpertEstimation electricExpertEstimation;
 
-@OneToOne(mappedBy = "estimationElectric")
-@ApiModelProperty(value = "テスト", required = false, position = 13)
-private ElectricExpertEstimation electricExpertEstimation;
+	@OneToOne(mappedBy = "estimationElectric")
+	@ApiModelProperty(value = "販売店情報", required = false, position = 14)
+	private ElectricDealerEstimation electricDealerEstimation;
 
-@OneToOne(mappedBy = "estimationElectric")
-@ApiModelProperty(value = "テスト", required = false, position = 14)
-private ElectricDealerEstimation electricDealerEstimation;
+	@OneToOne(mappedBy = "estimationElectric")
+	@ApiModelProperty(value = "料金シュミレーション(営業用)", required = false, position = 15)
+	private FeeSimulationSales feeSimulationSales;
 
-@OneToOne(mappedBy = "estimationElectric")
-@ApiModelProperty(value = "テスト", required = false, position = 15)
-private FeeSimulationSales feeSimulationSales;
+	@OneToOne(mappedBy = "estimationElectric")
+	@ApiModelProperty(value = "料金シュミレーション(本部用)", required = false, position = 16)
+	private FeeSimulationHead feeSimulationHead;
 
-@OneToOne(mappedBy = "estimationElectric")
-@ApiModelProperty(value = "テスト", required = false, position = 16)
-private FeeSimulationHead feeSimulationHead;
+	/**
+	 * 電源サイクル
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "電源サイクル", required = false, position = 17, allowableValues = "range[0,255]")
+	private String powerSupplyCycle;
 
+	/**
+	 * 契約数量
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "契約数量", required = false, position = 18, allowableValues = "range[0,255]")
+	private String contractQuantity;
+
+	/**
+	 * 契約形態
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "契約形態", required = false, position = 19, allowableValues = "range[0,255]")
+	private String typeOfContract;
+
+	/**
+	 * 商流区分
+	 */
+	@Column(nullable = false)
+	@ApiModelProperty(value = "商流区分", required = true, position = 56, allowableValues = "直売(\"1\"), 代売(\"2\"), 社内(\"3\")", example = "1")
+	private ElectricCommercialFlowDiv electricCommercialFlowDiv;
+
+	/**
+	 * 品種コード
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "品種コード", required = false, position = 20, allowableValues = "range[0,255]")
+	private String itemCode;
+
+	/**
+	 * 部分共有
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "部分共有", required = false, position = 21, allowableValues = "range[0,255]")
+	private String partialSupply;
+
+	/**
+	 * ベース部
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "ベース部", required = false, position = 22, allowableValues = "range[0,255]")
+	private String basePart;
+
+	/**
+	 * 変動部
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "変動部", required = false, position = 23, allowableValues = "range[0,255]")
+	private String fluctuationPart;
 }
-
-

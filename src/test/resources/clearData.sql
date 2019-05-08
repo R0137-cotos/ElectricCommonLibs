@@ -26,3 +26,7 @@ DELETE from electric_expert_estimation;
 DELETE from electric_dealer_estimation;
 DELETE from fee_simulation_sales;
 DELETE from fee_simulation_head;
+DELETE from electric_approval_route_node_master;
+DELETE from electric_approval_route_master;
+DELETE from electric_company_master;
+DELETE from electric_area_master;

@@ -78,58 +78,58 @@ public class ElectricDealerContract extends EntityBase {
 	private String companyId;
 
 	/**
-	 * 事業所ID
-	 */
-	@Column(nullable = false)
-	@ApiModelProperty(value = "事業所ID", required = true, position = 4, allowableValues = "range[0,255]")
-	private String officeId;
-
-	/**
-	 * 企事部ID
-	 */
-	@Column(nullable = false)
-	@ApiModelProperty(value = "事業所ID", required = true, position = 5, allowableValues = "range[0,255]")
-	private String custId;
-
-	/**
 	 * 企業_事業所名
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "企業_事業所名", required = true, position = 6, allowableValues = "range[0,1000]")
+	@ApiModelProperty(value = "企業_事業所名", required = true, position = 4, allowableValues = "range[0,1000]")
 	private String companyBusinessName;
 
 	/**
 	 * 事業所電話番号
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "事業所電話番号", required = true, position = 7, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "事業所電話番号", required = true, position = 5, allowableValues = "range[0,255]")
 	private String phoneNumber;
 
 	/**
 	 * 郵便番号
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "郵便番号", required = true, position = 8, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "郵便番号", required = true, position = 6, allowableValues = "range[0,255]")
 	private String postNumber;
 
 	/**
 	 * 住所
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "住所", required = true, position = 9, allowableValues = "range[0,4000]")
+	@ApiModelProperty(value = "住所", required = true, position = 7, allowableValues = "range[0,4000]")
 	private String address;
 
 	/**
-	 * メールアドレス
+	 * メールアドレス1
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "メールアドレス", required = true, position = 10, allowableValues = "range[0,255]")
-	private String mailAddress;
+	@ApiModelProperty(value = "メールアドレス1", required = true, position = 8, allowableValues = "range[0,255]")
+	private String mailAddress1;
 
 	/**
 	 * 支払区分
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "支払区分", required = true, position = 11, allowableValues = "定率(\"1\"), 定額(\"2\")", example = "1")
+	@ApiModelProperty(value = "支払区分", required = true, position = 9, allowableValues = "定率(\"1\"), 定額(\"2\")", example = "1")
 	private PaymentIndicator paymentIndicator;
+	
+	/**
+	 * メールアドレス2
+	 */
+	@Column(nullable = false)
+	@ApiModelProperty(value = "メールアドレス1", required = true, position = 10, allowableValues = "range[0,255]")
+	private String mailAddress2;
+	
+	/**
+	 * メールアドレス3
+	 */
+	@Column(nullable = false)
+	@ApiModelProperty(value = "メールアドレス3", required = true, position = 11, allowableValues = "range[0,255]")
+	private String mailAddress3;
 }

@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBase;
 import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
+import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.ElectricCommercialFlowDiv;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.ContractElectricRepository;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -56,6 +57,28 @@ public class ContractElectric extends EntityBase {
 
 		@JsonCreator
 		public static VoltageCategory fromString(String string) {
+			return Arrays.stream(values()).filter(v -> v.text.equals(string)).findFirst().orElseThrow(() -> new IllegalArgumentException(String.valueOf(string)));
+		}
+	}
+
+	public enum CurrentElectricCompanyDiv {
+
+		種別1("1");
+
+		private final String text;
+
+		private CurrentElectricCompanyDiv(final String text) {
+			this.text = text;
+		}
+
+		@Override
+		@JsonValue
+		public String toString() {
+			return this.text;
+		}
+
+		@JsonCreator
+		public static CurrentElectricCompanyDiv fromString(String string) {
 			return Arrays.stream(values()).filter(v -> v.text.equals(string)).findFirst().orElseThrow(() -> new IllegalArgumentException(String.valueOf(string)));
 		}
 	}
@@ -413,14 +436,14 @@ public class ContractElectric extends EntityBase {
 	 * 電力専任情報
 	 */
 	@OneToOne(mappedBy = "contractElectric", optional = false)
-	@ApiModelProperty(value = "電力専任情報", required = false, position = 49)
+	@ApiModelProperty(value = "電力専任情報", required = true, position = 49)
 	private ElectricExpertContract electricExpertContract;
 
 	/**
 	 * 販売店情報
 	 */
 	@OneToOne(mappedBy = "contractElectric", optional = false)
-	@ApiModelProperty(value = "販売店情報", required = false, position = 50)
+	@ApiModelProperty(value = "販売店情報", required = true, position = 50)
 	private ElectricDealerContract electricDealerContract;
 
 	/**
@@ -457,4 +480,25 @@ public class ContractElectric extends EntityBase {
 	@OneToMany(mappedBy = "contractElectric")
 	@ApiModelProperty(value = "得意先情報", required = false, position = 55)
 	private List<ClientInformation> clientInformationList;
+	
+	/**
+	 * 商流区分
+	 */
+	@Column(nullable = false)
+	@ApiModelProperty(value = "商流区分", required = true, position = 56, allowableValues = "直売(\"1\"), 代売(\"2\"), 社内(\"3\")", example = "1")
+	private ElectricCommercialFlowDiv electricCommercialFlowDiv;
+	
+	/**
+	 * 現在の電力会社種別
+	 */
+	@Column(nullable = false)
+	@ApiModelProperty(value = "現在の電力会社種別", required = true, position = 57, allowableValues = "種別1(\"1\")", example = "1")
+	private CurrentElectricCompanyDiv currentElectricCompanyDiv;
+	
+	/**
+	 * 品種コード
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "品種コード", required = false, position = 58, allowableValues = "range[0,255]")
+	private String itemCode;
 }
