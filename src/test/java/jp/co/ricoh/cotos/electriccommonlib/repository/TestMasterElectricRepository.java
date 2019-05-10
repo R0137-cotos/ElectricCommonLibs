@@ -1,6 +1,7 @@
 package jp.co.ricoh.cotos.electriccommonlib.repository;
 
 import org.junit.AfterClass;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import jp.co.ricoh.cotos.electriccommonlib.DBConfig;
 import jp.co.ricoh.cotos.electriccommonlib.TestTools;
+import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricDealerMaster;
 import jp.co.ricoh.cotos.electriccommonlib.repository.common.ElectricAttachedFileRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.BillingBasicInformationRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.BillingHistoryRepository;
@@ -37,6 +39,7 @@ import jp.co.ricoh.cotos.electriccommonlib.repository.master.ElectricApprovalRou
 import jp.co.ricoh.cotos.electriccommonlib.repository.master.ElectricApprovalRouteNodeMasterRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.master.ElectricAreaMasterRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.master.ElectricCompanyMasterRepository;
+import jp.co.ricoh.cotos.electriccommonlib.repository.master.ElectricDealerMasterRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
@@ -85,6 +88,21 @@ public class TestMasterElectricRepository extends RepositoryTestBase {
 	ElectricExpertEstimationRepository electricExpertEstimationRepository;
 
 	@Autowired
+	ElectricApprovalRouteNodeMasterRepository electricApprovalRouteNodeMasterRepository;
+
+	@Autowired
+	ElectricApprovalRouteMasterRepository electricApprovalRouteMasterRepository;
+
+	@Autowired
+	ElectricCompanyMasterRepository electricCompanyMasterRepository;
+
+	@Autowired
+	ElectricAreaMasterRepository electricAreaMasterRepository;
+
+	@Autowired
+	ElectricDealerMasterRepository electricDealerMasterRepository;
+
+	@Autowired
 	EntryContentHighPressureRepository entryContentHighPressureRepository;
 
 	@Autowired
@@ -107,18 +125,6 @@ public class TestMasterElectricRepository extends RepositoryTestBase {
 
 	@Autowired
 	UnitPriceLowPressureRepository unitPriceLowPressureRepository;
-
-	@Autowired
-	ElectricApprovalRouteNodeMasterRepository electricApprovalRouteNodeMasterRepository;
-	
-	@Autowired
-	ElectricApprovalRouteMasterRepository electricApprovalRouteMasterRepository;
-	
-	@Autowired
-	ElectricCompanyMasterRepository electricCompanyMasterRepository;
-	
-	@Autowired
-	ElectricAreaMasterRepository electricAreaMasterRepository;
 
 	@Autowired
 	TestTools testTools;
@@ -160,4 +166,23 @@ public class TestMasterElectricRepository extends RepositoryTestBase {
 		全てのカラムがNullではないことを確認_マスタ(electricApprovalRouteNodeMasterRepository, 1L);
 	}
 
+	@Test
+	public void 全てのカラムがNullではないことを確認_マスタ_電力販売店マスタ() {
+		全てのカラムがNullではないことを確認_マスタ(electricDealerMasterRepository, 1L);
+	}
+
+	@Test
+	public void 全てのカラムがNullではないことを確認_マスタ_企業IDより取得() {
+		String companyId = "test";
+
+		// 企業IDにより販売店マスタを取得
+		ElectricDealerMaster electricDealerMaster = electricDealerMasterRepository.findByCompanyId(companyId);
+
+		// null項目なく取得できていることを確認
+		try {
+			testTools.assertColumnsNotNull(electricDealerMaster);
+		} catch (Exception e1) {
+			Assert.fail("例外が発生した場合、エラー");
+		}
+	}
 }
