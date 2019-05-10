@@ -32,7 +32,7 @@ public class TestSecurityController {
 	public String get() {
 		CotosElcAuthenticationDetails userInfo = (CotosElcAuthenticationDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-		return userInfo.getSingleUserId() + "," + userInfo.getMomEmployeeId() + "," + userInfo.getOrigin() + "," + userInfo.getApplicationId() + "," + userInfo.getJwt() + "," + userInfo.isSuperUser() + "," + Boolean.toString(userInfo.getMomAuthorities() != null);
+		return userInfo.getSingleUserId() + "," + userInfo.getMomEmployeeId() + "," + userInfo.getOrigin() + "," + userInfo.getApplicationId() + "," + userInfo.getJwt() + "," + userInfo.isSuperUser() + "," + userInfo.isDummyUser() + "," + Boolean.toString(userInfo.getMomAuthorities() != null);
 	}
 
 	@RequestMapping(method = RequestMethod.POST, path = "/test")
@@ -40,7 +40,7 @@ public class TestSecurityController {
 	public String post() {
 		CotosElcAuthenticationDetails userInfo = (CotosElcAuthenticationDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-		return userInfo.getSingleUserId() + "," + userInfo.getMomEmployeeId() + "," + userInfo.getOrigin() + "," + userInfo.getApplicationId() + "," + userInfo.getJwt() + "," + userInfo.isSuperUser() + "," + Boolean.toString(userInfo.getMomAuthorities() != null);
+		return userInfo.getSingleUserId() + "," + userInfo.getMomEmployeeId() + "," + userInfo.getOrigin() + "," + userInfo.getApplicationId() + "," + userInfo.getJwt() + "," + userInfo.isSuperUser() + "," + userInfo.isDummyUser() + "," + Boolean.toString(userInfo.getMomAuthorities() != null);
 	}
 
 	@RequestMapping(method = RequestMethod.PUT, path = "/test")
@@ -48,7 +48,7 @@ public class TestSecurityController {
 	public String put() {
 		CotosElcAuthenticationDetails userInfo = (CotosElcAuthenticationDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-		return userInfo.getSingleUserId() + "," + userInfo.getMomEmployeeId() + "," + userInfo.getOrigin() + "," + userInfo.getApplicationId() + "," + userInfo.getJwt() + "," + userInfo.isSuperUser() + "," + Boolean.toString(userInfo.getMomAuthorities() != null);
+		return userInfo.getSingleUserId() + "," + userInfo.getMomEmployeeId() + "," + userInfo.getOrigin() + "," + userInfo.getApplicationId() + "," + userInfo.getJwt() + "," + userInfo.isSuperUser() + "," + userInfo.isDummyUser() + "," + Boolean.toString(userInfo.getMomAuthorities() != null);
 	}
 
 	@GetMapping(path = "/swagger-ui.html")

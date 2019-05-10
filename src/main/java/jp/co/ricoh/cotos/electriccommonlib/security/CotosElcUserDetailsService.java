@@ -18,14 +18,15 @@ import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 
+import jp.co.ricoh.cotos.commonlib.entity.master.DummyUserMaster;
 import jp.co.ricoh.cotos.commonlib.entity.master.SuperUserMaster;
 import jp.co.ricoh.cotos.commonlib.entity.master.UrlAuthMaster.ActionDiv;
 import jp.co.ricoh.cotos.commonlib.entity.master.UrlAuthMaster.AuthDiv;
 import jp.co.ricoh.cotos.commonlib.logic.message.MessageUtil;
-import jp.co.ricoh.cotos.commonlib.security.mom.MomAuthorityService;
 import jp.co.ricoh.cotos.commonlib.security.mom.MomAuthorityService.AuthLevel;
 import jp.co.ricoh.cotos.commonlib.util.ClaimsProperties;
 import jp.co.ricoh.cotos.commonlib.util.JwtProperties;
+import jp.co.ricoh.cotos.electriccommonlib.security.mom.ElcMomAuthorityService;
 import jp.co.ricoh.cotos.electriccommonlib.util.RestTemplateCreator;
 import jp.co.ricoh.cotos.electriccommonlib.util.StandardProperties;
 
@@ -45,7 +46,7 @@ public class CotosElcUserDetailsService implements AuthenticationUserDetailsServ
 	StandardProperties standardProperties;
 
 	@Autowired
-	MomAuthorityService momAuthorityService;
+	ElcMomAuthorityService elcMomAuthorityService;
 
 	@Autowired
 	MessageUtil messageUtil;
@@ -91,11 +92,15 @@ public class CotosElcUserDetailsService implements AuthenticationUserDetailsServ
 			DecodedJWT jwt = verifier.verify(jwtString);
 
 			// スーパーユーザーか判定
-			SuperUserMaster superuserMaster = restTemplateCreator.getRestTemplate(jwtString).getForEntity(standardProperties.getMaster() + "/master/findSuperUserMaster/" + jwt.getClaim(claimsProperties.getMomEmpId()).asString(), SuperUserMaster.class).getBody();
-			boolean isSuperUser = superuserMaster != null;
+			SuperUserMaster superUserMaster = restTemplateCreator.getRestTemplate(jwtString).getForEntity(standardProperties.getMaster() + "/master/findSuperUserMaster/" + jwt.getClaim(claimsProperties.getMomEmpId()).asString(), SuperUserMaster.class).getBody();
+			boolean isSuperUser = superUserMaster != null;
+
+			// スーパーユーザーか判定
+			DummyUserMaster dummyUserMaster = restTemplateCreator.getRestTemplate(jwtString).getForEntity(standardProperties.getMaster() + "/master/findDummyUserMaster/" + jwt.getClaim(claimsProperties.getMomEmpId()).asString(), DummyUserMaster.class).getBody();
+			boolean isDummyUser = dummyUserMaster != null;
 
 			// シングルユーザーIDに紐づく権限情報を取得
-			Map<ActionDiv, Map<AuthDiv, AuthLevel>> momAuthorities = momAuthorityService.searchAllMomAuthorities(jwt.getClaim(claimsProperties.getSingleUserId()).asString());
+			Map<ActionDiv, Map<AuthDiv, AuthLevel>> momAuthorities = elcMomAuthorityService.searchAllMomAuthorities(jwt.getClaim(claimsProperties.getSingleUserId()).asString());
 
 			// 一般ユーザーで、MoM権限ユーザーが取得できない場合はエラー
 			if (!isSuperUser && momAuthorities == null) {
@@ -103,7 +108,7 @@ public class CotosElcUserDetailsService implements AuthenticationUserDetailsServ
 				throw new Exception();
 			}
 
-			return new CotosElcAuthenticationDetails(jwt.getClaim(claimsProperties.getMomEmpId()).asString(), jwt.getClaim(claimsProperties.getSingleUserId()).asString(), jwt.getClaim(claimsProperties.getOrigin()).asString(), jwt.getClaim(claimsProperties.getApplicationId()).asString(), jwtString, isSuperUser, momAuthorities);
+			return new CotosElcAuthenticationDetails(jwt.getClaim(claimsProperties.getMomEmpId()).asString(), jwt.getClaim(claimsProperties.getSingleUserId()).asString(), jwt.getClaim(claimsProperties.getOrigin()).asString(), jwt.getClaim(claimsProperties.getApplicationId()).asString(), jwtString, isSuperUser, isDummyUser, momAuthorities);
 		}
 
 		return null;

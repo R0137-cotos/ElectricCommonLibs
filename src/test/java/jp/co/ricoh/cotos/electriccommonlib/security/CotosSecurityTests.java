@@ -37,11 +37,15 @@ import org.springframework.test.web.client.response.MockRestResponseCreators;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
+import jp.co.ricoh.cotos.commonlib.dto.parameter.common.AuthorityJudgeParameter;
+import jp.co.ricoh.cotos.commonlib.entity.master.MvEmployeeMaster;
+import jp.co.ricoh.cotos.commonlib.entity.master.UrlAuthMaster.AccessType;
 import jp.co.ricoh.cotos.commonlib.entity.master.UrlAuthMaster.ActionDiv;
 import jp.co.ricoh.cotos.commonlib.entity.master.UrlAuthMaster.AuthDiv;
 import jp.co.ricoh.cotos.commonlib.security.mom.MomAuthorityService;
 import jp.co.ricoh.cotos.commonlib.security.mom.MomAuthorityService.AuthLevel;
 import jp.co.ricoh.cotos.commonlib.util.HeadersProperties;
+import jp.co.ricoh.cotos.electriccommonlib.security.mom.ElcMomAuthorityService;
 import jp.co.ricoh.cotos.electriccommonlib.util.RestTemplateCreator;
 import jp.co.ricoh.cotos.electriccommonlib.util.StandardProperties;
 import lombok.val;
@@ -66,7 +70,7 @@ public class CotosSecurityTests {
 	}
 
 	@SpyBean
-	MomAuthorityService momAuthorityService;
+	ElcMomAuthorityService elcMomAuthorityService;
 
 	@SpyBean
 	RestTemplateCreator restTemplateCreator;
@@ -131,10 +135,11 @@ public class CotosSecurityTests {
 
 		try {
 			// MoM権限マップをMockにより差し替え
-			Mockito.doReturn(new HashMap<ActionDiv, Map<AuthDiv, AuthLevel>>()).when(momAuthorityService).searchAllMomAuthorities(Mockito.anyString());
+			Mockito.doReturn(new HashMap<ActionDiv, Map<AuthDiv, AuthLevel>>()).when(elcMomAuthorityService).searchAllMomAuthorities(Mockito.anyString());
 			// モックサーバー用にrestテンプレートを差し替え
 			Mockito.doReturn(restTemplate).when(restTemplateCreator).getRestTemplate(Mockito.anyString());
 			mockServer.expect(ExpectedCount.manyTimes(), MockRestRequestMatchers.requestTo(new URI(standardProperties.getMaster() + "/master/findSuperUserMaster/mid"))).andExpect(MockRestRequestMatchers.method(HttpMethod.GET)).andRespond(MockRestResponseCreators.withSuccess("", MediaType.APPLICATION_JSON));
+			mockServer.expect(ExpectedCount.manyTimes(), MockRestRequestMatchers.requestTo(new URI(standardProperties.getMaster() + "/master/findDummyUserMaster/mid"))).andExpect(MockRestRequestMatchers.method(HttpMethod.GET)).andRespond(MockRestResponseCreators.withSuccess("", MediaType.APPLICATION_JSON));
 		} catch (Exception e) {
 			Assert.fail("モック差し替えに失敗");
 		}
@@ -142,7 +147,7 @@ public class CotosSecurityTests {
 		RestTemplate rest = initRest(WITHIN_PERIOD_JWT);
 		ResponseEntity<String> response = rest.getForEntity(loadTopURL() + "test/api/test/1?isSuccess=true&hasBody=false", String.class);
 		Assert.assertEquals("正常終了", 200, response.getStatusCodeValue());
-		Assert.assertEquals("正常終了", "sid,mid,cotos.ricoh.co.jp,cotos_dev," + WITHIN_PERIOD_JWT + ",false,true", response.getBody());
+		Assert.assertEquals("正常終了", "sid,mid,cotos.ricoh.co.jp,cotos_dev," + WITHIN_PERIOD_JWT + ",false,false,true", response.getBody());
 	}
 
 	@Test
@@ -153,6 +158,7 @@ public class CotosSecurityTests {
 			// モックサーバー用にrestテンプレートを差し替え
 			Mockito.doReturn(restTemplate).when(restTemplateCreator).getRestTemplate(Mockito.anyString());
 			mockServer.expect(ExpectedCount.manyTimes(), MockRestRequestMatchers.requestTo(new URI(standardProperties.getMaster() + "/master/findSuperUserMaster/MOM_EMPLOYEE_ID"))).andExpect(MockRestRequestMatchers.method(HttpMethod.GET)).andRespond(MockRestResponseCreators.withSuccess("{}", MediaType.APPLICATION_JSON));
+			mockServer.expect(ExpectedCount.manyTimes(), MockRestRequestMatchers.requestTo(new URI(standardProperties.getMaster() + "/master/findDummyUserMaster/MOM_EMPLOYEE_ID"))).andExpect(MockRestRequestMatchers.method(HttpMethod.GET)).andRespond(MockRestResponseCreators.withSuccess("", MediaType.APPLICATION_JSON));
 		} catch (Exception e) {
 			Assert.fail("モック差し替えに失敗");
 		}
@@ -160,7 +166,28 @@ public class CotosSecurityTests {
 		RestTemplate rest = initRest(WITHIN_PERIOD_JWT_SUPER_USER);
 		ResponseEntity<String> response = rest.getForEntity(loadTopURL() + "test/api/test/1?isSuccess=true&hasBody=false", String.class);
 		Assert.assertEquals("正常終了", 200, response.getStatusCodeValue());
-		Assert.assertEquals("正常終了", "sid,MOM_EMPLOYEE_ID,cotos.ricoh.co.jp,cotos_dev," + WITHIN_PERIOD_JWT_SUPER_USER + ",true,false", response.getBody());
+		Assert.assertEquals("正常終了", "sid,MOM_EMPLOYEE_ID,cotos.ricoh.co.jp,cotos_dev," + WITHIN_PERIOD_JWT_SUPER_USER + ",true,false,false", response.getBody());
+	}
+
+	@Test
+	@Transactional
+	public void 認証_トークンあり_オリジンなし_正常_ダミーユーザー() throws Exception {
+
+		try {
+			// MoM権限マップをMockにより差し替え
+			Mockito.doReturn(new HashMap<ActionDiv, Map<AuthDiv, AuthLevel>>()).when(elcMomAuthorityService).searchAllMomAuthorities(Mockito.anyString());
+			// モックサーバー用にrestテンプレートを差し替え
+			Mockito.doReturn(restTemplate).when(restTemplateCreator).getRestTemplate(Mockito.anyString());
+			mockServer.expect(ExpectedCount.manyTimes(), MockRestRequestMatchers.requestTo(new URI(standardProperties.getMaster() + "/master/findSuperUserMaster/MOM_EMPLOYEE_ID"))).andExpect(MockRestRequestMatchers.method(HttpMethod.GET)).andRespond(MockRestResponseCreators.withSuccess("", MediaType.APPLICATION_JSON));
+			mockServer.expect(ExpectedCount.manyTimes(), MockRestRequestMatchers.requestTo(new URI(standardProperties.getMaster() + "/master/findDummyUserMaster/MOM_EMPLOYEE_ID"))).andExpect(MockRestRequestMatchers.method(HttpMethod.GET)).andRespond(MockRestResponseCreators.withSuccess("{}", MediaType.APPLICATION_JSON));
+		} catch (Exception e) {
+			Assert.fail("モック差し替えに失敗");
+		}
+
+		RestTemplate rest = initRest(WITHIN_PERIOD_JWT_SUPER_USER);
+		ResponseEntity<String> response = rest.getForEntity(loadTopURL() + "test/api/test/1?isSuccess=true&hasBody=false", String.class);
+		Assert.assertEquals("正常終了", 200, response.getStatusCodeValue());
+		Assert.assertEquals("正常終了", "sid,MOM_EMPLOYEE_ID,cotos.ricoh.co.jp,cotos_dev," + WITHIN_PERIOD_JWT_SUPER_USER + ",false,true,true", response.getBody());
 	}
 
 	@Test
@@ -205,6 +232,193 @@ public class CotosSecurityTests {
 		val response = rest.getForEntity(loadTopURL() + "test/api/swagger-ui.html", String.class);
 		Assert.assertEquals("アクセス可能であること", 200, response.getStatusCodeValue());
 		Assert.assertEquals("コンテンツが取得できていること", context.getBean(TestSecurityController.class).getSwaggerBody(), response.getBody());
+	}
+
+	@Test
+	public void MoM権限_正常_自顧客_権限あり_参照() throws Exception {
+
+		AuthorityJudgeParameter parameter = new AuthorityJudgeParameter();
+
+		// アクター
+		MvEmployeeMaster actor = new MvEmployeeMaster();
+		actor.setMomEmployeeId("LOGIN_USER");
+		parameter.setActorMvEmployeeMaster(actor);
+
+		// 担当SA
+		MvEmployeeMaster sa = new MvEmployeeMaster();
+		sa.setMomEmployeeId("LOGIN_USER");
+
+		// 追加編集者
+		MvEmployeeMaster subEditor = new MvEmployeeMaster();
+		subEditor.setMomEmployeeId("SUB_EDITOR");
+
+		parameter.setMvEmployeeMasterList(Arrays.asList(sa, subEditor));
+
+		Mockito.doReturn(AuthLevel.自顧客).when((MomAuthorityService) elcMomAuthorityService).searchMomAuthority(Mockito.any(), Mockito.any(), Mockito.any());
+
+		// context.getBean(ElcMomAuthorityService.class).
+
+		// 電力用MoM権限共通処理を実行
+		boolean result = context.getBean(ElcMomAuthorityService.class).hasAuthority(parameter, ActionDiv.照会, AuthDiv.見積_契約_手配, AccessType.参照);
+
+		// 結果判定
+		Assert.assertTrue("権限ありと判定されること", result);
+	}
+
+	@Test
+	public void MoM権限_正常_自顧客_権限あり_編集() throws Exception {
+
+		AuthorityJudgeParameter parameter = new AuthorityJudgeParameter();
+
+		// アクター
+		MvEmployeeMaster actor = new MvEmployeeMaster();
+		actor.setMomEmployeeId("LOGIN_USER");
+		parameter.setActorMvEmployeeMaster(actor);
+
+		// 担当SA
+		MvEmployeeMaster sa = new MvEmployeeMaster();
+		sa.setMomEmployeeId("LOGIN_USER");
+
+		// 追加編集者
+		MvEmployeeMaster subEditor = new MvEmployeeMaster();
+		subEditor.setMomEmployeeId("SUB_EDITOR");
+
+		parameter.setMvEmployeeMasterList(Arrays.asList(sa, subEditor));
+
+		Mockito.doReturn(AuthLevel.自顧客).when((MomAuthorityService) elcMomAuthorityService).searchMomAuthority(Mockito.any(), Mockito.any(), Mockito.any());
+
+		// context.getBean(ElcMomAuthorityService.class).
+
+		// 電力用MoM権限共通処理を実行
+		boolean result = context.getBean(ElcMomAuthorityService.class).hasAuthority(parameter, ActionDiv.照会, AuthDiv.見積_契約_手配, AccessType.編集);
+
+		// 結果判定
+		Assert.assertTrue("権限ありと判定されること", result);
+	}
+
+	@Test
+	public void MoM権限_正常_自顧客_権限なし() throws Exception {
+
+		AuthorityJudgeParameter parameter = new AuthorityJudgeParameter();
+
+		// アクター
+		MvEmployeeMaster actor = new MvEmployeeMaster();
+		actor.setMomEmployeeId("LOGIN_USER");
+		parameter.setActorMvEmployeeMaster(actor);
+
+		// 担当SA
+		MvEmployeeMaster sa = new MvEmployeeMaster();
+		sa.setMomEmployeeId("NOT_ACTOR");
+
+		// 追加編集者
+		MvEmployeeMaster subEditor = new MvEmployeeMaster();
+		subEditor.setMomEmployeeId("SUB_EDITOR");
+
+		parameter.setMvEmployeeMasterList(Arrays.asList(sa, subEditor));
+
+		Mockito.doReturn(AuthLevel.自顧客).when((MomAuthorityService) elcMomAuthorityService).searchMomAuthority(Mockito.any(), Mockito.any(), Mockito.any());
+
+		// 電力用MoM権限共通処理を実行
+		boolean result = context.getBean(ElcMomAuthorityService.class).hasAuthority(parameter, ActionDiv.照会, AuthDiv.見積_契約_手配, AccessType.編集);
+
+		// 結果判定
+		Assert.assertFalse("権限なしと判定されること", result);
+	}
+
+	@Test
+	public void MoM権限_正常_配下_権限あり_参照() throws Exception {
+
+		AuthorityJudgeParameter parameter = new AuthorityJudgeParameter();
+
+		// アクター
+		MvEmployeeMaster actor = new MvEmployeeMaster();
+		actor.setMomOrgId("0880788");
+		actor.setOrgHierarchyLevel(3);
+		parameter.setActorMvEmployeeMaster(actor);
+
+		// 担当SA
+		MvEmployeeMaster sa = new MvEmployeeMaster();
+		sa.setOrgHierarchyLevel(4);
+		sa.setMomOrgId("0880792");
+
+		// 追加編集者
+		MvEmployeeMaster subEditor = new MvEmployeeMaster();
+		subEditor.setOrgHierarchyLevel(4);
+		subEditor.setMomEmployeeId("0880792");
+
+		parameter.setMvEmployeeMasterList(Arrays.asList(sa, subEditor));
+
+		Mockito.doReturn(AuthLevel.配下).when((MomAuthorityService) elcMomAuthorityService).searchMomAuthority(Mockito.any(), Mockito.any(), Mockito.any());
+
+		// 電力用MoM権限共通処理を実行
+		boolean result = context.getBean(ElcMomAuthorityService.class).hasAuthority(parameter, ActionDiv.照会, AuthDiv.見積_契約_手配, AccessType.参照);
+
+		// 結果判定
+		Assert.assertTrue("権限ありと判定されること", result);
+	}
+
+	@Test
+	public void MoM権限_正常_配下_権限あり_編集() throws Exception {
+
+		AuthorityJudgeParameter parameter = new AuthorityJudgeParameter();
+
+		// アクター
+		MvEmployeeMaster actor = new MvEmployeeMaster();
+		actor.setMomOrgId("0880788");
+		actor.setOrgHierarchyLevel(3);
+		parameter.setActorMvEmployeeMaster(actor);
+
+		// 担当SA
+		MvEmployeeMaster sa = new MvEmployeeMaster();
+		sa.setOrgHierarchyLevel(4);
+		sa.setMomOrgId("0880792");
+
+		// 追加編集者
+		MvEmployeeMaster subEditor = new MvEmployeeMaster();
+		subEditor.setOrgHierarchyLevel(4);
+		subEditor.setMomEmployeeId("0880792");
+
+		parameter.setMvEmployeeMasterList(Arrays.asList(sa, subEditor));
+
+		Mockito.doReturn(AuthLevel.配下).when((MomAuthorityService) elcMomAuthorityService).searchMomAuthority(Mockito.any(), Mockito.any(), Mockito.any());
+
+		// 電力用MoM権限共通処理を実行
+		boolean result = context.getBean(ElcMomAuthorityService.class).hasAuthority(parameter, ActionDiv.照会, AuthDiv.見積_契約_手配, AccessType.編集);
+
+		// 結果判定
+		Assert.assertTrue("権限ありと判定されること", result);
+	}
+
+	@Test
+	public void MoM権限_正常_配下_権限なし() throws Exception {
+
+		AuthorityJudgeParameter parameter = new AuthorityJudgeParameter();
+
+		// アクター
+		MvEmployeeMaster actor = new MvEmployeeMaster();
+		actor.setMomOrgId("0880788");
+		actor.setOrgHierarchyLevel(3);
+		parameter.setActorMvEmployeeMaster(actor);
+
+		// 担当SA
+		MvEmployeeMaster sa = new MvEmployeeMaster();
+		sa.setOrgHierarchyLevel(4);
+		sa.setMomOrgId("NOT_EXISTS");
+
+		// 追加編集者
+		MvEmployeeMaster subEditor = new MvEmployeeMaster();
+		subEditor.setOrgHierarchyLevel(4);
+		subEditor.setMomOrgId("NOT_EXISTS");
+
+		parameter.setMvEmployeeMasterList(Arrays.asList(sa, subEditor));
+
+		Mockito.doReturn(AuthLevel.配下).when((MomAuthorityService) elcMomAuthorityService).searchMomAuthority(Mockito.any(), Mockito.any(), Mockito.any());
+
+		// 電力用MoM権限共通処理を実行
+		boolean result = context.getBean(ElcMomAuthorityService.class).hasAuthority(parameter, ActionDiv.照会, AuthDiv.見積_契約_手配, AccessType.編集);
+
+		// 結果判定
+		Assert.assertFalse("権限なしと判定されること", result);
 	}
 
 	private RestTemplate initRest(final String header) {
