@@ -1,5 +1,6 @@
 package jp.co.ricoh.cotos.electriccommonlib.entity.estimation;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -10,6 +11,10 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBase;
@@ -87,15 +92,19 @@ public class EstimationElectric extends EntityBase {
 	 * 力率
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "力率", required = false, position = 9, allowableValues = "range[0,255]")
-	private String powerRate;
+	@DecimalMin("0.00")
+	@Digits(integer = 5, fraction = 2)
+	@ApiModelProperty(value = "力率", required = false, position = 6, allowableValues = "range[0.00,99999.99]")
+	private BigDecimal powerRate;
 
 	/**
 	 * 負荷率
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "負荷率", required = false, position = 10, allowableValues = "range[0,255]")
-	private String loadFactor;
+	@DecimalMin("0.00")
+	@Digits(integer = 5, fraction = 2)
+	@ApiModelProperty(value = "負荷率", required = false, position = 7, allowableValues = "range[0.00,99999.99]")
+	private BigDecimal loadFactor;
 
 	/**
 	 * 供給開始予定日
@@ -152,34 +161,83 @@ public class EstimationElectric extends EntityBase {
 	 * 商流区分
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "商流区分", required = true, position = 56, allowableValues = "直売(\"1\"), 代売(\"2\"), 社内(\"3\")", example = "1")
+	@ApiModelProperty(value = "商流区分", required = true, position = 20, allowableValues = "直売(\"1\"), 代売(\"2\"), 社内(\"3\")", example = "1")
 	private ElectricCommercialFlowDiv electricCommercialFlowDiv;
 
 	/**
 	 * 品種コード
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "品種コード", required = false, position = 20, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "品種コード", required = false, position = 21, allowableValues = "range[0,255]")
 	private String itemCode;
 
 	/**
-	 * 部分共有
+	 * 部分供給
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "部分共有", required = false, position = 21, allowableValues = "range[0,255]")
-	private String partialSupply;
+	@Max(9)
+	@Min(0)
+	@ApiModelProperty(value = "部分供給", required = false, position = 22, allowableValues = "range[0,9]")
+	private Integer partialSupplyFlg;
 
 	/**
 	 * ベース部
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "ベース部", required = false, position = 22, allowableValues = "range[0,255]")
-	private String basePart;
+	@DecimalMin("0.00")
+	@Digits(integer = 8, fraction = 2)
+	@ApiModelProperty(value = "ベース部", required = false, position = 23, allowableValues = "range[0.00,99999999.99]")
+	private BigDecimal base_part;
 
 	/**
 	 * 変動部
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "変動部", required = false, position = 23, allowableValues = "range[0,255]")
-	private String fluctuationPart;
+	@DecimalMin("0.00")
+	@Digits(integer = 8, fraction = 2)
+	@ApiModelProperty(value = "変動部", required = false, position = 24, allowableValues = "range[0.00,99999999.99]")
+	private BigDecimal fluctuatingPart;
+	
+	/**
+	 * 外部キー情報
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "外部キー情報", required = false, position = 25, allowableValues = "range[0,255]")
+	private String oppSysKeyBn;
+	
+	/**
+	 * 予備線
+	 */
+	@Column(nullable = true)
+	@Max(9)
+	@Min(0)
+	@ApiModelProperty(value = "予備線", required = false, position = 26, allowableValues = "range[0,9]")
+	private Integer spareWireFlg;
+
+	/**
+	 * 予備電源
+	 */
+	@Column(nullable = true)
+	@Max(9)
+	@Min(0)
+	@ApiModelProperty(value = "予備電源", required = false, position = 27, allowableValues = "range[0,9]")
+	private Integer sparePowerFlg;
+
+	/**
+	 * アンシラリーサービス
+	 */
+	@Column(nullable = true)
+	@Max(9)
+	@Min(0)
+	@ApiModelProperty(value = "アンシラリーサービス", required = false, position = 28, allowableValues = "range[0,9]")
+	private Integer ancillaryFlg;
+	
+	/**
+	 * 定価
+	 */
+	@Column(nullable = true)
+	@DecimalMin("0.00")
+	@Digits(integer = 19, fraction = 2)
+	@ApiModelProperty(value = "定価", required = false, position = 29, allowableValues = "range[0.00,9999999999999999999.99]")
+	private BigDecimal listPrice;
 }

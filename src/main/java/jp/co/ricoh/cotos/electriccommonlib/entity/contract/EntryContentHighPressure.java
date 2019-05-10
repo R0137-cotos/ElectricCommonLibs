@@ -171,26 +171,26 @@ public class EntryContentHighPressure extends EntityBase {
 	 * 部分供給 設定値
 	 */
 	@Column(nullable = true)
-	@Max(99999)
-	@Min(0)
-	@ApiModelProperty(value = "部分供給 設定値", required = false, position = 16, allowableValues = "range[0,99999]")
-	private Integer partialSupplySettingValue;
+	@DecimalMin("0.00")
+	@Digits(integer = 8, fraction = 2)
+	@ApiModelProperty(value = "部分供給 設定値", required = false, position = 16, allowableValues = "range[0.00,99999999.99]")
+	private BigDecimal partialSupplySettingValue;
 
 	/**
 	 * ベース部
 	 */
 	@Column(nullable = true)
-	@Max(99999)
-	@Min(0)
-	@ApiModelProperty(value = "ベース部", required = false, position = 17, allowableValues = "range[0,99999]")
-	private Integer base;
+	@DecimalMin("0.00")
+	@Digits(integer = 8, fraction = 2)
+	@ApiModelProperty(value = "ベース部", required = false, position = 17, allowableValues = "range[0.00,99999999.99]")
+	private BigDecimal base;
 
 	/**
 	 * 変動部
 	 */
 	@Column(nullable = true)
-	@Max(99999)
-	@Min(0)
-	@ApiModelProperty(value = "変動部", required = false, position = 18, allowableValues = "range[0,99999]")
-	private Integer variable;
+	@DecimalMin("0.00")
+	@Digits(integer = 8, fraction = 2)
+	@ApiModelProperty(value = "変動部", required = false, position = 18, allowableValues = "range[0.00,99999999.99]")
+	private BigDecimal variable;
 }

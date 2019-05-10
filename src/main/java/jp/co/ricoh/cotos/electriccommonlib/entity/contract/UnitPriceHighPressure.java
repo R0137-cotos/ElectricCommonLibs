@@ -68,12 +68,12 @@ public class UnitPriceHighPressure extends EntityBase {
 	private Integer numberOfChanges;
 
 	/**
-	 * 基本料金_定額
+	 * 基本料金_定価
 	 */
 	@Column(nullable = true)
 	@DecimalMin("0.00")
 	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "基本料金_定額", required = false, position = 5, allowableValues = "range[0.00,9999999999999999999.99]")
+	@ApiModelProperty(value = "基本料金_定価", required = false, position = 5, allowableValues = "range[0.00,9999999999999999999.99]")
 	private BigDecimal basicListPrice;
 
 	/**
