@@ -474,4 +474,19 @@ public class ContractElectric extends EntityBase {
 	@Column(nullable = true)
 	@ApiModelProperty(value = "品種コード", required = false, position = 57, allowableValues = "range[0,255]")
 	private String itemCode;
+
+	/**
+	 * 請求開始月
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "請求開始月", required = false, position = 58, allowableValues = "range[0,255]")
+	private String billingStartMonth;
+
+	/**
+	 * CO2排出メニュー
+	 * CO2EMISSION_MENUとして読み取られるためname指定
+	 */
+	@Column(nullable = true, name = "co2_emission_menu")
+	@ApiModelProperty(value = "CO2排出メニュー", required = false, position = 59, allowableValues = "range[0,255]")
+	private String co2EmissionMenu;
 }

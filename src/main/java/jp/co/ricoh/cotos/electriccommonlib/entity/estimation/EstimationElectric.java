@@ -31,6 +31,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @Table(name = "estimation_electric")
 public class EstimationElectric extends EntityBase {
+	
 	/**
 	 * ID
 	 */
@@ -236,18 +237,17 @@ public class EstimationElectric extends EntityBase {
 	private Integer ancillaryFlg;
 
 	/**
-	 * 定価
-	 */
-	@Column(nullable = true)
-	@DecimalMin("0.00")
-	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "定価", required = false, position = 29, allowableValues = "range[0.00,9999999999999999999.99]")
-	private BigDecimal listPrice;
-	
-	/**
 	 * お客様識別番号
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "お客様識別番号", required = false, position = 30, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "お客様識別番号", required = false, position = 29, allowableValues = "range[0,255]")
 	private String customerNumber;
+	
+	/**
+	 * CO2排出メニュー
+	 * CO2EMISSION_MENUとして読み取られるためname指定
+	 */
+	@Column(nullable = true, name = "co2_emission_menu")
+	@ApiModelProperty(value = "CO2排出メニュー", required = false, position = 30, allowableValues = "range[0,255]")
+	private String co2EmissionMenu;
 }
