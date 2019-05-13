@@ -19,6 +19,7 @@ import javax.validation.constraints.Min;
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBase;
 import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.ElectricCommercialFlowDiv;
+import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.VoltageCategory;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -65,7 +66,7 @@ public class EstimationElectric extends EntityBase {
 	 */
 	@Column(nullable = false)
 	@ApiModelProperty(value = "電力区分", required = true, position = 5, allowableValues = "range[0,255]")
-	private String voltageCategory;
+	private VoltageCategory voltageCategory;
 
 	/**
 	 * 電力メニュー
@@ -78,8 +79,10 @@ public class EstimationElectric extends EntityBase {
 	 * 契約電力
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "契約電力", required = false, position = 7, allowableValues = "range[0,255]")
-	private String contractPower;
+	@DecimalMin("0.00")
+	@Digits(integer = 8, fraction = 2)
+	@ApiModelProperty(value = "契約電力", required = false, position = 7, allowableValues = "range[0.00,99999999.99]")
+	private BigDecimal contractPower;
 
 	/**
 	 * 規模
@@ -197,14 +200,14 @@ public class EstimationElectric extends EntityBase {
 	@Digits(integer = 8, fraction = 2)
 	@ApiModelProperty(value = "変動部", required = false, position = 24, allowableValues = "range[0.00,99999999.99]")
 	private BigDecimal fluctuatingPart;
-	
+
 	/**
 	 * 外部キー情報
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "外部キー情報", required = false, position = 25, allowableValues = "range[0,255]")
 	private String oppSysKeyBn;
-	
+
 	/**
 	 * 予備線
 	 */
@@ -231,7 +234,7 @@ public class EstimationElectric extends EntityBase {
 	@Min(0)
 	@ApiModelProperty(value = "アンシラリーサービス", required = false, position = 28, allowableValues = "range[0,9]")
 	private Integer ancillaryFlg;
-	
+
 	/**
 	 * 定価
 	 */
@@ -240,4 +243,11 @@ public class EstimationElectric extends EntityBase {
 	@Digits(integer = 19, fraction = 2)
 	@ApiModelProperty(value = "定価", required = false, position = 29, allowableValues = "range[0.00,9999999999999999999.99]")
 	private BigDecimal listPrice;
+	
+	/**
+	 * お客様識別番号
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "お客様識別番号", required = false, position = 30, allowableValues = "range[0,255]")
+	private String customerNumber;
 }

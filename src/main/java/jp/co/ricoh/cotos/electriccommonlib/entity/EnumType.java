@@ -47,9 +47,31 @@ public class EnumType {
 		public String toString() {
 			return this.text;
 		}
-		
+
 		@JsonCreator
 		public static ElectricCommercialFlowDiv fromString(String string) {
+			return Arrays.stream(values()).filter(v -> v.text.equals(string)).findFirst().orElseThrow(() -> new IllegalArgumentException(String.valueOf(string)));
+		}
+	}
+
+	public enum VoltageCategory {
+
+		高圧("1"), 低圧("2");
+
+		private final String text;
+
+		private VoltageCategory(final String text) {
+			this.text = text;
+		}
+
+		@Override
+		@JsonValue
+		public String toString() {
+			return this.text;
+		}
+
+		@JsonCreator
+		public static VoltageCategory fromString(String string) {
 			return Arrays.stream(values()).filter(v -> v.text.equals(string)).findFirst().orElseThrow(() -> new IllegalArgumentException(String.valueOf(string)));
 		}
 	}
