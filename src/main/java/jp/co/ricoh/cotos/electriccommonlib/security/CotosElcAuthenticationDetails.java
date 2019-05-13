@@ -14,7 +14,7 @@ public class CotosElcAuthenticationDetails extends CotosAuthenticationDetails {
 
 	private static final long serialVersionUID = 1L;
 
-	public CotosElcAuthenticationDetails(String momEmployeeId, String singleUserId, String origin, String applicationId, String jwt, boolean isSuperUser, Map<ActionDiv, Map<AuthDiv, AuthLevel>> momAuthorities) {
-		super(momEmployeeId, singleUserId, origin, applicationId, jwt, isSuperUser, momAuthorities);
+	public CotosElcAuthenticationDetails(String momEmployeeId, String singleUserId, String origin, String applicationId, String jwt, boolean isSuperUser, boolean isDummyUser, Map<ActionDiv, Map<AuthDiv, AuthLevel>> momAuthorities) {
+		super(momEmployeeId, singleUserId, origin, applicationId, jwt, isSuperUser, isDummyUser, momAuthorities);
 	}
 }
