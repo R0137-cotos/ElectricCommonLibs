@@ -1,7 +1,5 @@
 package jp.co.ricoh.cotos.electriccommonlib.entity.contract;
 
-import java.util.Arrays;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,13 +10,12 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBase;
 import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
+import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricDealerMaster.PaymentMethod;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.ElectricDealerContractRepository;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -32,29 +29,6 @@ import lombok.EqualsAndHashCode;
 @Table(name = "electric_dealer_contract")
 @CotosComplementTarget(entity = ElectricDealerContract.class, repository = ElectricDealerContractRepository.class)
 public class ElectricDealerContract extends EntityBase {
-
-	public enum PaymentIndicator {
-
-		定率("1"), 定額("2");
-
-		private final String text;
-
-		private PaymentIndicator(final String text) {
-			this.text = text;
-		}
-
-		@Override
-		@JsonValue
-		public String toString() {
-			return this.text;
-		}
-
-		@JsonCreator
-		public static PaymentIndicator fromString(String string) {
-			return Arrays.stream(values()).filter(v -> v.text.equals(string)).findFirst().orElseThrow(() -> new IllegalArgumentException(String.valueOf(string)));
-		}
-	}
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "electric_dealer_contract_seq")
 	@SequenceGenerator(name = "electric_dealer_contract_seq", sequenceName = "electric_dealer_contract_seq", allocationSize = 1)
@@ -117,15 +91,15 @@ public class ElectricDealerContract extends EntityBase {
 	 */
 	@Column(nullable = false)
 	@ApiModelProperty(value = "支払区分", required = true, position = 9, allowableValues = "定率(\"1\"), 定額(\"2\")", example = "1")
-	private PaymentIndicator paymentIndicator;
-	
+	private PaymentMethod paymentMethod;
+
 	/**
 	 * メールアドレス2
 	 */
 	@Column(nullable = false)
 	@ApiModelProperty(value = "メールアドレス1", required = true, position = 10, allowableValues = "range[0,255]")
 	private String mailAddress2;
-	
+
 	/**
 	 * メールアドレス3
 	 */

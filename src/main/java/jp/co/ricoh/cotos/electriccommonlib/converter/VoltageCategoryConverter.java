@@ -3,7 +3,7 @@ package jp.co.ricoh.cotos.electriccommonlib.converter;
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
 
-import jp.co.ricoh.cotos.electriccommonlib.entity.contract.ContractElectric.VoltageCategory;
+import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.VoltageCategory;
 
 @Converter(autoApply = true)
 public class VoltageCategoryConverter implements AttributeConverter<VoltageCategory, String> {
