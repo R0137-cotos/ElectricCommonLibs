@@ -25,6 +25,7 @@ import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBase;
 import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
 import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.ElectricCommercialFlowDiv;
+import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.VoltageCategory;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.ContractElectricRepository;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -38,28 +39,6 @@ import lombok.EqualsAndHashCode;
 @Table(name = "contract_electric")
 @CotosComplementTarget(entity = ContractElectric.class, repository = ContractElectricRepository.class)
 public class ContractElectric extends EntityBase {
-
-	public enum VoltageCategory {
-
-		高圧("1"), 低圧("2");
-
-		private final String text;
-
-		private VoltageCategory(final String text) {
-			this.text = text;
-		}
-
-		@Override
-		@JsonValue
-		public String toString() {
-			return this.text;
-		}
-
-		@JsonCreator
-		public static VoltageCategory fromString(String string) {
-			return Arrays.stream(values()).filter(v -> v.text.equals(string)).findFirst().orElseThrow(() -> new IllegalArgumentException(String.valueOf(string)));
-		}
-	}
 
 	public enum CurrentElectricCompanyDiv {
 
@@ -474,21 +453,21 @@ public class ContractElectric extends EntityBase {
 	@OneToMany(mappedBy = "contractElectric")
 	@ApiModelProperty(value = "得意先情報", required = false, position = 54)
 	private List<ClientInformation> clientInformationList;
-	
+
 	/**
 	 * 商流区分
 	 */
 	@Column(nullable = false)
 	@ApiModelProperty(value = "商流区分", required = true, position = 55, allowableValues = "直売(\"1\"), 代売(\"2\"), 社内(\"3\")", example = "1")
 	private ElectricCommercialFlowDiv electricCommercialFlowDiv;
-	
+
 	/**
 	 * 現在の電力会社種別
 	 */
 	@Column(nullable = false)
 	@ApiModelProperty(value = "現在の電力会社種別", required = true, position = 56, allowableValues = "種別1(\"1\")", example = "1")
 	private CurrentElectricCompanyDiv currentElectricCompanyDiv;
-	
+
 	/**
 	 * 品種コード
 	 */
