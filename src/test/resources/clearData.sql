@@ -29,3 +29,4 @@ DELETE from fee_simulation_head;
 DELETE from electric_company_master;
 DELETE from electric_area_master;
 DELETE from electric_dealer_master;
+DELETE FROM high_contract_calendar_master;
