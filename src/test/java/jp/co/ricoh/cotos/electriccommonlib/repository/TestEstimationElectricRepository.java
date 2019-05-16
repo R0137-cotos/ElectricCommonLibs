@@ -33,8 +33,6 @@ import jp.co.ricoh.cotos.electriccommonlib.repository.estimation.ElectricExpertE
 import jp.co.ricoh.cotos.electriccommonlib.repository.estimation.EstimationElectricRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.estimation.FeeSimulationHeadRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.estimation.FeeSimulationSalesRepository;
-import jp.co.ricoh.cotos.electriccommonlib.repository.master.ElectricApprovalRouteMasterRepository;
-import jp.co.ricoh.cotos.electriccommonlib.repository.master.ElectricApprovalRouteNodeMasterRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.master.ElectricAreaMasterRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.master.ElectricCompanyMasterRepository;
 
@@ -109,14 +107,8 @@ public class TestEstimationElectricRepository extends RepositoryTestBase {
 	UnitPriceLowPressureRepository unitPriceLowPressureRepository;
 
 	@Autowired
-	ElectricApprovalRouteNodeMasterRepository electricApprovalRouteNodeMasterRepository;
-	
-	@Autowired
-	ElectricApprovalRouteMasterRepository electricApprovalRouteMasterRepository;
-	
-	@Autowired
 	ElectricCompanyMasterRepository electricCompanyMasterRepository;
-	
+
 	@Autowired
 	ElectricAreaMasterRepository electricAreaMasterRepository;
 
