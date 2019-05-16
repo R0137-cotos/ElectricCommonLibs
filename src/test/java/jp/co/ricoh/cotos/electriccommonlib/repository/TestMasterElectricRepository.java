@@ -35,8 +35,6 @@ import jp.co.ricoh.cotos.electriccommonlib.repository.estimation.ElectricExpertE
 import jp.co.ricoh.cotos.electriccommonlib.repository.estimation.EstimationElectricRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.estimation.FeeSimulationHeadRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.estimation.FeeSimulationSalesRepository;
-import jp.co.ricoh.cotos.electriccommonlib.repository.master.ElectricApprovalRouteMasterRepository;
-import jp.co.ricoh.cotos.electriccommonlib.repository.master.ElectricApprovalRouteNodeMasterRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.master.ElectricAreaMasterRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.master.ElectricCompanyMasterRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.master.ElectricDealerMasterRepository;
@@ -86,12 +84,6 @@ public class TestMasterElectricRepository extends RepositoryTestBase {
 
 	@Autowired
 	ElectricExpertEstimationRepository electricExpertEstimationRepository;
-
-	@Autowired
-	ElectricApprovalRouteNodeMasterRepository electricApprovalRouteNodeMasterRepository;
-
-	@Autowired
-	ElectricApprovalRouteMasterRepository electricApprovalRouteMasterRepository;
 
 	@Autowired
 	ElectricCompanyMasterRepository electricCompanyMasterRepository;
@@ -154,16 +146,6 @@ public class TestMasterElectricRepository extends RepositoryTestBase {
 	@Test
 	public void 全てのカラムがNullではないことを確認_マスタ_電力会社マスタ() {
 		全てのカラムがNullではないことを確認_マスタ(electricCompanyMasterRepository, 1L);
-	}
-
-	@Test
-	public void 全てのカラムがNullではないことを確認_マスタ_電力承認ルートマスタ() {
-		全てのカラムがNullではないことを確認_マスタ(electricApprovalRouteMasterRepository, 1L);
-	}
-
-	@Test
-	public void 全てのカラムがNullではないことを確認_マスタ_電力承認ルートノードマスタ() {
-		全てのカラムがNullではないことを確認_マスタ(electricApprovalRouteNodeMasterRepository, 1L);
 	}
 
 	@Test
