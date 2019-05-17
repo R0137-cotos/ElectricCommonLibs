@@ -42,7 +42,7 @@ public class ElectricFormMaster extends EntityBaseMaster {
 
 	public enum ElectricPlan {
 
-		CO2フリー("1"), それ以外("2");
+		CO2フリー("1"), それ以外("2"), 無し("99");
 
 		private final String text;
 
@@ -108,7 +108,7 @@ public class ElectricFormMaster extends EntityBaseMaster {
 	 * 電力プラン
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "電力プラン", required = true, position = 4, allowableValues = "CO2フリー(\"1\"), それ以外(\"2\")", example = "1")
+	@ApiModelProperty(value = "電力プラン", required = true, position = 4, allowableValues = "CO2フリー(\"1\"), それ以外(\"2\"), 無し(\"99\")", example = "1")
 	private ElectricPlan electricPlan;
 
 	/**
