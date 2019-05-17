@@ -178,73 +178,59 @@ public class ContractElectric extends EntityBase {
 	private String buildingName;
 
 	/**
-	 * 電話番号(市外局番)
+	 * 電話番号
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "電話番号(市外局番)", required = false, position = 17, allowableValues = "range[0,255]")
-	private String phoneNumberAreaCode;
-
-	/**
-	 * 電話番号(市内局番)
-	 */
-	@Column(nullable = true)
-	@ApiModelProperty(value = "電話番号(市内局番)", required = false, position = 18, allowableValues = "range[0,255]")
-	private String phoneNumberCityCode;
-
-	/**
-	 * 電話番号(加入者番号)
-	 */
-	@Column(nullable = true)
-	@ApiModelProperty(value = "電話番号(加入者番号)", required = false, position = 19, allowableValues = "range[0,255]")
-	private String phoneNumberSubscriber;
+	@ApiModelProperty(value = "電話番号", required = false, position = 17, allowableValues = "range[0,255]")
+	private String phoneNumber;
 
 	/**
 	 * 旧契約名義
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "旧契約名義", required = false, position = 20, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "旧契約名義", required = false, position = 18, allowableValues = "range[0,255]")
 	private String contractHolderOld;
 
 	/**
 	 * 旧需要場所
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "旧需要場所", required = false, position = 21, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "旧需要場所", required = false, position = 19, allowableValues = "range[0,255]")
 	private String demandPlaceOld;
 
 	/**
 	 * 電気主任技術者
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "電気主任技術者", required = false, position = 22, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "電気主任技術者", required = false, position = 20, allowableValues = "range[0,255]")
 	private String licensedEngineerName;
 
 	/**
 	 * 電気主任技術者 電話番号
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "電気主任技術者 電話番号", required = false, position = 23, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "電気主任技術者 電話番号", required = false, position = 21, allowableValues = "range[0,255]")
 	private String licensedEngineerTel;
 
 	/**
 	 * 電気主任技術者 所属名
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "電気主任技術者 所属名", required = false, position = 24, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "電気主任技術者 所属名", required = false, position = 22, allowableValues = "range[0,255]")
 	private String licensedEngineerDep;
 
 	/**
 	 * 現在の電力会社
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "現在の電力会社", required = false, position = 25, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "現在の電力会社", required = false, position = 23, allowableValues = "range[0,255]")
 	private String currentElectricCompany;
 
 	/**
 	 * 現在の契約番号
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "現在の契約番号", required = false, position = 26, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "現在の契約番号", required = false, position = 24, allowableValues = "range[0,255]")
 	private String currentContractNumber;
 
 	/**
@@ -255,7 +241,7 @@ public class ContractElectric extends EntityBase {
 	 * 申込日
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "申込日", required = false, position = 27)
+	@ApiModelProperty(value = "申込日", required = false, position = 25)
 	@Temporal(TemporalType.DATE)
 	private Date entryDate;
 
@@ -263,7 +249,7 @@ public class ContractElectric extends EntityBase {
 	 * 変更希望日
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "変更希望日", required = false, position = 28)
+	@ApiModelProperty(value = "変更希望日", required = false, position = 26)
 	@Temporal(TemporalType.DATE)
 	private Date changeHopeDate;
 
@@ -271,28 +257,28 @@ public class ContractElectric extends EntityBase {
 	 * 電力エリア
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "電力エリア", required = false, position = 29, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "電力エリア", required = false, position = 27, allowableValues = "range[0,255]")
 	private String powerArea;
 
 	/**
 	 * 電力会社
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "電力会社", required = false, position = 30, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "電力会社", required = false, position = 28, allowableValues = "range[0,255]")
 	private String powerCompany;
 
 	/**
 	 * 電源サイクル
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "電源サイクル", required = false, position = 31, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "電源サイクル", required = false, position = 29, allowableValues = "range[0,255]")
 	private String chargeCycle;
 
 	/**
 	 * 需要(供給)期間 開始日
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "需要(供給)期間　開始日", required = false, position = 32)
+	@ApiModelProperty(value = "需要(供給)期間　開始日", required = false, position = 30)
 	@Temporal(TemporalType.DATE)
 	private Date contractYmdStart;
 
@@ -300,7 +286,7 @@ public class ContractElectric extends EntityBase {
 	 * 需要(供給)期間 終了日
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "需要(供給)期間　終了日", required = false, position = 33)
+	@ApiModelProperty(value = "需要(供給)期間　終了日", required = false, position = 31)
 	@Temporal(TemporalType.DATE)
 	private Date contractYmdEnd;
 
@@ -308,14 +294,14 @@ public class ContractElectric extends EntityBase {
 	 * 供給開始月
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "供給開始月", required = false, position = 34, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "供給開始月", required = false, position = 32, allowableValues = "range[0,255]")
 	private String supplyStartDate;
 
 	/**
 	 * 契約開始日
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "契約開始日", required = false, position = 35)
+	@ApiModelProperty(value = "契約開始日", required = false, position = 33)
 	@Temporal(TemporalType.DATE)
 	private Date contractStartDate;
 
@@ -323,21 +309,21 @@ public class ContractElectric extends EntityBase {
 	 * 電力区分
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "電力区分", required = true, position = 36, allowableValues = "高圧(\"1\"), 低圧(\"2\")", example = "1")
+	@ApiModelProperty(value = "電力区分", required = true, position = 34, allowableValues = "高圧(\"1\"), 低圧(\"2\")", example = "1")
 	private VoltageCategory voltageCategory;
 
 	/**
 	 * 電力メニュー
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "電力メニュー", required = false, position = 37, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "電力メニュー", required = false, position = 35, allowableValues = "range[0,255]")
 	private String electricMenu;
 
 	/**
 	 * 契約数量
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "契約数量", required = false, position = 38, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "契約数量", required = false, position = 36, allowableValues = "range[0,255]")
 	private String contractAmount;
 
 	/**
@@ -346,7 +332,7 @@ public class ContractElectric extends EntityBase {
 	@Column(nullable = true)
 	@Max(9)
 	@Min(0)
-	@ApiModelProperty(value = "振込フラグチェック(業務区)", required = false, position = 39, allowableValues = "range[0,9]")
+	@ApiModelProperty(value = "振込フラグチェック(業務区)", required = false, position = 37, allowableValues = "range[0,9]")
 	private Integer transferCheckFlg;
 
 	/**
@@ -355,139 +341,160 @@ public class ContractElectric extends EntityBase {
 	@Column(nullable = true)
 	@Max(9)
 	@Min(0)
-	@ApiModelProperty(value = "原子力立地給付金フラグ", required = false, position = 40, allowableValues = "range[0,9]")
+	@ApiModelProperty(value = "原子力立地給付金フラグ", required = false, position = 38, allowableValues = "range[0,9]")
 	private Integer atomicPaymentFlg;
 
 	/**
 	 * 備考
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "備考", required = false, position = 41, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "備考", required = false, position = 39, allowableValues = "range[0,255]")
 	private String notes;
 
 	/**
 	 * 外部キー情報
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "外部キー情報", required = false, position = 42, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "外部キー情報", required = false, position = 40, allowableValues = "range[0,255]")
 	private String oppSysKeyBn;
 
 	/**
 	 * NISHIKI契約番号
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "NISHIKI契約番号", required = false, position = 43, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "NISHIKI契約番号", required = false, position = 41, allowableValues = "range[0,255]")
 	private String nishikiContractNumber;
 
 	/**
 	 * 需要家番号
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "需要家番号", required = false, position = 44, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "需要家番号", required = false, position = 42, allowableValues = "range[0,255]")
 	private String cstmrBn;
 
 	/**
 	 * お申込み内容(高圧)
 	 */
 	@OneToOne(mappedBy = "contractElectric")
-	@ApiModelProperty(value = "お申込み内容(高圧)", required = false, position = 45)
+	@ApiModelProperty(value = "お申込み内容(高圧)", required = false, position = 43)
 	private EntryContentHighPressure entryContentHighPressure;
 
 	/**
 	 * お申込み内容(低圧)
 	 */
 	@OneToOne(mappedBy = "contractElectric")
-	@ApiModelProperty(value = "お申込み内容(低圧)", required = false, position = 46)
-	private EntryContentHighPressure entryContentLowPressure;
+	@ApiModelProperty(value = "お申込み内容(低圧)", required = false, position = 44)
+	private EntryContentLowPressure entryContentLowPressure;
 
 	/**
 	 * 解約情報
 	 */
 	@OneToOne(mappedBy = "contractElectric")
-	@ApiModelProperty(value = "解約情報", required = false, position = 47)
+	@ApiModelProperty(value = "解約情報", required = false, position = 45)
 	private CancellationInformation cancellationInformation;
 
 	/**
 	 * 電力専任情報
 	 */
 	@OneToOne(mappedBy = "contractElectric", optional = false)
-	@ApiModelProperty(value = "電力専任情報", required = true, position = 48)
+	@ApiModelProperty(value = "電力専任情報", required = true, position = 46)
 	private ElectricExpertContract electricExpertContract;
 
 	/**
 	 * 販売店情報
 	 */
-	@OneToOne(mappedBy = "contractElectric", optional = false)
-	@ApiModelProperty(value = "販売店情報", required = true, position = 49)
+	@OneToOne(mappedBy = "contractElectric")
+	@ApiModelProperty(value = "販売店情報", required = false, position = 47)
 	private ElectricDealerContract electricDealerContract;
 
 	/**
 	 * Mailアドレス情報
 	 */
 	@OneToMany(mappedBy = "contractElectric")
-	@ApiModelProperty(value = "Mailアドレス情報", required = false, position = 50)
+	@ApiModelProperty(value = "Mailアドレス情報", required = false, position = 48)
 	private List<MailAddressInformation> mailAddressInformationList;
 
 	/**
 	 * 契約(電力)添付ファイル
 	 */
 	@OneToMany(mappedBy = "contractElectric")
-	@ApiModelProperty(value = "契約(電力)添付ファイル", required = false, position = 51)
+	@ApiModelProperty(value = "契約(電力)添付ファイル", required = false, position = 49)
 	private List<ContractElectricAttachedFile> contractElectricAttachedFileList;
 
 	/**
 	 * 単価情報(高圧)
 	 */
 	@OneToMany(mappedBy = "contractElectric")
-	@ApiModelProperty(value = "単価情報(高圧)", required = false, position = 52)
+	@ApiModelProperty(value = "単価情報(高圧)", required = false, position = 50)
 	private List<UnitPriceHighPressure> unitPriceHighPressureList;
 
 	/**
 	 * 単価情報(低圧)
 	 */
 	@OneToMany(mappedBy = "contractElectric")
-	@ApiModelProperty(value = "単価情報(低圧)", required = false, position = 53)
+	@ApiModelProperty(value = "単価情報(低圧)", required = false, position = 51)
 	private List<UnitPriceLowPressure> unitPriceLowPressureList;
 
 	/**
 	 * 得意先情報
 	 */
 	@OneToMany(mappedBy = "contractElectric")
-	@ApiModelProperty(value = "得意先情報", required = false, position = 54)
+	@ApiModelProperty(value = "得意先情報", required = false, position = 52)
 	private List<ClientInformation> clientInformationList;
 
 	/**
 	 * 商流区分
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "商流区分", required = true, position = 55, allowableValues = "直売(\"1\"), 代売(\"2\"), 社内(\"3\")", example = "1")
+	@ApiModelProperty(value = "商流区分", required = true, position = 53, allowableValues = "直売(\"1\"), 代売(\"2\"), 社内(\"3\")", example = "1")
 	private ElectricCommercialFlowDiv electricCommercialFlowDiv;
 
 	/**
 	 * 現在の電力会社種別
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "現在の電力会社種別", required = true, position = 56, allowableValues = "種別1(\"1\")", example = "1")
+	@ApiModelProperty(value = "現在の電力会社種別", required = true, position = 54, allowableValues = "種別1(\"1\")", example = "1")
 	private CurrentElectricCompanyDiv currentElectricCompanyDiv;
 
 	/**
 	 * 品種コード
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "品種コード", required = false, position = 57, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "品種コード", required = false, position = 55, allowableValues = "range[0,255]")
 	private String itemCode;
 
 	/**
 	 * 請求開始月
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "請求開始月", required = false, position = 58, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "請求開始月", required = false, position = 56, allowableValues = "range[0,255]")
 	private String billingStartMonth;
 
 	/**
 	 * CO2排出メニュー CO2EMISSION_MENUとして読み取られるためname指定
 	 */
 	@Column(nullable = true, name = "co2_emission_menu")
-	@ApiModelProperty(value = "CO2排出メニュー", required = false, position = 59, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "CO2排出メニュー", required = false, position = 57, allowableValues = "range[0,255]")
 	private String co2EmissionMenu;
+
+	/**
+	 * 電力会社コード
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "電力会社コード", required = false, position = 58, allowableValues = "range[0,255]")
+	private String electricCompanyCode;
+
+	/**
+	 * 電力メニューコード
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "電力会社コード", required = false, position = 59, allowableValues = "range[0,255]")
+	private String electricMenuCode;
+	
+	/**
+	 * 重要事項説明者
+	 */
+	@OneToOne(mappedBy = "contractElectric")
+	@ApiModelProperty(value = "重要事項説明者", required = false, position = 60)
+	private ImportantPointExplainer importantPointExplainer;
 }

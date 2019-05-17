@@ -3,7 +3,7 @@ package jp.co.ricoh.cotos.electriccommonlib.converter;
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
 
-import jp.co.ricoh.cotos.electriccommonlib.entity.contract.BillingBasicInformation.SendInvoiceDiv;
+import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.SendInvoiceDiv;
 
 @Converter(autoApply = true)
 public class SendInvoiceDivConverter implements AttributeConverter<SendInvoiceDiv, String> {

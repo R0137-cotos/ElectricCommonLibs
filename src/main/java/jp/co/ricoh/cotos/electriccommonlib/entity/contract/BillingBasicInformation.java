@@ -18,6 +18,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBase;
 import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
+import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.SendInvoiceDiv;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.BillingBasicInformationRepository;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -31,28 +32,6 @@ import lombok.EqualsAndHashCode;
 @Table(name = "billing_basic_information")
 @CotosComplementTarget(entity = BillingBasicInformation.class, repository = BillingBasicInformationRepository.class)
 public class BillingBasicInformation extends EntityBase {
-
-	public enum SendInvoiceDiv {
-
-		郵送のみ("1");
-
-		private final String text;
-
-		private SendInvoiceDiv(final String text) {
-			this.text = text;
-		}
-
-		@Override
-		@JsonValue
-		public String toString() {
-			return this.text;
-		}
-
-		@JsonCreator
-		public static SendInvoiceDiv fromString(String string) {
-			return Arrays.stream(values()).filter(v -> v.text.equals(string)).findFirst().orElseThrow(() -> new IllegalArgumentException(String.valueOf(string)));
-		}
-	}
 
 	public enum Honorific {
 

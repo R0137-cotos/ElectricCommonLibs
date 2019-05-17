@@ -82,6 +82,28 @@ public class EntryContentLowPressure extends EntityBase {
 			return Arrays.stream(values()).filter(v -> v.text.equals(string)).findFirst().orElseThrow(() -> new IllegalArgumentException(String.valueOf(string)));
 		}
 	}
+	
+	public enum LowPressureType {
+
+		動力("1"), 従量電灯("2");
+
+		private final String text;
+
+		private LowPressureType(final String text) {
+			this.text = text;
+		}
+
+		@Override
+		@JsonValue
+		public String toString() {
+			return this.text;
+		}
+
+		@JsonCreator
+		public static LowPressureType fromString(String string) {
+			return Arrays.stream(values()).filter(v -> v.text.equals(string)).findFirst().orElseThrow(() -> new IllegalArgumentException(String.valueOf(string)));
+		}
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "entry_content_low_pressure_seq")
@@ -162,4 +184,11 @@ public class EntryContentLowPressure extends EntityBase {
 	@Column(nullable = true)
 	@ApiModelProperty(value = "備考", required = false, position = 10, allowableValues = "range[0,4000]")
 	private String notes;
+	
+	/**
+	 * 低圧種別
+	 */
+	@Column(nullable = false)
+	@ApiModelProperty(value = "低圧種別", required = true, position = 11, allowableValues = "動力(\"1\"), 従量電灯(\"2\")", example = "1")
+	private LowPressureType lowPressureType;
 }
