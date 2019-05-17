@@ -31,4 +31,5 @@ DELETE from electric_area_master;
 DELETE from electric_dealer_master;
 DELETE from electric_form_master;
 DELETE from electric_form_ident_master;
-DELETE FROM high_contract_calendar_master;
+DELETE from high_contract_calendar_master;
+DELETE from important_point_explainer;

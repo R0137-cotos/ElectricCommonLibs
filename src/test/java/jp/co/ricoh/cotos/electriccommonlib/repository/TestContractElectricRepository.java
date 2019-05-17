@@ -12,6 +12,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import jp.co.ricoh.cotos.electriccommonlib.DBConfig;
 import jp.co.ricoh.cotos.electriccommonlib.TestTools;
+import jp.co.ricoh.cotos.electriccommonlib.entity.contract.ClientMaster;
 import jp.co.ricoh.cotos.electriccommonlib.entity.contract.ContractElectric;
 import jp.co.ricoh.cotos.electriccommonlib.repository.common.ElectricAttachedFileRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.BillingBasicInformationRepository;
@@ -27,6 +28,7 @@ import jp.co.ricoh.cotos.electriccommonlib.repository.contract.ElectricDealerCon
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.ElectricExpertContractRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.EntryContentHighPressureRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.EntryContentLowPressureRepository;
+import jp.co.ricoh.cotos.electriccommonlib.repository.contract.ImportantPointExplainerRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.MailAddressInformationRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.UnitPriceHighPressureRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.UnitPriceLowPressureRepository;
@@ -113,6 +115,9 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 
 	@Autowired
 	ElectricAreaMasterRepository electricAreaMasterRepository;
+	
+	@Autowired
+	ImportantPointExplainerRepository importantPointExplainerRepository;
 
 	@Autowired
 	TestTools testTools;
@@ -218,6 +223,11 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 	public void 全てのカラムがNullではないことを確認_添付ファイル() {
 		全てのカラムがNullではないことを確認_共通(electricAttachedFileRepository, 1L);
 	}
+	
+	@Test 
+	public void 全てのカラムがNullではないことを確認_重要事項説明者() {
+		全てのカラムがNullではないことを確認_共通(importantPointExplainerRepository, 1L);
+	}
 
 	@Test
 	public void 全てのカラムがNullではないことを確認_契約_電力用を契約IDより取得() {
@@ -228,6 +238,20 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 		// null項目なく取得できていることを確認
 		try {
 			testTools.assertColumnsNotNull(contractElectric);
+		} catch (Exception e1) {
+			Assert.fail("例外が発生した場合、エラー");
+		}
+	}
+	
+	@Test
+	public void 全てのカラムがNullではないことを確認_契約_得意先マスタを得意先CDから取得() {
+
+		// 契約IDにより契約(電力)を取得
+		ClientMaster clientMaster = clientMasterRepository.findByClientCode("1234567");
+
+		// null項目なく取得できていることを確認
+		try {
+			testTools.assertColumnsNotNull(clientMaster);
 		} catch (Exception e1) {
 			Assert.fail("例外が発生した場合、エラー");
 		}

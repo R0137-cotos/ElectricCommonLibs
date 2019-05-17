@@ -29,6 +29,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBase;
 import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
+import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.SendInvoiceDiv;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.BillingHistoryRepository;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -218,4 +219,20 @@ public class BillingHistory extends EntityBase {
 	@Column(nullable = true)
 	@ApiModelProperty(value = "ファイルパス", required = false, position = 19, allowableValues = "range[0,1023]")
 	private String filePath;
+	
+	/**
+	 * 請求書発送区分
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "請求書発送区分", required = false, position = 20, allowableValues = "郵送のみ(\"1\")", example = "1")
+	private SendInvoiceDiv sendInvoiceDiv;
+	
+	/**
+	 * 請求書出力フラグ
+	 */
+	@Column(nullable = true)
+	@Max(9)
+	@Min(0)
+	@ApiModelProperty(value = "請求書出力フラグ", required = false, position = 21, allowableValues = "range[0,9]")
+	private Integer invoiceOutputFlg;
 }
