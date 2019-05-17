@@ -52,10 +52,10 @@ public class ElectricDealerContract extends EntityBase {
 	private String companyId;
 
 	/**
-	 * 企業_事業所名
+	 * 販売店企業名
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "企業_事業所名", required = true, position = 4, allowableValues = "range[0,1000]")
+	@ApiModelProperty(value = "販売店企業名", required = true, position = 4, allowableValues = "range[0,1000]")
 	private String companyBusinessName;
 
 	/**

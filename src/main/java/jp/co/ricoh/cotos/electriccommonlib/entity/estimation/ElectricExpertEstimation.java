@@ -26,57 +26,62 @@ import lombok.EqualsAndHashCode;
 @Table(name = "electric_expert_estimation")
 public class ElectricExpertEstimation extends EntityBase {
 
-/**
- * ID
- */
-@Id
-@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "electric_expert_estimation_seq")
-@SequenceGenerator(name = "electric_expert_estimation_seq", sequenceName = "electric_expert_estimation_seq", allocationSize = 1)
-@ApiModelProperty(value = "ID", required = true, position = 1)
-private long id;
+	/**
+	 * ID
+	 */
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "electric_expert_estimation_seq")
+	@SequenceGenerator(name = "electric_expert_estimation_seq", sequenceName = "electric_expert_estimation_seq", allocationSize = 1)
+	@ApiModelProperty(value = "ID", required = true, position = 1)
+	private long id;
 
-/**
- * 見積（電力）ID
- */
-@OneToOne(optional = false)
-@JoinColumn(name = "estimationElectricId", referencedColumnName = "id")
-@JsonIgnore
-private EstimationElectric estimationElectric;
+	/**
+	 * 見積（電力）ID
+	 */
+	@OneToOne(optional = false)
+	@JoinColumn(name = "estimationElectricId", referencedColumnName = "id")
+	@JsonIgnore
+	private EstimationElectric estimationElectric;
 
-/**
- * 氏名
- */
-@Column(nullable = true)
-@ApiModelProperty(value = "氏名", required = false, position = 2, allowableValues = "range[0,]")
-private String name;
+	/**
+	 * 氏名
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "氏名", required = false, position = 2, allowableValues = "range[0,]")
+	private String name;
 
-/**
- * メールアドレス
- */
-@Column(nullable = true)
-@ApiModelProperty(value = "メールアドレス", required = false, position = 3, allowableValues = "range[0,]")
-private String mailAddress;
+	/**
+	 * メールアドレス
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "メールアドレス", required = false, position = 3, allowableValues = "range[0,]")
+	private String mailAddress;
 
-/**
- * 電話番号
- */
-@Column(nullable = true)
-@ApiModelProperty(value = "電話番号", required = false, position = 4, allowableValues = "range[0,]")
-private String phoneNumber;
+	/**
+	 * 電話番号
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "電話番号", required = false, position = 4, allowableValues = "range[0,]")
+	private String phoneNumber;
 
-/**
- * 所属課所コード
- */
-@Column(nullable = true)
-@ApiModelProperty(value = "所属課所コード", required = false, position = 5, allowableValues = "range[0,]")
-private String affiliationCode;
+	/**
+	 * 所属課所コード
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "所属課所コード", required = false, position = 5, allowableValues = "range[0,]")
+	private String affiliationCode;
 
-/**
- * 所属
- */
-@Column(nullable = true)
-@ApiModelProperty(value = "所属", required = false, position = 6, allowableValues = "range[0,]")
-private String belongs;
-
+	/**
+	 * 所属
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "所属", required = false, position = 6, allowableValues = "range[0,]")
+	private String belongs;
+	
+	/**
+	 * MoM社員ID
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "MoM社員ID", required = false, position = 7, allowableValues = "range[0,]")
+	private String momEmpId;
 }
-

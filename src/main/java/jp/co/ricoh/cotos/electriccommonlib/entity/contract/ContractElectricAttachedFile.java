@@ -57,8 +57,8 @@ public class ContractElectricAttachedFile extends EntityBase {
 	/**
 	 * ファイル名
 	 */
-	@Column(nullable = false)
-	@ApiModelProperty(value = "ファイル名", required = true, position = 3, allowableValues = "range[0,255]")
+	@Column(nullable = true)
+	@ApiModelProperty(value = "ファイル名", required = false, position = 3, allowableValues = "range[0,255]")
 	private String fileName;
 
 	/**
@@ -72,7 +72,7 @@ public class ContractElectricAttachedFile extends EntityBase {
 	 * 添付ファイル
 	 */
 	@OneToOne
-	@JoinColumn(name = "electric_attached_file_id", referencedColumnName = "id")
+	@JoinColumn(name = "electric_attached_file_id", referencedColumnName = "id", nullable = true)
 	@ApiModelProperty(value = "添付ファイル", required = false, position = 5)
 	@JsonIgnore
 	private ElectricAttachedFile electricAttachedFile;
@@ -87,15 +87,15 @@ public class ContractElectricAttachedFile extends EntityBase {
 	/**
 	 * 添付者MoM社員ID
 	 */
-	@Column(nullable = false)
-	@ApiModelProperty(value = "添付者MoM社員ID", required = true, position = 7, allowableValues = "range[0,255]")
+	@Column(nullable = true)
+	@ApiModelProperty(value = "添付者MoM社員ID", required = false, position = 7, allowableValues = "range[0,255]")
 	private String attachedEmpId;
 
 	/**
 	 * 添付者氏名
 	 */
-	@Column(nullable = false)
-	@ApiModelProperty(value = "添付者氏名", required = true, position = 8, allowableValues = "range[0,255]")
+	@Column(nullable = true)
+	@ApiModelProperty(value = "添付者氏名", required = false, position = 8, allowableValues = "range[0,255]")
 	private String attachedEmpName;
 
 	/**
@@ -108,8 +108,8 @@ public class ContractElectricAttachedFile extends EntityBase {
 	/**
 	 * 添付日時
 	 */
-	@Column(nullable = false)
-	@ApiModelProperty(value = "添付日時", required = true, position = 10)
+	@Column(nullable = true)
+	@ApiModelProperty(value = "添付日時", required = false, position = 10)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date attachedAt;
 

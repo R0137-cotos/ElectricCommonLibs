@@ -133,4 +133,8 @@ public class UnitPriceHighPressure extends EntityBase {
 	/**
 	 * 登録者名
 	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "登録者名", required = false, position = 12, allowableValues = "range[0,255]")
+	private String createdUserName;
+
 }

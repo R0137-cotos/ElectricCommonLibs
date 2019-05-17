@@ -91,4 +91,11 @@ public class ElectricExpertContract extends EntityBase {
 	@Column(nullable = false)
 	@ApiModelProperty(value = "修正時振替課所名", required = true, position = 9, allowableValues = "range[0,255]")
 	private String fixTransferSectionName;
+	
+	/**
+	 * MoM社員ID
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "MoM社員ID", required = false, position = 10, allowableValues = "range[0,255]")
+	private String momEmpId;
 }

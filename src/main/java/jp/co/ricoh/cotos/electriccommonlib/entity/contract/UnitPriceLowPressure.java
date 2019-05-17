@@ -129,4 +129,11 @@ public class UnitPriceLowPressure extends EntityBase {
 	@Digits(integer = 19, fraction = 2)
 	@ApiModelProperty(value = "従量料金(動力)_その他夏季_売価", required = false, position = 11, allowableValues = "range[0.00,9999999999999999999.99]")
 	private BigDecimal usageFeeOtherSeasonSellingPrice;
+	
+	/**
+	 * 登録者名
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "登録者名", required = false, position = 12, allowableValues = "range[0,255]")
+	private String createdUserName;
 }
