@@ -56,12 +56,12 @@ public class ImportantPointExplainer extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "所属組織名1", required = false, position = 4, allowableValues = "range[0,255]")
-	private String organizatioName1;
+	private String organizationName1;
 	
 	/**
 	 * 所属組織名2
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "所属組織名2", required = false, position = 5, allowableValues = "range[0,255]")
-	private String organizatioName2;
+	private String organizationName2;
 }

@@ -1,5 +1,7 @@
 package jp.co.ricoh.cotos.electriccommonlib.repository;
 
+import java.util.List;
+
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Test;
@@ -13,6 +15,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import jp.co.ricoh.cotos.electriccommonlib.DBConfig;
 import jp.co.ricoh.cotos.electriccommonlib.TestTools;
 import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricDealerMaster;
+import jp.co.ricoh.cotos.electriccommonlib.entity.master.HighContractCalendarMaster;
 import jp.co.ricoh.cotos.electriccommonlib.repository.common.ElectricAttachedFileRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.BillingBasicInformationRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.BillingHistoryRepository;
@@ -35,11 +38,10 @@ import jp.co.ricoh.cotos.electriccommonlib.repository.estimation.ElectricExpertE
 import jp.co.ricoh.cotos.electriccommonlib.repository.estimation.EstimationElectricRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.estimation.FeeSimulationHeadRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.estimation.FeeSimulationSalesRepository;
-import jp.co.ricoh.cotos.electriccommonlib.repository.master.ElectricApprovalRouteMasterRepository;
-import jp.co.ricoh.cotos.electriccommonlib.repository.master.ElectricApprovalRouteNodeMasterRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.master.ElectricAreaMasterRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.master.ElectricCompanyMasterRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.master.ElectricDealerMasterRepository;
+import jp.co.ricoh.cotos.electriccommonlib.repository.master.HighContractCalendarMasterRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
@@ -88,12 +90,6 @@ public class TestMasterElectricRepository extends RepositoryTestBase {
 	ElectricExpertEstimationRepository electricExpertEstimationRepository;
 
 	@Autowired
-	ElectricApprovalRouteNodeMasterRepository electricApprovalRouteNodeMasterRepository;
-
-	@Autowired
-	ElectricApprovalRouteMasterRepository electricApprovalRouteMasterRepository;
-
-	@Autowired
 	ElectricCompanyMasterRepository electricCompanyMasterRepository;
 
 	@Autowired
@@ -127,6 +123,9 @@ public class TestMasterElectricRepository extends RepositoryTestBase {
 	UnitPriceLowPressureRepository unitPriceLowPressureRepository;
 
 	@Autowired
+	HighContractCalendarMasterRepository highContractCalendarMasterRepository;
+
+	@Autowired
 	TestTools testTools;
 
 	static ConfigurableApplicationContext context;
@@ -157,18 +156,13 @@ public class TestMasterElectricRepository extends RepositoryTestBase {
 	}
 
 	@Test
-	public void 全てのカラムがNullではないことを確認_マスタ_電力承認ルートマスタ() {
-		全てのカラムがNullではないことを確認_マスタ(electricApprovalRouteMasterRepository, 1L);
-	}
-
-	@Test
-	public void 全てのカラムがNullではないことを確認_マスタ_電力承認ルートノードマスタ() {
-		全てのカラムがNullではないことを確認_マスタ(electricApprovalRouteNodeMasterRepository, 1L);
-	}
-
-	@Test
 	public void 全てのカラムがNullではないことを確認_マスタ_電力販売店マスタ() {
 		全てのカラムがNullではないことを確認_マスタ(electricDealerMasterRepository, 1L);
+	}
+
+	@Test
+	public void 全てのカラムがNullではないことを確認_マスタ_高圧契約締日カレンダーマスタ() {
+		全てのカラムがNullではないことを確認_マスタ(highContractCalendarMasterRepository, 1L);
 	}
 
 	@Test
@@ -181,6 +175,22 @@ public class TestMasterElectricRepository extends RepositoryTestBase {
 		// null項目なく取得できていることを確認
 		try {
 			testTools.assertColumnsNotNull(electricDealerMaster);
+		} catch (Exception e1) {
+			Assert.fail("例外が発生した場合、エラー");
+		}
+	}
+
+	@Test
+	public void 全てのカラムがNullではないことを確認_マスタ_電力会社名と供給開始月より高圧契約締日カレンダーマスタ取得() {
+		String electricCompanyName = "北海道電力";
+		String supplyStartYm = "2019/12";
+
+		List<HighContractCalendarMaster> highContractCalendarMasterList = highContractCalendarMasterRepository.findByElectricCompanyNameAndSupplyStartYm(electricCompanyName, supplyStartYm);
+
+		// null項目なく取得できていることを確認
+		try {
+			HighContractCalendarMaster highContractCalendarMaster = highContractCalendarMasterList.stream().findFirst().get();
+			testTools.assertColumnsNotNull(highContractCalendarMaster);
 		} catch (Exception e1) {
 			Assert.fail("例外が発生した場合、エラー");
 		}

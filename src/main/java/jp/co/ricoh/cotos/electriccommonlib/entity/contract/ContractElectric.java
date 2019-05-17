@@ -44,7 +44,7 @@ public class ContractElectric extends EntityBase {
 
 	public enum CurrentElectricCompanyDiv {
 
-		種別1("1");
+		管轄地域電力会社("1"), 新電力会社("2"), リコージャパン("3");
 
 		private final String text;
 

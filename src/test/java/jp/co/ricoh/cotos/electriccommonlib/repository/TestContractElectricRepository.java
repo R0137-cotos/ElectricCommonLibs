@@ -37,8 +37,6 @@ import jp.co.ricoh.cotos.electriccommonlib.repository.estimation.ElectricExpertE
 import jp.co.ricoh.cotos.electriccommonlib.repository.estimation.EstimationElectricRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.estimation.FeeSimulationHeadRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.estimation.FeeSimulationSalesRepository;
-import jp.co.ricoh.cotos.electriccommonlib.repository.master.ElectricApprovalRouteMasterRepository;
-import jp.co.ricoh.cotos.electriccommonlib.repository.master.ElectricApprovalRouteNodeMasterRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.master.ElectricAreaMasterRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.master.ElectricCompanyMasterRepository;
 
@@ -113,14 +111,8 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 	UnitPriceLowPressureRepository unitPriceLowPressureRepository;
 
 	@Autowired
-	ElectricApprovalRouteNodeMasterRepository electricApprovalRouteNodeMasterRepository;
-	
-	@Autowired
-	ElectricApprovalRouteMasterRepository electricApprovalRouteMasterRepository;
-	
-	@Autowired
 	ElectricCompanyMasterRepository electricCompanyMasterRepository;
-	
+
 	@Autowired
 	ElectricAreaMasterRepository electricAreaMasterRepository;
 	
@@ -232,7 +224,8 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 		全てのカラムがNullではないことを確認_共通(electricAttachedFileRepository, 1L);
 	}
 	
-	@Test void 全てのカラムがNullではないことを確認_重要事項説明者() {
+	@Test 
+	public void 全てのカラムがNullではないことを確認_重要事項説明者() {
 		全てのカラムがNullではないことを確認_共通(importantPointExplainerRepository, 1L);
 	}
 
@@ -254,7 +247,7 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 	public void 全てのカラムがNullではないことを確認_契約_得意先マスタを得意先CDから取得() {
 
 		// 契約IDにより契約(電力)を取得
-		ClientMaster clientMaster = clientMasterRepository.findByClientCode("test");
+		ClientMaster clientMaster = clientMasterRepository.findByClientCode("1234567");
 
 		// null項目なく取得できていることを確認
 		try {
