@@ -10,14 +10,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
-import javax.persistence.PrePersist;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
-
-import org.springframework.web.multipart.MultipartFile;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -25,6 +23,7 @@ import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBase;
 import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
 import jp.co.ricoh.cotos.electriccommonlib.entity.common.ElectricAttachedFile;
+import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricFormMaster.ElectricFileType;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.ContractElectricAttachedFileRepository;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -57,8 +56,8 @@ public class ContractElectricAttachedFile extends EntityBase {
 	/**
 	 * ファイル名
 	 */
-	@Column(nullable = false)
-	@ApiModelProperty(value = "ファイル名", required = true, position = 3, allowableValues = "range[0,255]")
+	@Column(nullable = true)
+	@ApiModelProperty(value = "ファイル名", required = false, position = 3, allowableValues = "range[0,255]")
 	private String fileName;
 
 	/**
@@ -72,7 +71,7 @@ public class ContractElectricAttachedFile extends EntityBase {
 	 * 添付ファイル
 	 */
 	@OneToOne
-	@JoinColumn(name = "electric_attached_file_id", referencedColumnName = "id")
+	@JoinColumn(name = "electric_attached_file_id", referencedColumnName = "id", nullable = true)
 	@ApiModelProperty(value = "添付ファイル", required = false, position = 5)
 	@JsonIgnore
 	private ElectricAttachedFile electricAttachedFile;
@@ -87,15 +86,15 @@ public class ContractElectricAttachedFile extends EntityBase {
 	/**
 	 * 添付者MoM社員ID
 	 */
-	@Column(nullable = false)
-	@ApiModelProperty(value = "添付者MoM社員ID", required = true, position = 7, allowableValues = "range[0,255]")
+	@Column(nullable = true)
+	@ApiModelProperty(value = "添付者MoM社員ID", required = false, position = 7, allowableValues = "range[0,255]")
 	private String attachedEmpId;
 
 	/**
 	 * 添付者氏名
 	 */
-	@Column(nullable = false)
-	@ApiModelProperty(value = "添付者氏名", required = true, position = 8, allowableValues = "range[0,255]")
+	@Column(nullable = true)
+	@ApiModelProperty(value = "添付者氏名", required = false, position = 8, allowableValues = "range[0,255]")
 	private String attachedEmpName;
 
 	/**
@@ -108,21 +107,33 @@ public class ContractElectricAttachedFile extends EntityBase {
 	/**
 	 * 添付日時
 	 */
-	@Column(nullable = false)
-	@ApiModelProperty(value = "添付日時", required = true, position = 10)
+	@Column(nullable = true)
+	@ApiModelProperty(value = "添付日時", required = false, position = 10)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date attachedAt;
 
 	/**
-	 * ファイル情報
+	 * 電力用ファイル種別
 	 */
-	@Transient
-	@ApiModelProperty(hidden = true)
-	private MultipartFile multipartFile;
+	@Column(nullable = false)
+	@ApiModelProperty(value = "電力用ファイル種別", required = true, position = 11, allowableValues = "新規(\"1\"), 変更(\"2\"), 解約(\"3\"),その他(\"99\")", example = "1")
+	private ElectricFileType electricFileType;
 
-	@PrePersist
-	public void prePersist() {
-		super.prePersist();
-		this.attachedAt = super.getCreatedAt();
-	}
+	/**
+	 * 添付必須フラグ
+	 */
+	@Column(nullable = false)
+	@Max(9)
+	@Min(0)
+	@ApiModelProperty(value = "アクティブflg", required = true, position = 12, allowableValues = "range[0,9]")
+	private int targetRequiredFlg;
+
+	/**
+	 * アクティブflg
+	 */
+	@Column(nullable = false)
+	@Max(9)
+	@Min(0)
+	@ApiModelProperty(value = "アクティブflg", required = true, position = 13, allowableValues = "range[0,9]")
+	private int activeFlg;
 }
