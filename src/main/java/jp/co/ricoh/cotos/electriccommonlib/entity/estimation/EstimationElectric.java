@@ -20,6 +20,7 @@ import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBase;
 import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.ElectricCommercialFlowDiv;
 import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.VoltageCategory;
+import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricFormMaster.ElectricPlan;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -247,8 +248,8 @@ public class EstimationElectric extends EntityBase {
 	 * CO2排出メニュー CO2EMISSION_MENUとして読み取られるためname指定
 	 */
 	@Column(nullable = true, name = "co2_emission_menu")
-	@ApiModelProperty(value = "CO2排出メニュー", required = false, position = 30, allowableValues = "range[0,255]")
-	private String co2EmissionMenu;
+	@ApiModelProperty(value = "CO2排出メニュー", required = false, position = 30, allowableValues = "CO2フリー(\"1\"), それ以外(\"2\")", example = "1")
+	private ElectricPlan co2EmissionMenu;
 
 	/**
 	 * 電力会社コード
