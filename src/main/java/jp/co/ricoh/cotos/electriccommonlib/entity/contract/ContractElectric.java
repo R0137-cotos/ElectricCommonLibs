@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBase;
+import jp.co.ricoh.cotos.commonlib.entity.contract.Contract.LifecycleStatus;
 import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
 import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.ElectricCommercialFlowDiv;
 import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.VoltageCategory;
@@ -490,11 +491,18 @@ public class ContractElectric extends EntityBase {
 	@Column(nullable = true)
 	@ApiModelProperty(value = "電力会社コード", required = false, position = 59, allowableValues = "range[0,255]")
 	private String electricMenuCode;
-	
+
+	/**
+	 * ライフサイクル状態
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "ライフサイクル状態", required = false, allowableValues = "作成中(\"1\"), 作成完了(\"2\"), キャンセル手続き中(\"3\"), 破棄(\"4\"), 予定日待ち(\"5\"), 締結中(\"6\"), 解約手続き中(\"7\"), 解約予定日待ち(\"8\"), 解約(\"9\"), 旧契約(\"10\")", example = "1", position = 60)
+	private LifecycleStatus lifecycleStatus;
+
 	/**
 	 * 重要事項説明者
 	 */
 	@OneToOne(mappedBy = "contractElectric")
-	@ApiModelProperty(value = "重要事項説明者", required = false, position = 60)
+	@ApiModelProperty(value = "重要事項説明者", required = false, position = 61)
 	private ImportantPointExplainer importantPointExplainer;
 }
