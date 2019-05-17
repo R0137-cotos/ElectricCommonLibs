@@ -9,10 +9,10 @@ import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricFormMaster.Elec
 public class ElectricFileTypeConverter implements AttributeConverter<ElectricFileType, String> {
 
 	@Override
-	public String convertToDatabaseColumn(ElectricFileType electricPlan) {
-		if (electricPlan == null)
+	public String convertToDatabaseColumn(ElectricFileType electricFileType) {
+		if (electricFileType == null)
 			return null;
-		return electricPlan.toString();
+		return electricFileType.toString();
 	}
 
 	@Override

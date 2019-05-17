@@ -208,9 +208,8 @@ public class TestMasterElectricRepository extends RepositoryTestBase {
 
 	@Test
 	public void 全てのカラムがNullではないことを確認_マスタ_必要な要素をすべて取得() {
-		// String companyId = "test";
 
-		// 企業IDにより販売店マスタを取得
+		// 必須情報によりマスタを取得
 		ElectricFormMaster electricFormMaster = electricFormMasterRepository.findByVoltageCategoryAndElectricCommercialFlowDivAndElectricPlanAndCancellationDivAndCancellationMoneyGeneratedFlgAndElectricFileTypeAndDomain(VoltageCategory.高圧, ElectricCommercialFlowDiv.直売, ElectricPlan.CO2フリー, CancellationDiv.消滅, 1, ElectricFileType.新規, Domain.contract);
 
 		// null項目なく取得できていることを確認

@@ -52,7 +52,7 @@ public class ElectricFormIdentMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = false)
 	@ApiModelProperty(value = "添付必須フラグ", required = true, position = 4, allowableValues = "range[0,9]")
-	private Integer targetRequiredFlg;
+	private int targetRequiredFlg;
 
 	/**
 	 * 説明
@@ -62,7 +62,7 @@ public class ElectricFormIdentMaster extends EntityBaseMaster {
 	private String description;
 
 	@ManyToMany(mappedBy = "electricFormIdentMasterList")
-	@ApiModelProperty(value = "電力帳票マスタ", required = false, position = 6)
+	@ApiModelProperty(value = "電力帳票マスタ", required = true, position = 6)
 	private List<ElectricFormMaster> electricFormMasterList;
 
 }

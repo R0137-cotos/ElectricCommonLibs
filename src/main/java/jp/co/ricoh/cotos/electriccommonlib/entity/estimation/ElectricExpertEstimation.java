@@ -47,41 +47,41 @@ public class ElectricExpertEstimation extends EntityBase {
 	 * 氏名
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "氏名", required = false, position = 2, allowableValues = "range[0,]")
+	@ApiModelProperty(value = "氏名", required = false, position = 2, allowableValues = "range[0,255]")
 	private String name;
 
 	/**
 	 * メールアドレス
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "メールアドレス", required = false, position = 3, allowableValues = "range[0,]")
+	@ApiModelProperty(value = "メールアドレス", required = false, position = 3, allowableValues = "range[0,255]")
 	private String mailAddress;
 
 	/**
 	 * 電話番号
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "電話番号", required = false, position = 4, allowableValues = "range[0,]")
+	@ApiModelProperty(value = "電話番号", required = false, position = 4, allowableValues = "range[0,255]")
 	private String phoneNumber;
 
 	/**
 	 * 所属課所コード
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "所属課所コード", required = false, position = 5, allowableValues = "range[0,]")
+	@ApiModelProperty(value = "所属課所コード", required = false, position = 5, allowableValues = "range[0,255]")
 	private String affiliationCode;
 
 	/**
 	 * 所属
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "所属", required = false, position = 6, allowableValues = "range[0,]")
+	@ApiModelProperty(value = "所属", required = false, position = 6, allowableValues = "range[0,255]")
 	private String belongs;
-	
+
 	/**
 	 * MoM社員ID
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "MoM社員ID", required = false, position = 7, allowableValues = "range[0,]")
+	@ApiModelProperty(value = "MoM社員ID", required = false, position = 7, allowableValues = "range[0,255]")
 	private String momEmpId;
 }

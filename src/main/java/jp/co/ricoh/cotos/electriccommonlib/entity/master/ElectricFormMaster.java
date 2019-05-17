@@ -94,28 +94,28 @@ public class ElectricFormMaster extends EntityBaseMaster {
 	 * 電力区分
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "電力区分", required = true, position = 2, allowableValues = "高圧(\"1\"), 低圧(\"2\")")
+	@ApiModelProperty(value = "電力区分", required = true, position = 2, allowableValues = "高圧(\"1\"), 低圧(\"2\")", example = "1")
 	private VoltageCategory voltageCategory;
 
 	/**
 	 * 商流区分
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "商流区分", required = true, position = 3, allowableValues = "直売(\"1\"), 代売(\"2\")")
+	@ApiModelProperty(value = "商流区分", required = true, position = 3, allowableValues = "直売(\"1\"), 代売(\"2\")", example = "1")
 	private ElectricCommercialFlowDiv electricCommercialFlowDiv;
 
 	/**
 	 * 電力プラン
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "電力プラン", required = true, position = 4, allowableValues = "CO2フリー(\"1\"), それ以外(\"2\")")
+	@ApiModelProperty(value = "電力プラン", required = true, position = 4, allowableValues = "CO2フリー(\"1\"), それ以外(\"2\")", example = "1")
 	private ElectricPlan electricPlan;
 
 	/**
 	 * 解約種別
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "解約種別", required = true, position = 5, allowableValues = "需要消滅(\"1\"), 購入先変更(\"2\")")
+	@ApiModelProperty(value = "解約種別", required = true, position = 5, allowableValues = "需要消滅(\"1\"), 購入先変更(\"2\")", example = "1")
 	private CancellationDiv cancellationDiv;
 
 	/**
@@ -123,13 +123,13 @@ public class ElectricFormMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = false)
 	@ApiModelProperty(value = "解約金発生フラグ", required = true, position = 6, allowableValues = "range[0,9]")
-	private Integer cancellationMoneyGeneratedFlg;
+	private int cancellationMoneyGeneratedFlg;
 
 	/**
 	 * 電力用ファイル種別
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "電力用ファイル種別", required = true, position = 7, allowableValues = "新規(\"1\"), 変更(\"2\"),解約(\"3\"), その他(\"99\")")
+	@ApiModelProperty(value = "電力用ファイル種別", required = true, position = 7, allowableValues = "新規(\"1\"), 変更(\"2\"),解約(\"3\"), その他(\"99\")", example = "1")
 	private ElectricFileType electricFileType;
 
 	/**
