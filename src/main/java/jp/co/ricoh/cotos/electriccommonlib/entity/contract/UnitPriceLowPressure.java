@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -32,6 +33,7 @@ import lombok.EqualsAndHashCode;
 @Entity
 @EqualsAndHashCode(callSuper = true)
 @Data
+@EntityListeners(UnitPriceLowPressureListener.class)
 @Table(name = "unit_price_low_pressure")
 @CotosComplementTarget(entity = UnitPriceLowPressure.class, repository = UnitPriceLowPressureRepository.class)
 public class UnitPriceLowPressure extends EntityBase {

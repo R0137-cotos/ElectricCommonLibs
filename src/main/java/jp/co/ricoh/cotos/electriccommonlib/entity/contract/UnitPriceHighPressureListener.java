@@ -10,7 +10,7 @@ import jp.co.ricoh.cotos.commonlib.entity.master.MvEmployeeMaster;
 import jp.co.ricoh.cotos.electriccommonlib.util.RestTemplateCreator;
 import jp.co.ricoh.cotos.electriccommonlib.util.StandardProperties;
 
-public class UnitPriceLowPressureLitener {
+public class UnitPriceHighPressureListener {
 
 	@Autowired
 	StandardProperties standardProperties;
@@ -20,17 +20,17 @@ public class UnitPriceLowPressureLitener {
 
 	@PrePersist
 	@Transactional
-	public void appendCreateUserName(UnitPriceLowPressure unitPriceLowPressure) {
+	public void appendCreateUserName(UnitPriceHighPressure unitPriceHighPressure) {
 
 		// 登録者名登録
-		MvEmployeeMaster mvEmployeeMaster = restTemplateCreator.getRestTemplate().getForEntity(standardProperties.getMaster() + "/findEmployeeMaster/" + unitPriceLowPressure.getCreatedUserId(), MvEmployeeMaster.class).getBody();
-		unitPriceLowPressure.setCreatedUserName(mvEmployeeMaster.getJobname1() + " " + mvEmployeeMaster.getJobname2());
+		MvEmployeeMaster mvEmployeeMaster = restTemplateCreator.getRestTemplate().getForEntity(standardProperties.getMaster() + "/findEmployeeMaster/" + unitPriceHighPressure.getCreatedUserId(), MvEmployeeMaster.class).getBody();
+		unitPriceHighPressure.setCreatedUserName(mvEmployeeMaster.getJobname1() + " " + mvEmployeeMaster.getJobname2());
 	}
 
 	@PreUpdate
-	public void addNumberOfChanges(UnitPriceLowPressure unitPriceLowPressure) {
+	public void addNumberOfChanges(UnitPriceHighPressure unitPriceHighPressure) {
 
 		// 変更回数を増やす
-		unitPriceLowPressure.setNumberOfChanges(unitPriceLowPressure.getNumberOfChanges() + 1);
+		unitPriceHighPressure.setNumberOfChanges(unitPriceHighPressure.getNumberOfChanges() + 1);
 	}
 }
