@@ -73,35 +73,35 @@ public class ElectricDealerEstimation extends EntityBase {
 	 * 企業ID
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "企業ID", required = false, position = 2, allowableValues = "range[0,]")
+	@ApiModelProperty(value = "企業ID", required = false, position = 2, allowableValues = "range[0,255]")
 	private String companyId;
 
 	/**
 	 * 販売店企業名
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "販売店企業名", required = false, position = 3, allowableValues = "range[0,]")
+	@ApiModelProperty(value = "販売店企業名", required = false, position = 3, allowableValues = "range[0,255]")
 	private String companyBusinessName;
 
 	/**
 	 * 事業所電話番号
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "事業所電話番号", required = false, position = 4, allowableValues = "range[0,]")
+	@ApiModelProperty(value = "事業所電話番号", required = false, position = 4, allowableValues = "range[0,255]")
 	private String phoneNumber;
 
 	/**
 	 * 郵便番号
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "郵便番号", required = false, position = 5, allowableValues = "range[0,]")
+	@ApiModelProperty(value = "郵便番号", required = false, position = 5, allowableValues = "range[0,255]")
 	private String postNumber;
 
 	/**
 	 * 住所
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "住所", required = false, position = 6, allowableValues = "range[0,]")
+	@ApiModelProperty(value = "住所", required = false, position = 6, allowableValues = "range[0,4000]")
 	private String address;
 
 	/**

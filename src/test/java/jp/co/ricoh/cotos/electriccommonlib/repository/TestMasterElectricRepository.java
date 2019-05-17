@@ -12,9 +12,16 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import jp.co.ricoh.cotos.commonlib.entity.master.UrlAuthMaster.Domain;
 import jp.co.ricoh.cotos.electriccommonlib.DBConfig;
 import jp.co.ricoh.cotos.electriccommonlib.TestTools;
+import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.ElectricCommercialFlowDiv;
+import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.VoltageCategory;
+import jp.co.ricoh.cotos.electriccommonlib.entity.contract.CancellationInformation.CancellationDiv;
 import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricDealerMaster;
+import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricFormMaster;
+import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricFormMaster.ElectricFileType;
+import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricFormMaster.ElectricPlan;
 import jp.co.ricoh.cotos.electriccommonlib.entity.master.HighContractCalendarMaster;
 import jp.co.ricoh.cotos.electriccommonlib.repository.common.ElectricAttachedFileRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.BillingBasicInformationRepository;
@@ -41,10 +48,13 @@ import jp.co.ricoh.cotos.electriccommonlib.repository.estimation.FeeSimulationSa
 import jp.co.ricoh.cotos.electriccommonlib.repository.master.ElectricAreaMasterRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.master.ElectricCompanyMasterRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.master.ElectricDealerMasterRepository;
+import jp.co.ricoh.cotos.electriccommonlib.repository.master.ElectricFormIdentMasterRepository;
+import jp.co.ricoh.cotos.electriccommonlib.repository.master.ElectricFormMasterRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.master.HighContractCalendarMasterRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+
 public class TestMasterElectricRepository extends RepositoryTestBase {
 
 	@Autowired
@@ -97,6 +107,12 @@ public class TestMasterElectricRepository extends RepositoryTestBase {
 
 	@Autowired
 	ElectricDealerMasterRepository electricDealerMasterRepository;
+
+	@Autowired
+	ElectricFormMasterRepository electricFormMasterRepository;
+
+	@Autowired
+	ElectricFormIdentMasterRepository electricFormIdentMasterRepository;
 
 	@Autowired
 	EntryContentHighPressureRepository entryContentHighPressureRepository;
@@ -166,6 +182,16 @@ public class TestMasterElectricRepository extends RepositoryTestBase {
 	}
 
 	@Test
+	public void 全てのカラムがNullではないことを確認_マスタ_電力帳票マスタ() {
+		全てのカラムがNullではないことを確認_マスタ(electricFormMasterRepository, 1L);
+	}
+
+	@Test
+	public void 全てのカラムがNullではないことを確認_マスタ_電力帳票識別マスタ() {
+		全てのカラムがNullではないことを確認_マスタ(electricFormIdentMasterRepository, 1L);
+	}
+
+	@Test
 	public void 全てのカラムがNullではないことを確認_マスタ_企業IDより取得() {
 		String companyId = "test";
 
@@ -175,6 +201,20 @@ public class TestMasterElectricRepository extends RepositoryTestBase {
 		// null項目なく取得できていることを確認
 		try {
 			testTools.assertColumnsNotNull(electricDealerMaster);
+		} catch (Exception e1) {
+			Assert.fail("例外が発生した場合、エラー");
+		}
+	}
+
+	@Test
+	public void 全てのカラムがNullではないことを確認_マスタ_必要な要素をすべて取得() {
+
+		// 必須情報によりマスタを取得
+		ElectricFormMaster electricFormMaster = electricFormMasterRepository.findByVoltageCategoryAndElectricCommercialFlowDivAndElectricPlanAndCancellationDivAndCancellationMoneyGeneratedFlgAndElectricFileTypeAndDomain(VoltageCategory.高圧, ElectricCommercialFlowDiv.直売, ElectricPlan.CO2フリー, CancellationDiv.消滅, 1, ElectricFileType.新規, Domain.contract);
+
+		// null項目なく取得できていることを確認
+		try {
+			testTools.assertColumnsNotNull(electricFormMaster);
 		} catch (Exception e1) {
 			Assert.fail("例外が発生した場合、エラー");
 		}

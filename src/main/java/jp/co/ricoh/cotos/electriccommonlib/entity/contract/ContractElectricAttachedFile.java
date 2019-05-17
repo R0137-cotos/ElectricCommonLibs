@@ -10,14 +10,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
-import javax.persistence.PrePersist;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
-
-import org.springframework.web.multipart.MultipartFile;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -25,6 +23,7 @@ import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBase;
 import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
 import jp.co.ricoh.cotos.electriccommonlib.entity.common.ElectricAttachedFile;
+import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricFormMaster.ElectricFileType;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.ContractElectricAttachedFileRepository;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -114,15 +113,27 @@ public class ContractElectricAttachedFile extends EntityBase {
 	private Date attachedAt;
 
 	/**
-	 * ファイル情報
+	 * 電力用ファイル種別
 	 */
-	@Transient
-	@ApiModelProperty(hidden = true)
-	private MultipartFile multipartFile;
+	@Column(nullable = false)
+	@ApiModelProperty(value = "電力用ファイル種別", required = true, position = 11, allowableValues = "新規(\"1\"), 変更(\"2\"), 解約(\"3\"),その他(\"99\")", example = "1")
+	private ElectricFileType electricFileType;
 
-	@PrePersist
-	public void prePersist() {
-		super.prePersist();
-		this.attachedAt = super.getCreatedAt();
-	}
+	/**
+	 * 添付必須フラグ
+	 */
+	@Column(nullable = false)
+	@Max(9)
+	@Min(0)
+	@ApiModelProperty(value = "添付必須フラグ", required = true, position = 12, allowableValues = "range[0,9]")
+	private int targetRequiredFlg;
+
+	/**
+	 * アクティブflg
+	 */
+	@Column(nullable = false)
+	@Max(9)
+	@Min(0)
+	@ApiModelProperty(value = "アクティブflg", required = true, position = 13, allowableValues = "range[0,9]")
+	private int activeFlg;
 }
