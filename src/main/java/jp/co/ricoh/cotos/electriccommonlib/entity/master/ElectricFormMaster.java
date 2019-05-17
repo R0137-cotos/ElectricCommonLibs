@@ -25,7 +25,6 @@ import jp.co.ricoh.cotos.commonlib.entity.master.UrlAuthMaster.Domain;
 import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
 import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.ElectricCommercialFlowDiv;
 import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.VoltageCategory;
-import jp.co.ricoh.cotos.electriccommonlib.entity.contract.CancellationInformation.CancellationDiv;
 import jp.co.ricoh.cotos.electriccommonlib.repository.master.ElectricFormMasterRepository;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -83,6 +82,28 @@ public class ElectricFormMaster extends EntityBaseMaster {
 			return Arrays.stream(values()).filter(v -> v.text.equals(string)).findFirst().orElseThrow(() -> new IllegalArgumentException(String.valueOf(string)));
 		}
 	}
+	
+	public enum CancellationDiv {
+
+		消滅("1"), 他社への切り替え("2"), 無し("99");
+
+		private final String text;
+
+		private CancellationDiv(final String text) {
+			this.text = text;
+		}
+
+		@Override
+		@JsonValue
+		public String toString() {
+			return this.text;
+		}
+
+		@JsonCreator
+		public static CancellationDiv fromString(String string) {
+			return Arrays.stream(values()).filter(v -> v.text.equals(string)).findFirst().orElseThrow(() -> new IllegalArgumentException(String.valueOf(string)));
+		}
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "electric_form_master_seq")
@@ -115,7 +136,7 @@ public class ElectricFormMaster extends EntityBaseMaster {
 	 * 解約種別
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "解約種別", required = true, position = 5, allowableValues = "需要消滅(\"1\"), 購入先変更(\"2\")", example = "1")
+	@ApiModelProperty(value = "解約種別", required = true, position = 5, allowableValues = "需要消滅(\"1\"), 購入先変更(\"2\"), 無し(\"99\")", example = "1")
 	private CancellationDiv cancellationDiv;
 
 	/**
