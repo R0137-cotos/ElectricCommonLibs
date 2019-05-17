@@ -142,6 +142,6 @@ public class ElectricFormMaster extends EntityBaseMaster {
 
 	@ManyToMany
 	@JoinTable(name = "form_ident", joinColumns = @JoinColumn(name = "electric_form_master_id"), inverseJoinColumns = @JoinColumn(name = "electric_form_ident_master_id"))
-	@ApiModelProperty(value = "電力帳票マスタ", required = false, position = 9)
+	@ApiModelProperty(value = "電力帳票マスタ", required = true, position = 9)
 	private List<ElectricFormIdentMaster> electricFormIdentMasterList;
 }

@@ -125,7 +125,7 @@ public class ContractElectricAttachedFile extends EntityBase {
 	@Column(nullable = false)
 	@Max(9)
 	@Min(0)
-	@ApiModelProperty(value = "アクティブflg", required = true, position = 12, allowableValues = "range[0,9]")
+	@ApiModelProperty(value = "添付必須フラグ", required = true, position = 12, allowableValues = "range[0,9]")
 	private int targetRequiredFlg;
 
 	/**
