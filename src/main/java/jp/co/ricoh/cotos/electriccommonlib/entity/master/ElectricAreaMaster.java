@@ -54,10 +54,4 @@ public class ElectricAreaMaster extends EntityBaseMaster {
 	@ApiModelProperty(value = "電力会社マスタ", required = false, position = 4)
 	private List<ElectricCompanyMaster> electricCompanyMasterList;
 
-	/**
-	 * 電力承認ルートマスタ
-	 */
-	@OneToMany(mappedBy = "electricAreaMaster")
-	@ApiModelProperty(value = "電力会社マスタ", required = false, position = 5)
-	private List<ElectricApprovalRouteMaster> electricApprovalRouteMasterList;
 }
