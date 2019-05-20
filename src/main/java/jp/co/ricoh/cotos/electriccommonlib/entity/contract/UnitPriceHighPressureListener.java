@@ -6,19 +6,28 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Component;
 
 import jp.co.ricoh.cotos.commonlib.entity.master.MvEmployeeMaster;
 import jp.co.ricoh.cotos.commonlib.security.CotosAuthenticationDetails;
 import jp.co.ricoh.cotos.electriccommonlib.util.RestTemplateCreator;
 import jp.co.ricoh.cotos.electriccommonlib.util.StandardProperties;
 
+@Component
 public class UnitPriceHighPressureListener {
+	
+	private static StandardProperties standardProperties;
+	private static RestTemplateCreator restTemplateCreator;
 
 	@Autowired
-	StandardProperties standardProperties;
+	public void setStandardProperties(StandardProperties standardProperties) {
+		UnitPriceHighPressureListener.standardProperties = standardProperties;
+	}
 
 	@Autowired
-	RestTemplateCreator restTemplateCreator;
+	public void setStandardProperties(RestTemplateCreator restTemplateCreator) {
+		UnitPriceHighPressureListener.restTemplateCreator = restTemplateCreator;
+	}
 
 	@PrePersist
 	@Transactional
@@ -31,6 +40,7 @@ public class UnitPriceHighPressureListener {
 	}
 
 	@PreUpdate
+	@Transactional
 	public void addNumberOfChanges(UnitPriceHighPressure unitPriceHighPressure) {
 
 		// 変更回数を増やす
