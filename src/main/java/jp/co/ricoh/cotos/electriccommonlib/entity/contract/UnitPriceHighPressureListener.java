@@ -26,7 +26,7 @@ public class UnitPriceHighPressureListener {
 
 		// 登録者名登録
 		CotosAuthenticationDetails userInfo = (CotosAuthenticationDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		MvEmployeeMaster mvEmployeeMaster = restTemplateCreator.getRestTemplate().getForEntity(standardProperties.getMaster() + "/findEmployeeMaster/" + userInfo.getMomEmployeeId(), MvEmployeeMaster.class).getBody();
+		MvEmployeeMaster mvEmployeeMaster = restTemplateCreator.getRestTemplate().getForEntity(standardProperties.getMaster() + "/master/findEmployeeMaster/" + userInfo.getMomEmployeeId(), MvEmployeeMaster.class).getBody();
 		unitPriceHighPressure.setCreatedUserName(mvEmployeeMaster.getJobname1() + " " + mvEmployeeMaster.getJobname2());
 	}
 
