@@ -14,11 +14,18 @@ import jp.co.ricoh.cotos.electriccommonlib.util.StandardProperties;
 
 public class UnitPriceLowPressureListener {
 
-	@Autowired
-	StandardProperties standardProperties;
+	private static StandardProperties standardProperties;
+	private static RestTemplateCreator restTemplateCreator;
 
 	@Autowired
-	RestTemplateCreator restTemplateCreator;
+	public void setStandardProperties(StandardProperties standardProperties) {
+		UnitPriceLowPressureListener.standardProperties = standardProperties;
+	}
+
+	@Autowired
+	public void setStandardProperties(RestTemplateCreator restTemplateCreator) {
+		UnitPriceLowPressureListener.restTemplateCreator = restTemplateCreator;
+	}
 
 	@PrePersist
 	@Transactional
