@@ -6,12 +6,14 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Component;
 
 import jp.co.ricoh.cotos.commonlib.entity.master.MvEmployeeMaster;
 import jp.co.ricoh.cotos.commonlib.security.CotosAuthenticationDetails;
 import jp.co.ricoh.cotos.electriccommonlib.util.RestTemplateCreator;
 import jp.co.ricoh.cotos.electriccommonlib.util.StandardProperties;
 
+@Component
 public class UnitPriceLowPressureListener {
 
 	private static StandardProperties standardProperties;
@@ -38,6 +40,7 @@ public class UnitPriceLowPressureListener {
 	}
 
 	@PreUpdate
+	@Transactional
 	public void addNumberOfChanges(UnitPriceLowPressure unitPriceLowPressure) {
 
 		// 変更回数を増やす
