@@ -3,7 +3,7 @@ package jp.co.ricoh.cotos.electriccommonlib.converter;
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
 
-import jp.co.ricoh.cotos.electriccommonlib.entity.contract.CancellationInformation.CancellationDiv;
+import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricFormMaster.CancellationDiv;
 
 @Converter(autoApply = true)
 public class CancellationDivConverter implements AttributeConverter<CancellationDiv, String> {
