@@ -5,8 +5,10 @@ import javax.persistence.PreUpdate;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 import jp.co.ricoh.cotos.commonlib.entity.master.MvEmployeeMaster;
+import jp.co.ricoh.cotos.commonlib.security.CotosAuthenticationDetails;
 import jp.co.ricoh.cotos.electriccommonlib.util.RestTemplateCreator;
 import jp.co.ricoh.cotos.electriccommonlib.util.StandardProperties;
 
@@ -23,7 +25,8 @@ public class UnitPriceLowPressureListener {
 	public void appendCreateUserName(UnitPriceLowPressure unitPriceLowPressure) {
 
 		// 登録者名登録
-		MvEmployeeMaster mvEmployeeMaster = restTemplateCreator.getRestTemplate().getForEntity(standardProperties.getMaster() + "/findEmployeeMaster/" + unitPriceLowPressure.getCreatedUserId(), MvEmployeeMaster.class).getBody();
+		CotosAuthenticationDetails userInfo = (CotosAuthenticationDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		MvEmployeeMaster mvEmployeeMaster = restTemplateCreator.getRestTemplate().getForEntity(standardProperties.getMaster() + "/findEmployeeMaster/" + userInfo.getMomEmployeeId(), MvEmployeeMaster.class).getBody();
 		unitPriceLowPressure.setCreatedUserName(mvEmployeeMaster.getJobname1() + " " + mvEmployeeMaster.getJobname2());
 	}
 
