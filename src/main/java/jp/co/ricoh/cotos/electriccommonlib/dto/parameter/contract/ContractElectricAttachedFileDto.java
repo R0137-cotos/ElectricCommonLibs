@@ -13,6 +13,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.dto.parameter.common.DtoBase;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.common.ElectricAttachedFileDto;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

@@ -12,9 +12,9 @@ import javax.validation.constraints.Size;
 
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.dto.parameter.common.DtoBase;
-import jp.co.ricoh.cotos.electriccommonlib.entity.contract.CancellationInformation.CancellationDiv;
 import jp.co.ricoh.cotos.electriccommonlib.entity.contract.CancellationInformation.CancellationReason;
 import jp.co.ricoh.cotos.electriccommonlib.entity.contract.CancellationInformation.NonBillingReason;
+import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricFormMaster.CancellationDiv;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
