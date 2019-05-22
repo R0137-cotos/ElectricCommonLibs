@@ -57,9 +57,8 @@ public class EntryContentHighPressure extends EntityBase {
 	 * 計量日(高圧)
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "計量日(高圧)", required = false, position = 3)
-	@Temporal(TemporalType.DATE)
-	private Date measureDateHigh;
+	@ApiModelProperty(value = "計量日(高圧)", required = false, position = 3, allowableValues = "range[0,99999]")
+	private int measureDateHigh;
 
 	/**
 	 * 契約電力(高圧)
