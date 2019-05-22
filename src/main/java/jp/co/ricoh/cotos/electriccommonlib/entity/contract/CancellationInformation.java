@@ -209,8 +209,8 @@ public class CancellationInformation extends EntityBase {
 	/**
 	 * 非請求理由
 	 */
-	@Column(nullable = false)
-	@ApiModelProperty(value = "非請求理由", required = true, position = 16, allowableValues = "その他(\"1\")", example = "1")
+	@Column(nullable = true)
+	@ApiModelProperty(value = "非請求理由", required = false, position = 16, allowableValues = "その他(\"1\")", example = "1")
 	private NonBillingReason nonBillingReason;
 
 	/**
@@ -225,7 +225,7 @@ public class CancellationInformation extends EntityBase {
 	/**
 	 * 解約種別
 	 */
-	@Column(nullable = false)
-	@ApiModelProperty(value = "解約種別", required = true, position = 18, allowableValues = "消滅(\"1\"), 他社への切り替え(\"2\"), 無し(\"99\")", example = "1")
+	@Column(nullable = true)
+	@ApiModelProperty(value = "解約種別", required = false, position = 18, allowableValues = "消滅(\"1\"), 他社への切り替え(\"2\"), 無し(\"99\")", example = "1")
 	private CancellationDiv cancellationDiv;
 }

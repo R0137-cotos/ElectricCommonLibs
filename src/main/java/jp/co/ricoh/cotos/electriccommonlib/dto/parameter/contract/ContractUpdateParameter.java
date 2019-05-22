@@ -1,6 +1,7 @@
 package jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract;
 
 import jp.co.ricoh.cotos.commonlib.dto.parameter.contract.ContractDto;
+import jp.co.ricoh.cotos.electriccommonlib.entity.contract.BillingBasicInformation;
 import lombok.Data;
 
 /**
@@ -18,4 +19,14 @@ public class ContractUpdateParameter {
 	 * 電力用契約DTO
 	 */
 	ContractElectricDto contractElectricDto;
+	
+	/**
+	 * 得意先情報マスタ
+	 */
+	ClientMasterDto clientMasterDto;
+	
+	/**
+	 * 請求基本情報
+	 */
+	BillingBasicInformation billingBasicInformation;
 }

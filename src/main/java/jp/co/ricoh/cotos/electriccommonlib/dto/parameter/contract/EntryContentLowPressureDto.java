@@ -34,7 +34,6 @@ public class EntryContentLowPressureDto extends EntityBase {
 	 * 契約容量単位
 	 */
 	@NotNull
-	@Size(max = 255)
 	@ApiModelProperty(value = "契約容量単位", required = true, position = 4, allowableValues = "kVA(\"1\"))", example = "1")
 	private ContractCapacityUnit contractCapacityUnit;
 
@@ -50,7 +49,6 @@ public class EntryContentLowPressureDto extends EntityBase {
 	 * 契約電流単位
 	 */
 	@NotNull
-	@Size(max = 255)
 	@ApiModelProperty(value = "契約電流単位", required = true, position = 6, allowableValues = "A(\"1\"))", example = "1")
 	private ContractElectricCurrentUnit contractElectricCurrentUnit;
 
@@ -89,7 +87,6 @@ public class EntryContentLowPressureDto extends EntityBase {
 	 * 低圧種別
 	 */
 	@NotNull
-	@Size(max = 255)
 	@ApiModelProperty(value = "低圧種別", required = true, position = 11, allowableValues = "動力(\"1\"), 従量電灯(\"2\")", example = "1")
 	private LowPressureType lowPressureType;
 

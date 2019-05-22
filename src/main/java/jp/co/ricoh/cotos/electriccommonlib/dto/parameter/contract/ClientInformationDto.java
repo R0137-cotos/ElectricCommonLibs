@@ -1,6 +1,5 @@
 package jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract;
 
-import javax.persistence.OneToMany;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -24,11 +23,10 @@ public class ClientInformationDto extends DtoBase {
 	private String clientCode;
 
 	/**
-	 * 請求先Mailアドレス情報
+	 * 得意先情報M_ID
 	 */
-	@OneToMany(mappedBy = "clientInformationDto")
-	@ApiModelProperty(value = "請求先Mailアドレス情報", required = true, position = 4)
-	private BillingMailAddressInformationDto billingMailAddressInformationDto;
+	@ApiModelProperty(value = "得意先情報M_ID", required = false, position = 4, allowableValues = "range[0,9223372036854775807]")
+	private long clientMasterId;
 
 	/**
 	 * アクティブflg
@@ -37,20 +35,5 @@ public class ClientInformationDto extends DtoBase {
 	@Min(0)
 	@ApiModelProperty(value = "アクティブflg", required = false, position = 5, allowableValues = "range[0,9]")
 	private Integer activeFlg;
-	
-	/**
-	 * 販社CD
-	 */
-	@NotNull
-	@Size(max = 255)
-	@ApiModelProperty(value = "販社CD", required = true, position = 6, allowableValues = "range[0,255]")
-	private String salesCompanyCode;
-	
-	/**
-	 * 請求先名 敬称
-	 */
-	@NotNull
-	@Size(max = 255)
-	@ApiModelProperty(value = "請求先名 敬称", required = true, position = 7, allowableValues = "range[0,255]")
-	private String billingNameHonorific;
+
 }

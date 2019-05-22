@@ -26,7 +26,21 @@ import org.springframework.web.client.RestTemplate;
 import jp.co.ricoh.cotos.commonlib.exception.ErrorCheckException;
 import jp.co.ricoh.cotos.commonlib.logic.check.CheckUtil;
 import jp.co.ricoh.cotos.commonlib.util.HeadersProperties;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.BillingBasicInformationDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.BillingMailAddressInformationDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.CancellationInformationDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.ClientInformationDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.ClientMasterDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.ContractElectricAttachedFileDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.ContractElectricDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.ElectricDealerContractDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.ElectricExpertContractDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.EntryContentHighPressureDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.EntryContentLowPressureDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.ImportantPointExplainerDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.MailAddressInformationDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.UnitPriceHighPressureDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.UnitPriceLowPressureDto;
 import jp.co.ricoh.cotos.electriccommonlib.security.bean.ParamterCheckResult;
 import lombok.Data;
 
@@ -126,6 +140,76 @@ public class TestSecurityController {
 	
 	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/ContractElectricDto")
 	public ParamterCheckResult callParamterCheck(@RequestBody @Validated ContractElectricDto dto, BindingResult result) {
+		return createParameterCheckResult(result);
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/MailAddressInformationDto")
+	public ParamterCheckResult callParamterCheck(@RequestBody @Validated MailAddressInformationDto dto, BindingResult result) {
+		return createParameterCheckResult(result);
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/EntryContentHighPressureDto")
+	public ParamterCheckResult callParamterCheck(@RequestBody @Validated EntryContentHighPressureDto dto, BindingResult result) {
+		return createParameterCheckResult(result);
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/EntryContentLowPressureDto")
+	public ParamterCheckResult callParamterCheck(@RequestBody @Validated EntryContentLowPressureDto dto, BindingResult result) {
+		return createParameterCheckResult(result);
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/ContractElectricAttachedFileDto")
+	public ParamterCheckResult callParamterCheck(@RequestBody @Validated ContractElectricAttachedFileDto dto, BindingResult result) {
+		return createParameterCheckResult(result);
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/UnitPriceHighPressureDto")
+	public ParamterCheckResult callParamterCheck(@RequestBody @Validated UnitPriceHighPressureDto dto, BindingResult result) {
+		return createParameterCheckResult(result);
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/UnitPriceLowPressureDto")
+	public ParamterCheckResult callParamterCheck(@RequestBody @Validated UnitPriceLowPressureDto dto, BindingResult result) {
+		return createParameterCheckResult(result);
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/CancellationInformationDto")
+	public ParamterCheckResult callParamterCheck(@RequestBody @Validated CancellationInformationDto dto, BindingResult result) {
+		return createParameterCheckResult(result);
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/ImportantPointExplainerDto")
+	public ParamterCheckResult callParamterCheck(@RequestBody @Validated ImportantPointExplainerDto dto, BindingResult result) {
+		return createParameterCheckResult(result);
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/ElectricExpertContractDto")
+	public ParamterCheckResult callParamterCheck(@RequestBody @Validated ElectricExpertContractDto dto, BindingResult result) {
+		return createParameterCheckResult(result);
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/ElectricDealerContractDto")
+	public ParamterCheckResult callParamterCheck(@RequestBody @Validated ElectricDealerContractDto dto, BindingResult result) {
+		return createParameterCheckResult(result);
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/BillingBasicInformationDto")
+	public ParamterCheckResult callParamterCheck(@RequestBody @Validated BillingBasicInformationDto dto, BindingResult result) {
+		return createParameterCheckResult(result);
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/ClientInformationDto")
+	public ParamterCheckResult callParamterCheck(@RequestBody @Validated ClientInformationDto dto, BindingResult result) {
+		return createParameterCheckResult(result);
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/ClientMasterDto")
+	public ParamterCheckResult callParamterCheck(@RequestBody @Validated ClientMasterDto dto, BindingResult result) {
+		return createParameterCheckResult(result);
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/BillingMailAddressInformationDto")
+	public ParamterCheckResult callParamterCheck(@RequestBody @Validated BillingMailAddressInformationDto dto, BindingResult result) {
 		return createParameterCheckResult(result);
 	}
 }

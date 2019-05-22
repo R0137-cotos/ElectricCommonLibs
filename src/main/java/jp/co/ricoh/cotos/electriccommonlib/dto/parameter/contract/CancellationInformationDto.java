@@ -7,7 +7,6 @@ import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import io.swagger.annotations.ApiModelProperty;
@@ -52,15 +51,13 @@ public class CancellationInformationDto extends DtoBase {
 	/**
 	 * 解約理由
 	 */
-	@NotNull
-	@Size(max = 255)
 	@ApiModelProperty(value = "解約理由", required = true, position = 7, allowableValues = "その他(\"1\")", example = "1")
 	private CancellationReason cancellationReason;
 
 	/**
 	 * その他備考
 	 */
-	@Size(max = 255)
+	@Size(max = 4000)
 	@ApiModelProperty(value = "その他備考", required = false, position = 8, allowableValues = "range[0,4000]")
 	private String notesOther;
 
@@ -123,8 +120,6 @@ public class CancellationInformationDto extends DtoBase {
 	/**
 	 * 非請求理由
 	 */
-	@NotNull
-	@Size(max = 255)
 	@ApiModelProperty(value = "非請求理由", required = true, position = 16, allowableValues = "その他(\"1\")", example = "1")
 	private NonBillingReason nonBillingReason;
 
@@ -139,8 +134,6 @@ public class CancellationInformationDto extends DtoBase {
 	/**
 	 * 解約種別
 	 */
-	@NotNull
-	@Size(max = 255)
 	@ApiModelProperty(value = "解約種別", required = true, position = 18, allowableValues = "消滅(\"1\"), 他社への切り替え(\"1\")", example = "1")
 	private CancellationDiv cancellationDiv;
 }

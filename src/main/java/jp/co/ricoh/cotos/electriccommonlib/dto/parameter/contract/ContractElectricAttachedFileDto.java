@@ -24,6 +24,7 @@ public class ContractElectricAttachedFileDto extends DtoBase {
 	/**
 	 * ファイル名
 	 */
+	@NotNull
 	@Size(max = 255)
 	@ApiModelProperty(value = "ファイル名", required = false, position = 3, allowableValues = "range[0,255]")
 	private String fileName;
@@ -38,7 +39,6 @@ public class ContractElectricAttachedFileDto extends DtoBase {
 	/**
 	 * 添付ファイル
 	 */
-	@NotNull
 	@OneToOne
 	@JoinColumn(name = "electric_attached_file_id", referencedColumnName = "id", nullable = true)
 	@ApiModelProperty(value = "添付ファイル", required = false, position = 5)
@@ -48,7 +48,7 @@ public class ContractElectricAttachedFileDto extends DtoBase {
 	/**
 	 * コメント
 	 */
-	@Size(max = 255)
+	@Size(max = 1000)
 	@ApiModelProperty(value = "コメント", required = false, position = 6, allowableValues = "range[0,1000]")
 	private String attachedComment;
 

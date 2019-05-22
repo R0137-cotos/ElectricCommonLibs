@@ -68,18 +68,5 @@ public class ClientInformation extends EntityBase {
 	@Min(0)
 	@ApiModelProperty(value = "アクティブflg", required = false, position = 5, allowableValues = "range[0,9]")
 	private Integer activeFlg;
-	
-	/**
-	 * 販社CD
-	 */
-	@Column(nullable = false)
-	@ApiModelProperty(value = "販社CD", required = true, position = 6, allowableValues = "range[0,255]")
-	private String salesCompanyCode;
-	
-	/**
-	 * 請求先名 敬称
-	 */
-	@Column(nullable = false)
-	@ApiModelProperty(value = "請求先名 敬称", required = true, position = 7, allowableValues = "range[0,255]")
-	private String billingNameHonorific;
+
 }

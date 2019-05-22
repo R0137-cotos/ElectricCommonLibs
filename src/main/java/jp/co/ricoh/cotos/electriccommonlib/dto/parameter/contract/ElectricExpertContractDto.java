@@ -1,6 +1,5 @@
 package jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract;
 
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import io.swagger.annotations.ApiModelProperty;

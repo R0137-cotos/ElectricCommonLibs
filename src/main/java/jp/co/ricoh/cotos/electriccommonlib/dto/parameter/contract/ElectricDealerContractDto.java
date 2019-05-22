@@ -57,7 +57,6 @@ public class ElectricDealerContractDto extends DtoBase {
 	/**
 	 * 支払区分
 	 */
-	@Size(max = 255)
 	@ApiModelProperty(value = "支払区分", required = false, position = 9, allowableValues = "定率(\"1\"), 定額(\"2\")", example = "1")
 	private PaymentMethod paymentMethod;
 

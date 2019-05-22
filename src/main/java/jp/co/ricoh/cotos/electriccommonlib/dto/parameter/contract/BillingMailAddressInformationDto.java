@@ -1,5 +1,6 @@
 package jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -31,6 +32,7 @@ public class BillingMailAddressInformationDto extends DtoBase {
 	/**
 	 * MｙRicohユーザID
 	 */
+	@Min(0)
 	@ApiModelProperty(value = "MｙRicohユーザID", required = true, position = 4, allowableValues = "range[0,9223372036854775807]")
 	private long myricohId;
 }

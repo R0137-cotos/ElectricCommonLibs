@@ -1,10 +1,7 @@
 package jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract;
 
 import java.math.BigDecimal;
-import java.util.Date;
 
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Max;
@@ -23,9 +20,10 @@ public class EntryContentHighPressureDto extends DtoBase {
 	/**
 	 * 計量日(高圧)
 	 */
+	@Max(99999)
+	@Min(0)
 	@ApiModelProperty(value = "計量日(高圧)", required = false, position = 3)
-	@Temporal(TemporalType.DATE)
-	private Date measureDateHigh;
+	private Integer measureDateHigh;
 
 	/**
 	 * 契約電力(高圧)
