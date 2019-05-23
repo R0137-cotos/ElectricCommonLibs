@@ -9,10 +9,10 @@ import jp.co.ricoh.cotos.electriccommonlib.entity.master.HighContractCalendarMas
 public class DetermineConditionConverter implements AttributeConverter<DetermineCondition, String> {
 
 	@Override
-	public String convertToDatabaseColumn(DetermineCondition dealerFlowType) {
-		if (dealerFlowType == null)
+	public String convertToDatabaseColumn(DetermineCondition determineCondition) {
+		if (determineCondition == null)
 			return null;
-		return dealerFlowType.toString();
+		return determineCondition.toString();
 	}
 
 	@Override
