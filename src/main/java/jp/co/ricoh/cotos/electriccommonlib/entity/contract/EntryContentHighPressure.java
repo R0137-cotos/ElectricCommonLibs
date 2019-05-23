@@ -56,7 +56,7 @@ public class EntryContentHighPressure extends EntityBase {
 	@Max(99999)
 	@Min(0)
 	@Column(nullable = true)
-	@ApiModelProperty(value = "計量日(高圧)", required = false, position = 3)
+	@ApiModelProperty(value = "計量日(高圧)", required = false, position = 3, allowableValues = "range[0,99999]")
 	private Integer measureDateHigh;
 
 	/**

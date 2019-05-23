@@ -91,7 +91,7 @@ public class HighContractCalendarMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "計量日 ", required = false, position = 6, allowableValues = "range[0,99999]")
-	private int measurementDate;
+	private Integer measurementDate;
 
 	/**
 	 * 電力会社申込期日

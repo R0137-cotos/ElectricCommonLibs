@@ -8,4 +8,5 @@ import jp.co.ricoh.cotos.electriccommonlib.entity.contract.BillingBasicInformati
 @Repository
 public interface BillingBasicInformationRepository extends CrudRepository<BillingBasicInformation, Long> {
 
+	public BillingBasicInformation findByClientCode(String clientCode);
 }
