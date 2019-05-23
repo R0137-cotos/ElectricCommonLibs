@@ -12,6 +12,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import jp.co.ricoh.cotos.electriccommonlib.DBConfig;
 import jp.co.ricoh.cotos.electriccommonlib.TestTools;
+import jp.co.ricoh.cotos.electriccommonlib.entity.contract.BillingBasicInformation;
 import jp.co.ricoh.cotos.electriccommonlib.entity.contract.ClientMaster;
 import jp.co.ricoh.cotos.electriccommonlib.entity.contract.ContractElectric;
 import jp.co.ricoh.cotos.electriccommonlib.repository.common.ElectricAttachedFileRepository;
@@ -246,12 +247,38 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 	@Test
 	public void 全てのカラムがNullではないことを確認_契約_得意先マスタを得意先CDから取得() {
 
-		// 契約IDにより契約(電力)を取得
 		ClientMaster clientMaster = clientMasterRepository.findByClientCode("1234567");
 
 		// null項目なく取得できていることを確認
 		try {
 			testTools.assertColumnsNotNull(clientMaster);
+		} catch (Exception e1) {
+			Assert.fail("例外が発生した場合、エラー");
+		}
+	}
+	
+	@Test
+	public void 全てのカラムがNullではないことを確認_契約_請求基本情報を得意先CDから取得() {
+
+		BillingBasicInformation billingBasicInformation = billingBasicInformationRepository.findByClientCode("1234567");
+
+		// null項目なく取得できていることを確認
+		try {
+			testTools.assertColumnsNotNull(billingBasicInformation);
+		} catch (Exception e1) {
+			Assert.fail("例外が発生した場合、エラー");
+		}
+	}
+	
+	@Test
+	public void 請求先Mailアドレス情報を取得できないことを確認_得意先情報マスタIDにより削除() {
+
+		billingMailAddressInformationRepository.deleteByClientMasterId(1L);
+		ClientMaster clientMaster = clientMasterRepository.findOne(1L);;
+
+		// null項目なく取得できていることを確認
+		try {
+			Assert.assertEquals(0, clientMaster.getBillingMailAddressInformationList().size());
 		} catch (Exception e1) {
 			Assert.fail("例外が発生した場合、エラー");
 		}

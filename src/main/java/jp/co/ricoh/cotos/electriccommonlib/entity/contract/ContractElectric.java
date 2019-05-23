@@ -454,8 +454,8 @@ public class ContractElectric extends EntityBase {
 	/**
 	 * 現在の電力会社種別
 	 */
-	@Column(nullable = false)
-	@ApiModelProperty(value = "現在の電力会社種別", required = true, position = 54, allowableValues = "種別1(\"1\")", example = "1")
+	@Column(nullable = true)
+	@ApiModelProperty(value = "現在の電力会社種別", required = false, position = 54, allowableValues = "種別1(\"1\")", example = "1")
 	private CurrentElectricCompanyDiv currentElectricCompanyDiv;
 
 	/**

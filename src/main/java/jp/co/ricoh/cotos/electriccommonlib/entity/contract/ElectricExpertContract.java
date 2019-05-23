@@ -46,50 +46,50 @@ public class ElectricExpertContract extends EntityBase {
 	/**
 	 * 氏名
 	 */
-	@Column(nullable = false)
-	@ApiModelProperty(value = "氏名", required = true, position = 3, allowableValues = "range[0,255]")
+	@Column(nullable = true)
+	@ApiModelProperty(value = "氏名", required = false, position = 3, allowableValues = "range[0,255]")
 	private String name;
 
 	/**
 	 * メールアドレス
 	 */
-	@Column(nullable = false)
-	@ApiModelProperty(value = "メールアドレス", required = true, position = 4, allowableValues = "range[0,255]")
+	@Column(nullable = true)
+	@ApiModelProperty(value = "メールアドレス", required = false, position = 4, allowableValues = "range[0,255]")
 	private String mailAddress;
 
 	/**
 	 * 電話番号
 	 */
-	@Column(nullable = false)
-	@ApiModelProperty(value = "電話番号", required = true, position = 5, allowableValues = "range[0,255]")
+	@Column(nullable = true)
+	@ApiModelProperty(value = "電話番号", required = false, position = 5, allowableValues = "range[0,255]")
 	private String phoneNumber;
 
 	/**
 	 * 所属課所コード
 	 */
-	@Column(nullable = false)
-	@ApiModelProperty(value = "所属課所コード", required = true, position = 6, allowableValues = "range[0,255]")
+	@Column(nullable = true)
+	@ApiModelProperty(value = "所属課所コード", required = false, position = 6, allowableValues = "range[0,255]")
 	private String affiliationCode;
 
 	/**
 	 * 所属
 	 */
-	@Column(nullable = false)
-	@ApiModelProperty(value = "所属", required = true, position = 7, allowableValues = "range[0,255]")
+	@Column(nullable = true)
+	@ApiModelProperty(value = "所属", required = false, position = 7, allowableValues = "range[0,255]")
 	private String belongs;
 
 	/**
 	 * 修正時振替先コード
 	 */
-	@Column(nullable = false)
-	@ApiModelProperty(value = "修正時振替先コード", required = true, position = 8, allowableValues = "range[0,255]")
+	@Column(nullable = true)
+	@ApiModelProperty(value = "修正時振替先コード", required = false, position = 8, allowableValues = "range[0,255]")
 	private String fixTransferDestinationCode;
 
 	/**
 	 * 修正時振替課所名
 	 */
-	@Column(nullable = false)
-	@ApiModelProperty(value = "修正時振替課所名", required = true, position = 9, allowableValues = "range[0,255]")
+	@Column(nullable = true)
+	@ApiModelProperty(value = "修正時振替課所名", required = false, position = 9, allowableValues = "range[0,255]")
 	private String fixTransferSectionName;
 	
 	/**

@@ -56,8 +56,8 @@ public class ContractElectricAttachedFile extends EntityBase {
 	/**
 	 * ファイル名
 	 */
-	@Column(nullable = true)
-	@ApiModelProperty(value = "ファイル名", required = false, position = 3, allowableValues = "range[0,255]")
+	@Column(nullable = false)
+	@ApiModelProperty(value = "ファイル名", required = true, position = 3, allowableValues = "range[0,255]")
 	private String fileName;
 
 	/**

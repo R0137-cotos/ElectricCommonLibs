@@ -8,6 +8,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.Valid;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -17,18 +18,8 @@ import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.dto.parameter.common.DtoBase;
 import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.ElectricCommercialFlowDiv;
 import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.VoltageCategory;
-import jp.co.ricoh.cotos.electriccommonlib.entity.contract.CancellationInformation;
-import jp.co.ricoh.cotos.electriccommonlib.entity.contract.ClientInformation;
-import jp.co.ricoh.cotos.electriccommonlib.entity.contract.ContractElectricAttachedFile;
-import jp.co.ricoh.cotos.electriccommonlib.entity.contract.ElectricDealerContract;
-import jp.co.ricoh.cotos.electriccommonlib.entity.contract.ElectricExpertContract;
-import jp.co.ricoh.cotos.electriccommonlib.entity.contract.EntryContentHighPressure;
-import jp.co.ricoh.cotos.electriccommonlib.entity.contract.EntryContentLowPressure;
-import jp.co.ricoh.cotos.electriccommonlib.entity.contract.ImportantPointExplainer;
-import jp.co.ricoh.cotos.electriccommonlib.entity.contract.MailAddressInformation;
-import jp.co.ricoh.cotos.electriccommonlib.entity.contract.UnitPriceHighPressure;
-import jp.co.ricoh.cotos.electriccommonlib.entity.contract.UnitPriceLowPressure;
 import jp.co.ricoh.cotos.electriccommonlib.entity.contract.ContractElectric.CurrentElectricCompanyDiv;
+import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricFormMaster.ElectricPlan;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -241,7 +232,6 @@ public class ContractElectricDto extends DtoBase {
 	/**
 	 * 需要(供給)期間 開始日
 	 */
-	@Column(nullable = true)
 	@ApiModelProperty(value = "需要(供給)期間　開始日", required = false, position = 31)
 	@Temporal(TemporalType.DATE)
 	private Date contractYmdStart;
@@ -307,7 +297,6 @@ public class ContractElectricDto extends DtoBase {
 	/**
 	 * 備考
 	 */
-	@Size(max = 255)
 	@ApiModelProperty(value = "備考", required = false, position = 40, allowableValues = "range[0,255]")
 	private String notes;
 
@@ -335,86 +324,94 @@ public class ContractElectricDto extends DtoBase {
 	/**
 	 * お申込み内容(高圧)
 	 */
-	@OneToOne(mappedBy = "contractElectric")
+	@Valid
+	@OneToOne(mappedBy = "contractElectricDto")
 	@ApiModelProperty(value = "お申込み内容(高圧)", required = false, position = 44)
-	private EntryContentHighPressure entryContentHighPressure;
+	private EntryContentHighPressureDto entryContentHighPressureDto;
 
 	/**
 	 * お申込み内容(低圧)
 	 */
-	@OneToOne(mappedBy = "contractElectric")
+	@Valid
+	@OneToOne(mappedBy = "contractElectricDto")
 	@ApiModelProperty(value = "お申込み内容(低圧)", required = false, position = 45)
-	private EntryContentLowPressure entryContentLowPressure;
+	private EntryContentLowPressureDto entryContentLowPressureDto;
 
 	/**
 	 * 解約情報
 	 */
-	@OneToOne(mappedBy = "contractElectric")
+	@Valid
+	@OneToOne(mappedBy = "contractElectricDto")
 	@ApiModelProperty(value = "解約情報", required = false, position = 46)
-	private CancellationInformation cancellationInformation;
+	private CancellationInformationDto cancellationInformationDto;
 
 	/**
 	 * 電力専任情報
 	 */
+	@Valid
 	@NotNull
-	@OneToOne(mappedBy = "contractElectric", optional = false)
+	@OneToOne(mappedBy = "contractElectricDto", optional = false)
 	@ApiModelProperty(value = "電力専任情報", required = true, position = 47)
-	private ElectricExpertContract electricExpertContract;
+	private ElectricExpertContractDto electricExpertContractDto;
 
 	/**
 	 * 販売店情報
 	 */
-	@OneToOne(mappedBy = "contractElectric")
+	@Valid
+	@OneToOne(mappedBy = "contractElectricDto")
 	@ApiModelProperty(value = "販売店情報", required = false, position = 48)
-	private ElectricDealerContract electricDealerContract;
+	private ElectricDealerContractDto electricDealerContractDto;
 
 	/**
 	 * Mailアドレス情報
 	 */
-	@OneToMany(mappedBy = "contractElectric")
+	@Valid
+	@OneToMany(mappedBy = "contractElectricDto")
 	@ApiModelProperty(value = "Mailアドレス情報", required = false, position = 49)
-	private List<MailAddressInformation> mailAddressInformationList;
+	private List<MailAddressInformationDto> mailAddressInformationDtoList;
 
 	/**
 	 * 契約(電力)添付ファイル
 	 */
-	@OneToMany(mappedBy = "contractElectric")
+	@Valid
+	@OneToMany(mappedBy = "contractElectricDto")
 	@ApiModelProperty(value = "契約(電力)添付ファイル", required = false, position = 50)
-	private List<ContractElectricAttachedFile> contractElectricAttachedFileList;
+	private List<ContractElectricAttachedFileDto> contractElectricAttachedFileDtoList;
 
 	/**
 	 * 単価情報(高圧)
 	 */
-	@OneToMany(mappedBy = "contractElectric")
+	@Valid
+	@OneToMany(mappedBy = "contractElectricDto")
 	@ApiModelProperty(value = "単価情報(高圧)", required = false, position = 51)
-	private List<UnitPriceHighPressure> unitPriceHighPressureList;
+	private List<UnitPriceHighPressureDto> unitPriceHighPressureDtoList;
 
 	/**
 	 * 単価情報(低圧)
 	 */
-	@OneToMany(mappedBy = "contractElectric")
+	@Valid
+	@OneToMany(mappedBy = "contractElectricDto")
 	@ApiModelProperty(value = "単価情報(低圧)", required = false, position = 52)
-	private List<UnitPriceLowPressure> unitPriceLowPressureList;
+	private List<UnitPriceLowPressureDto> unitPriceLowPressureDtoList;
 
 	/**
 	 * 得意先情報
 	 */
-	@OneToMany(mappedBy = "contractElectric")
+	@Valid
+	@OneToMany(mappedBy = "contractElectricDto")
 	@ApiModelProperty(value = "得意先情報", required = false, position = 53)
-	private List<ClientInformation> clientInformationList;
+	private List<ClientInformationDto> clientInformationDtoList;
 
 	/**
 	 * 商流区分
 	 */
 	@NotNull
-	@Size(max = 255)
 	@ApiModelProperty(value = "商流区分", required = true, position = 54, allowableValues = "直売(\"1\"), 代売(\"2\"), 社内(\"3\")", example = "1")
 	private ElectricCommercialFlowDiv electricCommercialFlowDiv;
 
 	/**
 	 * 現在の電力会社種別
 	 */
-	@Size(max = 255)
 	@ApiModelProperty(value = "現在の電力会社種別", required = false, position = 55, allowableValues = "種別1(\"1\")", example = "1")
 	private CurrentElectricCompanyDiv currentElectricCompanyDiv;
 
@@ -435,10 +432,9 @@ public class ContractElectricDto extends DtoBase {
 	/**
 	 * CO2排出メニュー CO2EMISSION_MENUとして読み取られるためname指定
 	 */
-	@Size(max = 255)
 	@Column(name = "co2_emission_menu")
 	@ApiModelProperty(value = "CO2排出メニュー", required = false, position = 58, allowableValues = "range[0,255]")
-	private String co2EmissionMenu;
+	private ElectricPlan co2EmissionMenu;
 
 	/**
 	 * 電力会社コード
@@ -457,7 +453,8 @@ public class ContractElectricDto extends DtoBase {
 	/**
 	 * 重要事項説明者
 	 */
-	@OneToOne(mappedBy = "contractElectric")
+	@Valid
+	@OneToOne(mappedBy = "contractElectricDto")
 	@ApiModelProperty(value = "重要事項説明者", required = false, position = 61)
-	private ImportantPointExplainer importantPointExplainer;
+	private ImportantPointExplainerDto importantPointExplainerDto;
 }

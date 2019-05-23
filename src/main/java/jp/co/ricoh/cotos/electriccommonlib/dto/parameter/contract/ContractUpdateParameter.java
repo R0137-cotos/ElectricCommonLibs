@@ -18,4 +18,14 @@ public class ContractUpdateParameter {
 	 * 電力用契約DTO
 	 */
 	ContractElectricDto contractElectricDto;
+	
+	/**
+	 * 得意先情報マスタ
+	 */
+	ClientMasterDto clientMasterDto;
+	
+	/**
+	 * 請求基本情報
+	 */
+	BillingBasicInformationDto billingBasicInformationDto;
 }

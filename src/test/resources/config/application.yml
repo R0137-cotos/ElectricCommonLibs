@@ -52,6 +52,9 @@ spring:
   jackson:
     serialization:
       fail-on-empty-beans: false
+  messages:
+    basename: Messages, ElectricMessages
+    defaultEncoding: UTF-8
 remote:
   momauthority:
     url: http://165.96.254.183:10110/jmo/services/KengenService
