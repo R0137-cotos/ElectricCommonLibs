@@ -336,8 +336,9 @@ public class TestContractDto {
 		// 異常系(@NotNull)
 		BeanUtils.copyProperties(entity.getContractElectricAttachedFileList().get(0), testTarget);
 		testTarget.setFileName(null);
+		testTarget.setElectricFileType(null);
 		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
-		Assert.assertEquals(1, result.getErrorInfoList().size());
+		Assert.assertEquals(2, result.getErrorInfoList().size());
 
 		// 異常系(@Size(max))
 		BeanUtils.copyProperties(entity.getContractElectricAttachedFileList().get(0), testTarget);
@@ -349,6 +350,20 @@ public class TestContractDto {
 		testTarget.setAttachedOrgName(STR_256);
 		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(6, result.getErrorInfoList().size());
+
+		// 異常系(@Max)
+		BeanUtils.copyProperties(entity.getContractElectricAttachedFileList().get(0), testTarget);
+		testTarget.setTargetRequiredFlg(INT_10);
+		testTarget.setActiveFlg(INT_10);
+		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		Assert.assertEquals(2, result.getErrorInfoList().size());
+
+		// 異常系(@Min)
+		BeanUtils.copyProperties(entity.getContractElectricAttachedFileList().get(0), testTarget);
+		testTarget.setTargetRequiredFlg(INT_MINUS_1);
+		testTarget.setActiveFlg(INT_MINUS_1);
+		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		Assert.assertEquals(2, result.getErrorInfoList().size());
 
 	}
 
@@ -643,21 +658,21 @@ public class TestContractDto {
 		// 正常系
 		ParamterCheckResult result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		testTool.assertValidationOk(result);
-		
+
 		// 異常系(@NotNull)
 		BeanUtils.copyProperties(entity, testTarget);
 		testTarget.setName(null);
 		testTarget.setMailAddress(null);
 		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(2, result.getErrorInfoList().size());
-		
+
 		// 異常系(@Size(max))
 		BeanUtils.copyProperties(entity, testTarget);
 		testTarget.setName(STR_256);
 		testTarget.setMailAddress(STR_256);
 		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(2, result.getErrorInfoList().size());
-		
+
 		// 異常系(@Min)
 		BeanUtils.copyProperties(entity, testTarget);
 		testTarget.setMyricohId(INT_MINUS_1);

@@ -283,5 +283,33 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 			Assert.fail("例外が発生した場合、エラー");
 		}
 	}
+	
+	@Test
+	public void Mailアドレス情報を取得できないことを確認_契約電力IDにより削除() {
+
+		mailAddressInformationRepository.deleteByContractElectricId(1L);
+		ContractElectric contractElectric = contractElectricRepository.findOne(1L);;
+
+		// null項目なく取得できていることを確認
+		try {
+			Assert.assertEquals(0, contractElectric.getMailAddressInformationList().size());
+		} catch (Exception e1) {
+			Assert.fail("例外が発生した場合、エラー");
+		}
+	}
+	
+	@Test
+	public void 添付ファイルを取得できないことを確認_契約電力IDにより削除() {
+
+		contractElectricAttachedFileRepository.deleteByContractElectricId(1L);
+		ContractElectric contractElectric = contractElectricRepository.findOne(1L);;
+
+		// null項目なく取得できていることを確認
+		try {
+			Assert.assertEquals(0, contractElectric.getContractElectricAttachedFileList().size());
+		} catch (Exception e1) {
+			Assert.fail("例外が発生した場合、エラー");
+		}
+	}
 
 }
