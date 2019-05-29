@@ -41,6 +41,7 @@ import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.ImportantPoint
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.MailAddressInformationDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.UnitPriceHighPressureDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.UnitPriceLowPressureDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.EstimationElectricExtDto;
 import jp.co.ricoh.cotos.electriccommonlib.security.bean.ParamterCheckResult;
 import lombok.Data;
 
@@ -58,7 +59,7 @@ public class TestSecurityController {
 	CheckUtil checkUtil;
 
 	private String swaggerBody = "swagger";
-	
+
 	private ParamterCheckResult createParameterCheckResult(BindingResult result) {
 		ParamterCheckResult paramterCheckResult = new ParamterCheckResult();
 		if (result == null)
@@ -100,11 +101,11 @@ public class TestSecurityController {
 	public String swagger() {
 		return swaggerBody;
 	}
-	
+
 	private String loadTopURL(int localServerPort) {
 		return "http://localhost:" + localServerPort + "/";
 	}
-	
+
 	private RestTemplate initRest(final String header, final HeadersProperties headersProperties) {
 		RestTemplate rest = new RestTemplate();
 		if (null != header) {
@@ -123,93 +124,98 @@ public class TestSecurityController {
 		}
 		return rest;
 	}
-	
+
 	public String getParamterCheckUrl(Object entity, int localServerPort) {
 		final String API_ROOT_HEAD = "test/api/ParameterCheck/";
 		final String API_ROOT_END = "?isSuccess=true&hasBody=false";
 		String entityName = entity.getClass().getSimpleName().replaceAll(".java", "");
 		return loadTopURL(localServerPort) + API_ROOT_HEAD + entityName + API_ROOT_END;
 	}
-	
+
 	public ParamterCheckResult callParameterCheck(Object entity, HeadersProperties headersProperties, int localServerPort) {
 		String WITHIN_PERIOD_JWT = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJvcmlnaW4iOiJjb3Rvcy5yaWNvaC5jby5qcCIsInNpbmdsZVVzZXJJZCI6InUwMjkwMTE0OSIsIm1vbUVtcElkIjoiMDA1MDA3ODQiLCJleHAiOjI1MzQwMjI2ODM5OSwiYXBwbGljYXRpb25JZCI6ImNvdG9zX2RldiJ9.CfYPwuIzMGmp1ZnCTHkzNrjd5_EXNVjIBzDXAfn6NPg";
 		RestTemplate rest = initRest(WITHIN_PERIOD_JWT, headersProperties);
 		ResponseEntity<ParamterCheckResult> parameterCheckResult = rest.postForEntity(getParamterCheckUrl(entity, localServerPort), entity, ParamterCheckResult.class);
 		return parameterCheckResult.getBody();
 	}
-	
+
 	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/ContractElectricDto")
 	public ParamterCheckResult callParamterCheck(@RequestBody @Validated ContractElectricDto dto, BindingResult result) {
 		return createParameterCheckResult(result);
 	}
-	
+
 	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/MailAddressInformationDto")
 	public ParamterCheckResult callParamterCheck(@RequestBody @Validated MailAddressInformationDto dto, BindingResult result) {
 		return createParameterCheckResult(result);
 	}
-	
+
 	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/EntryContentHighPressureDto")
 	public ParamterCheckResult callParamterCheck(@RequestBody @Validated EntryContentHighPressureDto dto, BindingResult result) {
 		return createParameterCheckResult(result);
 	}
-	
+
 	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/EntryContentLowPressureDto")
 	public ParamterCheckResult callParamterCheck(@RequestBody @Validated EntryContentLowPressureDto dto, BindingResult result) {
 		return createParameterCheckResult(result);
 	}
-	
+
 	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/ContractElectricAttachedFileDto")
 	public ParamterCheckResult callParamterCheck(@RequestBody @Validated ContractElectricAttachedFileDto dto, BindingResult result) {
 		return createParameterCheckResult(result);
 	}
-	
+
 	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/UnitPriceHighPressureDto")
 	public ParamterCheckResult callParamterCheck(@RequestBody @Validated UnitPriceHighPressureDto dto, BindingResult result) {
 		return createParameterCheckResult(result);
 	}
-	
+
 	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/UnitPriceLowPressureDto")
 	public ParamterCheckResult callParamterCheck(@RequestBody @Validated UnitPriceLowPressureDto dto, BindingResult result) {
 		return createParameterCheckResult(result);
 	}
-	
+
 	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/CancellationInformationDto")
 	public ParamterCheckResult callParamterCheck(@RequestBody @Validated CancellationInformationDto dto, BindingResult result) {
 		return createParameterCheckResult(result);
 	}
-	
+
 	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/ImportantPointExplainerDto")
 	public ParamterCheckResult callParamterCheck(@RequestBody @Validated ImportantPointExplainerDto dto, BindingResult result) {
 		return createParameterCheckResult(result);
 	}
-	
+
 	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/ElectricExpertContractDto")
 	public ParamterCheckResult callParamterCheck(@RequestBody @Validated ElectricExpertContractDto dto, BindingResult result) {
 		return createParameterCheckResult(result);
 	}
-	
+
 	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/ElectricDealerContractDto")
 	public ParamterCheckResult callParamterCheck(@RequestBody @Validated ElectricDealerContractDto dto, BindingResult result) {
 		return createParameterCheckResult(result);
 	}
-	
+
 	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/BillingBasicInformationDto")
 	public ParamterCheckResult callParamterCheck(@RequestBody @Validated BillingBasicInformationDto dto, BindingResult result) {
 		return createParameterCheckResult(result);
 	}
-	
+
 	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/ClientInformationDto")
 	public ParamterCheckResult callParamterCheck(@RequestBody @Validated ClientInformationDto dto, BindingResult result) {
 		return createParameterCheckResult(result);
 	}
-	
+
 	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/ClientMasterDto")
 	public ParamterCheckResult callParamterCheck(@RequestBody @Validated ClientMasterDto dto, BindingResult result) {
 		return createParameterCheckResult(result);
 	}
-	
+
 	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/BillingMailAddressInformationDto")
 	public ParamterCheckResult callParamterCheck(@RequestBody @Validated BillingMailAddressInformationDto dto, BindingResult result) {
+		return createParameterCheckResult(result);
+	}
+
+	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/EstimationElectricExtDto")
+	public ParamterCheckResult callParamterCheck(@RequestBody @Validated EstimationElectricExtDto dto, BindingResult result) {
 		return createParameterCheckResult(result);
 	}
 }
