@@ -494,6 +494,14 @@ public class ContractElectric extends EntityBase {
 	private String electricMenuCode;
 
 	/**
+	 * 契約書初回作成日
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "契約書初回作成日", required = false, position = 62)
+	@Temporal(TemporalType.DATE)
+	private Date contractFirstCreationDate;
+
+	/**
 	 * ライフサイクル状態
 	 */
 	@Column(nullable = true)
