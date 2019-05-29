@@ -196,87 +196,111 @@ public class ContractSearchResult {
 	private String powerCompany;
 
 	/**
+	 * 電気主任技術者
+	 */
+	@ApiModelProperty(value = "電気主任技術者", required = false, position = 29, allowableValues = "range[0,255]")
+	private String licensedEngineerName;
+
+	/**
+	 * 電気主任技術者_電話番号
+	 */
+	@ApiModelProperty(value = "電気主任技術者_電話番号", required = false, position = 30, allowableValues = "range[0,255]")
+	private String licensedEngineerTel;
+
+	/**
+	 * 電気主任技術者_所属名
+	 */
+	@ApiModelProperty(value = "電気主任技術者_所属名", required = false, position = 31, allowableValues = "range[0,255]")
+	private String licensedEngineerDep;
+
+	/**
 	 * 電力専任
 	 */
-	@ApiModelProperty(value = "電力専任", required = false, position = 29, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "電力専任", required = false, position = 32, allowableValues = "range[0,255]")
 	private String name;
 
 	/**
 	 * 電力専任 所属
 	 */
-	@ApiModelProperty(value = "電力専任　所属", required = false, position = 30, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "電力専任　所属", required = false, position = 33, allowableValues = "range[0,255]")
 	private String belongs;
 
 	/**
 	 * 原子力立地給付金フラグ
 	 */
-	@ApiModelProperty(value = "原子力立地給付金フラグ", required = false, position = 31, allowableValues = "range[0,1]")
+	@ApiModelProperty(value = "原子力立地給付金フラグ", required = false, position = 34, allowableValues = "range[0,1]")
 	private Integer atomicPaymentFlg;
 
 	/**
 	 * 備考
 	 */
-	@ApiModelProperty(value = "備考", required = false, position = 32, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "備考", required = false, position = 35, allowableValues = "range[0,255]")
 	private String notes;
 
 	/**
 	 * 商流区分
 	 */
-	@ApiModelProperty(value = "商流区分", required = false, position = 33, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "商流区分", required = false, position = 36, allowableValues = "range[0,255]")
 	private ElectricCommercialFlowDiv commercialFlowDiv;
 
 	/**
 	 * 請求年月
 	 */
-	@ApiModelProperty(value = "請求年月", required = false, position = 34, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "請求年月", required = false, position = 37, allowableValues = "range[0,255]")
 	private String billingYearMonth;
 
 	/**
 	 * 請求書発送区分
 	 */
-	@ApiModelProperty(value = "請求書発送区分", required = false, position = 35, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "請求書発送区分", required = false, position = 38, allowableValues = "range[0,255]")
 	private SendInvoiceDiv sendInvoiceDiv;
 
 	/**
 	 * 請求書出力フラグ
 	 */
-	@ApiModelProperty(value = "請求書出力フラグ", required = false, position = 36, allowableValues = "range[0,1]")
+	@ApiModelProperty(value = "請求書出力フラグ", required = false, position = 39, allowableValues = "range[0,1]")
 	private Integer invoiceOutputFlg;
 
 	/**
 	 * 未回収フラグ
 	 */
-	@ApiModelProperty(value = "未回収フラグ", required = false, position = 37, allowableValues = "range[0,1]")
+	@ApiModelProperty(value = "未回収フラグ", required = false, position = 40, allowableValues = "range[0,1]")
 	private Integer accruedFlg;
 
 	/**
 	 * 手数料金額
 	 */
-	@ApiModelProperty(value = "手数料金額", required = false, position = 38, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "手数料金額", required = false, position = 41, allowableValues = "range[0,255]")
 	private String tradingCompanyMediationFeeAmountInTax;
+
+	/**
+	 * 販売店ID
+	 */
+	@ApiModelProperty(value = "販売店ID", required = false, position = 42, allowableValues = "range[0,255]")
+	private String companyId;
 
 	/**
 	 * 販売店名
 	 */
-	@ApiModelProperty(value = "販売店名", required = false, position = 39, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "販売店名", required = false, position = 43, allowableValues = "range[0,255]")
 	private String companyBusinessName;
 
 	/**
 	 * 解約月
 	 */
-	@ApiModelProperty(value = "解約月", required = false, position = 40, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "解約月", required = false, position = 44, allowableValues = "range[0,255]")
 	private String cancellationDate;
 
 	/**
 	 * 解約金請求
 	 */
-	@ApiModelProperty(value = "解約金請求", required = false, position = 41, allowableValues = "range[0,1]")
+	@ApiModelProperty(value = "解約金請求", required = false, position = 45, allowableValues = "range[0,1]")
 	private Integer cancellationBillingFlg;
 
 	/**
 	 * 解約金額
 	 */
-	@ApiModelProperty(value = "解約金額", required = false, position = 42, allowableValues = "range[0,20]")
+	@ApiModelProperty(value = "解約金額", required = false, position = 46, allowableValues = "range[0,20]")
 	private String cancellationAmount;
 
 	@PrePersist
