@@ -264,4 +264,11 @@ public class EstimationElectric extends EntityBase {
 	@Column(nullable = true)
 	@ApiModelProperty(value = "電力会社コード", required = false, position = 32, allowableValues = "range[0,255]")
 	private String electricMenuCode;
+	
+	/**
+	 * CO2排出係数
+	 */
+	@Column(nullable = true, name = "co2_emission_factor")
+	@ApiModelProperty(value = "CO2排出係数", required = false, position = 33, allowableValues = "range[0,255]")
+	private String co2EmissionFactor;
 }

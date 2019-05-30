@@ -121,7 +121,8 @@ public class TestContractDto {
 		// 異常系（@Size(max))
 		BeanUtils.copyProperties(entity, testTarget);
 		testTarget.setElectricExpertContractDto(electricExpertContractDto);
-		testTarget.setSimNumber(STR_256);
+		testTarget.setSimNumberMain(STR_256);
+		testTarget.setSimNumberSub(STR_256);
 		testTarget.setEntryNumber(STR_256);
 		testTarget.setCustomerNumber(STR_256);
 		testTarget.setFeedPointNumber(STR_256);
@@ -154,8 +155,9 @@ public class TestContractDto {
 		testTarget.setBillingStartMonth(STR_256);
 		testTarget.setElectricCompanyCode(STR_256);
 		testTarget.setElectricMenuCode(STR_256);
+		testTarget.setCo2EmissionFactor(STR_256);
 		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
-		Assert.assertEquals(33, result.getErrorInfoList().size());
+		Assert.assertEquals(35, result.getErrorInfoList().size());
 
 		// 異常系(@Min)
 		BeanUtils.copyProperties(entity, testTarget);
