@@ -45,15 +45,9 @@ public class FeeSimulationHead extends EntityBase {
 	 */
 	@OneToOne(optional = false)
 	@JoinColumn(name = "estimationElectricId", referencedColumnName = "id")
+	@ApiModelProperty(value = "見積（電力）ID", required = true, position = 2)
 	@JsonIgnore
 	private EstimationElectric estimationElectric;
-
-	/**
-	 * SIM番号
-	 */
-	@Column(nullable = true)
-	@ApiModelProperty(value = "SIM番号", required = false, position = 2, allowableValues = "range[0,255]")
-	private String simNumber;
 
 	/**
 	 * 作成日
@@ -308,5 +302,19 @@ public class FeeSimulationHead extends EntityBase {
 	@Digits(integer = 19, fraction = 2)
 	@ApiModelProperty(value = "定価", required = false, position = 38, allowableValues = "range[0.00,9999999999999999999.99]")
 	private BigDecimal basicRateListPrice;
+	
+	/**
+	 * SIM番号(主)
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "SIM番号(主)", required = false, position = 39, allowableValues = "range[0,255]")
+	private String simNumberMain;
+	
+	/**
+	 * SIM番号(従)
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "SIM番号(従)", required = false, position = 40, allowableValues = "range[0,255]")
+	private String simNumberSub;
 
 }
