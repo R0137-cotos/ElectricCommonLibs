@@ -12,7 +12,6 @@ import javax.validation.constraints.Size;
 
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.dto.parameter.common.DtoBase;
-import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.ElectricCommercialFlowDiv;
 import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.VoltageCategory;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -29,14 +28,15 @@ public class EstimationElectricExtDto extends DtoBase {
 
 	/**商流区分*/
 	@NotNull
-	@ApiModelProperty(value = "商流区分", required = true, position = 4, allowableValues = "直売(\"1\"), 代売(\"2\"), 社内(\"3\")", example = "1")
-	private ElectricCommercialFlowDiv electricCommercialFlowDiv;
+	@Size(max = 255)
+	@ApiModelProperty(value = "商流区分", required = true, position = 4, allowableValues = "range[0,255]")
+	private String electricCommercialFlowDiv;
 
 	/**商流区分コード*/
 	@NotNull
 	@Size(max = 255)
 	@ApiModelProperty(value = "商流区分コード", required = true, position = 5, allowableValues = "range[0,255]")
-	private String electricCommercialFlowDivCd;
+	private String electricCommercialFlowDivCode;
 
 	/**電力エリア*/
 	@NotNull
@@ -81,9 +81,9 @@ public class EstimationElectricExtDto extends DtoBase {
 
 	/**CO2排出係数*/
 	@NotNull
-	@Min(0)
-	@ApiModelProperty(value = "CO2排出係数", required = true, position = 13, allowableValues = "range[0,9]")
-	private Integer co2EmissionFactor;
+	@Size(max = 255)
+	@ApiModelProperty(value = "CO2排出係数", required = true, position = 13, allowableValues = "range[0,255]")
+	private String co2EmissionFactor;
 
 	/**品種コード*/
 	@NotNull
