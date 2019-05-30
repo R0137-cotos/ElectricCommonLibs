@@ -3,6 +3,7 @@ package jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Max;
@@ -76,12 +77,14 @@ public class EstimationElectricExtDto extends DtoBase {
 	/**CO2排出メニュー*/
 	@NotNull
 	@Size(max = 255)
+	@Column(name = "co2_emission_menu")
 	@ApiModelProperty(value = "CO2排出メニュー", required = true, position = 12, allowableValues = "range[0,255]")
 	private String co2EmissionMenu;
 
 	/**CO2排出係数*/
 	@NotNull
 	@Size(max = 255)
+	@Column(name = "co2_emission_factor")
 	@ApiModelProperty(value = "CO2排出係数", required = true, position = 13, allowableValues = "range[0,255]")
 	private String co2EmissionFactor;
 

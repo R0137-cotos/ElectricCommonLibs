@@ -5,7 +5,6 @@ import javax.validation.constraints.Size;
 
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.dto.parameter.common.DtoBase;
-import jp.co.ricoh.cotos.commonlib.entity.master.VKjbMaster.DepartmentDiv;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -36,13 +35,6 @@ public class CustomerEstimationExtDto extends DtoBase {
 	@Size(max = 255)
 	@ApiModelProperty(value = "MoM事業所ID", required = true, position = 3, allowableValues = "range[0,255]")
 	private String officeId;
-
-	/**
-	 * 企事部設定区分
-	 */
-	@NotNull
-	@ApiModelProperty(value = "企事部設定区分", required = true, allowableValues = "企事(\"1\"), 企事部(\"2\")", example = "1", position = 4)
-	private DepartmentDiv departmentDiv;
 
 	/**
 	 * 顧客名

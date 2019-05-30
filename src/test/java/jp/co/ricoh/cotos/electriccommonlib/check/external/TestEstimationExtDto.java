@@ -18,8 +18,15 @@ import jp.co.ricoh.cotos.commonlib.util.HeadersProperties;
 import jp.co.ricoh.cotos.electriccommonlib.DBConfig;
 import jp.co.ricoh.cotos.electriccommonlib.TestTools;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.CustomerEstimationExtDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.ElectricDealerEstimationExtDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.ElectricExpertEstimationExtDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.EstimationAddedEditorEmpExtDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.EstimationElectricExtDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.EstimationPicSaEmpExtDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.FeeSimulationHeadExtDto;
 import jp.co.ricoh.cotos.electriccommonlib.entity.estimation.EstimationElectric;
+import jp.co.ricoh.cotos.electriccommonlib.entity.estimation.FeeSimulationHead;
+import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricDealerMaster.PaymentMethod;
 import jp.co.ricoh.cotos.electriccommonlib.repository.estimation.EstimationElectricRepository;
 import jp.co.ricoh.cotos.electriccommonlib.security.TestSecurityController;
 import jp.co.ricoh.cotos.electriccommonlib.security.bean.ParamterCheckResult;
@@ -30,10 +37,12 @@ public class TestEstimationExtDto {
 
 	private static final String STR_256 = "0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345";
 	private static final String STR_1001 = "01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890";
+	private static final String STR_4001 = "0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789"//
+			+ "0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789"//
+			+ "0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789"//
+			+ "01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890";
 	private static final int INT_MINUS_1 = -1;
-	private static final Long LONG_MINUS_1 = -1L;
 	private static final int INT_10 = 10;
-	private static final int INT_100000 = 100000;
 	private static final BigDecimal DECIMAL_MINUS_001 = new BigDecimal("-0.01");
 	private static final BigDecimal DECIMAL_0001 = new BigDecimal("0.001");
 
@@ -76,10 +85,10 @@ public class TestEstimationExtDto {
 		EstimationElectric entity = estimationElectricRepository.findOne(1L);
 		EstimationElectricExtDto target = new EstimationElectricExtDto();
 		BeanUtils.copyProperties(entity, target);
-		target.setElectricCommercialFlowDivCode("1");//TODO カラム追加
+		target.setElectricCommercialFlowDivCode("1");
 		target.setElectricCommercialFlowDiv(entity.getElectricCommercialFlowDiv().toString());
 		target.setCo2EmissionMenu("test");
-		target.setCo2EmissionFactor("1");//TODO カラム追加
+		target.setCo2EmissionFactor("1");
 		ParamterCheckResult result = testSecurityController.callParameterCheck(target, headersProperties, localServerPort);
 		testTool.assertValidationOk(result);
 
@@ -135,10 +144,10 @@ public class TestEstimationExtDto {
 
 		// 異常系(@Min)
 		BeanUtils.copyProperties(entity, target);
-		target.setElectricCommercialFlowDivCode("1");//TODO カラム追加
+		target.setElectricCommercialFlowDivCode("1");
 		target.setElectricCommercialFlowDiv(entity.getElectricCommercialFlowDiv().toString());
 		target.setCo2EmissionMenu("test");
-		target.setCo2EmissionFactor("1");//TODO カラム追加
+		target.setCo2EmissionFactor("1");
 		target.setPartialSupplyFlg(INT_MINUS_1);
 		target.setSpareWireFlg(INT_MINUS_1);
 		target.setSparePowerFlg(INT_MINUS_1);
@@ -148,10 +157,10 @@ public class TestEstimationExtDto {
 
 		// 異常系(@Max)
 		BeanUtils.copyProperties(entity, target);
-		target.setElectricCommercialFlowDivCode("1");//TODO カラム追加
+		target.setElectricCommercialFlowDivCode("1");
 		target.setElectricCommercialFlowDiv(entity.getElectricCommercialFlowDiv().toString());
 		target.setCo2EmissionMenu("test");
-		target.setCo2EmissionFactor("1");//TODO カラム追加
+		target.setCo2EmissionFactor("1");
 		target.setPartialSupplyFlg(INT_10);
 		target.setSpareWireFlg(INT_10);
 		target.setSparePowerFlg(INT_10);
@@ -161,10 +170,10 @@ public class TestEstimationExtDto {
 
 		// 異常系(@DecimalMin)
 		BeanUtils.copyProperties(entity, target);
-		target.setElectricCommercialFlowDivCode("1");//TODO カラム追加
+		target.setElectricCommercialFlowDivCode("1");
 		target.setElectricCommercialFlowDiv(entity.getElectricCommercialFlowDiv().toString());
 		target.setCo2EmissionMenu("test");
-		target.setCo2EmissionFactor("1");//TODO カラム追加
+		target.setCo2EmissionFactor("1");
 		target.setContractPower(DECIMAL_MINUS_001);
 		target.setPowerRate(DECIMAL_MINUS_001);
 		target.setLoadFactor(DECIMAL_MINUS_001);
@@ -175,10 +184,10 @@ public class TestEstimationExtDto {
 
 		// 異常系(@Decimal)
 		BeanUtils.copyProperties(entity, target);
-		target.setElectricCommercialFlowDivCode("1");//TODO カラム追加
+		target.setElectricCommercialFlowDivCode("1");
 		target.setElectricCommercialFlowDiv(entity.getElectricCommercialFlowDiv().toString());
 		target.setCo2EmissionMenu("test");
-		target.setCo2EmissionFactor("1");//TODO カラム追加
+		target.setCo2EmissionFactor("1");
 		target.setContractPower(DECIMAL_0001);
 		target.setPowerRate(DECIMAL_0001);
 		target.setLoadFactor(DECIMAL_0001);
@@ -193,6 +202,283 @@ public class TestEstimationExtDto {
 		CustomerEstimationExtDto target = 顧客正常データ作成();
 		ParamterCheckResult result = testSecurityController.callParameterCheck(target, headersProperties, localServerPort);
 		testTool.assertValidationOk(result);
+
+		//異常系（@NotNull）
+		target.setMomCustId(null);
+		target.setCompanyId(null);
+		target.setOfficeId(null);
+		target.setCustomerName(null);
+		target.setCompanyName(null);
+		target.setCompanyNameKana(null);
+		target.setOfficeName(null);
+		target.setDepartmentName(null);
+		target.setPostNumber(null);
+		target.setAddress(null);
+		target.setPhoneNumber(null);
+		target.setFaxNumber(null);
+		target.setCompanyRepresentativeName(null);
+		target.setPicName(null);
+		target.setPicNameKana(null);
+		target.setPicDeptName(null);
+		target.setPicPhoneNumber(null);
+		target.setPicFaxNumber(null);
+		target.setPicMailAddress(null);
+		result = testSecurityController.callParameterCheck(target, headersProperties, localServerPort);
+		Assert.assertTrue(result.getErrorInfoList().size() == 19);
+
+		// 異常系（@Size(max))
+		target = 顧客正常データ作成();
+		target.setMomCustId(STR_256);
+		target.setCompanyId(STR_256);
+		target.setOfficeId(STR_256);
+		target.setCustomerName(STR_256);
+		target.setCompanyName(STR_256);
+		target.setCompanyNameKana(STR_256);
+		target.setOfficeName(STR_256);
+		target.setDepartmentName(STR_256);
+		target.setPostNumber(STR_256);
+		target.setAddress(STR_1001);
+		target.setPhoneNumber(STR_256);
+		target.setFaxNumber(STR_256);
+		target.setCompanyRepresentativeName(STR_256);
+		target.setPicName(STR_256);
+		target.setPicNameKana(STR_256);
+		target.setPicDeptName(STR_256);
+		target.setPicPhoneNumber(STR_256);
+		target.setPicFaxNumber(STR_256);
+		target.setPicMailAddress(STR_256);
+		result = testSecurityController.callParameterCheck(target, headersProperties, localServerPort);
+		Assert.assertTrue(result.getErrorInfoList().size() == 19);
+
+	}
+
+	@Test
+	public void EstimationPicSaEmpExtDtoのテスト() {
+		EstimationPicSaEmpExtDto target = new EstimationPicSaEmpExtDto();
+		target.setMomEmployeeId("test");
+		ParamterCheckResult result = testSecurityController.callParameterCheck(target, headersProperties, localServerPort);
+		testTool.assertValidationOk(result);
+
+		//異常系（@NotNull）
+		target.setMomEmployeeId(null);
+		result = testSecurityController.callParameterCheck(target, headersProperties, localServerPort);
+		Assert.assertTrue(result.getErrorInfoList().size() == 1);
+
+		// 異常系（@Size(max))
+		target.setMomEmployeeId(STR_256);
+		result = testSecurityController.callParameterCheck(target, headersProperties, localServerPort);
+		Assert.assertTrue(result.getErrorInfoList().size() == 1);
+
+	}
+
+	@Test
+	public void ElectricExpertEstimationExtDtoのテスト() {
+		ElectricExpertEstimationExtDto target = new ElectricExpertEstimationExtDto();
+		target.setMomEmployeeId("test");
+		ParamterCheckResult result = testSecurityController.callParameterCheck(target, headersProperties, localServerPort);
+		testTool.assertValidationOk(result);
+
+		//異常系（@NotNull）
+		target.setMomEmployeeId(null);
+		result = testSecurityController.callParameterCheck(target, headersProperties, localServerPort);
+		Assert.assertTrue(result.getErrorInfoList().size() == 1);
+
+		// 異常系（@Size(max))
+		target.setMomEmployeeId(STR_256);
+		result = testSecurityController.callParameterCheck(target, headersProperties, localServerPort);
+		Assert.assertTrue(result.getErrorInfoList().size() == 1);
+
+	}
+
+	@Test
+	public void EstimationAddedEditorEmpExtDtoのテスト() {
+		EstimationAddedEditorEmpExtDto target = new EstimationAddedEditorEmpExtDto();
+		target.setMomEmployeeId("test");
+		ParamterCheckResult result = testSecurityController.callParameterCheck(target, headersProperties, localServerPort);
+		testTool.assertValidationOk(result);
+
+		//異常系（@NotNull）
+		target.setMomEmployeeId(null);
+		result = testSecurityController.callParameterCheck(target, headersProperties, localServerPort);
+		Assert.assertTrue(result.getErrorInfoList().size() == 1);
+
+		// 異常系（@Size(max))
+		target.setMomEmployeeId(STR_256);
+		result = testSecurityController.callParameterCheck(target, headersProperties, localServerPort);
+		Assert.assertTrue(result.getErrorInfoList().size() == 1);
+
+	}
+
+	@Test
+	public void ElectricDealerEstimationExtDtoのテスト() {
+		ElectricDealerEstimationExtDto target = new ElectricDealerEstimationExtDto();
+		target.setCompanyId("test");
+		target.setCompanyBusinessName("test");
+		target.setPhoneNumber("test");
+		target.setPostNumber("test");
+		target.setAddress("test");
+		target.setMailAddress1("test");
+		target.setMailAddress2("test");
+		target.setMailAddress3("test");
+		target.setPaymentMethod(PaymentMethod.定率);
+		ParamterCheckResult result = testSecurityController.callParameterCheck(target, headersProperties, localServerPort);
+		testTool.assertValidationOk(result);
+
+		// 異常系（@Size(max))
+		target.setCompanyId(STR_256);
+		target.setCompanyBusinessName(STR_1001);
+		target.setPhoneNumber(STR_256);
+		target.setPostNumber(STR_256);
+		target.setAddress(STR_4001);
+		target.setMailAddress1(STR_256);
+		target.setMailAddress2(STR_256);
+		target.setMailAddress3(STR_256);
+		result = testSecurityController.callParameterCheck(target, headersProperties, localServerPort);
+		Assert.assertTrue(result.getErrorInfoList().size() == 9);
+
+	}
+
+	@Test
+	public void FeeSimulationHeadExtDtoのテスト() {
+
+		//正常系
+		FeeSimulationHead entity = estimationElectricRepository.findOne(1L).getFeeSimulationHead();
+		FeeSimulationHeadExtDto target = new FeeSimulationHeadExtDto();
+		BeanUtils.copyProperties(entity, target);
+		ParamterCheckResult result = testSecurityController.callParameterCheck(target, headersProperties, localServerPort);
+		testTool.assertValidationOk(result);
+
+		//異常系（@NotNull）
+		target.setSimNumberMain(null);
+		target.setSimNumberSub(null);
+		target.setCreatedDate(null);
+		target.setAnnualElectricityRateCurrent(null);
+		target.setAnnualElectricityRateAfter(null);
+		target.setReductionAmount(null);
+		target.setReductionRate(null);
+		target.setOverallPrice1(null);
+		target.setOverallPrice2(null);
+		target.setOverallPrice3(null);
+		target.setLoadFactor(null);
+		target.setBasicRateListPrice(null);
+		target.setBasicRateSellingPrice(null);
+		target.setBasicRateBankPriceBusiness(null);
+		target.setBasicRateBankPriceRj(null);
+		target.setUsageFeeSummerSellingPrice(null);
+		target.setUsageFeeSummerBankPriceBusiness(null);
+		target.setUsageFeeSummerBankPriceRj(null);
+		target.setUsageFeeOtherSeasonSellingPrice(null);
+		target.setUsageFeeOtherSeasonBankPriceBusiness(null);
+		target.setUsageFeeOtherSeasonBankPriceRj(null);
+		target.setSpareLineSellingPrice(null);
+		target.setSpareLineBankPriceBusiness(null);
+		target.setSpareLineBankPriceRj(null);
+		target.setSparePowerSellingPrice(null);
+		target.setSparePowerBankPriceBusiness(null);
+		target.setSparePowerBankPriceRj(null);
+		target.setAncillarySellingPrice(null);
+		target.setAncillaryBankPriceBusiness(null);
+		target.setAncillaryBankPriceRj(null);
+		target.setFeeFixedAmountInTax(null);
+		target.setFeeFixedRate(null);
+		target.setElectricityChargeBusiness(null);
+		target.setGrossMarginBusiness(null);
+		target.setGrossProfitMarginBusiness(null);
+		target.setElectricityChargeRj(null);
+		target.setGrossMarginRj(null);
+		target.setGrossProfitMarginRj(null);
+
+		result = testSecurityController.callParameterCheck(target, headersProperties, localServerPort);
+		Assert.assertTrue(result.getErrorInfoList().size() == 38);
+
+		// 異常系（@Size(max))
+		BeanUtils.copyProperties(entity, target);
+		target.setSimNumberMain(STR_256);
+		target.setSimNumberSub(STR_256);
+		result = testSecurityController.callParameterCheck(target, headersProperties, localServerPort);
+		Assert.assertTrue(result.getErrorInfoList().size() == 2);
+
+		// 異常系(@DecimalMin)
+		BeanUtils.copyProperties(entity, target);
+		target.setAnnualElectricityRateCurrent(DECIMAL_MINUS_001);
+		target.setAnnualElectricityRateAfter(DECIMAL_MINUS_001);
+		target.setReductionAmount(DECIMAL_MINUS_001);
+		target.setReductionRate(DECIMAL_MINUS_001);
+		target.setOverallPrice1(DECIMAL_MINUS_001);
+		target.setOverallPrice2(DECIMAL_MINUS_001);
+		target.setOverallPrice3(DECIMAL_MINUS_001);
+		target.setLoadFactor(DECIMAL_MINUS_001);
+		target.setBasicRateListPrice(DECIMAL_MINUS_001);
+		target.setBasicRateSellingPrice(DECIMAL_MINUS_001);
+		target.setBasicRateBankPriceBusiness(DECIMAL_MINUS_001);
+		target.setBasicRateBankPriceRj(DECIMAL_MINUS_001);
+		target.setUsageFeeSummerSellingPrice(DECIMAL_MINUS_001);
+		target.setUsageFeeSummerBankPriceBusiness(DECIMAL_MINUS_001);
+		target.setUsageFeeSummerBankPriceRj(DECIMAL_MINUS_001);
+		target.setUsageFeeOtherSeasonSellingPrice(DECIMAL_MINUS_001);
+		target.setUsageFeeOtherSeasonBankPriceBusiness(DECIMAL_MINUS_001);
+		target.setUsageFeeOtherSeasonBankPriceRj(DECIMAL_MINUS_001);
+		target.setSpareLineSellingPrice(DECIMAL_MINUS_001);
+		target.setSpareLineBankPriceBusiness(DECIMAL_MINUS_001);
+		target.setSpareLineBankPriceRj(DECIMAL_MINUS_001);
+		target.setSparePowerSellingPrice(DECIMAL_MINUS_001);
+		target.setSparePowerBankPriceBusiness(DECIMAL_MINUS_001);
+		target.setSparePowerBankPriceRj(DECIMAL_MINUS_001);
+		target.setAncillarySellingPrice(DECIMAL_MINUS_001);
+		target.setAncillaryBankPriceBusiness(DECIMAL_MINUS_001);
+		target.setAncillaryBankPriceRj(DECIMAL_MINUS_001);
+		target.setFeeFixedAmountInTax(DECIMAL_MINUS_001);
+		target.setFeeFixedRate(DECIMAL_MINUS_001);
+		target.setElectricityChargeBusiness(DECIMAL_MINUS_001);
+		target.setGrossMarginBusiness(DECIMAL_MINUS_001);
+		target.setGrossProfitMarginBusiness(DECIMAL_MINUS_001);
+		target.setElectricityChargeRj(DECIMAL_MINUS_001);
+		target.setGrossMarginRj(DECIMAL_MINUS_001);
+		target.setGrossProfitMarginRj(DECIMAL_MINUS_001);
+
+		result = testSecurityController.callParameterCheck(target, headersProperties, localServerPort);
+		Assert.assertTrue(result.getErrorInfoList().size() == 35);
+
+		// 異常系(@Decimal)
+		BeanUtils.copyProperties(entity, target);
+		target.setAnnualElectricityRateCurrent(DECIMAL_0001);
+		target.setAnnualElectricityRateAfter(DECIMAL_0001);
+		target.setReductionAmount(DECIMAL_0001);
+		target.setReductionRate(DECIMAL_0001);
+		target.setOverallPrice1(DECIMAL_0001);
+		target.setOverallPrice2(DECIMAL_0001);
+		target.setOverallPrice3(DECIMAL_0001);
+		target.setLoadFactor(DECIMAL_0001);
+		target.setBasicRateListPrice(DECIMAL_0001);
+		target.setBasicRateSellingPrice(DECIMAL_0001);
+		target.setBasicRateBankPriceBusiness(DECIMAL_0001);
+		target.setBasicRateBankPriceRj(DECIMAL_0001);
+		target.setUsageFeeSummerSellingPrice(DECIMAL_0001);
+		target.setUsageFeeSummerBankPriceBusiness(DECIMAL_0001);
+		target.setUsageFeeSummerBankPriceRj(DECIMAL_0001);
+		target.setUsageFeeOtherSeasonSellingPrice(DECIMAL_0001);
+		target.setUsageFeeOtherSeasonBankPriceBusiness(DECIMAL_0001);
+		target.setUsageFeeOtherSeasonBankPriceRj(DECIMAL_0001);
+		target.setSpareLineSellingPrice(DECIMAL_0001);
+		target.setSpareLineBankPriceBusiness(DECIMAL_0001);
+		target.setSpareLineBankPriceRj(DECIMAL_0001);
+		target.setSparePowerSellingPrice(DECIMAL_0001);
+		target.setSparePowerBankPriceBusiness(DECIMAL_0001);
+		target.setSparePowerBankPriceRj(DECIMAL_0001);
+		target.setAncillarySellingPrice(DECIMAL_0001);
+		target.setAncillaryBankPriceBusiness(DECIMAL_0001);
+		target.setAncillaryBankPriceRj(DECIMAL_0001);
+		target.setFeeFixedAmountInTax(DECIMAL_0001);
+		target.setFeeFixedRate(DECIMAL_0001);
+		target.setElectricityChargeBusiness(DECIMAL_0001);
+		target.setGrossMarginBusiness(DECIMAL_0001);
+		target.setGrossProfitMarginBusiness(DECIMAL_0001);
+		target.setElectricityChargeRj(DECIMAL_0001);
+		target.setGrossMarginRj(DECIMAL_0001);
+		target.setGrossProfitMarginRj(DECIMAL_0001);
+
+		result = testSecurityController.callParameterCheck(target, headersProperties, localServerPort);
+		Assert.assertTrue(result.getErrorInfoList().size() == 35);
 	}
 
 	private CustomerEstimationExtDto 顧客正常データ作成() {
