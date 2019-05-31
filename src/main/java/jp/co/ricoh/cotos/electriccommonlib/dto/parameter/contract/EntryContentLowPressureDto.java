@@ -3,8 +3,6 @@ package jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract;
 import java.math.BigDecimal;
 import java.util.Date;
 
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
@@ -72,9 +70,9 @@ public class EntryContentLowPressureDto extends EntityBase {
 	 * 基本検針日(低圧)
 	 */
 	@NotNull
-	@ApiModelProperty(value = "基本検針日(低圧)", required = true, position = 9)
-	@Temporal(TemporalType.DATE)
-	private Date basicMeterReadingDate;
+	@Size(max = 255)
+	@ApiModelProperty(value = "基本検針日(低圧)", required = true, position = 9, allowableValues = "range[0,255]")
+	private String basicMeterReadingDate;
 
 	/**
 	 * 備考
