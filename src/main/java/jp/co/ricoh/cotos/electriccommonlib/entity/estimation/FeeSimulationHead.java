@@ -19,6 +19,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBase;
+import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
+import jp.co.ricoh.cotos.electriccommonlib.repository.estimation.FeeSimulationHeadRepository;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -29,6 +31,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Table(name = "fee_simulation_head")
+@CotosComplementTarget(entity = FeeSimulationHead.class, repository = FeeSimulationHeadRepository.class)
 public class FeeSimulationHead extends EntityBase {
 
 	/**
@@ -302,14 +305,14 @@ public class FeeSimulationHead extends EntityBase {
 	@Digits(integer = 19, fraction = 2)
 	@ApiModelProperty(value = "定価", required = false, position = 38, allowableValues = "range[0.00,9999999999999999999.99]")
 	private BigDecimal basicRateListPrice;
-	
+
 	/**
 	 * SIM番号(主)
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "SIM番号(主)", required = false, position = 39, allowableValues = "range[0,255]")
 	private String simNumberMain;
-	
+
 	/**
 	 * SIM番号(従)
 	 */

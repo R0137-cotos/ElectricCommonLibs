@@ -18,6 +18,8 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBase;
+import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
+import jp.co.ricoh.cotos.electriccommonlib.repository.estimation.ElectricDealerEstimationRepository;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -28,6 +30,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Table(name = "electric_dealer_estimation")
+@CotosComplementTarget(entity = ElectricDealerEstimation.class, repository = ElectricDealerEstimationRepository.class)
 public class ElectricDealerEstimation extends EntityBase {
 
 	public enum PaymentDiv {
@@ -117,14 +120,14 @@ public class ElectricDealerEstimation extends EntityBase {
 	@Column(nullable = true)
 	@ApiModelProperty(value = "メールアドレス1", required = false, position = 8, allowableValues = "range[0,]")
 	private String mailAddress1;
-	
+
 	/**
 	 * メールアドレス2
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "メールアドレス2", required = false, position = 9, allowableValues = "range[0,]")
 	private String mailAddress2;
-	
+
 	/**
 	 * メールアドレス3
 	 */
