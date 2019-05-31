@@ -44,7 +44,7 @@ public class ContractElectricExtDto {
 	 */
 	@NotNull
 	@Size(max = 255)
-	@ApiModelProperty(value = "SIM番号(主)", required = true, position = 3, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "SIM番号(従)", required = true, position = 3, allowableValues = "range[0,255]")
 	private String simNumberSub;
 
 	/**

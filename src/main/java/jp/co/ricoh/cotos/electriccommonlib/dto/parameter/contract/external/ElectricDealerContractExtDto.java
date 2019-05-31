@@ -72,7 +72,7 @@ public class ElectricDealerContractExtDto {
 	 */
 	@NotNull
 	@Size(max = 255)
-	@ApiModelProperty(value = "メールアドレス1", required = true, position = 8, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "メールアドレス2", required = true, position = 8, allowableValues = "range[0,255]")
 	private String mailAddress2;
 
 	/**
