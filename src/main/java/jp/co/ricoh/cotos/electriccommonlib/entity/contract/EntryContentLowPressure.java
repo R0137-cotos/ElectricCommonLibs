@@ -2,7 +2,6 @@ package jp.co.ricoh.cotos.electriccommonlib.entity.contract;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,8 +12,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Digits;
 
@@ -174,9 +171,8 @@ public class EntryContentLowPressure extends EntityBase {
 	 * 基本検針日(低圧)
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "基本検針日(低圧)", required = true, position = 9)
-	@Temporal(TemporalType.DATE)
-	private Date basicMeterReadingDate;
+	@ApiModelProperty(value = "基本検針日(低圧)", required = true, position = 9, allowableValues = "range[0,255]")
+	private String basicMeterReadingDate;
 
 	/**
 	 * 備考
