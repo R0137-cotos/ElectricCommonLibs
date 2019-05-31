@@ -53,7 +53,7 @@ spring:
     serialization:
       fail-on-empty-beans: false
   messages:
-    basename: Messages, ElectricMessages
+    basename: Messages,ElectricMessages
     defaultEncoding: UTF-8
 remote:
   momauthority:
