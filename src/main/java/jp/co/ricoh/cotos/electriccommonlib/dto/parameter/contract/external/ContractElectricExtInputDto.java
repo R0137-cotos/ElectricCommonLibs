@@ -62,7 +62,7 @@ public class ContractElectricExtInputDto {
 	@NotNull
 	@OneToOne(mappedBy = "contractElectricExtCreate", optional = false)
 	@ApiModelProperty(value = "契約(電力)", required = true, position = 6)
-	private ContractElectricExtDto contractElectricExtDto;
+	private ContractElectricExtDto contractElectric;
 	
 	/**
 	 * 顧客
@@ -71,7 +71,7 @@ public class ContractElectricExtInputDto {
 	@NotNull
 	@OneToOne(mappedBy = "contractElectricExtCreate", optional = false)
 	@ApiModelProperty(value = "顧客", required = true, position = 7)
-	private CustomerContractExtDto customerContractExtDto;
+	private CustomerContractExtDto customerContract;
 	
 	/**
 	 * 契約担当者メールアドレス
@@ -80,7 +80,7 @@ public class ContractElectricExtInputDto {
 	@NotNull
 	@OneToMany(mappedBy = "contractElectricExtCreate")
 	@ApiModelProperty(value = "契約担当者メールアドレス", required = true, position = 8)
-	private List<MailAddressInformationExtDto> mailAddressInformationExtDtoList;
+	private List<MailAddressInformationExtDto> contractPersonMailAddressList;
 	
 	/**
 	 * 請求先メールアドレスリスト
@@ -89,7 +89,7 @@ public class ContractElectricExtInputDto {
 	@NotNull
 	@OneToMany(mappedBy = "contractElectricExtCreate")
 	@ApiModelProperty(value = "請求先メールアドレスリスト", required = true, position = 9)
-	private List<BillingMailAddressInformationExtDto> billingMailAddressInformationExtDto;
+	private List<BillingMailAddressInformationExtDto> billingMailAddressList;
 	
 	/**
 	 * 契約担当SA社員
@@ -98,7 +98,7 @@ public class ContractElectricExtInputDto {
 	@NotNull
 	@OneToOne(mappedBy = "contractElectricExtCreate", optional = false)
 	@ApiModelProperty(value = "契約担当SA社員", required = true, position = 10)
-	private ContractPicSaEmpExtDto contractPicSaEmpExtDto;
+	private ContractPicSaEmpExtDto contractPicSaEmp;
 	
 	/**
 	 * 電力専任情報
@@ -107,7 +107,7 @@ public class ContractElectricExtInputDto {
 	@NotNull
 	@OneToOne(mappedBy = "contractElectricExtCreate", optional = false)
 	@ApiModelProperty(value = "電力専任情報", required = true, position = 11)
-	private ElectricExpertContractExtDto electricExpertContractExtDto;
+	private ElectricExpertContractExtDto electricExpertContract;
 	
 	/**
 	 * 追加編集者
@@ -116,7 +116,7 @@ public class ContractElectricExtInputDto {
 	@NotNull
 	@OneToOne(mappedBy = "contractElectricExtCreate", optional = false)
 	@ApiModelProperty(value = "追加編集者", required = true, position = 12)
-	private List<ContractAddedEditorEmpExtDto> contractAddedEditorEmpExtDtoList;
+	private List<ContractAddedEditorEmpExtDto> contractAddedEditorEmpList;
 	
 	/**
 	 * 重要項目説明者
@@ -125,7 +125,7 @@ public class ContractElectricExtInputDto {
 	@NotNull
 	@OneToOne(mappedBy = "contractElectricExtCreate", optional = false)
 	@ApiModelProperty(value = "重要項目説明者", required = true, position = 13)
-	private ImportantPointExplainerExtDto importantPointExplainerExtDto;
+	private ImportantPointExplainerExtDto importantPointExplainer;
 	
 	/**
 	 * 販売店情報
@@ -134,15 +134,15 @@ public class ContractElectricExtInputDto {
 	@NotNull
 	@OneToOne(mappedBy = "contractElectricExtCreate", optional = false)
 	@ApiModelProperty(value = "販売店情報", required = true, position = 14)
-	private ElectricDealerContractExtDto electricDealerContractExtDto;
+	private ElectricDealerContractExtDto electricDealerContract;
 	
 	/**
 	 * 料金シュミレーション
 	 */
-//	@Valid
-//	@NotNull
-//	@OneToOne(mappedBy = "contractElectricExtCreate", optional = false)
-//	@ApiModelProperty(value = "料金シュミレーション", required = true, position = 15)
-//	private FeeSimulationHeadExtDto feeSimulationHeadExtDto;
+	@Valid
+	@NotNull
+	@OneToOne(mappedBy = "contractElectricExtCreate", optional = false)
+	@ApiModelProperty(value = "料金シュミレーション", required = true, position = 15)
+	private FeeSimulationHeadExtDto feeSimulationHead;
 
 }

@@ -147,7 +147,7 @@ public class ContractElectricExtDto {
 	 * 申込日
 	 */
 	@NotNull
-	@ApiModelProperty(value = "申込日", required = false, position = 16)
+	@ApiModelProperty(value = "申込日", required = true, position = 16)
 	@Temporal(TemporalType.DATE)
 	private Date entryDate;
 
