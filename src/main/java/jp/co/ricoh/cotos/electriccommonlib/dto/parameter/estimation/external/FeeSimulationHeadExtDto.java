@@ -3,7 +3,6 @@ package jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external;
 import java.math.BigDecimal;
 import java.util.Date;
 
-import javax.persistence.Column;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
@@ -351,9 +350,8 @@ public class FeeSimulationHeadExtDto extends DtoBase {
 	 * 基本料金_定価
 	 */
 	@NotNull
-	@Column(nullable = true)
 	@DecimalMin("0.00")
 	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "基本料金_定価", required = false, position = 40, allowableValues = "range[0.00,9999999999999999999.99]")
+	@ApiModelProperty(value = "基本料金_定価", required = true, position = 40, allowableValues = "range[0.00,9999999999999999999.99]")
 	private BigDecimal basicRateListPrice;
 }

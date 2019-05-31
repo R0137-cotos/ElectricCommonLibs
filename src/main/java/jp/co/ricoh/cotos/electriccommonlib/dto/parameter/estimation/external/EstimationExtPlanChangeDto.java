@@ -60,7 +60,7 @@ public class EstimationExtPlanChangeDto extends DtoBase {
 	 */
 	@Valid
 	@NotNull
-	@ApiModelProperty(value = "顧客（見積用）", required = true, position = 7)
+	@ApiModelProperty(value = "見積担当SA社員", required = true, position = 8)
 	private EstimationPicSaEmpExtDto estimationPicSaEmp;
 
 	/**
@@ -68,18 +68,21 @@ public class EstimationExtPlanChangeDto extends DtoBase {
 	 */
 	@Valid
 	@NotNull
+	@ApiModelProperty(value = "電力専任情報", required = true, position = 9)
 	private ElectricExpertEstimationExtDto electricExpertEstimation;
 
 	/**
 	 * 追加編集者
 	 */
 	@Valid
+	@ApiModelProperty(value = "追加編集者", required = false, position = 10)
 	private List<EstimationAddedEditorEmpExtDto> estimationAddedEditorEmpList;
 
 	/**
 	 * 販売店情報
 	 */
 	@Valid
+	@ApiModelProperty(value = "販売店情報", required = false, position = 11)
 	private ElectricDealerEstimationExtDto electricDealerEstimation;
 
 	/**
@@ -87,6 +90,7 @@ public class EstimationExtPlanChangeDto extends DtoBase {
 	 */
 	@Valid
 	@NotNull
+	@ApiModelProperty(value = "料金シミュレーション（本部用）", required = true, position = 12)
 	private FeeSimulationHeadExtDto feeSimulationHead;
 
 }
