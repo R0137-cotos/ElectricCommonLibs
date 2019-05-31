@@ -2,7 +2,6 @@ package jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract;
 
 import java.util.Date;
 
-import javax.persistence.Column;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
@@ -83,7 +82,7 @@ public class ContractElectricAttachedFileDto extends DtoBase {
 	@ApiModelProperty(value = "添付日時", required = false, position = 10)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date attachedAt;
-	
+
 	/**
 	 * 電力用ファイル種別
 	 */

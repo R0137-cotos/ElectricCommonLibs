@@ -192,7 +192,7 @@ public class EstimationElectric extends EntityBase {
 	@DecimalMin("0.00")
 	@Digits(integer = 8, fraction = 2)
 	@ApiModelProperty(value = "ベース部", required = false, position = 23, allowableValues = "range[0.00,99999999.99]")
-	private BigDecimal base_part;
+	private BigDecimal basePart;
 
 	/**
 	 * 変動部
