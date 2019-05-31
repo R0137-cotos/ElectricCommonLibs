@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
+import jp.co.ricoh.cotos.commonlib.entity.master.DummyUserMaster;
 import jp.co.ricoh.cotos.commonlib.entity.master.MvEmployeeMaster;
 import jp.co.ricoh.cotos.commonlib.security.CotosAuthenticationDetails;
 import jp.co.ricoh.cotos.electriccommonlib.util.RestTemplateCreator;
@@ -33,8 +34,15 @@ public class UnitPriceLowPressureListener {
 	@Transactional
 	public void appendCreateUserName(UnitPriceLowPressure unitPriceLowPressure) {
 
-		// 登録者名登録
 		CotosAuthenticationDetails userInfo = (CotosAuthenticationDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+		DummyUserMaster dummyUserMaster = restTemplateCreator.getRestTemplate().getForEntity(standardProperties.getMaster() + "/master/findDummyUserMaster/" + userInfo.getMomEmployeeId(), DummyUserMaster.class).getBody();
+		if (dummyUserMaster != null) {
+			unitPriceLowPressure.setCreatedUserName(dummyUserMaster.getEmpName());
+			return;
+		}
+
+		// 登録者名登録
 		MvEmployeeMaster mvEmployeeMaster = restTemplateCreator.getRestTemplate().getForEntity(standardProperties.getMaster() + "/master/findEmployeeMaster/" + userInfo.getMomEmployeeId(), MvEmployeeMaster.class).getBody();
 		unitPriceLowPressure.setCreatedUserName(mvEmployeeMaster.getJobname1() + " " + mvEmployeeMaster.getJobname2());
 	}

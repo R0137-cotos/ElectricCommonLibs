@@ -18,9 +18,11 @@ import javax.validation.constraints.Min;
 
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBase;
+import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
 import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.ElectricCommercialFlowDiv;
 import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.VoltageCategory;
 import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricFormMaster.ElectricPlan;
+import jp.co.ricoh.cotos.electriccommonlib.repository.estimation.EstimationElectricRepository;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -31,6 +33,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Table(name = "estimation_electric")
+@CotosComplementTarget(entity = EstimationElectric.class, repository = EstimationElectricRepository.class)
 public class EstimationElectric extends EntityBase {
 
 	/**
@@ -264,7 +267,7 @@ public class EstimationElectric extends EntityBase {
 	@Column(nullable = true)
 	@ApiModelProperty(value = "電力会社コード", required = false, position = 32, allowableValues = "range[0,255]")
 	private String electricMenuCode;
-	
+
 	/**
 	 * CO2排出係数
 	 */
