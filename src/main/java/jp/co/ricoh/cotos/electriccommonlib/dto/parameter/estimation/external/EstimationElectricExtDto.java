@@ -13,7 +13,6 @@ import javax.validation.constraints.Size;
 
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.dto.parameter.common.DtoBase;
-import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.VoltageCategory;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -59,8 +58,9 @@ public class EstimationElectricExtDto extends DtoBase {
 
 	/**電力区分*/
 	@NotNull
+	@Size(max = 255)
 	@ApiModelProperty(value = "電力区分", required = true, position = 9, allowableValues = "range[0,255]")
-	private VoltageCategory voltageCategory;
+	private String voltageCategory;
 
 	/**電力メニュー*/
 	@NotNull

@@ -89,6 +89,7 @@ public class TestEstimationExtDto {
 		target.setElectricCommercialFlowDiv(entity.getElectricCommercialFlowDiv().toString());
 		target.setCo2EmissionMenu("test");
 		target.setCo2EmissionFactor("1");
+		target.setVoltageCategory(entity.getVoltageCategory().toString());
 		ParamterCheckResult result = testSecurityController.callParameterCheck(target, headersProperties, localServerPort);
 		testTool.assertValidationOk(result);
 
@@ -139,8 +140,9 @@ public class TestEstimationExtDto {
 		target.setPowerSupplyCycle(STR_256);
 		target.setContractQuantity(STR_256);
 		target.setTypeOfContract(STR_256);
+		target.setVoltageCategory(STR_256);
 		result = testSecurityController.callParameterCheck(target, headersProperties, localServerPort);
-		Assert.assertTrue(result.getErrorInfoList().size() == 15);
+		Assert.assertTrue(result.getErrorInfoList().size() == 16);
 
 		// 異常系(@Min)
 		BeanUtils.copyProperties(entity, target);
@@ -334,7 +336,7 @@ public class TestEstimationExtDto {
 		target.setMailAddress2(STR_256);
 		target.setMailAddress3(STR_256);
 		result = testSecurityController.callParameterCheck(target, headersProperties, localServerPort);
-		Assert.assertTrue(result.getErrorInfoList().size() == 9);
+		Assert.assertTrue(result.getErrorInfoList().size() == 8);
 
 	}
 
