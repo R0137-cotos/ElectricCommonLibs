@@ -16,7 +16,7 @@ import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = false)
 @Data
-public class ContractElectricExtCreate {
+public class ContractElectricExtInputDto {
 	
 	/**
 	 * 案件番号
@@ -62,7 +62,7 @@ public class ContractElectricExtCreate {
 	@NotNull
 	@OneToOne(mappedBy = "contractElectricExtCreate", optional = false)
 	@ApiModelProperty(value = "契約(電力)", required = true, position = 6)
-	private ElectricContractExtDto electricContractExtDto;
+	private ContractElectricExtDto contractElectricExtDto;
 	
 	/**
 	 * 顧客
@@ -116,7 +116,7 @@ public class ContractElectricExtCreate {
 	@NotNull
 	@OneToOne(mappedBy = "contractElectricExtCreate", optional = false)
 	@ApiModelProperty(value = "追加編集者", required = true, position = 12)
-	private List<ContractAddedEditorEmpExtDto> ContractAddedEditorEmpExtDtoList;
+	private List<ContractAddedEditorEmpExtDto> contractAddedEditorEmpExtDtoList;
 	
 	/**
 	 * 重要項目説明者
@@ -139,10 +139,10 @@ public class ContractElectricExtCreate {
 	/**
 	 * 料金シュミレーション
 	 */
-	@Valid
-	@NotNull
-	@OneToOne(mappedBy = "contractElectricExtCreate", optional = false)
-	@ApiModelProperty(value = "料金シュミレーション", required = true, position = 15)
-	private FeeSimulationHeadExtDto feeSimulationHeadExtDto;
+//	@Valid
+//	@NotNull
+//	@OneToOne(mappedBy = "contractElectricExtCreate", optional = false)
+//	@ApiModelProperty(value = "料金シュミレーション", required = true, position = 15)
+//	private FeeSimulationHeadExtDto feeSimulationHeadExtDto;
 
 }

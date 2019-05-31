@@ -41,6 +41,7 @@ import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.ImportantPoint
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.MailAddressInformationDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.UnitPriceHighPressureDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.UnitPriceLowPressureDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.ContractElectricExtInputDto;
 import jp.co.ricoh.cotos.electriccommonlib.security.bean.ParamterCheckResult;
 import lombok.Data;
 
@@ -210,6 +211,11 @@ public class TestSecurityController {
 	
 	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/BillingMailAddressInformationDto")
 	public ParamterCheckResult callParamterCheck(@RequestBody @Validated BillingMailAddressInformationDto dto, BindingResult result) {
+		return createParameterCheckResult(result);
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/ContractElectricExtInputDto")
+	public ParamterCheckResult callParamterCheck(@RequestBody @Validated ContractElectricExtInputDto dto, BindingResult result) {
 		return createParameterCheckResult(result);
 	}
 }
