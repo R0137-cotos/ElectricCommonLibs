@@ -1,6 +1,7 @@
 package jp.co.ricoh.cotos.electriccommonlib.check.external;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
 
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -22,6 +23,7 @@ import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.Ele
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.ElectricExpertEstimationExtDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.EstimationAddedEditorEmpExtDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.EstimationElectricExtDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.EstimationExtPlanChangeDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.EstimationPicSaEmpExtDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.FeeSimulationHeadExtDto;
 import jp.co.ricoh.cotos.electriccommonlib.entity.estimation.EstimationElectric;
@@ -76,6 +78,68 @@ public class TestEstimationExtDto {
 			context.getBean(DBConfig.class).clearData();
 			context.stop();
 		}
+	}
+
+	@Test
+	public void EstimationExtPlanChangeDtoのテスト() {
+
+		EstimationExtPlanChangeDto target = new EstimationExtPlanChangeDto();
+
+		//正常系
+		target.setCaseTitle("test");
+		target.setCaseNumber("test");
+		target.setOriginContractId(1);
+		EstimationElectric entityEstimation = estimationElectricRepository.findOne(1L);
+		EstimationElectricExtDto targetEstimation = new EstimationElectricExtDto();
+		BeanUtils.copyProperties(entityEstimation, targetEstimation);
+		targetEstimation.setElectricCommercialFlowDivCode("1");
+		targetEstimation.setElectricCommercialFlowDiv(entityEstimation.getElectricCommercialFlowDiv().toString());
+		targetEstimation.setCo2EmissionMenu("test");
+		targetEstimation.setCo2EmissionFactor("1");
+		targetEstimation.setVoltageCategory(entityEstimation.getVoltageCategory().toString());
+		target.setEstimationElectric(targetEstimation);
+
+		CustomerEstimationExtDto targetCustomer = 顧客正常データ作成();
+		target.setCustomerEstimation(targetCustomer);
+
+		EstimationPicSaEmpExtDto targetEmp = new EstimationPicSaEmpExtDto();
+		targetEmp.setMomEmployeeId("test");
+		target.setEstimationPicSaEmp(targetEmp);
+
+		ElectricExpertEstimationExtDto targetExpert = new ElectricExpertEstimationExtDto();
+		targetExpert.setMomEmployeeId("test");
+		target.setElectricExpertEstimation(targetExpert);
+
+		FeeSimulationHead entitySimulation = estimationElectricRepository.findOne(1L).getFeeSimulationHead();
+		FeeSimulationHeadExtDto targetSimulation = new FeeSimulationHeadExtDto();
+		BeanUtils.copyProperties(entitySimulation, targetSimulation);
+		target.setFeeSimulationHead(targetSimulation);
+		ParamterCheckResult result = testSecurityController.callParameterCheck(target, headersProperties, localServerPort);
+		testTool.assertValidationOk(result);
+
+		//異常系
+		target.setCaseTitle(null);
+		target.setCaseNumber(null);
+		target.setEstimationElectric(null);
+		target.setCustomerEstimation(null);
+		target.setEstimationPicSaEmp(null);
+		target.setElectricExpertEstimation(null);
+		target.setFeeSimulationHead(null);
+
+		result = testSecurityController.callParameterCheck(target, headersProperties, localServerPort);
+		Assert.assertTrue(result.getErrorInfoList().size() == 7);
+
+		target.setEstimationElectric(new EstimationElectricExtDto());
+		target.setCustomerEstimation(new CustomerEstimationExtDto());
+		target.setEstimationPicSaEmp(new EstimationPicSaEmpExtDto());
+		target.setElectricExpertEstimation(new ElectricExpertEstimationExtDto());
+		target.setFeeSimulationHead(new FeeSimulationHeadExtDto());
+		target.setElectricDealerEstimation(new ElectricDealerEstimationExtDto());
+		target.setEstimationAddedEditorEmpList(Arrays.asList(new EstimationAddedEditorEmpExtDto()));
+
+		result = testSecurityController.callParameterCheck(target, headersProperties, localServerPort);
+		Assert.assertTrue(result.getErrorInfoList().size() == 88);
+
 	}
 
 	@Test

@@ -29,7 +29,7 @@ public class EstimationExtPlanChangeDto extends DtoBase {
 	@NotNull
 	@Size(max = 255)
 	@ApiModelProperty(value = "案件番号", required = true, position = 4, allowableValues = "range[0,255]")
-	private String caseNumer;
+	private String caseNumber;
 
 	/**
 	 * 案件名
@@ -43,42 +43,50 @@ public class EstimationExtPlanChangeDto extends DtoBase {
 	 * 見積（電力用）
 	 */
 	@Valid
-	private EstimationElectricExtDto estimationElectricExtDto;
+	@NotNull
+	@ApiModelProperty(value = "見積（電力用）", required = true, position = 6)
+	private EstimationElectricExtDto estimationElectric;
 
 	/**
 	 * 顧客（見積用）
 	 */
 	@Valid
-	private CustomerEstimationExtDto customerEstimationExtDto;
+	@NotNull
+	@ApiModelProperty(value = "顧客（見積用）", required = true, position = 7)
+	private CustomerEstimationExtDto customerEstimation;
 
 	/**
 	 * 見積担当SA社員
 	 */
 	@Valid
-	private EstimationPicSaEmpExtDto estimationPicSaEmpExtDto;
+	@NotNull
+	@ApiModelProperty(value = "顧客（見積用）", required = true, position = 7)
+	private EstimationPicSaEmpExtDto estimationPicSaEmp;
 
 	/**
 	 * 電力専任情報
 	 */
 	@Valid
-	private ElectricExpertEstimationExtDto electricExpertEstimationExtDto;
+	@NotNull
+	private ElectricExpertEstimationExtDto electricExpertEstimation;
 
 	/**
 	 * 追加編集者
 	 */
 	@Valid
-	private List<EstimationAddedEditorEmpExtDto> estimationAddedEditorEmpExtDtoList;
+	private List<EstimationAddedEditorEmpExtDto> estimationAddedEditorEmpList;
 
 	/**
 	 * 販売店情報
 	 */
 	@Valid
-	private ElectricDealerEstimationExtDto electricDealerEstimationExtDto;
+	private ElectricDealerEstimationExtDto electricDealerEstimation;
 
 	/**
 	 * 料金シミュレーション（本部用）
 	 */
 	@Valid
-	private FeeSimulationHeadExtDto feeSimulationHeadExtDto;
+	@NotNull
+	private FeeSimulationHeadExtDto feeSimulationHead;
 
 }
