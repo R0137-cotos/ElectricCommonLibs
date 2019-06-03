@@ -780,7 +780,7 @@ public class TestContractDto {
 		ContractElectricExtDto contractElectricExtDto = new ContractElectricExtDto();
 		BeanUtils.copyProperties(entity.getEntryContentLowPressure(), contractElectricExtDto);
 		BeanUtils.copyProperties(entity, contractElectricExtDto);
-		contractElectricExtDto.setSendInvoiceDiv(SendInvoiceDiv.郵送のみ);
+		contractElectricExtDto.setSendInvoiceDiv(SendInvoiceDiv.メール_MyRICOH);
 		contractElectricExtDto.setBasicMeterReadingDate("dd");
 		contractElectricExtDto.setCo2EmissionMenu(ElectricPlan.CO2フリー);
 		contractElectricExtDto.setElectricCommercialFlowDiv("直売");
@@ -890,7 +890,7 @@ public class TestContractDto {
 		// 契約(電力)
 		BeanUtils.copyProperties(entity.getEntryContentLowPressure(), contractElectricExtDto);
 		BeanUtils.copyProperties(entity, contractElectricExtDto);
-		contractElectricExtDto.setSendInvoiceDiv(SendInvoiceDiv.郵送のみ);
+		contractElectricExtDto.setSendInvoiceDiv(SendInvoiceDiv.メール_MyRICOH);
 		contractElectricExtDto.setBasicMeterReadingDate("dd");
 		contractElectricExtDto.setCo2EmissionMenu(ElectricPlan.CO2フリー);
 		contractElectricExtDto.setElectricCommercialFlowDiv("直売");
@@ -1025,7 +1025,7 @@ public class TestContractDto {
 		contractElectricExtDto = new ContractElectricExtDto();
 		BeanUtils.copyProperties(entity.getEntryContentLowPressure(), contractElectricExtDto);
 		BeanUtils.copyProperties(entity, contractElectricExtDto);
-		contractElectricExtDto.setSendInvoiceDiv(SendInvoiceDiv.郵送のみ);
+		contractElectricExtDto.setSendInvoiceDiv(SendInvoiceDiv.メール_MyRICOH);
 		contractElectricExtDto.setBasicMeterReadingDate("dd");
 		contractElectricExtDto.setCo2EmissionMenu(ElectricPlan.CO2フリー);
 		contractElectricExtDto.setElectricCommercialFlowDiv("直売");
