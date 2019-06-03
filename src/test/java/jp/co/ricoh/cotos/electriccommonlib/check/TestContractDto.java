@@ -51,7 +51,6 @@ import jp.co.ricoh.cotos.electriccommonlib.entity.contract.BillingBasicInformati
 import jp.co.ricoh.cotos.electriccommonlib.entity.contract.BillingMailAddressInformation;
 import jp.co.ricoh.cotos.electriccommonlib.entity.contract.ClientMaster;
 import jp.co.ricoh.cotos.electriccommonlib.entity.contract.ContractElectric;
-import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricDealerMaster.PaymentMethod;
 import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricFormMaster.ElectricPlan;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.BillingBasicInformationRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.BillingMailAddressInformationRepository;
@@ -768,7 +767,6 @@ public class TestContractDto {
 	@Test
 	public void ContractElectricExtInputDtoのテスト() throws Exception {
 
-		// 単価情報はDTOが出来ていないためテスト未実施
 		ContractElectric entity = contractElectricRepository.findOne(1L);
 
 		// テストデータ作成
@@ -835,10 +833,6 @@ public class TestContractDto {
 		importantPointExplainerExtDto.setOrganizationName1("所属組織名1");
 		importantPointExplainerExtDto.setOrganizationName2("所属組織名2");
 		testTarget.setImportantPointExplainer(importantPointExplainerExtDto);
-		// 販売店情報
-		ElectricDealerContractExtDto electricDealerContractExtDto = new ElectricDealerContractExtDto();
-		BeanUtils.copyProperties(entity.getElectricDealerContract(), electricDealerContractExtDto);
-		testTarget.setElectricDealerContract(electricDealerContractExtDto);
 		// 料金シュミレーション
 		FeeSimulationHeadExtDto feeSimulationHeadExtDto = new FeeSimulationHeadExtDto();
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
@@ -878,7 +872,7 @@ public class TestContractDto {
 		testTarget.setElectricDealerContract(new ElectricDealerContractExtDto());
 		testTarget.setFeeSimulationHead(new FeeSimulationHeadExtDto());
 		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
-		Assert.assertEquals(86, result.getErrorInfoList().size());
+		Assert.assertEquals(75, result.getErrorInfoList().size());
 
 		// 異常系(@Size(max))
 		entity = contractElectricRepository.findOne(1L);
@@ -980,18 +974,6 @@ public class TestContractDto {
 		importantPointExplainerExtDto.setOrganizationName1(STR_256);
 		importantPointExplainerExtDto.setOrganizationName2(STR_256);
 		testTarget.setImportantPointExplainer(importantPointExplainerExtDto);
-		// 販売店情報
-		electricDealerContractExtDto = new ElectricDealerContractExtDto();
-		electricDealerContractExtDto.setCompanyId(STR_256);
-		electricDealerContractExtDto.setCompanyBusinessName(STR_256);
-		electricDealerContractExtDto.setPhoneNumber(STR_256);
-		electricDealerContractExtDto.setPostNumber(STR_256);
-		electricDealerContractExtDto.setAddress(STR_256);
-		electricDealerContractExtDto.setMailAddress1(STR_256);
-		electricDealerContractExtDto.setMailAddress2(STR_256);
-		electricDealerContractExtDto.setMailAddress3(STR_256);
-		electricDealerContractExtDto.setPaymentMethod(PaymentMethod.定率);
-		testTarget.setElectricDealerContract(electricDealerContractExtDto);
 		// 料金シュミレーション
 		feeSimulationHeadExtDto = new FeeSimulationHeadExtDto();
 		feeSimulationHeadExtDto.setCreatedDate(dateFormat.parse("2019/05/31"));
@@ -1013,7 +995,7 @@ public class TestContractDto {
 		feeSimulationHeadExtDto.setUsageFeeOtherSeasonBankPriceRj(BigDecimal.valueOf(100));
 		testTarget.setFeeSimulationHead(feeSimulationHeadExtDto);
 		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
-		Assert.assertEquals(65, result.getErrorInfoList().size());
+		Assert.assertEquals(57, result.getErrorInfoList().size());
 
 		// 異常系(@Min, @Decimal)
 		// テストデータ作成
@@ -1085,10 +1067,6 @@ public class TestContractDto {
 		importantPointExplainerExtDto.setOrganizationName1("所属組織名1");
 		importantPointExplainerExtDto.setOrganizationName2("所属組織名2");
 		testTarget.setImportantPointExplainer(importantPointExplainerExtDto);
-		// 販売店情報
-		electricDealerContractExtDto = new ElectricDealerContractExtDto();
-		BeanUtils.copyProperties(entity.getElectricDealerContract(), electricDealerContractExtDto);
-		testTarget.setElectricDealerContract(electricDealerContractExtDto);
 		// 料金シュミレーション
 		feeSimulationHeadExtDto = new FeeSimulationHeadExtDto();
 		feeSimulationHeadExtDto.setCreatedDate(dateFormat.parse("2019/05/31"));

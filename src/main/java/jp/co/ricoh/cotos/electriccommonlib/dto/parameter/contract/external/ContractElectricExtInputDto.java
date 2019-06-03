@@ -3,8 +3,6 @@ package jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -60,7 +58,6 @@ public class ContractElectricExtInputDto {
 	 */
 	@Valid
 	@NotNull
-	@OneToOne(mappedBy = "contractElectricExtCreate", optional = false)
 	@ApiModelProperty(value = "契約(電力)", required = true, position = 6)
 	private ContractElectricExtDto contractElectric;
 	
@@ -69,7 +66,6 @@ public class ContractElectricExtInputDto {
 	 */
 	@Valid
 	@NotNull
-	@OneToOne(mappedBy = "contractElectricExtCreate", optional = false)
 	@ApiModelProperty(value = "顧客", required = true, position = 7)
 	private CustomerContractExtDto customerContract;
 	
@@ -78,7 +74,6 @@ public class ContractElectricExtInputDto {
 	 */
 	@Valid
 	@NotNull
-	@OneToMany(mappedBy = "contractElectricExtCreate")
 	@ApiModelProperty(value = "契約担当者メールアドレス", required = true, position = 8)
 	private List<MailAddressInformationExtDto> contractPersonMailAddressList;
 	
@@ -87,7 +82,6 @@ public class ContractElectricExtInputDto {
 	 */
 	@Valid
 	@NotNull
-	@OneToMany(mappedBy = "contractElectricExtCreate")
 	@ApiModelProperty(value = "請求先メールアドレスリスト", required = true, position = 9)
 	private List<BillingMailAddressInformationExtDto> billingMailAddressList;
 	
@@ -96,7 +90,6 @@ public class ContractElectricExtInputDto {
 	 */
 	@Valid
 	@NotNull
-	@OneToOne(mappedBy = "contractElectricExtCreate", optional = false)
 	@ApiModelProperty(value = "契約担当SA社員", required = true, position = 10)
 	private ContractPicSaEmpExtDto contractPicSaEmp;
 	
@@ -105,7 +98,6 @@ public class ContractElectricExtInputDto {
 	 */
 	@Valid
 	@NotNull
-	@OneToOne(mappedBy = "contractElectricExtCreate", optional = false)
 	@ApiModelProperty(value = "電力専任情報", required = true, position = 11)
 	private ElectricExpertContractExtDto electricExpertContract;
 	
@@ -114,7 +106,6 @@ public class ContractElectricExtInputDto {
 	 */
 	@Valid
 	@NotNull
-	@OneToOne(mappedBy = "contractElectricExtCreate", optional = false)
 	@ApiModelProperty(value = "追加編集者", required = true, position = 12)
 	private List<ContractAddedEditorEmpExtDto> contractAddedEditorEmpList;
 	
@@ -123,7 +114,6 @@ public class ContractElectricExtInputDto {
 	 */
 	@Valid
 	@NotNull
-	@OneToOne(mappedBy = "contractElectricExtCreate", optional = false)
 	@ApiModelProperty(value = "重要項目説明者", required = true, position = 13)
 	private ImportantPointExplainerExtDto importantPointExplainer;
 	
@@ -131,9 +121,7 @@ public class ContractElectricExtInputDto {
 	 * 販売店情報
 	 */
 	@Valid
-	@NotNull
-	@OneToOne(mappedBy = "contractElectricExtCreate", optional = false)
-	@ApiModelProperty(value = "販売店情報", required = true, position = 14)
+	@ApiModelProperty(value = "販売店情報", required = false, position = 14)
 	private ElectricDealerContractExtDto electricDealerContract;
 	
 	/**
@@ -141,7 +129,6 @@ public class ContractElectricExtInputDto {
 	 */
 	@Valid
 	@NotNull
-	@OneToOne(mappedBy = "contractElectricExtCreate", optional = false)
 	@ApiModelProperty(value = "料金シュミレーション", required = true, position = 15)
 	private FeeSimulationHeadExtDto feeSimulationHead;
 

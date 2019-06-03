@@ -13,6 +13,7 @@ import javax.validation.constraints.Size;
 
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.dto.parameter.common.DtoBase;
+import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricFormMaster.ElectricPlan;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -76,10 +77,9 @@ public class EstimationElectricExtDto extends DtoBase {
 
 	/**CO2排出メニュー*/
 	@NotNull
-	@Size(max = 255)
 	@Column(name = "co2_emission_menu")
 	@ApiModelProperty(value = "CO2排出メニュー", required = true, position = 12, allowableValues = "range[0,255]")
-	private String co2EmissionMenu;
+	private ElectricPlan co2EmissionMenu;
 
 	/**CO2排出係数*/
 	@NotNull

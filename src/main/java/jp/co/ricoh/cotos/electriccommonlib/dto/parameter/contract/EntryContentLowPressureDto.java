@@ -1,7 +1,6 @@
 package jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract;
 
 import java.math.BigDecimal;
-import java.util.Date;
 
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Digits;

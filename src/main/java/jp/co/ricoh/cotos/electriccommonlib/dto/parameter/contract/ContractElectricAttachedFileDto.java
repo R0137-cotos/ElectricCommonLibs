@@ -2,8 +2,6 @@ package jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract;
 
 import java.util.Date;
 
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Max;
@@ -42,8 +40,6 @@ public class ContractElectricAttachedFileDto extends DtoBase {
 	/**
 	 * 添付ファイル
 	 */
-	@OneToOne
-	@JoinColumn(name = "electric_attached_file_id", referencedColumnName = "id", nullable = true)
 	@ApiModelProperty(value = "添付ファイル", required = false, position = 5)
 	@JsonIgnore
 	private ElectricAttachedFileDto electricAttachedFileDto;

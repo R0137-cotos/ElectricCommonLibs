@@ -1,6 +1,5 @@
 package jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external;
 
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import io.swagger.annotations.ApiModelProperty;
@@ -15,7 +14,6 @@ public class ElectricDealerContractExtDto {
 	/**
 	 * 企業ID
 	 */
-	@NotNull
 	@Size(max = 255)
 	@ApiModelProperty(value = "企業ID", required = true, position = 1, allowableValues = "range[0,255]")
 	private String companyId;
@@ -23,7 +21,6 @@ public class ElectricDealerContractExtDto {
 	/**
 	 * 販売店企業名
 	 */
-	@NotNull
 	@Size(max = 255)
 	@ApiModelProperty(value = "販売店企業名", required = true, position = 2, allowableValues = "range[0,1000]")
 	private String companyBusinessName;
@@ -31,7 +28,6 @@ public class ElectricDealerContractExtDto {
 	/**
 	 * 事業所電話番号
 	 */
-	@NotNull
 	@Size(max = 255)
 	@ApiModelProperty(value = "事業所電話番号", required = true, position = 3, allowableValues = "range[0,255]")
 	private String phoneNumber;
@@ -39,7 +35,6 @@ public class ElectricDealerContractExtDto {
 	/**
 	 * 郵便番号
 	 */
-	@NotNull
 	@Size(max = 255)
 	@ApiModelProperty(value = "郵便番号", required = true, position = 4, allowableValues = "range[0,255]")
 	private String postNumber;
@@ -47,7 +42,6 @@ public class ElectricDealerContractExtDto {
 	/**
 	 * 住所
 	 */
-	@NotNull
 	@Size(max = 255)
 	@ApiModelProperty(value = "住所", required = true, position = 5, allowableValues = "range[0,4000]")
 	private String address;
@@ -55,7 +49,6 @@ public class ElectricDealerContractExtDto {
 	/**
 	 * メールアドレス1
 	 */
-	@NotNull
 	@Size(max = 255)
 	@ApiModelProperty(value = "メールアドレス1", required = true, position = 6, allowableValues = "range[0,255]")
 	private String mailAddress1;
@@ -63,14 +56,12 @@ public class ElectricDealerContractExtDto {
 	/**
 	 * 支払区分
 	 */
-	@NotNull
 	@ApiModelProperty(value = "支払区分", required = true, position = 7, allowableValues = "定率(\"1\"), 定額(\"2\")", example = "1")
 	private PaymentMethod paymentMethod;
 
 	/**
 	 * メールアドレス2
 	 */
-	@NotNull
 	@Size(max = 255)
 	@ApiModelProperty(value = "メールアドレス2", required = true, position = 8, allowableValues = "range[0,255]")
 	private String mailAddress2;
@@ -78,7 +69,6 @@ public class ElectricDealerContractExtDto {
 	/**
 	 * メールアドレス3
 	 */
-	@NotNull
 	@Size(max = 255)
 	@ApiModelProperty(value = "メールアドレス3", required = true, position = 9, allowableValues = "range[0,255]")
 	private String mailAddress3;
