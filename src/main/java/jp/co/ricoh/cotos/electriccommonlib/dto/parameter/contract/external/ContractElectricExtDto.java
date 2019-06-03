@@ -218,7 +218,6 @@ public class ContractElectricExtDto {
 	/**
 	 * CO2排出メニュー
 	 */
-	@NotNull
 	@Column(name = "co2_emission_menu")
 	@ApiModelProperty(value = "CO2排出メニュー", required = true, position = 25, allowableValues = "range[0,255]")
 	private ElectricPlan co2EmissionMenu;

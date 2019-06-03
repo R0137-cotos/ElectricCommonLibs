@@ -131,9 +131,8 @@ public class ContractElectricExtInputDto {
 	 * 販売店情報
 	 */
 	@Valid
-	@NotNull
-	@OneToOne(mappedBy = "contractElectricExtCreate", optional = false)
-	@ApiModelProperty(value = "販売店情報", required = true, position = 14)
+	@OneToOne(mappedBy = "contractElectricExtCreate", optional = true)
+	@ApiModelProperty(value = "販売店情報", required = false, position = 14)
 	private ElectricDealerContractExtDto electricDealerContract;
 	
 	/**
