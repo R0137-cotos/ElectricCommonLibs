@@ -225,7 +225,6 @@ public class ContractElectricExtDto {
 	/**
 	 * CO2排出係数
 	 */
-	@NotNull
 	@Size(max = 255)
 	@Column(name = "co2_emission_factor")
 	@ApiModelProperty(value = "CO2排出係数", required = true, position = 26, allowableValues = "range[0,255]")

@@ -4,8 +4,6 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
@@ -318,7 +316,6 @@ public class ContractElectricDto extends DtoBase {
 	 * お申込み内容(高圧)
 	 */
 	@Valid
-	@OneToOne(mappedBy = "contractElectricDto")
 	@ApiModelProperty(value = "お申込み内容(高圧)", required = false, position = 42)
 	private EntryContentHighPressureDto entryContentHighPressureDto;
 
@@ -326,7 +323,6 @@ public class ContractElectricDto extends DtoBase {
 	 * お申込み内容(低圧)
 	 */
 	@Valid
-	@OneToOne(mappedBy = "contractElectricDto")
 	@ApiModelProperty(value = "お申込み内容(低圧)", required = false, position = 43)
 	private EntryContentLowPressureDto entryContentLowPressureDto;
 
@@ -334,7 +330,6 @@ public class ContractElectricDto extends DtoBase {
 	 * 解約情報
 	 */
 	@Valid
-	@OneToOne(mappedBy = "contractElectricDto")
 	@ApiModelProperty(value = "解約情報", required = false, position = 44)
 	private CancellationInformationDto cancellationInformationDto;
 
@@ -343,7 +338,6 @@ public class ContractElectricDto extends DtoBase {
 	 */
 	@Valid
 	@NotNull
-	@OneToOne(mappedBy = "contractElectricDto", optional = false)
 	@ApiModelProperty(value = "電力専任情報", required = true, position = 45)
 	private ElectricExpertContractDto electricExpertContractDto;
 
@@ -351,7 +345,6 @@ public class ContractElectricDto extends DtoBase {
 	 * 販売店情報
 	 */
 	@Valid
-	@OneToOne(mappedBy = "contractElectricDto")
 	@ApiModelProperty(value = "販売店情報", required = false, position = 46)
 	private ElectricDealerContractDto electricDealerContractDto;
 
@@ -359,7 +352,6 @@ public class ContractElectricDto extends DtoBase {
 	 * Mailアドレス情報
 	 */
 	@Valid
-	@OneToMany(mappedBy = "contractElectricDto")
 	@ApiModelProperty(value = "Mailアドレス情報", required = false, position = 47)
 	private List<MailAddressInformationDto> mailAddressInformationDtoList;
 
@@ -367,7 +359,6 @@ public class ContractElectricDto extends DtoBase {
 	 * 契約(電力)添付ファイル
 	 */
 	@Valid
-	@OneToMany(mappedBy = "contractElectricDto")
 	@ApiModelProperty(value = "契約(電力)添付ファイル", required = false, position = 48)
 	private List<ContractElectricAttachedFileDto> contractElectricAttachedFileDtoList;
 
@@ -375,7 +366,6 @@ public class ContractElectricDto extends DtoBase {
 	 * 単価情報(高圧)
 	 */
 	@Valid
-	@OneToMany(mappedBy = "contractElectricDto")
 	@ApiModelProperty(value = "単価情報(高圧)", required = false, position = 49)
 	private List<UnitPriceHighPressureDto> unitPriceHighPressureDtoList;
 
@@ -383,7 +373,6 @@ public class ContractElectricDto extends DtoBase {
 	 * 単価情報(低圧)
 	 */
 	@Valid
-	@OneToMany(mappedBy = "contractElectricDto")
 	@ApiModelProperty(value = "単価情報(低圧)", required = false, position = 50)
 	private List<UnitPriceLowPressureDto> unitPriceLowPressureDtoList;
 
@@ -391,7 +380,6 @@ public class ContractElectricDto extends DtoBase {
 	 * 得意先情報
 	 */
 	@Valid
-	@OneToMany(mappedBy = "contractElectricDto")
 	@ApiModelProperty(value = "得意先情報", required = false, position = 51)
 	private List<ClientInformationDto> clientInformationDtoList;
 
@@ -447,7 +435,6 @@ public class ContractElectricDto extends DtoBase {
 	 * 重要事項説明者
 	 */
 	@Valid
-	@OneToOne(mappedBy = "contractElectricDto")
 	@ApiModelProperty(value = "重要事項説明者", required = false, position = 59)
 	private ImportantPointExplainerDto importantPointExplainerDto;
 	

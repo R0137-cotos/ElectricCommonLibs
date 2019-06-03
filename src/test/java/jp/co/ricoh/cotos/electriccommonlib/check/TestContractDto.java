@@ -872,7 +872,7 @@ public class TestContractDto {
 		testTarget.setElectricDealerContract(new ElectricDealerContractExtDto());
 		testTarget.setFeeSimulationHead(new FeeSimulationHeadExtDto());
 		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
-		Assert.assertEquals(76, result.getErrorInfoList().size());
+		Assert.assertEquals(75, result.getErrorInfoList().size());
 
 		// 異常系(@Size(max))
 		entity = contractElectricRepository.findOne(1L);

@@ -2,7 +2,6 @@ package jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract;
 
 import java.util.List;
 
-import javax.persistence.OneToMany;
 import javax.validation.constraints.Size;
 
 import io.swagger.annotations.ApiModelProperty;
@@ -24,7 +23,6 @@ public class ClientMasterDto extends DtoBase {
 	/**
 	 * 請求先Mailアドレス情報
 	 */
-	@OneToMany(mappedBy = "clientMaster")
 	@ApiModelProperty(value = "請求先Mailアドレス情報", required = false, position = 3)
 	private List<BillingMailAddressInformationDto> BillingMailAddressInformationDtoList;
 }
