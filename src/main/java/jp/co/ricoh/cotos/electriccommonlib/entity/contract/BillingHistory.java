@@ -224,7 +224,7 @@ public class BillingHistory extends EntityBase {
 	 * 請求書発送区分
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "請求書発送区分", required = false, position = 20, allowableValues = "郵送のみ(\"1\")", example = "1")
+	@ApiModelProperty(value = "請求書発送区分", required = false, position = 20, allowableValues = "メール+MyRICOH(\"1\"), メール(\"2\"), 紙請求(\"3\")", example = "1")
 	private SendInvoiceDiv sendInvoiceDiv;
 	
 	/**

@@ -38,7 +38,7 @@ public class MailAddressInformation extends EntityBase {
 
 	public enum MailIdentification {
 
-		契約担当("1"), ピークアラート担当("2");
+		契約担当("1"), ピークアラート担当("2"), 請求先担当("3"), すべて("4");
 
 		private final String text;
 
@@ -77,7 +77,7 @@ public class MailAddressInformation extends EntityBase {
 	 * Mail識別
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "Mail識別", required = true, position = 3, allowableValues = "契約担当者(\"1\"), ピークアラート担当者(\"2\")", example = "1")
+	@ApiModelProperty(value = "Mail識別", required = true, position = 3, allowableValues = "契約担当者(\"1\"), ピークアラート担当者(\"2\"), 請求先担当(\"3\"), すべて(\"4\")", example = "1")
 	private MailIdentification mailIdentification;
 
 	/**
