@@ -310,7 +310,7 @@ public class ContractSearchParameter {
 	private Date cancellationDateFrom;
 
 	/**
-	 * サービス終了日(後)
+	 * 解約年月日(後)
 	 */
 	@ApiParam(value = "解約年月日(後)", required = false)
 	@ApiModelProperty(value = "解約年月日(後)<br />日付フォーマット:yyyy/MM/dd", required = false)
