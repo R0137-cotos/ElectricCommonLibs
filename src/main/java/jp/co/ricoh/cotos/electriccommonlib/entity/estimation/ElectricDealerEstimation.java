@@ -1,7 +1,5 @@
 package jp.co.ricoh.cotos.electriccommonlib.entity.estimation;
 
-import java.util.Arrays;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,13 +10,12 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBase;
 import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
+import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricDealerMaster.PaymentMethod;
 import jp.co.ricoh.cotos.electriccommonlib.repository.estimation.ElectricDealerEstimationRepository;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -32,28 +29,6 @@ import lombok.EqualsAndHashCode;
 @Table(name = "electric_dealer_estimation")
 @CotosComplementTarget(entity = ElectricDealerEstimation.class, repository = ElectricDealerEstimationRepository.class)
 public class ElectricDealerEstimation extends EntityBase {
-
-	public enum PaymentDiv {
-
-		支払い1("1");
-
-		private final String text;
-
-		private PaymentDiv(final String text) {
-			this.text = text;
-		}
-
-		@Override
-		@JsonValue
-		public String toString() {
-			return this.text;
-		}
-
-		@JsonCreator
-		public static PaymentDiv fromString(String string) {
-			return Arrays.stream(values()).filter(v -> v.text.equals(string)).findFirst().orElseThrow(() -> new IllegalArgumentException(String.valueOf(string)));
-		}
-	}
 
 	/**
 	 * ID
@@ -111,8 +86,8 @@ public class ElectricDealerEstimation extends EntityBase {
 	 * 支払区分
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "支払区分", required = true, position = 7, allowableValues = "支払い1(\"1\")", example = "1")
-	private PaymentDiv paymentDiv;
+	@ApiModelProperty(value = "支払区分", required = true, position = 7, allowableValues = "定率(\"1\"), 定額(\"2\")", example = "1")
+	private PaymentMethod paymentMethod;
 
 	/**
 	 * メールアドレス1

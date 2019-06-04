@@ -24,7 +24,6 @@ DELETE from fee_calc_interface;
 DELETE from estimation_electric;
 DELETE from electric_expert_estimation;
 DELETE from electric_dealer_estimation;
-DELETE from fee_simulation_sales;
 DELETE from fee_simulation_head;
 DELETE from electric_company_master;
 DELETE from electric_area_master;
