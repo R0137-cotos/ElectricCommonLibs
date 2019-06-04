@@ -33,13 +33,6 @@ import jp.co.ricoh.cotos.electriccommonlib.repository.contract.ImportantPointExp
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.MailAddressInformationRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.UnitPriceHighPressureRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.UnitPriceLowPressureRepository;
-import jp.co.ricoh.cotos.electriccommonlib.repository.estimation.ElectricDealerEstimationRepository;
-import jp.co.ricoh.cotos.electriccommonlib.repository.estimation.ElectricExpertEstimationRepository;
-import jp.co.ricoh.cotos.electriccommonlib.repository.estimation.EstimationElectricRepository;
-import jp.co.ricoh.cotos.electriccommonlib.repository.estimation.FeeSimulationHeadRepository;
-import jp.co.ricoh.cotos.electriccommonlib.repository.estimation.FeeSimulationSalesRepository;
-import jp.co.ricoh.cotos.electriccommonlib.repository.master.ElectricAreaMasterRepository;
-import jp.co.ricoh.cotos.electriccommonlib.repository.master.ElectricCompanyMasterRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
@@ -79,28 +72,13 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 	ElectricDealerContractRepository electricDealerContractRepository;
 
 	@Autowired
-	ElectricDealerEstimationRepository electricDealerEstimationRepository;
-
-	@Autowired
 	ElectricExpertContractRepository electricExpertContractRepository;
-
-	@Autowired
-	ElectricExpertEstimationRepository electricExpertEstimationRepository;
 
 	@Autowired
 	EntryContentHighPressureRepository entryContentHighPressureRepository;
 
 	@Autowired
 	EntryContentLowPressureRepository entryContentLowPressureRepository;
-
-	@Autowired
-	EstimationElectricRepository estimationElectricRepository;
-
-	@Autowired
-	FeeSimulationHeadRepository feeSimulationHeadRepository;
-
-	@Autowired
-	FeeSimulationSalesRepository feeSimulationSalesRepository;
 
 	@Autowired
 	MailAddressInformationRepository mailAddressInformationRepository;
@@ -111,12 +89,6 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 	@Autowired
 	UnitPriceLowPressureRepository unitPriceLowPressureRepository;
 
-	@Autowired
-	ElectricCompanyMasterRepository electricCompanyMasterRepository;
-
-	@Autowired
-	ElectricAreaMasterRepository electricAreaMasterRepository;
-	
 	@Autowired
 	ImportantPointExplainerRepository importantPointExplainerRepository;
 
@@ -224,8 +196,8 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 	public void 全てのカラムがNullではないことを確認_添付ファイル() {
 		全てのカラムがNullではないことを確認_共通(electricAttachedFileRepository, 1L);
 	}
-	
-	@Test 
+
+	@Test
 	public void 全てのカラムがNullではないことを確認_重要事項説明者() {
 		全てのカラムがNullではないことを確認_共通(importantPointExplainerRepository, 1L);
 	}
@@ -243,7 +215,7 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 			Assert.fail("例外が発生した場合、エラー");
 		}
 	}
-	
+
 	@Test
 	public void 全てのカラムがNullではないことを確認_契約_得意先マスタを得意先CDから取得() {
 
@@ -256,7 +228,7 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 			Assert.fail("例外が発生した場合、エラー");
 		}
 	}
-	
+
 	@Test
 	public void 全てのカラムがNullではないことを確認_契約_請求基本情報を得意先CDから取得() {
 
@@ -269,12 +241,12 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 			Assert.fail("例外が発生した場合、エラー");
 		}
 	}
-	
+
 	@Test
 	public void 請求先Mailアドレス情報を取得できないことを確認_得意先情報マスタIDにより削除() {
 
 		billingMailAddressInformationRepository.deleteByClientMasterId(1L);
-		ClientMaster clientMaster = clientMasterRepository.findOne(1L);;
+		ClientMaster clientMaster = clientMasterRepository.findOne(1L);
 
 		// null項目なく取得できていることを確認
 		try {
@@ -283,12 +255,12 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 			Assert.fail("例外が発生した場合、エラー");
 		}
 	}
-	
+
 	@Test
 	public void Mailアドレス情報を取得できないことを確認_契約電力IDにより削除() {
 
 		mailAddressInformationRepository.deleteByContractElectricId(1L);
-		ContractElectric contractElectric = contractElectricRepository.findOne(1L);;
+		ContractElectric contractElectric = contractElectricRepository.findOne(1L);
 
 		// null項目なく取得できていることを確認
 		try {
@@ -297,12 +269,12 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 			Assert.fail("例外が発生した場合、エラー");
 		}
 	}
-	
+
 	@Test
 	public void 添付ファイルを取得できないことを確認_契約電力IDにより削除() {
 
 		contractElectricAttachedFileRepository.deleteByContractElectricId(1L);
-		ContractElectric contractElectric = contractElectricRepository.findOne(1L);;
+		ContractElectric contractElectric = contractElectricRepository.findOne(1L);
 
 		// null項目なく取得できていることを確認
 		try {

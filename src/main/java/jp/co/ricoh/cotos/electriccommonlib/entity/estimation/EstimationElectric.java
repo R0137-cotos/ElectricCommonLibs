@@ -137,10 +137,6 @@ public class EstimationElectric extends EntityBase {
 	private ElectricDealerEstimation electricDealerEstimation;
 
 	@OneToOne(mappedBy = "estimationElectric")
-	@ApiModelProperty(value = "料金シュミレーション(営業用)", required = false, position = 15)
-	private FeeSimulationSales feeSimulationSales;
-
-	@OneToOne(mappedBy = "estimationElectric")
 	@ApiModelProperty(value = "料金シュミレーション(本部用)", required = false, position = 16)
 	private FeeSimulationHead feeSimulationHead;
 
