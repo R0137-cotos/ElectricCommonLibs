@@ -348,15 +348,15 @@ public class ContractSearchParameter {
 	 * 契約情報更新日(前)
 	 */
 	@ApiParam(value = "契約情報更新日(前)", required = false)
-	@ApiModelProperty(value = "契約情報更新日(前)<br />日付フォーマット:yyyy/MM/dd", required = false)
-	private Date updateFrom;
+	@ApiModelProperty(value = "契約情報更新日(前)<br />日付フォーマット:yyyyMMddhhmmss", required = false)
+	private String updateFrom;
 
 	/**
 	 * 契約情報更新日(後)
 	 */
 	@ApiParam(value = "契約情報更新日(後)", required = false)
-	@ApiModelProperty(value = "契約情報更新日(後)<br />日付フォーマット:yyyy/MM/dd", required = false)
-	private Date updateTo;
+	@ApiModelProperty(value = "契約情報更新日(後)<br />日付フォーマット:yyyyMMddhhmmss", required = false)
+	private String updateTo;
 
 	/**
 	 * パラメータをMapにする。
