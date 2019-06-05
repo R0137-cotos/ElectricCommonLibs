@@ -8,7 +8,11 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 import io.swagger.annotations.ApiModelProperty;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.common.MyJsonDateDeserializer;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -43,6 +47,9 @@ public class ContractElectricExtInputDto {
 	/**
 	 * 変更希望日
 	 */
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy/MM/dd")
+	@JsonDeserialize(using = MyJsonDateDeserializer.class)
+	//@Pattern(regexp = "\\d{4}/\\d{2}/\\d{2}")
 	@ApiModelProperty(value = "変更希望日", required = false, position = 4)
 	private Date changePreferredDate;
 	

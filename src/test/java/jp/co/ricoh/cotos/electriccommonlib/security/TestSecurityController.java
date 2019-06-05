@@ -257,7 +257,7 @@ public class TestSecurityController {
 		return createParameterCheckResult(result);
 	}
 
-	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/ContractElectricExtInputDto")
+	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/LinkedHashMap")
 	public ParamterCheckResult callParamterCheck(@RequestBody @Validated ContractElectricExtInputDto dto, BindingResult result) {
 		return createParameterCheckResult(result);
 	}
