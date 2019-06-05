@@ -1,11 +1,8 @@
 package jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external;
 
 import java.math.BigDecimal;
-import java.util.Date;
 
 import javax.persistence.Column;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Max;
@@ -147,9 +144,9 @@ public class ContractElectricExtDto {
 	 * 申込日
 	 */
 	@NotNull
-	@ApiModelProperty(value = "申込日", required = true, position = 16)
-	@Temporal(TemporalType.DATE)
-	private Date entryDate;
+	@Size(max = 255)
+	@ApiModelProperty(value = "申込日", required = true, position = 16, allowableValues = "range[0,255]")
+	private String entryDate;
 
 	/**
 	 * 商流区分
@@ -350,8 +347,9 @@ public class ContractElectricExtDto {
 	 * 需要(供給)期間 開始日
 	 */
 	@NotNull
-	@ApiModelProperty(value = "需要(供給)期間　開始日", required = true, position = 41)
-	private Date contractYmdStart;
+	@Size(max = 255)
+	@ApiModelProperty(value = "需要(供給)期間　開始日", required = true, position = 41, allowableValues = "range[0,255]")
+	private String contractYmdStart;
 
 	/**
 	 * 供給開始月

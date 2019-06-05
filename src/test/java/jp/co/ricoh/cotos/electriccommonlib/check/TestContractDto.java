@@ -1,7 +1,6 @@
 package jp.co.ricoh.cotos.electriccommonlib.check;
 
 import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -774,8 +773,7 @@ public class TestContractDto {
 		testTarget.setCaseNumber("案件番号");
 		testTarget.setCaseTitle("案件名");
 		testTarget.setClientCode("得意先コード");
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-		testTarget.setChangePreferredDate(dateFormat.parse("2019/05/31"));
+		testTarget.setChangePreferredDate("2019/05/31");
 		// 契約(電力)
 		ContractElectricExtDto contractElectricExtDto = new ContractElectricExtDto();
 		BeanUtils.copyProperties(entity.getEntryContentLowPressure(), contractElectricExtDto);
@@ -787,6 +785,8 @@ public class TestContractDto {
 		contractElectricExtDto.setElectricCommercialFlowDivCd("1");
 		contractElectricExtDto.setFixTransferDestinationCode("修正時振替先コード");
 		contractElectricExtDto.setVoltageCategory("1");
+		contractElectricExtDto.setEntryDate("2019/05/31");
+		contractElectricExtDto.setContractYmdStart("2019/05/31");
 		testTarget.setContractElectric(contractElectricExtDto);
 		// 顧客
 		CustomerContractExtDto customerContractExtDto = new CustomerContractExtDto();
@@ -837,8 +837,7 @@ public class TestContractDto {
 		testTarget.setImportantPointExplainer(importantPointExplainerExtDto);
 		// 料金シュミレーション
 		FeeSimulationHeadExtDto feeSimulationHeadExtDto = new FeeSimulationHeadExtDto();
-		dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-		feeSimulationHeadExtDto.setCreatedDate(dateFormat.parse("2019/05/31"));
+		feeSimulationHeadExtDto.setCreatedDate("2019/05/31");
 		feeSimulationHeadExtDto.setBasicListPrice(BigDecimal.valueOf(100));
 		feeSimulationHeadExtDto.setBasicSellingPrice(BigDecimal.valueOf(100));
 		feeSimulationHeadExtDto.setBasicBankPriceBusiness(BigDecimal.valueOf(100));
@@ -883,6 +882,7 @@ public class TestContractDto {
 		testTarget.setCaseNumber(STR_256);
 		testTarget.setCaseTitle(STR_256);
 		testTarget.setClientCode(STR_256);
+		testTarget.setChangePreferredDate(STR_256);
 		// 契約(電力)
 		BeanUtils.copyProperties(entity.getEntryContentLowPressure(), contractElectricExtDto);
 		BeanUtils.copyProperties(entity, contractElectricExtDto);
@@ -929,6 +929,7 @@ public class TestContractDto {
 		contractElectricExtDto.setEntryNumber(STR_256);
 		contractElectricExtDto.setZipCode(STR_256);
 		contractElectricExtDto.setCurrentContractNumber(STR_256);
+		contractElectricExtDto.setEntryDate(STR_256);
 		testTarget.setContractElectric(contractElectricExtDto);
 		// 顧客
 		customerContractExtDto = new CustomerContractExtDto();
@@ -978,8 +979,7 @@ public class TestContractDto {
 		importantPointExplainerExtDto.setOrganizationName2(STR_256);
 		testTarget.setImportantPointExplainer(importantPointExplainerExtDto);
 		// 料金シュミレーション
-		feeSimulationHeadExtDto = new FeeSimulationHeadExtDto();
-		feeSimulationHeadExtDto.setCreatedDate(dateFormat.parse("2019/05/31"));
+		feeSimulationHeadExtDto.setCreatedDate(STR_256);
 		feeSimulationHeadExtDto.setBasicListPrice(BigDecimal.valueOf(100));
 		feeSimulationHeadExtDto.setBasicSellingPrice(BigDecimal.valueOf(100));
 		feeSimulationHeadExtDto.setBasicBankPriceBusiness(BigDecimal.valueOf(100));
@@ -998,7 +998,7 @@ public class TestContractDto {
 		feeSimulationHeadExtDto.setUsageFeeOtherSeasonBankPriceRj(BigDecimal.valueOf(100));
 		testTarget.setFeeSimulationHead(feeSimulationHeadExtDto);
 		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
-		Assert.assertEquals(58, result.getErrorInfoList().size());
+		Assert.assertEquals(61, result.getErrorInfoList().size());
 
 		// 異常系(@Min, @Decimal)
 		// テストデータ作成
@@ -1022,6 +1022,8 @@ public class TestContractDto {
 		contractElectricExtDto.setContractElectricPower(DECIMAL_MINUS_001);
 		contractElectricExtDto.setLoadFactor(DECIMAL_MINUS_001);
 		contractElectricExtDto.setTransferCheckFlg(INT_MINUS_1);
+		contractElectricExtDto.setEntryDate("2019/05/31");
+		contractElectricExtDto.setContractYmdStart("2019/05/31");
 		testTarget.setContractElectric(contractElectricExtDto);
 		// 顧客
 		customerContractExtDto = new CustomerContractExtDto();
@@ -1071,8 +1073,7 @@ public class TestContractDto {
 		importantPointExplainerExtDto.setOrganizationName2("所属組織名2");
 		testTarget.setImportantPointExplainer(importantPointExplainerExtDto);
 		// 料金シュミレーション
-		feeSimulationHeadExtDto = new FeeSimulationHeadExtDto();
-		feeSimulationHeadExtDto.setCreatedDate(dateFormat.parse("2019/05/31"));
+		feeSimulationHeadExtDto.setCreatedDate("2019/05/31");
 		feeSimulationHeadExtDto.setBasicListPrice(DECIMAL_MINUS_001);
 		feeSimulationHeadExtDto.setBasicSellingPrice(DECIMAL_MINUS_001);
 		feeSimulationHeadExtDto.setBasicBankPriceBusiness(DECIMAL_MINUS_001);
