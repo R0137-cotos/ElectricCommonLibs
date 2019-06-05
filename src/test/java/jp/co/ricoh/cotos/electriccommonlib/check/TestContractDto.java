@@ -774,6 +774,8 @@ public class TestContractDto {
 		testTarget.setCaseNumber("案件番号");
 		testTarget.setCaseTitle("案件名");
 		testTarget.setClientCode("得意先コード");
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+		testTarget.setChangePreferredDate(dateFormat.parse("2019/05/31"));
 		// 契約(電力)
 		ContractElectricExtDto contractElectricExtDto = new ContractElectricExtDto();
 		BeanUtils.copyProperties(entity.getEntryContentLowPressure(), contractElectricExtDto);
@@ -835,7 +837,7 @@ public class TestContractDto {
 		testTarget.setImportantPointExplainer(importantPointExplainerExtDto);
 		// 料金シュミレーション
 		FeeSimulationHeadExtDto feeSimulationHeadExtDto = new FeeSimulationHeadExtDto();
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+		dateFormat = new SimpleDateFormat("yyyy/MM/dd");
 		feeSimulationHeadExtDto.setCreatedDate(dateFormat.parse("2019/05/31"));
 		feeSimulationHeadExtDto.setBasicListPrice(BigDecimal.valueOf(100));
 		feeSimulationHeadExtDto.setBasicSellingPrice(BigDecimal.valueOf(100));
@@ -872,7 +874,7 @@ public class TestContractDto {
 		testTarget.setElectricDealerContract(new ElectricDealerContractExtDto());
 		testTarget.setFeeSimulationHead(new FeeSimulationHeadExtDto());
 		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
-		Assert.assertEquals(75, result.getErrorInfoList().size());
+		Assert.assertEquals(76, result.getErrorInfoList().size());
 
 		// 異常系(@Size(max))
 		entity = contractElectricRepository.findOne(1L);
@@ -926,6 +928,7 @@ public class TestContractDto {
 		contractElectricExtDto.setSupplyStartDate(STR_256);
 		contractElectricExtDto.setEntryNumber(STR_256);
 		contractElectricExtDto.setZipCode(STR_256);
+		contractElectricExtDto.setCurrentContractNumber(STR_256);
 		testTarget.setContractElectric(contractElectricExtDto);
 		// 顧客
 		customerContractExtDto = new CustomerContractExtDto();
@@ -995,7 +998,7 @@ public class TestContractDto {
 		feeSimulationHeadExtDto.setUsageFeeOtherSeasonBankPriceRj(BigDecimal.valueOf(100));
 		testTarget.setFeeSimulationHead(feeSimulationHeadExtDto);
 		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
-		Assert.assertEquals(57, result.getErrorInfoList().size());
+		Assert.assertEquals(58, result.getErrorInfoList().size());
 
 		// 異常系(@Min, @Decimal)
 		// テストデータ作成

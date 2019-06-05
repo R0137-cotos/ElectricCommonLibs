@@ -376,5 +376,13 @@ public class ContractElectricExtDto {
 	@Min(0)
 	@ApiModelProperty(value = "振込フラグチェック(業務区)", required = true, position = 44, allowableValues = "range[0,9]")
 	private Integer transferCheckFlg;
+	
+	/**
+	 * 現在の契約番号
+	 */
+	@NotNull
+	@Size(max = 255)
+	@ApiModelProperty(value = "現在の契約番号", required = true, position = 45, allowableValues = "range[0,255]")
+	private String currentContractNumber;
 
 }
