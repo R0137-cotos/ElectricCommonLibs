@@ -3,7 +3,6 @@ package jp.co.ricoh.cotos.electriccommonlib.check;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
 
 import org.junit.AfterClass;
@@ -17,8 +16,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import jp.co.ricoh.cotos.commonlib.util.HeadersProperties;
 import jp.co.ricoh.cotos.electriccommonlib.DBConfig;
@@ -859,14 +856,9 @@ public class TestContractDto {
 		feeSimulationHeadExtDto.setUsageFeeOtherSeasonBankPriceBusiness(BigDecimal.valueOf(100));
 		feeSimulationHeadExtDto.setUsageFeeOtherSeasonBankPriceRj(BigDecimal.valueOf(100));
 		testTarget.setFeeSimulationHead(feeSimulationHeadExtDto);
-		
-		ObjectMapper mp = new ObjectMapper();
-		String json = mp.writeValueAsString(testTarget);
-		LinkedHashMap result1 = mp.readValue(json, LinkedHashMap.class);
-		result1.put("changePreferredDate", "20190531");
 
 		// 正常系
-		ParamterCheckResult result = testSecurityController.callParameterCheck(result1, headersProperties, localServerPort);
+		ParamterCheckResult result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		testTool.assertValidationOk(result);
 
 		// 異常系(@NotNull)
