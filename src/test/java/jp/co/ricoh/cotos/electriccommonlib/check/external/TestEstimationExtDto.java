@@ -98,6 +98,7 @@ public class TestEstimationExtDto {
 		targetEstimation.setCo2EmissionMenu(ElectricPlan.CO2フリー);
 		targetEstimation.setCo2EmissionFactor("1");
 		targetEstimation.setVoltageCategory(entityEstimation.getVoltageCategory().toString());
+		targetEstimation.setSupplyStartScheduledDate("2019/05/31");
 		target.setEstimationElectric(targetEstimation);
 
 		CustomerEstimationExtDto targetCustomer = 顧客正常データ作成();
@@ -115,6 +116,7 @@ public class TestEstimationExtDto {
 		FeeSimulationHeadExtDto targetSimulation = new FeeSimulationHeadExtDto();
 		BeanUtils.copyProperties(entitySimulation, targetSimulation);
 		target.setFeeSimulationHead(targetSimulation);
+		target.getFeeSimulationHead().setCreatedDate("2019/05/31");
 		ParamterCheckResult result = testSecurityController.callParameterCheck(target, headersProperties, localServerPort);
 		testTool.assertValidationOk(result);
 
@@ -151,6 +153,7 @@ public class TestEstimationExtDto {
 		EstimationElectricExtDto target = new EstimationElectricExtDto();
 		BeanUtils.copyProperties(entity, target);
 		target.setElectricCommercialFlowDivCode("1");
+		target.setSupplyStartScheduledDate("2019/05/31");
 		target.setElectricCommercialFlowDiv(entity.getElectricCommercialFlowDiv().toString());
 		target.setCo2EmissionMenu(ElectricPlan.CO2フリー);
 		target.setCo2EmissionFactor("1");
@@ -205,11 +208,13 @@ public class TestEstimationExtDto {
 		target.setContractQuantity(STR_256);
 		target.setTypeOfContract(STR_256);
 		target.setVoltageCategory(STR_256);
+		target.setSupplyStartScheduledDate(STR_256);
 		result = testSecurityController.callParameterCheck(target, headersProperties, localServerPort);
 		Assert.assertTrue(result.getErrorInfoList().size() == 15);
 
 		// 異常系(@Min)
 		BeanUtils.copyProperties(entity, target);
+		target.setSupplyStartScheduledDate("2019/05/31");
 		target.setElectricCommercialFlowDivCode("1");
 		target.setElectricCommercialFlowDiv(entity.getElectricCommercialFlowDiv().toString());
 		target.setCo2EmissionMenu(ElectricPlan.CO2フリー);
@@ -224,6 +229,7 @@ public class TestEstimationExtDto {
 
 		// 異常系(@Max)
 		BeanUtils.copyProperties(entity, target);
+		target.setSupplyStartScheduledDate("2019/05/31");
 		target.setElectricCommercialFlowDivCode("1");
 		target.setElectricCommercialFlowDiv(entity.getElectricCommercialFlowDiv().toString());
 		target.setCo2EmissionMenu(ElectricPlan.CO2フリー);
@@ -238,6 +244,7 @@ public class TestEstimationExtDto {
 
 		// 異常系(@DecimalMin)
 		BeanUtils.copyProperties(entity, target);
+		target.setSupplyStartScheduledDate("2019/05/31");
 		target.setElectricCommercialFlowDivCode("1");
 		target.setElectricCommercialFlowDiv(entity.getElectricCommercialFlowDiv().toString());
 		target.setCo2EmissionMenu(ElectricPlan.CO2フリー);
@@ -253,6 +260,7 @@ public class TestEstimationExtDto {
 
 		// 異常系(@Decimal)
 		BeanUtils.copyProperties(entity, target);
+		target.setSupplyStartScheduledDate("2019/05/31");
 		target.setElectricCommercialFlowDivCode("1");
 		target.setElectricCommercialFlowDiv(entity.getElectricCommercialFlowDiv().toString());
 		target.setCo2EmissionMenu(ElectricPlan.CO2フリー);
@@ -415,6 +423,7 @@ public class TestEstimationExtDto {
 		FeeSimulationHead entity = estimationElectricRepository.findOne(1L).getFeeSimulationHead();
 		FeeSimulationHeadExtDto target = new FeeSimulationHeadExtDto();
 		BeanUtils.copyProperties(entity, target);
+		target.setCreatedDate("2019/05/31");
 		ParamterCheckResult result = testSecurityController.callParameterCheck(target, headersProperties, localServerPort);
 		testTool.assertValidationOk(result);
 
@@ -465,8 +474,9 @@ public class TestEstimationExtDto {
 		BeanUtils.copyProperties(entity, target);
 		target.setSimNumberMain(STR_256);
 		target.setSimNumberSub(STR_256);
+		target.setCreatedDate(STR_256);
 		result = testSecurityController.callParameterCheck(target, headersProperties, localServerPort);
-		Assert.assertTrue(result.getErrorInfoList().size() == 2);
+		Assert.assertTrue(result.getErrorInfoList().size() == 3);
 
 		// 異常系(@DecimalMin)
 		BeanUtils.copyProperties(entity, target);
@@ -505,6 +515,7 @@ public class TestEstimationExtDto {
 		target.setElectricityChargeRj(DECIMAL_MINUS_001);
 		target.setGrossMarginRj(DECIMAL_MINUS_001);
 		target.setGrossProfitMarginRj(DECIMAL_MINUS_001);
+		target.setCreatedDate("2019/05/31");
 
 		result = testSecurityController.callParameterCheck(target, headersProperties, localServerPort);
 		Assert.assertTrue(result.getErrorInfoList().size() == 35);
@@ -546,6 +557,7 @@ public class TestEstimationExtDto {
 		target.setElectricityChargeRj(DECIMAL_0001);
 		target.setGrossMarginRj(DECIMAL_0001);
 		target.setGrossProfitMarginRj(DECIMAL_0001);
+		target.setCreatedDate("2019/05/31");
 
 		result = testSecurityController.callParameterCheck(target, headersProperties, localServerPort);
 		Assert.assertTrue(result.getErrorInfoList().size() == 35);

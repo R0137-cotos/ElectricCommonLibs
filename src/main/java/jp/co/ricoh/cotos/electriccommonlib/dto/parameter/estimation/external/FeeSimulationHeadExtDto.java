@@ -1,7 +1,6 @@
 package jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external;
 
 import java.math.BigDecimal;
-import java.util.Date;
 
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Digits;
@@ -37,8 +36,9 @@ public class FeeSimulationHeadExtDto extends DtoBase {
 	 * 作成日
 	 */
 	@NotNull
-	@ApiModelProperty(value = "作成日", required = true, position = 5)
-	private Date createdDate;
+	@Size(max = 255)
+	@ApiModelProperty(value = "作成日", required = true, position = 5, allowableValues = "range[0,255]")
+	private String createdDate;
 
 	/**
 	 * 年間電力料金 - 現状
