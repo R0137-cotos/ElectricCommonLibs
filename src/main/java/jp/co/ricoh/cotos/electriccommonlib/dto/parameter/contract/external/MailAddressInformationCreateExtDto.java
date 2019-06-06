@@ -9,7 +9,7 @@ import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = false)
 @Data
-public class MailAddressInformationExtDto {
+public class MailAddressInformationCreateExtDto {
 
 	/**
 	 * 氏名

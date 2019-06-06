@@ -9,7 +9,7 @@ import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = false)
 @Data
-public class ElectricExpertContractExtDto {
+public class ContractPicSaEmpChangePlanExtDto {
 
 	/**
 	 * MoM社員ID
@@ -17,5 +17,5 @@ public class ElectricExpertContractExtDto {
 	@NotNull
 	@Size(max = 255)
 	@ApiModelProperty(value = "MoM社員ID", required = true, position = 1, allowableValues = "range[0,255]")
-	private String momEmpId;
+	private String momEmployeeId;
 }

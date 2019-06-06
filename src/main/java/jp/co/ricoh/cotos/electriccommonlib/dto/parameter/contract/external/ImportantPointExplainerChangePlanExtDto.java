@@ -9,7 +9,7 @@ import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = false)
 @Data
-public class ImportantPointExplainerExtDto {
+public class ImportantPointExplainerChangePlanExtDto {
 
 	/**
 	 * 説明者名

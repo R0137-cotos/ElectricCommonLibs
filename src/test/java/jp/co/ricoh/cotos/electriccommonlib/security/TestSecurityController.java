@@ -41,7 +41,8 @@ import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.ImportantPoint
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.MailAddressInformationDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.UnitPriceHighPressureDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.UnitPriceLowPressureDto;
-import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.ContractElectricExtInputDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.ContractElectricChangePlanExtInputDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.ContractElectricCreateExtInputDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.CustomerEstimationExtDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.ElectricDealerEstimationExtDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.ElectricExpertEstimationExtDto;
@@ -257,13 +258,18 @@ public class TestSecurityController {
 		return createParameterCheckResult(result);
 	}
 
-	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/ContractElectricExtInputDto")
-	public ParamterCheckResult callParamterCheck(@RequestBody @Validated ContractElectricExtInputDto dto, BindingResult result) {
+	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/ContractElectricCreateExtInputDto")
+	public ParamterCheckResult callParamterCheck(@RequestBody @Validated ContractElectricCreateExtInputDto dto, BindingResult result) {
 		return createParameterCheckResult(result);
 	}
 
 	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/EstimationExtPlanChangeDto")
 	public ParamterCheckResult callParamterCheck(@RequestBody @Validated EstimationExtPlanChangeDto dto, BindingResult result) {
+		return createParameterCheckResult(result);
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/ContractElectricChangePlanExtInputDto")
+	public ParamterCheckResult callParamterCheck(@RequestBody @Validated ContractElectricChangePlanExtInputDto dto, BindingResult result) {
 		return createParameterCheckResult(result);
 	}
 }

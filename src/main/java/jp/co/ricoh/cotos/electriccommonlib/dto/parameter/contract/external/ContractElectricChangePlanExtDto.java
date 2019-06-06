@@ -18,7 +18,7 @@ import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = false)
 @Data
-public class ContractElectricExtDto {
+public class ContractElectricChangePlanExtDto {
 
 	/**
 	 * RAIDEN外部キー情報

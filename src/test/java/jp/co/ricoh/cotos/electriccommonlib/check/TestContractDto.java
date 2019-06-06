@@ -34,17 +34,28 @@ import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.ImportantPoint
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.MailAddressInformationDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.UnitPriceHighPressureDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.UnitPriceLowPressureDto;
-import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.BillingMailAddressInformationExtDto;
-import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.ContractAddedEditorEmpExtDto;
-import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.ContractElectricExtDto;
-import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.ContractElectricExtInputDto;
-import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.ContractPicSaEmpExtDto;
-import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.CustomerContractExtDto;
-import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.ElectricDealerContractExtDto;
-import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.ElectricExpertContractExtDto;
-import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.FeeSimulationHeadExtDto;
-import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.ImportantPointExplainerExtDto;
-import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.MailAddressInformationExtDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.BillingMailAddressInformationChangePlanExtDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.BillingMailAddressInformationCreateExtDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.ContractAddedEditorEmpChangePlanExtDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.ContractAddedEditorEmpCreateExtDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.ContractElectricChangePlanExtDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.ContractElectricChangePlanExtInputDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.ContractElectricCreateExtDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.ContractElectricCreateExtInputDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.ContractPicSaEmpChangePlanExtDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.ContractPicSaEmpCreateExtDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.CustomerContractChangePlanExtDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.CustomerContractCreateExtDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.ElectricDealerContractChangePlanExtDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.ElectricDealerContractCreateExtDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.ElectricExpertContractChangePlanExtDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.ElectricExpertContractCreateExtDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.FeeSimulationHeadChangePlanExtDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.FeeSimulationHeadCreateExtDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.ImportantPointExplainerChangePlanExtDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.ImportantPointExplainerCreateExtDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.MailAddressInformationChangePlanExtDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.MailAddressInformationCreateExtDto;
 import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.SendInvoiceDiv;
 import jp.co.ricoh.cotos.electriccommonlib.entity.contract.BillingBasicInformation;
 import jp.co.ricoh.cotos.electriccommonlib.entity.contract.BillingMailAddressInformation;
@@ -764,18 +775,18 @@ public class TestContractDto {
 	}
 
 	@Test
-	public void ContractElectricExtInputDtoのテスト() throws Exception {
+	public void ContractElectricCreateExtInputDtoのテスト() throws Exception {
 
 		ContractElectric entity = contractElectricRepository.findOne(1L);
 
 		// テストデータ作成
-		ContractElectricExtInputDto testTarget = new ContractElectricExtInputDto();
+		ContractElectricCreateExtInputDto testTarget = new ContractElectricCreateExtInputDto();
 		testTarget.setCaseNumber("案件番号");
 		testTarget.setCaseTitle("案件名");
 		testTarget.setClientCode("得意先コード");
 		testTarget.setChangePreferredDate("2019/05/31");
 		// 契約(電力)
-		ContractElectricExtDto contractElectricExtDto = new ContractElectricExtDto();
+		ContractElectricCreateExtDto contractElectricExtDto = new ContractElectricCreateExtDto();
 		BeanUtils.copyProperties(entity.getEntryContentLowPressure(), contractElectricExtDto);
 		BeanUtils.copyProperties(entity, contractElectricExtDto);
 		contractElectricExtDto.setSendInvoiceDiv(SendInvoiceDiv.メール_MyRICOH);
@@ -789,7 +800,7 @@ public class TestContractDto {
 		contractElectricExtDto.setContractYmdStart("2019/05/31");
 		testTarget.setContractElectric(contractElectricExtDto);
 		// 顧客
-		CustomerContractExtDto customerContractExtDto = new CustomerContractExtDto();
+		CustomerContractCreateExtDto customerContractExtDto = new CustomerContractCreateExtDto();
 		customerContractExtDto.setMomCustId("MoMkjbID");
 		customerContractExtDto.setCompanyId("MoM企業ID");
 		customerContractExtDto.setOfficeId("MoM事業所ID");
@@ -801,42 +812,42 @@ public class TestContractDto {
 		customerContractExtDto.setPicMailAddress("担当者メールアドレス");
 		testTarget.setCustomerContract(customerContractExtDto);
 		// メールアドレス情報
-		List<MailAddressInformationExtDto> mailAddressInformationExtDtoList = new ArrayList<>();
-		MailAddressInformationExtDto mailAddressInformationExtDto = new MailAddressInformationExtDto();
+		List<MailAddressInformationCreateExtDto> mailAddressInformationExtDtoList = new ArrayList<>();
+		MailAddressInformationCreateExtDto mailAddressInformationExtDto = new MailAddressInformationCreateExtDto();
 		mailAddressInformationExtDto.setName("氏名");
 		mailAddressInformationExtDto.setMailAddress("メールアドレス");
 		mailAddressInformationExtDtoList.add(mailAddressInformationExtDto);
 		testTarget.setContractPersonMailAddressList(mailAddressInformationExtDtoList);
 		// 請求先メールアドレス
-		List<BillingMailAddressInformationExtDto> billingMailAddressInformationExtDtoList = new ArrayList<>();
-		BillingMailAddressInformationExtDto billingMailAddressInformationExtDto = new BillingMailAddressInformationExtDto();
+		List<BillingMailAddressInformationCreateExtDto> billingMailAddressInformationExtDtoList = new ArrayList<>();
+		BillingMailAddressInformationCreateExtDto billingMailAddressInformationExtDto = new BillingMailAddressInformationCreateExtDto();
 		billingMailAddressInformationExtDto.setName("氏名");
 		billingMailAddressInformationExtDto.setMailAddress("メールアドレス");
 		billingMailAddressInformationExtDto.setMyricohId(1L);
 		billingMailAddressInformationExtDtoList.add(billingMailAddressInformationExtDto);
 		testTarget.setBillingMailAddressList(billingMailAddressInformationExtDtoList);
 		// 契約担当SA社員
-		ContractPicSaEmpExtDto contractPicSaEmpExtDto = new ContractPicSaEmpExtDto();
+		ContractPicSaEmpCreateExtDto contractPicSaEmpExtDto = new ContractPicSaEmpCreateExtDto();
 		contractPicSaEmpExtDto.setMomEmployeeId("MoM社員ID");
 		testTarget.setContractPicSaEmp(contractPicSaEmpExtDto);
 		// 電力専任情報
-		ElectricExpertContractExtDto electricExpertContractExtDto = new ElectricExpertContractExtDto();
+		ElectricExpertContractCreateExtDto electricExpertContractExtDto = new ElectricExpertContractCreateExtDto();
 		electricExpertContractExtDto.setMomEmpId("MoM社員ID");
 		testTarget.setElectricExpertContract(electricExpertContractExtDto);
 		// 追加編集者
-		List<ContractAddedEditorEmpExtDto> contractAddedEditorEmpExtDtoList = new ArrayList<>();
-		ContractAddedEditorEmpExtDto contractAddedEditorEmpExtDto = new ContractAddedEditorEmpExtDto();
+		List<ContractAddedEditorEmpCreateExtDto> contractAddedEditorEmpExtDtoList = new ArrayList<>();
+		ContractAddedEditorEmpCreateExtDto contractAddedEditorEmpExtDto = new ContractAddedEditorEmpCreateExtDto();
 		contractAddedEditorEmpExtDto.setMomEmployeeId("MoM社員ID");
 		contractAddedEditorEmpExtDtoList.add(contractAddedEditorEmpExtDto);
 		testTarget.setContractAddedEditorEmpList(contractAddedEditorEmpExtDtoList);
 		// 重要項目説明者
-		ImportantPointExplainerExtDto importantPointExplainerExtDto = new ImportantPointExplainerExtDto();
+		ImportantPointExplainerCreateExtDto importantPointExplainerExtDto = new ImportantPointExplainerCreateExtDto();
 		importantPointExplainerExtDto.setDescriptionName("説明者");
 		importantPointExplainerExtDto.setOrganizationName1("所属組織名1");
 		importantPointExplainerExtDto.setOrganizationName2("所属組織名2");
 		testTarget.setImportantPointExplainer(importantPointExplainerExtDto);
 		// 料金シュミレーション
-		FeeSimulationHeadExtDto feeSimulationHeadExtDto = new FeeSimulationHeadExtDto();
+		FeeSimulationHeadCreateExtDto feeSimulationHeadExtDto = new FeeSimulationHeadCreateExtDto();
 		feeSimulationHeadExtDto.setCreatedDate("2019/05/31");
 		feeSimulationHeadExtDto.setBasicListPrice(BigDecimal.valueOf(100));
 		feeSimulationHeadExtDto.setBasicSellingPrice(BigDecimal.valueOf(100));
@@ -861,24 +872,24 @@ public class TestContractDto {
 		testTool.assertValidationOk(result);
 
 		// 異常系(@NotNull)
-		testTarget = new ContractElectricExtInputDto();
-		testTarget.setContractElectric(new ContractElectricExtDto());
-		testTarget.setCustomerContract(new CustomerContractExtDto());
-		testTarget.setContractPersonMailAddressList(new ArrayList<MailAddressInformationExtDto>());
-		testTarget.setBillingMailAddressList(new ArrayList<BillingMailAddressInformationExtDto>());
-		testTarget.setContractPicSaEmp(new ContractPicSaEmpExtDto());
-		testTarget.setElectricExpertContract(new ElectricExpertContractExtDto());
-		testTarget.setContractAddedEditorEmpList(new ArrayList<ContractAddedEditorEmpExtDto>());
-		testTarget.setImportantPointExplainer(new ImportantPointExplainerExtDto());
-		testTarget.setElectricDealerContract(new ElectricDealerContractExtDto());
-		testTarget.setFeeSimulationHead(new FeeSimulationHeadExtDto());
+		testTarget = new ContractElectricCreateExtInputDto();
+		testTarget.setContractElectric(new ContractElectricCreateExtDto());
+		testTarget.setCustomerContract(new CustomerContractCreateExtDto());
+		testTarget.setContractPersonMailAddressList(new ArrayList<MailAddressInformationCreateExtDto>());
+		testTarget.setBillingMailAddressList(new ArrayList<BillingMailAddressInformationCreateExtDto>());
+		testTarget.setContractPicSaEmp(new ContractPicSaEmpCreateExtDto());
+		testTarget.setElectricExpertContract(new ElectricExpertContractCreateExtDto());
+		testTarget.setContractAddedEditorEmpList(new ArrayList<ContractAddedEditorEmpCreateExtDto>());
+		testTarget.setImportantPointExplainer(new ImportantPointExplainerCreateExtDto());
+		testTarget.setElectricDealerContract(new ElectricDealerContractCreateExtDto());
+		testTarget.setFeeSimulationHead(new FeeSimulationHeadCreateExtDto());
 		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(76, result.getErrorInfoList().size());
 
 		// 異常系(@Size(max))
 		entity = contractElectricRepository.findOne(1L);
 		// テストデータ作成
-		testTarget = new ContractElectricExtInputDto();
+		testTarget = new ContractElectricCreateExtInputDto();
 		testTarget.setCaseNumber(STR_256);
 		testTarget.setCaseTitle(STR_256);
 		testTarget.setClientCode(STR_256);
@@ -932,7 +943,7 @@ public class TestContractDto {
 		contractElectricExtDto.setEntryDate(STR_256);
 		testTarget.setContractElectric(contractElectricExtDto);
 		// 顧客
-		customerContractExtDto = new CustomerContractExtDto();
+		customerContractExtDto = new CustomerContractCreateExtDto();
 		customerContractExtDto.setMomCustId(STR_256);
 		customerContractExtDto.setCompanyId(STR_256);
 		customerContractExtDto.setOfficeId(STR_256);
@@ -944,36 +955,36 @@ public class TestContractDto {
 		customerContractExtDto.setPicMailAddress(STR_256);
 		testTarget.setCustomerContract(customerContractExtDto);
 		// メールアドレス情報
-		mailAddressInformationExtDtoList = new ArrayList<MailAddressInformationExtDto>();
-		mailAddressInformationExtDto = new MailAddressInformationExtDto();
+		mailAddressInformationExtDtoList = new ArrayList<MailAddressInformationCreateExtDto>();
+		mailAddressInformationExtDto = new MailAddressInformationCreateExtDto();
 		mailAddressInformationExtDto.setName(STR_256);
 		mailAddressInformationExtDto.setMailAddress(STR_256);
 		mailAddressInformationExtDtoList.add(mailAddressInformationExtDto);
 		testTarget.setContractPersonMailAddressList(mailAddressInformationExtDtoList);
 		// 請求先メールアドレス
-		billingMailAddressInformationExtDtoList = new ArrayList<BillingMailAddressInformationExtDto>();
-		billingMailAddressInformationExtDto = new BillingMailAddressInformationExtDto();
+		billingMailAddressInformationExtDtoList = new ArrayList<BillingMailAddressInformationCreateExtDto>();
+		billingMailAddressInformationExtDto = new BillingMailAddressInformationCreateExtDto();
 		billingMailAddressInformationExtDto.setName(STR_256);
 		billingMailAddressInformationExtDto.setMailAddress(STR_256);
 		billingMailAddressInformationExtDto.setMyricohId(1L);
 		billingMailAddressInformationExtDtoList.add(billingMailAddressInformationExtDto);
 		testTarget.setBillingMailAddressList(billingMailAddressInformationExtDtoList);
 		// 契約担当SA社員
-		contractPicSaEmpExtDto = new ContractPicSaEmpExtDto();
+		contractPicSaEmpExtDto = new ContractPicSaEmpCreateExtDto();
 		contractPicSaEmpExtDto.setMomEmployeeId(STR_256);
 		testTarget.setContractPicSaEmp(contractPicSaEmpExtDto);
 		// 電力専任情報
-		electricExpertContractExtDto = new ElectricExpertContractExtDto();
+		electricExpertContractExtDto = new ElectricExpertContractCreateExtDto();
 		electricExpertContractExtDto.setMomEmpId(STR_256);
 		testTarget.setElectricExpertContract(electricExpertContractExtDto);
 		// 追加編集者
-		contractAddedEditorEmpExtDtoList = new ArrayList<ContractAddedEditorEmpExtDto>();
-		contractAddedEditorEmpExtDto = new ContractAddedEditorEmpExtDto();
+		contractAddedEditorEmpExtDtoList = new ArrayList<ContractAddedEditorEmpCreateExtDto>();
+		contractAddedEditorEmpExtDto = new ContractAddedEditorEmpCreateExtDto();
 		contractAddedEditorEmpExtDto.setMomEmployeeId(STR_256);
 		contractAddedEditorEmpExtDtoList.add(contractAddedEditorEmpExtDto);
 		testTarget.setContractAddedEditorEmpList(contractAddedEditorEmpExtDtoList);
 		// 重要項目説明者
-		importantPointExplainerExtDto = new ImportantPointExplainerExtDto();
+		importantPointExplainerExtDto = new ImportantPointExplainerCreateExtDto();
 		importantPointExplainerExtDto.setDescriptionName(STR_256);
 		importantPointExplainerExtDto.setOrganizationName1(STR_256);
 		importantPointExplainerExtDto.setOrganizationName2(STR_256);
@@ -1002,12 +1013,12 @@ public class TestContractDto {
 
 		// 異常系(@Min, @Decimal)
 		// テストデータ作成
-		testTarget = new ContractElectricExtInputDto();
+		testTarget = new ContractElectricCreateExtInputDto();
 		testTarget.setCaseNumber("案件番号");
 		testTarget.setCaseTitle("案件名");
 		testTarget.setClientCode("得意先コード");
 		// 契約(電力)
-		contractElectricExtDto = new ContractElectricExtDto();
+		contractElectricExtDto = new ContractElectricCreateExtDto();
 		BeanUtils.copyProperties(entity.getEntryContentLowPressure(), contractElectricExtDto);
 		BeanUtils.copyProperties(entity, contractElectricExtDto);
 		contractElectricExtDto.setSendInvoiceDiv(SendInvoiceDiv.メール_MyRICOH);
@@ -1026,7 +1037,7 @@ public class TestContractDto {
 		contractElectricExtDto.setContractYmdStart("2019/05/31");
 		testTarget.setContractElectric(contractElectricExtDto);
 		// 顧客
-		customerContractExtDto = new CustomerContractExtDto();
+		customerContractExtDto = new CustomerContractCreateExtDto();
 		customerContractExtDto.setMomCustId("MoMkjbID");
 		customerContractExtDto.setCompanyId("MoM企業ID");
 		customerContractExtDto.setOfficeId("MoM事業所ID");
@@ -1038,36 +1049,377 @@ public class TestContractDto {
 		customerContractExtDto.setPicMailAddress("担当者メールアドレス");
 		testTarget.setCustomerContract(customerContractExtDto);
 		// メールアドレス情報
-		mailAddressInformationExtDtoList = new ArrayList<MailAddressInformationExtDto>();
-		mailAddressInformationExtDto = new MailAddressInformationExtDto();
+		mailAddressInformationExtDtoList = new ArrayList<MailAddressInformationCreateExtDto>();
+		mailAddressInformationExtDto = new MailAddressInformationCreateExtDto();
 		mailAddressInformationExtDto.setName("氏名");
 		mailAddressInformationExtDto.setMailAddress("メールアドレス");
 		mailAddressInformationExtDtoList.add(mailAddressInformationExtDto);
 		testTarget.setContractPersonMailAddressList(mailAddressInformationExtDtoList);
 		// 請求先メールアドレス
-		billingMailAddressInformationExtDtoList = new ArrayList<BillingMailAddressInformationExtDto>();
-		billingMailAddressInformationExtDto = new BillingMailAddressInformationExtDto();
+		billingMailAddressInformationExtDtoList = new ArrayList<BillingMailAddressInformationCreateExtDto>();
+		billingMailAddressInformationExtDto = new BillingMailAddressInformationCreateExtDto();
 		billingMailAddressInformationExtDto.setName("氏名");
 		billingMailAddressInformationExtDto.setMailAddress("メールアドレス");
 		billingMailAddressInformationExtDto.setMyricohId(1L);
 		billingMailAddressInformationExtDtoList.add(billingMailAddressInformationExtDto);
 		testTarget.setBillingMailAddressList(billingMailAddressInformationExtDtoList);
 		// 契約担当SA社員
-		contractPicSaEmpExtDto = new ContractPicSaEmpExtDto();
+		contractPicSaEmpExtDto = new ContractPicSaEmpCreateExtDto();
 		contractPicSaEmpExtDto.setMomEmployeeId("MoM社員ID");
 		testTarget.setContractPicSaEmp(contractPicSaEmpExtDto);
 		// 電力専任情報
-		electricExpertContractExtDto = new ElectricExpertContractExtDto();
+		electricExpertContractExtDto = new ElectricExpertContractCreateExtDto();
 		electricExpertContractExtDto.setMomEmpId("MoM社員ID");
 		testTarget.setElectricExpertContract(electricExpertContractExtDto);
 		// 追加編集者
-		contractAddedEditorEmpExtDtoList = new ArrayList<ContractAddedEditorEmpExtDto>();
-		contractAddedEditorEmpExtDto = new ContractAddedEditorEmpExtDto();
+		contractAddedEditorEmpExtDtoList = new ArrayList<ContractAddedEditorEmpCreateExtDto>();
+		contractAddedEditorEmpExtDto = new ContractAddedEditorEmpCreateExtDto();
 		contractAddedEditorEmpExtDto.setMomEmployeeId("MoM社員ID");
 		contractAddedEditorEmpExtDtoList.add(contractAddedEditorEmpExtDto);
 		testTarget.setContractAddedEditorEmpList(contractAddedEditorEmpExtDtoList);
 		// 重要項目説明者
-		importantPointExplainerExtDto = new ImportantPointExplainerExtDto();
+		importantPointExplainerExtDto = new ImportantPointExplainerCreateExtDto();
+		importantPointExplainerExtDto.setDescriptionName("説明者");
+		importantPointExplainerExtDto.setOrganizationName1("所属組織名1");
+		importantPointExplainerExtDto.setOrganizationName2("所属組織名2");
+		testTarget.setImportantPointExplainer(importantPointExplainerExtDto);
+		// 料金シュミレーション
+		feeSimulationHeadExtDto.setCreatedDate("2019/05/31");
+		feeSimulationHeadExtDto.setBasicListPrice(DECIMAL_MINUS_001);
+		feeSimulationHeadExtDto.setBasicSellingPrice(DECIMAL_MINUS_001);
+		feeSimulationHeadExtDto.setBasicBankPriceBusiness(DECIMAL_MINUS_001);
+		feeSimulationHeadExtDto.setBasicBankPriceRj(DECIMAL_MINUS_001);
+		feeSimulationHeadExtDto.setPerUseLightListPrice(DECIMAL_MINUS_001);
+		feeSimulationHeadExtDto.setPerUseLightSellingPrice(DECIMAL_MINUS_001);
+		feeSimulationHeadExtDto.setPeruseLightBankPriceBusiness(DECIMAL_MINUS_001);
+		feeSimulationHeadExtDto.setPeruseLightBankPriceRj(DECIMAL_MINUS_001);
+		feeSimulationHeadExtDto.setUsageFeeSummerListPrice(DECIMAL_MINUS_001);
+		feeSimulationHeadExtDto.setUsageFeeSummerSellingPrice(DECIMAL_MINUS_001);
+		feeSimulationHeadExtDto.setUsageFeeSummerBankPriceBusiness(DECIMAL_MINUS_001);
+		feeSimulationHeadExtDto.setUsageFeeSummerBankPriceRj(DECIMAL_MINUS_001);
+		feeSimulationHeadExtDto.setUsageFeeOtherSeasonListPrice(DECIMAL_MINUS_001);
+		feeSimulationHeadExtDto.setUsageFeeOtherSeasonSellingPrice(DECIMAL_MINUS_001);
+		feeSimulationHeadExtDto.setUsageFeeOtherSeasonBankPriceBusiness(DECIMAL_MINUS_001);
+		feeSimulationHeadExtDto.setUsageFeeOtherSeasonBankPriceRj(DECIMAL_MINUS_001);
+		testTarget.setFeeSimulationHead(feeSimulationHeadExtDto);
+		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		Assert.assertEquals(21, result.getErrorInfoList().size());
+
+		// 異常系(@Max)
+		contractElectricExtDto.setTransferCheckFlg(INT_10);
+		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		Assert.assertEquals(21, result.getErrorInfoList().size());
+
+	}
+	
+	@Test
+	public void ContractElectricChangePlanExtInputDtoのテスト() throws Exception {
+
+		ContractElectric entity = contractElectricRepository.findOne(1L);
+
+		// テストデータ作成
+		ContractElectricChangePlanExtInputDto testTarget = new ContractElectricChangePlanExtInputDto();
+		testTarget.setCaseNumber("案件番号");
+		testTarget.setCaseTitle("案件名");
+		testTarget.setClientCode("得意先コード");
+		testTarget.setChangePreferredDate("2019/05/31");
+		testTarget.setOriginContractId(1L);
+		// 契約(電力)
+		ContractElectricChangePlanExtDto contractElectricExtDto = new ContractElectricChangePlanExtDto();
+		BeanUtils.copyProperties(entity.getEntryContentLowPressure(), contractElectricExtDto);
+		BeanUtils.copyProperties(entity, contractElectricExtDto);
+		contractElectricExtDto.setSendInvoiceDiv(SendInvoiceDiv.メール_MyRICOH);
+		contractElectricExtDto.setBasicMeterReadingDate("dd");
+		contractElectricExtDto.setCo2EmissionMenu(ElectricPlan.CO2フリー);
+		contractElectricExtDto.setElectricCommercialFlowDiv("直売");
+		contractElectricExtDto.setElectricCommercialFlowDivCd("1");
+		contractElectricExtDto.setFixTransferDestinationCode("修正時振替先コード");
+		contractElectricExtDto.setVoltageCategory("1");
+		contractElectricExtDto.setEntryDate("2019/05/31");
+		contractElectricExtDto.setContractYmdStart("2019/05/31");
+		testTarget.setContractElectric(contractElectricExtDto);
+		// 顧客
+		CustomerContractChangePlanExtDto customerContractExtDto = new CustomerContractChangePlanExtDto();
+		customerContractExtDto.setMomCustId("MoMkjbID");
+		customerContractExtDto.setCompanyId("MoM企業ID");
+		customerContractExtDto.setOfficeId("MoM事業所ID");
+		customerContractExtDto.setPicName("担当者氏名");
+		customerContractExtDto.setPicNameKana("担当者氏名(カナ)");
+		customerContractExtDto.setPicDeptName("担当者部署");
+		customerContractExtDto.setPicPhoneNumber("担当者電話番号");
+		customerContractExtDto.setPicFaxNumber("担当者FAX番号");
+		customerContractExtDto.setPicMailAddress("担当者メールアドレス");
+		testTarget.setCustomerContract(customerContractExtDto);
+		// メールアドレス情報
+		List<MailAddressInformationChangePlanExtDto> mailAddressInformationExtDtoList = new ArrayList<>();
+		MailAddressInformationChangePlanExtDto mailAddressInformationExtDto = new MailAddressInformationChangePlanExtDto();
+		mailAddressInformationExtDto.setName("氏名");
+		mailAddressInformationExtDto.setMailAddress("メールアドレス");
+		mailAddressInformationExtDtoList.add(mailAddressInformationExtDto);
+		testTarget.setContractPersonMailAddressList(mailAddressInformationExtDtoList);
+		// 請求先メールアドレス
+		List<BillingMailAddressInformationChangePlanExtDto> billingMailAddressInformationExtDtoList = new ArrayList<>();
+		BillingMailAddressInformationChangePlanExtDto billingMailAddressInformationExtDto = new BillingMailAddressInformationChangePlanExtDto();
+		billingMailAddressInformationExtDto.setName("氏名");
+		billingMailAddressInformationExtDto.setMailAddress("メールアドレス");
+		billingMailAddressInformationExtDto.setMyricohId(1L);
+		billingMailAddressInformationExtDtoList.add(billingMailAddressInformationExtDto);
+		testTarget.setBillingMailAddressList(billingMailAddressInformationExtDtoList);
+		// 契約担当SA社員
+		ContractPicSaEmpChangePlanExtDto contractPicSaEmpExtDto = new ContractPicSaEmpChangePlanExtDto();
+		contractPicSaEmpExtDto.setMomEmployeeId("MoM社員ID");
+		testTarget.setContractPicSaEmp(contractPicSaEmpExtDto);
+		// 電力専任情報
+		ElectricExpertContractChangePlanExtDto electricExpertContractExtDto = new ElectricExpertContractChangePlanExtDto();
+		electricExpertContractExtDto.setMomEmpId("MoM社員ID");
+		testTarget.setElectricExpertContract(electricExpertContractExtDto);
+		// 追加編集者
+		List<ContractAddedEditorEmpChangePlanExtDto> contractAddedEditorEmpExtDtoList = new ArrayList<>();
+		ContractAddedEditorEmpChangePlanExtDto contractAddedEditorEmpExtDto = new ContractAddedEditorEmpChangePlanExtDto();
+		contractAddedEditorEmpExtDto.setMomEmployeeId("MoM社員ID");
+		contractAddedEditorEmpExtDtoList.add(contractAddedEditorEmpExtDto);
+		testTarget.setContractAddedEditorEmpList(contractAddedEditorEmpExtDtoList);
+		// 重要項目説明者
+		ImportantPointExplainerChangePlanExtDto importantPointExplainerExtDto = new ImportantPointExplainerChangePlanExtDto();
+		importantPointExplainerExtDto.setDescriptionName("説明者");
+		importantPointExplainerExtDto.setOrganizationName1("所属組織名1");
+		importantPointExplainerExtDto.setOrganizationName2("所属組織名2");
+		testTarget.setImportantPointExplainer(importantPointExplainerExtDto);
+		// 料金シュミレーション
+		FeeSimulationHeadChangePlanExtDto feeSimulationHeadExtDto = new FeeSimulationHeadChangePlanExtDto();
+		feeSimulationHeadExtDto.setCreatedDate("2019/05/31");
+		feeSimulationHeadExtDto.setBasicListPrice(BigDecimal.valueOf(100));
+		feeSimulationHeadExtDto.setBasicSellingPrice(BigDecimal.valueOf(100));
+		feeSimulationHeadExtDto.setBasicBankPriceBusiness(BigDecimal.valueOf(100));
+		feeSimulationHeadExtDto.setBasicBankPriceRj(BigDecimal.valueOf(100));
+		feeSimulationHeadExtDto.setPerUseLightListPrice(BigDecimal.valueOf(100));
+		feeSimulationHeadExtDto.setPerUseLightSellingPrice(BigDecimal.valueOf(100));
+		feeSimulationHeadExtDto.setPeruseLightBankPriceBusiness(BigDecimal.valueOf(100));
+		feeSimulationHeadExtDto.setPeruseLightBankPriceRj(BigDecimal.valueOf(100));
+		feeSimulationHeadExtDto.setUsageFeeSummerListPrice(BigDecimal.valueOf(100));
+		feeSimulationHeadExtDto.setUsageFeeSummerSellingPrice(BigDecimal.valueOf(100));
+		feeSimulationHeadExtDto.setUsageFeeSummerBankPriceBusiness(BigDecimal.valueOf(100));
+		feeSimulationHeadExtDto.setUsageFeeSummerBankPriceRj(BigDecimal.valueOf(100));
+		feeSimulationHeadExtDto.setUsageFeeOtherSeasonListPrice(BigDecimal.valueOf(100));
+		feeSimulationHeadExtDto.setUsageFeeOtherSeasonSellingPrice(BigDecimal.valueOf(100));
+		feeSimulationHeadExtDto.setUsageFeeOtherSeasonBankPriceBusiness(BigDecimal.valueOf(100));
+		feeSimulationHeadExtDto.setUsageFeeOtherSeasonBankPriceRj(BigDecimal.valueOf(100));
+		testTarget.setFeeSimulationHead(feeSimulationHeadExtDto);
+
+		// 正常系
+		ParamterCheckResult result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		testTool.assertValidationOk(result);
+
+		// 異常系(@NotNull)
+		testTarget = new ContractElectricChangePlanExtInputDto();
+		testTarget.setContractElectric(new ContractElectricChangePlanExtDto());
+		testTarget.setCustomerContract(new CustomerContractChangePlanExtDto());
+		testTarget.setContractPersonMailAddressList(new ArrayList<MailAddressInformationChangePlanExtDto>());
+		testTarget.setBillingMailAddressList(new ArrayList<BillingMailAddressInformationChangePlanExtDto>());
+		testTarget.setContractPicSaEmp(new ContractPicSaEmpChangePlanExtDto());
+		testTarget.setElectricExpertContract(new ElectricExpertContractChangePlanExtDto());
+		testTarget.setContractAddedEditorEmpList(new ArrayList<ContractAddedEditorEmpChangePlanExtDto>());
+		testTarget.setImportantPointExplainer(new ImportantPointExplainerChangePlanExtDto());
+		testTarget.setElectricDealerContract(new ElectricDealerContractChangePlanExtDto());
+		testTarget.setFeeSimulationHead(new FeeSimulationHeadChangePlanExtDto());
+		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		Assert.assertEquals(76, result.getErrorInfoList().size());
+
+		// 異常系(@Size(max))
+		entity = contractElectricRepository.findOne(1L);
+		// テストデータ作成
+		testTarget = new ContractElectricChangePlanExtInputDto();
+		testTarget.setCaseNumber(STR_256);
+		testTarget.setCaseTitle(STR_256);
+		testTarget.setClientCode(STR_256);
+		testTarget.setChangePreferredDate(STR_256);
+		testTarget.setOriginContractId(1L);
+		// 契約(電力)
+		BeanUtils.copyProperties(entity.getEntryContentLowPressure(), contractElectricExtDto);
+		BeanUtils.copyProperties(entity, contractElectricExtDto);
+		contractElectricExtDto.setSendInvoiceDiv(SendInvoiceDiv.メール_MyRICOH);
+		contractElectricExtDto.setBasicMeterReadingDate("dd");
+		contractElectricExtDto.setCo2EmissionMenu(ElectricPlan.CO2フリー);
+		contractElectricExtDto.setElectricCommercialFlowDiv("直売");
+		contractElectricExtDto.setElectricCommercialFlowDivCd("1");
+		contractElectricExtDto.setFixTransferDestinationCode("修正時振替先コード");
+		contractElectricExtDto.setOppSysKeyBn(STR_256);
+		contractElectricExtDto.setSimNumberMain(STR_256);
+		contractElectricExtDto.setSimNumberSub(STR_256);
+		contractElectricExtDto.setCustomerName(STR_256);
+		contractElectricExtDto.setCustomerNameKana(STR_256);
+		contractElectricExtDto.setItemCode(STR_256);
+		contractElectricExtDto.setBildInfo(STR_256);
+		contractElectricExtDto.setCity(STR_256);
+		contractElectricExtDto.setAddress(STR_256);
+		contractElectricExtDto.setBuildingName(STR_256);
+		contractElectricExtDto.setPhoneNumber(STR_256);
+		contractElectricExtDto.setContractHolderOld(STR_256);
+		contractElectricExtDto.setDemandPlaceOld(STR_256);
+		contractElectricExtDto.setCurrentElectricCompany(STR_256);
+		contractElectricExtDto.setElectricCommercialFlowDiv(STR_256);
+		contractElectricExtDto.setElectricCommercialFlowDivCd(STR_256);
+		contractElectricExtDto.setPowerArea(STR_256);
+		contractElectricExtDto.setPowerCompany(STR_256);
+		contractElectricExtDto.setElectricCompanyCode(STR_256);
+		contractElectricExtDto.setVoltageCategory(STR_256);
+		contractElectricExtDto.setElectricMenu(STR_256);
+		contractElectricExtDto.setElectricMenuCode(STR_256);
+		contractElectricExtDto.setCo2EmissionFactor(STR_256);
+		contractElectricExtDto.setItemCode(STR_256);
+		contractElectricExtDto.setChargeCycle(STR_256);
+		contractElectricExtDto.setContractAmount(STR_256);
+		contractElectricExtDto.setBasicMeterReadingDate(STR_256);
+		contractElectricExtDto.setFixTransferDestinationCode(STR_256);
+		contractElectricExtDto.setFeedPointNumber(STR_256);
+		contractElectricExtDto.setDemandNameKr(STR_256);
+		contractElectricExtDto.setLicensedEngineerName(STR_256);
+		contractElectricExtDto.setLicensedEngineerTel(STR_256);
+		contractElectricExtDto.setLicensedEngineerDep(STR_256);
+		contractElectricExtDto.setSupplyStartDate(STR_256);
+		contractElectricExtDto.setEntryNumber(STR_256);
+		contractElectricExtDto.setZipCode(STR_256);
+		contractElectricExtDto.setCurrentContractNumber(STR_256);
+		contractElectricExtDto.setEntryDate(STR_256);
+		testTarget.setContractElectric(contractElectricExtDto);
+		// 顧客
+		customerContractExtDto = new CustomerContractChangePlanExtDto();
+		customerContractExtDto.setMomCustId(STR_256);
+		customerContractExtDto.setCompanyId(STR_256);
+		customerContractExtDto.setOfficeId(STR_256);
+		customerContractExtDto.setPicName(STR_256);
+		customerContractExtDto.setPicNameKana(STR_256);
+		customerContractExtDto.setPicDeptName(STR_256);
+		customerContractExtDto.setPicPhoneNumber(STR_256);
+		customerContractExtDto.setPicFaxNumber(STR_256);
+		customerContractExtDto.setPicMailAddress(STR_256);
+		testTarget.setCustomerContract(customerContractExtDto);
+		// メールアドレス情報
+		mailAddressInformationExtDtoList = new ArrayList<MailAddressInformationChangePlanExtDto>();
+		mailAddressInformationExtDto = new MailAddressInformationChangePlanExtDto();
+		mailAddressInformationExtDto.setName(STR_256);
+		mailAddressInformationExtDto.setMailAddress(STR_256);
+		mailAddressInformationExtDtoList.add(mailAddressInformationExtDto);
+		testTarget.setContractPersonMailAddressList(mailAddressInformationExtDtoList);
+		// 請求先メールアドレス
+		billingMailAddressInformationExtDtoList = new ArrayList<BillingMailAddressInformationChangePlanExtDto>();
+		billingMailAddressInformationExtDto = new BillingMailAddressInformationChangePlanExtDto();
+		billingMailAddressInformationExtDto.setName(STR_256);
+		billingMailAddressInformationExtDto.setMailAddress(STR_256);
+		billingMailAddressInformationExtDto.setMyricohId(1L);
+		billingMailAddressInformationExtDtoList.add(billingMailAddressInformationExtDto);
+		testTarget.setBillingMailAddressList(billingMailAddressInformationExtDtoList);
+		// 契約担当SA社員
+		contractPicSaEmpExtDto = new ContractPicSaEmpChangePlanExtDto();
+		contractPicSaEmpExtDto.setMomEmployeeId(STR_256);
+		testTarget.setContractPicSaEmp(contractPicSaEmpExtDto);
+		// 電力専任情報
+		electricExpertContractExtDto = new ElectricExpertContractChangePlanExtDto();
+		electricExpertContractExtDto.setMomEmpId(STR_256);
+		testTarget.setElectricExpertContract(electricExpertContractExtDto);
+		// 追加編集者
+		contractAddedEditorEmpExtDtoList = new ArrayList<ContractAddedEditorEmpChangePlanExtDto>();
+		contractAddedEditorEmpExtDto = new ContractAddedEditorEmpChangePlanExtDto();
+		contractAddedEditorEmpExtDto.setMomEmployeeId(STR_256);
+		contractAddedEditorEmpExtDtoList.add(contractAddedEditorEmpExtDto);
+		testTarget.setContractAddedEditorEmpList(contractAddedEditorEmpExtDtoList);
+		// 重要項目説明者
+		importantPointExplainerExtDto = new ImportantPointExplainerChangePlanExtDto();
+		importantPointExplainerExtDto.setDescriptionName(STR_256);
+		importantPointExplainerExtDto.setOrganizationName1(STR_256);
+		importantPointExplainerExtDto.setOrganizationName2(STR_256);
+		testTarget.setImportantPointExplainer(importantPointExplainerExtDto);
+		// 料金シュミレーション
+		feeSimulationHeadExtDto.setCreatedDate(STR_256);
+		feeSimulationHeadExtDto.setBasicListPrice(BigDecimal.valueOf(100));
+		feeSimulationHeadExtDto.setBasicSellingPrice(BigDecimal.valueOf(100));
+		feeSimulationHeadExtDto.setBasicBankPriceBusiness(BigDecimal.valueOf(100));
+		feeSimulationHeadExtDto.setBasicBankPriceRj(BigDecimal.valueOf(100));
+		feeSimulationHeadExtDto.setPerUseLightListPrice(BigDecimal.valueOf(100));
+		feeSimulationHeadExtDto.setPerUseLightSellingPrice(BigDecimal.valueOf(100));
+		feeSimulationHeadExtDto.setPeruseLightBankPriceBusiness(BigDecimal.valueOf(100));
+		feeSimulationHeadExtDto.setPeruseLightBankPriceRj(BigDecimal.valueOf(100));
+		feeSimulationHeadExtDto.setUsageFeeSummerListPrice(BigDecimal.valueOf(100));
+		feeSimulationHeadExtDto.setUsageFeeSummerSellingPrice(BigDecimal.valueOf(100));
+		feeSimulationHeadExtDto.setUsageFeeSummerBankPriceBusiness(BigDecimal.valueOf(100));
+		feeSimulationHeadExtDto.setUsageFeeSummerBankPriceRj(BigDecimal.valueOf(100));
+		feeSimulationHeadExtDto.setUsageFeeOtherSeasonListPrice(BigDecimal.valueOf(100));
+		feeSimulationHeadExtDto.setUsageFeeOtherSeasonSellingPrice(BigDecimal.valueOf(100));
+		feeSimulationHeadExtDto.setUsageFeeOtherSeasonBankPriceBusiness(BigDecimal.valueOf(100));
+		feeSimulationHeadExtDto.setUsageFeeOtherSeasonBankPriceRj(BigDecimal.valueOf(100));
+		testTarget.setFeeSimulationHead(feeSimulationHeadExtDto);
+		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		Assert.assertEquals(61, result.getErrorInfoList().size());
+
+		// 異常系(@Min, @Decimal)
+		// テストデータ作成
+		testTarget = new ContractElectricChangePlanExtInputDto();
+		testTarget.setCaseNumber("案件番号");
+		testTarget.setCaseTitle("案件名");
+		testTarget.setClientCode("得意先コード");
+		testTarget.setOriginContractId(1L);
+		// 契約(電力)
+		contractElectricExtDto = new ContractElectricChangePlanExtDto();
+		BeanUtils.copyProperties(entity.getEntryContentLowPressure(), contractElectricExtDto);
+		BeanUtils.copyProperties(entity, contractElectricExtDto);
+		contractElectricExtDto.setSendInvoiceDiv(SendInvoiceDiv.メール_MyRICOH);
+		contractElectricExtDto.setBasicMeterReadingDate("dd");
+		contractElectricExtDto.setCo2EmissionMenu(ElectricPlan.CO2フリー);
+		contractElectricExtDto.setElectricCommercialFlowDiv("直売");
+		contractElectricExtDto.setElectricCommercialFlowDivCd("1");
+		contractElectricExtDto.setFixTransferDestinationCode("修正時振替先コード");
+		contractElectricExtDto.setVoltageCategory("1");
+		contractElectricExtDto.setContractCapacityUsage(DECIMAL_MINUS_001);
+		contractElectricExtDto.setContractElectricCurrent(DECIMAL_MINUS_001);
+		contractElectricExtDto.setContractElectricPower(DECIMAL_MINUS_001);
+		contractElectricExtDto.setLoadFactor(DECIMAL_MINUS_001);
+		contractElectricExtDto.setTransferCheckFlg(INT_MINUS_1);
+		contractElectricExtDto.setEntryDate("2019/05/31");
+		contractElectricExtDto.setContractYmdStart("2019/05/31");
+		testTarget.setContractElectric(contractElectricExtDto);
+		// 顧客
+		customerContractExtDto = new CustomerContractChangePlanExtDto();
+		customerContractExtDto.setMomCustId("MoMkjbID");
+		customerContractExtDto.setCompanyId("MoM企業ID");
+		customerContractExtDto.setOfficeId("MoM事業所ID");
+		customerContractExtDto.setPicName("担当者氏名");
+		customerContractExtDto.setPicNameKana("担当者氏名(カナ)");
+		customerContractExtDto.setPicDeptName("担当者部署");
+		customerContractExtDto.setPicPhoneNumber("担当者電話番号");
+		customerContractExtDto.setPicFaxNumber("担当者FAX番号");
+		customerContractExtDto.setPicMailAddress("担当者メールアドレス");
+		testTarget.setCustomerContract(customerContractExtDto);
+		// メールアドレス情報
+		mailAddressInformationExtDtoList = new ArrayList<MailAddressInformationChangePlanExtDto>();
+		mailAddressInformationExtDto = new MailAddressInformationChangePlanExtDto();
+		mailAddressInformationExtDto.setName("氏名");
+		mailAddressInformationExtDto.setMailAddress("メールアドレス");
+		mailAddressInformationExtDtoList.add(mailAddressInformationExtDto);
+		testTarget.setContractPersonMailAddressList(mailAddressInformationExtDtoList);
+		// 請求先メールアドレス
+		billingMailAddressInformationExtDtoList = new ArrayList<BillingMailAddressInformationChangePlanExtDto>();
+		billingMailAddressInformationExtDto = new BillingMailAddressInformationChangePlanExtDto();
+		billingMailAddressInformationExtDto.setName("氏名");
+		billingMailAddressInformationExtDto.setMailAddress("メールアドレス");
+		billingMailAddressInformationExtDto.setMyricohId(1L);
+		billingMailAddressInformationExtDtoList.add(billingMailAddressInformationExtDto);
+		testTarget.setBillingMailAddressList(billingMailAddressInformationExtDtoList);
+		// 契約担当SA社員
+		contractPicSaEmpExtDto = new ContractPicSaEmpChangePlanExtDto();
+		contractPicSaEmpExtDto.setMomEmployeeId("MoM社員ID");
+		testTarget.setContractPicSaEmp(contractPicSaEmpExtDto);
+		// 電力専任情報
+		electricExpertContractExtDto = new ElectricExpertContractChangePlanExtDto();
+		electricExpertContractExtDto.setMomEmpId("MoM社員ID");
+		testTarget.setElectricExpertContract(electricExpertContractExtDto);
+		// 追加編集者
+		contractAddedEditorEmpExtDtoList = new ArrayList<ContractAddedEditorEmpChangePlanExtDto>();
+		contractAddedEditorEmpExtDto = new ContractAddedEditorEmpChangePlanExtDto();
+		contractAddedEditorEmpExtDto.setMomEmployeeId("MoM社員ID");
+		contractAddedEditorEmpExtDtoList.add(contractAddedEditorEmpExtDto);
+		testTarget.setContractAddedEditorEmpList(contractAddedEditorEmpExtDtoList);
+		// 重要項目説明者
+		importantPointExplainerExtDto = new ImportantPointExplainerChangePlanExtDto();
 		importantPointExplainerExtDto.setDescriptionName("説明者");
 		importantPointExplainerExtDto.setOrganizationName1("所属組織名1");
 		importantPointExplainerExtDto.setOrganizationName2("所属組織名2");
