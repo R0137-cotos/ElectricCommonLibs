@@ -52,7 +52,7 @@ public class ElectricFormIdentMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = false)
 	@ApiModelProperty(value = "帳票出力テンプレート", required = true, position = 4, allowableValues = "range[0,255]")
-	private String templeteFormName;
+	private String templateFormName;
 	
 	/**
 	 * 添付必須フラグ
