@@ -26,9 +26,9 @@ import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.Est
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.EstimationExtPlanChangeDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.EstimationPicSaEmpExtDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.FeeSimulationHeadExtDto;
+import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.PaymentMethod;
 import jp.co.ricoh.cotos.electriccommonlib.entity.estimation.EstimationElectric;
 import jp.co.ricoh.cotos.electriccommonlib.entity.estimation.FeeSimulationHead;
-import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricDealerMaster.PaymentMethod;
 import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricFormMaster.ElectricPlan;
 import jp.co.ricoh.cotos.electriccommonlib.repository.estimation.EstimationElectricRepository;
 import jp.co.ricoh.cotos.electriccommonlib.security.TestSecurityController;
