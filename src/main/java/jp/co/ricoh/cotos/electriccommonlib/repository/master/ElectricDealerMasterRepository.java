@@ -8,5 +8,5 @@ import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricDealerMaster;
 @Repository
 public interface ElectricDealerMasterRepository extends CrudRepository<ElectricDealerMaster, Long> {
 
-	public ElectricDealerMaster findByCompanyId(String companyId);
+	public ElectricDealerMaster findByHnbitnCd(String hnbitnCd);
 }

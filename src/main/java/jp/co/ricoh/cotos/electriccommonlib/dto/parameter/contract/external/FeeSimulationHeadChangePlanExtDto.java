@@ -13,7 +13,7 @@ import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = false)
 @Data
-public class FeeSimulationHeadExtDto {
+public class FeeSimulationHeadChangePlanExtDto {
 
 	/**
 	 * 作成日
