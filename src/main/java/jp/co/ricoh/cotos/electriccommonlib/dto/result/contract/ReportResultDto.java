@@ -10,7 +10,7 @@ public class ReportResultDto {
 	 * 帳票バイナリデータ
 	 */
 	@ApiModelProperty(value = "帳票バイナリデータ", required = true, position = 1)
-	private byte[] respons;
+	private byte[] byteData;
 
 	/**
 	 * 帳票名
