@@ -62,7 +62,7 @@ public class ElectricExpertEstimationListener {
 		electricExpertEstimation.setName(employeeMaster.getJobname1() + employeeMaster.getJobname2());
 		electricExpertEstimation.setMailAddress(employeeMaster.getMailAddress());
 		electricExpertEstimation.setPhoneNumber(employeeMaster.getPhoneNumber());
-		electricExpertEstimation.setAffiliationCode(employeeMaster.getRingsHanshCd() + employeeMaster.getRingsSectCd());
+		electricExpertEstimation.setAffiliationCode(employeeMaster.getExperCd());
 		electricExpertEstimation.setBelongs(employeeMaster.getOrgBaseName());
 	}
 
