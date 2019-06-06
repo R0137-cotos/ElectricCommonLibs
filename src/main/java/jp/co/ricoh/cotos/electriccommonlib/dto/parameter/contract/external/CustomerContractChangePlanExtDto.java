@@ -10,7 +10,7 @@ import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = false)
 @Data
-public class CustomerContractExtDto {
+public class CustomerContractChangePlanExtDto {
 
 	/**
 	 * MoM企事部ID
