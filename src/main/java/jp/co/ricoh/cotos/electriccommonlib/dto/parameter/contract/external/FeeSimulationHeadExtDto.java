@@ -1,13 +1,11 @@
 package jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external;
 
 import java.math.BigDecimal;
-import java.util.Date;
 
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -20,9 +18,9 @@ public class FeeSimulationHeadExtDto {
 	/**
 	 * 作成日
 	 */
-	@ApiModelProperty(value = "作成日", required = true, position = 1)
-	@Temporal(TemporalType.DATE)
-	private Date createdDate;
+	@Size(max = 255)
+	@ApiModelProperty(value = "作成日", required = true, position = 1, allowableValues = "range[0,255]")
+	private String createdDate;
 	
 	/**
 	 * 基本料金_定価
