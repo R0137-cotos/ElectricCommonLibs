@@ -24,6 +24,7 @@ import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricFormMaster.Elec
 import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricFormMaster.ElectricPlan;
 import jp.co.ricoh.cotos.electriccommonlib.entity.master.HighContractCalendarMaster;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.ClientMasterRepository;
+import jp.co.ricoh.cotos.electriccommonlib.repository.master.CommissionMasterRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.master.ElectricAreaMasterRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.master.ElectricCompanyMasterRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.master.ElectricDealerMasterRepository;
@@ -56,6 +57,9 @@ public class TestMasterElectricRepository extends RepositoryTestBase {
 
 	@Autowired
 	HighContractCalendarMasterRepository highContractCalendarMasterRepository;
+
+	@Autowired
+	CommissionMasterRepository commissionMasterRepository;
 
 	@Autowired
 	TestTools testTools;
@@ -108,11 +112,16 @@ public class TestMasterElectricRepository extends RepositoryTestBase {
 	}
 
 	@Test
+	public void 全てのカラムがNullではないことを確認_マスタ_媒介手数料マスタ() {
+		全てのカラムがNullではないことを確認_マスタ(commissionMasterRepository, 1L);
+	}
+
+	@Test
 	public void 全てのカラムがNullではないことを確認_マスタ_企業IDより取得() {
-		String companyId = "test";
+		String hnbitnCd = "test";
 
 		// 企業IDにより販売店マスタを取得
-		ElectricDealerMaster electricDealerMaster = electricDealerMasterRepository.findByCompanyId(companyId);
+		ElectricDealerMaster electricDealerMaster = electricDealerMasterRepository.findByHnbitnCd(hnbitnCd);
 
 		// null項目なく取得できていることを確認
 		try {
