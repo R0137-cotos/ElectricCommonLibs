@@ -48,17 +48,24 @@ public class ElectricFormIdentMaster extends EntityBaseMaster {
 	private String targetFormName;
 
 	/**
+	 * 帳票出力テンプレート
+	 */
+	@Column(nullable = false)
+	@ApiModelProperty(value = "帳票出力テンプレート", required = true, position = 4, allowableValues = "range[0,255]")
+	private String templeteFromName;
+	
+	/**
 	 * 添付必須フラグ
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "添付必須フラグ", required = true, position = 4, allowableValues = "range[0,9]")
+	@ApiModelProperty(value = "添付必須フラグ", required = true, position = 5, allowableValues = "range[0,9]")
 	private int targetRequiredFlg;
 
 	/**
 	 * 説明
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "説明", required = false, position = 5, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "説明", required = false, position = 6, allowableValues = "range[0,255]")
 	private String description;
 
 	@ManyToMany(mappedBy = "electricFormIdentMasterList")
