@@ -1,6 +1,5 @@
 package jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -43,8 +42,9 @@ public class ContractElectricExtInputDto {
 	/**
 	 * 変更希望日
 	 */
-	@ApiModelProperty(value = "変更希望日", required = false, position = 4)
-	private Date changePreferredDate;
+	@Size(max = 255)
+	@ApiModelProperty(value = "変更希望日", required = false, position = 4, allowableValues = "range[0,255]")
+	private String changePreferredDate;
 	
 	/**
 	 * 変更元契約ID(プラン変更で使用)

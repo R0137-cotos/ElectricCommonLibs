@@ -1,7 +1,6 @@
 package jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external;
 
 import java.math.BigDecimal;
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.validation.constraints.DecimalMin;
@@ -123,8 +122,8 @@ public class EstimationElectricExtDto extends DtoBase {
 
 	/**供給開始予定日*/
 	@NotNull
-	@ApiModelProperty(value = "供給開始予定日", required = true, position = 19)
-	private Date supplyStartScheduledDate;
+	@ApiModelProperty(value = "供給開始予定日", required = true, position = 19, allowableValues = "range[0,255]")
+	private String supplyStartScheduledDate;
 
 	/**電源サイクル*/
 	@NotNull
