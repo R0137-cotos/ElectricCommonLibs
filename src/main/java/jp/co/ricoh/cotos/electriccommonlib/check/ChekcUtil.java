@@ -1,4 +1,4 @@
-package jp.co.ricoh.cotos.electriccommonlib.util;
+package jp.co.ricoh.cotos.electriccommonlib.check;
 
 import java.lang.reflect.Field;
 import java.util.Arrays;
@@ -15,11 +15,8 @@ import jp.co.ricoh.cotos.commonlib.logic.check.CheckUtil;
 import jp.co.ricoh.cotos.commonlib.logic.message.MessageUtil;
 
 @Component
-public class UtilMethods {
-	
-	@Autowired
-	CheckUtil checkUtil;
-	
+public class ChekcUtil extends CheckUtil{
+
 	@Autowired
 	MessageUtil messageUtil;
 	
@@ -46,7 +43,7 @@ public class UtilMethods {
 			String fieldOrigNm = Optional.of(f.toString()).filter(o -> o.contains(".")).map(o -> {
 				return Optional.of(o.split(Pattern.quote("."))).map(m -> m[m.length - 1]).get();
 			}).orElse(f.toString());
-			checkUtil.addErrorInfo(errorInfoList, "ParameterEmptyError", new String[] { messageUtil.convertSingleValue(fieldOrigNm) });
+			addErrorInfo(errorInfoList, "ParameterEmptyError", new String[] { messageUtil.convertSingleValue(fieldOrigNm) });
 		});
 
 		return errorInfoList;
