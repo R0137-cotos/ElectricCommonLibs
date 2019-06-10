@@ -71,3 +71,4 @@
 |66|リスナークラス削除|
 |67|UtilMethodsクラス作成|
 |68|ElectricCheckUtilクラス作成|
+|69|添付ファイルのJackson設定を修正|
