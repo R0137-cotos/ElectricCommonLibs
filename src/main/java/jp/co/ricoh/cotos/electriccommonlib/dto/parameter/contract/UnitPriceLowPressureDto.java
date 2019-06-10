@@ -1,6 +1,7 @@
 package jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Digits;
@@ -104,4 +105,10 @@ public class UnitPriceLowPressureDto extends DtoBase {
 	@Digits(integer = 19, fraction = 2)
 	@ApiModelProperty(value = "基本料金_売価", required = false, position = 13, allowableValues = "range[0.00,9999999999999999999.99]")
 	private BigDecimal basicSellingPrice;
+	
+	/**
+	 * 作成日
+	 */
+	@ApiModelProperty(value = "作成日", required = false, position = 14)
+	private Date createdDate;
 }
