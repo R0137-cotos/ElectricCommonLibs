@@ -1,4 +1,4 @@
-package jp.co.ricoh.cotos.electriccommonlib.util;
+package jp.co.ricoh.cotos.electriccommonlib.check;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,21 +12,22 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.junit.Assert;
 
 import jp.co.ricoh.cotos.commonlib.exception.ErrorInfo;
+import jp.co.ricoh.cotos.electriccommonlib.check.ElectricChecKUtil;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.ElectricDealerContractChangePlanExtDto;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-public class TestUtilMethods {
+public class TestElectricCheckUtil {
 	
 	@Autowired
-	UtilMethods utilMethods;
+	ElectricChecKUtil electricCheckUtil;
 
 	@Test
 	public void DTOのnullチェックができること() {
 		
 		ElectricDealerContractChangePlanExtDto electricContractExtDto = new ElectricDealerContractChangePlanExtDto();
 		List<ErrorInfo> errorInfoList = new ArrayList<>();
-		errorInfoList = utilMethods.emptyFieldsCheck(electricContractExtDto, errorInfoList);
+		errorInfoList = electricCheckUtil.emptyFieldsCheck(electricContractExtDto, errorInfoList);
 		Assert.assertEquals(9, errorInfoList.size());
 	}
 }
