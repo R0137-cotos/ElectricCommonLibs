@@ -15,7 +15,7 @@ import jp.co.ricoh.cotos.commonlib.logic.check.CheckUtil;
 import jp.co.ricoh.cotos.commonlib.logic.message.MessageUtil;
 
 @Component
-public class ChekcUtil extends CheckUtil{
+public class ElectricChecKUtil extends CheckUtil{
 
 	@Autowired
 	MessageUtil messageUtil;

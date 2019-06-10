@@ -12,22 +12,22 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.junit.Assert;
 
 import jp.co.ricoh.cotos.commonlib.exception.ErrorInfo;
-import jp.co.ricoh.cotos.electriccommonlib.check.ChekcUtil;
+import jp.co.ricoh.cotos.electriccommonlib.check.ElectricChecKUtil;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.ElectricDealerContractChangePlanExtDto;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-public class TestCheckUtil {
+public class TestElectricCheckUtil {
 	
 	@Autowired
-	ChekcUtil checkUtil;
+	ElectricChecKUtil electricCheckUtil;
 
 	@Test
 	public void DTOのnullチェックができること() {
 		
 		ElectricDealerContractChangePlanExtDto electricContractExtDto = new ElectricDealerContractChangePlanExtDto();
 		List<ErrorInfo> errorInfoList = new ArrayList<>();
-		errorInfoList = checkUtil.emptyFieldsCheck(electricContractExtDto, errorInfoList);
+		errorInfoList = electricCheckUtil.emptyFieldsCheck(electricContractExtDto, errorInfoList);
 		Assert.assertEquals(9, errorInfoList.size());
 	}
 }

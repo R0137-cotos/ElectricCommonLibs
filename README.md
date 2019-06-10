@@ -70,4 +70,4 @@
 |65|電力専任情報リスナー修正|
 |66|リスナークラス削除|
 |67|UtilMethodsクラス作成|
-|68|CheckUtilクラス作成|
+|68|ElectricCheckUtilクラス作成|
