@@ -73,7 +73,6 @@ public class ContractElectricAttachedFile extends EntityBase {
 	@OneToOne
 	@JoinColumn(name = "electric_attached_file_id", referencedColumnName = "id", nullable = true)
 	@ApiModelProperty(value = "添付ファイル", required = false, position = 5)
-	@JsonIgnore
 	private ElectricAttachedFile electricAttachedFile;
 
 	/**

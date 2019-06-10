@@ -11,6 +11,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBase;
 import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
@@ -74,5 +76,6 @@ public class ElectricAttachedFile extends EntityBase {
 	 */
 	@OneToOne(mappedBy = "electricAttachedFile")
 	@ApiModelProperty(value = "添付ファイル(電力用)", required = true, position = 6)
+	@JsonIgnore
 	private ContractElectricAttachedFile contractElectricAttachedFile;
 }

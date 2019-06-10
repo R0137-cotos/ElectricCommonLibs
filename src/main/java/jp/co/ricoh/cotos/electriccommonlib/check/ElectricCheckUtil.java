@@ -15,11 +15,11 @@ import jp.co.ricoh.cotos.commonlib.logic.check.CheckUtil;
 import jp.co.ricoh.cotos.commonlib.logic.message.MessageUtil;
 
 @Component
-public class ElectricChecKUtil extends CheckUtil{
+public class ElectricCheckUtil extends CheckUtil {
 
 	@Autowired
 	MessageUtil messageUtil;
-	
+
 	/**
 	 * dtoのnullチェック
 	 * 
