@@ -1,6 +1,7 @@
 package jp.co.ricoh.cotos.electriccommonlib.entity.contract;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -145,4 +146,11 @@ public class UnitPriceLowPressure extends EntityBase {
 	@Digits(integer = 19, fraction = 2)
 	@ApiModelProperty(value = "基本料金_売価", required = false, position = 13, allowableValues = "range[0.00,9999999999999999999.99]")
 	private BigDecimal basicSellingPrice;
+	
+	/**
+	 * 作成日
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "作成日", required = false, position = 14)
+	private Date createdDate;
 }
