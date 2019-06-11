@@ -9,12 +9,10 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.dto.parameter.common.DtoBase;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.common.ElectricAttachedFileDto;
-import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricFormMaster.ElectricFileType;
+import jp.co.ricoh.cotos.electriccommonlib.entity.contract.ContractElectricAttachedFile.ElectricDispFileType;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -41,7 +39,6 @@ public class ContractElectricAttachedFileDto extends DtoBase {
 	 * 添付ファイル
 	 */
 	@ApiModelProperty(value = "添付ファイル", required = false, position = 5)
-	@JsonIgnore
 	private ElectricAttachedFileDto electricAttachedFileDto;
 
 	/**
@@ -84,7 +81,7 @@ public class ContractElectricAttachedFileDto extends DtoBase {
 	 */
 	@NotNull
 	@ApiModelProperty(value = "電力用ファイル種別", required = true, position = 11, allowableValues = "新規(\"1\"), 変更(\"2\"), 解約(\"3\"),その他(\"99\")", example = "1")
-	private ElectricFileType electricFileType;
+	private ElectricDispFileType electricFileType;
 
 	/**
 	 * 添付必須フラグ

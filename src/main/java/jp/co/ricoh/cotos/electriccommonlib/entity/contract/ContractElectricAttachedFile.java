@@ -1,5 +1,6 @@
 package jp.co.ricoh.cotos.electriccommonlib.entity.contract;
 
+import java.util.Arrays;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -17,13 +18,14 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBase;
 import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
 import jp.co.ricoh.cotos.electriccommonlib.entity.common.ElectricAttachedFile;
-import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricFormMaster.ElectricFileType;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.ContractElectricAttachedFileRepository;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -37,6 +39,28 @@ import lombok.EqualsAndHashCode;
 @Table(name = "contract_electric_attached_file")
 @CotosComplementTarget(entity = ContractElectricAttachedFile.class, repository = ContractElectricAttachedFileRepository.class)
 public class ContractElectricAttachedFile extends EntityBase {
+
+	public enum ElectricDispFileType {
+
+		新規("1"), 変更("2"), 解約("3"), その他("99");
+
+		private final String text;
+
+		private ElectricDispFileType(final String text) {
+			this.text = text;
+		}
+
+		@Override
+		@JsonValue
+		public String toString() {
+			return this.text;
+		}
+
+		@JsonCreator
+		public static ElectricDispFileType fromString(String string) {
+			return Arrays.stream(values()).filter(v -> v.text.equals(string)).findFirst().orElseThrow(() -> new IllegalArgumentException(String.valueOf(string)));
+		}
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "contract_electric_attached_file_seq")
@@ -116,7 +140,7 @@ public class ContractElectricAttachedFile extends EntityBase {
 	 */
 	@Column(nullable = false)
 	@ApiModelProperty(value = "電力用ファイル種別", required = true, position = 11, allowableValues = "新規(\"1\"), 変更(\"2\"), 解約(\"3\"),その他(\"99\")", example = "1")
-	private ElectricFileType electricFileType;
+	private ElectricDispFileType electricFileType;
 
 	/**
 	 * 添付必須フラグ
