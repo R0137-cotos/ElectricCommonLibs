@@ -2,8 +2,6 @@ package jp.co.ricoh.cotos.electriccommonlib.dto.result.contract;
 
 import java.util.List;
 
-import javax.persistence.Id;
-
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
@@ -13,10 +11,6 @@ import lombok.Data;
  */
 @Data
 public class BillingInformationSearchResult {
-
-	@Id
-	@ApiModelProperty(value = "連番", required = false, position = 1)
-	private long seqNo;
 
 	/**
 	 * 契約ID
