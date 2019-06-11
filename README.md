@@ -72,3 +72,4 @@
 |67|UtilMethodsクラス作成|
 |68|ElectricCheckUtilクラス作成|
 |69|添付ファイルのJackson設定を修正|
+|70|画面表示用の添付ファイル種別を追加|
