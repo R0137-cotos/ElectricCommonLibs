@@ -3,14 +3,13 @@ package jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external;
 import javax.validation.constraints.Size;
 
 import io.swagger.annotations.ApiModelProperty;
-import jp.co.ricoh.cotos.commonlib.dto.parameter.common.DtoBase;
 import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.PaymentMethod;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = false)
 @Data
-public class ElectricDealerEstimationExtDto extends DtoBase {
+public class ElectricDealerEstimationExtDto  {
 
 	/**
 	 * 企業ID
