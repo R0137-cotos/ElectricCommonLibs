@@ -42,6 +42,8 @@ import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.Contr
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.ContractElectricChangePlanExtInputDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.ContractElectricCreateExtDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.ContractElectricCreateExtInputDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.ContractElectricInfoChangeExtDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.ContractInfoChangeExtDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.ContractPicSaEmpChangePlanExtDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.ContractPicSaEmpCreateExtDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.CustomerContractChangePlanExtDto;
@@ -1111,7 +1113,7 @@ public class TestContractDto {
 		Assert.assertEquals(21, result.getErrorInfoList().size());
 
 	}
-	
+
 	@Test
 	public void ContractElectricChangePlanExtInputDtoのテスト() throws Exception {
 
@@ -1450,7 +1452,51 @@ public class TestContractDto {
 		contractElectricExtDto.setTransferCheckFlg(INT_10);
 		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(21, result.getErrorInfoList().size());
-
 	}
 
+	@Test
+	public void ContractInfoChangeExtDtoのテスト_正常系() throws Exception {
+
+		ContractInfoChangeExtDto contractInfoChangeExtDto = new ContractInfoChangeExtDto();
+		contractInfoChangeExtDto.setId(1L);
+		contractInfoChangeExtDto.setChangePreferredDate("2011/04/01");
+
+		ContractElectricInfoChangeExtDto contractElectricInfoChangeExtDto = new ContractElectricInfoChangeExtDto();
+		contractElectricInfoChangeExtDto.setEntryDate("2011/04/01");
+
+		contractInfoChangeExtDto.setContractElectric(contractElectricInfoChangeExtDto);
+
+		// 正常系
+		ParamterCheckResult result = testSecurityController.callParameterCheck(contractInfoChangeExtDto, headersProperties, localServerPort);
+		testTool.assertValidationOk(result);
+	}
+
+	@Test
+	public void ContractInfoChangeExtDtoのテスト_異常系_NOTNULL() throws Exception {
+
+		ContractInfoChangeExtDto contractInfoChangeExtDto = new ContractInfoChangeExtDto();
+		contractInfoChangeExtDto.setId(1L);
+		contractInfoChangeExtDto.setChangePreferredDate(null);
+		contractInfoChangeExtDto.setContractElectric(null);
+
+		// 正常系
+		ParamterCheckResult result = testSecurityController.callParameterCheck(contractInfoChangeExtDto, headersProperties, localServerPort);
+		testTool.assertValidationNg(result);
+	}
+
+	@Test
+	public void ContractInfoChangeExtDtoのテスト_異常系_SIZE_MIN() throws Exception {
+
+		ContractInfoChangeExtDto contractInfoChangeExtDto = new ContractInfoChangeExtDto();
+		contractInfoChangeExtDto.setId(1L);
+		contractInfoChangeExtDto.setChangePreferredDate(STR_256);
+
+		ContractElectricInfoChangeExtDto contractElectricInfoChangeExtDto = new ContractElectricInfoChangeExtDto();
+		contractElectricInfoChangeExtDto.setEntryDate(STR_256);
+
+		contractInfoChangeExtDto.setContractElectric(contractElectricInfoChangeExtDto);
+
+		ParamterCheckResult result = testSecurityController.callParameterCheck(contractInfoChangeExtDto, headersProperties, localServerPort);
+		testTool.assertValidationNg(result);
+	}
 }
