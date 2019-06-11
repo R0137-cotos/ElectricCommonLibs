@@ -4,13 +4,12 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import io.swagger.annotations.ApiModelProperty;
-import jp.co.ricoh.cotos.commonlib.dto.parameter.common.DtoBase;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = false)
 @Data
-public class ElectricExpertEstimationExtDto extends DtoBase {
+public class ElectricExpertEstimationExtDto {
 
 	/**
 	 * MoM社員ID
