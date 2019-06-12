@@ -6,10 +6,10 @@ import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.Size;
 
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.dto.parameter.common.DtoBase;
+import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.Scale;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -36,9 +36,8 @@ public class EntryContentHighPressureDto extends DtoBase {
 	/**
 	 * 規模
 	 */
-	@Size(max = 255)
-	@ApiModelProperty(value = "規模", required = false, position = 5, allowableValues = "range[0,255]")
-	private String scale;
+	@ApiModelProperty(value = "規模", required = false, position = 5, allowableValues = "500kw未満(\"1\"), 500kw以上(\"2\")", example = "1")
+	private Scale scale;
 
 	/**
 	 * 力率

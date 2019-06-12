@@ -256,12 +256,6 @@ public class TestContractDto {
 		ParamterCheckResult result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		testTool.assertValidationOk(result);
 
-		// 異常系(@Size(Max))
-		BeanUtils.copyProperties(entity.getEntryContentHighPressure(), testTarget);
-		testTarget.setScale(STR_256);
-		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
-		Assert.assertEquals(1, result.getErrorInfoList().size());
-
 		// 異常系(@Max)
 		BeanUtils.copyProperties(entity.getEntryContentHighPressure(), testTarget);
 		testTarget.setMeasureDateHigh(INT_100000);

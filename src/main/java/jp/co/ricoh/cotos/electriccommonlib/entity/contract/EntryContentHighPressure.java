@@ -21,6 +21,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBase;
 import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
+import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.Scale;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.EntryContentHighPressureRepository;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -72,8 +73,8 @@ public class EntryContentHighPressure extends EntityBase {
 	 * 規模
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "規模", required = false, position = 5, allowableValues = "range[0,255]")
-	private String scale;
+	@ApiModelProperty(value = "規模", required = false, position = 5, allowableValues = "500kw未満(\"1\"), 500kw以上(\"2\")", example = "1")
+	private Scale scale;
 
 	/**
 	 * 力率

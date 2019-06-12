@@ -203,14 +203,13 @@ public class TestEstimationExtDto {
 		target.setElectricMenuCode(STR_256);
 		target.setCo2EmissionFactor(STR_256);
 		target.setItemCode(STR_256);
-		target.setScale(STR_256);
 		target.setPowerSupplyCycle(STR_256);
 		target.setContractQuantity(STR_256);
 		target.setTypeOfContract(STR_256);
 		target.setVoltageCategory(STR_256);
 		target.setSupplyStartScheduledDate(STR_256);
 		result = testSecurityController.callParameterCheck(target, headersProperties, localServerPort);
-		Assert.assertTrue(result.getErrorInfoList().size() == 15);
+		Assert.assertTrue(result.getErrorInfoList().size() == 14);
 
 		// 異常系(@Min)
 		BeanUtils.copyProperties(entity, target);
