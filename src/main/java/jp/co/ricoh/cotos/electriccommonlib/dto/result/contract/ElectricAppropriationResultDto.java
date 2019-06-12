@@ -5,6 +5,7 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.PrePersist;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.DecimalMin;
@@ -472,5 +473,10 @@ public class ElectricAppropriationResultDto {
 	 */
 	@ApiModelProperty(value = "使用電力従量kWh", required = false, position = 73, allowableValues = "range[0,255]")
 	private String electricPowerConsumptionUsageFee;
+	
+	@PrePersist
+    public void prePersist() {
+        throw new IllegalAccessError();
+    }
 
 }
