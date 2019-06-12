@@ -110,6 +110,7 @@ public class EstimationElectricDto extends DtoBase {
 	 * 電力専任情報
 	 */
 	@Valid
+	@NotNull
 	@ApiModelProperty(value = "電力専任情報", required = false, position = 13)
 	private ElectricExpertEstimationDto electricExpertEstimationDto;
 
@@ -124,6 +125,7 @@ public class EstimationElectricDto extends DtoBase {
 	 * 料金シュミレーション(本部用)
 	 */
 	@Valid
+	@NotNull
 	@ApiModelProperty(value = "料金シュミレーション(本部用)", required = false, position = 16)
 	private FeeSimulationHeadDto feeSimulationHeadDto;
 

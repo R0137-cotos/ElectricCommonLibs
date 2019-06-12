@@ -92,12 +92,24 @@ public class TestEstimationDto {
 		EstimationElectric entity = estimationElectricRepository.findOne(1L);
 		EstimationElectricDto testTarget = new EstimationElectricDto();
 		BeanUtils.copyProperties(entity, testTarget);
+		testTarget.setFeeSimulationHeadDto(new FeeSimulationHeadDto());
+		testTarget.setElectricExpertEstimationDto(new ElectricExpertEstimationDto());
 
 		// 正常系
 		ParamterCheckResult result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		testTool.assertValidationOk(result);
 		
+		// 異常系(@NotNull)
+		testTarget.setFeeSimulationHeadDto(null);
+		testTarget.setElectricExpertEstimationDto(null);
+		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		Assert.assertEquals(2, result.getErrorInfoList().size());
+		
 		// 異常系(@Size(max))
+		testTarget = new EstimationElectricDto();
+		BeanUtils.copyProperties(entity, testTarget);
+		testTarget.setFeeSimulationHeadDto(new FeeSimulationHeadDto());
+		testTarget.setElectricExpertEstimationDto(new ElectricExpertEstimationDto());
 		testTarget.setElectricArea(STR_256);
 		testTarget.setElectricCompany(STR_256);
 		testTarget.setElectricMenu(STR_256);
@@ -117,6 +129,8 @@ public class TestEstimationDto {
 		// 異常系(@Max)
 		testTarget = new EstimationElectricDto();
 		BeanUtils.copyProperties(entity, testTarget);
+		testTarget.setFeeSimulationHeadDto(new FeeSimulationHeadDto());
+		testTarget.setElectricExpertEstimationDto(new ElectricExpertEstimationDto());
 		testTarget.setPartialSupplyFlg(INT_10);
 		testTarget.setSpareWireFlg(INT_10);
 		testTarget.setSparePowerFlg(INT_10);
@@ -127,6 +141,8 @@ public class TestEstimationDto {
 		// 異常系(@Min、DecimailMin)
 		testTarget = new EstimationElectricDto();
 		BeanUtils.copyProperties(entity, testTarget);
+		testTarget.setFeeSimulationHeadDto(new FeeSimulationHeadDto());
+		testTarget.setElectricExpertEstimationDto(new ElectricExpertEstimationDto());
 		testTarget.setContractPower(DECIMAL_MINUS_001);
 		testTarget.setPowerRate(DECIMAL_MINUS_001);
 		testTarget.setLoadFactor(DECIMAL_MINUS_001);
@@ -252,6 +268,13 @@ public class TestEstimationDto {
 	@Test
 	public void EstimationUpdateParameterのテスト() throws Exception {
 		
+		// 異常系(@NotNull)
+		EstimationUpdateParameter testTarget = new EstimationUpdateParameter();
+		testTarget.setEstimationDto(null);
+		testTarget.setEstimationElectricDto(null);
+		ParamterCheckResult result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		Assert.assertEquals(2, result.getErrorInfoList().size());
+		
 		//@Validが有効であること
 		ElectricExpertEstimationDto electricExpertEstimationDto = new ElectricExpertEstimationDto();
 		electricExpertEstimationDto.setName(STR_256);
@@ -270,10 +293,10 @@ public class TestEstimationDto {
 		estimationElectricDto.setVoltageCategory(VoltageCategory.高圧);
 		estimationElectricDto.setElectricCommercialFlowDiv(ElectricCommercialFlowDiv.直売);
 		
-		EstimationUpdateParameter testTarget = new EstimationUpdateParameter();	
+		testTarget = new EstimationUpdateParameter();	
 		testTarget.setEstimationElectricDto(estimationElectricDto);
-		ParamterCheckResult result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
-		Assert.assertEquals(3, result.getErrorInfoList().size());
+		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		Assert.assertEquals(4, result.getErrorInfoList().size());
 		
 	}
 }
