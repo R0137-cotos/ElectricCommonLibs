@@ -45,6 +45,7 @@ import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.Contr
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.ContractElectricCreateExtInputDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.ContractInfoChangeExtDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.ElectricDealerEstimationDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.ElectricExpertEstimationDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.EstimationElectricDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.EstimationUpdateParameter;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.FeeSimulationHeadDto;
@@ -300,6 +301,11 @@ public class TestSecurityController {
 	
 	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/EstimationUpdateParameter")
 	public ParamterCheckResult callParamterCheck(@RequestBody @Validated EstimationUpdateParameter dto, BindingResult result) {
+		return createParameterCheckResult(result);
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/ElectricExpertEstimationDto")
+	public ParamterCheckResult callParamterCheck(@RequestBody @Validated ElectricExpertEstimationDto dto, BindingResult result) {
 		return createParameterCheckResult(result);
 	}
 }
