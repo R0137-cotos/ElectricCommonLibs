@@ -44,6 +44,10 @@ import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.UnitPriceLowPr
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.ContractElectricChangePlanExtInputDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.ContractElectricCreateExtInputDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.ContractInfoChangeExtDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.ElectricDealerEstimationDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.EstimationElectricDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.EstimationUpdateParameter;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.FeeSimulationHeadDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.CustomerEstimationExtDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.ElectricDealerEstimationExtDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.ElectricExpertEstimationExtDto;
@@ -276,6 +280,26 @@ public class TestSecurityController {
 	
 	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/ContractInfoChangeExtDto")
 	public ParamterCheckResult callParamterCheck(@RequestBody @Validated ContractInfoChangeExtDto dto, BindingResult result) {
+		return createParameterCheckResult(result);
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/EstimationElectricDto")
+	public ParamterCheckResult callParamterCheck(@RequestBody @Validated EstimationElectricDto dto, BindingResult result) {
+		return createParameterCheckResult(result);
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/ElectricDealerEstimationDto")
+	public ParamterCheckResult callParamterCheck(@RequestBody @Validated ElectricDealerEstimationDto dto, BindingResult result) {
+		return createParameterCheckResult(result);
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/FeeSimulationHeadDto")
+	public ParamterCheckResult callParamterCheck(@RequestBody @Validated FeeSimulationHeadDto dto, BindingResult result) {
+		return createParameterCheckResult(result);
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/EstimationUpdateParameter")
+	public ParamterCheckResult callParamterCheck(@RequestBody @Validated EstimationUpdateParameter dto, BindingResult result) {
 		return createParameterCheckResult(result);
 	}
 }
