@@ -17,4 +17,6 @@ public class StandardProperties {
 	private String contract;
 
 	private String master;
+	
+	private String reports;
 }

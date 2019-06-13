@@ -26,6 +26,7 @@ public class TestProperties {
 		Assert.assertEquals("契約のURLが取得できること", "https://dev-api.cotos.ricoh.co.jp/contract/api", standardProperties.getContract());
 		Assert.assertEquals("見積のURLが取得できること", "https://dev-api.cotos.ricoh.co.jp/estimaiton/api", standardProperties.getEstimation());
 		Assert.assertEquals("マスターのURLが取得できること", "https://dev-api.cotos.ricoh.co.jp/master/api", standardProperties.getMaster());
+		Assert.assertEquals("帳票のURLが取得できること", "https://dev-api.cotos.ricoh.co.jp/reports/api", standardProperties.getReports());
 	}
 
 	@Test
