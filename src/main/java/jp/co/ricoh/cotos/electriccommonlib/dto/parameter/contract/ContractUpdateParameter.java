@@ -15,7 +15,6 @@ public class ContractUpdateParameter {
 	/**
 	 * 標準用契約DTO
 	 */
-	@Valid
 	@NotNull
 	ContractDto contractDto;
 
