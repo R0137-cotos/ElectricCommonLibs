@@ -15,7 +15,6 @@ public class EstimationUpdateParameter {
 	/**
 	 * 標準用見積DTO
 	 */
-	@Valid
 	@NotNull
 	EstimationDto estimationDto;
 
