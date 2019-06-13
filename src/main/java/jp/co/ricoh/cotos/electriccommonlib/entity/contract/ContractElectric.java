@@ -507,25 +507,33 @@ public class ContractElectric extends EntityBase {
 	@OneToOne(mappedBy = "contractElectric")
 	@ApiModelProperty(value = "重要事項説明者", required = false, position = 61)
 	private ImportantPointExplainer importantPointExplainer;
-	
+
 	/**
 	 * SIM番号(主)
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "SIM番号(主)", required = false, position = 62, allowableValues = "range[0,255]")
 	private String simNumberMain;
-	
+
 	/**
 	 * SIM番号(従)
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "SIM番号(従)", required = false, position = 63, allowableValues = "range[0,255]")
 	private String simNumberSub;
-	
+
 	/**
 	 * CO2排出係数
 	 */
 	@Column(nullable = true, name = "co2_emission_factor")
 	@ApiModelProperty(value = "CO2排出係数", required = false, position = 64, allowableValues = "range[0,255]")
 	private String co2EmissionFactor;
+
+	/**
+	 * 初回供給開始日
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "初回供給開始日", required = false, position = 65)
+	@Temporal(TemporalType.DATE)
+	private Date firstSupplyStartDate;
 }

@@ -437,21 +437,21 @@ public class ContractElectricDto extends DtoBase {
 	@Valid
 	@ApiModelProperty(value = "重要事項説明者", required = false, position = 59)
 	private ImportantPointExplainerDto importantPointExplainerDto;
-	
+
 	/**
 	 * SIM番号(主)
 	 */
 	@Size(max = 255)
 	@ApiModelProperty(value = "SIM番号(主)", required = false, position = 60, allowableValues = "range[0,255]")
 	private String simNumberMain;
-	
+
 	/**
 	 * SIM番号(従)
 	 */
 	@Size(max = 255)
 	@ApiModelProperty(value = "SIM番号(従)", required = false, position = 61, allowableValues = "range[0,255]")
 	private String simNumberSub;
-	
+
 	/**
 	 * CO2排出係数
 	 */
@@ -459,4 +459,11 @@ public class ContractElectricDto extends DtoBase {
 	@Column(name = "co2_emission_factor")
 	@ApiModelProperty(value = "CO2排出係数", required = false, position = 62, allowableValues = "range[0,255]")
 	private String co2EmissionFactor;
+
+	/**
+	 * 初回供給開始日
+	 */
+	//TODO 契約更新修正時に初回供給開始日を追加
+	//@ApiModelProperty(value = "初回供給開始日", required = false, position = 63)
+	//private @Temporal(TemporalType.DATE) firstSupplyStartDate;
 }
