@@ -67,9 +67,15 @@ public class ElectricFormIdentMaster extends EntityBaseMaster {
 	@Column(nullable = true)
 	@ApiModelProperty(value = "説明", required = false, position = 6, allowableValues = "range[0,255]")
 	private String description;
+	
+	/**
+	 * 帳票テンプレート管理マスタID
+	 */
+	@Column(nullable = false)
+	@ApiModelProperty(value = "帳票テンプレート管理マスタID", required = true, position = 7, allowableValues = "range[0,9223372036854775807]")
+	private Long reportTemplateMasterId;
 
 	@ManyToMany(mappedBy = "electricFormIdentMasterList")
-	@ApiModelProperty(value = "電力帳票マスタ", required = true, position = 6)
+	@ApiModelProperty(value = "電力帳票マスタ", required = true, position = 8)
 	private List<ElectricFormMaster> electricFormMasterList;
-
 }
