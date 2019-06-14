@@ -695,21 +695,17 @@ public class TestContractDto {
 		BeanUtils.copyProperties(entity, testTarget);
 		testTarget.setName(null);
 		testTarget.setMailAddress(null);
+		testTarget.setMyricohId(null);
 		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
-		Assert.assertEquals(2, result.getErrorInfoList().size());
+		Assert.assertEquals(3, result.getErrorInfoList().size());
 
 		// 異常系(@Size(max))
 		BeanUtils.copyProperties(entity, testTarget);
 		testTarget.setName(STR_256);
 		testTarget.setMailAddress(STR_256);
+		testTarget.setMyricohId(STR_256);
 		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
-		Assert.assertEquals(2, result.getErrorInfoList().size());
-
-		// 異常系(@Min)
-		BeanUtils.copyProperties(entity, testTarget);
-		testTarget.setMyricohId(INT_MINUS_1);
-		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
-		Assert.assertEquals(1, result.getErrorInfoList().size());
+		Assert.assertEquals(3, result.getErrorInfoList().size());
 	}
 
 	@Test
@@ -819,7 +815,7 @@ public class TestContractDto {
 		BillingMailAddressInformationCreateExtDto billingMailAddressInformationExtDto = new BillingMailAddressInformationCreateExtDto();
 		billingMailAddressInformationExtDto.setName("氏名");
 		billingMailAddressInformationExtDto.setMailAddress("メールアドレス");
-		billingMailAddressInformationExtDto.setMyricohId(1L);
+		billingMailAddressInformationExtDto.setMyricohId("MyRicohID");
 		billingMailAddressInformationExtDtoList.add(billingMailAddressInformationExtDto);
 		testTarget.setBillingMailAddressList(billingMailAddressInformationExtDtoList);
 		// 契約担当SA社員
@@ -962,7 +958,7 @@ public class TestContractDto {
 		billingMailAddressInformationExtDto = new BillingMailAddressInformationCreateExtDto();
 		billingMailAddressInformationExtDto.setName(STR_256);
 		billingMailAddressInformationExtDto.setMailAddress(STR_256);
-		billingMailAddressInformationExtDto.setMyricohId(1L);
+		billingMailAddressInformationExtDto.setMyricohId(STR_256);
 		billingMailAddressInformationExtDtoList.add(billingMailAddressInformationExtDto);
 		testTarget.setBillingMailAddressList(billingMailAddressInformationExtDtoList);
 		// 契約担当SA社員
@@ -1005,7 +1001,7 @@ public class TestContractDto {
 		feeSimulationHeadExtDto.setUsageFeeOtherSeasonBankPriceRj(BigDecimal.valueOf(100));
 		testTarget.setFeeSimulationHead(feeSimulationHeadExtDto);
 		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
-		Assert.assertEquals(61, result.getErrorInfoList().size());
+		Assert.assertEquals(62, result.getErrorInfoList().size());
 
 		// 異常系(@Min, @Decimal)
 		// テストデータ作成
@@ -1056,7 +1052,7 @@ public class TestContractDto {
 		billingMailAddressInformationExtDto = new BillingMailAddressInformationCreateExtDto();
 		billingMailAddressInformationExtDto.setName("氏名");
 		billingMailAddressInformationExtDto.setMailAddress("メールアドレス");
-		billingMailAddressInformationExtDto.setMyricohId(1L);
+		billingMailAddressInformationExtDto.setMyricohId("MyRicohID");
 		billingMailAddressInformationExtDtoList.add(billingMailAddressInformationExtDto);
 		testTarget.setBillingMailAddressList(billingMailAddressInformationExtDtoList);
 		// 契約担当SA社員
@@ -1158,7 +1154,7 @@ public class TestContractDto {
 		BillingMailAddressInformationChangePlanExtDto billingMailAddressInformationExtDto = new BillingMailAddressInformationChangePlanExtDto();
 		billingMailAddressInformationExtDto.setName("氏名");
 		billingMailAddressInformationExtDto.setMailAddress("メールアドレス");
-		billingMailAddressInformationExtDto.setMyricohId(1L);
+		billingMailAddressInformationExtDto.setMyricohId("MyRicohID");
 		billingMailAddressInformationExtDtoList.add(billingMailAddressInformationExtDto);
 		testTarget.setBillingMailAddressList(billingMailAddressInformationExtDtoList);
 		// 契約担当SA社員
@@ -1302,7 +1298,7 @@ public class TestContractDto {
 		billingMailAddressInformationExtDto = new BillingMailAddressInformationChangePlanExtDto();
 		billingMailAddressInformationExtDto.setName(STR_256);
 		billingMailAddressInformationExtDto.setMailAddress(STR_256);
-		billingMailAddressInformationExtDto.setMyricohId(1L);
+		billingMailAddressInformationExtDto.setMyricohId(STR_256);
 		billingMailAddressInformationExtDtoList.add(billingMailAddressInformationExtDto);
 		testTarget.setBillingMailAddressList(billingMailAddressInformationExtDtoList);
 		// 契約担当SA社員
@@ -1345,7 +1341,7 @@ public class TestContractDto {
 		feeSimulationHeadExtDto.setUsageFeeOtherSeasonBankPriceRj(BigDecimal.valueOf(100));
 		testTarget.setFeeSimulationHead(feeSimulationHeadExtDto);
 		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
-		Assert.assertEquals(61, result.getErrorInfoList().size());
+		Assert.assertEquals(62, result.getErrorInfoList().size());
 
 		// 異常系(@Min, @Decimal)
 		// テストデータ作成
@@ -1397,7 +1393,7 @@ public class TestContractDto {
 		billingMailAddressInformationExtDto = new BillingMailAddressInformationChangePlanExtDto();
 		billingMailAddressInformationExtDto.setName("氏名");
 		billingMailAddressInformationExtDto.setMailAddress("メールアドレス");
-		billingMailAddressInformationExtDto.setMyricohId(1L);
+		billingMailAddressInformationExtDto.setMyricohId("MyRicohID");
 		billingMailAddressInformationExtDtoList.add(billingMailAddressInformationExtDto);
 		testTarget.setBillingMailAddressList(billingMailAddressInformationExtDtoList);
 		// 契約担当SA社員

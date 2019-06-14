@@ -61,7 +61,7 @@ public class BillingMailAddressInformation extends EntityBase {
 	 * MyRICOHユーザーID
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "MyRICOHユーザーID", required = true, position = 5, allowableValues = "range[0,9223372036854775807]")
-	private long myricohId;
+	@ApiModelProperty(value = "MyRICOHユーザーID", required = true, position = 5, allowableValues = "range[0,255]")
+	private String myricohId;
 
 }
