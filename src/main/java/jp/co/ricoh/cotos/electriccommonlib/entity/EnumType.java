@@ -142,7 +142,7 @@ public class EnumType {
 			return Arrays.stream(values()).filter(v -> v.text.equals(string)).findFirst().orElseThrow(() -> new IllegalArgumentException(String.valueOf(string)));
 		}
 	}
-	
+
 	public enum Scale {
 
 		規模_500kw未満("01"), 規模_500kw以上("02");
@@ -165,4 +165,25 @@ public class EnumType {
 		}
 	}
 
+	public enum ExternalFormType {
+
+		電力供給に関する申込内容変更申出書_高圧("1"), 電力供給に関する申込内容変更申出書_低圧("2"), 電気需給契約名義変更申込書_低圧("3");
+
+		private final String text;
+
+		private ExternalFormType(final String text) {
+			this.text = text;
+		}
+
+		@Override
+		@JsonValue
+		public String toString() {
+			return this.text;
+		}
+
+		@JsonCreator
+		public static ExternalFormType fromString(String string) {
+			return Arrays.stream(values()).filter(v -> v.text.equals(string)).findFirst().orElseThrow(() -> new IllegalArgumentException(String.valueOf(string)));
+		}
+	}
 }
