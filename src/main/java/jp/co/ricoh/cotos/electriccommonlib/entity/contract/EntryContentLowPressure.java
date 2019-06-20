@@ -36,53 +36,10 @@ import lombok.EqualsAndHashCode;
 @CotosComplementTarget(entity = EntryContentLowPressure.class, repository = EntryContentLowPressureRepository.class)
 public class EntryContentLowPressure extends EntityBase {
 
-	public enum ContractCapacityUnit {
-
-		kVA("1");
-
-		private final String text;
-
-		private ContractCapacityUnit(final String text) {
-			this.text = text;
-		}
-
-		@Override
-		@JsonValue
-		public String toString() {
-			return this.text;
-		}
-
-		@JsonCreator
-		public static ContractCapacityUnit fromString(String string) {
-			return Arrays.stream(values()).filter(v -> v.text.equals(string)).findFirst().orElseThrow(() -> new IllegalArgumentException(String.valueOf(string)));
-		}
-	}
-
-	public enum ContractElectricCurrentUnit {
-
-		A("1");
-
-		private final String text;
-
-		private ContractElectricCurrentUnit(final String text) {
-			this.text = text;
-		}
-
-		@Override
-		@JsonValue
-		public String toString() {
-			return this.text;
-		}
-
-		@JsonCreator
-		public static ContractElectricCurrentUnit fromString(String string) {
-			return Arrays.stream(values()).filter(v -> v.text.equals(string)).findFirst().orElseThrow(() -> new IllegalArgumentException(String.valueOf(string)));
-		}
-	}
 	
 	public enum LowPressureType {
 
-		動力("1"), 従量電灯("2");
+		 従量電灯1("1"), 従量電灯2("2"), 動力("3");
 
 		private final String text;
 
@@ -98,6 +55,28 @@ public class EntryContentLowPressure extends EntityBase {
 
 		@JsonCreator
 		public static LowPressureType fromString(String string) {
+			return Arrays.stream(values()).filter(v -> v.text.equals(string)).findFirst().orElseThrow(() -> new IllegalArgumentException(String.valueOf(string)));
+		}
+	}
+	
+	public enum ContractUnit {
+
+		 A("1"), KvA("2"), 契約("3"), kW("4");
+
+		private final String text;
+
+		private ContractUnit(final String text) {
+			this.text = text;
+		}
+
+		@Override
+		@JsonValue
+		public String toString() {
+			return this.text;
+		}
+
+		@JsonCreator
+		public static ContractUnit fromString(String string) {
 			return Arrays.stream(values()).filter(v -> v.text.equals(string)).findFirst().orElseThrow(() -> new IllegalArgumentException(String.valueOf(string)));
 		}
 	}
@@ -127,13 +106,6 @@ public class EntryContentLowPressure extends EntityBase {
 	private BigDecimal contractCapacityUsage;
 
 	/**
-	 * 契約容量単位
-	 */
-	@Column(nullable = false)
-	@ApiModelProperty(value = "契約容量単位", required = true, position = 4, allowableValues = "kVA(\"1\"))", example = "1")
-	private ContractCapacityUnit contractCapacityUnit;
-
-	/**
 	 * 契約電流
 	 */
 	@Column(nullable = true)
@@ -141,13 +113,6 @@ public class EntryContentLowPressure extends EntityBase {
 	@Digits(integer = 8, fraction = 2)
 	@ApiModelProperty(value = "契約電流", required = false, position = 5, allowableValues = "range[0.00,99999999.99]")
 	private BigDecimal contractElectricCurrent;
-
-	/**
-	 * 契約電流単位
-	 */
-	@Column(nullable = false)
-	@ApiModelProperty(value = "契約電流単位", required = true, position = 6, allowableValues = "A(\"1\"))", example = "1")
-	private ContractElectricCurrentUnit contractElectricCurrentUnit;
 
 	/**
 	 * 契約電力
@@ -185,6 +150,13 @@ public class EntryContentLowPressure extends EntityBase {
 	 * 低圧種別
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "低圧種別", required = true, position = 11, allowableValues = "動力(\"1\"), 従量電灯(\"2\")", example = "1")
+	@ApiModelProperty(value = "低圧種別", required = true, position = 11, allowableValues = "従量電灯1(\"1\"), 従量電灯2(\"2\"), 動力(\"3\")", example = "1")
 	private LowPressureType lowPressureType;
+	
+	/**
+	 * 契約単位
+	 */
+	@Column(nullable = false)
+	@ApiModelProperty(value = "契約単位", required = true, position = 12, allowableValues = "A(\"1\"), KvA(\"2\"), 契約(\"3\"),　kW(\"4\")", example = "1")
+	private ContractUnit contractUnit;
 }

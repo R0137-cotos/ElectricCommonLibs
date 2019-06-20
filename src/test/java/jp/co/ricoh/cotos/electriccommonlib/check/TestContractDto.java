@@ -321,8 +321,7 @@ public class TestContractDto {
 
 		// 異常系(@NotNull)
 		BeanUtils.copyProperties(entity.getEntryContentLowPressure(), testTarget);
-		testTarget.setContractCapacityUnit(null);
-		testTarget.setContractElectricCurrentUnit(null);
+		testTarget.setContractUnit(null);
 		testTarget.setBasicMeterReadingDate(null);
 		testTarget.setLowPressureType(null);
 		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
