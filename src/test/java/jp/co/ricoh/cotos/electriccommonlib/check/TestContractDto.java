@@ -321,12 +321,10 @@ public class TestContractDto {
 
 		// 異常系(@NotNull)
 		BeanUtils.copyProperties(entity.getEntryContentLowPressure(), testTarget);
-		testTarget.setContractCapacityUnit(null);
-		testTarget.setContractElectricCurrentUnit(null);
 		testTarget.setBasicMeterReadingDate(null);
 		testTarget.setLowPressureType(null);
 		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
-		Assert.assertEquals(4, result.getErrorInfoList().size());
+		Assert.assertEquals(2, result.getErrorInfoList().size());
 
 		// 異常系(@DecimalMin)
 		BeanUtils.copyProperties(entity.getEntryContentLowPressure(), testTarget);

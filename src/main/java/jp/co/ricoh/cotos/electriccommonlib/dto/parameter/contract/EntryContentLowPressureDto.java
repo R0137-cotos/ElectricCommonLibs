@@ -2,6 +2,7 @@ package jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract;
 
 import java.math.BigDecimal;
 
+import javax.persistence.Column;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
@@ -9,8 +10,7 @@ import javax.validation.constraints.Size;
 
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBase;
-import jp.co.ricoh.cotos.electriccommonlib.entity.contract.EntryContentLowPressure.ContractCapacityUnit;
-import jp.co.ricoh.cotos.electriccommonlib.entity.contract.EntryContentLowPressure.ContractElectricCurrentUnit;
+import jp.co.ricoh.cotos.electriccommonlib.entity.contract.EntryContentLowPressure.ContractUnit;
 import jp.co.ricoh.cotos.electriccommonlib.entity.contract.EntryContentLowPressure.LowPressureType;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -28,26 +28,12 @@ public class EntryContentLowPressureDto extends EntityBase {
 	private BigDecimal contractCapacityUsage;
 
 	/**
-	 * 契約容量単位
-	 */
-	@NotNull
-	@ApiModelProperty(value = "契約容量単位", required = true, position = 4, allowableValues = "kVA(\"1\"))", example = "1")
-	private ContractCapacityUnit contractCapacityUnit;
-
-	/**
 	 * 契約電流
 	 */
 	@DecimalMin("0.00")
 	@Digits(integer = 8, fraction = 2)
 	@ApiModelProperty(value = "契約電流", required = false, position = 5, allowableValues = "range[0.00,99999999.99]")
 	private BigDecimal contractElectricCurrent;
-
-	/**
-	 * 契約電流単位
-	 */
-	@NotNull
-	@ApiModelProperty(value = "契約電流単位", required = true, position = 6, allowableValues = "A(\"1\"))", example = "1")
-	private ContractElectricCurrentUnit contractElectricCurrentUnit;
 
 	/**
 	 * 契約電力
@@ -84,7 +70,15 @@ public class EntryContentLowPressureDto extends EntityBase {
 	 * 低圧種別
 	 */
 	@NotNull
-	@ApiModelProperty(value = "低圧種別", required = true, position = 11, allowableValues = "動力(\"1\"), 従量電灯(\"2\")", example = "1")
+	@ApiModelProperty(value = "低圧種別", required = true, position = 11, allowableValues = "従量電灯1(\"1\"), 従量電灯2(\"2\"), 動力(\"3\")", example = "1")
 	private LowPressureType lowPressureType;
+	
+	/**
+	 * 契約単位
+	 */
+	@Column(nullable = false)
+	@ApiModelProperty(value = "契約単位", required = true, position = 12, allowableValues = "A(\"1\"), KvA(\"2\"), 契約(\"3\"),　kW(\"4\")", example = "1")
+	private ContractUnit contractUnit;
+
 
 }
