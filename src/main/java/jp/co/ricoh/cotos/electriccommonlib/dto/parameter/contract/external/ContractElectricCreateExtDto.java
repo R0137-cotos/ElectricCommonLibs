@@ -279,12 +279,20 @@ public class ContractElectricCreateExtDto {
 	private BigDecimal contractElectricPower;
 
 	/**
+	 * 契約単位
+	 */
+	@NotNull
+	@Size(max = 255)
+	@ApiModelProperty(value = "契約単位", required = true, position = 33, allowableValues = "range[0,255]")
+	private String contractUnit;
+
+	/**
 	 * 負荷率
 	 */
 	@NotNull
 	@DecimalMin("0.00")
 	@Digits(integer = 8, fraction = 2)
-	@ApiModelProperty(value = "負荷率", required = true, position = 33, allowableValues = "range[0.00,99999999.99]")
+	@ApiModelProperty(value = "負荷率", required = true, position = 34, allowableValues = "range[0.00,99999999.99]")
 	private BigDecimal loadFactor;
 
 	/**
@@ -292,7 +300,7 @@ public class ContractElectricCreateExtDto {
 	 */
 	@NotNull
 	@Size(max = 255)
-	@ApiModelProperty(value = "基本検針日(低圧)", required = true, position = 34, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "基本検針日(低圧)", required = true, position = 35, allowableValues = "range[0,255]")
 	private String basicMeterReadingDate;
 
 	/**
@@ -300,7 +308,7 @@ public class ContractElectricCreateExtDto {
 	 */
 	@NotNull
 	@Size(max = 255)
-	@ApiModelProperty(value = "修正時振替先コード", required = true, position = 35, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "修正時振替先コード", required = true, position = 36, allowableValues = "range[0,255]")
 	private String fixTransferDestinationCode;
 
 	/**
@@ -308,7 +316,7 @@ public class ContractElectricCreateExtDto {
 	 */
 	@NotNull
 	@Size(max = 255)
-	@ApiModelProperty(value = "ご契約者情報　供給地点特定番号", required = true, position = 36, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "ご契約者情報　供給地点特定番号", required = true, position = 37, allowableValues = "range[0,255]")
 	private String feedPointNumber;
 
 	/**
@@ -316,7 +324,7 @@ public class ContractElectricCreateExtDto {
 	 */
 	@NotNull
 	@Size(max = 255)
-	@ApiModelProperty(value = "ご契約者情報　簡略名称", required = true, position = 37, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "ご契約者情報　簡略名称", required = true, position = 38, allowableValues = "range[0,255]")
 	private String demandNameKr;
 
 	/**
@@ -324,7 +332,7 @@ public class ContractElectricCreateExtDto {
 	 */
 	@NotNull
 	@Size(max = 255)
-	@ApiModelProperty(value = "電気主任技術者 - 氏名", required = true, position = 38, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "電気主任技術者 - 氏名", required = true, position = 39, allowableValues = "range[0,255]")
 	private String licensedEngineerName;
 
 	/**
@@ -332,7 +340,7 @@ public class ContractElectricCreateExtDto {
 	 */
 	@NotNull
 	@Size(max = 255)
-	@ApiModelProperty(value = "電気主任技術者 - 電話番号", required = true, position = 39, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "電気主任技術者 - 電話番号", required = true, position = 40, allowableValues = "range[0,255]")
 	private String licensedEngineerTel;
 
 	/**
@@ -340,7 +348,7 @@ public class ContractElectricCreateExtDto {
 	 */
 	@NotNull
 	@Size(max = 255)
-	@ApiModelProperty(value = "電気主任技術者 - 所属名", required = true, position = 40, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "電気主任技術者 - 所属名", required = true, position = 41, allowableValues = "range[0,255]")
 	private String licensedEngineerDep;
 
 	/**
@@ -348,7 +356,7 @@ public class ContractElectricCreateExtDto {
 	 */
 	@NotNull
 	@Size(max = 255)
-	@ApiModelProperty(value = "需要(供給)期間　開始日", required = true, position = 41, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "需要(供給)期間　開始日", required = true, position = 42, allowableValues = "range[0,255]")
 	private String contractYmdStart;
 
 	/**
@@ -356,14 +364,14 @@ public class ContractElectricCreateExtDto {
 	 */
 	@NotNull
 	@Size(max = 255)
-	@ApiModelProperty(value = "供給開始月", required = true, position = 42, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "供給開始月", required = true, position = 43, allowableValues = "range[0,255]")
 	private String supplyStartDate;
 
 	/**
 	 * 請求書発送区分
 	 */
 	@NotNull
-	@ApiModelProperty(value = "請求書発送区分", required = true, position = 43, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "請求書発送区分", required = true, position = 44, allowableValues = "range[0,255]")
 	private SendInvoiceDiv sendInvoiceDiv;
 
 	/**
@@ -372,15 +380,15 @@ public class ContractElectricCreateExtDto {
 	@NotNull
 	@Max(9)
 	@Min(0)
-	@ApiModelProperty(value = "振込フラグチェック(業務区)", required = true, position = 44, allowableValues = "range[0,9]")
+	@ApiModelProperty(value = "振込フラグチェック(業務区)", required = true, position = 45, allowableValues = "range[0,9]")
 	private Integer transferCheckFlg;
-	
+
 	/**
 	 * 現在の契約番号
 	 */
 	@NotNull
 	@Size(max = 255)
-	@ApiModelProperty(value = "現在の契約番号", required = true, position = 45, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "現在の契約番号", required = true, position = 46, allowableValues = "range[0,255]")
 	private String currentContractNumber;
 
 }
