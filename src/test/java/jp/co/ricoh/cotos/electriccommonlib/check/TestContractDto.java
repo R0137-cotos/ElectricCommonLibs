@@ -876,7 +876,7 @@ public class TestContractDto {
 		testTarget.setElectricDealerContract(new ElectricDealerContractCreateExtDto());
 		testTarget.setFeeSimulationHead(new FeeSimulationHeadCreateExtDto());
 		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
-		Assert.assertEquals(77, result.getErrorInfoList().size());
+		Assert.assertEquals(78, result.getErrorInfoList().size());
 
 		// 異常系(@Size(max))
 		entity = contractElectricRepository.findOne(1L);
@@ -1003,7 +1003,7 @@ public class TestContractDto {
 		feeSimulationHeadExtDto.setUsageFeeOtherSeasonBankPriceRj(BigDecimal.valueOf(100));
 		testTarget.setFeeSimulationHead(feeSimulationHeadExtDto);
 		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
-		Assert.assertEquals(63, result.getErrorInfoList().size());
+		Assert.assertEquals(64, result.getErrorInfoList().size());
 
 		// 異常系(@Min, @Decimal)
 		// テストデータ作成
