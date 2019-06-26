@@ -788,6 +788,7 @@ public class TestContractDto {
 		contractElectricExtDto.setVoltageCategory("1");
 		contractElectricExtDto.setEntryDate("2019/05/31");
 		contractElectricExtDto.setContractYmdStart("2019/05/31");
+		contractElectricExtDto.setCurrentElectricCompanyDiv("1");
 		contractElectricExtDto.setContractUnit("A");
 		testTarget.setContractElectric(contractElectricExtDto);
 		// 顧客
@@ -875,7 +876,7 @@ public class TestContractDto {
 		testTarget.setElectricDealerContract(new ElectricDealerContractCreateExtDto());
 		testTarget.setFeeSimulationHead(new FeeSimulationHeadCreateExtDto());
 		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
-		Assert.assertEquals(77, result.getErrorInfoList().size());
+		Assert.assertEquals(78, result.getErrorInfoList().size());
 
 		// 異常系(@Size(max))
 		entity = contractElectricRepository.findOne(1L);
@@ -932,6 +933,7 @@ public class TestContractDto {
 		contractElectricExtDto.setZipCode(STR_256);
 		contractElectricExtDto.setCurrentContractNumber(STR_256);
 		contractElectricExtDto.setEntryDate(STR_256);
+		contractElectricExtDto.setCurrentElectricCompanyDiv(STR_256);
 		contractElectricExtDto.setContractUnit(STR_256);
 		testTarget.setContractElectric(contractElectricExtDto);
 		// 顧客
@@ -1001,7 +1003,7 @@ public class TestContractDto {
 		feeSimulationHeadExtDto.setUsageFeeOtherSeasonBankPriceRj(BigDecimal.valueOf(100));
 		testTarget.setFeeSimulationHead(feeSimulationHeadExtDto);
 		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
-		Assert.assertEquals(63, result.getErrorInfoList().size());
+		Assert.assertEquals(64, result.getErrorInfoList().size());
 
 		// 異常系(@Min, @Decimal)
 		// テストデータ作成
@@ -1027,6 +1029,7 @@ public class TestContractDto {
 		contractElectricExtDto.setTransferCheckFlg(INT_MINUS_1);
 		contractElectricExtDto.setEntryDate("2019/05/31");
 		contractElectricExtDto.setContractYmdStart("2019/05/31");
+		contractElectricExtDto.setCurrentElectricCompanyDiv("1");
 		contractElectricExtDto.setContractUnit("A");
 		testTarget.setContractElectric(contractElectricExtDto);
 		// 顧客
