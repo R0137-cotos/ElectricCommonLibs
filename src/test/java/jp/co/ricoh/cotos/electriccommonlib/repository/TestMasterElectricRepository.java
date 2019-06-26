@@ -31,6 +31,7 @@ import jp.co.ricoh.cotos.electriccommonlib.repository.master.ElectricDealerMaste
 import jp.co.ricoh.cotos.electriccommonlib.repository.master.ElectricFormIdentMasterRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.master.ElectricFormMasterRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.master.HighContractCalendarMasterRepository;
+import jp.co.ricoh.cotos.electriccommonlib.repository.master.ProfitTransferDepartmentMasterRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
@@ -60,6 +61,9 @@ public class TestMasterElectricRepository extends RepositoryTestBase {
 
 	@Autowired
 	CommissionMasterRepository commissionMasterRepository;
+
+	@Autowired
+	ProfitTransferDepartmentMasterRepository profitTransferDepartmentMasterRepository;
 
 	@Autowired
 	TestTools testTools;
@@ -114,6 +118,11 @@ public class TestMasterElectricRepository extends RepositoryTestBase {
 	@Test
 	public void 全てのカラムがNullではないことを確認_マスタ_媒介手数料マスタ() {
 		全てのカラムがNullではないことを確認_マスタ(commissionMasterRepository, 1L);
+	}
+
+	@Test
+	public void 全てのカラムがNullではないことを確認_マスタ_粗利振替先部門マスタ() {
+		全てのカラムがNullではないことを確認_マスタ(profitTransferDepartmentMasterRepository, 1L);
 	}
 
 	@Test
