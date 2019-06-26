@@ -287,6 +287,14 @@ public class ContractElectricCreateExtDto {
 	private BigDecimal contractElectricPower;
 
 	/**
+	 * 契約単位
+	 */
+	@NotNull
+	@Size(max = 255)
+	@ApiModelProperty(value = "契約単位", required = true, position = 33, allowableValues = "range[0,255]")
+	private String contractUnit;
+
+	/**
 	 * 負荷率
 	 */
 	@NotNull

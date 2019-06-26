@@ -789,6 +789,7 @@ public class TestContractDto {
 		contractElectricExtDto.setEntryDate("2019/05/31");
 		contractElectricExtDto.setContractYmdStart("2019/05/31");
 		contractElectricExtDto.setCurrentElectricCompanyDiv("1");
+		contractElectricExtDto.setContractUnit("A");
 		testTarget.setContractElectric(contractElectricExtDto);
 		// 顧客
 		CustomerContractCreateExtDto customerContractExtDto = new CustomerContractCreateExtDto();
@@ -933,6 +934,7 @@ public class TestContractDto {
 		contractElectricExtDto.setCurrentContractNumber(STR_256);
 		contractElectricExtDto.setEntryDate(STR_256);
 		contractElectricExtDto.setCurrentElectricCompanyDiv(STR_256);
+		contractElectricExtDto.setContractUnit(STR_256);
 		testTarget.setContractElectric(contractElectricExtDto);
 		// 顧客
 		customerContractExtDto = new CustomerContractCreateExtDto();
@@ -1028,6 +1030,7 @@ public class TestContractDto {
 		contractElectricExtDto.setEntryDate("2019/05/31");
 		contractElectricExtDto.setContractYmdStart("2019/05/31");
 		contractElectricExtDto.setCurrentElectricCompanyDiv("1");
+		contractElectricExtDto.setContractUnit("A");
 		testTarget.setContractElectric(contractElectricExtDto);
 		// 顧客
 		customerContractExtDto = new CustomerContractCreateExtDto();
