@@ -54,6 +54,7 @@ import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.Ele
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.ElectricExpertEstimationExtDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.EstimationAddedEditorEmpExtDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.EstimationElectricExtDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.EstimationExtCreateDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.EstimationExtPlanChangeDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.EstimationPicSaEmpExtDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.FeeSimulationHeadExtDto;
@@ -269,41 +270,46 @@ public class TestSecurityController {
 		return createParameterCheckResult(result);
 	}
 
+	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/EstimationExtCreateDto")
+	public ParamterCheckResult callParamterCheck(@RequestBody @Validated EstimationExtCreateDto dto, BindingResult result) {
+		return createParameterCheckResult(result);
+	}
+
 	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/EstimationExtPlanChangeDto")
 	public ParamterCheckResult callParamterCheck(@RequestBody @Validated EstimationExtPlanChangeDto dto, BindingResult result) {
 		return createParameterCheckResult(result);
 	}
-	
+
 	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/ContractElectricChangePlanExtInputDto")
 	public ParamterCheckResult callParamterCheck(@RequestBody @Validated ContractElectricChangePlanExtInputDto dto, BindingResult result) {
 		return createParameterCheckResult(result);
 	}
-	
+
 	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/ContractInfoChangeExtDto")
 	public ParamterCheckResult callParamterCheck(@RequestBody @Validated ContractInfoChangeExtDto dto, BindingResult result) {
 		return createParameterCheckResult(result);
 	}
-	
+
 	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/EstimationElectricDto")
 	public ParamterCheckResult callParamterCheck(@RequestBody @Validated EstimationElectricDto dto, BindingResult result) {
 		return createParameterCheckResult(result);
 	}
-	
+
 	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/ElectricDealerEstimationDto")
 	public ParamterCheckResult callParamterCheck(@RequestBody @Validated ElectricDealerEstimationDto dto, BindingResult result) {
 		return createParameterCheckResult(result);
 	}
-	
+
 	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/FeeSimulationHeadDto")
 	public ParamterCheckResult callParamterCheck(@RequestBody @Validated FeeSimulationHeadDto dto, BindingResult result) {
 		return createParameterCheckResult(result);
 	}
-	
+
 	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/EstimationUpdateParameter")
 	public ParamterCheckResult callParamterCheck(@RequestBody @Validated EstimationUpdateParameter dto, BindingResult result) {
 		return createParameterCheckResult(result);
 	}
-	
+
 	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/ElectricExpertEstimationDto")
 	public ParamterCheckResult callParamterCheck(@RequestBody @Validated ElectricExpertEstimationDto dto, BindingResult result) {
 		return createParameterCheckResult(result);

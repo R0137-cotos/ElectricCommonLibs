@@ -112,12 +112,21 @@ public class FeeSimulationHeadExtDto {
 	private BigDecimal loadFactor;
 
 	/**
+	 * 基本料金_定価
+	 */
+	@NotNull
+	@DecimalMin("0.00")
+	@Digits(integer = 19, fraction = 2)
+	@ApiModelProperty(value = "基本料金_定価", required = true, position = 14, allowableValues = "range[0.00,9999999999999999999.99]")
+	private BigDecimal basicRateListPrice;
+
+	/**
 	 * 基本料金_売価
 	 */
 	@NotNull
 	@DecimalMin("0.00")
 	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "基本料金_売価", required = true, position = 14, allowableValues = "range[0.00,9999999999999999999.99]")
+	@ApiModelProperty(value = "基本料金_売価", required = true, position = 15, allowableValues = "range[0.00,9999999999999999999.99]")
 	private BigDecimal basicRateSellingPrice;
 
 	/**
@@ -126,7 +135,7 @@ public class FeeSimulationHeadExtDto {
 	@NotNull
 	@DecimalMin("0.00")
 	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "基本料金_仕切価格（営業）", required = true, position = 15, allowableValues = "range[0.00,9999999999999999999.99]")
+	@ApiModelProperty(value = "基本料金_仕切価格（営業）", required = true, position = 16, allowableValues = "range[0.00,9999999999999999999.99]")
 	private BigDecimal basicRateBankPriceBusiness;
 
 	/**
@@ -135,7 +144,7 @@ public class FeeSimulationHeadExtDto {
 	@NotNull
 	@DecimalMin("0.00")
 	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "基本料金_仕切価格（ＲＪ）", required = true, position = 16, allowableValues = "range[0.00,9999999999999999999.99]")
+	@ApiModelProperty(value = "基本料金_仕切価格（ＲＪ）", required = true, position = 17, allowableValues = "range[0.00,9999999999999999999.99]")
 	private BigDecimal basicRateBankPriceRj;
 
 	/**
@@ -144,7 +153,7 @@ public class FeeSimulationHeadExtDto {
 	@NotNull
 	@DecimalMin("0.00")
 	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "従量料金_夏季_売価", required = true, position = 17, allowableValues = "range[0.00,9999999999999999999.99]")
+	@ApiModelProperty(value = "従量料金_夏季_売価", required = true, position = 18, allowableValues = "range[0.00,9999999999999999999.99]")
 	private BigDecimal usageFeeSummerSellingPrice;
 
 	/**
@@ -153,7 +162,7 @@ public class FeeSimulationHeadExtDto {
 	@NotNull
 	@DecimalMin("0.00")
 	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "従量料金_夏季_仕切価格（営業）", required = true, position = 18, allowableValues = "range[0.00,9999999999999999999.99]")
+	@ApiModelProperty(value = "従量料金_夏季_仕切価格（営業）", required = true, position = 19, allowableValues = "range[0.00,9999999999999999999.99]")
 	private BigDecimal usageFeeSummerBankPriceBusiness;
 
 	/**
@@ -162,7 +171,7 @@ public class FeeSimulationHeadExtDto {
 	@NotNull
 	@DecimalMin("0.00")
 	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "従量料金_夏季_仕切価格（ＲＪ）", required = true, position = 19, allowableValues = "range[0.00,9999999999999999999.99]")
+	@ApiModelProperty(value = "従量料金_夏季_仕切価格（ＲＪ）", required = true, position = 20, allowableValues = "range[0.00,9999999999999999999.99]")
 	private BigDecimal usageFeeSummerBankPriceRj;
 
 	/**
@@ -171,7 +180,7 @@ public class FeeSimulationHeadExtDto {
 	@NotNull
 	@DecimalMin("0.00")
 	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "従量料金_その他季_売価", required = true, position = 20, allowableValues = "range[0.00,9999999999999999999.99]")
+	@ApiModelProperty(value = "従量料金_その他季_売価", required = true, position = 21, allowableValues = "range[0.00,9999999999999999999.99]")
 	private BigDecimal usageFeeOtherSeasonSellingPrice;
 
 	/**
@@ -180,7 +189,7 @@ public class FeeSimulationHeadExtDto {
 	@NotNull
 	@DecimalMin("0.00")
 	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "従量料金_その他季_仕切価格（営業）", required = true, position = 21, allowableValues = "range[0.00,9999999999999999999.99]")
+	@ApiModelProperty(value = "従量料金_その他季_仕切価格（営業）", required = true, position = 22, allowableValues = "range[0.00,9999999999999999999.99]")
 	private BigDecimal usageFeeOtherSeasonBankPriceBusiness;
 
 	/**
@@ -189,7 +198,7 @@ public class FeeSimulationHeadExtDto {
 	@NotNull
 	@DecimalMin("0.00")
 	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "従量料金_その他季_仕切価格（ＲＪ）", required = true, position = 22, allowableValues = "range[0.00,9999999999999999999.99]")
+	@ApiModelProperty(value = "従量料金_その他季_仕切価格（ＲＪ）", required = true, position = 23, allowableValues = "range[0.00,9999999999999999999.99]")
 	private BigDecimal usageFeeOtherSeasonBankPriceRj;
 
 	/**
@@ -198,7 +207,7 @@ public class FeeSimulationHeadExtDto {
 	@NotNull
 	@DecimalMin("0.00")
 	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "オプション_予備線_売価", required = true, position = 23, allowableValues = "range[0.00,9999999999999999999.99]")
+	@ApiModelProperty(value = "オプション_予備線_売価", required = true, position = 24, allowableValues = "range[0.00,9999999999999999999.99]")
 	private BigDecimal spareLineSellingPrice;
 
 	/**
@@ -207,7 +216,7 @@ public class FeeSimulationHeadExtDto {
 	@NotNull
 	@DecimalMin("0.00")
 	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "オプション_予備線_仕切価格（営業）", required = true, position = 24, allowableValues = "range[0.00,9999999999999999999.99]")
+	@ApiModelProperty(value = "オプション_予備線_仕切価格（営業）", required = true, position = 25, allowableValues = "range[0.00,9999999999999999999.99]")
 	private BigDecimal spareLineBankPriceBusiness;
 
 	/**
@@ -216,7 +225,7 @@ public class FeeSimulationHeadExtDto {
 	@NotNull
 	@DecimalMin("0.00")
 	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "オプション_予備線_仕切価格（ＲＪ）", required = true, position = 25, allowableValues = "range[0.00,9999999999999999999.99]")
+	@ApiModelProperty(value = "オプション_予備線_仕切価格（ＲＪ）", required = true, position = 26, allowableValues = "range[0.00,9999999999999999999.99]")
 	private BigDecimal spareLineBankPriceRj;
 
 	/**
@@ -225,7 +234,7 @@ public class FeeSimulationHeadExtDto {
 	@NotNull
 	@DecimalMin("0.00")
 	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "オプション_予備電源_売価", required = true, position = 26, allowableValues = "range[0.00,9999999999999999999.99]")
+	@ApiModelProperty(value = "オプション_予備電源_売価", required = true, position = 27, allowableValues = "range[0.00,9999999999999999999.99]")
 	private BigDecimal sparePowerSellingPrice;
 
 	/**
@@ -234,7 +243,7 @@ public class FeeSimulationHeadExtDto {
 	@NotNull
 	@DecimalMin("0.00")
 	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "オプション_予備電源_仕切価格（営業）", required = true, position = 27, allowableValues = "range[0.00,9999999999999999999.99]")
+	@ApiModelProperty(value = "オプション_予備電源_仕切価格（営業）", required = true, position = 28, allowableValues = "range[0.00,9999999999999999999.99]")
 	private BigDecimal sparePowerBankPriceBusiness;
 
 	/**
@@ -243,7 +252,7 @@ public class FeeSimulationHeadExtDto {
 	@NotNull
 	@DecimalMin("0.00")
 	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "オプション_予備電源_仕切価格（ＲＪ）", required = true, position = 28, allowableValues = "range[0.00,9999999999999999999.99]")
+	@ApiModelProperty(value = "オプション_予備電源_仕切価格（ＲＪ）", required = true, position = 29, allowableValues = "range[0.00,9999999999999999999.99]")
 	private BigDecimal sparePowerBankPriceRj;
 
 	/**
@@ -252,7 +261,7 @@ public class FeeSimulationHeadExtDto {
 	@NotNull
 	@DecimalMin("0.00")
 	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "オプション_アンシラリー_売価", required = true, position = 29, allowableValues = "range[0.00,9999999999999999999.99]")
+	@ApiModelProperty(value = "オプション_アンシラリー_売価", required = true, position = 30, allowableValues = "range[0.00,9999999999999999999.99]")
 	private BigDecimal ancillarySellingPrice;
 
 	/**
@@ -261,7 +270,7 @@ public class FeeSimulationHeadExtDto {
 	@NotNull
 	@DecimalMin("0.00")
 	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "オプション_アンシラリー_仕切価格（営業）", required = true, position = 30, allowableValues = "range[0.00,9999999999999999999.99]")
+	@ApiModelProperty(value = "オプション_アンシラリー_仕切価格（営業）", required = true, position = 31, allowableValues = "range[0.00,9999999999999999999.99]")
 	private BigDecimal ancillaryBankPriceBusiness;
 
 	/**
@@ -270,7 +279,7 @@ public class FeeSimulationHeadExtDto {
 	@NotNull
 	@DecimalMin("0.00")
 	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "オプション_アンシラリー_仕切価格（ＲＪ）", required = true, position = 31, allowableValues = "range[0.00,9999999999999999999.99]")
+	@ApiModelProperty(value = "オプション_アンシラリー_仕切価格（ＲＪ）", required = true, position = 32, allowableValues = "range[0.00,9999999999999999999.99]")
 	private BigDecimal ancillaryBankPriceRj;
 
 	/**
@@ -279,7 +288,7 @@ public class FeeSimulationHeadExtDto {
 	@NotNull
 	@DecimalMin("0.00")
 	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "媒介手数料　定額（円：税込）", required = true, position = 32, allowableValues = "range[0.00,9999999999999999999.99]")
+	@ApiModelProperty(value = "媒介手数料　定額（円：税込）", required = true, position = 33, allowableValues = "range[0.00,9999999999999999999.99]")
 	private BigDecimal feeFixedAmountInTax;
 
 	/**
@@ -288,7 +297,7 @@ public class FeeSimulationHeadExtDto {
 	@NotNull
 	@DecimalMin("0.00")
 	@Digits(integer = 5, fraction = 2)
-	@ApiModelProperty(value = "媒介手数料　定率（％）", required = true, position = 33, allowableValues = "range[0.00,99999.99]")
+	@ApiModelProperty(value = "媒介手数料　定率（％）", required = true, position = 34, allowableValues = "range[0.00,99999.99]")
 	private BigDecimal feeFixedRate;
 
 	/**
@@ -297,7 +306,7 @@ public class FeeSimulationHeadExtDto {
 	@NotNull
 	@DecimalMin("0.00")
 	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "電力料金（営業）", required = true, position = 34, allowableValues = "range[0.00,9999999999999999999.99]")
+	@ApiModelProperty(value = "電力料金（営業）", required = true, position = 35, allowableValues = "range[0.00,9999999999999999999.99]")
 	private BigDecimal electricityChargeBusiness;
 
 	/**
@@ -306,7 +315,7 @@ public class FeeSimulationHeadExtDto {
 	@NotNull
 	@DecimalMin("0.00")
 	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "粗利額（営業）", required = true, position = 35, allowableValues = "range[0.00,9999999999999999999.99]")
+	@ApiModelProperty(value = "粗利額（営業）", required = true, position = 36, allowableValues = "range[0.00,9999999999999999999.99]")
 	private BigDecimal grossMarginBusiness;
 
 	/**
@@ -315,7 +324,7 @@ public class FeeSimulationHeadExtDto {
 	@NotNull
 	@DecimalMin("0.00")
 	@Digits(integer = 5, fraction = 2)
-	@ApiModelProperty(value = "粗利率（％）（営業）", required = true, position = 36, allowableValues = "range[0.00,99999.99]")
+	@ApiModelProperty(value = "粗利率（％）（営業）", required = true, position = 37, allowableValues = "range[0.00,99999.99]")
 	private BigDecimal grossProfitMarginBusiness;
 
 	/**
@@ -324,7 +333,7 @@ public class FeeSimulationHeadExtDto {
 	@NotNull
 	@DecimalMin("0.00")
 	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "電力料金（ＲＪ）", required = true, position = 37, allowableValues = "range[0.00,9999999999999999999.99]")
+	@ApiModelProperty(value = "電力料金（ＲＪ）", required = true, position = 38, allowableValues = "range[0.00,9999999999999999999.99]")
 	private BigDecimal electricityChargeRj;
 
 	/**
@@ -333,7 +342,7 @@ public class FeeSimulationHeadExtDto {
 	@NotNull
 	@DecimalMin("0.00")
 	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "粗利額（ＲＪ）", required = true, position = 38, allowableValues = "range[0.00,9999999999999999999.99]")
+	@ApiModelProperty(value = "粗利額（ＲＪ）", required = true, position = 39, allowableValues = "range[0.00,9999999999999999999.99]")
 	private BigDecimal grossMarginRj;
 
 	/**
@@ -342,15 +351,7 @@ public class FeeSimulationHeadExtDto {
 	@NotNull
 	@DecimalMin("0.00")
 	@Digits(integer = 5, fraction = 2)
-	@ApiModelProperty(value = "粗利率（％）（ＲＪ）", required = true, position = 39, allowableValues = "range[0.00,99999.99]")
+	@ApiModelProperty(value = "粗利率（％）（ＲＪ）", required = true, position = 40, allowableValues = "range[0.00,99999.99]")
 	private BigDecimal grossProfitMarginRj;
 
-	/**
-	 * 基本料金_定価
-	 */
-	@NotNull
-	@DecimalMin("0.00")
-	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "基本料金_定価", required = true, position = 40, allowableValues = "range[0.00,9999999999999999999.99]")
-	private BigDecimal basicRateListPrice;
 }
