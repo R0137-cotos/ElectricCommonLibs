@@ -280,6 +280,7 @@ public class TestEstimationExtDto {
 
 		// 異常系(@Min)
 		BeanUtils.copyProperties(entity, target);
+		target.setPowerCompany(entity.getElectricCompany());
 		target.setSupplyStartScheduledDate("2019/05/31");
 		target.setElectricCommercialFlowDivCode("1");
 		target.setElectricCommercialFlowDiv(entity.getElectricCommercialFlowDiv().toString());
