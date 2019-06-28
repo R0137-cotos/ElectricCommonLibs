@@ -230,7 +230,7 @@ public class TestEstimationExtDto {
 		target.setElectricCommercialFlowDiv(null);
 		target.setElectricCommercialFlowDivCode(null);
 		target.setElectricArea(null);
-		target.setElectricCompany(null);
+		target.setPowerCompany(null);
 		target.setElectricCompanyCode(null);
 		target.setVoltageCategory(null);
 		target.setElectricMenu(null);
@@ -261,7 +261,7 @@ public class TestEstimationExtDto {
 		target.setElectricCommercialFlowDiv(STR_256);
 		target.setElectricCommercialFlowDivCode(STR_256);
 		target.setElectricArea(STR_256);
-		target.setElectricCompany(STR_256);
+		target.setPowerCompany(STR_256);
 		target.setElectricCompanyCode(STR_256);
 		target.setElectricMenu(STR_256);
 		target.setElectricMenuCode(STR_256);
