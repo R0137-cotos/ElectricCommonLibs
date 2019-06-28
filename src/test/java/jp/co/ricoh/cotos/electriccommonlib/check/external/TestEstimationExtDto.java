@@ -94,6 +94,7 @@ public class TestEstimationExtDto {
 		EstimationElectric entityEstimation = estimationElectricRepository.findOne(1L);
 		EstimationElectricExtDto targetEstimation = new EstimationElectricExtDto();
 		BeanUtils.copyProperties(entityEstimation, targetEstimation);
+		targetEstimation.setPowerCompany(entityEstimation.getElectricCompany());
 		targetEstimation.setElectricCommercialFlowDivCode("1");
 		targetEstimation.setElectricCommercialFlowDiv(entityEstimation.getElectricCommercialFlowDiv().toString());
 		targetEstimation.setCo2EmissionMenu(ElectricPlan.CO2フリー);
@@ -145,7 +146,7 @@ public class TestEstimationExtDto {
 		Assert.assertTrue(result.getErrorInfoList().size() == 88);
 
 	}
-	
+
 	@Test
 	public void EstimationExtCreateDtoのテスト() {
 
@@ -157,6 +158,7 @@ public class TestEstimationExtDto {
 		EstimationElectric entityEstimation = estimationElectricRepository.findOne(1L);
 		EstimationElectricExtDto targetEstimation = new EstimationElectricExtDto();
 		BeanUtils.copyProperties(entityEstimation, targetEstimation);
+		targetEstimation.setPowerCompany(entityEstimation.getElectricCompany());
 		targetEstimation.setElectricCommercialFlowDivCode("1");
 		targetEstimation.setElectricCommercialFlowDiv(entityEstimation.getElectricCommercialFlowDiv().toString());
 		targetEstimation.setCo2EmissionMenu(ElectricPlan.CO2フリー);
@@ -216,6 +218,7 @@ public class TestEstimationExtDto {
 		EstimationElectric entity = estimationElectricRepository.findOne(1L);
 		EstimationElectricExtDto target = new EstimationElectricExtDto();
 		BeanUtils.copyProperties(entity, target);
+		target.setPowerCompany(entity.getElectricCompany());
 		target.setElectricCommercialFlowDivCode("1");
 		target.setSupplyStartScheduledDate("2019/05/31");
 		target.setElectricCommercialFlowDiv(entity.getElectricCommercialFlowDiv().toString());
