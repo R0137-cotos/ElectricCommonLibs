@@ -59,20 +59,6 @@ public class ContractSearchParameter {
 	private String picEmptxId;
 
 	/**
-	 * 担当SS
-	 */
-	@ApiParam(value = "担当SS：MoM社員IDを指定", required = false)
-	@ApiModelProperty(value = "担当SS<br />担当SSにはMoM社員IDを指定する。", required = false, allowableValues = "range[0,255]")
-	private String picSsId;
-
-	/**
-	 * 担当CE
-	 */
-	@ApiParam(value = "担当CE：MoM社員IDを指定", required = false)
-	@ApiModelProperty(value = "担当CE<br />担当CEにはMoM社員IDを指定する。", required = false, allowableValues = "range[0,255]")
-	private String picCeId;
-
-	/**
 	 * 担当支社
 	 */
 	@ApiParam(value = "第1階層", required = false)
@@ -112,13 +98,6 @@ public class ContractSearchParameter {
 	@ApiParam(value = "契約番号", required = false)
 	@ApiModelProperty(value = "契約番号", required = false, allowableValues = "range[0,15]")
 	private String contractNumber;
-
-	/**
-	 * サービス識別番号
-	 */
-	@ApiParam(value = "サービス識別番号", required = false)
-	@ApiModelProperty(value = "サービス識別番号", required = false, allowableValues = "range[0,18]")
-	private String serviceIdentificationNumber;
 
 	/**
 	 * 電力区分
@@ -191,20 +170,6 @@ public class ContractSearchParameter {
 	private Date serviceTermEndTo;
 
 	/**
-	 * 希望納期(前)
-	 */
-	@ApiParam(value = "希望納期(前)", required = false)
-	@ApiModelProperty(value = "希望納期(前)<br />日付フォーマット:yyyy/MM/dd", required = false)
-	private Date desiredDeliveryDateFrom;
-
-	/**
-	 * 希望納期(後)
-	 */
-	@ApiParam(value = "希望納期(後)", required = false)
-	@ApiModelProperty(value = "希望納期(後)<br />日付フォーマット:yyyy/MM/dd", required = false)
-	private Date desiredDeliveryDateTo;
-
-	/**
 	 * 審査／承認者
 	 */
 	@ApiParam(value = "審査／承認者：MoM社員IDを指定", required = false)
@@ -226,13 +191,6 @@ public class ContractSearchParameter {
 	private String billingMonthFrom;
 
 	/**
-	 * 請求開始月(後)
-	 */
-	@ApiParam(value = "請求開始月(後)", required = false)
-	@ApiModelProperty(value = "請求開始月(後)<br />日付フォーマット：yyyy/MM", required = false)
-	private String billingMonthTo;
-
-	/**
 	 * お客様識別番号
 	 */
 	@ApiParam(value = "お客様識別番号", required = false)
@@ -245,6 +203,13 @@ public class ContractSearchParameter {
 	@ApiParam(value = "供給地点特定番号", required = false)
 	@ApiModelProperty(value = "供給地点特定番号", required = false, allowableValues = "range[0,255]")
 	private String feedPointNumber;
+
+	/**
+	 * 仕入元拠点ID
+	 */
+	@ApiParam(value = "仕入元拠点ID", required = false)
+	@ApiModelProperty(value = "仕入元拠点ID", required = false, allowableValues = "range[0,255]")
+	private String supplierCustId;
 
 	/**
 	 * 管轄電力会社
