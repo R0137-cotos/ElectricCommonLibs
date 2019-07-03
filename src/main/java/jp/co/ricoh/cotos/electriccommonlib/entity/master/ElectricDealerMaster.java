@@ -37,21 +37,21 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	 * 販売店コード
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "販売コード", required = true, position = 2, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "販売コード", required = true, position = 2, allowableValues = "range[0,10]")
 	private String hnbitnCd;
 
 	/**
-	 * 販売店企業名(カナ)
+	 * 販売店名(カナ)
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "販売店企業名(カナ)", required = false, position = 3, allowableValues = "range[0,1000]")
+	@ApiModelProperty(value = "販売店名(カナ)", required = false, position = 3, allowableValues = "range[0,1000]")
 	private String hnbitnMiKn;
 
 	/**
-	 * 販売店企業名
+	 * 販売店名
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "販売店企業名", required = false, position = 4, allowableValues = "range[0,1000]")
+	@ApiModelProperty(value = "販売店名", required = false, position = 4, allowableValues = "range[0,1000]")
 	private String hnbitnMi;
 
 	/**
@@ -107,7 +107,7 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	 * 支店コード
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "支店コード", required = false, position = 12, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "支店コード", required = false, position = 12, allowableValues = "range[0,10]")
 	private String shtnCd;
 
 	/**
@@ -170,21 +170,21 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	 * 契約期間(自)
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "契約期間(自)", required = false, position = 21, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "契約期間(自)", required = false, position = 21, allowableValues = "range[0,10]")
 	private String kiykKknFrom;
 
 	/**
 	 * 契約期間(至)
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "契約期間(至)", required = false, position = 22, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "契約期間(至)", required = false, position = 22, allowableValues = "range[0,10]")
 	private String kiykKknTo;
 
 	/**
 	 * 商流区分コード
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "商流区分コード", required = false, allowableValues = "range[0,255]", position = 23)
+	@ApiModelProperty(value = "商流区分コード", required = false, allowableValues = "range[0,1]", position = 23)
 	private String syuryuKbnCd;
 
 	/**
@@ -198,7 +198,7 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	 * 支払方法区分コード
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "支払方法区分コード", required = false, position = 25, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "支払方法区分コード", required = false, position = 25, allowableValues = "range[0,1]")
 	private String shhriHuhuKbnCd;
 
 	/**
