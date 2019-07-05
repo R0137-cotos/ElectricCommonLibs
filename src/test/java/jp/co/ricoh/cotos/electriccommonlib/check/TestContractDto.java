@@ -133,20 +133,20 @@ public class TestContractDto {
 		// 正常系
 		ElectricExpertContractDto electricExpertContractDto = new ElectricExpertContractDto();
 		BeanUtils.copyProperties(entity.getElectricExpertContract(), electricExpertContractDto);
-		testTarget.setElectricExpertContractDto(electricExpertContractDto);
+		testTarget.setElectricExpertContract(electricExpertContractDto);
 		ParamterCheckResult result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		testTool.assertValidationOk(result);
 
 		// 異常系（@NotNull）
 		testTarget.setVoltageCategory(null);
-		testTarget.setElectricExpertContractDto(null);
+		testTarget.setElectricExpertContract(null);
 		testTarget.setElectricCommercialFlowDiv(null);
 		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertTrue(result.getErrorInfoList().size() == 3);
 
 		// 異常系（@Size(max))
 		BeanUtils.copyProperties(entity, testTarget);
-		testTarget.setElectricExpertContractDto(electricExpertContractDto);
+		testTarget.setElectricExpertContract(electricExpertContractDto);
 		testTarget.setSimNumberMain(STR_256);
 		testTarget.setSimNumberSub(STR_256);
 		testTarget.setEntryNumber(STR_256);
@@ -187,7 +187,7 @@ public class TestContractDto {
 
 		// 異常系(@Min)
 		BeanUtils.copyProperties(entity, testTarget);
-		testTarget.setElectricExpertContractDto(electricExpertContractDto);
+		testTarget.setElectricExpertContract(electricExpertContractDto);
 		testTarget.setContractId(LONG_MINUS_1);
 		testTarget.setSendMailFlg(INT_MINUS_1);
 		testTarget.setTransferCheckFlg(INT_MINUS_1);
@@ -197,7 +197,7 @@ public class TestContractDto {
 
 		// 異常系(@Max)
 		BeanUtils.copyProperties(entity, testTarget);
-		testTarget.setElectricExpertContractDto(electricExpertContractDto);
+		testTarget.setElectricExpertContract(electricExpertContractDto);
 		testTarget.setSendMailFlg(INT_10);
 		testTarget.setTransferCheckFlg(INT_10);
 		testTarget.setAtomicPaymentFlg(INT_10);
