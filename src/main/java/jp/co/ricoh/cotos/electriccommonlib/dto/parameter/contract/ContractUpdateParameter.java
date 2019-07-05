@@ -16,24 +16,24 @@ public class ContractUpdateParameter {
 	 * 標準用契約DTO
 	 */
 	@NotNull
-	ContractDto contractDto;
+	ContractDto contract;
 
 	/**
 	 * 電力用契約DTO
 	 */
 	@Valid
 	@NotNull
-	ContractElectricDto contractElectricDto;
+	ContractElectricDto contractElectric;
 	
 	/**
 	 * 得意先情報マスタ
 	 */
 	@Valid
-	ClientMasterDto clientMasterDto;
+	ClientMasterDto clientMaster;
 	
 	/**
 	 * 請求基本情報
 	 */
 	@Valid
-	BillingBasicInformationDto billingBasicInformationDto;
+	BillingBasicInformationDto billingBasicInformation;
 }
