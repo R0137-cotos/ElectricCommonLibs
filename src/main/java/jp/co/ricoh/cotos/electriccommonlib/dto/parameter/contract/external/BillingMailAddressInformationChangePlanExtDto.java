@@ -28,10 +28,9 @@ public class BillingMailAddressInformationChangePlanExtDto {
 	private String mailAddress;
 
 	/**
-	 * MｙRicohユーザID
+	 * MyRicohユーザID
 	 */
-	@NotNull
 	@Size(max = 255)
-	@ApiModelProperty(value = "MｙRicohユーザID", required = true, position = 3, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "MyRicohユーザID", required = true, position = 3, allowableValues = "range[0,255]")
 	private String myricohId;
 }

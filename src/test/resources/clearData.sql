@@ -21,6 +21,7 @@ DELETE from settle_uss_differrence_info_high_volt;
 DELETE from instrument_info_high_volt;
 DELETE from excs_charge_info_high_volt;
 DELETE from fee_calc_interface;
+DELETE from lim_dsc_info_high_volt;
 DELETE from estimation_electric;
 DELETE from electric_expert_estimation;
 DELETE from electric_dealer_estimation;

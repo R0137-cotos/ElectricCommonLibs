@@ -58,12 +58,10 @@ import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.Impor
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.ImportantPointExplainerCreateExtDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.MailAddressInformationChangePlanExtDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.MailAddressInformationCreateExtDto;
-import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.SendInvoiceDiv;
 import jp.co.ricoh.cotos.electriccommonlib.entity.contract.BillingBasicInformation;
 import jp.co.ricoh.cotos.electriccommonlib.entity.contract.BillingMailAddressInformation;
 import jp.co.ricoh.cotos.electriccommonlib.entity.contract.ClientMaster;
 import jp.co.ricoh.cotos.electriccommonlib.entity.contract.ContractElectric;
-import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricFormMaster.ElectricPlan;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.BillingBasicInformationRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.BillingMailAddressInformationRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.ClientMasterRepository;
@@ -135,20 +133,20 @@ public class TestContractDto {
 		// 正常系
 		ElectricExpertContractDto electricExpertContractDto = new ElectricExpertContractDto();
 		BeanUtils.copyProperties(entity.getElectricExpertContract(), electricExpertContractDto);
-		testTarget.setElectricExpertContractDto(electricExpertContractDto);
+		testTarget.setElectricExpertContract(electricExpertContractDto);
 		ParamterCheckResult result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		testTool.assertValidationOk(result);
 
 		// 異常系（@NotNull）
 		testTarget.setVoltageCategory(null);
-		testTarget.setElectricExpertContractDto(null);
+		testTarget.setElectricExpertContract(null);
 		testTarget.setElectricCommercialFlowDiv(null);
 		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertTrue(result.getErrorInfoList().size() == 3);
 
 		// 異常系（@Size(max))
 		BeanUtils.copyProperties(entity, testTarget);
-		testTarget.setElectricExpertContractDto(electricExpertContractDto);
+		testTarget.setElectricExpertContract(electricExpertContractDto);
 		testTarget.setSimNumberMain(STR_256);
 		testTarget.setSimNumberSub(STR_256);
 		testTarget.setEntryNumber(STR_256);
@@ -189,7 +187,7 @@ public class TestContractDto {
 
 		// 異常系(@Min)
 		BeanUtils.copyProperties(entity, testTarget);
-		testTarget.setElectricExpertContractDto(electricExpertContractDto);
+		testTarget.setElectricExpertContract(electricExpertContractDto);
 		testTarget.setContractId(LONG_MINUS_1);
 		testTarget.setSendMailFlg(INT_MINUS_1);
 		testTarget.setTransferCheckFlg(INT_MINUS_1);
@@ -199,7 +197,7 @@ public class TestContractDto {
 
 		// 異常系(@Max)
 		BeanUtils.copyProperties(entity, testTarget);
-		testTarget.setElectricExpertContractDto(electricExpertContractDto);
+		testTarget.setElectricExpertContract(electricExpertContractDto);
 		testTarget.setSendMailFlg(INT_10);
 		testTarget.setTransferCheckFlg(INT_10);
 		testTarget.setAtomicPaymentFlg(INT_10);
@@ -779,17 +777,15 @@ public class TestContractDto {
 		ContractElectricCreateExtDto contractElectricExtDto = new ContractElectricCreateExtDto();
 		BeanUtils.copyProperties(entity.getEntryContentLowPressure(), contractElectricExtDto);
 		BeanUtils.copyProperties(entity, contractElectricExtDto);
-		contractElectricExtDto.setSendInvoiceDiv(SendInvoiceDiv.メール_MyRICOH);
 		contractElectricExtDto.setBasicMeterReadingDate("dd");
-		contractElectricExtDto.setCo2EmissionMenu(ElectricPlan.CO2フリー);
 		contractElectricExtDto.setElectricCommercialFlowDiv("直売");
 		contractElectricExtDto.setElectricCommercialFlowDivCd("1");
 		contractElectricExtDto.setFixTransferDestinationCode("修正時振替先コード");
 		contractElectricExtDto.setVoltageCategory("1");
 		contractElectricExtDto.setEntryDate("2019/05/31");
-		contractElectricExtDto.setContractYmdStart("2019/05/31");
 		contractElectricExtDto.setCurrentElectricCompanyDiv("1");
 		contractElectricExtDto.setContractUnit("A");
+		contractElectricExtDto.setSupplyStartScheduledDate("2019/05/31");
 		testTarget.setContractElectric(contractElectricExtDto);
 		// 顧客
 		CustomerContractCreateExtDto customerContractExtDto = new CustomerContractCreateExtDto();
@@ -876,7 +872,7 @@ public class TestContractDto {
 		testTarget.setElectricDealerContract(new ElectricDealerContractCreateExtDto());
 		testTarget.setFeeSimulationHead(new FeeSimulationHeadCreateExtDto());
 		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
-		Assert.assertEquals(78, result.getErrorInfoList().size());
+		Assert.assertEquals(39, result.getErrorInfoList().size());
 
 		// 異常系(@Size(max))
 		entity = contractElectricRepository.findOne(1L);
@@ -889,9 +885,7 @@ public class TestContractDto {
 		// 契約(電力)
 		BeanUtils.copyProperties(entity.getEntryContentLowPressure(), contractElectricExtDto);
 		BeanUtils.copyProperties(entity, contractElectricExtDto);
-		contractElectricExtDto.setSendInvoiceDiv(SendInvoiceDiv.メール_MyRICOH);
 		contractElectricExtDto.setBasicMeterReadingDate("dd");
-		contractElectricExtDto.setCo2EmissionMenu(ElectricPlan.CO2フリー);
 		contractElectricExtDto.setElectricCommercialFlowDiv("直売");
 		contractElectricExtDto.setElectricCommercialFlowDivCd("1");
 		contractElectricExtDto.setFixTransferDestinationCode("修正時振替先コード");
@@ -917,7 +911,6 @@ public class TestContractDto {
 		contractElectricExtDto.setVoltageCategory(STR_256);
 		contractElectricExtDto.setElectricMenu(STR_256);
 		contractElectricExtDto.setElectricMenuCode(STR_256);
-		contractElectricExtDto.setCo2EmissionFactor(STR_256);
 		contractElectricExtDto.setItemCode(STR_256);
 		contractElectricExtDto.setChargeCycle(STR_256);
 		contractElectricExtDto.setContractAmount(STR_256);
@@ -935,6 +928,7 @@ public class TestContractDto {
 		contractElectricExtDto.setEntryDate(STR_256);
 		contractElectricExtDto.setCurrentElectricCompanyDiv(STR_256);
 		contractElectricExtDto.setContractUnit(STR_256);
+		contractElectricExtDto.setSupplyStartScheduledDate(STR_256);
 		testTarget.setContractElectric(contractElectricExtDto);
 		// 顧客
 		customerContractExtDto = new CustomerContractCreateExtDto();
@@ -1015,9 +1009,7 @@ public class TestContractDto {
 		contractElectricExtDto = new ContractElectricCreateExtDto();
 		BeanUtils.copyProperties(entity.getEntryContentLowPressure(), contractElectricExtDto);
 		BeanUtils.copyProperties(entity, contractElectricExtDto);
-		contractElectricExtDto.setSendInvoiceDiv(SendInvoiceDiv.メール_MyRICOH);
 		contractElectricExtDto.setBasicMeterReadingDate("dd");
-		contractElectricExtDto.setCo2EmissionMenu(ElectricPlan.CO2フリー);
 		contractElectricExtDto.setElectricCommercialFlowDiv("直売");
 		contractElectricExtDto.setElectricCommercialFlowDivCd("1");
 		contractElectricExtDto.setFixTransferDestinationCode("修正時振替先コード");
@@ -1028,9 +1020,9 @@ public class TestContractDto {
 		contractElectricExtDto.setLoadFactor(DECIMAL_MINUS_001);
 		contractElectricExtDto.setTransferCheckFlg(INT_MINUS_1);
 		contractElectricExtDto.setEntryDate("2019/05/31");
-		contractElectricExtDto.setContractYmdStart("2019/05/31");
 		contractElectricExtDto.setCurrentElectricCompanyDiv("1");
 		contractElectricExtDto.setContractUnit("A");
+		contractElectricExtDto.setSupplyStartScheduledDate("2019/05/31");
 		testTarget.setContractElectric(contractElectricExtDto);
 		// 顧客
 		customerContractExtDto = new CustomerContractCreateExtDto();
@@ -1119,20 +1111,19 @@ public class TestContractDto {
 		testTarget.setCaseTitle("案件名");
 		testTarget.setClientCode("得意先コード");
 		testTarget.setChangePreferredDate("2019/05/31");
-		testTarget.setOriginContractId(1L);
+		testTarget.setId(1L);
 		// 契約(電力)
 		ContractElectricChangePlanExtDto contractElectricExtDto = new ContractElectricChangePlanExtDto();
 		BeanUtils.copyProperties(entity.getEntryContentLowPressure(), contractElectricExtDto);
 		BeanUtils.copyProperties(entity, contractElectricExtDto);
-		contractElectricExtDto.setSendInvoiceDiv(SendInvoiceDiv.メール_MyRICOH);
 		contractElectricExtDto.setBasicMeterReadingDate("dd");
-		contractElectricExtDto.setCo2EmissionMenu(ElectricPlan.CO2フリー);
 		contractElectricExtDto.setElectricCommercialFlowDiv("直売");
 		contractElectricExtDto.setElectricCommercialFlowDivCd("1");
 		contractElectricExtDto.setFixTransferDestinationCode("修正時振替先コード");
 		contractElectricExtDto.setVoltageCategory("1");
 		contractElectricExtDto.setEntryDate("2019/05/31");
-		contractElectricExtDto.setContractYmdStart("2019/05/31");
+		contractElectricExtDto.setContractUnit("1");
+		contractElectricExtDto.setSupplyStartScheduledDate("2019/05/31");
 		testTarget.setContractElectric(contractElectricExtDto);
 		// 顧客
 		CustomerContractChangePlanExtDto customerContractExtDto = new CustomerContractChangePlanExtDto();
@@ -1219,7 +1210,7 @@ public class TestContractDto {
 		testTarget.setElectricDealerContract(new ElectricDealerContractChangePlanExtDto());
 		testTarget.setFeeSimulationHead(new FeeSimulationHeadChangePlanExtDto());
 		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
-		Assert.assertEquals(76, result.getErrorInfoList().size());
+		Assert.assertEquals(41, result.getErrorInfoList().size());
 
 		// 異常系(@Size(max))
 		entity = contractElectricRepository.findOne(1L);
@@ -1229,13 +1220,11 @@ public class TestContractDto {
 		testTarget.setCaseTitle(STR_256);
 		testTarget.setClientCode(STR_256);
 		testTarget.setChangePreferredDate(STR_256);
-		testTarget.setOriginContractId(1L);
+		testTarget.setId(1L);
 		// 契約(電力)
 		BeanUtils.copyProperties(entity.getEntryContentLowPressure(), contractElectricExtDto);
 		BeanUtils.copyProperties(entity, contractElectricExtDto);
-		contractElectricExtDto.setSendInvoiceDiv(SendInvoiceDiv.メール_MyRICOH);
 		contractElectricExtDto.setBasicMeterReadingDate("dd");
-		contractElectricExtDto.setCo2EmissionMenu(ElectricPlan.CO2フリー);
 		contractElectricExtDto.setElectricCommercialFlowDiv("直売");
 		contractElectricExtDto.setElectricCommercialFlowDivCd("1");
 		contractElectricExtDto.setFixTransferDestinationCode("修正時振替先コード");
@@ -1261,7 +1250,6 @@ public class TestContractDto {
 		contractElectricExtDto.setVoltageCategory(STR_256);
 		contractElectricExtDto.setElectricMenu(STR_256);
 		contractElectricExtDto.setElectricMenuCode(STR_256);
-		contractElectricExtDto.setCo2EmissionFactor(STR_256);
 		contractElectricExtDto.setItemCode(STR_256);
 		contractElectricExtDto.setChargeCycle(STR_256);
 		contractElectricExtDto.setContractAmount(STR_256);
@@ -1277,6 +1265,7 @@ public class TestContractDto {
 		contractElectricExtDto.setZipCode(STR_256);
 		contractElectricExtDto.setCurrentContractNumber(STR_256);
 		contractElectricExtDto.setEntryDate(STR_256);
+		contractElectricExtDto.setSupplyStartScheduledDate(STR_256);
 		testTarget.setContractElectric(contractElectricExtDto);
 		// 顧客
 		customerContractExtDto = new CustomerContractChangePlanExtDto();
@@ -1353,14 +1342,12 @@ public class TestContractDto {
 		testTarget.setCaseNumber("案件番号");
 		testTarget.setCaseTitle("案件名");
 		testTarget.setClientCode("得意先コード");
-		testTarget.setOriginContractId(1L);
+		testTarget.setId(1L);
 		// 契約(電力)
 		contractElectricExtDto = new ContractElectricChangePlanExtDto();
 		BeanUtils.copyProperties(entity.getEntryContentLowPressure(), contractElectricExtDto);
 		BeanUtils.copyProperties(entity, contractElectricExtDto);
-		contractElectricExtDto.setSendInvoiceDiv(SendInvoiceDiv.メール_MyRICOH);
 		contractElectricExtDto.setBasicMeterReadingDate("dd");
-		contractElectricExtDto.setCo2EmissionMenu(ElectricPlan.CO2フリー);
 		contractElectricExtDto.setElectricCommercialFlowDiv("直売");
 		contractElectricExtDto.setElectricCommercialFlowDivCd("1");
 		contractElectricExtDto.setFixTransferDestinationCode("修正時振替先コード");
@@ -1371,7 +1358,8 @@ public class TestContractDto {
 		contractElectricExtDto.setLoadFactor(DECIMAL_MINUS_001);
 		contractElectricExtDto.setTransferCheckFlg(INT_MINUS_1);
 		contractElectricExtDto.setEntryDate("2019/05/31");
-		contractElectricExtDto.setContractYmdStart("2019/05/31");
+		contractElectricExtDto.setContractUnit("1");
+		contractElectricExtDto.setSupplyStartScheduledDate("2019/05/31");
 		testTarget.setContractElectric(contractElectricExtDto);
 		// 顧客
 		customerContractExtDto = new CustomerContractChangePlanExtDto();

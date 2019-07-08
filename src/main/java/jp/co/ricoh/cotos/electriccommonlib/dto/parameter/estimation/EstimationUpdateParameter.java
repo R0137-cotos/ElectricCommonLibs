@@ -16,12 +16,12 @@ public class EstimationUpdateParameter {
 	 * 標準用見積DTO
 	 */
 	@NotNull
-	EstimationDto estimationDto;
+	EstimationDto estimation;
 
 	/**
 	 * 電力用見積DTO
 	 */
 	@Valid
 	@NotNull
-	EstimationElectricDto estimationElectricDto;
+	EstimationElectricDto estimationElectric;
 }

@@ -421,6 +421,76 @@ public class CotosSecurityTests {
 		Assert.assertFalse("権限なしと判定されること", result);
 	}
 
+	@Test
+	public void MoM権限_正常_権限あり_直接指定_承認() throws Exception {
+
+		AuthorityJudgeParameter parameter = new AuthorityJudgeParameter();
+		parameter.setManualApprover(true);
+		
+		// アクター
+		MvEmployeeMaster actor = new MvEmployeeMaster();
+		actor.setMomOrgId("DUMMY");
+		parameter.setActorMvEmployeeMaster(actor);
+
+		Mockito.doReturn(AuthLevel.不可).when((MomAuthorityService) elcMomAuthorityService).searchMomAuthority(Mockito.any(), Mockito.any(), Mockito.any());
+
+		// 電力用MoM権限共通処理を実行
+		boolean result = context.getBean(ElcMomAuthorityService.class).hasAuthority(parameter, ActionDiv.更新, AuthDiv.見積_契約_手配, AccessType.承認);
+
+		// 結果判定
+		Assert.assertTrue("権限ありと判定されること", result);
+	}
+	
+	@Test
+	public void MoM権限_正常_権限あり_直接指定以外_承認() throws Exception {
+
+		AuthorityJudgeParameter parameter = new AuthorityJudgeParameter();
+		parameter.setManualApprover(false);
+		
+		// アクター
+		MvEmployeeMaster actor = new MvEmployeeMaster();
+		actor.setSingleUserId("u0200757");
+		parameter.setActorMvEmployeeMaster(actor);
+		
+		// 承認依頼者
+		MvEmployeeMaster requester = new MvEmployeeMaster();
+		requester.setSingleUserId("u0201125");
+		parameter.setRequesterMvEmployeeMaster(requester);
+
+		Mockito.doReturn(AuthLevel.配下).when((MomAuthorityService) elcMomAuthorityService).searchMomAuthority(Mockito.any(), Mockito.any(), Mockito.any());
+
+		// 電力用MoM権限共通処理を実行
+		boolean result = context.getBean(ElcMomAuthorityService.class).hasAuthority(parameter, ActionDiv.照会, AuthDiv.見積_契約_手配, AccessType.承認);
+
+		// 結果判定
+		Assert.assertTrue("権限ありと判定されること", result);
+	}
+	
+	@Test
+	public void MoM権限_正常_権限なし_承認() throws Exception {
+
+		AuthorityJudgeParameter parameter = new AuthorityJudgeParameter();
+		parameter.setManualApprover(false);
+		
+		// アクター
+		MvEmployeeMaster actor = new MvEmployeeMaster();
+		actor.setSingleUserId("u0200757");
+		parameter.setActorMvEmployeeMaster(actor);
+		
+		// 承認依頼者
+		MvEmployeeMaster requester = new MvEmployeeMaster();
+		requester.setSingleUserId("u0201125");
+		parameter.setRequesterMvEmployeeMaster(requester);
+
+		Mockito.doReturn(AuthLevel.不可).when((MomAuthorityService) elcMomAuthorityService).searchMomAuthority(Mockito.any(), Mockito.any(), Mockito.any());
+
+		// 電力用MoM権限共通処理を実行
+		boolean result = context.getBean(ElcMomAuthorityService.class).hasAuthority(parameter, ActionDiv.照会, AuthDiv.見積_契約_手配, AccessType.承認);
+
+		// 結果判定
+		Assert.assertFalse("権限なしと判定されること", result);
+	}
+
 	private RestTemplate initRest(final String header) {
 		RestTemplate rest = new RestTemplate();
 		if (null != header) {

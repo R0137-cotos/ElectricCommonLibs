@@ -39,7 +39,7 @@ public class ContractElectricAttachedFileDto extends DtoBase {
 	 * 添付ファイル
 	 */
 	@ApiModelProperty(value = "添付ファイル", required = false, position = 5)
-	private ElectricAttachedFileDto electricAttachedFileDto;
+	private ElectricAttachedFileDto electricAttachedFile;
 
 	/**
 	 * コメント

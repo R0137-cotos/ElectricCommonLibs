@@ -18,10 +18,11 @@ public class FeeSimulationHeadChangePlanExtDto {
 	/**
 	 * 作成日
 	 */
+	@NotNull
 	@Size(max = 255)
 	@ApiModelProperty(value = "作成日", required = true, position = 1, allowableValues = "range[0,255]")
 	private String createdDate;
-	
+
 	/**
 	 * 基本料金_定価
 	 */
@@ -30,7 +31,7 @@ public class FeeSimulationHeadChangePlanExtDto {
 	@Digits(integer = 19, fraction = 2)
 	@ApiModelProperty(value = "基本料金_定価", required = true, position = 2, allowableValues = "range[0.00,9999999999999999999.99]")
 	private BigDecimal basicListPrice;
-	
+
 	/**
 	 * 基本料金_売価
 	 */
@@ -39,7 +40,7 @@ public class FeeSimulationHeadChangePlanExtDto {
 	@Digits(integer = 19, fraction = 2)
 	@ApiModelProperty(value = "基本料金_売価", required = true, position = 3, allowableValues = "range[0.00,9999999999999999999.99]")
 	private BigDecimal basicSellingPrice;
-	
+
 	/**
 	 * 基本料金_仕切価格(営業)
 	 */
@@ -57,7 +58,7 @@ public class FeeSimulationHeadChangePlanExtDto {
 	@Digits(integer = 19, fraction = 2)
 	@ApiModelProperty(value = "従量料金(従量電灯)_売価", required = true, position = 5, allowableValues = "range[0.00,9999999999999999999.99]")
 	private BigDecimal basicBankPriceRj;
-	
+
 	/**
 	 * 従量料金(従量電灯)_定価
 	 */
@@ -75,7 +76,7 @@ public class FeeSimulationHeadChangePlanExtDto {
 	@Digits(integer = 19, fraction = 2)
 	@ApiModelProperty(value = "従量料金(従量電灯)_売価", required = true, position = 7, allowableValues = "range[0.00,9999999999999999999.99]")
 	private BigDecimal perUseLightSellingPrice;
-	
+
 	/**
 	 * 従量料金(従量電灯)_仕切価格(営業)
 	 */
@@ -93,7 +94,7 @@ public class FeeSimulationHeadChangePlanExtDto {
 	@Digits(integer = 19, fraction = 2)
 	@ApiModelProperty(value = "従量料金(従量電灯)_仕切価格(RJ)", required = true, position = 9, allowableValues = "range[0.00,9999999999999999999.99]")
 	private BigDecimal peruseLightBankPriceRj;
-	
+
 	/**
 	 * 従量料金(動力)_夏季_定価
 	 */
@@ -111,7 +112,7 @@ public class FeeSimulationHeadChangePlanExtDto {
 	@Digits(integer = 19, fraction = 2)
 	@ApiModelProperty(value = "従量料金(動力)_夏季_売価", required = true, position = 11, allowableValues = "range[0.00,9999999999999999999.99]")
 	private BigDecimal usageFeeSummerSellingPrice;
-	
+
 	/**
 	 * 従量料金(動力)_夏季_仕切価格(営業)
 	 */
@@ -129,7 +130,7 @@ public class FeeSimulationHeadChangePlanExtDto {
 	@Digits(integer = 19, fraction = 2)
 	@ApiModelProperty(value = "従量料金(動力)_夏季_仕切価格(RJ)", required = true, position = 13, allowableValues = "range[0.00,9999999999999999999.99]")
 	private BigDecimal usageFeeSummerBankPriceRj;
-	
+
 	/**
 	 * 従量料金(動力)_その他季_定価
 	 */
@@ -147,7 +148,7 @@ public class FeeSimulationHeadChangePlanExtDto {
 	@Digits(integer = 19, fraction = 2)
 	@ApiModelProperty(value = "従量料金(動力)_その他夏季_売価", required = false, position = 15, allowableValues = "range[0.00,9999999999999999999.99]")
 	private BigDecimal usageFeeOtherSeasonSellingPrice;
-	
+
 	/**
 	 * 従量料金(動力)_その他季_仕切価格(営業)
 	 */
