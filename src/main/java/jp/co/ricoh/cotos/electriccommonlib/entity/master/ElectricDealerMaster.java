@@ -39,8 +39,8 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	 * 販売店コード
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "販売コード", required = true, position = 2, allowableValues = "range[0,10]")
-	@JsonProperty("販売コード")
+	@ApiModelProperty(value = "販売店コード", required = true, position = 2, allowableValues = "range[0,10]")
+	@JsonProperty("HNBITN_CD")
 	private String hnbitnCd;
 
 	/**
@@ -48,7 +48,7 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "販売店名(カナ)", required = false, position = 3, allowableValues = "range[0,1000]")
-	@JsonProperty("販売店名(カナ)")
+	@JsonProperty("HNBITN_MI_KN")
 	private String hnbitnMiKn;
 
 	/**
@@ -56,7 +56,7 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "販売店名", required = false, position = 4, allowableValues = "range[0,1000]")
-	@JsonProperty("販売店名")
+	@JsonProperty("HNBITN_MI")
 	private String hnbitnMi;
 
 	/**
@@ -64,7 +64,7 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "販売店事業所名", required = false, position = 5, allowableValues = "range[0,1000]")
-	@JsonProperty("販売店事業所名")
+	@JsonProperty("HNBITN_JGYSY_MI")
 	private String hnbitnJgysyMi;
 
 	/**
@@ -72,7 +72,7 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "電話番号", required = false, position = 6, allowableValues = "range[0,1000]")
-	@JsonProperty("電話番号")
+	@JsonProperty("DNW_BNGU")
 	private String dnwBngu;
 
 	/**
@@ -80,7 +80,7 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "郵便番号", required = false, position = 7, allowableValues = "range[0,1000]")
-	@JsonProperty("郵便番号")
+	@JsonProperty("YBN_BNGU")
 	private String ybnBngu;
 
 	/**
@@ -88,7 +88,7 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "住所1", required = false, position = 8, allowableValues = "range[0,1000]")
-	@JsonProperty("住所1")
+	@JsonProperty("ZYUSY1")
 	private String zyusy1;
 
 	/**
@@ -96,7 +96,7 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "住所2", required = false, position = 9, allowableValues = "range[0,1000]")
-	@JsonProperty("住所2")
+	@JsonProperty("ZYUSY2")
 	private String zyusy2;
 
 	/**
@@ -104,7 +104,7 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "銀行番号", required = false, position = 10, allowableValues = "range[0,1000]")
-	@JsonProperty("銀行番号")
+	@JsonProperty("GNNKU_BNGU")
 	private String gnnkuBngu;
 
 	/**
@@ -112,7 +112,7 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "銀行名", required = false, position = 11, allowableValues = "range[0,1000]")
-	@JsonProperty("銀行名")
+	@JsonProperty("GNNKU_MI")
 	private String gnnkuMi;
 
 	/**
@@ -120,7 +120,7 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "支店コード", required = false, position = 12, allowableValues = "range[0,10]")
-	@JsonProperty("支店コード")
+	@JsonProperty("SHTN_CD")
 	private String shtnCd;
 
 	/**
@@ -128,7 +128,7 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "支店名", required = false, position = 13, allowableValues = "range[0,1000]")
-	@JsonProperty("支店名")
+	@JsonProperty("SHTN_MI")
 	private String shtnMi;
 
 	/**
@@ -136,7 +136,7 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "口座種別", required = false, position = 14, allowableValues = "range[0,1000]")
-	@JsonProperty("口座種別")
+	@JsonProperty("KUZ_SYBTS")
 	private String kuzSybts;
 
 	/**
@@ -144,7 +144,7 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "口座番号", required = false, position = 15, allowableValues = "range[0,1000]")
-	@JsonProperty("口座番号")
+	@JsonProperty("KUZ_BNGU")
 	private String kuzBngu;
 
 	/**
@@ -152,7 +152,7 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "口座名義人名カナ", required = false, position = 16, allowableValues = "range[0,1000]")
-	@JsonProperty("口座名義人名カナ")
+	@JsonProperty("KUZ_MIGNN_MI_KN")
 	private String kuzMignnMiKn;
 
 	/**
@@ -160,7 +160,7 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "担当者名", required = false, position = 17, allowableValues = "range[0,1000]")
-	@JsonProperty("担当者名")
+	@JsonProperty("TNTSY_MI")
 	private String tntsyMi;
 
 	/**
@@ -168,7 +168,7 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "メールアドレス1", required = false, position = 18, allowableValues = "range[0,1000]")
-	@JsonProperty("メールアドレス1")
+	@JsonProperty("MAIL_ADDRESS1")
 	private String mailAddress1;
 
 	/**
@@ -176,7 +176,7 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "メールアドレス2", required = false, position = 19, allowableValues = "range[0,1000]")
-	@JsonProperty("メールアドレス2")
+	@JsonProperty("MAIL_ADDRESS2")
 	private String mailAddress2;
 
 	/**
@@ -184,7 +184,7 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "メールアドレス3", required = false, position = 20, allowableValues = "range[0,1000]")
-	@JsonProperty("メールアドレス3")
+	@JsonProperty("MAIL_ADDRESS3")
 	private String mailAddress3;
 
 	/**
@@ -192,7 +192,7 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "契約期間(自)", required = false, position = 21, allowableValues = "range[0,10]")
-	@JsonProperty("契約期間(自)")
+	@JsonProperty("KIYK_KKN_FROM")
 	private String kiykKknFrom;
 
 	/**
@@ -200,7 +200,7 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "契約期間(至)", required = false, position = 22, allowableValues = "range[0,10]")
-	@JsonProperty("契約期間(至)")
+	@JsonProperty("KIYK_KKN_TO")
 	private String kiykKknTo;
 
 	/**
@@ -208,7 +208,7 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "商流区分コード", required = false, allowableValues = "range[0,1]", position = 23)
-	@JsonProperty("商流区分コード")
+	@JsonProperty("SYURYU_KBN_CD")
 	private String syuryuKbnCd;
 
 	/**
@@ -216,7 +216,7 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "商流区分名", required = false, allowableValues = "range[0,1000]", position = 24)
-	@JsonProperty("商流区分名")
+	@JsonProperty("SYURYU_KBN_MI")
 	private String syuryuKbnMi;
 
 	/**
@@ -224,7 +224,7 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "支払方法区分コード", required = false, position = 25, allowableValues = "range[0,1]")
-	@JsonProperty("支払方法区分コード")
+	@JsonProperty("SHHRI_HUHU_KBN_CD")
 	private String shhriHuhuKbnCd;
 
 	/**
@@ -232,7 +232,7 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "支払方法区分名", required = false, position = 26, allowableValues = "range[0,1000]")
-	@JsonProperty("支払方法区分名")
+	@JsonProperty("SHHRI_HUHU_KBN_MI")
 	private String shhriHuhuKbnMi;
 
 	/**
@@ -240,6 +240,6 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "媒介手数料率", required = false, position = 27, allowableValues = "range[0,99999999999.99]")
-	@JsonProperty("媒介手数料率")
+	@JsonProperty("BIKI_TSURYU_RT")
 	private BigDecimal bikiTsuryuRt;
 }

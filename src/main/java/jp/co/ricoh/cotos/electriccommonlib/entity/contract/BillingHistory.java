@@ -96,14 +96,6 @@ public class BillingHistory extends EntityBase {
 	private String salesDate;
 
 	/**
-	 * 高圧請求計上日時
-	 */
-	@Column(nullable = true)
-	@ApiModelProperty(value = "高圧請求計上日時", required = false, position = 5)
-	@Temporal(TemporalType.DATE)
-	private Date highClaimAppropriationDay;
-
-	/**
 	 * 手数料計上日時
 	 */
 	@Column(nullable = true)
@@ -175,13 +167,6 @@ public class BillingHistory extends EntityBase {
 	private String claimNumber;
 
 	/**
-	 * 計上実績
-	 */
-	@OneToMany
-	@ApiModelProperty(value = "計上実績", required = false, position = 15)
-	private List<ElectricAppropriation> electricAppropriation;
-	
-	/**
 	 * No.
 	 */
 	@Column(nullable = true)
@@ -205,20 +190,6 @@ public class BillingHistory extends EntityBase {
 	@ApiModelProperty(value = "未回収分回収日", required = false, position = 18)
 	@Temporal(TemporalType.DATE)
 	private Date accruedCollectionDate;
-	
-	/**
-	 * ファイル名
-	 */
-	@Column(nullable = true)
-	@ApiModelProperty(value = "ファイル名", required = false, position = 19, allowableValues = "range[0,255]")
-	private String fileName;
-	
-	/**
-	 * ファイルパス
-	 */
-	@Column(nullable = true)
-	@ApiModelProperty(value = "ファイルパス", required = false, position = 19, allowableValues = "range[0,1023]")
-	private String filePath;
 	
 	/**
 	 * 請求書発送区分

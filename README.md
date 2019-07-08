@@ -101,3 +101,4 @@
 |96|認可用DTO作成、各ドメインUpateParameter修正|
 |97|承認用の認可判定処理を追加|
 |98|販売店エンティティにJsonProperty設定追加|
+|99|販売店エンティティにJsonProperty設定修正|
