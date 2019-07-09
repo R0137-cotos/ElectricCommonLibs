@@ -23,6 +23,7 @@ import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricFormMaster.Canc
 import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricFormMaster.ElectricFileType;
 import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricFormMaster.ElectricPlan;
 import jp.co.ricoh.cotos.electriccommonlib.entity.master.HighContractCalendarMaster;
+import jp.co.ricoh.cotos.electriccommonlib.entity.master.ProfitTransferDepartmentMaster;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.ClientMasterRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.master.CommissionMasterRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.master.ElectricAreaMasterRepository;
@@ -168,5 +169,22 @@ public class TestMasterElectricRepository extends RepositoryTestBase {
 		} catch (Exception e1) {
 			Assert.fail("例外が発生した場合、エラー");
 		}
+	}
+	
+	@Test
+	public void 全てのカラムがNullではないことを確認_マスタ_粗利振替先部門マスタ_販社課所コードより取得() {
+		全てのカラムがNullではないことを確認_マスタ(profitTransferDepartmentMasterRepository, 1L);
+		
+		String affiliationCode = "2020367";
+		
+		// 販社課所コードにより粗利振替先部門マスタを取得
+		ProfitTransferDepartmentMaster profitTransferDepartmentMaster = profitTransferDepartmentMasterRepository.findByAffiliationCode(affiliationCode);
+		// null項目なく取得できていることを確認
+		try {
+			testTools.assertColumnsNotNull(profitTransferDepartmentMaster);
+		} catch (Exception e1) {
+			Assert.fail("例外が発生した場合、エラー");
+		}
+		
 	}
 }
