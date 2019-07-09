@@ -228,11 +228,11 @@ public class InstrumentInfoHighVolt extends EntityBase {
 	private BigDecimal t06AdaysElcNumLstMnthIdctNum;
 	
 	/**
-	 * 時間帯06_全日電力量前月指示数
+	 * 時間帯06_全日電力量当月指示数
 	 */
 	@Column(nullable = true, name = "t06_adays_elc_num_ths_mnth_idct_num")
-	@ApiModelProperty(value = "時間帯06_全日電力量前月指示数", required = false, position = 26)
-	@JsonProperty("時間帯06_全日電力量前月指示数")
+	@ApiModelProperty(value = "時間帯06_全日電力量当月指示数", required = false, position = 26)
+	@JsonProperty("時間帯06_全日電力量当月指示数")
 	private BigDecimal t06AdaysElcNumThsMnthIdctNum;
 	
 	/**
@@ -292,11 +292,11 @@ public class InstrumentInfoHighVolt extends EntityBase {
 	private BigDecimal t10AdaysElcNumLstMnthIdctNum;
 	
 	/**
-	 * 時間帯10_全日電力量前月指示数
+	 * 時間帯10_全日電力量当月指示数
 	 */
 	@Column(nullable = true, name = "t10_adays_elc_num_ths_mnth_idct_num")
-	@ApiModelProperty(value = "時間帯10_全日電力量前月指示数", required = false, position = 34)
-	@JsonProperty("時間帯10_全日電力量前月指示数")
+	@ApiModelProperty(value = "時間帯10_全日電力量当月指示数", required = false, position = 34)
+	@JsonProperty("時間帯10_全日電力量当月指示数")
 	private BigDecimal t10AdaysElcNumThsMnthIdctNum;
 	
 	/**
