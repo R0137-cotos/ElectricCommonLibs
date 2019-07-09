@@ -16,11 +16,19 @@ import lombok.EqualsAndHashCode;
 public class ContractElectricChangePlanExtInputDto {
 	
 	/**
+	 * 変更元契約ID(プラン変更で使用)
+	 */
+	@NotNull
+	@Min(0)
+	@ApiModelProperty(value = "変更元契約ID", required = false, position = 1, allowableValues = "range[0,9223372036854775807]")
+	private long id;
+	
+	/**
 	 * 案件番号
 	 */
 	@NotNull
 	@Size(max = 255)
-	@ApiModelProperty(value = "案件番号", required = true, position = 1, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "案件番号", required = true, position = 2, allowableValues = "range[0,255]")
 	private String caseNumber;
 	
 	/**
@@ -28,7 +36,7 @@ public class ContractElectricChangePlanExtInputDto {
 	 */
 	@NotNull
 	@Size(max = 255)
-	@ApiModelProperty(value = "案件番号", required = true, position = 2, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "案件番号", required = true, position = 3, allowableValues = "range[0,255]")
 	private String caseTitle;
 	
 	/**
@@ -36,23 +44,15 @@ public class ContractElectricChangePlanExtInputDto {
 	 */
 	@NotNull
 	@Size(max = 255)
-	@ApiModelProperty(value = "得意先コード", required = true, position = 3, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "得意先コード", required = true, position = 4, allowableValues = "range[0,255]")
 	private String clientCode;
 	
 	/**
 	 * 変更希望日
 	 */
 	@Size(max = 255)
-	@ApiModelProperty(value = "変更希望日", required = false, position = 4, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "変更希望日", required = false, position = 5, allowableValues = "range[0,255]")
 	private String changePreferredDate;
-	
-	/**
-	 * 変更元契約ID(プラン変更で使用)
-	 */
-	@NotNull
-	@Min(0)
-	@ApiModelProperty(value = "変更元契約ID", required = false, position = 5, allowableValues = "range[0,9223372036854775807]")
-	private long originContractId;
 	
 	/**
 	 * 契約(電力)

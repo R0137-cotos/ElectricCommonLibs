@@ -70,15 +70,15 @@ public class ExcsChargeInfoHighVolt extends EntityBase {
 	/**
 	 * 託送対象年月
 	 */
-	@Column(nullable = true)
-	@ApiModelProperty(value = "託送対象年月", required = false, position = 6)
+	@Column(nullable = false)
+	@ApiModelProperty(value = "託送対象年月", required = true, position = 6)
 	@JsonProperty("託送対象年月")
 	private String csAplyYm;
 
 	/**
 	 * 供給地点特定番号
 	 */
-	@Column(nullable = true)
+	@Column(nullable = true, name = "sply_point_idnt_bn")
 	@ApiModelProperty(value = "供給地点特定番号", required = false, position = 7)
 	@JsonProperty("供給地点特定番号")
 	private String splyPointIdntBn;
@@ -86,7 +86,7 @@ public class ExcsChargeInfoHighVolt extends EntityBase {
 	/**
 	 * 超過電力
 	 */
-	@Column(nullable = true)
+	@Column(nullable = true, name = "excs_elc")
 	@ApiModelProperty(value = "超過電力", required = false, position = 8)
 	@JsonProperty("超過電力")
 	private Long excsElc;
@@ -94,7 +94,7 @@ public class ExcsChargeInfoHighVolt extends EntityBase {
 	/**
 	 * 契約電力
 	 */
-	@Column(nullable = true)
+	@Column(nullable = true, name = "ctct_elc")
 	@ApiModelProperty(value = "契約電力", required = false, position = 9)
 	@JsonProperty("契約電力")
 	private Long ctctElc;
@@ -102,7 +102,7 @@ public class ExcsChargeInfoHighVolt extends EntityBase {
 	/**
 	 * 契約超過金
 	 */
-	@Column(nullable = true)
+	@Column(nullable = true, name = "ctct_excs_mny")
 	@ApiModelProperty(value = "契約超過金", required = false, position = 10)
 	@JsonProperty("契約超過金")
 	private BigDecimal ctctExcsMny;

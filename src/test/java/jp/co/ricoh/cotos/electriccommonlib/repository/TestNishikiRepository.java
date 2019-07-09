@@ -15,6 +15,7 @@ import jp.co.ricoh.cotos.electriccommonlib.repository.nishiki.ExcsChargeInfoHigh
 import jp.co.ricoh.cotos.electriccommonlib.repository.nishiki.FeeCalcInterfaceRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.nishiki.FeeClcUssInterfaceRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.nishiki.InstrumentInfoHighVoltRepository;
+import jp.co.ricoh.cotos.electriccommonlib.repository.nishiki.LimDscInfoHighVoltRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.nishiki.MaximumDemandPowerHighVoltRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.nishiki.SettleUssDifferrenceInfoHighVoltRepository;
 
@@ -39,6 +40,9 @@ public class TestNishikiRepository extends RepositoryTestBase {
 
 	@Autowired
 	ExcsChargeInfoHighVoltRepository excsChargeInfoHighVoltRepository;
+
+	@Autowired
+	LimDscInfoHighVoltRepository limDscInfoHighVoltRepository;
 
 	@Autowired
 	TestTools testTools;
@@ -88,6 +92,11 @@ public class TestNishikiRepository extends RepositoryTestBase {
 	@Test
 	public void 全てのカラムがNullではないことを確認_契約超過金() {
 		全てのカラムがNullではないことを確認_共通(excsChargeInfoHighVoltRepository, 1L);
+	}
+
+	@Test
+	public void 全てのカラムがNullではないことを確認_制限中止割引() {
+		全てのカラムがNullではないことを確認_共通(limDscInfoHighVoltRepository, 1L);
 	}
 
 }

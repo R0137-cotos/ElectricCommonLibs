@@ -40,7 +40,7 @@ public class SettleUssDifferrenceInfoHighVolt extends EntityBase {
 	@ApiModelProperty(value = "全体番号", required = true, position = 2)
 	@JsonProperty("全体番号")
 	private String feeClcAllBn;
-
+	
 	/**
 	 * 料金計算実行番号
 	 */
@@ -48,7 +48,7 @@ public class SettleUssDifferrenceInfoHighVolt extends EntityBase {
 	@ApiModelProperty(value = "料金計算実行番号", required = true, position = 3)
 	@JsonProperty("料金計算実行番号")
 	private String feeClcExecBn;
-
+	
 	/**
 	 * 契約番号
 	 */
@@ -56,7 +56,7 @@ public class SettleUssDifferrenceInfoHighVolt extends EntityBase {
 	@ApiModelProperty(value = "契約番号", required = true, position = 4)
 	@JsonProperty("契約番号")
 	private String ctctBn;
-
+	
 	/**
 	 * 料金計算対象年月
 	 */
@@ -64,7 +64,7 @@ public class SettleUssDifferrenceInfoHighVolt extends EntityBase {
 	@ApiModelProperty(value = "料金計算対象年月", required = true, position = 5)
 	@JsonProperty("料金計算対象年月")
 	private String feeClcYm;
-
+	
 	/**
 	 * 需要家番号
 	 */
@@ -72,53 +72,53 @@ public class SettleUssDifferrenceInfoHighVolt extends EntityBase {
 	@ApiModelProperty(value = "需要家番号", required = true, position = 6)
 	@JsonProperty("需要家番号")
 	private String cstmrBn;
-
+	
 	/**
 	 * 料金メニューコード
 	 */
-	@Column(nullable = false)
-	@ApiModelProperty(value = "料金メニューコード", required = true, position = 7)
+	@Column(nullable = true, name = "fee_mnu_cd")
+	@ApiModelProperty(value = "料金メニューコード", required = false, position = 7)
 	@JsonProperty("料金メニューコード")
 	private String feeMnuCd;
-
+	
 	/**
 	 * 差異発生年月
 	 */
-	@Column(nullable = false)
-	@ApiModelProperty(value = "差異発生年月", required = true, position = 8)
+	@Column(nullable = true, name = "diff_ocrr_ym")
+	@ApiModelProperty(value = "差異発生年月", required = false, position = 8)
 	@JsonProperty("差異発生年月")
-	private String diffOcrrYm;
-
+	private String diff_ocrrYm;
+	
 	/**
 	 * 契約電力差異
 	 */
-	@Column(nullable = false)
-	@ApiModelProperty(value = "契約電力差異", required = true, position = 9)
+	@Column(nullable = true, name = "diff_ctct_elc")
+	@ApiModelProperty(value = "契約電力差異", required = false, position = 9)
 	@JsonProperty("契約電力差異")
-	private long diffCtctElc;
-
+	private Long diffCtctElc;
+	
 	/**
 	 * 力率差異
 	 */
-	@Column(nullable = false)
-	@ApiModelProperty(value = "力率差異", required = true, position = 10)
+	@Column(nullable = true, name = "diff_powp")
+	@ApiModelProperty(value = "力率差異", required = false, position = 10)
 	@JsonProperty("力率差異")
-	private long diffPowp;
-
+	private Long diffPowp;
+	
 	/**
-	 * 使用電力量差異(夏季)
+	 * 使用電力量差異（夏季）
 	 */
-	@Column(nullable = false, name = "diff_minu30_elc_uss_summer")
-	@ApiModelProperty(value = "使用電力量差異(夏季)", required = true, position = 11)
+	@Column(nullable = true, name = "diff_minu30_elc_uss_summer")
+	@ApiModelProperty(value = "使用電力量差異（夏季）", required = false, position = 11)
 	@JsonProperty("使用電力量差異（夏季）")
-	private long diffMinu30ElcUssSummer;
-
+	private Long diffMinu30ElcUssSummer;
+	
 	/**
-	 * 使用電力量差異(その他季)
+	 * 使用電力量差異（その他季）
 	 */
-	@Column(nullable = false, name = "diff_minu30_elc_uss_other")
-	@ApiModelProperty(value = "使用電力量差異(その他季)", required = true, position = 12)
+	@Column(nullable = true, name = "diff_minu30_elc_uss_other")
+	@ApiModelProperty(value = "使用電力量差異（その他季）", required = false, position = 12)
 	@JsonProperty("使用電力量差異（その他季）")
-	private long diffMinu30ElcUssOther;
+	private Long diffMinu30ElcUssOther;
 
 }
