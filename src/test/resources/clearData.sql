@@ -35,3 +35,4 @@ DELETE from high_contract_calendar_master;
 DELETE from important_point_explainer;
 DELETE from commission_master;
 DELETE from profit_transfer_department_master;
+DELETE from electric_billing_attached_file;
