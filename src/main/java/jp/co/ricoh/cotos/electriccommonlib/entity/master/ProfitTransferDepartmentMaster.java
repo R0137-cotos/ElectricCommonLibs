@@ -22,8 +22,8 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Table(name = "profit_transfer_department_master")
-@CotosComplementTarget(entity = profitTransferDepartmentMaster.class, repository = ProfitTransferDepartmentMasterRepository.class)
-public class profitTransferDepartmentMaster extends EntityBaseMaster {
+@CotosComplementTarget(entity = ProfitTransferDepartmentMaster.class, repository = ProfitTransferDepartmentMasterRepository.class)
+public class ProfitTransferDepartmentMaster extends EntityBaseMaster {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "profit_transfer_department_master_seq")
