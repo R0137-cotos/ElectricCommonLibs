@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBaseMaster;
 import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
@@ -36,6 +38,7 @@ public class CommissionMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = false)
 	@ApiModelProperty(value = "電力区分", required = true, position = 2, allowableValues = "range[0,255]")
+	@JsonProperty("DNRYK_KBN")
 	private String dnrykKbn;
 
 	/**
@@ -43,6 +46,7 @@ public class CommissionMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = false)
 	@ApiModelProperty(value = "管轄地域電力会社コード", required = true, position = 3, allowableValues = "range[0,255]")
+	@JsonProperty("KNKTTIK_DNRYKKISH_CD")
 	private String knkttikDnrykkishCd;
 
 	/**
@@ -50,6 +54,7 @@ public class CommissionMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = false)
 	@ApiModelProperty(value = "想定年間電力料金(From)", required = true, position = 4, allowableValues = "range[0,99999999999]")
+	@JsonProperty("SUTI_NNKN_DNRYK_RYUKN_FROM")
 	private Long sutiNnknDnrykRyuknFrom;
 
 	/**
@@ -57,6 +62,7 @@ public class CommissionMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = false)
 	@ApiModelProperty(value = "想定年間電力料金(To)", required = true, position = 5, allowableValues = "range[0,99999999999]")
+	@JsonProperty("SUTI_NNKN_DNRYK_RYUKN_TO")
 	private Long sutiNnknDnrykRyuknTo;
 
 	/**
@@ -64,6 +70,7 @@ public class CommissionMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "媒介手数料額", required = false, position = 6, allowableValues = "range[0,99999999999]")
+	@JsonProperty("BIKI_TSURYU_GK")
 	private Long bikiTsuryuGk;
 
 	/**
@@ -71,6 +78,7 @@ public class CommissionMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "適用開始年月日", required = false, position = 7, allowableValues = "range[0,255]")
+	@JsonProperty("TKYU_KISH_YMD")
 	private String tkyuKishYmd;
 
 	/**
@@ -78,6 +86,7 @@ public class CommissionMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "適用終了年月日", required = false, position = 8, allowableValues = "range[0,255]")
+	@JsonProperty("TKYU_SHURYU_YMD")
 	private String tkyuShuryuYmd;
 
 }
