@@ -270,8 +270,8 @@ public class TestEstimationDto {
 		
 		// 異常系(@NotNull)
 		EstimationUpdateParameter testTarget = new EstimationUpdateParameter();
-		testTarget.setEstimationDto(null);
-		testTarget.setEstimationElectricDto(null);
+		testTarget.setEstimation(null);
+		testTarget.setEstimationElectric(null);
 		ParamterCheckResult result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(2, result.getErrorInfoList().size());
 		
@@ -294,7 +294,7 @@ public class TestEstimationDto {
 		estimationElectricDto.setElectricCommercialFlowDiv(ElectricCommercialFlowDiv.直売);
 		
 		testTarget = new EstimationUpdateParameter();	
-		testTarget.setEstimationElectricDto(estimationElectricDto);
+		testTarget.setEstimationElectric(estimationElectricDto);
 		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(4, result.getErrorInfoList().size());
 		
