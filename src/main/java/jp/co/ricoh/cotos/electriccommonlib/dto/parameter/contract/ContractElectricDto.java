@@ -317,21 +317,21 @@ public class ContractElectricDto extends DtoBase {
 	 */
 	@Valid
 	@ApiModelProperty(value = "お申込み内容(高圧)", required = false, position = 42)
-	private EntryContentHighPressureDto entryContentHighPressureDto;
+	private EntryContentHighPressureDto entryContentHighPressure;
 
 	/**
 	 * お申込み内容(低圧)
 	 */
 	@Valid
 	@ApiModelProperty(value = "お申込み内容(低圧)", required = false, position = 43)
-	private EntryContentLowPressureDto entryContentLowPressureDto;
+	private EntryContentLowPressureDto entryContentLowPressure;
 
 	/**
 	 * 解約情報
 	 */
 	@Valid
 	@ApiModelProperty(value = "解約情報", required = false, position = 44)
-	private CancellationInformationDto cancellationInformationDto;
+	private CancellationInformationDto cancellationInformation;
 
 	/**
 	 * 電力専任情報
@@ -339,49 +339,49 @@ public class ContractElectricDto extends DtoBase {
 	@Valid
 	@NotNull
 	@ApiModelProperty(value = "電力専任情報", required = true, position = 45)
-	private ElectricExpertContractDto electricExpertContractDto;
+	private ElectricExpertContractDto electricExpertContract;
 
 	/**
 	 * 販売店情報
 	 */
 	@Valid
 	@ApiModelProperty(value = "販売店情報", required = false, position = 46)
-	private ElectricDealerContractDto electricDealerContractDto;
+	private ElectricDealerContractDto electricDealerContract;
 
 	/**
 	 * Mailアドレス情報
 	 */
 	@Valid
 	@ApiModelProperty(value = "Mailアドレス情報", required = false, position = 47)
-	private List<MailAddressInformationDto> mailAddressInformationDtoList;
+	private List<MailAddressInformationDto> mailAddressInformationList;
 
 	/**
 	 * 契約(電力)添付ファイル
 	 */
 	@Valid
 	@ApiModelProperty(value = "契約(電力)添付ファイル", required = false, position = 48)
-	private List<ContractElectricAttachedFileDto> contractElectricAttachedFileDtoList;
+	private List<ContractElectricAttachedFileDto> contractElectricAttachedFileList;
 
 	/**
 	 * 単価情報(高圧)
 	 */
 	@Valid
 	@ApiModelProperty(value = "単価情報(高圧)", required = false, position = 49)
-	private List<UnitPriceHighPressureDto> unitPriceHighPressureDtoList;
+	private List<UnitPriceHighPressureDto> unitPriceHighPressureList;
 
 	/**
 	 * 単価情報(低圧)
 	 */
 	@Valid
 	@ApiModelProperty(value = "単価情報(低圧)", required = false, position = 50)
-	private List<UnitPriceLowPressureDto> unitPriceLowPressureDtoList;
+	private List<UnitPriceLowPressureDto> unitPriceLowPressureList;
 
 	/**
 	 * 得意先情報
 	 */
 	@Valid
 	@ApiModelProperty(value = "得意先情報", required = false, position = 51)
-	private List<ClientInformationDto> clientInformationDtoList;
+	private List<ClientInformationDto> clientInformationList;
 
 	/**
 	 * 商流区分
@@ -436,7 +436,7 @@ public class ContractElectricDto extends DtoBase {
 	 */
 	@Valid
 	@ApiModelProperty(value = "重要事項説明者", required = false, position = 59)
-	private ImportantPointExplainerDto importantPointExplainerDto;
+	private ImportantPointExplainerDto importantPointExplainer;
 
 	/**
 	 * SIM番号(主)

@@ -42,6 +42,15 @@ public class ElcMomAuthorityService extends MomAuthorityService {
 
 			// 参照・編集処理用の認可処理を実施
 			return this.hasEditAuthority(authLevel, authParam.getActorMvEmployeeMaster(), authParam.getMvEmployeeMasterList());
+		} else if (AccessType.承認.equals(accessType)) {
+
+			// 直接指定された承認者であれば、権限あり
+			if (authParam.isManualApprover()) {
+				return true;
+			}
+
+			// 承認処理用の認可処理を実施
+			return this.hasApproveAuthority(authLevel, authParam.getActorMvEmployeeMaster(), authParam.getRequesterMvEmployeeMaster());
 		} else {
 			return false;
 		}
