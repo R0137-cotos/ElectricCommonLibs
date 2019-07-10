@@ -112,7 +112,7 @@ public class FeeCalcInterface extends EntityBase {
 	/**
 	 * 合計金額
 	 */
-	@Column(nullable = false)
+	@Column(nullable = true, name = "sum_mny")
 	@ApiModelProperty(value = "合計金額", required = true, position = 11)
 	@JsonProperty("合計金額")
 	private BigDecimal sumMny;
@@ -120,7 +120,7 @@ public class FeeCalcInterface extends EntityBase {
 	/**
 	 * 課税対象税抜合計金額
 	 */
-	@Column(nullable = false)
+	@Column(nullable = true, name = "tax_obj_tax_out_sum_mny")
 	@ApiModelProperty(value = "課税対象税抜合計金額", required = true, position = 12)
 	@JsonProperty("課税対象税抜合計金額")
 	private Long taxObjTaxOutSumMny;
@@ -128,7 +128,7 @@ public class FeeCalcInterface extends EntityBase {
 	/**
 	 * 税抜合計金額
 	 */
-	@Column(nullable = false)
+	@Column(nullable = true, name = "fee_clc_fee_tax_out")
 	@ApiModelProperty(value = "税抜合計金額", required = true, position = 13)
 	@JsonProperty("税抜合計金額")
 	private Long feeClcFeeTaxOut;
@@ -136,7 +136,7 @@ public class FeeCalcInterface extends EntityBase {
 	/**
 	 * 消費税
 	 */
-	@Column(nullable = false)
+	@Column(nullable = true, name = "taxmny")
 	@ApiModelProperty(value = "消費税", required = true, position = 14)
 	@JsonProperty("消費税")
 	private Long taxmny;
