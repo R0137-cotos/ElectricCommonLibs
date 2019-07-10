@@ -240,7 +240,7 @@ public class FeeCalcInterface extends EntityBase {
 	private String pwrGnClsCd;
 	
 	/**
-	 * 発電種類名 
+	 * 発電種類名
 	 */
 	@Column(nullable = true, name = "pwr_gn_cls_nm")
 	@ApiModelProperty(value = "発電種類名", required = false, position = 27)
@@ -254,5 +254,19 @@ public class FeeCalcInterface extends EntityBase {
 	@ApiModelProperty(value = "単価アイテムコード", required = false, position = 28)
 	@JsonProperty("単価アイテムコード")
 	private String uprcItemCd;
+
+	/**
+	 * 出力対象年月
+	 */
+	@Column(nullable = true, name = "output_target_ym")
+	@ApiModelProperty(value = "出力対象年月", required = false, position = 29)
+	private String outputTargetYm;
+
+	/**
+	 * 請求書出力フラグ
+	 */
+	@Column(nullable = false, name = "output_flg")
+	@ApiModelProperty(value = "請求書出力フラグ", required = true, position = 30)
+	private long outputFlg;
 
 }
