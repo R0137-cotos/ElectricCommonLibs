@@ -178,10 +178,10 @@ public class TestMasterElectricRepository extends RepositoryTestBase {
 		String affiliationCode = "2020367";
 		
 		// 販社課所コードにより粗利振替先部門マスタを取得
-		ProfitTransferDepartmentMaster profitTransferDepartmentMaster = profitTransferDepartmentMasterRepository.findByAffiliationCode(affiliationCode);
+		List<ProfitTransferDepartmentMaster> profitTransferDepartmentMasterList = profitTransferDepartmentMasterRepository.findByAffiliationCode(affiliationCode);
 		// null項目なく取得できていることを確認
 		try {
-			testTools.assertColumnsNotNull(profitTransferDepartmentMaster);
+			testTools.assertColumnsNotNull(profitTransferDepartmentMasterList.get(0));
 		} catch (Exception e1) {
 			Assert.fail("例外が発生した場合、エラー");
 		}
