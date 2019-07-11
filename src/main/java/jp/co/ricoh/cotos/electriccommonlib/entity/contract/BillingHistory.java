@@ -29,7 +29,9 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBase;
 import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
+import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.BeforeDebitContact;
 import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.SendInvoiceDiv;
+import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.SendMyRicoh;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.BillingHistoryRepository;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -213,5 +215,19 @@ public class BillingHistory extends EntityBase {
 	@OneToMany(mappedBy = "billingHistory")
 	@ApiModelProperty(value = "電力請求添付ファイル", required = true, position = 19)
 	private List<ElectricBillingAttachedFile> electricBillingAttachedFileList;
+
+	/**
+	 * 引落前連絡
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "引落前連絡", required = false, position = 20, allowableValues = "未送信(\"0\"), 送信済(\"1\"), 送信対象外(\"9\")", example = "0")
+	private BeforeDebitContact beforeDebitContact;
+
+	/**
+	 * MyRicoh送信
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "MyRicoh送信", required = false, position = 21, allowableValues = "未送信(\"0\"), 送信済(\"1\"), 送信対象外(\"9\")", example = "0")
+	private SendMyRicoh sendMyRicoh;
 
 }
