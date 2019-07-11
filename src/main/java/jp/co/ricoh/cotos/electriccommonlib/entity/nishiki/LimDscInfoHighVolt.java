@@ -78,7 +78,7 @@ public class LimDscInfoHighVolt extends EntityBase {
 	/**
 	 * 供給地点特定番号
 	 */
-	@Column(nullable = true, name = "sply_point_idnt_bn")
+	@Column(nullable = true)
 	@ApiModelProperty(value = "供給地点特定番号", required = false, position = 7)
 	@JsonProperty("供給地点特定番号")
 	private String splyPointIdntBn;
@@ -86,7 +86,7 @@ public class LimDscInfoHighVolt extends EntityBase {
 	/**
 	 * 算定期間開始日
 	 */
-	@Column(nullable = true, name = "estm_str_date")
+	@Column(nullable = true)
 	@ApiModelProperty(value = "算定期間開始日", required = false, position = 8)
 	@JsonProperty("算定期間開始日")
 	private Long estmStrDate;
@@ -94,7 +94,7 @@ public class LimDscInfoHighVolt extends EntityBase {
 	/**
 	 * 算定期間終了日
 	 */
-	@Column(nullable = true, name = "estm_end_date")
+	@Column(nullable = true)
 	@ApiModelProperty(value = "算定期間終了日", required = false, position = 9)
 	@JsonProperty("算定期間終了日")
 	private Long estmEndDate;
@@ -102,7 +102,7 @@ public class LimDscInfoHighVolt extends EntityBase {
 	/**
 	 * 割引対象コード
 	 */
-	@Column(nullable = true, name = "dsc_obj_cd")
+	@Column(nullable = true)
 	@ApiModelProperty(value = "割引対象コード", required = false, position = 10)
 	@JsonProperty("割引対象コード")
 	private Long dscObjCd;
@@ -110,7 +110,7 @@ public class LimDscInfoHighVolt extends EntityBase {
 	/**
 	 * 割引対象時間数
 	 */
-	@Column(nullable = true, name = "dsc_obj_time")
+	@Column(nullable = true)
 	@ApiModelProperty(value = "割引対象時間数", required = false, position = 11)
 	@JsonProperty("割引対象時間数")
 	private Long dscObjTime;
@@ -118,7 +118,7 @@ public class LimDscInfoHighVolt extends EntityBase {
 	/**
 	 * 割引対象日数
 	 */
-	@Column(nullable = true, name = "dsc_obj_days")
+	@Column(nullable = true)
 	@ApiModelProperty(value = "割引対象日数", required = false, position = 12)
 	@JsonProperty("割引対象日数")
 	private Long dscObjDays;
@@ -126,7 +126,7 @@ public class LimDscInfoHighVolt extends EntityBase {
 	/**
 	 * 制限中止割引額
 	 */
-	@Column(nullable = true, name = "lmt_dscntn_mny")
+	@Column(nullable = true)
 	@ApiModelProperty(value = "制限中止割引額", required = false, position = 13)
 	@JsonProperty("制限中止割引額")
 	private BigDecimal lmtDscntnMny;
