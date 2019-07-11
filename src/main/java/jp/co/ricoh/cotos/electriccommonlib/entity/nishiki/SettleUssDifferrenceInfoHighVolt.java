@@ -76,7 +76,7 @@ public class SettleUssDifferrenceInfoHighVolt extends EntityBase {
 	/**
 	 * 料金メニューコード
 	 */
-	@Column(nullable = true, name = "fee_mnu_cd")
+	@Column(nullable = true)
 	@ApiModelProperty(value = "料金メニューコード", required = false, position = 7)
 	@JsonProperty("料金メニューコード")
 	private String feeMnuCd;
@@ -84,15 +84,15 @@ public class SettleUssDifferrenceInfoHighVolt extends EntityBase {
 	/**
 	 * 差異発生年月
 	 */
-	@Column(nullable = true, name = "diff_ocrr_ym")
+	@Column(nullable = true)
 	@ApiModelProperty(value = "差異発生年月", required = false, position = 8)
 	@JsonProperty("差異発生年月")
-	private String diff_ocrrYm;
+	private String diffOcrrYm;
 	
 	/**
 	 * 契約電力差異
 	 */
-	@Column(nullable = true, name = "diff_ctct_elc")
+	@Column(nullable = true)
 	@ApiModelProperty(value = "契約電力差異", required = false, position = 9)
 	@JsonProperty("契約電力差異")
 	private Long diffCtctElc;
@@ -100,7 +100,7 @@ public class SettleUssDifferrenceInfoHighVolt extends EntityBase {
 	/**
 	 * 力率差異
 	 */
-	@Column(nullable = true, name = "diff_powp")
+	@Column(nullable = true)
 	@ApiModelProperty(value = "力率差異", required = false, position = 10)
 	@JsonProperty("力率差異")
 	private Long diffPowp;
