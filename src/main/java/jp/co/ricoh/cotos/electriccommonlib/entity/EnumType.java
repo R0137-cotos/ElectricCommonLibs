@@ -231,4 +231,26 @@ public class EnumType {
 		}
 	}
 
+	public enum ElectricArea {
+
+		北日本("1"), 首都圏("2"), 中部("3"), 関西("4"), 西日本("5");
+
+		private final String text;
+
+		private ElectricArea(final String text) {
+			this.text = text;
+		}
+
+		@Override
+		@JsonValue
+		public String toString() {
+			return this.text;
+		}
+
+		@JsonCreator
+		public static ElectricArea fromString(String string) {
+			return Arrays.stream(values()).filter(v -> v.text.equals(string)).findFirst().orElseThrow(() -> new IllegalArgumentException(String.valueOf(string)));
+		}
+	}
+
 }

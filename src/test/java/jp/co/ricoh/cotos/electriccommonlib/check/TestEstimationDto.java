@@ -46,19 +46,19 @@ public class TestEstimationDto {
 	private static final BigDecimal DECIMAL_MINUS_001 = new BigDecimal("-0.01");
 
 	static ConfigurableApplicationContext context;
-	
+
 	@Autowired
 	HeadersProperties headersProperties;
-	
+
 	@Autowired
 	ElectricDealerEstimationRepository electricDealerEstimationRepository;
 
 	@Autowired
 	EstimationElectricRepository estimationElectricRepository;
-	
+
 	@Autowired
 	ElectricExpertEstimationRepository electricExpertEstimationRepository;
-	
+
 	@Autowired
 	FeeSimulationHeadRepository feeSimulationHeadRepository;
 
@@ -98,21 +98,21 @@ public class TestEstimationDto {
 		// 正常系
 		ParamterCheckResult result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		testTool.assertValidationOk(result);
-		
+
 		// 異常系(@NotNull)
 		testTarget.setFeeSimulationHead(null);
 		testTarget.setElectricExpertEstimation(null);
 		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(2, result.getErrorInfoList().size());
-		
+
 		// 異常系(@Size(max))
 		testTarget = new EstimationElectricDto();
 		BeanUtils.copyProperties(entity, testTarget);
 		testTarget.setFeeSimulationHead(new FeeSimulationHeadDto());
 		testTarget.setElectricExpertEstimation(new ElectricExpertEstimationDto());
-		testTarget.setElectricArea(STR_256);
 		testTarget.setElectricCompany(STR_256);
 		testTarget.setElectricMenu(STR_256);
+		testTarget.setSupplyStartScheduledDate(STR_256);
 		testTarget.setNotes(STR_256);
 		testTarget.setPowerSupplyCycle(STR_256);
 		testTarget.setContractQuantity(STR_256);
@@ -125,7 +125,7 @@ public class TestEstimationDto {
 		testTarget.setCo2EmissionFactor(STR_256);
 		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(13, result.getErrorInfoList().size());
-		
+
 		// 異常系(@Max)
 		testTarget = new EstimationElectricDto();
 		BeanUtils.copyProperties(entity, testTarget);
@@ -137,7 +137,7 @@ public class TestEstimationDto {
 		testTarget.setAncillaryFlg(INT_10);
 		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(4, result.getErrorInfoList().size());
-		
+
 		// 異常系(@Min、DecimailMin)
 		testTarget = new EstimationElectricDto();
 		BeanUtils.copyProperties(entity, testTarget);
@@ -156,7 +156,7 @@ public class TestEstimationDto {
 		Assert.assertEquals(9, result.getErrorInfoList().size());
 
 	}
-	
+
 	@Test
 	public void ElectricExpertEstimationDtoのテスト() throws Exception {
 
@@ -167,7 +167,7 @@ public class TestEstimationDto {
 		// 正常系
 		ParamterCheckResult result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		testTool.assertValidationOk(result);
-	
+
 		// 異常系(@Size(max))
 		testTarget.setName(STR_256);
 		testTarget.setMailAddress(STR_256);
@@ -177,9 +177,9 @@ public class TestEstimationDto {
 		testTarget.setMomEmpId(STR_256);
 		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(6, result.getErrorInfoList().size());
-		
+
 	}
-	
+
 	@Test
 	public void ElectricDealerEstimationDtoのテスト() throws Exception {
 
@@ -190,7 +190,7 @@ public class TestEstimationDto {
 		// 正常系
 		ParamterCheckResult result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		testTool.assertValidationOk(result);
-	
+
 		// 異常系(@Size(max))
 		testTarget.setCompanyId(STR_256);
 		testTarget.setCompanyBusinessName(STR_256);
@@ -202,9 +202,9 @@ public class TestEstimationDto {
 		testTarget.setMailAddress3(STR_256);
 		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(8, result.getErrorInfoList().size());
-		
+
 	}
-	
+
 	@Test
 	public void FeeSimulationHeadDtoのテスト() throws Exception {
 
@@ -215,13 +215,13 @@ public class TestEstimationDto {
 		// 正常系
 		ParamterCheckResult result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		testTool.assertValidationOk(result);
-	
+
 		// 異常系(@Size(max))
 		testTarget.setSimNumberMain(STR_256);
 		testTarget.setSimNumberSub(STR_256);
 		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(2, result.getErrorInfoList().size());
-		
+
 		// 異常系(@DecimaiMin)
 		testTarget = new FeeSimulationHeadDto();
 		BeanUtils.copyProperties(entity, testTarget);
@@ -262,41 +262,41 @@ public class TestEstimationDto {
 		testTarget.setBasicRateListPrice(DECIMAL_MINUS_001);
 		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(35, result.getErrorInfoList().size());
-		
+
 	}
-	
+
 	@Test
 	public void EstimationUpdateParameterのテスト() throws Exception {
-		
+
 		// 異常系(@NotNull)
 		EstimationUpdateParameter testTarget = new EstimationUpdateParameter();
 		testTarget.setEstimation(null);
 		testTarget.setEstimationElectric(null);
 		ParamterCheckResult result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(2, result.getErrorInfoList().size());
-		
+
 		//@Validが有効であること
 		ElectricExpertEstimationDto electricExpertEstimationDto = new ElectricExpertEstimationDto();
 		electricExpertEstimationDto.setName(STR_256);
-		
+
 		ElectricDealerEstimationDto electricDealerEstimationDto = new ElectricDealerEstimationDto();
 		electricDealerEstimationDto.setCompanyId(STR_256);
 		electricDealerEstimationDto.setPaymentMethod(PaymentMethod.定率);
-		
+
 		FeeSimulationHeadDto feeSimulationHeadDto = new FeeSimulationHeadDto();
 		feeSimulationHeadDto.setAncillaryBankPriceBusiness(DECIMAL_MINUS_001);
-		
+
 		EstimationElectricDto estimationElectricDto = new EstimationElectricDto();
 		estimationElectricDto.setElectricExpertEstimation(electricExpertEstimationDto);
 		estimationElectricDto.setFeeSimulationHead(feeSimulationHeadDto);
 		estimationElectricDto.setElectricDealerEstimation(electricDealerEstimationDto);
 		estimationElectricDto.setVoltageCategory(VoltageCategory.高圧);
 		estimationElectricDto.setElectricCommercialFlowDiv(ElectricCommercialFlowDiv.直売);
-		
-		testTarget = new EstimationUpdateParameter();	
+
+		testTarget = new EstimationUpdateParameter();
 		testTarget.setEstimationElectric(estimationElectricDto);
 		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(4, result.getErrorInfoList().size());
-		
+
 	}
 }

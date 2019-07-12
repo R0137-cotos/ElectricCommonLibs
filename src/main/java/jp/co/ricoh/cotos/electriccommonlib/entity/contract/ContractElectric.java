@@ -536,4 +536,12 @@ public class ContractElectric extends EntityBase {
 	@ApiModelProperty(value = "初回供給開始日", required = false, position = 65)
 	@Temporal(TemporalType.DATE)
 	private Date firstSupplyStartDate;
+
+	/**
+	 * 契約終了日
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "契約終了日", required = false, position = 66)
+	@Temporal(TemporalType.DATE)
+	private Date contractEndDate;
 }
