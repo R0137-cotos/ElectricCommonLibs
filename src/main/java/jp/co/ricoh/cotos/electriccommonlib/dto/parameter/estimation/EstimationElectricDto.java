@@ -1,11 +1,8 @@
 package jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation;
 
 import java.math.BigDecimal;
-import java.util.Date;
 
 import javax.persistence.Column;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.Valid;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Digits;
@@ -93,11 +90,11 @@ public class EstimationElectricDto extends DtoBase {
 	private BigDecimal loadFactor;
 
 	/**
-	 * 供給開始予定日
+	 * 供給開始予定月
 	 */
-	@ApiModelProperty(value = "供給開始予定日", required = false, position = 11)
-	@Temporal(TemporalType.DATE)
-	private Date supplyStartScheduledDate;
+	@Size(max = 255)
+	@ApiModelProperty(value = "供給開始予定月", required = false, position = 11, allowableValues = "range[0,255]")
+	private String supplyStartScheduledDate;
 
 	/**
 	 * 備考
@@ -105,7 +102,7 @@ public class EstimationElectricDto extends DtoBase {
 	@Size(max = 255)
 	@ApiModelProperty(value = "備考", required = false, position = 12, allowableValues = "range[0,255]")
 	private String notes;
-	
+
 	/**
 	 * 電力専任情報
 	 */

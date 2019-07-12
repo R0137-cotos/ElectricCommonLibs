@@ -1,7 +1,6 @@
 package jp.co.ricoh.cotos.electriccommonlib.entity.estimation;
 
 import java.math.BigDecimal;
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -116,11 +115,11 @@ public class EstimationElectric extends EntityBase {
 	private BigDecimal loadFactor;
 
 	/**
-	 * 供給開始予定日
+	 * 供給開始予定月
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "供給開始予定日", required = false, position = 11)
-	private Date supplyStartScheduledDate;
+	@ApiModelProperty(value = "供給開始予定月", required = false, position = 11, allowableValues = "range[0,255]")
+	private String supplyStartScheduledDate;
 
 	/**
 	 * 備考
