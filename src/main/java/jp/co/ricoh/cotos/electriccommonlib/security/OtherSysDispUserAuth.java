@@ -9,11 +9,11 @@ public class OtherSysDispUserAuth {
 		return otherSysDispUserAuthThreadLocal.get();
 	}
 
-	static void set(String otherSysDispUserAuth) {
+	public static void set(String otherSysDispUserAuth) {
 		otherSysDispUserAuthThreadLocal.set(otherSysDispUserAuth);
 	}
 
-	static void clear() {
+	public static void clear() {
 		set(null);
 	}
 }
