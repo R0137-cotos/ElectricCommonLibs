@@ -230,4 +230,20 @@ public class BillingHistory extends EntityBase {
 	@ApiModelProperty(value = "MyRicoh送信", required = false, position = 21, allowableValues = "未送信(\"0\"), 送信済(\"1\"), 送信対象外(\"9\")", example = "0")
 	private SendMyRicoh sendMyRicoh;
 
+	/**
+	 * 供給期間(開始)
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "供給期間(開始)", required = false, position = 22)
+	@Temporal(TemporalType.DATE)
+	private Date electricSupplyYmdStart;
+
+	/**
+	 * 供給期間(終了)
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "供給期間(終了)", required = false, position = 23)
+	@Temporal(TemporalType.DATE)
+	private Date electricSupplyYmdEnd;
+
 }
