@@ -35,7 +35,7 @@ public class EstimationElectricDto extends DtoBase {
 	/**
 	 * 電力エリア
 	 */
-	@ApiModelProperty(value = "電力エリア", required = false, position = 3, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "電力エリア", required = false, position = 3, allowableValues = "北日本(\"1\"), 首都圏(\"2\"), 中部(\"3\"), 関西(\"4\"), 西日本(\"5\")", example = "1")
 	private ElectricArea electricArea;
 
 	/**
