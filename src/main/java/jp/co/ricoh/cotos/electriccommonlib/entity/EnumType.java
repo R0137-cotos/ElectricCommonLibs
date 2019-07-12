@@ -145,7 +145,7 @@ public class EnumType {
 
 	public enum Scale {
 
-		規模_500kw未満("01"), 規模_500kw以上("02");
+		規模_500kw未満("1"), 規模_500kw以上("2");
 
 		private final String text;
 
