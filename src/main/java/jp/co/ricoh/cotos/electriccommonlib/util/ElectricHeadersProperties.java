@@ -15,5 +15,7 @@ import lombok.EqualsAndHashCode;
 @ConfigurationProperties(prefix = "cotos.auth.headers")
 public class ElectricHeadersProperties extends HeadersProperties {
 
+	private String requireMomAuthorize;
+	
 	private String momAuthorization;
 }

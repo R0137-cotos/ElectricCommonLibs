@@ -16,6 +16,7 @@ cotos:
       pass: headers_pass
       authorization: X-Cotos-Authorization
       requireDispAuthorize: X-Cotos-Require-Disp-Authorize
+      requireMomAuthorize: X-Cotos-Require-Mom-Authorize
       dispAuthorization: X-Cotos-Disp-Authorization
       momAuthorization: X-Cotos-Mom-Authorization
       contentType: Content-type

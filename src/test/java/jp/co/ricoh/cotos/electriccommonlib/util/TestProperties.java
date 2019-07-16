@@ -46,6 +46,7 @@ public class TestProperties {
 	@Test
 	public void MoM権限ヘッダー情報を取得できること() {
 		Assert.assertEquals("MoM権限ヘッダー情報を取得できること", "X-Cotos-Mom-Authorization", electricHeadersProperties.getMomAuthorization());
+		Assert.assertEquals("MoM権限要否ヘッダー情報を取得できること", "X-Cotos-Require-Mom-Authorize", electricHeadersProperties.getRequireMomAuthorize());
 		Assert.assertEquals("親クラスのヘッダー情報を取得できること", "X-Cotos-Disp-Authorization", electricHeadersProperties.getDispAuthorization());
 	}
 }
