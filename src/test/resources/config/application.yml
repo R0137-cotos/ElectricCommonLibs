@@ -17,6 +17,7 @@ cotos:
       authorization: X-Cotos-Authorization
       requireDispAuthorize: X-Cotos-Require-Disp-Authorize
       dispAuthorization: X-Cotos-Disp-Authorization
+      momAuthorization: X-Cotos-Mom-Authorization
       contentType: Content-type
       filename: filename
   api:
