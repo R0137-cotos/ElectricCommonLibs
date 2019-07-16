@@ -256,14 +256,14 @@ public class FeeCalcInterface extends EntityBase {
 	private String uprcItemCd;
 
 	/**
-	 * 出力対象年月
+	 * 対象年月
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "出力対象年月", required = false, position = 29)
 	private String outputTargetYm;
 
 	/**
-	 * 請求書出力フラグ
+	 * 請求書作成済みフラグ
 	 */
 	@Column(nullable = false)
 	@ApiModelProperty(value = "請求書出力フラグ", required = true, position = 30)
