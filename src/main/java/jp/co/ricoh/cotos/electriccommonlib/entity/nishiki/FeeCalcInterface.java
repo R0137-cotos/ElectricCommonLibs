@@ -263,10 +263,10 @@ public class FeeCalcInterface extends EntityBase {
 	private String outputTargetYm;
 
 	/**
-	 * 請求書作成済みフラグ
+	 * 請求書作成済フラグ
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "請求書作成済みフラグ", required = true, position = 30)
+	@ApiModelProperty(value = "請求書作成済フラグ", required = true, position = 30)
 	private long outputFlg;
 
 }
