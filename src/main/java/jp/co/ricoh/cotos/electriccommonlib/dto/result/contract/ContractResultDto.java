@@ -2,7 +2,7 @@ package jp.co.ricoh.cotos.electriccommonlib.dto.result.contract;
 
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.entity.contract.Contract;
-import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.BillingBasicInformationDto;
+import jp.co.ricoh.cotos.electriccommonlib.entity.contract.BillingBasicInformation;
 import jp.co.ricoh.cotos.electriccommonlib.entity.contract.ContractElectric;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -27,6 +27,6 @@ public class ContractResultDto {
 	 * 請求基本情報
 	 */
 	@ApiModelProperty(value = "請求基本情報", required = false, position = 3)
-	private BillingBasicInformationDto billingBasicInformation;
+	private BillingBasicInformation billingBasicInformation;
 
 }
