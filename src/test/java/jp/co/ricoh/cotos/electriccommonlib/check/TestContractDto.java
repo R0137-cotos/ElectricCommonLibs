@@ -169,7 +169,6 @@ public class TestContractDto {
 		testTarget.setLicensedEngineerDep(STR_256);
 		testTarget.setCurrentElectricCompany(STR_256);
 		testTarget.setCurrentContractNumber(STR_256);
-		testTarget.setPowerArea(STR_256);
 		testTarget.setChargeCycle(STR_256);
 		testTarget.setSupplyStartDate(STR_256);
 		testTarget.setElectricMenu(STR_256);
@@ -183,7 +182,7 @@ public class TestContractDto {
 		testTarget.setElectricMenuCode(STR_256);
 		testTarget.setCo2EmissionFactor(STR_256);
 		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
-		Assert.assertEquals(35, result.getErrorInfoList().size());
+		Assert.assertEquals(34, result.getErrorInfoList().size());
 
 		// 異常系(@Min)
 		BeanUtils.copyProperties(entity, testTarget);
@@ -786,6 +785,7 @@ public class TestContractDto {
 		contractElectricExtDto.setCurrentElectricCompanyDiv("1");
 		contractElectricExtDto.setContractUnit("A");
 		contractElectricExtDto.setSupplyStartScheduledDate("2019/05/31");
+		contractElectricExtDto.setPowerArea(entity.getElectricArea().toString());
 		testTarget.setContractElectric(contractElectricExtDto);
 		// 顧客
 		CustomerContractCreateExtDto customerContractExtDto = new CustomerContractCreateExtDto();
@@ -1014,6 +1014,7 @@ public class TestContractDto {
 		contractElectricExtDto.setElectricCommercialFlowDivCd("1");
 		contractElectricExtDto.setFixTransferDestinationCode("修正時振替先コード");
 		contractElectricExtDto.setVoltageCategory("1");
+		contractElectricExtDto.setPowerArea(entity.getElectricArea().toString());
 		contractElectricExtDto.setContractCapacityUsage(DECIMAL_MINUS_001);
 		contractElectricExtDto.setContractElectricCurrent(DECIMAL_MINUS_001);
 		contractElectricExtDto.setContractElectricPower(DECIMAL_MINUS_001);
@@ -1124,6 +1125,7 @@ public class TestContractDto {
 		contractElectricExtDto.setEntryDate("2019/05/31");
 		contractElectricExtDto.setContractUnit("1");
 		contractElectricExtDto.setSupplyStartScheduledDate("2019/05/31");
+		contractElectricExtDto.setPowerArea(entity.getElectricArea().toString());
 		testTarget.setContractElectric(contractElectricExtDto);
 		// 顧客
 		CustomerContractChangePlanExtDto customerContractExtDto = new CustomerContractChangePlanExtDto();
@@ -1352,6 +1354,7 @@ public class TestContractDto {
 		contractElectricExtDto.setElectricCommercialFlowDivCd("1");
 		contractElectricExtDto.setFixTransferDestinationCode("修正時振替先コード");
 		contractElectricExtDto.setVoltageCategory("1");
+		contractElectricExtDto.setPowerArea(entity.getElectricArea().toString());
 		contractElectricExtDto.setContractCapacityUsage(DECIMAL_MINUS_001);
 		contractElectricExtDto.setContractElectricCurrent(DECIMAL_MINUS_001);
 		contractElectricExtDto.setContractElectricPower(DECIMAL_MINUS_001);
