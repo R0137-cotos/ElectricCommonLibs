@@ -373,8 +373,9 @@ public class TestContractDto {
 		testTarget.setAttachedEmpId(STR_256);
 		testTarget.setAttachedEmpName(STR_256);
 		testTarget.setAttachedOrgName(STR_256);
+		testTarget.setDocumentName(STR_256);
 		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
-		Assert.assertEquals(6, result.getErrorInfoList().size());
+		Assert.assertEquals(7, result.getErrorInfoList().size());
 
 		// 異常系(@Max)
 		BeanUtils.copyProperties(entity.getContractElectricAttachedFileList().get(0), testTarget);
