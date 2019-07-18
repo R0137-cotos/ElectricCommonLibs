@@ -144,7 +144,7 @@ public class BillingBasicInformation extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "回収方法", required = false, position = 10, allowableValues = "自振(RL)(\"1\")", example = "1")
-	private CollectMethod collectMethod;
+	private String collectMethod;
 
 	/**
 	 * 回収条件

@@ -758,8 +758,9 @@ public class TestContractDto {
 		testTarget.setBankCode(STR_256);
 		testTarget.setAccountType(STR_256);
 		testTarget.setSalesDivisionCode(STR_256);
+		testTarget.setCollectMethod(STR_256);;
 		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
-		Assert.assertEquals(16, result.getErrorInfoList().size());
+		Assert.assertEquals(17, result.getErrorInfoList().size());
 	}
 
 	@Test
