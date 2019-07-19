@@ -37,7 +37,7 @@ public class ContractElectricAttachedFileDto extends DtoBase {
 	 * 添付ファイルID
 	 */
 	@ApiModelProperty(value = "添付ファイルID", required = false, position = 5, allowableValues = "range[0,9223372036854775807]")
-	private long attachedFileId;
+	private Long attachedFileId;
 
 	/**
 	 * コメント
