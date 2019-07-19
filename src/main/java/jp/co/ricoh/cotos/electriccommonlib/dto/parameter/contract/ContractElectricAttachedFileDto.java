@@ -100,4 +100,11 @@ public class ContractElectricAttachedFileDto extends DtoBase {
 	@Min(0)
 	@ApiModelProperty(value = "アクティブflg", required = true, position = 13, allowableValues = "range[0,9]")
 	private int activeFlg;
+
+	/**
+	 * 書類名称
+	 */
+	@Size(max = 255)
+	@ApiModelProperty(value = "書類名称", required = false, position = 14, allowableValues = "range[0,255]")
+	private String documentName;
 }
