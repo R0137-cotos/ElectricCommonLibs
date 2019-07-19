@@ -28,24 +28,31 @@ public class RestTemplateCreator {
 	RestTemplateBuilder restTemplateBuilder;
 
 	public RestTemplate getRestTemplate() {
-		return loadRestTemplate(null, false);
+		return loadRestTemplate(null, false, false);
 	}
 
 	/**
 	 * 画面表示用ユーザー権限を利用時に使用する
 	 */
 	public RestTemplate getRestTemplate(boolean requireDispAuthorize) {
-		return loadRestTemplate(null, requireDispAuthorize);
+		return loadRestTemplate(null, requireDispAuthorize, false);
 	}
 
 	/**
 	 * SecurityContextが存在しない場合に使用する
 	 */
 	public RestTemplate getRestTemplate(String jwt) {
-		return loadRestTemplate(jwt, false);
+		return loadRestTemplate(jwt, false, false);
 	}
 
-	private RestTemplate loadRestTemplate(String jwt, boolean requireDispAuthorize) {
+	/**
+	 * バッチからAPIをコールする場合に使用する
+	 */
+	public RestTemplate getRestTemplateForBatch(boolean hasBearer) {
+		return loadRestTemplate(null, false, hasBearer);
+	}
+
+	private RestTemplate loadRestTemplate(String jwt, boolean requireDispAuthorize, boolean hasBearer) {
 		RestTemplate rest = restTemplateBuilder.build();
 		rest.setInterceptors(Stream.concat(rest.getInterceptors().stream(), Arrays.asList(new ClientHttpRequestInterceptor() {
 			@Override
@@ -54,9 +61,9 @@ public class RestTemplateCreator {
 				// JWT
 				if (jwt == null) {
 					CotosAuthenticationDetails userInfo = (CotosAuthenticationDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-					request.getHeaders().add(headersProperties.getAuthorization(), "Bearer " + userInfo.getJwt());
+					request.getHeaders().add(headersProperties.getAuthorization(), (hasBearer ? "" : "Bearer ") + userInfo.getJwt());
 				} else {
-					request.getHeaders().add(headersProperties.getAuthorization(), "Bearer " + jwt);
+					request.getHeaders().add(headersProperties.getAuthorization(), (hasBearer ? "" : "Bearer ") + jwt);
 				}
 
 				// 画面表示用ユーザー権限
