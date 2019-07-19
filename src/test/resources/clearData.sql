@@ -12,7 +12,6 @@ DELETE from billing_basic_information;
 DELETE from billing_mail_address_information;
 DELETE from client_master;
 DELETE from client_information;
-DELETE from electric_attached_file;
 DELETE from billing_history;
 DELETE from contract_electric;
 DELETE from fee_clc_uss_interface;

@@ -15,7 +15,6 @@ import jp.co.ricoh.cotos.electriccommonlib.TestTools;
 import jp.co.ricoh.cotos.electriccommonlib.entity.contract.BillingBasicInformation;
 import jp.co.ricoh.cotos.electriccommonlib.entity.contract.ClientMaster;
 import jp.co.ricoh.cotos.electriccommonlib.entity.contract.ContractElectric;
-import jp.co.ricoh.cotos.electriccommonlib.repository.common.ElectricAttachedFileRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.BillingBasicInformationRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.BillingHistoryRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.BillingMailAddressInformationRepository;
@@ -62,9 +61,6 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 
 	@Autowired
 	ContractElectricAttachedFileRepository contractElectricAttachedFileRepository;
-
-	@Autowired
-	ElectricAttachedFileRepository electricAttachedFileRepository;
 
 	@Autowired
 	ElectricAppropriationRepository electricAppropriationRepository;
@@ -194,11 +190,6 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 	@Test
 	public void 全てのカラムがNullではないことを確認_計上実績() {
 		全てのカラムがNullではないことを確認_共通(electricAppropriationRepository, 1L);
-	}
-
-	@Test
-	public void 全てのカラムがNullではないことを確認_添付ファイル() {
-		全てのカラムがNullではないことを確認_共通(electricAttachedFileRepository, 1L);
 	}
 
 	@Test
