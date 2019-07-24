@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -162,4 +163,10 @@ public class ContractElectricAttachedFile extends EntityBase {
 	@Column(nullable = false)
 	@ApiModelProperty(value = "書類名称", required = true, position = 14, allowableValues = "range[0,255]")
 	private String documentName;
+	
+	@PrePersist
+	public void prePersist() {
+		super.prePersist();
+		this.attachedAt =  super.getCreatedAt();
+	}
 }
