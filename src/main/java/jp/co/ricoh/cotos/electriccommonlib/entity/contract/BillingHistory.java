@@ -68,6 +68,28 @@ public class BillingHistory extends EntityBase {
 		}
 	}
 
+	public enum InvoiceCreateDiv {
+
+		未作成("0"), 作成済("1"), 社内利用("9");
+
+		private final String text;
+
+		private InvoiceCreateDiv(final String text) {
+			this.text = text;
+		}
+
+		@Override
+		@JsonValue
+		public String toString() {
+			return this.text;
+		}
+
+		@JsonCreator
+		public static InvoiceCreateDiv fromString(String string) {
+			return Arrays.stream(values()).filter(v -> v.text.equals(string)).findFirst().orElseThrow(() -> new IllegalArgumentException(String.valueOf(string)));
+		}
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "billing_history_seq")
 	@SequenceGenerator(name = "billing_history_seq", sequenceName = "billing_history_seq", allocationSize = 1)
@@ -246,4 +268,10 @@ public class BillingHistory extends EntityBase {
 	@Temporal(TemporalType.DATE)
 	private Date electricSupplyYmdEnd;
 
+	/**
+	 * 請求書作成区分
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "請求書作成区分", required = false, position = 24, allowableValues = "未作成(\"0\"), 作成済(\"1\"), 社内利用(\"9\")", example = "0")
+	private InvoiceCreateDiv invoiceCreateDiv;
 }
