@@ -360,10 +360,9 @@ public class TestContractDto {
 
 		// 異常系(@NotNull)
 		BeanUtils.copyProperties(entity.getContractElectricAttachedFileList().get(0), testTarget);
-		testTarget.setDocumentName(null);
 		testTarget.setElectricFileType(null);
 		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
-		Assert.assertEquals(2, result.getErrorInfoList().size());
+		Assert.assertEquals(1, result.getErrorInfoList().size());
 
 		// 異常系(@Size(max))
 		BeanUtils.copyProperties(entity.getContractElectricAttachedFileList().get(0), testTarget);
