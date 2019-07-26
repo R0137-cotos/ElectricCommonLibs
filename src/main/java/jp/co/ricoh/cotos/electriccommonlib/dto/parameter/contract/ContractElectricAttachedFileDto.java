@@ -102,7 +102,6 @@ public class ContractElectricAttachedFileDto extends DtoBase {
 	/**
 	 * 書類名称
 	 */
-	@NotNull
 	@Size(max = 255)
 	@ApiModelProperty(value = "書類名称", required = true, position = 14, allowableValues = "range[0,255]")
 	private String documentName;
