@@ -582,4 +582,11 @@ public class ElectricAppropriation extends EntityBase {
 	@Column(nullable = true)
 	@ApiModelProperty(value = "使用電力従量kWh", required = false, position = 66, allowableValues = "range[0,255]")
 	private String electricPowerConsumptionUsageFee;
+
+	/**
+	 * 請求データ作成年月
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "請求データ作成年月", required = false, position = 67, allowableValues = "range[0,255]")
+	private String billingDataCreateYm;
 }
