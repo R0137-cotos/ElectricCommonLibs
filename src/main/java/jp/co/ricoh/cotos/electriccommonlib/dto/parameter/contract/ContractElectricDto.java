@@ -14,6 +14,7 @@ import javax.validation.constraints.Size;
 
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.dto.parameter.common.DtoBase;
+import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.ElectricArea;
 import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.ElectricCommercialFlowDiv;
 import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.VoltageCategory;
 import jp.co.ricoh.cotos.electriccommonlib.entity.contract.ContractElectric.CurrentElectricCompanyDiv;
@@ -202,9 +203,8 @@ public class ContractElectricDto extends DtoBase {
 	/**
 	 * 電力エリア
 	 */
-	@Size(max = 255)
-	@ApiModelProperty(value = "電力エリア", required = false, position = 26, allowableValues = "range[0,255]")
-	private String powerArea;
+	@ApiModelProperty(value = "電力エリア", required = false, position = 26, allowableValues = "北日本(\"1\"), 首都圏(\"2\"), 中部(\"3\"), 関西(\"4\"), 西日本(\"5\")", example = "1")
+	private ElectricArea electricArea;
 
 	/**
 	 * 電力会社

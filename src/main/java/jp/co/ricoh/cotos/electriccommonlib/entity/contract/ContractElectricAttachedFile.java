@@ -10,7 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.PrePersist;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -25,7 +25,6 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBase;
 import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
-import jp.co.ricoh.cotos.electriccommonlib.entity.common.ElectricAttachedFile;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.ContractElectricAttachedFileRepository;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -80,8 +79,8 @@ public class ContractElectricAttachedFile extends EntityBase {
 	/**
 	 * ファイル名
 	 */
-	@Column(nullable = false)
-	@ApiModelProperty(value = "ファイル名", required = true, position = 3, allowableValues = "range[0,255]")
+	@Column(nullable = true)
+	@ApiModelProperty(value = "ファイル名", required = false, position = 3, allowableValues = "range[0,255]")
 	private String fileName;
 
 	/**
@@ -92,12 +91,10 @@ public class ContractElectricAttachedFile extends EntityBase {
 	private String fileKind;
 
 	/**
-	 * 添付ファイル
+	 * 添付ファイルID
 	 */
-	@OneToOne
-	@JoinColumn(name = "electric_attached_file_id", referencedColumnName = "id", nullable = true)
-	@ApiModelProperty(value = "添付ファイル", required = false, position = 5)
-	private ElectricAttachedFile electricAttachedFile;
+	@ApiModelProperty(value = "添付ファイルID", required = false, position = 5, allowableValues = "range[0,9223372036854775807]")
+	private Long attachedFileId;
 
 	/**
 	 * コメント
@@ -159,4 +156,17 @@ public class ContractElectricAttachedFile extends EntityBase {
 	@Min(0)
 	@ApiModelProperty(value = "アクティブflg", required = true, position = 13, allowableValues = "range[0,9]")
 	private int activeFlg;
+
+	/**
+	 * 書類名称
+	 */
+	@Column(nullable = false)
+	@ApiModelProperty(value = "書類名称", required = true, position = 14, allowableValues = "range[0,255]")
+	private String documentName;
+	
+	@PrePersist
+	public void prePersist() {
+		super.prePersist();
+		this.attachedAt =  super.getCreatedAt();
+	}
 }

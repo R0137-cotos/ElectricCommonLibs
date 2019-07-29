@@ -112,7 +112,7 @@ public class FeeCalcInterface extends EntityBase {
 	/**
 	 * 合計金額
 	 */
-	@Column(nullable = false)
+	@Column(nullable = true)
 	@ApiModelProperty(value = "合計金額", required = true, position = 11)
 	@JsonProperty("合計金額")
 	private BigDecimal sumMny;
@@ -120,7 +120,7 @@ public class FeeCalcInterface extends EntityBase {
 	/**
 	 * 課税対象税抜合計金額
 	 */
-	@Column(nullable = false)
+	@Column(nullable = true)
 	@ApiModelProperty(value = "課税対象税抜合計金額", required = true, position = 12)
 	@JsonProperty("課税対象税抜合計金額")
 	private Long taxObjTaxOutSumMny;
@@ -128,7 +128,7 @@ public class FeeCalcInterface extends EntityBase {
 	/**
 	 * 税抜合計金額
 	 */
-	@Column(nullable = false)
+	@Column(nullable = true)
 	@ApiModelProperty(value = "税抜合計金額", required = true, position = 13)
 	@JsonProperty("税抜合計金額")
 	private Long feeClcFeeTaxOut;
@@ -136,7 +136,7 @@ public class FeeCalcInterface extends EntityBase {
 	/**
 	 * 消費税
 	 */
-	@Column(nullable = false)
+	@Column(nullable = true)
 	@ApiModelProperty(value = "消費税", required = true, position = 14)
 	@JsonProperty("消費税")
 	private Long taxmny;
@@ -144,7 +144,7 @@ public class FeeCalcInterface extends EntityBase {
 	/**
 	 * 消費税対象区分
 	 */
-	@Column(nullable = true, name = "tax_aply_kbn")
+	@Column(nullable = true)
 	@ApiModelProperty(value = "消費税対象区分", required = false, position = 15)
 	@JsonProperty("消費税対象区分")
 	private String taxAplyKbn;
@@ -152,7 +152,7 @@ public class FeeCalcInterface extends EntityBase {
 	/**
 	 * 料金計算明細種別コード
 	 */
-	@Column(nullable = true, name = "fee_clc_dtl_cls_cd")
+	@Column(nullable = true)
 	@ApiModelProperty(value = "料金計算明細種別コード", required = false, position = 16)
 	@JsonProperty("料金計算明細種別コード")
 	private String feeClcDtlClsCd;
@@ -160,7 +160,7 @@ public class FeeCalcInterface extends EntityBase {
 	/**
 	 * 明細種別名称
 	 */
-	@Column(nullable = true, name = "dtl_cls_nms")
+	@Column(nullable = true)
 	@ApiModelProperty(value = "明細種別名称", required = false, position = 17)
 	@JsonProperty("明細種別名称")
 	private String dtlClsNms;
@@ -168,7 +168,7 @@ public class FeeCalcInterface extends EntityBase {
 	/**
 	 * 料金計算単価
 	 */
-	@Column(nullable = true, name = "fee_clc_uprc")
+	@Column(nullable = true)
 	@ApiModelProperty(value = "料金計算単価", required = false, position = 18)
 	@JsonProperty("料金計算単価")
 	private BigDecimal feeClcUprc;
@@ -176,7 +176,7 @@ public class FeeCalcInterface extends EntityBase {
 	/**
 	 * 料金計算数量
 	 */
-	@Column(nullable = true, name = "fee_clc_num")
+	@Column(nullable = true)
 	@ApiModelProperty(value = "料金計算数量", required = false, position = 19)
 	@JsonProperty("料金計算数量")
 	private Long feeClcNum;
@@ -184,7 +184,7 @@ public class FeeCalcInterface extends EntityBase {
 	/**
 	 * 料金計算開始日時
 	 */
-	@Column(nullable = true, name = "fee_clc_str_dat_tim")
+	@Column(nullable = true)
 	@ApiModelProperty(value = "料金計算開始日時", required = false, position = 20)
 	@JsonProperty("料金計算開始日時")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "JST")
@@ -193,7 +193,7 @@ public class FeeCalcInterface extends EntityBase {
 	/**
 	 * 料金計算終了日時
 	 */
-	@Column(nullable = true, name = "fee_clc_end_dat_tim")
+	@Column(nullable = true)
 	@ApiModelProperty(value = "料金計算終了日時", required = false, position = 21)
 	@JsonProperty("料金計算終了日時")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "JST")
@@ -202,7 +202,7 @@ public class FeeCalcInterface extends EntityBase {
 	/**
 	 * 前月電力量
 	 */
-	@Column(nullable = true, name = "lst_mnth_elc")
+	@Column(nullable = true)
 	@ApiModelProperty(value = "前月電力量", required = false, position = 22)
 	@JsonProperty("前月電力量")
 	private Long lstMnthElc;
@@ -210,7 +210,7 @@ public class FeeCalcInterface extends EntityBase {
 	/**
 	 * 前年同月電力量
 	 */
-	@Column(nullable = true, name = "lst_year_smnth_elc_num")
+	@Column(nullable = true)
 	@ApiModelProperty(value = "前年同月電力量", required = false, position = 23)
 	@JsonProperty("前年同月電力量")
 	private Long lstYearSmnthElcNum;
@@ -218,7 +218,7 @@ public class FeeCalcInterface extends EntityBase {
 	/**
 	 * 料金計算対象開始日
 	 */
-	@Column(nullable = true, name = "fee_clc_str_ymd")
+	@Column(nullable = true)
 	@ApiModelProperty(value = "料金計算対象開始日", required = false, position = 24)
 	@JsonProperty("料金計算対象開始日")
 	private String feeClcStrYmd;
@@ -226,7 +226,7 @@ public class FeeCalcInterface extends EntityBase {
 	/**
 	 * 料金計算対象終了日
 	 */
-	@Column(nullable = true, name = "fee_clc_end_ymd")
+	@Column(nullable = true)
 	@ApiModelProperty(value = "料金計算対象終了日", required = false, position = 25)
 	@JsonProperty("料金計算対象終了日")
 	private String feeClcEndYmd;
@@ -234,15 +234,15 @@ public class FeeCalcInterface extends EntityBase {
 	/**
 	 * 発電種類コード
 	 */
-	@Column(nullable = true, name = "pwr_gn_cls_cd")
+	@Column(nullable = true)
 	@ApiModelProperty(value = "発電種類コード", required = false, position = 26)
 	@JsonProperty("発電種類コード")
 	private String pwrGnClsCd;
 	
 	/**
-	 * 発電種類名 
+	 * 発電種類名
 	 */
-	@Column(nullable = true, name = "pwr_gn_cls_nm")
+	@Column(nullable = true)
 	@ApiModelProperty(value = "発電種類名", required = false, position = 27)
 	@JsonProperty("発電種類名")
 	private String pwrGnClsNm;
@@ -250,9 +250,23 @@ public class FeeCalcInterface extends EntityBase {
 	/**
 	 * 単価アイテムコード
 	 */
-	@Column(nullable = true, name = "uprc_item_cd")
+	@Column(nullable = true)
 	@ApiModelProperty(value = "単価アイテムコード", required = false, position = 28)
 	@JsonProperty("単価アイテムコード")
 	private String uprcItemCd;
+
+	/**
+	 * 対象年月
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "対象年月", required = false, position = 29)
+	private String outputTargetYm;
+
+	/**
+	 * 請求書作成済フラグ
+	 */
+	@Column(nullable = false)
+	@ApiModelProperty(value = "請求書作成済フラグ", required = true, position = 30)
+	private long outputFlg;
 
 }

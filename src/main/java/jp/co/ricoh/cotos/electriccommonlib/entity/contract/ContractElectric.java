@@ -26,6 +26,7 @@ import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBase;
 import jp.co.ricoh.cotos.commonlib.entity.contract.Contract.LifecycleStatus;
 import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
+import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.ElectricArea;
 import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.ElectricCommercialFlowDiv;
 import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.VoltageCategory;
 import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricFormMaster.ElectricPlan;
@@ -62,7 +63,8 @@ public class ContractElectric extends EntityBase {
 
 		@JsonCreator
 		public static CurrentElectricCompanyDiv fromString(String string) {
-			return Arrays.stream(values()).filter(v -> v.text.equals(string)).findFirst().orElseThrow(() -> new IllegalArgumentException(String.valueOf(string)));
+			return Arrays.stream(values()).filter(v -> v.text.equals(string)).findFirst()
+					.orElseThrow(() -> new IllegalArgumentException(String.valueOf(string)));
 		}
 	}
 
@@ -253,7 +255,7 @@ public class ContractElectric extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "電力エリア", required = false, position = 26, allowableValues = "range[0,255]")
-	private String powerArea;
+	private ElectricArea electricArea;
 
 	/**
 	 * 電力会社
@@ -536,4 +538,12 @@ public class ContractElectric extends EntityBase {
 	@ApiModelProperty(value = "初回供給開始日", required = false, position = 65)
 	@Temporal(TemporalType.DATE)
 	private Date firstSupplyStartDate;
+
+	/**
+	 * 契約終了日
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "契約終了日", required = false, position = 66)
+	@Temporal(TemporalType.DATE)
+	private Date contractEndDate;
 }

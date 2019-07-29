@@ -145,7 +145,7 @@ public class EnumType {
 
 	public enum Scale {
 
-		規模_500kw未満("01"), 規模_500kw以上("02");
+		規模_500kw未満("1"), 規模_500kw以上("2");
 
 		private final String text;
 
@@ -186,4 +186,71 @@ public class EnumType {
 			return Arrays.stream(values()).filter(v -> v.text.equals(string)).findFirst().orElseThrow(() -> new IllegalArgumentException(String.valueOf(string)));
 		}
 	}
+
+	public enum BeforeDebitContact {
+
+		未送信("0"), 送信済("1"), 送信対象外("9");
+
+		private final String text;
+
+		private BeforeDebitContact(final String text) {
+			this.text = text;
+		}
+
+		@Override
+		@JsonValue
+		public String toString() {
+			return this.text;
+		}
+
+		@JsonCreator
+		public static BeforeDebitContact fromString(String string) {
+			return Arrays.stream(values()).filter(v -> v.text.equals(string)).findFirst().orElseThrow(() -> new IllegalArgumentException(String.valueOf(string)));
+		}
+	}
+
+	public enum SendMyRicoh {
+
+		未送信("0"), 送信済("1"), 送信対象外("9");
+
+		private final String text;
+
+		private SendMyRicoh(final String text) {
+			this.text = text;
+		}
+
+		@Override
+		@JsonValue
+		public String toString() {
+			return this.text;
+		}
+
+		@JsonCreator
+		public static SendMyRicoh fromString(String string) {
+			return Arrays.stream(values()).filter(v -> v.text.equals(string)).findFirst().orElseThrow(() -> new IllegalArgumentException(String.valueOf(string)));
+		}
+	}
+
+	public enum ElectricArea {
+
+		北日本("1"), 首都圏("2"), 中部("3"), 関西("4"), 西日本("5");
+
+		private final String text;
+
+		private ElectricArea(final String text) {
+			this.text = text;
+		}
+
+		@Override
+		@JsonValue
+		public String toString() {
+			return this.text;
+		}
+
+		@JsonCreator
+		public static ElectricArea fromString(String string) {
+			return Arrays.stream(values()).filter(v -> v.text.equals(string)).findFirst().orElseThrow(() -> new IllegalArgumentException(String.valueOf(string)));
+		}
+	}
+
 }

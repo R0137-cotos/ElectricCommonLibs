@@ -11,7 +11,6 @@ import javax.validation.constraints.Size;
 
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.dto.parameter.common.DtoBase;
-import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.common.ElectricAttachedFileDto;
 import jp.co.ricoh.cotos.electriccommonlib.entity.contract.ContractElectricAttachedFile.ElectricDispFileType;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -23,7 +22,6 @@ public class ContractElectricAttachedFileDto extends DtoBase {
 	/**
 	 * ファイル名
 	 */
-	@NotNull
 	@Size(max = 255)
 	@ApiModelProperty(value = "ファイル名", required = false, position = 3, allowableValues = "range[0,255]")
 	private String fileName;
@@ -36,10 +34,10 @@ public class ContractElectricAttachedFileDto extends DtoBase {
 	private String fileKind;
 
 	/**
-	 * 添付ファイル
+	 * 添付ファイルID
 	 */
-	@ApiModelProperty(value = "添付ファイル", required = false, position = 5)
-	private ElectricAttachedFileDto electricAttachedFile;
+	@ApiModelProperty(value = "添付ファイルID", required = false, position = 5, allowableValues = "range[0,9223372036854775807]")
+	private Long attachedFileId;
 
 	/**
 	 * コメント
@@ -100,4 +98,11 @@ public class ContractElectricAttachedFileDto extends DtoBase {
 	@Min(0)
 	@ApiModelProperty(value = "アクティブflg", required = true, position = 13, allowableValues = "range[0,9]")
 	private int activeFlg;
+
+	/**
+	 * 書類名称
+	 */
+	@Size(max = 255)
+	@ApiModelProperty(value = "書類名称", required = true, position = 14, allowableValues = "range[0,255]")
+	private String documentName;
 }

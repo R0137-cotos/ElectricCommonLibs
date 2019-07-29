@@ -1,11 +1,8 @@
 package jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation;
 
 import java.math.BigDecimal;
-import java.util.Date;
 
 import javax.persistence.Column;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.Valid;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Digits;
@@ -16,6 +13,7 @@ import javax.validation.constraints.Size;
 
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.dto.parameter.common.DtoBase;
+import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.ElectricArea;
 import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.ElectricCommercialFlowDiv;
 import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.Scale;
 import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.VoltageCategory;
@@ -37,9 +35,8 @@ public class EstimationElectricDto extends DtoBase {
 	/**
 	 * 電力エリア
 	 */
-	@Size(max = 255)
-	@ApiModelProperty(value = "電力エリア", required = false, position = 3, allowableValues = "range[0,255]")
-	private String electricArea;
+	@ApiModelProperty(value = "電力エリア", required = false, position = 3, allowableValues = "北日本(\"1\"), 首都圏(\"2\"), 中部(\"3\"), 関西(\"4\"), 西日本(\"5\")", example = "1")
+	private ElectricArea electricArea;
 
 	/**
 	 * 電力会社
@@ -93,11 +90,11 @@ public class EstimationElectricDto extends DtoBase {
 	private BigDecimal loadFactor;
 
 	/**
-	 * 供給開始予定日
+	 * 供給開始予定月
 	 */
-	@ApiModelProperty(value = "供給開始予定日", required = false, position = 11)
-	@Temporal(TemporalType.DATE)
-	private Date supplyStartScheduledDate;
+	@Size(max = 255)
+	@ApiModelProperty(value = "供給開始予定月", required = false, position = 11, allowableValues = "range[0,255]")
+	private String supplyStartScheduledDate;
 
 	/**
 	 * 備考
@@ -105,7 +102,7 @@ public class EstimationElectricDto extends DtoBase {
 	@Size(max = 255)
 	@ApiModelProperty(value = "備考", required = false, position = 12, allowableValues = "range[0,255]")
 	private String notes;
-	
+
 	/**
 	 * 電力専任情報
 	 */

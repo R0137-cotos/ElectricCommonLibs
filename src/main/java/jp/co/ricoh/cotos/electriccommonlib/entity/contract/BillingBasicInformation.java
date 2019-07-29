@@ -144,7 +144,7 @@ public class BillingBasicInformation extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "回収方法", required = false, position = 10, allowableValues = "自振(RL)(\"1\")", example = "1")
-	private CollectMethod collectMethod;
+	private String collectMethod;
 
 	/**
 	 * 回収条件
@@ -229,18 +229,18 @@ public class BillingBasicInformation extends EntityBase {
 	@Column(nullable = true)
 	@ApiModelProperty(value = "売上課所コード", required = false, position = 22, allowableValues = "range[0,255]")
 	private String salesDivisionCode;
-	
+
 	/**
 	 * 請求実績
 	 */
-	@OneToMany
+	@OneToMany(mappedBy = "billingBasicInformation")
 	@ApiModelProperty(value = "請求実績", required = false, position = 23)
 	private List<BillingHistory> billingHistoryList;
-	
+
 	/**
 	 * 計上実績
 	 */
-	@OneToMany
+	@OneToMany(mappedBy = "billingBasicInformation")
 	@ApiModelProperty(value = "計上実績", required = false, position = 24)
-	private List<ElectricAppropriation> electricAppropriationLis;
+	private List<ElectricAppropriation> electricAppropriationList;
 }

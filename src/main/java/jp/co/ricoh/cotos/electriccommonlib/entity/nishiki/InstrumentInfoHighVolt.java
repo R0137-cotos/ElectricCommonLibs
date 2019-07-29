@@ -54,7 +54,7 @@ public class InstrumentInfoHighVolt extends EntityBase {
 	/**
 	 * 仕訳コード
 	 */
-	@Column(nullable = true, name = "jrnl_cd")
+	@Column(nullable = true)
 	@ApiModelProperty(value = "仕訳コード", required = false, position = 4)
 	@JsonProperty("仕訳コード")
 	private String jrnlCd;
@@ -86,7 +86,7 @@ public class InstrumentInfoHighVolt extends EntityBase {
 	/**
 	 * 計器管理番号
 	 */
-	@Column(nullable = true, name = "keiki_mng_bn")
+	@Column(nullable = true)
 	@ApiModelProperty(value = "計器管理番号", required = false, position = 8)
 	@JsonProperty("計器管理番号")
 	private String keikiMngBn;
@@ -94,7 +94,7 @@ public class InstrumentInfoHighVolt extends EntityBase {
 	/**
 	 * 計器区分
 	 */
-	@Column(nullable = true, name = "keiki_kbn")
+	@Column(nullable = true)
 	@ApiModelProperty(value = "計器区分", required = false, position = 9)
 	@JsonProperty("計器区分")
 	private String keikiKbn;
@@ -102,7 +102,7 @@ public class InstrumentInfoHighVolt extends EntityBase {
 	/**
 	 * 乗率
 	 */
-	@Column(nullable = true, name = "multipl_fctr")
+	@Column(nullable = true)
 	@ApiModelProperty(value = "乗率", required = false, position = 10)
 	@JsonProperty("乗率")
 	private Long multiplFctr;
@@ -110,7 +110,7 @@ public class InstrumentInfoHighVolt extends EntityBase {
 	/**
 	 * 電力損失補正率
 	 */
-	@Column(nullable = true, name = "elc_loss_crct_fct")
+	@Column(nullable = true)
 	@ApiModelProperty(value = "電力損失補正率", required = false, position = 11)
 	@JsonProperty("電力損失補正率")
 	private BigDecimal elcLossCrctFct;
@@ -118,7 +118,7 @@ public class InstrumentInfoHighVolt extends EntityBase {
 	/**
 	 * 電力量損失補正率
 	 */
-	@Column(nullable = true, name = "elc_num_loss_crct_fct")
+	@Column(nullable = true)
 	@ApiModelProperty(value = "電力量損失補正率", required = false, position = 12)
 	@JsonProperty("電力量損失補正率")
 	private BigDecimal elcNumLossCrctFct;
@@ -126,7 +126,7 @@ public class InstrumentInfoHighVolt extends EntityBase {
 	/**
 	 * 最大需要電力
 	 */
-	@Column(nullable = true, name = "max_dmd_elc")
+	@Column(nullable = true)
 	@ApiModelProperty(value = "最大需要電力", required = false, position = 13)
 	@JsonProperty("最大需要電力")
 	private Long maxDmdElc;
@@ -134,7 +134,7 @@ public class InstrumentInfoHighVolt extends EntityBase {
 	/**
 	 * 最大需要電力当月指示数
 	 */
-	@Column(nullable = true, name = "max_dmd_elc_ths_mnth_idct_nu_mm")
+	@Column(nullable = true)
 	@ApiModelProperty(value = "最大需要電力当月指示数", required = false, position = 14)
 	@JsonProperty("最大需要電力当月指示数")
 	private BigDecimal maxDmdElcThsMnthIdctNuMm;
@@ -302,7 +302,7 @@ public class InstrumentInfoHighVolt extends EntityBase {
 	/**
 	 * 力測有効電量前月指示数
 	 */
-	@Column(nullable = true, name = "pomp_msr_efc_elc_num_lst_mnth_idct_num")
+	@Column(nullable = true)
 	@ApiModelProperty(value = "力測有効電量前月指示数", required = false, position = 35)
 	@JsonProperty("力測有効電量前月指示数")
 	private BigDecimal pompMsrEfcElcNumLstMnthIdctNum;
@@ -310,7 +310,7 @@ public class InstrumentInfoHighVolt extends EntityBase {
 	/**
 	 * 力測有効電量当月指示数
 	 */
-	@Column(nullable = true, name = "pomp_msr_efc_elc_num_ths_mnth_idct_num")
+	@Column(nullable = true)
 	@ApiModelProperty(value = "力測有効電量当月指示数", required = false, position = 36)
 	@JsonProperty("力測有効電量当月指示数")
 	private BigDecimal pompMsrEfcElcNumThsMnthIdctNum;
@@ -318,7 +318,7 @@ public class InstrumentInfoHighVolt extends EntityBase {
 	/**
 	 * 力測無効電量前月指示数
 	 */
-	@Column(nullable = true, name = "pomp_msr_ivd_elc_num_lst_mnth_idct_num")
+	@Column(nullable = true)
 	@ApiModelProperty(value = "力測無効電量前月指示数", required = false, position = 37)
 	@JsonProperty("力測無効電量前月指示数")
 	private BigDecimal pompMsrIvdElcNumLstMnthIdctNum;
@@ -326,7 +326,7 @@ public class InstrumentInfoHighVolt extends EntityBase {
 	/**
 	 * 力測無効電量当月指示数
 	 */
-	@Column(nullable = true, name = "pomp_msr_ivd_elc_num_ths_mnth_idct_num")
+	@Column(nullable = true)
 	@ApiModelProperty(value = "力測無効電量当月指示数", required = false, position = 38)
 	@JsonProperty("力測無効電量当月指示数")
 	private BigDecimal pompMsrIvdElcNumThsMnthIdctNum;
@@ -334,7 +334,7 @@ public class InstrumentInfoHighVolt extends EntityBase {
 	/**
 	 * 仕訳後最大需要電力
 	 */
-	@Column(nullable = true, name = "jrnl_max_dmd_elc")
+	@Column(nullable = true)
 	@ApiModelProperty(value = "仕訳後最大需要電力", required = false, position = 39)
 	@JsonProperty("仕訳後最大需要電力")
 	private Long jrnlMaxDmdElc;
@@ -342,7 +342,7 @@ public class InstrumentInfoHighVolt extends EntityBase {
 	/**
 	 * 仕訳後力測有効電量
 	 */
-	@Column(nullable = true, name = "jrnl_pomp_msr_efc_elc_num")
+	@Column(nullable = true)
 	@ApiModelProperty(value = "仕訳後力測有効電量", required = false, position = 40)
 	@JsonProperty("仕訳後力測有効電量")
 	private Long jrnlPompMsrEfcElcNum;
@@ -350,7 +350,7 @@ public class InstrumentInfoHighVolt extends EntityBase {
 	/**
 	 * 仕訳後力測無効電量
 	 */
-	@Column(nullable = true, name = "jrnl_pomp_msr_ivd_elc_num")
+	@Column(nullable = true)
 	@ApiModelProperty(value = "仕訳後力測無効電量", required = false, position = 41)
 	@JsonProperty("仕訳後力測無効電量")
 	private Long jrnlPompMsrIvdElcNum;
@@ -358,7 +358,7 @@ public class InstrumentInfoHighVolt extends EntityBase {
 	/**
 	 * 力測有効電力量
 	 */
-	@Column(nullable = true, name = "pomp_msr_efc_elc_num")
+	@Column(nullable = true)
 	@ApiModelProperty(value = "力測有効電力量", required = false, position = 42)
 	@JsonProperty("力測有効電力量")
 	private BigDecimal pompMsrEfcElcNum;
@@ -366,7 +366,7 @@ public class InstrumentInfoHighVolt extends EntityBase {
 	/**
 	 * 力測無効電力量
 	 */
-	@Column(nullable = true, name = "pomp_msr_ivd_elc_num")
+	@Column(nullable = true)
 	@ApiModelProperty(value = "力測無効電力量", required = false, position = 43)
 	@JsonProperty("力測無効電力量")
 	private BigDecimal pompMsrIvdElcNum;

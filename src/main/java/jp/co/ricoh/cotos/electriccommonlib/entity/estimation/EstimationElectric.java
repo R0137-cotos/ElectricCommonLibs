@@ -1,7 +1,6 @@
 package jp.co.ricoh.cotos.electriccommonlib.entity.estimation;
 
 import java.math.BigDecimal;
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,6 +18,7 @@ import javax.validation.constraints.Min;
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBase;
 import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
+import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.ElectricArea;
 import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.ElectricCommercialFlowDiv;
 import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.Scale;
 import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.VoltageCategory;
@@ -57,8 +57,8 @@ public class EstimationElectric extends EntityBase {
 	 * 電力エリア
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "電力エリア", required = false, position = 3, allowableValues = "range[0,255]")
-	private String electricArea;
+	@ApiModelProperty(value = "電力エリア", required = false, position = 3, allowableValues = "北日本(\"1\"), 首都圏(\"2\"), 中部(\"3\"), 関西(\"4\"), 西日本(\"5\")", example = "1")
+	private ElectricArea electricArea;
 
 	/**
 	 * 電力会社
@@ -116,11 +116,11 @@ public class EstimationElectric extends EntityBase {
 	private BigDecimal loadFactor;
 
 	/**
-	 * 供給開始予定日
+	 * 供給開始予定月
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "供給開始予定日", required = false, position = 11)
-	private Date supplyStartScheduledDate;
+	@ApiModelProperty(value = "供給開始予定月", required = false, position = 11, allowableValues = "range[0,255]")
+	private String supplyStartScheduledDate;
 
 	/**
 	 * 備考

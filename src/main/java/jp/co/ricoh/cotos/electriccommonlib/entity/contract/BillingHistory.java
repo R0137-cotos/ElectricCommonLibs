@@ -29,7 +29,9 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBase;
 import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
+import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.BeforeDebitContact;
 import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.SendInvoiceDiv;
+import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.SendMyRicoh;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.BillingHistoryRepository;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -62,6 +64,28 @@ public class BillingHistory extends EntityBase {
 
 		@JsonCreator
 		public static AccruedSection fromString(String string) {
+			return Arrays.stream(values()).filter(v -> v.text.equals(string)).findFirst().orElseThrow(() -> new IllegalArgumentException(String.valueOf(string)));
+		}
+	}
+
+	public enum InvoiceCreateDiv {
+
+		未作成("0"), 作成済("1"), 社内利用("9");
+
+		private final String text;
+
+		private InvoiceCreateDiv(final String text) {
+			this.text = text;
+		}
+
+		@Override
+		@JsonValue
+		public String toString() {
+			return this.text;
+		}
+
+		@JsonCreator
+		public static InvoiceCreateDiv fromString(String string) {
 			return Arrays.stream(values()).filter(v -> v.text.equals(string)).findFirst().orElseThrow(() -> new IllegalArgumentException(String.valueOf(string)));
 		}
 	}
@@ -214,4 +238,40 @@ public class BillingHistory extends EntityBase {
 	@ApiModelProperty(value = "電力請求添付ファイル", required = true, position = 19)
 	private List<ElectricBillingAttachedFile> electricBillingAttachedFileList;
 
+	/**
+	 * 引落前連絡
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "引落前連絡", required = false, position = 20, allowableValues = "未送信(\"0\"), 送信済(\"1\"), 送信対象外(\"9\")", example = "0")
+	private BeforeDebitContact beforeDebitContact;
+
+	/**
+	 * MyRicoh送信
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "MyRicoh送信", required = false, position = 21, allowableValues = "未送信(\"0\"), 送信済(\"1\"), 送信対象外(\"9\")", example = "0")
+	private SendMyRicoh sendMyRicoh;
+
+	/**
+	 * 供給期間(開始)
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "供給期間(開始)", required = false, position = 22)
+	@Temporal(TemporalType.DATE)
+	private Date electricSupplyYmdStart;
+
+	/**
+	 * 供給期間(終了)
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "供給期間(終了)", required = false, position = 23)
+	@Temporal(TemporalType.DATE)
+	private Date electricSupplyYmdEnd;
+
+	/**
+	 * 請求書作成区分
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "請求書作成区分", required = false, position = 24, allowableValues = "未作成(\"0\"), 作成済(\"1\"), 社内利用(\"9\")", example = "0")
+	private InvoiceCreateDiv invoiceCreateDiv;
 }
