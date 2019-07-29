@@ -48,7 +48,7 @@ public class BillingHistory extends EntityBase {
 
 	public enum AccruedSection {
 
-		未受信("1"), 未回収("2"), 回収済("3");
+		未受信("1"), 未回収("2"), 回収済("3"), 振込("4");
 
 		private final String text;
 
