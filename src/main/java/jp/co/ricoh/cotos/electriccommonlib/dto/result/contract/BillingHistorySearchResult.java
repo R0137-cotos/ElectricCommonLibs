@@ -3,6 +3,8 @@ package jp.co.ricoh.cotos.electriccommonlib.dto.result.contract;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -13,12 +15,14 @@ import lombok.Data;
  * 契約（電力）に紐づく請求実績をリスト取得するためのDtoです。<br/>
  * このクラスを使用してDBへの保存を行うことは出来ません。
  */
+@Entity
 @Data
 public class BillingHistorySearchResult {
 
 	/**
 	 * No.
 	 */
+	@Id
 	@ApiModelProperty(value = "No.", required = false, position = 1)
 	private long no;
 
