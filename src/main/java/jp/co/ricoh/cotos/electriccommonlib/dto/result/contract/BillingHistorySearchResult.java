@@ -3,6 +3,9 @@ package jp.co.ricoh.cotos.electriccommonlib.dto.result.contract;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
@@ -106,6 +109,7 @@ public class BillingHistorySearchResult {
 	/**
 	 * 未回収分回収日
 	 */
+	@Temporal(TemporalType.TIMESTAMP)
 	@ApiModelProperty(value = "未回収分回収日", required = false, position = 16)
 	private Date accruedCollectionDate;
 }
