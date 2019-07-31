@@ -24,7 +24,6 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBase;
-import jp.co.ricoh.cotos.commonlib.entity.contract.Contract.LifecycleStatus;
 import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
 import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.ElectricArea;
 import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.ElectricCommercialFlowDiv;
@@ -495,13 +494,6 @@ public class ContractElectric extends EntityBase {
 	@ApiModelProperty(value = "契約書初回作成日", required = false, position = 59)
 	@Temporal(TemporalType.DATE)
 	private Date contractFirstCreationDate;
-
-	/**
-	 * ライフサイクル状態
-	 */
-	@Column(nullable = true)
-	@ApiModelProperty(value = "ライフサイクル状態", required = false, allowableValues = "作成中(\"1\"), 作成完了(\"2\"), キャンセル手続き中(\"3\"), 破棄(\"4\"), 予定日待ち(\"5\"), 締結中(\"6\"), 解約手続き中(\"7\"), 解約予定日待ち(\"8\"), 解約(\"9\"), 旧契約(\"10\")", example = "1", position = 60)
-	private LifecycleStatus lifecycleStatus;
 
 	/**
 	 * 重要事項説明者
