@@ -70,7 +70,7 @@ public class ElectricDealerEstimationExtDto  {
 	/**
 	 * 支払区分
 	 */
-	@ApiModelProperty(value = "支払区分", required = false, position = 11, allowableValues = "定率(\"1\"), 定額(\"2\")", example = "1")
+	@ApiModelProperty(value = "支払区分", required = false, position = 11, allowableValues = "定額(\"1\"), 定率(\"2\")", example = "1")
 	private PaymentMethod paymentMethod;
 
 }
