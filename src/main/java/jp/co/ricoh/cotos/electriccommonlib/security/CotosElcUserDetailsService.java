@@ -18,16 +18,15 @@ import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 
-import jp.co.ricoh.cotos.commonlib.entity.master.DummyUserMaster;
-import jp.co.ricoh.cotos.commonlib.entity.master.SuperUserMaster;
 import jp.co.ricoh.cotos.commonlib.entity.master.UrlAuthMaster.ActionDiv;
 import jp.co.ricoh.cotos.commonlib.entity.master.UrlAuthMaster.AuthDiv;
 import jp.co.ricoh.cotos.commonlib.logic.message.MessageUtil;
+import jp.co.ricoh.cotos.commonlib.repository.master.DummyUserMasterRepository;
+import jp.co.ricoh.cotos.commonlib.repository.master.SuperUserMasterRepository;
 import jp.co.ricoh.cotos.commonlib.security.mom.MomAuthorityService.AuthLevel;
 import jp.co.ricoh.cotos.commonlib.util.ClaimsProperties;
 import jp.co.ricoh.cotos.commonlib.util.JwtProperties;
 import jp.co.ricoh.cotos.electriccommonlib.security.mom.ElcMomAuthorityService;
-import jp.co.ricoh.cotos.electriccommonlib.util.RestTemplateCreator;
 import jp.co.ricoh.cotos.electriccommonlib.util.StandardProperties;
 
 @Component
@@ -52,7 +51,10 @@ public class CotosElcUserDetailsService implements AuthenticationUserDetailsServ
 	MessageUtil messageUtil;
 
 	@Autowired
-	RestTemplateCreator restTemplateCreator;
+	SuperUserMasterRepository superUserMasterRepository;
+
+	@Autowired
+	DummyUserMasterRepository dummyUserMasterRepository;
 
 	@Override
 	public UserDetails loadUserDetails(PreAuthenticatedAuthenticationToken token) throws UsernameNotFoundException {
@@ -92,12 +94,9 @@ public class CotosElcUserDetailsService implements AuthenticationUserDetailsServ
 			DecodedJWT jwt = verifier.verify(jwtString);
 
 			// スーパーユーザーか判定
-			SuperUserMaster superUserMaster = restTemplateCreator.getRestTemplate(jwtString).getForEntity(standardProperties.getMaster() + "/master/findSuperUserMaster/" + jwt.getClaim(claimsProperties.getMomEmpId()).asString(), SuperUserMaster.class).getBody();
-			boolean isSuperUser = superUserMaster != null;
-
-			// スーパーユーザーか判定
-			DummyUserMaster dummyUserMaster = restTemplateCreator.getRestTemplate(jwtString).getForEntity(standardProperties.getMaster() + "/master/findDummyUserMaster/" + jwt.getClaim(claimsProperties.getMomEmpId()).asString(), DummyUserMaster.class).getBody();
-			boolean isDummyUser = dummyUserMaster != null;
+			boolean isSuperUser = superUserMasterRepository.existsByUserId(jwt.getClaim(claimsProperties.getMomEmpId()).asString());
+			// ダミーユーザーか判定
+			boolean isDummyUser = dummyUserMasterRepository.existsByUserId(jwt.getClaim(claimsProperties.getMomEmpId()).asString());
 
 			// シングルユーザーIDに紐づく権限情報を取得
 			Map<ActionDiv, Map<AuthDiv, AuthLevel>> momAuthorities = elcMomAuthorityService.searchAllMomAuthorities(jwt.getClaim(claimsProperties.getSingleUserId()).asString());
