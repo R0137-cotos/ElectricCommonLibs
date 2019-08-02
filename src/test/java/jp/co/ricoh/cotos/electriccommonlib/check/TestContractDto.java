@@ -58,6 +58,15 @@ import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.Impor
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.ImportantPointExplainerCreateExtDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.MailAddressInformationChangePlanExtDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.MailAddressInformationCreateExtDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.RegisterArrangementResultBillingMailAddressInfoExtDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.RegisterArrangementResultContractAddedEditorEmpExtDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.RegisterArrangementResultContractElectricExtDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.RegisterArrangementResultContractPicSaEmpExtDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.RegisterArrangementResultCustomerContractExtDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.RegisterArrangementResultElectricDealerContractExtDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.RegisterArrangementResultElectricExpertContractExtDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.RegisterArrangementResultExtDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.RegisterArrangementResultMailAddressInfoExtDto;
 import jp.co.ricoh.cotos.electriccommonlib.entity.contract.BillingBasicInformation;
 import jp.co.ricoh.cotos.electriccommonlib.entity.contract.BillingMailAddressInformation;
 import jp.co.ricoh.cotos.electriccommonlib.entity.contract.ClientMaster;
@@ -1484,5 +1493,208 @@ public class TestContractDto {
 
 		ParamterCheckResult result = testSecurityController.callParameterCheck(contractInfoChangeExtDto, headersProperties, localServerPort);
 		testTool.assertValidationNg(result);
+	}
+
+	@Test
+	public void RegisterArrangementResultExtDtoのテスト() throws Exception {
+
+		// テストデータ作成
+		ContractElectric contractElectric = contractElectricRepository.findOne(1L);
+		RegisterArrangementResultExtDto testTarget = new RegisterArrangementResultExtDto();
+		testTarget.setContractId(1L);
+		testTarget.setCaseNumber("案件番号");
+		testTarget.setCaseTitle("案件名");
+		testTarget.setChangePreferredDate("2019/05/31");
+
+		RegisterArrangementResultContractElectricExtDto registerArrangementResultContractElectricExtDto = new RegisterArrangementResultContractElectricExtDto();
+		BeanUtils.copyProperties(contractElectric, registerArrangementResultContractElectricExtDto);
+		BeanUtils.copyProperties(contractElectric.getEntryContentLowPressure(), registerArrangementResultContractElectricExtDto);
+		registerArrangementResultContractElectricExtDto.setSupplyStartScheduledDate("2019/05/31");
+		testTarget.setContractElectric(registerArrangementResultContractElectricExtDto);
+
+		RegisterArrangementResultCustomerContractExtDto registerArrangementResultCustomerContractExtDto = new RegisterArrangementResultCustomerContractExtDto();
+		registerArrangementResultCustomerContractExtDto.setMomCustId("MoM企事部ID");
+		registerArrangementResultCustomerContractExtDto.setCompanyId("MoM企業ID");
+		registerArrangementResultCustomerContractExtDto.setOfficeId("MoM事業所ID");
+		registerArrangementResultCustomerContractExtDto.setPicName("MoM非連携_担当者氏名");
+		registerArrangementResultCustomerContractExtDto.setPicNameKana("MoM非連携_担当者氏名（カナ）");
+		registerArrangementResultCustomerContractExtDto.setPicDeptName("MoM非連携_担当者部署");
+		registerArrangementResultCustomerContractExtDto.setPicPhoneNumber("MoM非連携_担当者電話番号");
+		registerArrangementResultCustomerContractExtDto.setPicMailAddress("MoM非連携_担当者メールアドレス");
+		testTarget.setCustomerContract(registerArrangementResultCustomerContractExtDto);
+
+		List<RegisterArrangementResultMailAddressInfoExtDto> registerArrangementResultMailAddressInfoExtDtoList = new ArrayList<RegisterArrangementResultMailAddressInfoExtDto>();
+		RegisterArrangementResultMailAddressInfoExtDto registerArrangementResultMailAddressInfoExtDto = new RegisterArrangementResultMailAddressInfoExtDto();
+		registerArrangementResultMailAddressInfoExtDto.setName("氏名");
+		registerArrangementResultMailAddressInfoExtDto.setMailAddress("メールアドレス");
+		registerArrangementResultMailAddressInfoExtDtoList.add(registerArrangementResultMailAddressInfoExtDto);
+		testTarget.setContractPersonMailAddressList(registerArrangementResultMailAddressInfoExtDtoList);
+
+		List<RegisterArrangementResultBillingMailAddressInfoExtDto> registerArrangementResultBillingMailAddressInfoExtDtoList = new ArrayList<RegisterArrangementResultBillingMailAddressInfoExtDto>();
+		RegisterArrangementResultBillingMailAddressInfoExtDto registerArrangementResultBillingMailAddressInfoExtDto = new RegisterArrangementResultBillingMailAddressInfoExtDto();
+		registerArrangementResultBillingMailAddressInfoExtDto.setName("氏名");
+		registerArrangementResultBillingMailAddressInfoExtDto.setMailAddress("メールアドレス");
+		registerArrangementResultBillingMailAddressInfoExtDto.setMyricohId("MｙRicohユーザID");
+		registerArrangementResultBillingMailAddressInfoExtDtoList.add(registerArrangementResultBillingMailAddressInfoExtDto);
+		testTarget.setBillingMailAddressList(registerArrangementResultBillingMailAddressInfoExtDtoList);
+
+		RegisterArrangementResultContractPicSaEmpExtDto registerArrangementResultContractPicSaEmpExtDto = new RegisterArrangementResultContractPicSaEmpExtDto();
+		registerArrangementResultContractPicSaEmpExtDto.setMomEmployeeId("MoM社員ID");
+		testTarget.setContractPicSaEmp(registerArrangementResultContractPicSaEmpExtDto);
+
+		RegisterArrangementResultElectricExpertContractExtDto registerArrangementResultElectricExpertContractExtDto = new RegisterArrangementResultElectricExpertContractExtDto();
+		registerArrangementResultElectricExpertContractExtDto.setMomEmployeeId("MoM社員ID");
+		testTarget.setElectricExpertContract(registerArrangementResultElectricExpertContractExtDto);
+
+		List<RegisterArrangementResultContractAddedEditorEmpExtDto> registerArrangementResultContractAddedEditorEmpExtDtoList = new ArrayList<RegisterArrangementResultContractAddedEditorEmpExtDto>();
+		RegisterArrangementResultContractAddedEditorEmpExtDto registerArrangementResultContractAddedEditorEmpExtDto = new RegisterArrangementResultContractAddedEditorEmpExtDto();
+		registerArrangementResultContractAddedEditorEmpExtDto.setMomEmployeeId("MoM社員ID");
+		registerArrangementResultContractAddedEditorEmpExtDtoList.add(registerArrangementResultContractAddedEditorEmpExtDto);
+		testTarget.setContractAddedEditorEmpList(registerArrangementResultContractAddedEditorEmpExtDtoList);
+
+		RegisterArrangementResultElectricDealerContractExtDto registerArrangementResultElectricDealerContractExtDto = new RegisterArrangementResultElectricDealerContractExtDto();
+		registerArrangementResultElectricDealerContractExtDto.setCompanyId("企業ID");
+		registerArrangementResultElectricDealerContractExtDto.setCompanyBusinessName("企業_事業所名");
+		testTarget.setElectricDealerContract(registerArrangementResultElectricDealerContractExtDto);
+
+		// 正常系
+		ParamterCheckResult result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		testTool.assertValidationOk(result);
+
+
+		// 異常系(@NotNull)
+		contractElectric = contractElectricRepository.findOne(1L);
+		BeanUtils.copyProperties(contractElectric, registerArrangementResultContractElectricExtDto);
+		BeanUtils.copyProperties(contractElectric.getEntryContentLowPressure(), registerArrangementResultContractElectricExtDto);
+		testTarget.setCaseNumber(null);
+		testTarget.setCaseTitle(null);
+		testTarget.setContractElectric(null);
+		testTarget.setCustomerContract(null);
+		testTarget.setContractPicSaEmp(null);
+		testTarget.setElectricExpertContract(null);
+		testTarget.setContractAddedEditorEmpList(null);
+
+		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		Assert.assertEquals(7, result.getErrorInfoList().size());
+
+
+		// 異常系(@Size(max))
+		contractElectric = contractElectricRepository.findOne(1L);
+		BeanUtils.copyProperties(contractElectric, registerArrangementResultContractElectricExtDto);
+		BeanUtils.copyProperties(contractElectric.getEntryContentLowPressure(), registerArrangementResultContractElectricExtDto);
+		testTarget.setCaseNumber(STR_256);
+		testTarget.setCaseTitle(STR_256);
+		testTarget.setChangePreferredDate(STR_256);
+
+		registerArrangementResultContractElectricExtDto.setOppSysKeyBn(STR_256);
+		registerArrangementResultContractElectricExtDto.setNishikiContractNumber(STR_256);
+		registerArrangementResultContractElectricExtDto.setCstmrBn(STR_256);
+		registerArrangementResultContractElectricExtDto.setCustomerName(STR_256);
+		registerArrangementResultContractElectricExtDto.setCustomerNameKana(STR_256);
+		registerArrangementResultContractElectricExtDto.setZipCode(STR_256);
+		registerArrangementResultContractElectricExtDto.setBildInfo(STR_256);
+		registerArrangementResultContractElectricExtDto.setCity(STR_256);
+		registerArrangementResultContractElectricExtDto.setAddress(STR_256);
+		registerArrangementResultContractElectricExtDto.setBuildingName(STR_256);
+		registerArrangementResultContractElectricExtDto.setPhoneNumber(STR_256);
+		registerArrangementResultContractElectricExtDto.setEntryDate(STR_256);
+		registerArrangementResultContractElectricExtDto.setSupplyStartScheduledDate(STR_256);
+		registerArrangementResultContractElectricExtDto.setLicensedEngineerName(STR_256);
+		registerArrangementResultContractElectricExtDto.setLicensedEngineerTel(STR_256);
+		registerArrangementResultContractElectricExtDto.setLicensedEngineerDep(STR_256);
+		testTarget.setContractElectric(registerArrangementResultContractElectricExtDto);
+
+		registerArrangementResultCustomerContractExtDto.setMomCustId(STR_256);
+		registerArrangementResultCustomerContractExtDto.setCompanyId(STR_256);
+		registerArrangementResultCustomerContractExtDto.setOfficeId(STR_256);
+		registerArrangementResultCustomerContractExtDto.setPicName(STR_256);
+		registerArrangementResultCustomerContractExtDto.setPicNameKana(STR_256);
+		registerArrangementResultCustomerContractExtDto.setPicDeptName(STR_256);
+		registerArrangementResultCustomerContractExtDto.setPicPhoneNumber(STR_256);
+		registerArrangementResultCustomerContractExtDto.setPicMailAddress(STR_256);
+		testTarget.setCustomerContract(registerArrangementResultCustomerContractExtDto);
+
+		registerArrangementResultMailAddressInfoExtDto.setName(STR_256);
+		registerArrangementResultMailAddressInfoExtDto.setMailAddress(STR_256);
+		registerArrangementResultMailAddressInfoExtDtoList.add(registerArrangementResultMailAddressInfoExtDto);
+		testTarget.setContractPersonMailAddressList(registerArrangementResultMailAddressInfoExtDtoList);
+
+		registerArrangementResultBillingMailAddressInfoExtDto.setName(STR_256);
+		registerArrangementResultBillingMailAddressInfoExtDto.setMailAddress(STR_256);
+		registerArrangementResultBillingMailAddressInfoExtDto.setMyricohId(STR_256);
+		registerArrangementResultBillingMailAddressInfoExtDtoList.add(registerArrangementResultBillingMailAddressInfoExtDto);
+		testTarget.setBillingMailAddressList(registerArrangementResultBillingMailAddressInfoExtDtoList);
+
+		registerArrangementResultContractPicSaEmpExtDto.setMomEmployeeId(STR_256);
+		testTarget.setContractPicSaEmp(registerArrangementResultContractPicSaEmpExtDto);
+
+		registerArrangementResultElectricExpertContractExtDto.setMomEmployeeId(STR_256);
+		testTarget.setElectricExpertContract(registerArrangementResultElectricExpertContractExtDto);
+
+		registerArrangementResultContractAddedEditorEmpExtDto.setMomEmployeeId(STR_256);
+		registerArrangementResultContractAddedEditorEmpExtDtoList.add(registerArrangementResultContractAddedEditorEmpExtDto);
+		testTarget.setContractAddedEditorEmpList(registerArrangementResultContractAddedEditorEmpExtDtoList);
+
+		registerArrangementResultElectricDealerContractExtDto.setCompanyId(STR_256);
+		registerArrangementResultElectricDealerContractExtDto.setCompanyBusinessName(STR_256);
+		testTarget.setElectricDealerContract(registerArrangementResultElectricDealerContractExtDto);
+
+		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		Assert.assertEquals(43, result.getErrorInfoList().size());
+
+		// 異常系(@Min, @Decimal)
+		contractElectric = contractElectricRepository.findOne(1L);
+		BeanUtils.copyProperties(contractElectric, registerArrangementResultContractElectricExtDto);
+		BeanUtils.copyProperties(contractElectric.getEntryContentLowPressure(), registerArrangementResultContractElectricExtDto);
+
+		testTarget.setContractId(LONG_MINUS_1);
+		testTarget.setCaseNumber("案件番号");
+		testTarget.setCaseTitle("案件名");
+		testTarget.setChangePreferredDate("2019/05/31");
+		registerArrangementResultContractElectricExtDto.setContractCapacityUsage(DECIMAL_MINUS_001);
+		registerArrangementResultContractElectricExtDto.setContractElectricCurrent(DECIMAL_MINUS_001);
+		registerArrangementResultContractElectricExtDto.setContractElectricPower(DECIMAL_MINUS_001);
+		registerArrangementResultContractElectricExtDto.setEntryDate("2019/05/31");
+		registerArrangementResultContractElectricExtDto.setSupplyStartScheduledDate("2019/05/31");
+		testTarget.setContractElectric(registerArrangementResultContractElectricExtDto);
+
+		registerArrangementResultCustomerContractExtDto.setMomCustId("MoM企事部ID");
+		registerArrangementResultCustomerContractExtDto.setCompanyId("MoM企業ID");
+		registerArrangementResultCustomerContractExtDto.setOfficeId("MoM事業所ID");
+		registerArrangementResultCustomerContractExtDto.setPicName("MoM非連携_担当者氏名");
+		registerArrangementResultCustomerContractExtDto.setPicNameKana("MoM非連携_担当者氏名（カナ）");
+		registerArrangementResultCustomerContractExtDto.setPicDeptName("MoM非連携_担当者部署");
+		registerArrangementResultCustomerContractExtDto.setPicPhoneNumber("MoM非連携_担当者電話番号");
+		registerArrangementResultCustomerContractExtDto.setPicMailAddress("MoM非連携_担当者メールアドレス");
+		testTarget.setCustomerContract(registerArrangementResultCustomerContractExtDto);
+
+		registerArrangementResultMailAddressInfoExtDto.setName("氏名");
+		registerArrangementResultMailAddressInfoExtDto.setMailAddress("メールアドレス");
+		registerArrangementResultMailAddressInfoExtDtoList.add(registerArrangementResultMailAddressInfoExtDto);
+		testTarget.setContractPersonMailAddressList(registerArrangementResultMailAddressInfoExtDtoList);
+
+		registerArrangementResultBillingMailAddressInfoExtDto.setName("氏名");
+		registerArrangementResultBillingMailAddressInfoExtDto.setMailAddress("メールアドレス");
+		registerArrangementResultBillingMailAddressInfoExtDto.setMyricohId("MｙRicohユーザID");
+		registerArrangementResultBillingMailAddressInfoExtDtoList.add(registerArrangementResultBillingMailAddressInfoExtDto);
+		testTarget.setBillingMailAddressList(registerArrangementResultBillingMailAddressInfoExtDtoList);
+
+		registerArrangementResultContractPicSaEmpExtDto.setMomEmployeeId("MoM社員ID");
+		testTarget.setContractPicSaEmp(registerArrangementResultContractPicSaEmpExtDto);
+
+		registerArrangementResultElectricExpertContractExtDto.setMomEmployeeId("MoM社員ID");
+		testTarget.setElectricExpertContract(registerArrangementResultElectricExpertContractExtDto);
+
+		registerArrangementResultContractAddedEditorEmpExtDto.setMomEmployeeId("MoM社員ID");
+		registerArrangementResultContractAddedEditorEmpExtDtoList.add(registerArrangementResultContractAddedEditorEmpExtDto);
+		testTarget.setContractAddedEditorEmpList(registerArrangementResultContractAddedEditorEmpExtDtoList);
+
+		registerArrangementResultElectricDealerContractExtDto.setCompanyId("企業ID");
+		registerArrangementResultElectricDealerContractExtDto.setCompanyBusinessName("企業_事業所名");
+		testTarget.setElectricDealerContract(registerArrangementResultElectricDealerContractExtDto);
+
+		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		Assert.assertEquals(4, result.getErrorInfoList().size());
+
 	}
 }
