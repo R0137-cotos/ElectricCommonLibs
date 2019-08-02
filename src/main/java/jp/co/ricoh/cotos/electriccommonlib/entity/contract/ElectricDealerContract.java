@@ -90,7 +90,7 @@ public class ElectricDealerContract extends EntityBase {
 	 * 支払区分
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "支払区分", required = true, position = 9, allowableValues = "定率(\"1\"), 定額(\"2\")", example = "1")
+	@ApiModelProperty(value = "支払区分", required = true, position = 9, allowableValues = "定額(\"1\"), 定率(\"2\")", example = "1")
 	private PaymentMethod paymentMethod;
 
 	/**

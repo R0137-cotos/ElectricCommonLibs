@@ -123,7 +123,7 @@ public class EnumType {
 
 	public enum PaymentMethod {
 
-		定率("1"), 定額("2");
+		定額("1"), 定率("2");
 
 		private final String text;
 
