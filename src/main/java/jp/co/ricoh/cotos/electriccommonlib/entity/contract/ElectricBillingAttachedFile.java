@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -85,8 +87,30 @@ public class ElectricBillingAttachedFile extends EntityBase {
 	private FileKind fileKind;
 
 	/**
-	 * 添付ファイルID
+	 * 物理ファイル名
 	 */
-	@ApiModelProperty(value = "添付ファイルID", required = true, position = 5, allowableValues = "range[0,9223372036854775807]")
-	private Long attachedFileId;
+	@Column(nullable = false)
+	@ApiModelProperty(value = "物理ファイル名", required = true, position = 5, allowableValues = "range[0,255]")
+	private String filePhysicsName;
+
+	/**
+	 * ファイルサイズ
+	 */
+	@Column(nullable = false)
+	@ApiModelProperty(value = "ファイルサイズ", required = true, position = 6, allowableValues = "range[0,9223372036854775807]")
+	private long fileSize;
+
+	/**
+	 * コンテンツタイプ
+	 */
+	@Column(nullable = false)
+	@ApiModelProperty(value = "コンテンツタイプ", required = true, position = 7, allowableValues = "range[0,255]")
+	private String contentType;
+
+	/**
+	 * サーバーパス
+	 */
+	@Column(nullable = false)
+	@ApiModelProperty(value = "サーバーパス", required = true, position = 8, allowableValues = "range[0,1000]")
+	private String savedPath;
 }
