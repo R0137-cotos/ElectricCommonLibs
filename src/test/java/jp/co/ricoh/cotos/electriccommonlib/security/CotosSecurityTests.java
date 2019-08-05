@@ -1,7 +1,6 @@
 package jp.co.ricoh.cotos.electriccommonlib.security;
 
 import java.io.IOException;
-import java.net.URI;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -12,7 +11,6 @@ import javax.transaction.Transactional;
 
 import org.junit.AfterClass;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -22,18 +20,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.mock.mockito.SpyBean;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpRequest;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.ClientHttpRequestExecution;
 import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.web.client.ExpectedCount;
-import org.springframework.test.web.client.MockRestServiceServer;
-import org.springframework.test.web.client.match.MockRestRequestMatchers;
-import org.springframework.test.web.client.response.MockRestResponseCreators;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
@@ -56,7 +48,9 @@ public class CotosSecurityTests {
 
 	private static final String WITHIN_PERIOD_JWT = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJvcmlnaW4iOiJjb3Rvcy5yaWNvaC5jby5qcCIsInNpbmdsZVVzZXJJZCI6InNpZCIsIm1vbUVtcElkIjoibWlkIiwiZXhwIjoyNTM0MDIyNjgzOTksImFwcGxpY2F0aW9uSWQiOiJjb3Rvc19kZXYifQ.qJBFsMJFZcLdF7jWwEafZSOQfmL1EqPVDcRuz6WvsCI";
 
-	private static final String WITHIN_PERIOD_JWT_SUPER_USER = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJvcmlnaW4iOiJjb3Rvcy5yaWNvaC5jby5qcCIsInNpbmdsZVVzZXJJZCI6InNpZCIsIm1vbUVtcElkIjoiTU9NX0VNUExPWUVFX0lEIiwiZXhwIjoyNTM0MDIyNjgzOTksImFwcGxpY2F0aW9uSWQiOiJjb3Rvc19kZXYifQ.8INJ9gALA3thQ6iwvveYRmGIbZdZAvl2uZBXR8dqblk";
+	private static final String WITHIN_PERIOD_JWT_SUPER_USER = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJvcmlnaW4iOiJjb3Rvcy5yaWNvaC5jby5qcCIsInNpbmdsZVVzZXJJZCI6InNpZCIsIm1vbUVtcElkIjoiMDA1MDA3ODQiLCJleHAiOjI1MzQwMjI2ODM5OSwiYXBwbGljYXRpb25JZCI6ImNvdG9zLnJpY29oLmNvLmpwIn0.P72uE-VnrC_BPlIGC3LSKbgA7tCtOrBRk-xUO077o88";
+
+	private static final String WITHIN_PERIOD_JWT_DUMMY_USER = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJvcmlnaW4iOiJjb3Rvcy5yaWNvaC5jby5qcCIsInNpbmdsZVVzZXJJZCI6InNpZCIsIm1vbUVtcElkIjoiQ09UT1NfQkFUQ0hfVVNFUiIsImV4cCI6MjUzNDAyMjY4Mzk5LCJhcHBsaWNhdGlvbklkIjoiY290b3Mucmljb2guY28uanAifQ.Blbmd9ZfCMrUTU0IynWsgxRcC9jycjP0CHOuyRtg7Og";
 
 	private static final String WITHOUT_PERIOD_JWT = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJvcmlnaW4iOiJjb3Rvcy5yaWNvaC5jby5qcCIsInNpbmdsZVVzZXJJZCI6InNpZCIsIm1vbUVtcElkIjoibWlkIiwiZXhwIjoxNTM5NTY5MDQsImFwcGxpY2F0aW9uSWQiOiJjb3Rvc19kZXYifQ.NO_r4hID2vt3_fJWa4Mwmk1tKvZe5ndCwHF17wkv1Bo";
 
@@ -88,16 +82,6 @@ public class CotosSecurityTests {
 	@Autowired
 	public void injectContext(ConfigurableApplicationContext injectContext) {
 		context = injectContext;
-	}
-
-	private MockRestServiceServer mockServer;
-
-	/**
-	 * 毎テストメソッドごとに実施
-	 */
-	@Before
-	public void init() {
-		mockServer = MockRestServiceServer.createServer(restTemplate);
 	}
 
 	@AfterClass
@@ -136,10 +120,6 @@ public class CotosSecurityTests {
 		try {
 			// MoM権限マップをMockにより差し替え
 			Mockito.doReturn(new HashMap<ActionDiv, Map<AuthDiv, AuthLevel>>()).when(elcMomAuthorityService).searchAllMomAuthorities(Mockito.anyString());
-			// モックサーバー用にrestテンプレートを差し替え
-			Mockito.doReturn(restTemplate).when(restTemplateCreator).getRestTemplate(Mockito.anyString());
-			mockServer.expect(ExpectedCount.manyTimes(), MockRestRequestMatchers.requestTo(new URI(standardProperties.getMaster() + "/master/findSuperUserMaster/mid"))).andExpect(MockRestRequestMatchers.method(HttpMethod.GET)).andRespond(MockRestResponseCreators.withSuccess("", MediaType.APPLICATION_JSON));
-			mockServer.expect(ExpectedCount.manyTimes(), MockRestRequestMatchers.requestTo(new URI(standardProperties.getMaster() + "/master/findDummyUserMaster/mid"))).andExpect(MockRestRequestMatchers.method(HttpMethod.GET)).andRespond(MockRestResponseCreators.withSuccess("", MediaType.APPLICATION_JSON));
 		} catch (Exception e) {
 			Assert.fail("モック差し替えに失敗");
 		}
@@ -154,19 +134,10 @@ public class CotosSecurityTests {
 	@Transactional
 	public void 認証_トークンあり_オリジンなし_正常_スーパーユーザー() throws Exception {
 
-		try {
-			// モックサーバー用にrestテンプレートを差し替え
-			Mockito.doReturn(restTemplate).when(restTemplateCreator).getRestTemplate(Mockito.anyString());
-			mockServer.expect(ExpectedCount.manyTimes(), MockRestRequestMatchers.requestTo(new URI(standardProperties.getMaster() + "/master/findSuperUserMaster/MOM_EMPLOYEE_ID"))).andExpect(MockRestRequestMatchers.method(HttpMethod.GET)).andRespond(MockRestResponseCreators.withSuccess("{}", MediaType.APPLICATION_JSON));
-			mockServer.expect(ExpectedCount.manyTimes(), MockRestRequestMatchers.requestTo(new URI(standardProperties.getMaster() + "/master/findDummyUserMaster/MOM_EMPLOYEE_ID"))).andExpect(MockRestRequestMatchers.method(HttpMethod.GET)).andRespond(MockRestResponseCreators.withSuccess("", MediaType.APPLICATION_JSON));
-		} catch (Exception e) {
-			Assert.fail("モック差し替えに失敗");
-		}
-
 		RestTemplate rest = initRest(WITHIN_PERIOD_JWT_SUPER_USER);
 		ResponseEntity<String> response = rest.getForEntity(loadTopURL() + "test/api/test/1?isSuccess=true&hasBody=false", String.class);
 		Assert.assertEquals("正常終了", 200, response.getStatusCodeValue());
-		Assert.assertEquals("正常終了", "sid,MOM_EMPLOYEE_ID,cotos.ricoh.co.jp,cotos_dev," + WITHIN_PERIOD_JWT_SUPER_USER + ",true,false,false", response.getBody());
+		Assert.assertEquals("正常終了", "sid,00500784,cotos.ricoh.co.jp,cotos.ricoh.co.jp," + WITHIN_PERIOD_JWT_SUPER_USER + ",true,false,false", response.getBody());
 	}
 
 	@Test
@@ -176,19 +147,14 @@ public class CotosSecurityTests {
 		try {
 			// MoM権限マップをMockにより差し替え
 			Mockito.doReturn(new HashMap<ActionDiv, Map<AuthDiv, AuthLevel>>()).when(elcMomAuthorityService).searchAllMomAuthorities(Mockito.anyString());
-			// モックサーバー用にrestテンプレートを差し替え
-			Mockito.doReturn(restTemplate).when(restTemplateCreator).getRestTemplate(Mockito.anyString());
-			mockServer.expect(ExpectedCount.manyTimes(), MockRestRequestMatchers.requestTo(new URI(standardProperties.getMaster() + "/master/findSuperUserMaster/MOM_EMPLOYEE_ID"))).andExpect(MockRestRequestMatchers.method(HttpMethod.GET)).andRespond(MockRestResponseCreators.withSuccess("", MediaType.APPLICATION_JSON));
-			mockServer.expect(ExpectedCount.manyTimes(), MockRestRequestMatchers.requestTo(new URI(standardProperties.getMaster() + "/master/findDummyUserMaster/MOM_EMPLOYEE_ID"))).andExpect(MockRestRequestMatchers.method(HttpMethod.GET)).andRespond(MockRestResponseCreators.withSuccess("{}", MediaType.APPLICATION_JSON));
-
 		} catch (Exception e) {
 			Assert.fail("モック差し替えに失敗");
 		}
 
-		RestTemplate rest = initRest(WITHIN_PERIOD_JWT_SUPER_USER);
+		RestTemplate rest = initRest(WITHIN_PERIOD_JWT_DUMMY_USER);
 		ResponseEntity<String> response = rest.getForEntity(loadTopURL() + "test/api/test/1?isSuccess=true&hasBody=false", String.class);
 		Assert.assertEquals("正常終了", 200, response.getStatusCodeValue());
-		Assert.assertEquals("正常終了", "sid,MOM_EMPLOYEE_ID,cotos.ricoh.co.jp,cotos_dev," + WITHIN_PERIOD_JWT_SUPER_USER + ",false,true,true", response.getBody());
+		Assert.assertEquals("正常終了", "sid,COTOS_BATCH_USER,cotos.ricoh.co.jp,cotos.ricoh.co.jp," + WITHIN_PERIOD_JWT_DUMMY_USER + ",true,true,true", response.getBody());
 	}
 
 	@Test
