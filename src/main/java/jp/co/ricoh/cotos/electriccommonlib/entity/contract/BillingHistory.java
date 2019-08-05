@@ -89,7 +89,29 @@ public class BillingHistory extends EntityBase {
 			return Arrays.stream(values()).filter(v -> v.text.equals(string)).findFirst().orElseThrow(() -> new IllegalArgumentException(String.valueOf(string)));
 		}
 	}
+	
+	public enum SendMail {
 
+		未送信("0"), 送信済("1"), 送信対象外("9");
+
+		private final String text;
+
+		private SendMail(final String text) {
+			this.text = text;
+		}
+
+		@Override
+		@JsonValue
+		public String toString() {
+			return this.text;
+		}
+
+		@JsonCreator
+		public static SendMail fromString(String string) {
+			return Arrays.stream(values()).filter(v -> v.text.equals(string)).findFirst().orElseThrow(() -> new IllegalArgumentException(String.valueOf(string)));
+		}
+	}
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "billing_history_seq")
 	@SequenceGenerator(name = "billing_history_seq", sequenceName = "billing_history_seq", allocationSize = 1)
@@ -274,4 +296,11 @@ public class BillingHistory extends EntityBase {
 	@Column(nullable = true)
 	@ApiModelProperty(value = "請求書作成区分", required = false, position = 24, allowableValues = "未作成(\"0\"), 作成済(\"1\"), 社内利用(\"9\")", example = "0")
 	private InvoiceCreateDiv invoiceCreateDiv;
+
+	/**
+	 * メール送信
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "メール送信", required = false, position = 25, allowableValues = "未送信(\"0\"), 送信済(\"1\"), 送信対象外(\"9\")", example = "0")
+	private SendMail sendMail;
 }
