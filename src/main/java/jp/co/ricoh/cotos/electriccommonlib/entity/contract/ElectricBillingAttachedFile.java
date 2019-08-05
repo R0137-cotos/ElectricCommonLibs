@@ -90,8 +90,6 @@ public class ElectricBillingAttachedFile extends EntityBase {
 	 * 物理ファイル名
 	 */
 	@Column(nullable = false)
-	@NotNull
-	@Size(max = 255)
 	@ApiModelProperty(value = "物理ファイル名", required = true, position = 5, allowableValues = "range[0,255]")
 	private String filePhysicsName;
 
@@ -106,8 +104,6 @@ public class ElectricBillingAttachedFile extends EntityBase {
 	 * コンテンツタイプ
 	 */
 	@Column(nullable = false)
-	@NotNull
-	@Size(max = 255)
 	@ApiModelProperty(value = "コンテンツタイプ", required = true, position = 7, allowableValues = "range[0,255]")
 	private String contentType;
 
@@ -115,8 +111,6 @@ public class ElectricBillingAttachedFile extends EntityBase {
 	 * サーバーパス
 	 */
 	@Column(nullable = false)
-	@NotNull
-	@Size(max = 1000)
 	@ApiModelProperty(value = "サーバーパス", required = true, position = 8, allowableValues = "range[0,1000]")
 	private String savedPath;
 }
