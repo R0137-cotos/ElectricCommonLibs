@@ -62,6 +62,7 @@ dependencies {
     testCompile('org.springframework.security:spring-security-test')
     testCompile group: 'com.ninja-squad', name: 'DbSetup', version: '2.1.0'
     testCompile 'org.apache.commons:commons-lang3:3.4'
+    testCompile group: 'commons-io', name: 'commons-io', version: '2.6'
     testRuntime('com.h2database:h2')
 }
 
@@ -79,7 +80,7 @@ uploadArchives {
         mavenDeployer {
             repository url: "file://${repo.absolutePath}"
 
-            pom.version = '0.0.143'
+            pom.version = '0.0.144'
             pom.groupId = 'jp.co.ricoh.cotos'
             pom.artifactId = 'electric-common-libraries'
         }

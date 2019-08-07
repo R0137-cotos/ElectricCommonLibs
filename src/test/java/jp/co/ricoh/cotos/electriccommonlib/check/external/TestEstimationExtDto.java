@@ -18,6 +18,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import jp.co.ricoh.cotos.commonlib.util.HeadersProperties;
 import jp.co.ricoh.cotos.electriccommonlib.DBConfig;
 import jp.co.ricoh.cotos.electriccommonlib.TestTools;
+import jp.co.ricoh.cotos.electriccommonlib.check.TestCheckController;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.CustomerEstimationExtDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.ElectricDealerEstimationExtDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.ElectricExpertEstimationExtDto;
@@ -32,7 +33,6 @@ import jp.co.ricoh.cotos.electriccommonlib.entity.estimation.EstimationElectric;
 import jp.co.ricoh.cotos.electriccommonlib.entity.estimation.FeeSimulationHead;
 import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricFormMaster.ElectricPlan;
 import jp.co.ricoh.cotos.electriccommonlib.repository.estimation.EstimationElectricRepository;
-import jp.co.ricoh.cotos.electriccommonlib.security.TestSecurityController;
 import jp.co.ricoh.cotos.electriccommonlib.security.bean.ParamterCheckResult;
 
 @RunWith(SpringRunner.class)
@@ -66,7 +66,7 @@ public class TestEstimationExtDto {
 	}
 
 	@Autowired
-	TestSecurityController testSecurityController;
+	TestCheckController testCheckController;
 
 	@LocalServerPort
 	private int localServerPort;
@@ -87,7 +87,7 @@ public class TestEstimationExtDto {
 
 		EstimationExtPlanChangeDto target = new EstimationExtPlanChangeDto();
 
-		//正常系
+		// 正常系
 		target.setCaseTitle("test");
 		target.setCaseNumber("test");
 		target.setOriginContractId(1);
@@ -120,10 +120,10 @@ public class TestEstimationExtDto {
 		BeanUtils.copyProperties(entitySimulation, targetSimulation);
 		target.setFeeSimulationHead(targetSimulation);
 		target.getFeeSimulationHead().setCreatedDate("2019/05/31");
-		ParamterCheckResult result = testSecurityController.callParameterCheck(target, headersProperties, localServerPort);
+		ParamterCheckResult result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
 		testTool.assertValidationOk(result);
 
-		//異常系
+		// 異常系
 		target.setCaseTitle(null);
 		target.setCaseNumber(null);
 		target.setEstimationElectric(null);
@@ -132,7 +132,7 @@ public class TestEstimationExtDto {
 		target.setElectricExpertEstimation(null);
 		target.setFeeSimulationHead(null);
 
-		result = testSecurityController.callParameterCheck(target, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
 		Assert.assertTrue(result.getErrorInfoList().size() == 7);
 
 		target.setEstimationElectric(new EstimationElectricExtDto());
@@ -143,7 +143,7 @@ public class TestEstimationExtDto {
 		target.setElectricDealerEstimation(new ElectricDealerEstimationExtDto());
 		target.setEstimationAddedEditorEmpList(Arrays.asList(new EstimationAddedEditorEmpExtDto()));
 
-		result = testSecurityController.callParameterCheck(target, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
 		Assert.assertTrue(result.getErrorInfoList().size() == 88);
 
 	}
@@ -153,7 +153,7 @@ public class TestEstimationExtDto {
 
 		EstimationExtCreateDto target = new EstimationExtCreateDto();
 
-		//正常系
+		// 正常系
 		target.setCaseTitle("test");
 		target.setCaseNumber("test");
 		EstimationElectric entityEstimation = estimationElectricRepository.findOne(1L);
@@ -185,10 +185,10 @@ public class TestEstimationExtDto {
 		BeanUtils.copyProperties(entitySimulation, targetSimulation);
 		target.setFeeSimulationHead(targetSimulation);
 		target.getFeeSimulationHead().setCreatedDate("2019/05/31");
-		ParamterCheckResult result = testSecurityController.callParameterCheck(target, headersProperties, localServerPort);
+		ParamterCheckResult result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
 		testTool.assertValidationOk(result);
 
-		//異常系
+		// 異常系
 		target.setCaseTitle(null);
 		target.setCaseNumber(null);
 		target.setEstimationElectric(null);
@@ -197,7 +197,7 @@ public class TestEstimationExtDto {
 		target.setElectricExpertEstimation(null);
 		target.setFeeSimulationHead(null);
 
-		result = testSecurityController.callParameterCheck(target, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
 		Assert.assertTrue(result.getErrorInfoList().size() == 7);
 
 		target.setEstimationElectric(new EstimationElectricExtDto());
@@ -208,7 +208,7 @@ public class TestEstimationExtDto {
 		target.setElectricDealerEstimation(new ElectricDealerEstimationExtDto());
 		target.setEstimationAddedEditorEmpList(Arrays.asList(new EstimationAddedEditorEmpExtDto()));
 
-		result = testSecurityController.callParameterCheck(target, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
 		Assert.assertTrue(result.getErrorInfoList().size() == 88);
 
 	}
@@ -216,7 +216,7 @@ public class TestEstimationExtDto {
 	@Test
 	public void EstimationElectricExtDtoのテスト() {
 
-		//正常系
+		// 正常系
 		EstimationElectric entity = estimationElectricRepository.findOne(1L);
 		EstimationElectricExtDto target = new EstimationElectricExtDto();
 		BeanUtils.copyProperties(entity, target);
@@ -228,10 +228,10 @@ public class TestEstimationExtDto {
 		target.setCo2EmissionMenu(ElectricPlan.CO2フリー);
 		target.setCo2EmissionFactor("1");
 		target.setVoltageCategory(entity.getVoltageCategory().toString());
-		ParamterCheckResult result = testSecurityController.callParameterCheck(target, headersProperties, localServerPort);
+		ParamterCheckResult result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
 		testTool.assertValidationOk(result);
 
-		//異常系（@NotNull）
+		// 異常系（@NotNull）
 		target.setOppSysKeyBn(null);
 		target.setElectricCommercialFlowDiv(null);
 		target.setElectricCommercialFlowDivCode(null);
@@ -258,7 +258,7 @@ public class TestEstimationExtDto {
 		target.setSpareWireFlg(null);
 		target.setSparePowerFlg(null);
 		target.setAncillaryFlg(null);
-		result = testSecurityController.callParameterCheck(target, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
 		Assert.assertTrue(result.getErrorInfoList().size() == 26);
 
 		// 異常系（@Size(max))
@@ -279,7 +279,7 @@ public class TestEstimationExtDto {
 		target.setTypeOfContract(STR_256);
 		target.setVoltageCategory(STR_256);
 		target.setSupplyStartScheduledDate(STR_256);
-		result = testSecurityController.callParameterCheck(target, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
 		Assert.assertTrue(result.getErrorInfoList().size() == 14);
 
 		// 異常系(@Min)
@@ -296,7 +296,7 @@ public class TestEstimationExtDto {
 		target.setSpareWireFlg(INT_MINUS_1);
 		target.setSparePowerFlg(INT_MINUS_1);
 		target.setAncillaryFlg(INT_MINUS_1);
-		result = testSecurityController.callParameterCheck(target, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
 		Assert.assertTrue(result.getErrorInfoList().size() == 4);
 
 		// 異常系(@Max)
@@ -311,7 +311,7 @@ public class TestEstimationExtDto {
 		target.setSpareWireFlg(INT_10);
 		target.setSparePowerFlg(INT_10);
 		target.setAncillaryFlg(INT_10);
-		result = testSecurityController.callParameterCheck(target, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
 		Assert.assertTrue(result.getErrorInfoList().size() == 4);
 
 		// 異常系(@DecimalMin)
@@ -327,7 +327,7 @@ public class TestEstimationExtDto {
 		target.setLoadFactor(DECIMAL_MINUS_001);
 		target.setBasePart(DECIMAL_MINUS_001);
 		target.setFluctuatingPart(DECIMAL_MINUS_001);
-		result = testSecurityController.callParameterCheck(target, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
 		Assert.assertTrue(result.getErrorInfoList().size() == 5);
 
 		// 異常系(@Decimal)
@@ -343,17 +343,17 @@ public class TestEstimationExtDto {
 		target.setLoadFactor(DECIMAL_0001);
 		target.setBasePart(DECIMAL_0001);
 		target.setFluctuatingPart(DECIMAL_0001);
-		result = testSecurityController.callParameterCheck(target, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
 		Assert.assertTrue(result.getErrorInfoList().size() == 5);
 	}
 
 	@Test
 	public void CustomerEstimationExtDtoのテスト() {
 		CustomerEstimationExtDto target = 顧客正常データ作成();
-		ParamterCheckResult result = testSecurityController.callParameterCheck(target, headersProperties, localServerPort);
+		ParamterCheckResult result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
 		testTool.assertValidationOk(result);
 
-		//異常系（@NotNull）
+		// 異常系（@NotNull）
 		target.setMomCustId(null);
 		target.setCompanyId(null);
 		target.setOfficeId(null);
@@ -373,7 +373,7 @@ public class TestEstimationExtDto {
 		target.setPicPhoneNumber(null);
 		target.setPicFaxNumber(null);
 		target.setPicMailAddress(null);
-		result = testSecurityController.callParameterCheck(target, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
 		Assert.assertTrue(result.getErrorInfoList().size() == 19);
 
 		// 異常系（@Size(max))
@@ -397,7 +397,7 @@ public class TestEstimationExtDto {
 		target.setPicPhoneNumber(STR_256);
 		target.setPicFaxNumber(STR_256);
 		target.setPicMailAddress(STR_256);
-		result = testSecurityController.callParameterCheck(target, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
 		Assert.assertTrue(result.getErrorInfoList().size() == 19);
 
 	}
@@ -406,17 +406,17 @@ public class TestEstimationExtDto {
 	public void EstimationPicSaEmpExtDtoのテスト() {
 		EstimationPicSaEmpExtDto target = new EstimationPicSaEmpExtDto();
 		target.setMomEmployeeId("test");
-		ParamterCheckResult result = testSecurityController.callParameterCheck(target, headersProperties, localServerPort);
+		ParamterCheckResult result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
 		testTool.assertValidationOk(result);
 
-		//異常系（@NotNull）
+		// 異常系（@NotNull）
 		target.setMomEmployeeId(null);
-		result = testSecurityController.callParameterCheck(target, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
 		Assert.assertTrue(result.getErrorInfoList().size() == 1);
 
 		// 異常系（@Size(max))
 		target.setMomEmployeeId(STR_256);
-		result = testSecurityController.callParameterCheck(target, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
 		Assert.assertTrue(result.getErrorInfoList().size() == 1);
 
 	}
@@ -425,17 +425,17 @@ public class TestEstimationExtDto {
 	public void ElectricExpertEstimationExtDtoのテスト() {
 		ElectricExpertEstimationExtDto target = new ElectricExpertEstimationExtDto();
 		target.setMomEmployeeId("test");
-		ParamterCheckResult result = testSecurityController.callParameterCheck(target, headersProperties, localServerPort);
+		ParamterCheckResult result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
 		testTool.assertValidationOk(result);
 
-		//異常系（@NotNull）
+		// 異常系（@NotNull）
 		target.setMomEmployeeId(null);
-		result = testSecurityController.callParameterCheck(target, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
 		Assert.assertTrue(result.getErrorInfoList().size() == 1);
 
 		// 異常系（@Size(max))
 		target.setMomEmployeeId(STR_256);
-		result = testSecurityController.callParameterCheck(target, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
 		Assert.assertTrue(result.getErrorInfoList().size() == 1);
 
 	}
@@ -444,17 +444,17 @@ public class TestEstimationExtDto {
 	public void EstimationAddedEditorEmpExtDtoのテスト() {
 		EstimationAddedEditorEmpExtDto target = new EstimationAddedEditorEmpExtDto();
 		target.setMomEmployeeId("test");
-		ParamterCheckResult result = testSecurityController.callParameterCheck(target, headersProperties, localServerPort);
+		ParamterCheckResult result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
 		testTool.assertValidationOk(result);
 
-		//異常系（@NotNull）
+		// 異常系（@NotNull）
 		target.setMomEmployeeId(null);
-		result = testSecurityController.callParameterCheck(target, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
 		Assert.assertTrue(result.getErrorInfoList().size() == 1);
 
 		// 異常系（@Size(max))
 		target.setMomEmployeeId(STR_256);
-		result = testSecurityController.callParameterCheck(target, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
 		Assert.assertTrue(result.getErrorInfoList().size() == 1);
 
 	}
@@ -471,7 +471,7 @@ public class TestEstimationExtDto {
 		target.setMailAddress2("test");
 		target.setMailAddress3("test");
 		target.setPaymentMethod(PaymentMethod.定率);
-		ParamterCheckResult result = testSecurityController.callParameterCheck(target, headersProperties, localServerPort);
+		ParamterCheckResult result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
 		testTool.assertValidationOk(result);
 
 		// 異常系（@Size(max))
@@ -483,7 +483,7 @@ public class TestEstimationExtDto {
 		target.setMailAddress1(STR_256);
 		target.setMailAddress2(STR_256);
 		target.setMailAddress3(STR_256);
-		result = testSecurityController.callParameterCheck(target, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
 		Assert.assertTrue(result.getErrorInfoList().size() == 8);
 
 	}
@@ -491,15 +491,15 @@ public class TestEstimationExtDto {
 	@Test
 	public void FeeSimulationHeadExtDtoのテスト() {
 
-		//正常系
+		// 正常系
 		FeeSimulationHead entity = estimationElectricRepository.findOne(1L).getFeeSimulationHead();
 		FeeSimulationHeadExtDto target = new FeeSimulationHeadExtDto();
 		BeanUtils.copyProperties(entity, target);
 		target.setCreatedDate("2019/05/31");
-		ParamterCheckResult result = testSecurityController.callParameterCheck(target, headersProperties, localServerPort);
+		ParamterCheckResult result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
 		testTool.assertValidationOk(result);
 
-		//異常系（@NotNull）
+		// 異常系（@NotNull）
 		target.setSimNumberMain(null);
 		target.setSimNumberSub(null);
 		target.setCreatedDate(null);
@@ -539,7 +539,7 @@ public class TestEstimationExtDto {
 		target.setGrossMarginRj(null);
 		target.setGrossProfitMarginRj(null);
 
-		result = testSecurityController.callParameterCheck(target, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
 		Assert.assertTrue(result.getErrorInfoList().size() == 38);
 
 		// 異常系（@Size(max))
@@ -547,7 +547,7 @@ public class TestEstimationExtDto {
 		target.setSimNumberMain(STR_256);
 		target.setSimNumberSub(STR_256);
 		target.setCreatedDate(STR_256);
-		result = testSecurityController.callParameterCheck(target, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
 		Assert.assertTrue(result.getErrorInfoList().size() == 3);
 
 		// 異常系(@DecimalMin)
@@ -589,7 +589,7 @@ public class TestEstimationExtDto {
 		target.setGrossProfitMarginRj(DECIMAL_MINUS_001);
 		target.setCreatedDate("2019/05/31");
 
-		result = testSecurityController.callParameterCheck(target, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
 		Assert.assertTrue(result.getErrorInfoList().size() == 35);
 
 		// 異常系(@Decimal)
@@ -631,7 +631,7 @@ public class TestEstimationExtDto {
 		target.setGrossProfitMarginRj(DECIMAL_0001);
 		target.setCreatedDate("2019/05/31");
 
-		result = testSecurityController.callParameterCheck(target, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
 		Assert.assertTrue(result.getErrorInfoList().size() == 35);
 	}
 

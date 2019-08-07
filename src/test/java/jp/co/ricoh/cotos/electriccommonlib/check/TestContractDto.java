@@ -75,7 +75,6 @@ import jp.co.ricoh.cotos.electriccommonlib.repository.contract.BillingBasicInfor
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.BillingMailAddressInformationRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.ClientMasterRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.ContractElectricRepository;
-import jp.co.ricoh.cotos.electriccommonlib.security.TestSecurityController;
 import jp.co.ricoh.cotos.electriccommonlib.security.bean.ParamterCheckResult;
 
 @RunWith(SpringRunner.class)
@@ -119,7 +118,7 @@ public class TestContractDto {
 	}
 
 	@Autowired
-	TestSecurityController testSecurityController;
+	TestCheckController testCheckController;
 
 	@LocalServerPort
 	private int localServerPort;
@@ -143,14 +142,14 @@ public class TestContractDto {
 		ElectricExpertContractDto electricExpertContractDto = new ElectricExpertContractDto();
 		BeanUtils.copyProperties(entity.getElectricExpertContract(), electricExpertContractDto);
 		testTarget.setElectricExpertContract(electricExpertContractDto);
-		ParamterCheckResult result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		ParamterCheckResult result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		testTool.assertValidationOk(result);
 
 		// 異常系（@NotNull）
 		testTarget.setVoltageCategory(null);
 		testTarget.setElectricExpertContract(null);
 		testTarget.setElectricCommercialFlowDiv(null);
-		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertTrue(result.getErrorInfoList().size() == 3);
 
 		// 異常系（@Size(max))
@@ -190,7 +189,7 @@ public class TestContractDto {
 		testTarget.setElectricCompanyCode(STR_256);
 		testTarget.setElectricMenuCode(STR_256);
 		testTarget.setCo2EmissionFactor(STR_256);
-		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(34, result.getErrorInfoList().size());
 
 		// 異常系(@Min)
@@ -200,7 +199,7 @@ public class TestContractDto {
 		testTarget.setSendMailFlg(INT_MINUS_1);
 		testTarget.setTransferCheckFlg(INT_MINUS_1);
 		testTarget.setAtomicPaymentFlg(INT_MINUS_1);
-		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertTrue(result.getErrorInfoList().size() == 4);
 
 		// 異常系(@Max)
@@ -209,7 +208,7 @@ public class TestContractDto {
 		testTarget.setSendMailFlg(INT_10);
 		testTarget.setTransferCheckFlg(INT_10);
 		testTarget.setAtomicPaymentFlg(INT_10);
-		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertTrue(result.getErrorInfoList().size() == 3);
 	}
 
@@ -221,7 +220,7 @@ public class TestContractDto {
 		BeanUtils.copyProperties(entity.getMailAddressInformationList().get(0), testTarget);
 
 		// 正常系
-		ParamterCheckResult result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		ParamterCheckResult result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		testTool.assertValidationOk(result);
 
 		// 異常系(@NotNull)
@@ -229,25 +228,25 @@ public class TestContractDto {
 		testTarget.setMailIdentification(null);
 		testTarget.setName(null);
 		testTarget.setMailAddress(null);
-		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(3, result.getErrorInfoList().size());
 
 		// 異常系(@Size(max))
 		BeanUtils.copyProperties(entity.getMailAddressInformationList().get(0), testTarget);
 		testTarget.setName(STR_256);
 		testTarget.setMailAddress(STR_256);
-		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(2, result.getErrorInfoList().size());
 
 		// 異常系(@DecimalMin)
 		BeanUtils.copyProperties(entity.getMailAddressInformationList().get(0), testTarget);
 		testTarget.setPeakAlertThreshold(DECIMAL_MINUS_001);
-		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(1, result.getErrorInfoList().size());
 
 		BeanUtils.copyProperties(entity.getMailAddressInformationList().get(0), testTarget);
 		testTarget.setPeakAlertThreshold(DECIMAL_0001);
-		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(1, result.getErrorInfoList().size());
 	}
 
@@ -259,7 +258,7 @@ public class TestContractDto {
 		BeanUtils.copyProperties(entity.getEntryContentHighPressure(), testTarget);
 
 		// 正常系
-		ParamterCheckResult result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		ParamterCheckResult result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		testTool.assertValidationOk(result);
 
 		// 異常系(@Max)
@@ -273,7 +272,7 @@ public class TestContractDto {
 		testTarget.setDemandPlaceResales(INT_10);
 		testTarget.setPartialSupplyFlg(INT_10);
 		testTarget.setOtherFlg(INT_10);
-		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(9, result.getErrorInfoList().size());
 
 		// 異常系(＠Min)
@@ -287,7 +286,7 @@ public class TestContractDto {
 		testTarget.setDemandPlaceResales(INT_MINUS_1);
 		testTarget.setPartialSupplyFlg(INT_MINUS_1);
 		testTarget.setOtherFlg(INT_MINUS_1);
-		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(9, result.getErrorInfoList().size());
 
 		// 異常系(@DecimalMin)
@@ -298,7 +297,7 @@ public class TestContractDto {
 		testTarget.setPartialSupplySettingValue(DECIMAL_MINUS_001);
 		testTarget.setBase(DECIMAL_MINUS_001);
 		testTarget.setVariable(DECIMAL_MINUS_001);
-		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(6, result.getErrorInfoList().size());
 
 		// 異常系(@Decimal)
@@ -309,7 +308,7 @@ public class TestContractDto {
 		testTarget.setPartialSupplySettingValue(DECIMAL_0001);
 		testTarget.setBase(DECIMAL_0001);
 		testTarget.setVariable(DECIMAL_0001);
-		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(6, result.getErrorInfoList().size());
 
 	}
@@ -322,14 +321,14 @@ public class TestContractDto {
 		BeanUtils.copyProperties(entity.getEntryContentLowPressure(), testTarget);
 
 		// 正常系
-		ParamterCheckResult result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		ParamterCheckResult result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		testTool.assertValidationOk(result);
 
 		// 異常系(@NotNull)
 		BeanUtils.copyProperties(entity.getEntryContentLowPressure(), testTarget);
 		testTarget.setBasicMeterReadingDate(null);
 		testTarget.setLowPressureType(null);
-		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(2, result.getErrorInfoList().size());
 
 		// 異常系(@DecimalMin)
@@ -337,7 +336,7 @@ public class TestContractDto {
 		testTarget.setContractElectricCurrent(DECIMAL_MINUS_001);
 		testTarget.setContractElectricPower(DECIMAL_MINUS_001);
 		testTarget.setLoadFactor(DECIMAL_MINUS_001);
-		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(3, result.getErrorInfoList().size());
 
 		// 異常系(@Decimal)
@@ -345,13 +344,13 @@ public class TestContractDto {
 		testTarget.setContractElectricCurrent(DECIMAL_0001);
 		testTarget.setContractElectricPower(DECIMAL_0001);
 		testTarget.setLoadFactor(DECIMAL_0001);
-		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(3, result.getErrorInfoList().size());
 
 		// 異常系(@Max(max))
 		BeanUtils.copyProperties(entity.getEntryContentLowPressure(), testTarget);
 		testTarget.setBasicMeterReadingDate(STR_256);
-		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(1, result.getErrorInfoList().size());
 
 	}
@@ -364,13 +363,13 @@ public class TestContractDto {
 		BeanUtils.copyProperties(entity.getContractElectricAttachedFileList().get(0), testTarget);
 
 		// 正常系
-		ParamterCheckResult result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		ParamterCheckResult result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		testTool.assertValidationOk(result);
 
 		// 異常系(@NotNull)
 		BeanUtils.copyProperties(entity.getContractElectricAttachedFileList().get(0), testTarget);
 		testTarget.setElectricFileType(null);
-		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(1, result.getErrorInfoList().size());
 
 		// 異常系(@Size(max))
@@ -382,21 +381,21 @@ public class TestContractDto {
 		testTarget.setAttachedEmpName(STR_256);
 		testTarget.setAttachedOrgName(STR_256);
 		testTarget.setDocumentName(STR_256);
-		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(7, result.getErrorInfoList().size());
 
 		// 異常系(@Max)
 		BeanUtils.copyProperties(entity.getContractElectricAttachedFileList().get(0), testTarget);
 		testTarget.setTargetRequiredFlg(INT_10);
 		testTarget.setActiveFlg(INT_10);
-		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(2, result.getErrorInfoList().size());
 
 		// 異常系(@Min)
 		BeanUtils.copyProperties(entity.getContractElectricAttachedFileList().get(0), testTarget);
 		testTarget.setTargetRequiredFlg(INT_MINUS_1);
 		testTarget.setActiveFlg(INT_MINUS_1);
-		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(2, result.getErrorInfoList().size());
 
 	}
@@ -409,31 +408,31 @@ public class TestContractDto {
 		BeanUtils.copyProperties(entity.getUnitPriceHighPressureList().get(0), testTarget);
 
 		// 正常系
-		ParamterCheckResult result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		ParamterCheckResult result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		testTool.assertValidationOk(result);
 
 		// 異常系(@NotNull)
 		BeanUtils.copyProperties(entity.getUnitPriceHighPressureList().get(0), testTarget);
 		testTarget.setUnitPriceType(null);
-		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(1, result.getErrorInfoList().size());
 
 		// 異常系(@Size(max))
 		BeanUtils.copyProperties(entity.getUnitPriceHighPressureList().get(0), testTarget);
 		testTarget.setCreatedUserName(STR_256);
-		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(1, result.getErrorInfoList().size());
 
 		// 異常系(@Max)
 		BeanUtils.copyProperties(entity.getUnitPriceHighPressureList().get(0), testTarget);
 		testTarget.setNumberOfChanges(INT_100000);
-		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(1, result.getErrorInfoList().size());
 
 		// 異常系(@Min)
 		BeanUtils.copyProperties(entity.getUnitPriceHighPressureList().get(0), testTarget);
 		testTarget.setNumberOfChanges(INT_MINUS_1);
-		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(1, result.getErrorInfoList().size());
 
 		// 異常系(@DecimalMin)
@@ -445,7 +444,7 @@ public class TestContractDto {
 		testTarget.setSpareLinePrice(DECIMAL_MINUS_001);
 		testTarget.setSparePowerPrice(DECIMAL_MINUS_001);
 		testTarget.setAncillaryPrice(DECIMAL_MINUS_001);
-		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(7, result.getErrorInfoList().size());
 
 		// 異常系(@Decimal)
@@ -457,7 +456,7 @@ public class TestContractDto {
 		testTarget.setSpareLinePrice(DECIMAL_0001);
 		testTarget.setSparePowerPrice(DECIMAL_0001);
 		testTarget.setAncillaryPrice(DECIMAL_0001);
-		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(7, result.getErrorInfoList().size());
 
 	}
@@ -470,31 +469,31 @@ public class TestContractDto {
 		BeanUtils.copyProperties(entity.getUnitPriceLowPressureList().get(0), testTarget);
 
 		// 正常系
-		ParamterCheckResult result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		ParamterCheckResult result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		testTool.assertValidationOk(result);
 
 		// 異常系(@NotNull)
 		BeanUtils.copyProperties(entity.getUnitPriceLowPressureList().get(0), testTarget);
 		testTarget.setUnitPriceType(null);
-		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(1, result.getErrorInfoList().size());
 
 		// 異常系(@Size(max))
 		BeanUtils.copyProperties(entity.getUnitPriceLowPressureList().get(0), testTarget);
 		testTarget.setCreatedUserName(STR_256);
-		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(1, result.getErrorInfoList().size());
 
 		// 異常系(@Max)
 		BeanUtils.copyProperties(entity.getUnitPriceLowPressureList().get(0), testTarget);
 		testTarget.setNumberOfChanges(INT_100000);
-		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(1, result.getErrorInfoList().size());
 
 		// 異常系(@Min)
 		BeanUtils.copyProperties(entity.getUnitPriceLowPressureList().get(0), testTarget);
 		testTarget.setNumberOfChanges(INT_MINUS_1);
-		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(1, result.getErrorInfoList().size());
 
 		// 異常系(@DecimalMin)
@@ -507,7 +506,7 @@ public class TestContractDto {
 		testTarget.setUsageFeeSummerSellingPrice(DECIMAL_MINUS_001);
 		testTarget.setUsageFeeOtherSeasonListPrice(DECIMAL_MINUS_001);
 		testTarget.setUsageFeeOtherSeasonSellingPrice(DECIMAL_MINUS_001);
-		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(8, result.getErrorInfoList().size());
 
 		// 異常系(@Decimal)
@@ -520,7 +519,7 @@ public class TestContractDto {
 		testTarget.setUsageFeeSummerSellingPrice(DECIMAL_0001);
 		testTarget.setUsageFeeOtherSeasonListPrice(DECIMAL_0001);
 		testTarget.setUsageFeeOtherSeasonSellingPrice(DECIMAL_0001);
-		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(8, result.getErrorInfoList().size());
 	}
 
@@ -532,13 +531,13 @@ public class TestContractDto {
 		BeanUtils.copyProperties(entity.getCancellationInformation(), testTarget);
 
 		// 正常系
-		ParamterCheckResult result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		ParamterCheckResult result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		testTool.assertValidationOk(result);
 
 		// 異常系(@Size(max))
 		BeanUtils.copyProperties(entity.getCancellationInformation(), testTarget);
 		testTarget.setSpecifiedTime(STR_256);
-		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(1, result.getErrorInfoList().size());
 
 		// 異常系(@Max)
@@ -546,7 +545,7 @@ public class TestContractDto {
 		testTarget.setTransmissionStopFlg(INT_10);
 		testTarget.setCancellationBillingFlg(INT_10);
 		testTarget.setSuperiorConfirmFlg(INT_10);
-		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(3, result.getErrorInfoList().size());
 
 		// 異常系(@Min)
@@ -554,7 +553,7 @@ public class TestContractDto {
 		testTarget.setTransmissionStopFlg(INT_MINUS_1);
 		testTarget.setCancellationBillingFlg(INT_MINUS_1);
 		testTarget.setSuperiorConfirmFlg(INT_MINUS_1);
-		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(3, result.getErrorInfoList().size());
 
 		// 異常系(@DecimalMin)
@@ -565,7 +564,7 @@ public class TestContractDto {
 		testTarget.setAdjustmentLiquidationAmount(DECIMAL_MINUS_001);
 		testTarget.setPenaltyAmount(DECIMAL_MINUS_001);
 		testTarget.setAdjustmentPenaltyAmount(DECIMAL_MINUS_001);
-		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(6, result.getErrorInfoList().size());
 
 		// 異常系(@Decimal)
@@ -576,7 +575,7 @@ public class TestContractDto {
 		testTarget.setAdjustmentLiquidationAmount(DECIMAL_0001);
 		testTarget.setPenaltyAmount(DECIMAL_0001);
 		testTarget.setAdjustmentPenaltyAmount(DECIMAL_0001);
-		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(6, result.getErrorInfoList().size());
 	}
 
@@ -588,7 +587,7 @@ public class TestContractDto {
 		BeanUtils.copyProperties(entity.getElectricExpertContract(), testTarget);
 
 		// 正常系
-		ParamterCheckResult result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		ParamterCheckResult result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		testTool.assertValidationOk(result);
 
 		// 異常系(@String(max))
@@ -601,7 +600,7 @@ public class TestContractDto {
 		testTarget.setFixTransferDestinationCode(STR_256);
 		testTarget.setFixTransferSectionName(STR_256);
 		testTarget.setMomEmpId(STR_256);
-		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(8, result.getErrorInfoList().size());
 
 	}
@@ -614,7 +613,7 @@ public class TestContractDto {
 		BeanUtils.copyProperties(entity.getElectricDealerContract(), testTarget);
 
 		// 正常系
-		ParamterCheckResult result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		ParamterCheckResult result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		testTool.assertValidationOk(result);
 
 		// 異常系(@Size(max))
@@ -625,7 +624,7 @@ public class TestContractDto {
 		testTarget.setMailAddress1(STR_256);
 		testTarget.setMailAddress2(STR_256);
 		testTarget.setMailAddress3(STR_256);
-		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(6, result.getErrorInfoList().size());
 	}
 
@@ -637,31 +636,31 @@ public class TestContractDto {
 		BeanUtils.copyProperties(entity.getClientInformationList().get(0), testTarget);
 
 		// 正常系
-		ParamterCheckResult result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		ParamterCheckResult result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		testTool.assertValidationOk(result);
 
 		// 異常系(@NotNull)
 		BeanUtils.copyProperties(entity.getClientInformationList().get(0), testTarget);
 		testTarget.setClientCode(null);
-		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(1, result.getErrorInfoList().size());
 
 		// 異常系(@Size(max))
 		BeanUtils.copyProperties(entity.getClientInformationList().get(0), testTarget);
 		testTarget.setClientCode(STR_256);
-		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(1, result.getErrorInfoList().size());
 
 		// 異常系(@Max)
 		BeanUtils.copyProperties(entity.getClientInformationList().get(0), testTarget);
 		testTarget.setActiveFlg(INT_10);
-		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(1, result.getErrorInfoList().size());
 
 		// 異常系(@Max)
 		BeanUtils.copyProperties(entity.getClientInformationList().get(0), testTarget);
 		testTarget.setActiveFlg(INT_MINUS_1);
-		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(1, result.getErrorInfoList().size());
 	}
 
@@ -673,13 +672,13 @@ public class TestContractDto {
 		BeanUtils.copyProperties(entity, testTarget);
 
 		// 正常系
-		ParamterCheckResult result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		ParamterCheckResult result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		testTool.assertValidationOk(result);
 
 		// 異常系(@Size(max))
 		BeanUtils.copyProperties(entity, testTarget);
 		testTarget.setClientCode(STR_256);
-		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(1, result.getErrorInfoList().size());
 
 	}
@@ -692,7 +691,7 @@ public class TestContractDto {
 		BeanUtils.copyProperties(entity, testTarget);
 
 		// 正常系
-		ParamterCheckResult result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		ParamterCheckResult result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		testTool.assertValidationOk(result);
 
 		// 異常系(@NotNull)
@@ -700,7 +699,7 @@ public class TestContractDto {
 		testTarget.setName(null);
 		testTarget.setMailAddress(null);
 		testTarget.setMyricohId(null);
-		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(3, result.getErrorInfoList().size());
 
 		// 異常系(@Size(max))
@@ -708,7 +707,7 @@ public class TestContractDto {
 		testTarget.setName(STR_256);
 		testTarget.setMailAddress(STR_256);
 		testTarget.setMyricohId(STR_256);
-		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(3, result.getErrorInfoList().size());
 	}
 
@@ -720,7 +719,7 @@ public class TestContractDto {
 		BeanUtils.copyProperties(entity.getImportantPointExplainer(), testTarget);
 
 		// 正常系
-		ParamterCheckResult result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		ParamterCheckResult result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		testTool.assertValidationOk(result);
 
 		// 異常系(@Size(max))
@@ -728,7 +727,7 @@ public class TestContractDto {
 		testTarget.setDescriptionName(STR_256);
 		testTarget.setOrganizationName1(STR_256);
 		testTarget.setOrganizationName2(STR_256);
-		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(3, result.getErrorInfoList().size());
 	}
 
@@ -739,13 +738,13 @@ public class TestContractDto {
 		BeanUtils.copyProperties(entity, testTarget);
 
 		// 正常系
-		ParamterCheckResult result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		ParamterCheckResult result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		testTool.assertValidationOk(result);
 
 		// 異常系(@NotNull)
 		BeanUtils.copyProperties(entity, testTarget);
 		testTarget.setClientCode(null);
-		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(1, result.getErrorInfoList().size());
 
 		// 異常系(@Size(max))
@@ -766,8 +765,9 @@ public class TestContractDto {
 		testTarget.setBankCode(STR_256);
 		testTarget.setAccountType(STR_256);
 		testTarget.setSalesDivisionCode(STR_256);
-		testTarget.setCollectMethod(STR_256);;
-		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		testTarget.setCollectMethod(STR_256);
+		;
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(17, result.getErrorInfoList().size());
 	}
 
@@ -866,7 +866,7 @@ public class TestContractDto {
 		testTarget.setFeeSimulationHead(feeSimulationHeadExtDto);
 
 		// 正常系
-		ParamterCheckResult result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		ParamterCheckResult result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		testTool.assertValidationOk(result);
 
 		// 異常系(@NotNull)
@@ -881,7 +881,7 @@ public class TestContractDto {
 		testTarget.setImportantPointExplainer(new ImportantPointExplainerCreateExtDto());
 		testTarget.setElectricDealerContract(new ElectricDealerContractCreateExtDto());
 		testTarget.setFeeSimulationHead(new FeeSimulationHeadCreateExtDto());
-		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(39, result.getErrorInfoList().size());
 
 		// 異常系(@Size(max))
@@ -1006,7 +1006,7 @@ public class TestContractDto {
 		feeSimulationHeadExtDto.setUsageFeeOtherSeasonBankPriceBusiness(BigDecimal.valueOf(100));
 		feeSimulationHeadExtDto.setUsageFeeOtherSeasonBankPriceRj(BigDecimal.valueOf(100));
 		testTarget.setFeeSimulationHead(feeSimulationHeadExtDto);
-		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(64, result.getErrorInfoList().size());
 
 		// 異常系(@Min, @Decimal)
@@ -1101,12 +1101,12 @@ public class TestContractDto {
 		feeSimulationHeadExtDto.setUsageFeeOtherSeasonBankPriceBusiness(DECIMAL_MINUS_001);
 		feeSimulationHeadExtDto.setUsageFeeOtherSeasonBankPriceRj(DECIMAL_MINUS_001);
 		testTarget.setFeeSimulationHead(feeSimulationHeadExtDto);
-		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(21, result.getErrorInfoList().size());
 
 		// 異常系(@Max)
 		contractElectricExtDto.setTransferCheckFlg(INT_10);
-		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(21, result.getErrorInfoList().size());
 
 	}
@@ -1206,7 +1206,7 @@ public class TestContractDto {
 		testTarget.setFeeSimulationHead(feeSimulationHeadExtDto);
 
 		// 正常系
-		ParamterCheckResult result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		ParamterCheckResult result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		testTool.assertValidationOk(result);
 
 		// 異常系(@NotNull)
@@ -1221,7 +1221,7 @@ public class TestContractDto {
 		testTarget.setImportantPointExplainer(new ImportantPointExplainerChangePlanExtDto());
 		testTarget.setElectricDealerContract(new ElectricDealerContractChangePlanExtDto());
 		testTarget.setFeeSimulationHead(new FeeSimulationHeadChangePlanExtDto());
-		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(41, result.getErrorInfoList().size());
 
 		// 異常系(@Size(max))
@@ -1345,7 +1345,7 @@ public class TestContractDto {
 		feeSimulationHeadExtDto.setUsageFeeOtherSeasonBankPriceBusiness(BigDecimal.valueOf(100));
 		feeSimulationHeadExtDto.setUsageFeeOtherSeasonBankPriceRj(BigDecimal.valueOf(100));
 		testTarget.setFeeSimulationHead(feeSimulationHeadExtDto);
-		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(62, result.getErrorInfoList().size());
 
 		// 異常系(@Min, @Decimal)
@@ -1440,12 +1440,12 @@ public class TestContractDto {
 		feeSimulationHeadExtDto.setUsageFeeOtherSeasonBankPriceBusiness(DECIMAL_MINUS_001);
 		feeSimulationHeadExtDto.setUsageFeeOtherSeasonBankPriceRj(DECIMAL_MINUS_001);
 		testTarget.setFeeSimulationHead(feeSimulationHeadExtDto);
-		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(21, result.getErrorInfoList().size());
 
 		// 異常系(@Max)
 		contractElectricExtDto.setTransferCheckFlg(INT_10);
-		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(21, result.getErrorInfoList().size());
 	}
 
@@ -1462,7 +1462,7 @@ public class TestContractDto {
 		contractInfoChangeExtDto.setContractElectric(contractElectricInfoChangeExtDto);
 
 		// 正常系
-		ParamterCheckResult result = testSecurityController.callParameterCheck(contractInfoChangeExtDto, headersProperties, localServerPort);
+		ParamterCheckResult result = testCheckController.callParameterCheck(contractInfoChangeExtDto, headersProperties, localServerPort);
 		testTool.assertValidationOk(result);
 	}
 
@@ -1475,7 +1475,7 @@ public class TestContractDto {
 		contractInfoChangeExtDto.setContractElectric(null);
 
 		// 正常系
-		ParamterCheckResult result = testSecurityController.callParameterCheck(contractInfoChangeExtDto, headersProperties, localServerPort);
+		ParamterCheckResult result = testCheckController.callParameterCheck(contractInfoChangeExtDto, headersProperties, localServerPort);
 		testTool.assertValidationNg(result);
 	}
 
@@ -1491,7 +1491,7 @@ public class TestContractDto {
 
 		contractInfoChangeExtDto.setContractElectric(contractElectricInfoChangeExtDto);
 
-		ParamterCheckResult result = testSecurityController.callParameterCheck(contractInfoChangeExtDto, headersProperties, localServerPort);
+		ParamterCheckResult result = testCheckController.callParameterCheck(contractInfoChangeExtDto, headersProperties, localServerPort);
 		testTool.assertValidationNg(result);
 	}
 
@@ -1558,9 +1558,8 @@ public class TestContractDto {
 		testTarget.setElectricDealerContract(registerArrangementResultElectricDealerContractExtDto);
 
 		// 正常系
-		ParamterCheckResult result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		ParamterCheckResult result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		testTool.assertValidationOk(result);
-
 
 		// 異常系(@NotNull)
 		contractElectric = contractElectricRepository.findOne(1L);
@@ -1574,9 +1573,8 @@ public class TestContractDto {
 		testTarget.setElectricExpertContract(null);
 		testTarget.setContractAddedEditorEmpList(null);
 
-		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(7, result.getErrorInfoList().size());
-
 
 		// 異常系(@Size(max))
 		contractElectric = contractElectricRepository.findOne(1L);
@@ -1639,7 +1637,7 @@ public class TestContractDto {
 		registerArrangementResultElectricDealerContractExtDto.setCompanyBusinessName(STR_256);
 		testTarget.setElectricDealerContract(registerArrangementResultElectricDealerContractExtDto);
 
-		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(43, result.getErrorInfoList().size());
 
 		// 異常系(@Min, @Decimal)
@@ -1693,7 +1691,7 @@ public class TestContractDto {
 		registerArrangementResultElectricDealerContractExtDto.setCompanyBusinessName("企業_事業所名");
 		testTarget.setElectricDealerContract(registerArrangementResultElectricDealerContractExtDto);
 
-		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(4, result.getErrorInfoList().size());
 
 	}
