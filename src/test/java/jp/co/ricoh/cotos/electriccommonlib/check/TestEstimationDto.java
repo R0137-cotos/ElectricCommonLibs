@@ -33,7 +33,6 @@ import jp.co.ricoh.cotos.electriccommonlib.repository.estimation.ElectricDealerE
 import jp.co.ricoh.cotos.electriccommonlib.repository.estimation.ElectricExpertEstimationRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.estimation.EstimationElectricRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.estimation.FeeSimulationHeadRepository;
-import jp.co.ricoh.cotos.electriccommonlib.security.TestSecurityController;
 import jp.co.ricoh.cotos.electriccommonlib.security.bean.ParamterCheckResult;
 
 @RunWith(SpringRunner.class)
@@ -73,7 +72,7 @@ public class TestEstimationDto {
 	}
 
 	@Autowired
-	TestSecurityController testSecurityController;
+	TestCheckController testCheckController;
 
 	@LocalServerPort
 	private int localServerPort;
@@ -96,13 +95,13 @@ public class TestEstimationDto {
 		testTarget.setElectricExpertEstimation(new ElectricExpertEstimationDto());
 
 		// 正常系
-		ParamterCheckResult result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		ParamterCheckResult result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		testTool.assertValidationOk(result);
 
 		// 異常系(@NotNull)
 		testTarget.setFeeSimulationHead(null);
 		testTarget.setElectricExpertEstimation(null);
-		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(2, result.getErrorInfoList().size());
 
 		// 異常系(@Size(max))
@@ -123,7 +122,7 @@ public class TestEstimationDto {
 		testTarget.setElectricCompanyCode(STR_256);
 		testTarget.setElectricMenuCode(STR_256);
 		testTarget.setCo2EmissionFactor(STR_256);
-		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(13, result.getErrorInfoList().size());
 
 		// 異常系(@Max)
@@ -135,7 +134,7 @@ public class TestEstimationDto {
 		testTarget.setSpareWireFlg(INT_10);
 		testTarget.setSparePowerFlg(INT_10);
 		testTarget.setAncillaryFlg(INT_10);
-		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(4, result.getErrorInfoList().size());
 
 		// 異常系(@Min、DecimailMin)
@@ -152,7 +151,7 @@ public class TestEstimationDto {
 		testTarget.setSpareWireFlg(INT_MINUS_1);
 		testTarget.setSparePowerFlg(INT_MINUS_1);
 		testTarget.setAncillaryFlg(INT_MINUS_1);
-		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(9, result.getErrorInfoList().size());
 
 	}
@@ -165,7 +164,7 @@ public class TestEstimationDto {
 		BeanUtils.copyProperties(entity, testTarget);
 
 		// 正常系
-		ParamterCheckResult result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		ParamterCheckResult result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		testTool.assertValidationOk(result);
 
 		// 異常系(@Size(max))
@@ -175,7 +174,7 @@ public class TestEstimationDto {
 		testTarget.setAffiliationCode(STR_256);
 		testTarget.setBelongs(STR_256);
 		testTarget.setMomEmpId(STR_256);
-		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(6, result.getErrorInfoList().size());
 
 	}
@@ -188,7 +187,7 @@ public class TestEstimationDto {
 		BeanUtils.copyProperties(entity, testTarget);
 
 		// 正常系
-		ParamterCheckResult result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		ParamterCheckResult result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		testTool.assertValidationOk(result);
 
 		// 異常系(@Size(max))
@@ -200,7 +199,7 @@ public class TestEstimationDto {
 		testTarget.setMailAddress1(STR_256);
 		testTarget.setMailAddress2(STR_256);
 		testTarget.setMailAddress3(STR_256);
-		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(8, result.getErrorInfoList().size());
 
 	}
@@ -213,13 +212,13 @@ public class TestEstimationDto {
 		BeanUtils.copyProperties(entity, testTarget);
 
 		// 正常系
-		ParamterCheckResult result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		ParamterCheckResult result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		testTool.assertValidationOk(result);
 
 		// 異常系(@Size(max))
 		testTarget.setSimNumberMain(STR_256);
 		testTarget.setSimNumberSub(STR_256);
-		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(2, result.getErrorInfoList().size());
 
 		// 異常系(@DecimaiMin)
@@ -260,7 +259,7 @@ public class TestEstimationDto {
 		testTarget.setGrossMarginRj(DECIMAL_MINUS_001);
 		testTarget.setGrossProfitMarginRj(DECIMAL_MINUS_001);
 		testTarget.setBasicRateListPrice(DECIMAL_MINUS_001);
-		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(35, result.getErrorInfoList().size());
 
 	}
@@ -272,10 +271,10 @@ public class TestEstimationDto {
 		EstimationUpdateParameter testTarget = new EstimationUpdateParameter();
 		testTarget.setEstimation(null);
 		testTarget.setEstimationElectric(null);
-		ParamterCheckResult result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		ParamterCheckResult result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(2, result.getErrorInfoList().size());
 
-		//@Validが有効であること
+		// @Validが有効であること
 		ElectricExpertEstimationDto electricExpertEstimationDto = new ElectricExpertEstimationDto();
 		electricExpertEstimationDto.setName(STR_256);
 
@@ -295,7 +294,7 @@ public class TestEstimationDto {
 
 		testTarget = new EstimationUpdateParameter();
 		testTarget.setEstimationElectric(estimationElectricDto);
-		result = testSecurityController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(4, result.getErrorInfoList().size());
 
 	}
