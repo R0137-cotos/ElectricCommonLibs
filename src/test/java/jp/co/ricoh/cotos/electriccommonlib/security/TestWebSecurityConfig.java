@@ -40,7 +40,7 @@ public class TestWebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	public void configure(WebSecurity web) throws Exception {
-		web.ignoring().antMatchers("/test/api/swagger-ui.html");
+		web.ignoring().antMatchers("/securitytest/api/swagger-ui.html");
 		web.debug(true);
 	}
 
