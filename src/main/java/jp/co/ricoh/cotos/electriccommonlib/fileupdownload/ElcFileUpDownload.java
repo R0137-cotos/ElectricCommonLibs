@@ -19,13 +19,19 @@ public class ElcFileUpDownload {
 	@Autowired
 	CheckUtil checkUtil;
 
-	public InputStream downloadFile(String targetFilePath) throws IOException {
+	public InputStream downloadFile(String targetFilePath) {
 
+		// 対象パスにファイルが存在しない場合チェックエラー
 		File file = new File(targetFilePath);
 		if (!file.exists()) {
 			throw new ErrorCheckException(checkUtil.addErrorInfo(new ArrayList<ErrorInfo>(), "FileNotFoundError"));
 		}
 
-		return new FileInputStream(file);
+		// IOエラーが発生した場合チェックエラー
+		try {
+			return new FileInputStream(file);
+		} catch (IOException e) {
+			throw new ErrorCheckException(checkUtil.addErrorInfo(new ArrayList<ErrorInfo>(), "FileDownloadError"));
+		}
 	}
 }
