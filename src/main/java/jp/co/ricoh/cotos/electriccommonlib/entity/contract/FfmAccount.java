@@ -1,25 +1,24 @@
 package jp.co.ricoh.cotos.electriccommonlib.entity.contract;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 import javax.persistence.Column;
+import javax.persistence.Embeddable;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
-
-import lombok.Data;
-import lombok.EqualsAndHashCode;
 import javax.persistence.Table;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBase;
 import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.FfmAccountRepository;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * FFM計上を表すEntity
@@ -31,13 +30,38 @@ import jp.co.ricoh.cotos.electriccommonlib.repository.contract.FfmAccountReposit
 @CotosComplementTarget(entity = FfmAccount.class, repository = FfmAccountRepository.class)
 public class FfmAccount extends EntityBase {
 
+	@Embeddable
+	@Data
+	public static class Id implements Serializable {
+
+		/**
+		 * シリアルバージョンID
+		 */
+		private static final long serialVersionUID = 1L;
+
+		/**
+		 * 作成データパターン
+		 */
+		@ApiModelProperty(value = "作成データパターン", required = true, position = 5, allowableValues = "range[0,255]")
+		private String ffmDataPtn;
+
+		/**
+		 * NSPユニークキー
+		 */
+		@ApiModelProperty(value = "NSPユニークキー", required = true, position = 10, allowableValues = "range[0,255]")
+		private String ffmNspKey;
+	}
+
+	@EmbeddedId
+	private Id id;
+
 	/**
 	 * データ作成日
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "データ作成日", required = false, position = 1, allowableValues = "range[0,255]")
 	private String ffmDataCreateDate;
-	
+
 	/**
 	 * データ作成時間
 	 */
@@ -51,21 +75,14 @@ public class FfmAccount extends EntityBase {
 	@Column(nullable = true)
 	@ApiModelProperty(value = "FFM会社コード", required = false, position = 3, allowableValues = "range[0,255]")
 	private String ffmCompanyCd;
-	
+
 	/**
 	 * 契約種類区分
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "契約種類区分", required = false, position = 4, allowableValues = "range[0,255]")
 	private String ffmContractTypeKbn;
-	
-	/**
-	 * 作成データパターン
-	 */
-	@Id
-	@ApiModelProperty(value = "作成データパターン", required = true, position = 5, allowableValues = "range[0,255]")
-	private String ffmDataPtn;
-	
+
 	/**
 	 * 勘定識別
 	 */
@@ -93,14 +110,7 @@ public class FfmAccount extends EntityBase {
 	@Column(nullable = true)
 	@ApiModelProperty(value = "債権債務照合キー", required = false, position = 9, allowableValues = "range[0,255]")
 	private String ffmMatchingKey;
-	
-	/**
-	 * NSPユニークキー
-	 */
-	@Id
-	@ApiModelProperty(value = "NSPユニークキー", required = true, position = 10, allowableValues = "range[0,255]")
-	private String ffmNspKey;
-	
+
 	/**
 	 * 案件番号
 	 */
@@ -282,119 +292,119 @@ public class FfmAccount extends EntityBase {
 	@Digits(integer = 19, fraction = 2)
 	@ApiModelProperty(value = "仕切前消費税額", required = false, position = 35, allowableValues = "range[0.00,9999999999999999999.99]")
 	private BigDecimal ffmTaxPriceBeforeInvoice;
-	
+
 	/**
 	 * 商品コード
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "商品コード", required = false, position = 36, allowableValues = "range[0,255]")
 	private String ffmProdactCd;
-	
+
 	/**
 	 * 機種略号
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "機種略号", required = false, position = 37, allowableValues = "range[0,255]")
 	private String ffmModelId;
-	
+
 	/**
 	 * 機番
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "機番", required = false, position = 38, allowableValues = "range[0,255]")
 	private String ffmSerialId;
-	
+
 	/**
 	 * 見積時の入力商品名
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "見積時の入力商品名", required = false, position = 39, allowableValues = "range[0,255]")
 	private String ffmQuotationProdactName;
-	
+
 	/**
 	 * 原価計上商品コード
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "原価計上商品コード", required = false, position = 40, allowableValues = "range[0,255]")
 	private String ffmCostProdactName;
-	
+
 	/**
 	 * 仕入区分
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "仕入区分", required = false, position = 41, allowableValues = "range[0,255]")
 	private String ffmPurchaseType;
-	
+
 	/**
 	 * 仕入値引区分
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "仕入値引区分", required = false, position = 42, allowableValues = "range[0,255]")
 	private String ffmPurchaseDiscntType;
-	
+
 	/**
 	 * 仕入購買区分
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "仕入購買区分", required = false, position = 43, allowableValues = "range[0,255]")
 	private String ffmPurchaseClassType;
-	
+
 	/**
 	 * 仕入取引日
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "仕入取引日", required = false, position = 44, allowableValues = "range[0,255]")
 	private String ffmPurchaseDate;
-	
+
 	/**
 	 * 他社商品区分
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "他社商品区分", required = false, position = 45, allowableValues = "range[0,255]")
 	private String ffmNonRItemCd;
-	
+
 	/**
 	 * 仕入取引先コード
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "仕入取引先コード", required = false, position = 46, allowableValues = "range[0,255]")
 	private String ffmSupplierCd;
-	
+
 	/**
 	 * 仕入課所設定区分
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "仕入課所設定区分", required = false, position = 47, allowableValues = "range[0,255]")
 	private String ffmDeptAssortType;
-	
+
 	/**
 	 * 仕入課所コード
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "仕入課所コード", required = false, position = 48, allowableValues = "range[0,255]")
 	private String ffmPurchaseLocationCd;
-	
+
 	/**
 	 * 仕入責任得意先コード
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "仕入責任得意先コード", required = false, position = 49, allowableValues = "range[0,255]")
 	private String ffmPurchaseRespClientCd;
-	
+
 	/**
 	 * 在庫区コード
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "在庫区コード", required = false, position = 50, allowableValues = "range[0,255]")
 	private String ffmRdStrctInventoryCd;
-	
+
 	/**
 	 * 特価番号
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "特価番号", required = false, position = 51, allowableValues = "range[0,255]")
 	private String ffmDealsNo;
-	
+
 	/**
 	 * 仕入数量
 	 */

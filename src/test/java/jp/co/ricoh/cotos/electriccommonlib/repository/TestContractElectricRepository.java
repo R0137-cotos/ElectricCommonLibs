@@ -198,7 +198,7 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 
 	@Test
 	public void 全てのカラムがNullではないことを確認_FFM計上() {
-		全てのカラムがNullではないことを確認_共通(ffmAccountRepository, 1L);
+		全てのカラムがNullではないことを確認_共通(ffmAccountRepository);
 	}
 	
 	@Test
