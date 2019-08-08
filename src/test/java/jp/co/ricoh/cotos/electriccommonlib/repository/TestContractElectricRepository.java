@@ -29,6 +29,7 @@ import jp.co.ricoh.cotos.electriccommonlib.repository.contract.ElectricDealerCon
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.ElectricExpertContractRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.EntryContentHighPressureRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.EntryContentLowPressureRepository;
+import jp.co.ricoh.cotos.electriccommonlib.repository.contract.FfmAccountRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.ImportantPointExplainerRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.MailAddressInformationRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.UnitPriceHighPressureRepository;
@@ -65,6 +66,9 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 	@Autowired
 	ElectricAppropriationRepository electricAppropriationRepository;
 
+	@Autowired
+	FfmAccountRepository ffmAccountRepository;
+	
 	@Autowired
 	ElectricDealerContractRepository electricDealerContractRepository;
 
@@ -192,6 +196,11 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 		全てのカラムがNullではないことを確認_共通(electricAppropriationRepository, 1L);
 	}
 
+	@Test
+	public void 全てのカラムがNullではないことを確認_FFM計上() {
+		全てのカラムがNullではないことを確認_共通(ffmAccountRepository);
+	}
+	
 	@Test
 	public void 全てのカラムがNullではないことを確認_重要事項説明者() {
 		全てのカラムがNullではないことを確認_共通(importantPointExplainerRepository, 1L);
