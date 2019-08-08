@@ -8,6 +8,7 @@ DELETE from unit_price_low_pressure;
 DELETE from electric_expert_contract;
 DELETE from electric_dealer_contract;
 DELETE from electric_appropriation;
+DELETE from ffm_account;
 DELETE from billing_basic_information;
 DELETE from billing_mail_address_information;
 DELETE from client_master;
