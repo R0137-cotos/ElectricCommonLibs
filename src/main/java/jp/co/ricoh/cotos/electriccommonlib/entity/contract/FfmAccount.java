@@ -359,7 +359,7 @@ public class FfmAccount extends EntityBase {
 	/**
 	 * 他社商品区分
 	 */
-	@Column(nullable = true)
+	@Column(nullable = true, name = "ffm_non_r_item_cd")
 	@ApiModelProperty(value = "他社商品区分", required = false, position = 45, allowableValues = "range[0,255]")
 	private String ffmNonRItemCd;
 
@@ -753,14 +753,14 @@ public class FfmAccount extends EntityBase {
 	/**
 	 * 請求期間(開始)
 	 */
-	@Column(nullable = true)
+	@Column(nullable = true, name = "ffm_r_billing_period_start")
 	@ApiModelProperty(value = "請求期間(開始)", required = false, position = 97, allowableValues = "range[0,255]")
 	private String ffmRBillingPeriodStart;
 
 	/**
 	 * 請求期間(終了)
 	 */
-	@Column(nullable = true)
+	@Column(nullable = true, name = "ffm_r_billing_period_end")
 	@ApiModelProperty(value = "請求期間(終了)", required = false, position = 98, allowableValues = "range[0,255]")
 	private String ffmRBillingPeriodEnd;
 
