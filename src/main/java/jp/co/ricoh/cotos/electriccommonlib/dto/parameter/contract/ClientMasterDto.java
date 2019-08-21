@@ -6,11 +6,15 @@ import javax.validation.constraints.Size;
 
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.dto.parameter.common.DtoBase;
+import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
+import jp.co.ricoh.cotos.electriccommonlib.entity.contract.ClientMaster;
+import jp.co.ricoh.cotos.electriccommonlib.repository.contract.ClientMasterRepository;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = false)
 @Data
+@CotosComplementTarget(entity = ClientMaster.class, repository = ClientMasterRepository.class)
 public class ClientMasterDto extends DtoBase {
 
 	/**

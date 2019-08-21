@@ -11,14 +11,17 @@ import javax.validation.constraints.Size;
 
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.dto.parameter.common.DtoBase;
+import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
 import jp.co.ricoh.cotos.electriccommonlib.entity.contract.CancellationInformation.CancellationReason;
 import jp.co.ricoh.cotos.electriccommonlib.entity.contract.CancellationInformation.NonBillingReason;
 import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricFormMaster.CancellationDiv;
+import jp.co.ricoh.cotos.electriccommonlib.repository.contract.CancellationInformationRepository;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = false)
 @Data
+@CotosComplementTarget(entity = CancellationInformationDto.class, repository = CancellationInformationRepository.class)
 public class CancellationInformationDto extends DtoBase {
 
 	/**

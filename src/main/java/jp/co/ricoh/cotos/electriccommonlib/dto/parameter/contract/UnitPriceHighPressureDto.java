@@ -11,12 +11,16 @@ import javax.validation.constraints.Size;
 
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.dto.parameter.common.DtoBase;
+import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
 import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.UnitPriceType;
+import jp.co.ricoh.cotos.electriccommonlib.entity.contract.UnitPriceHighPressure;
+import jp.co.ricoh.cotos.electriccommonlib.repository.contract.UnitPriceHighPressureRepository;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = false)
 @Data
+@CotosComplementTarget(entity = UnitPriceHighPressure.class, repository = UnitPriceHighPressureRepository.class)
 public class UnitPriceHighPressureDto extends DtoBase {
 
 	/**
@@ -93,7 +97,7 @@ public class UnitPriceHighPressureDto extends DtoBase {
 	/**
 	 * 登録者名
 	 */
-    @Size(max = 255)
+	@Size(max = 255)
 	@ApiModelProperty(value = "登録者名", required = false, position = 12, allowableValues = "range[0,255]")
 	private String createdUserName;
 }

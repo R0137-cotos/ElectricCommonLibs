@@ -12,12 +12,16 @@ import javax.validation.constraints.Size;
 
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.dto.parameter.common.DtoBase;
+import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
 import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.UnitPriceType;
+import jp.co.ricoh.cotos.electriccommonlib.entity.contract.UnitPriceLowPressure;
+import jp.co.ricoh.cotos.electriccommonlib.repository.contract.UnitPriceLowPressureRepository;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = false)
 @Data
+@CotosComplementTarget(entity = UnitPriceLowPressure.class, repository = UnitPriceLowPressureRepository.class)
 public class UnitPriceLowPressureDto extends DtoBase {
 
 	/**
@@ -82,14 +86,14 @@ public class UnitPriceLowPressureDto extends DtoBase {
 	@Digits(integer = 19, fraction = 2)
 	@ApiModelProperty(value = "従量料金(動力)_その他夏季_売価", required = false, position = 10, allowableValues = "range[0.00,9999999999999999999.99]")
 	private BigDecimal usageFeeOtherSeasonSellingPrice;
-	
+
 	/**
 	 * 登録者名
 	 */
 	@Size(max = 255)
 	@ApiModelProperty(value = "登録者名", required = false, position = 11, allowableValues = "range[0,255]")
 	private String createdUserName;
-	
+
 	/**
 	 * 基本料金_定価
 	 */
@@ -97,7 +101,7 @@ public class UnitPriceLowPressureDto extends DtoBase {
 	@Digits(integer = 19, fraction = 2)
 	@ApiModelProperty(value = "基本料金_定価", required = false, position = 12, allowableValues = "range[0.00,9999999999999999999.99]")
 	private BigDecimal basicListPrice;
-	
+
 	/**
 	 * 基本料金_売価
 	 */
@@ -105,7 +109,7 @@ public class UnitPriceLowPressureDto extends DtoBase {
 	@Digits(integer = 19, fraction = 2)
 	@ApiModelProperty(value = "基本料金_売価", required = false, position = 13, allowableValues = "range[0.00,9999999999999999999.99]")
 	private BigDecimal basicSellingPrice;
-	
+
 	/**
 	 * 作成日
 	 */

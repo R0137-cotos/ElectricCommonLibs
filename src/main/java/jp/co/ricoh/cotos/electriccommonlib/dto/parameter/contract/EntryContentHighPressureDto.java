@@ -9,12 +9,16 @@ import javax.validation.constraints.Min;
 
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.dto.parameter.common.DtoBase;
+import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
 import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.Scale;
+import jp.co.ricoh.cotos.electriccommonlib.entity.contract.EntryContentHighPressure;
+import jp.co.ricoh.cotos.electriccommonlib.repository.contract.EntryContentHighPressureRepository;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = false)
 @Data
+@CotosComplementTarget(entity = EntryContentHighPressure.class, repository = EntryContentHighPressureRepository.class)
 public class EntryContentHighPressureDto extends DtoBase {
 
 	/**

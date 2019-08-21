@@ -5,14 +5,17 @@ import javax.validation.constraints.Size;
 
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.dto.parameter.common.DtoBase;
+import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
 import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.SendInvoiceDiv;
-import jp.co.ricoh.cotos.electriccommonlib.entity.contract.BillingBasicInformation.CollectMethod;
+import jp.co.ricoh.cotos.electriccommonlib.entity.contract.BillingBasicInformation;
 import jp.co.ricoh.cotos.electriccommonlib.entity.contract.BillingBasicInformation.Honorific;
+import jp.co.ricoh.cotos.electriccommonlib.repository.contract.BillingBasicInformationRepository;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = false)
 @Data
+@CotosComplementTarget(entity = BillingBasicInformation.class, repository = BillingBasicInformationRepository.class)
 public class BillingBasicInformationDto extends DtoBase {
 
 	/**
