@@ -4,11 +4,15 @@ import javax.validation.constraints.Size;
 
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.dto.parameter.common.DtoBase;
+import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
+import jp.co.ricoh.cotos.electriccommonlib.entity.contract.ElectricExpertContract;
+import jp.co.ricoh.cotos.electriccommonlib.repository.contract.ElectricExpertContractRepository;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = false)
 @Data
+@CotosComplementTarget(entity = ElectricExpertContract.class, repository = ElectricExpertContractRepository.class)
 public class ElectricExpertContractDto extends DtoBase {
 
 	/**
@@ -59,7 +63,7 @@ public class ElectricExpertContractDto extends DtoBase {
 	@Size(max = 255)
 	@ApiModelProperty(value = "修正時振替課所名", required = true, position = 9, allowableValues = "range[0,255]")
 	private String fixTransferSectionName;
-	
+
 	/**
 	 * MoM社員ID
 	 */
