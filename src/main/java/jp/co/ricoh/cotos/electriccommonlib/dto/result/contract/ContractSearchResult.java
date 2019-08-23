@@ -127,10 +127,10 @@ public class ContractSearchResult {
 	private String estimationTitle;
 
 	/**
-	 * 見積件名
+	 * 見積ID
 	 */
-	@ApiModelProperty(value = "見積ID", required = false, position = 18, allowableValues = "range[0,255]")
-	private String estimationId;
+	@ApiModelProperty(value = "見積ID", required = false, position = 18)
+	private Long estimationId;
 
 	/**
 	 * 案件番号
