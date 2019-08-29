@@ -164,4 +164,11 @@ public class BillingBasicInformationDto extends DtoBase {
 	@ApiModelProperty(value = "売上課所コード", required = false, position = 22, allowableValues = "range[0,255]")
 	private String salesDivisionCode;
 
+	/**
+	 * 請求先分類
+	 */
+	@Size(max = 255)
+	@ApiModelProperty(value = "請求先分類", required = false, position = 23, allowableValues = "range[0,255]")
+	private String billingDiv;
+
 }
