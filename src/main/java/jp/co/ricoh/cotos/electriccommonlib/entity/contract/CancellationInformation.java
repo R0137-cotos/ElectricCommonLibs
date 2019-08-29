@@ -42,7 +42,7 @@ public class CancellationInformation extends EntityBase {
 
 	public enum CancellationReason {
 
-		その他("1");
+		倒産("1"), 会社統合("2"), 事業所閉鎖("3"), 強制解約("4"), 未払い("5"), 約款に違反し申し出ても是正されない("6");
 
 		private final String text;
 
@@ -58,28 +58,6 @@ public class CancellationInformation extends EntityBase {
 
 		@JsonCreator
 		public static CancellationReason fromString(String string) {
-			return Arrays.stream(values()).filter(v -> v.text.equals(string)).findFirst().orElseThrow(() -> new IllegalArgumentException(String.valueOf(string)));
-		}
-	}
-
-	public enum NonBillingReason {
-
-		その他("1");
-
-		private final String text;
-
-		private NonBillingReason(final String text) {
-			this.text = text;
-		}
-
-		@Override
-		@JsonValue
-		public String toString() {
-			return this.text;
-		}
-
-		@JsonCreator
-		public static NonBillingReason fromString(String string) {
 			return Arrays.stream(values()).filter(v -> v.text.equals(string)).findFirst().orElseThrow(() -> new IllegalArgumentException(String.valueOf(string)));
 		}
 	}
@@ -210,8 +188,8 @@ public class CancellationInformation extends EntityBase {
 	 * 非請求理由
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "非請求理由", required = false, position = 16, allowableValues = "その他(\"1\")", example = "1")
-	private NonBillingReason nonBillingReason;
+	@ApiModelProperty(value = "非請求理由", required = false, position = 16, allowableValues = "range[0,255]")
+	private String nonBillingReason;
 
 	/**
 	 * 上長確認フラグ

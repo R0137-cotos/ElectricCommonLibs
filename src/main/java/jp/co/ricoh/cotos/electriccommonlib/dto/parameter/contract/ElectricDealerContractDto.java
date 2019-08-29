@@ -4,12 +4,16 @@ import javax.validation.constraints.Size;
 
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.dto.parameter.common.DtoBase;
+import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
 import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.PaymentMethod;
+import jp.co.ricoh.cotos.electriccommonlib.entity.contract.ElectricDealerContract;
+import jp.co.ricoh.cotos.electriccommonlib.repository.contract.ElectricDealerContractRepository;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = false)
 @Data
+@CotosComplementTarget(entity = ElectricDealerContract.class, repository = ElectricDealerContractRepository.class)
 public class ElectricDealerContractDto extends DtoBase {
 
 	/**

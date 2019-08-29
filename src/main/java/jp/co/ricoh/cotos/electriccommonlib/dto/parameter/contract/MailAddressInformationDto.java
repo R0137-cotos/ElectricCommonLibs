@@ -9,12 +9,16 @@ import javax.validation.constraints.Size;
 
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.dto.parameter.common.DtoBase;
+import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
+import jp.co.ricoh.cotos.electriccommonlib.entity.contract.MailAddressInformation;
 import jp.co.ricoh.cotos.electriccommonlib.entity.contract.MailAddressInformation.MailIdentification;
+import jp.co.ricoh.cotos.electriccommonlib.repository.contract.MailAddressInformationRepository;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = false)
 @Data
+@CotosComplementTarget(entity = MailAddressInformation.class, repository = MailAddressInformationRepository.class)
 public class MailAddressInformationDto extends DtoBase {
 
 	/**

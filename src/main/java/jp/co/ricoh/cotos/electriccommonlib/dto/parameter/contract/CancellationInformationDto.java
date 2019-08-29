@@ -11,14 +11,16 @@ import javax.validation.constraints.Size;
 
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.dto.parameter.common.DtoBase;
+import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
 import jp.co.ricoh.cotos.electriccommonlib.entity.contract.CancellationInformation.CancellationReason;
-import jp.co.ricoh.cotos.electriccommonlib.entity.contract.CancellationInformation.NonBillingReason;
 import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricFormMaster.CancellationDiv;
+import jp.co.ricoh.cotos.electriccommonlib.repository.contract.CancellationInformationRepository;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = false)
 @Data
+@CotosComplementTarget(entity = CancellationInformationDto.class, repository = CancellationInformationRepository.class)
 public class CancellationInformationDto extends DtoBase {
 
 	/**
@@ -120,8 +122,8 @@ public class CancellationInformationDto extends DtoBase {
 	/**
 	 * 非請求理由
 	 */
-	@ApiModelProperty(value = "非請求理由", required = true, position = 16, allowableValues = "その他(\"1\")", example = "1")
-	private NonBillingReason nonBillingReason;
+	@ApiModelProperty(value = "非請求理由", required = true, position = 16, allowableValues = "range[0,255]")
+	private String nonBillingReason;
 
 	/**
 	 * 上長確認フラグ

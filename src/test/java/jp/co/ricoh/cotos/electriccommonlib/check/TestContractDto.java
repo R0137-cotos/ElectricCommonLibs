@@ -766,9 +766,9 @@ public class TestContractDto {
 		testTarget.setAccountType(STR_256);
 		testTarget.setSalesDivisionCode(STR_256);
 		testTarget.setCollectMethod(STR_256);
-		;
+		testTarget.setBillingDiv(STR_256);
 		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
-		Assert.assertEquals(17, result.getErrorInfoList().size());
+		Assert.assertEquals(18, result.getErrorInfoList().size());
 	}
 
 	@Test

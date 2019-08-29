@@ -243,4 +243,12 @@ public class BillingBasicInformation extends EntityBase {
 	@OneToMany(mappedBy = "billingBasicInformation")
 	@ApiModelProperty(value = "計上実績", required = false, position = 24)
 	private List<ElectricAppropriation> electricAppropriationList;
+
+	/**
+	 * 請求先分類
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "請求先分類", required = false, position = 25, allowableValues = "range[0,255]")
+	private String billingDiv;
+
 }
