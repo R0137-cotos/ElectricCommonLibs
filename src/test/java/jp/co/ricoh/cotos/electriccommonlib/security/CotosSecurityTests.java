@@ -125,7 +125,24 @@ public class CotosSecurityTests {
 		}
 
 		RestTemplate rest = initRest(WITHIN_PERIOD_JWT);
-		ResponseEntity<String> response = rest.getForEntity(loadTopURL() + "securitytest/api/test/1?isSuccess=true&hasBody=false", String.class);
+		ResponseEntity<String> response = rest.getForEntity(loadTopURL() + "securitytest/api/test/1?isSuccess=true&hasBody=false&isAbtain=false", String.class);
+		Assert.assertEquals("正常終了", 200, response.getStatusCodeValue());
+		Assert.assertEquals("正常終了", "sid,mid,cotos.ricoh.co.jp,cotos_dev," + WITHIN_PERIOD_JWT + ",false,false,true", response.getBody());
+	}
+	
+	@Test
+	@Transactional
+	public void 認証_トークンあり_オリジンなし_正常_通常ユーザー_独自投票クラスで認可() {
+
+		try {
+			// MoM権限マップをMockにより差し替え
+			Mockito.doReturn(new HashMap<ActionDiv, Map<AuthDiv, AuthLevel>>()).when(elcMomAuthorityService).searchAllMomAuthorities(Mockito.anyString());
+		} catch (Exception e) {
+			Assert.fail("モック差し替えに失敗");
+		}
+
+		RestTemplate rest = initRest(WITHIN_PERIOD_JWT);
+		ResponseEntity<String> response = rest.getForEntity(loadTopURL() + "securitytest/api/test/1?isSuccess=true&hasBody=false&isAbtain=true", String.class);
 		Assert.assertEquals("正常終了", 200, response.getStatusCodeValue());
 		Assert.assertEquals("正常終了", "sid,mid,cotos.ricoh.co.jp,cotos_dev," + WITHIN_PERIOD_JWT + ",false,false,true", response.getBody());
 	}
@@ -135,7 +152,7 @@ public class CotosSecurityTests {
 	public void 認証_トークンあり_オリジンなし_正常_スーパーユーザー() throws Exception {
 
 		RestTemplate rest = initRest(WITHIN_PERIOD_JWT_SUPER_USER);
-		ResponseEntity<String> response = rest.getForEntity(loadTopURL() + "securitytest/api/test/1?isSuccess=true&hasBody=false", String.class);
+		ResponseEntity<String> response = rest.getForEntity(loadTopURL() + "securitytest/api/test/1?isSuccess=true&hasBody=false&isAbtain=false", String.class);
 		Assert.assertEquals("正常終了", 200, response.getStatusCodeValue());
 		Assert.assertEquals("正常終了", "sid,00500784,cotos.ricoh.co.jp,cotos.ricoh.co.jp," + WITHIN_PERIOD_JWT_SUPER_USER + ",true,false,false", response.getBody());
 	}
@@ -152,7 +169,7 @@ public class CotosSecurityTests {
 		}
 
 		RestTemplate rest = initRest(WITHIN_PERIOD_JWT_DUMMY_USER);
-		ResponseEntity<String> response = rest.getForEntity(loadTopURL() + "securitytest/api/test/1?isSuccess=true&hasBody=false", String.class);
+		ResponseEntity<String> response = rest.getForEntity(loadTopURL() + "securitytest/api/test/1?isSuccess=true&hasBody=false&isAbtain=false", String.class);
 		Assert.assertEquals("正常終了", 200, response.getStatusCodeValue());
 		Assert.assertEquals("正常終了", "sid,COTOS_BATCH_USER,cotos.ricoh.co.jp,cotos.ricoh.co.jp," + WITHIN_PERIOD_JWT_DUMMY_USER + ",true,true,true", response.getBody());
 	}
@@ -162,7 +179,7 @@ public class CotosSecurityTests {
 	public void 認証_トークンあり_異常_有効期限切れ() throws Exception {
 		RestTemplate rest = initRest(WITHOUT_PERIOD_JWT);
 		try {
-			rest.getForEntity(loadTopURL() + "securitytest/api/test/1?isSuccess=true&hasBody=false", String.class);
+			rest.getForEntity(loadTopURL() + "securitytest/api/test/1?isSuccess=true&hasBody=false&isAbtain=false", String.class);
 			Assert.fail("正常終了");
 		} catch (HttpClientErrorException e) {
 			Assert.assertEquals("アクセス不可であること", 401, e.getStatusCode().value());
@@ -174,7 +191,7 @@ public class CotosSecurityTests {
 	public void 認証_トークンあり_異常_改竄() throws Exception {
 		RestTemplate rest = initRest(FALSIFICATION_JWT);
 		try {
-			rest.getForEntity(loadTopURL() + "securitytest/api/test/1?isSuccess=true&hasBody=false", String.class);
+			rest.getForEntity(loadTopURL() + "securitytest/api/test/1?isSuccess=true&hasBody=false&isAbtain=false", String.class);
 			Assert.fail("正常終了");
 		} catch (HttpClientErrorException e) {
 			Assert.assertEquals("アクセス不可であること", 401, e.getStatusCode().value());
@@ -186,7 +203,7 @@ public class CotosSecurityTests {
 	public void 認証_トークンあり_異常_MoM権限無し() throws Exception {
 		RestTemplate rest = initRest(WITHIN_PERIOD_JWT);
 		try {
-			rest.getForEntity(loadTopURL() + "securitytest/api/test/1?isSuccess=true&hasBody=false", String.class);
+			rest.getForEntity(loadTopURL() + "securitytest/api/test/1?isSuccess=true&hasBody=false&isAbtain=false", String.class);
 			Assert.fail("正常終了");
 		} catch (HttpClientErrorException e) {
 			Assert.assertEquals("アクセス不可であること", 401, e.getStatusCode().value());
@@ -199,6 +216,27 @@ public class CotosSecurityTests {
 		val response = rest.getForEntity(loadTopURL() + "securitytest/api/swagger-ui.html", String.class);
 		Assert.assertEquals("アクセス可能であること", 200, response.getStatusCodeValue());
 		Assert.assertEquals("コンテンツが取得できていること", context.getBean(TestSecurityController.class).getSwaggerBody(), response.getBody());
+	}
+	
+	@Test
+	@Transactional
+	public void 認証_トークンあり_オリジンなし_異常_通常ユーザー_独自投票クラスで認可棄権() {
+
+		try {
+			// MoM権限マップをMockにより差し替え
+			Mockito.doReturn(new HashMap<ActionDiv, Map<AuthDiv, AuthLevel>>()).when(elcMomAuthorityService).searchAllMomAuthorities(Mockito.anyString());
+		} catch (Exception e) {
+			Assert.fail("モック差し替えに失敗");
+		}
+
+		RestTemplate rest = initRest(WITHIN_PERIOD_JWT);
+		
+		try {
+			rest.getForEntity(loadTopURL() + "securitytest/api/test/1?isSuccess=true&hasBody=false&isAbtain=true&isAbtainOriginal=true", String.class);
+			Assert.fail("正常終了");
+		} catch (HttpClientErrorException e) {
+			Assert.assertEquals("アクセス不可であること", 403, e.getStatusCode().value());
+		}
 	}
 
 	@Test

@@ -7,7 +7,6 @@ import org.springframework.boot.autoconfigure.security.Http401AuthenticationEntr
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.access.AccessDecisionManager;
-import org.springframework.security.access.vote.AffirmativeBased;
 import org.springframework.security.authentication.AccountStatusUserDetailsChecker;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -29,6 +28,9 @@ import jp.co.ricoh.cotos.commonlib.security.PreAuthenticationFilter;
 @EnableWebSecurity
 public class TestWebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+	@Autowired
+	AbstainTestVoter abstainTestVoter;
+	
 	@Autowired
 	TestVoter testVoter;
 
@@ -92,6 +94,6 @@ public class TestWebSecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 
 	private AccessDecisionManager createAccessDecisionManager() {
-		return new AffirmativeBased(Arrays.asList(testVoter));
+		return new CotosElcAccessDecisionManager(Arrays.asList(testVoter, abstainTestVoter));
 	}
 }
