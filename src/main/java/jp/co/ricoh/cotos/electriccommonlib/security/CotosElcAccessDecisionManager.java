@@ -5,26 +5,16 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.AccessDecisionVoter;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.access.ConfigAttribute;
 import org.springframework.security.access.vote.AbstractAccessDecisionManager;
 import org.springframework.security.core.Authentication;
 
-import jp.co.ricoh.cotos.commonlib.logic.check.CheckUtil;
-import jp.co.ricoh.cotos.commonlib.logic.message.MessageUtil;
-
 public class CotosElcAccessDecisionManager extends AbstractAccessDecisionManager {
 
 	/** ロガー */
 	private static final Log log = LogFactory.getLog(CotosElcAccessDecisionManager.class);
-
-	@Autowired
-	CheckUtil checkUtil;
-
-	@Autowired
-	MessageUtil messageUtil;
 
 	public CotosElcAccessDecisionManager(List<AccessDecisionVoter<? extends Object>> decisionVoters) {
 		super(decisionVoters);
