@@ -70,7 +70,7 @@ public class ElcMomAuthorityService extends MomAuthorityService {
 			return targetEmployeeMasterList.stream().anyMatch(targetEmployeeMaster -> editor.getMomEmployeeId().equals(targetEmployeeMaster.getMomEmployeeId()));
 		case 配下:
 			// 担当SA、追加編集者、担当CE、担当SEの所属組織が配下であるか確認
-			return targetEmployeeMasterList.stream().anyMatch(targetEmployeeMaster -> this.isLowerOrg(targetEmployeeMaster.getMomOrgId(), editor.getMomOrgId(), editor.getOrgHierarchyLevel()));
+			return targetEmployeeMasterList.stream().anyMatch(targetEmployeeMaster -> this.isLowerOrg(targetEmployeeMaster.getMomOrgId(), editor.getMomOrgId()));
 		case 自社:
 		case 地域:
 		case 東西:
