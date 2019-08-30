@@ -19,13 +19,13 @@ import jp.co.ricoh.cotos.commonlib.logic.check.CheckUtil;
 import jp.co.ricoh.cotos.commonlib.logic.message.MessageUtil;
 
 public class CotosElcAccessDecisionManager extends AbstractAccessDecisionManager {
-	
+
 	/** ロガー */
 	private static final Log log = LogFactory.getLog(CotosElcAccessDecisionManager.class);
-	
+
 	@Autowired
 	CheckUtil checkUtil;
-	
+
 	@Autowired
 	MessageUtil messageUtil;
 
