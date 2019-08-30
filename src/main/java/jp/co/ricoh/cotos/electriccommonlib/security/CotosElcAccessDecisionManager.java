@@ -1,6 +1,5 @@
 package jp.co.ricoh.cotos.electriccommonlib.security;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -13,8 +12,6 @@ import org.springframework.security.access.ConfigAttribute;
 import org.springframework.security.access.vote.AbstractAccessDecisionManager;
 import org.springframework.security.core.Authentication;
 
-import jp.co.ricoh.cotos.commonlib.exception.ErrorCheckException;
-import jp.co.ricoh.cotos.commonlib.exception.ErrorInfo;
 import jp.co.ricoh.cotos.commonlib.logic.check.CheckUtil;
 import jp.co.ricoh.cotos.commonlib.logic.message.MessageUtil;
 
@@ -45,7 +42,7 @@ public class CotosElcAccessDecisionManager extends AbstractAccessDecisionManager
 
 			case AccessDecisionVoter.ACCESS_DENIED:
 				// 一度でも拒否された場合
-				throw new ErrorCheckException(checkUtil.addErrorInfo(new ArrayList<ErrorInfo>(), "AccessDeniedError"));
+				throw new AccessDeniedException(messages.getMessage("AbstractAccessDecisionManager.accessDenied", "Access is denied"));
 
 			default:
 				continue;
@@ -53,7 +50,8 @@ public class CotosElcAccessDecisionManager extends AbstractAccessDecisionManager
 		}
 
 		// 最終結果が棄権の場合
-		log.info(messageUtil.createMessageInfo("AccessAbstainError"));
-		throw new ErrorCheckException(checkUtil.addErrorInfo(new ArrayList<ErrorInfo>(), "AccessDeniedError"));
+		// ToDO:#4025
+		log.info("対応する投票クラスが存在しません。");
+		checkAllowIfAllAbstainDecisions();
 	}
 }
