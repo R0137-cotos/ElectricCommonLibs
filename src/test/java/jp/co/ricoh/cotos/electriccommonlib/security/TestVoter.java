@@ -35,7 +35,7 @@ public class TestVoter implements AccessDecisionVoter<FilterInvocation> {
 
 		boolean hasBody = Boolean.valueOf(fi.getRequest().getParameter("hasBody"));
 		boolean isSuccess = Boolean.valueOf(fi.getRequest().getParameter("isSuccess"));
-		if (Boolean.valueOf(fi.getRequest().getParameter("isAbtain"))) {
+		if (Boolean.valueOf(fi.getRequest().getParameter("isAbstain"))) {
 			return ACCESS_ABSTAIN;
 		}
 

@@ -15,8 +15,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  */
 @Component
 public class AbstainTestVoter implements AccessDecisionVoter<FilterInvocation> {
-	
-	private static final String TEST_DUMMY_URL_PATTERN = "dummy";
 
 	@Override
 	public boolean supports(ConfigAttribute attribute) {
@@ -31,13 +29,9 @@ public class AbstainTestVoter implements AccessDecisionVoter<FilterInvocation> {
 	@Override
 	public int vote(Authentication authentication, FilterInvocation fi, Collection<ConfigAttribute> attributes) {
 
-		if (authentication == null) {
-			return ACCESS_DENIED;
-		}
-
 		boolean hasBody = Boolean.valueOf(fi.getRequest().getParameter("hasBody"));
 		boolean isSuccess = Boolean.valueOf(fi.getRequest().getParameter("isSuccess"));
-		if (Boolean.valueOf(fi.getRequest().getParameter("isAbtainOriginal"))) {
+		if (Boolean.valueOf(fi.getRequest().getParameter("isAbstainOriginal"))) {
 			return ACCESS_ABSTAIN;
 		}
 

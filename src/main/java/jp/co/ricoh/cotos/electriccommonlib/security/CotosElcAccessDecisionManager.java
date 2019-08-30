@@ -1,45 +1,38 @@
 package jp.co.ricoh.cotos.electriccommonlib.security;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.AccessDecisionVoter;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.access.ConfigAttribute;
 import org.springframework.security.access.vote.AbstractAccessDecisionManager;
 import org.springframework.security.core.Authentication;
 
+import jp.co.ricoh.cotos.commonlib.exception.ErrorCheckException;
+import jp.co.ricoh.cotos.commonlib.exception.ErrorInfo;
+import jp.co.ricoh.cotos.commonlib.logic.check.CheckUtil;
+import jp.co.ricoh.cotos.commonlib.logic.message.MessageUtil;
+
 public class CotosElcAccessDecisionManager extends AbstractAccessDecisionManager {
+	
+	/** ロガー */
+	private static final Log log = LogFactory.getLog(CotosElcAccessDecisionManager.class);
+	
+	@Autowired
+	CheckUtil checkUtil;
+	
+	@Autowired
+	MessageUtil messageUtil;
 
 	public CotosElcAccessDecisionManager(List<AccessDecisionVoter<? extends Object>> decisionVoters) {
 		super(decisionVoters);
 	}
 
-	// ~ Methods
-	// ========================================================================================================
-
-	/**
-	 * This concrete implementation simply polls all configured
-	 * {@link AccessDecisionVoter}s and grants access if any
-	 * <code>AccessDecisionVoter</code> voted affirmatively. Denies access only if
-	 * there was a deny vote AND no affirmative votes.
-	 * <p>
-	 * If every <code>AccessDecisionVoter</code> abstained from voting, the decision
-	 * will be based on the {@link #isAllowIfAllAbstainDecisions()} property
-	 * (defaults to false).
-	 * </p>
-	 *
-	 * @param authentication
-	 *            the caller invoking the method
-	 * @param object
-	 *            the secured object
-	 * @param configAttributes
-	 *            the configuration attributes associated with the method being
-	 *            invoked
-	 *
-	 * @throws AccessDeniedException
-	 *             if access is denied
-	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void decide(Authentication authentication, Object object, Collection<ConfigAttribute> configAttributes) throws AccessDeniedException {
 
@@ -52,7 +45,7 @@ public class CotosElcAccessDecisionManager extends AbstractAccessDecisionManager
 
 			case AccessDecisionVoter.ACCESS_DENIED:
 				// 一度でも拒否された場合
-				throw new AccessDeniedException(messages.getMessage("AbstractAccessDecisionManager.accessDenied", "参照が拒否されました。"));
+				throw new ErrorCheckException(checkUtil.addErrorInfo(new ArrayList<ErrorInfo>(), "AccessDeniedError"));
 
 			default:
 				continue;
@@ -60,6 +53,7 @@ public class CotosElcAccessDecisionManager extends AbstractAccessDecisionManager
 		}
 
 		// 最終結果が棄権の場合
-		throw new AccessDeniedException(messages.getMessage("AbstractAccessDecisionManager.accessDenied", "参照が棄権されました。"));
+		log.info(messageUtil.createMessageInfo("AccessAbstainError"));
+		throw new ErrorCheckException(checkUtil.addErrorInfo(new ArrayList<ErrorInfo>(), "AccessDeniedError"));
 	}
 }
