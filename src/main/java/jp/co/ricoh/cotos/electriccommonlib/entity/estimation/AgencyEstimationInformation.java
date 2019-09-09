@@ -11,10 +11,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Digits;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBase;
+import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
+import jp.co.ricoh.cotos.electriccommonlib.repository.estimation.AgencyEstimationInformationRepository;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -25,6 +29,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Table(name = "agency_estimation_information")
+@CotosComplementTarget(entity = AgencyEstimationInformation.class, repository = AgencyEstimationInformationRepository.class)
 public class AgencyEstimationInformation extends EntityBase {
 
 	/**
@@ -70,6 +75,8 @@ public class AgencyEstimationInformation extends EntityBase {
 	 * 手数料率
 	 */
 	@Column(nullable = true)
+	@DecimalMin("0.00")
+	@Digits(integer = 5, fraction = 2)
 	@ApiModelProperty(value = "手数料率", required = false, position = 6, allowableValues = "range[0.00,99999.99]")
 	private BigDecimal feeRate;
 }
