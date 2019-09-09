@@ -15,6 +15,7 @@ import jp.co.ricoh.cotos.electriccommonlib.TestTools;
 import jp.co.ricoh.cotos.electriccommonlib.entity.contract.BillingBasicInformation;
 import jp.co.ricoh.cotos.electriccommonlib.entity.contract.ClientMaster;
 import jp.co.ricoh.cotos.electriccommonlib.entity.contract.ContractElectric;
+import jp.co.ricoh.cotos.electriccommonlib.repository.contract.AgencyContractInformationRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.BillingBasicInformationRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.BillingHistoryRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.BillingMailAddressInformationRepository;
@@ -39,6 +40,9 @@ import jp.co.ricoh.cotos.electriccommonlib.repository.contract.UnitPriceLowPress
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 public class TestContractElectricRepository extends RepositoryTestBase {
 
+	@Autowired
+	AgencyContractInformationRepository agencyContractInformationRepository;
+	
 	@Autowired
 	BillingBasicInformationRepository billingBasicInformationRepository;
 
@@ -180,7 +184,12 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 	public void 全てのカラムがNullではないことを確認_請求先Mailアドレス情報() {
 		全てのカラムがNullではないことを確認_共通(billingMailAddressInformationRepository, 1L);
 	}
-
+	
+	@Test
+	public void 全てのカラムがNullではないことを確認_取次情報() {
+		全てのカラムがNullではないことを確認_共通(agencyContractInformationRepository, 1L);
+	}
+	
 	@Test
 	public void 全てのカラムがNullではないことを確認_請求基本情報() {
 		全てのカラムがNullではないことを確認_共通(billingBasicInformationRepository, 1L);

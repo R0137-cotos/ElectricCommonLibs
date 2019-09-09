@@ -36,3 +36,5 @@ DELETE from important_point_explainer;
 DELETE from commission_master;
 DELETE from profit_transfer_department_master;
 DELETE from electric_billing_attached_file;
+DELETE from agency_estimation_information;
+DELETE from agency_contract_information;

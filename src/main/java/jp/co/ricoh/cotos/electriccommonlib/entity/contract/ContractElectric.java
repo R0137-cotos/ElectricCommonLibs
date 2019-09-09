@@ -442,7 +442,7 @@ public class ContractElectric extends EntityBase {
 	 * 商流区分
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "商流区分", required = true, position = 52, allowableValues = "直売(\"1\"), 代売(\"2\"), 社内(\"3\")", example = "1")
+	@ApiModelProperty(value = "商流区分", required = true, position = 52, allowableValues = "直売(\"1\"), 媒介(\"2\"), 社内(\"3\"), 取次(\"4\")", example = "1")
 	private ElectricCommercialFlowDiv electricCommercialFlowDiv;
 
 	/**
@@ -538,4 +538,11 @@ public class ContractElectric extends EntityBase {
 	@ApiModelProperty(value = "契約終了日", required = false, position = 66)
 	@Temporal(TemporalType.DATE)
 	private Date contractEndDate;
+	
+	/**
+	 * 契約期間
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "契約期間", required = false, position = 67, allowableValues = "range[0,255]")
+	private String contractPeriod;
 }

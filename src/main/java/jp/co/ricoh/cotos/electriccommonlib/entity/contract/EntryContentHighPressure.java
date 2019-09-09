@@ -192,4 +192,50 @@ public class EntryContentHighPressure extends EntityBase {
 	@Digits(integer = 8, fraction = 2)
 	@ApiModelProperty(value = "変動部", required = false, position = 18, allowableValues = "range[0.00,99999999.99]")
 	private BigDecimal variable;
+	
+	/**
+	 * アンシラリーサービス契約容量(高圧)
+	 */
+	@Column(nullable = true)
+	@DecimalMin("0.00")
+	@Digits(integer = 8, fraction = 2)
+	@ApiModelProperty(value = "アンシラリーサービス契約容量(高圧)", required = false, position = 19, allowableValues = "range[0.00,99999999.99]")
+	private BigDecimal ancillaryCapacityHighPressure;
+	
+	/**
+	 * 該当なし
+	 */
+	@Column(nullable = true)
+	@Max(9)
+	@Min(0)
+	@ApiModelProperty(value = "該当なし", required = false, position = 20, allowableValues = "range[0,9]")
+	private Integer notApplicableFlg;
+
+	/**
+	 * 東北取次（新規）
+	 */
+	@Column(nullable = true)
+	@Max(9)
+	@Min(0)
+	@ApiModelProperty(value = "東北取次（新規）", required = false, position = 21, allowableValues = "range[0,9]")
+	private Integer tohokuAgencyNewFlg;
+
+	/**
+	 * 東北取次（RJ電力からの切り替え）
+	 */
+	@Column(nullable = true)
+	@Max(9)
+	@Min(0)
+	@ApiModelProperty(value = "東北取次（RJ電力からの切り替え）", required = false, position = 22, allowableValues = "range[0,9]")
+	private Integer tohokuAgencySwitchFlg;
+
+	/**
+	 * 協議制で契約電力増加の場合
+	 */
+	@Column(nullable = true)
+	@Max(9)
+	@Min(0)
+	@ApiModelProperty(value = "協議制で契約電力増加の場合", required = false, position = 23, allowableValues = "range[0,9]")
+	private Integer increaseElectricPowerFlg;
+
 }
