@@ -1,6 +1,7 @@
 package jp.co.ricoh.cotos.electriccommonlib.entity.estimation;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Max;
@@ -166,7 +169,7 @@ public class EstimationElectric extends EntityBase {
 	 * 商流区分
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "商流区分", required = true, position = 20, allowableValues = "直売(\"1\"), 代売(\"2\"), 社内(\"3\")", example = "1")
+	@ApiModelProperty(value = "商流区分", required = true, position = 20, allowableValues = "直売(\"1\"), 媒介(\"2\"), 社内(\"3\"), 取次(\"4\")", example = "1")
 	private ElectricCommercialFlowDiv electricCommercialFlowDiv;
 
 	/**
@@ -271,4 +274,18 @@ public class EstimationElectric extends EntityBase {
 	@Column(nullable = true, name = "co2_emission_factor")
 	@ApiModelProperty(value = "CO2排出係数", required = false, position = 33, allowableValues = "range[0,255]")
 	private String co2EmissionFactor;
+
+	/**
+	 * アンシラリーサービス契約容量(高圧)
+	 */
+	@Column(nullable = true, name = "ancillary_capacity_high_pressure")
+	@ApiModelProperty(value = "アンシラリーサービス契約容量(高圧)", required = false, position = 34, allowableValues = "range[0.00,99999999.99]")
+	private BigDecimal ancillaryCapacityHighPressure;
+
+	/**
+	 * 契約期間
+	 */
+	@Column(nullable = true, name = "contract_period")
+	@ApiModelProperty(value = "契約期間", required = false, position = 35, allowableValues = "range[0,255]")
+	private String contractPeriod;
 }

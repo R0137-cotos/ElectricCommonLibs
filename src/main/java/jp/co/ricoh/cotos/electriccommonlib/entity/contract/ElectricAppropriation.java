@@ -589,4 +589,22 @@ public class ElectricAppropriation extends EntityBase {
 	@Column(nullable = true)
 	@ApiModelProperty(value = "請求データ作成年月", required = false, position = 67, allowableValues = "range[0,255]")
 	private String billingDataCreateYm;
+
+	/**
+	 * 取次手数料金率
+	 */
+	@Column(nullable = true)
+	@DecimalMin("0.00")
+	@Digits(integer = 5, fraction = 2)
+	@ApiModelProperty(value = "取次手数料金率", required = false, position = 68, allowableValues = "range[0.00,99999.99]")
+	private BigDecimal agencyFeeRate;
+
+	/**
+	 * 取次手数料金額
+	 */
+	@Column(nullable = true)
+	@DecimalMin("0.00")
+	@Digits(integer = 5, fraction = 2)
+	@ApiModelProperty(value = "取次手数料金率", required = false, position = 69, allowableValues = "range[0.00,99999.99]")
+	private BigDecimal agencyFeeAmount;
 }

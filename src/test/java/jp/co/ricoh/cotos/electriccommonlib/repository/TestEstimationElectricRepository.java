@@ -11,6 +11,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import jp.co.ricoh.cotos.electriccommonlib.DBConfig;
 import jp.co.ricoh.cotos.electriccommonlib.TestTools;
+import jp.co.ricoh.cotos.electriccommonlib.repository.estimation.AgencyEstimationInformationRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.estimation.ElectricDealerEstimationRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.estimation.ElectricExpertEstimationRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.estimation.EstimationElectricRepository;
@@ -20,6 +21,9 @@ import jp.co.ricoh.cotos.electriccommonlib.repository.estimation.FeeSimulationHe
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 public class TestEstimationElectricRepository extends RepositoryTestBase {
 
+	@Autowired
+	AgencyEstimationInformationRepository agencyEstimationInformationRepository;
+	
 	@Autowired
 	ElectricDealerEstimationRepository electricDealerEstimationRepository;
 
@@ -61,7 +65,12 @@ public class TestEstimationElectricRepository extends RepositoryTestBase {
 	public void 全てのカラムがNullではないことを確認_見積_電力専任情報() {
 		全てのカラムがNullではないことを確認_共通(electricExpertEstimationRepository, 1L);
 	}
-
+	
+	@Test
+	public void 全てのカラムがNullではないことを確認_見積_取次情報() {
+		全てのカラムがNullではないことを確認_共通(agencyEstimationInformationRepository, 1L);
+	}
+	
 	@Test
 	public void 全てのカラムがNullではないことを確認_見積_販売店情報() {
 		全てのカラムがNullではないことを確認_共通(electricDealerEstimationRepository, 1L);

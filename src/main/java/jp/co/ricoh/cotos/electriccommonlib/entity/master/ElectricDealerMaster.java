@@ -1,7 +1,7 @@
 package jp.co.ricoh.cotos.electriccommonlib.entity.master;
 
 import java.math.BigDecimal;
-
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,7 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import io.swagger.annotations.ApiModelProperty;
@@ -242,4 +243,68 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	@ApiModelProperty(value = "媒介手数料率", required = false, position = 27, allowableValues = "range[0,99999999999.99]")
 	@JsonProperty("BIKI_TSURYU_RT")
 	private BigDecimal bikiTsuryuRt;
+
+	/**
+	 * 口座名義人名
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "口座名義人名", required = false, position = 28, allowableValues = "range[0,1000]")
+	@JsonProperty("KUZ_MIGNN_MI")
+	private String kuzMignnMi;
+
+	/**
+	 * 支払先サイト(支払先コード)
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "支払先サイト(支払先コード)", required = false, position = 29, allowableValues = "range[0,1000]")
+	@JsonProperty("SHHRI_SITE")
+	private String shhriSite;
+
+	/**
+	 * 上流工程コード
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "上流工程コード", required = false, position = 30, allowableValues = "range[0,1000]")
+	@JsonProperty("PROCESS_CD")
+	private String processCd;
+
+	/**
+	 * 登録ユーザID
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "登録ユーザID", required = false, position = 31, allowableValues = "range[0,1000]")
+	@JsonProperty("REGIST_USER_ID")
+	private String registUserId;
+	
+	/**
+	 * 登録日時
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "登録日時", required = false, position = 32)
+	@Temporal(TemporalType.DATE)
+	private Date registTime;
+
+	/**
+	 * 更新ユーザID
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "更新ユーザID", required = false, position = 33, allowableValues = "range[0,1000]")
+	@JsonProperty("UPDATE_USER_ID")
+	private String updateUserId;
+	
+	/**
+	 * 更新日時
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "更新日時", required = false, position = 34)
+	@Temporal(TemporalType.DATE)
+	private Date updateTime;
+	
+	/**
+	 * バージョン
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "バージョン", required = false, position = 35, allowableValues = "range[0,9999999999999999999]")
+	@JsonProperty("R_VERSION")
+	private String rVersion;
 }
