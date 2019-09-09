@@ -278,14 +278,16 @@ public class EstimationElectric extends EntityBase {
 	/**
 	 * アンシラリーサービス契約容量(高圧)
 	 */
-	@Column(nullable = true, name = "ancillary_capacity_high_pressure")
+	@Column(nullable = true)
+	@DecimalMin("0.00")
+	@Digits(integer = 8, fraction = 2)
 	@ApiModelProperty(value = "アンシラリーサービス契約容量(高圧)", required = false, position = 34, allowableValues = "range[0.00,99999999.99]")
 	private BigDecimal ancillaryCapacityHighPressure;
 
 	/**
 	 * 契約期間
 	 */
-	@Column(nullable = true, name = "contract_period")
+	@Column(nullable = true)
 	@ApiModelProperty(value = "契約期間", required = false, position = 35, allowableValues = "range[0,255]")
 	private String contractPeriod;
 }

@@ -604,7 +604,7 @@ public class ElectricAppropriation extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@DecimalMin("0.00")
-	@Digits(integer = 5, fraction = 2)
-	@ApiModelProperty(value = "取次手数料金率", required = false, position = 69, allowableValues = "range[0.00,99999.99]")
+	@Digits(integer = 19, fraction = 2)
+	@ApiModelProperty(value = "取次手数料金額", required = false, position = 69, allowableValues = "range[0.00,9999999999999999999.99]")
 	private BigDecimal agencyFeeAmount;
 }

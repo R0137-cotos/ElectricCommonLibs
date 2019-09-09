@@ -1,5 +1,7 @@
 package jp.co.ricoh.cotos.electriccommonlib.entity.contract;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -67,5 +69,5 @@ public class AgencyContractInformation extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "手数料率", required = false, position = 6, allowableValues = "range[0.00,99999.99]")
-	private String feeRate;
+	private BigDecimal feeRate;
 }

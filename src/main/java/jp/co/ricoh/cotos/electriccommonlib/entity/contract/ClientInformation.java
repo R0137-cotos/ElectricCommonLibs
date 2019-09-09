@@ -32,8 +32,8 @@ import lombok.EqualsAndHashCode;
 public class ClientInformation extends EntityBase {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "contract_electric_seq")
-	@SequenceGenerator(name = "contract_electric_seq", sequenceName = "contract_electric_seq", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "client_information_seq")
+	@SequenceGenerator(name = "client_information_seq", sequenceName = "client_information_seq", allocationSize = 1)
 	@ApiModelProperty(value = "ID", required = true, position = 1, allowableValues = "range[0,9223372036854775807]")
 	private long id;
 

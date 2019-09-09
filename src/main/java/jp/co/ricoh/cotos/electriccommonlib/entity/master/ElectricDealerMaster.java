@@ -306,5 +306,5 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	@Column(nullable = true)
 	@ApiModelProperty(value = "バージョン", required = false, position = 35, allowableValues = "range[0,9999999999999999999]")
 	@JsonProperty("R_VERSION")
-	private String rVersion;
+	private BigDecimal rVersion;
 }

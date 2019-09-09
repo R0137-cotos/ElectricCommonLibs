@@ -542,7 +542,7 @@ public class ContractElectric extends EntityBase {
 	/**
 	 * 契約期間
 	 */
-	@Column(nullable = true, name = "contract_period")
+	@Column(nullable = true)
 	@ApiModelProperty(value = "契約期間", required = false, position = 67, allowableValues = "range[0,255]")
 	private String contractPeriod;
 }
