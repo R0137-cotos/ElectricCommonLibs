@@ -87,4 +87,19 @@ public class ElectricExpertEstimation extends EntityBase {
 	@Column(nullable = true)
 	@ApiModelProperty(value = "MoM社員ID", required = false, position = 7, allowableValues = "range[0,255]")
 	private String momEmpId;
+
+	/**
+	 * 修正時振替先コード
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "修正時振替先コード", required = false, position = 8, allowableValues = "range[0,255]")
+	private String fixTransferDestinationCode;
+
+	/**
+	 * 修正時振替先課所名
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "修正時振替先課所名", required = false, position = 9, allowableValues = "range[0,255]")
+	private String fixTransferSectionName;
+
 }

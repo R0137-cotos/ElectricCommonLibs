@@ -34,7 +34,7 @@ public class EnumType {
 
 	public enum ElectricCommercialFlowDiv {
 
-		直売("1"), 代売("2"), 社内("3");
+		直売("1"), 媒介("2"), 社内("3"), 取次("4");
 
 		private final String text;
 
