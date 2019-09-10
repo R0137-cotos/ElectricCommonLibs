@@ -324,6 +324,83 @@ public class ContractSearchParameter {
 	private String updateTo;
 
 	/**
+	 * 該当なし
+	 */
+	@ApiParam(value = "該当なし", required = false)
+	@ApiModelProperty(value = "該当なし", required = false)
+	private Integer notApplicableFlg;
+
+	/**
+	 * 予備線
+	 */
+	@ApiParam(value = "予備線", required = false)
+	@ApiModelProperty(value = "予備線", required = false)
+	private Integer spareWireFlg;
+
+	/**
+	 * 予備電源
+	 */
+	@ApiParam(value = "予備電源", required = false)
+	@ApiModelProperty(value = "予備電源", required = false)
+	private Integer sparePowerFlg;
+
+	/**
+	 * アンシラリーサービス
+	 */
+	@ApiParam(value = "アンシラリーサービス", required = false)
+	@ApiModelProperty(value = "アンシラリーサービス", required = false)
+	private Integer ancillaryFlg;
+
+	/**
+	 * 蓄熱計量器継続
+	 */
+	@ApiParam(value = "蓄熱計量器継続", required = false)
+	@ApiModelProperty(value = "蓄熱計量器継続", required = false)
+	private Integer thermalStorageMeterFlg;
+
+	/**
+	 * 再エネ賦課金減免措置
+	 */
+	@ApiParam(value = "再エネ賦課金減免措置", required = false)
+	@ApiModelProperty(value = "再エネ賦課金減免措置", required = false)
+	private Integer renewableEnergyExemptionFlg;
+
+	/**
+	 * 需要地内転売契約
+	 */
+	@ApiParam(value = "需要地内転売契約", required = false)
+	@ApiModelProperty(value = "需要地内転売契約", required = false)
+	private Integer demandPlaceResales;
+
+	/**
+	 * 部分供給
+	 */
+	@ApiParam(value = "部分供給", required = false)
+	@ApiModelProperty(value = "部分供給", required = false)
+	private Integer partialSupplyFlg;
+
+	/**
+	 * 東北取次（新規）
+	 */
+	@ApiParam(value = "東北取次（新規）", required = false)
+	@ApiModelProperty(value = "東北取次（新規）", required = false)
+	private Integer tohokuAgencyNewFlg;
+
+	/**
+	 * 東北取次（RJ電力からの切り替え）
+	 */
+	@ApiParam(value = "東北取次（RJ電力からの切り替え）", required = false)
+	@ApiModelProperty(value = "東北取次（RJ電力からの切り替え）", required = false)
+	private Integer tohokuAgencySwitchFlg;
+
+	/**
+	 * 契約種別
+	 */
+	@ApiParam(value = "契約種別", required = false)
+	@ApiModelProperty(value = "契約種別", required = false)
+	private String contractType;
+
+	/**
 	 * パラメータをMapにする。
 	 */
 	public Map<String, Object> createParamaterMap() {
