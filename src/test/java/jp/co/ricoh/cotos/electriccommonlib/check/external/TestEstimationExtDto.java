@@ -167,6 +167,7 @@ public class TestEstimationExtDto {
 		targetEstimation.setCo2EmissionFactor("1");
 		targetEstimation.setVoltageCategory(entityEstimation.getVoltageCategory().toString());
 		targetEstimation.setSupplyStartScheduledDate("2019/05");
+		targetEstimation.setContractPeriod(entityEstimation.getContractPeriod());
 		target.setEstimationElectric(targetEstimation);
 
 		CustomerEstimationExtDto targetCustomer = 顧客正常データ作成();
@@ -178,6 +179,8 @@ public class TestEstimationExtDto {
 
 		ElectricExpertEstimationExtDto targetExpert = new ElectricExpertEstimationExtDto();
 		targetExpert.setMomEmployeeId("test");
+		targetExpert.setFixTransferDestinationCode("test");
+		targetExpert.setAffiliationCode("test");
 		target.setElectricExpertEstimation(targetExpert);
 
 		FeeSimulationHead entitySimulation = estimationElectricRepository.findOne(1L).getFeeSimulationHead();
@@ -228,11 +231,11 @@ public class TestEstimationExtDto {
 		target.setCo2EmissionMenu(ElectricPlan.CO2フリー);
 		target.setCo2EmissionFactor("1");
 		target.setVoltageCategory(entity.getVoltageCategory().toString());
+		target.setContractPeriod("test");
 		ParamterCheckResult result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
 		testTool.assertValidationOk(result);
 
 		// 異常系（@NotNull）
-		target.setOppSysKeyBn(null);
 		target.setElectricCommercialFlowDiv(null);
 		target.setElectricCommercialFlowDivCode(null);
 		target.setElectricArea(null);
@@ -258,6 +261,7 @@ public class TestEstimationExtDto {
 		target.setSpareWireFlg(null);
 		target.setSparePowerFlg(null);
 		target.setAncillaryFlg(null);
+		target.setContractPeriod(null);
 		result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
 		Assert.assertTrue(result.getErrorInfoList().size() == 26);
 
@@ -435,8 +439,10 @@ public class TestEstimationExtDto {
 
 		// 異常系（@Size(max))
 		target.setMomEmployeeId(STR_256);
+		target.setAffiliationCode(STR_256);
+		target.setFixTransferDestinationCode(STR_256);
 		result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
-		Assert.assertTrue(result.getErrorInfoList().size() == 1);
+		Assert.assertTrue(result.getErrorInfoList().size() == 3);
 
 	}
 
