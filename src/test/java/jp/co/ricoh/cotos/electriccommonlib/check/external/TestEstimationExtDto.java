@@ -283,8 +283,9 @@ public class TestEstimationExtDto {
 		target.setTypeOfContract(STR_256);
 		target.setVoltageCategory(STR_256);
 		target.setSupplyStartScheduledDate(STR_256);
+		target.setContractPeriod(STR_256);
 		result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
-		Assert.assertTrue(result.getErrorInfoList().size() == 14);
+		Assert.assertTrue(result.getErrorInfoList().size() == 15);
 
 		// 異常系(@Min)
 		BeanUtils.copyProperties(entity, target);
