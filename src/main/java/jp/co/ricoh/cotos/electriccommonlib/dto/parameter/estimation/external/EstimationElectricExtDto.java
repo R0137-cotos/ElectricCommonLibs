@@ -21,9 +21,8 @@ import lombok.EqualsAndHashCode;
 public class EstimationElectricExtDto {
 
 	/**RAIDEN外部キー情報*/
-	@NotNull
 	@Size(max = 255)
-	@ApiModelProperty(value = "RAIDEN外部キー情報", required = true, position = 3, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "RAIDEN外部キー情報", required = false, position = 3, allowableValues = "range[0,255]")
 	private String oppSysKeyBn;
 
 	/**商流区分*/
@@ -183,5 +182,11 @@ public class EstimationElectricExtDto {
 	@Min(0)
 	@ApiModelProperty(value = "アンシラリーサービス", required = true, position = 28, allowableValues = "range[0,9]")
 	private Integer ancillaryFlg;
+
+	/**契約期間*/
+	@NotNull
+	@Size(max = 255)
+	@ApiModelProperty(value = "契約期間", required = true, position = 29, allowableValues = "range[0,255]")
+	private String contractPeriod;
 
 }
