@@ -146,4 +146,44 @@ public class EntryContentHighPressureDto extends DtoBase {
 	@Digits(integer = 8, fraction = 2)
 	@ApiModelProperty(value = "変動部", required = false, position = 18, allowableValues = "range[0.00,99999999.99]")
 	private BigDecimal variable;
+	
+	/**
+	 * アンシラリーサービス契約容量(高圧)
+	 */
+	@DecimalMin("0.00")
+	@Digits(integer = 8, fraction = 2)
+	@ApiModelProperty(value = "アンシラリーサービス契約容量(高圧)", required = false, position = 19, allowableValues = "range[0.00,99999999.99]")
+	private BigDecimal ancillaryCapacityHighPressure;
+	
+	/**
+	 * 該当なし
+	 */
+	@Max(9)
+	@Min(0)
+	@ApiModelProperty(value = "該当なし", required = false, position = 20, allowableValues = "range[0,9]")
+	private Integer notApplicableFlg;
+
+	/**
+	 * 東北取次（新規）
+	 */
+	@Max(9)
+	@Min(0)
+	@ApiModelProperty(value = "東北取次（新規）", required = false, position = 21, allowableValues = "range[0,9]")
+	private Integer tohokuAgencyNewFlg;
+
+	/**
+	 * 東北取次（RJ電力からの切り替え）
+	 */
+	@Max(9)
+	@Min(0)
+	@ApiModelProperty(value = "東北取次（RJ電力からの切り替え）", required = false, position = 22, allowableValues = "range[0,9]")
+	private Integer tohokuAgencySwitchFlg;
+
+	/**
+	 * 協議制で契約電力増加の場合
+	 */
+	@Max(9)
+	@Min(0)
+	@ApiModelProperty(value = "協議制で契約電力増加の場合", required = false, position = 23, allowableValues = "range[0,9]")
+	private Integer increaseElectricPowerFlg;
 }

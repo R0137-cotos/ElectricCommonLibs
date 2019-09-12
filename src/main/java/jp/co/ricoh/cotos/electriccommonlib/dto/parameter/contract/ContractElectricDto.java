@@ -463,6 +463,20 @@ public class ContractElectricDto extends DtoBase {
 	@Column(name = "co2_emission_factor")
 	@ApiModelProperty(value = "CO2排出係数", required = false, position = 62, allowableValues = "range[0,255]")
 	private String co2EmissionFactor;
+	
+	/**
+	 * 契約期間
+	 */
+	@Size(max = 255)
+	@ApiModelProperty(value = "契約期間", required = false, position = 67, allowableValues = "range[0,255]")
+	private String contractPeriod;
+	
+	/**
+	 * 取次情報
+	 */
+	@Valid
+	@ApiModelProperty(value = "取次情報", required = false, position = 63)
+	private AgencyContractInformationDto agencyContractInformation;
 
 	/**
 	 * 初回供給開始日

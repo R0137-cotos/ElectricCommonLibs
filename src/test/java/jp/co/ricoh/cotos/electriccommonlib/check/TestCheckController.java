@@ -22,6 +22,7 @@ import org.springframework.web.client.RestTemplate;
 import jp.co.ricoh.cotos.commonlib.exception.ErrorCheckException;
 import jp.co.ricoh.cotos.commonlib.logic.check.CheckUtil;
 import jp.co.ricoh.cotos.commonlib.util.HeadersProperties;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.AgencyContractInformationDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.BillingBasicInformationDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.BillingMailAddressInformationDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.CancellationInformationDto;
@@ -41,6 +42,7 @@ import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.Contr
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.ContractElectricCreateExtInputDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.ContractInfoChangeExtDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.RegisterArrangementResultExtDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.AgencyEstimationInformationDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.ElectricDealerEstimationDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.ElectricExpertEstimationDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.EstimationElectricDto;
@@ -283,6 +285,16 @@ public class TestCheckController {
 
 	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/RegisterArrangementResultExtDto")
 	public ParamterCheckResult callParamterCheck(@RequestBody @Validated RegisterArrangementResultExtDto dto, BindingResult result) {
+		return createParameterCheckResult(result);
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/AgencyEstimationInformationDto")
+	public ParamterCheckResult callParamterCheck(@RequestBody @Validated AgencyEstimationInformationDto dto, BindingResult result) {
+		return createParameterCheckResult(result);
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/AgencyContractInformationDto")
+	public ParamterCheckResult callParamterCheck(@RequestBody @Validated AgencyContractInformationDto dto, BindingResult result) {
 		return createParameterCheckResult(result);
 	}
 }

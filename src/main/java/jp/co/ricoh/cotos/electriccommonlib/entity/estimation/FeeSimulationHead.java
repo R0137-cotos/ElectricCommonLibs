@@ -369,9 +369,9 @@ public class FeeSimulationHead extends EntityBase {
 	 * 長期割引単価
 	 */
 	@Column(nullable = true)
-	@DecimalMin("0.00")
+	@DecimalMin("-9999999999999999999.99")
 	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "長期割引単価", required = false, position = 46, allowableValues = "range[0.00,9999999999999999999.99]")
+	@ApiModelProperty(value = "長期割引単価", required = false, position = 46, allowableValues = "range[-9999999999999999999.99,0.00]")
 	private BigDecimal longtermDiscountPrice;
 	
 }

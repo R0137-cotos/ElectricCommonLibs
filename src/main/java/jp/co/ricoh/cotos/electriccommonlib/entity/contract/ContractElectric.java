@@ -62,8 +62,7 @@ public class ContractElectric extends EntityBase {
 
 		@JsonCreator
 		public static CurrentElectricCompanyDiv fromString(String string) {
-			return Arrays.stream(values()).filter(v -> v.text.equals(string)).findFirst()
-					.orElseThrow(() -> new IllegalArgumentException(String.valueOf(string)));
+			return Arrays.stream(values()).filter(v -> v.text.equals(string)).findFirst().orElseThrow(() -> new IllegalArgumentException(String.valueOf(string)));
 		}
 	}
 
@@ -538,11 +537,18 @@ public class ContractElectric extends EntityBase {
 	@ApiModelProperty(value = "契約終了日", required = false, position = 66)
 	@Temporal(TemporalType.DATE)
 	private Date contractEndDate;
-	
+
 	/**
 	 * 契約期間
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "契約期間", required = false, position = 67, allowableValues = "range[0,255]")
 	private String contractPeriod;
+
+	/**
+	 * 取次情報
+	 */
+	@OneToOne(mappedBy = "contractElectric")
+	@ApiModelProperty(value = "取次情報", required = false, position = 68)
+	private AgencyContractInformation agencyContractInformation;
 }

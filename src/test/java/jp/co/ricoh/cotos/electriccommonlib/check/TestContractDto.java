@@ -19,6 +19,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import jp.co.ricoh.cotos.commonlib.util.HeadersProperties;
 import jp.co.ricoh.cotos.electriccommonlib.DBConfig;
 import jp.co.ricoh.cotos.electriccommonlib.TestTools;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.AgencyContractInformationDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.BillingBasicInformationDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.BillingMailAddressInformationDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.CancellationInformationDto;
@@ -189,8 +190,9 @@ public class TestContractDto {
 		testTarget.setElectricCompanyCode(STR_256);
 		testTarget.setElectricMenuCode(STR_256);
 		testTarget.setCo2EmissionFactor(STR_256);
+		testTarget.setContractPeriod(STR_256);
 		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
-		Assert.assertEquals(34, result.getErrorInfoList().size());
+		Assert.assertEquals(35, result.getErrorInfoList().size());
 
 		// 異常系(@Min)
 		BeanUtils.copyProperties(entity, testTarget);
@@ -272,8 +274,12 @@ public class TestContractDto {
 		testTarget.setDemandPlaceResales(INT_10);
 		testTarget.setPartialSupplyFlg(INT_10);
 		testTarget.setOtherFlg(INT_10);
+		testTarget.setNotApplicableFlg(INT_10);
+		testTarget.setTohokuAgencyNewFlg(INT_10);
+		testTarget.setTohokuAgencySwitchFlg(INT_10);
+		testTarget.setIncreaseElectricPowerFlg(INT_10);
 		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
-		Assert.assertEquals(9, result.getErrorInfoList().size());
+		Assert.assertEquals(13, result.getErrorInfoList().size());
 
 		// 異常系(＠Min)
 		BeanUtils.copyProperties(entity.getEntryContentHighPressure(), testTarget);
@@ -286,8 +292,12 @@ public class TestContractDto {
 		testTarget.setDemandPlaceResales(INT_MINUS_1);
 		testTarget.setPartialSupplyFlg(INT_MINUS_1);
 		testTarget.setOtherFlg(INT_MINUS_1);
+		testTarget.setNotApplicableFlg(INT_MINUS_1);
+		testTarget.setTohokuAgencyNewFlg(INT_MINUS_1);
+		testTarget.setTohokuAgencySwitchFlg(INT_MINUS_1);
+		testTarget.setIncreaseElectricPowerFlg(INT_MINUS_1);
 		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
-		Assert.assertEquals(9, result.getErrorInfoList().size());
+		Assert.assertEquals(13, result.getErrorInfoList().size());
 
 		// 異常系(@DecimalMin)
 		BeanUtils.copyProperties(entity.getEntryContentHighPressure(), testTarget);
@@ -297,8 +307,9 @@ public class TestContractDto {
 		testTarget.setPartialSupplySettingValue(DECIMAL_MINUS_001);
 		testTarget.setBase(DECIMAL_MINUS_001);
 		testTarget.setVariable(DECIMAL_MINUS_001);
+		testTarget.setAncillaryCapacityHighPressure(DECIMAL_MINUS_001);
 		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
-		Assert.assertEquals(6, result.getErrorInfoList().size());
+		Assert.assertEquals(7, result.getErrorInfoList().size());
 
 		// 異常系(@Decimal)
 		BeanUtils.copyProperties(entity.getEntryContentHighPressure(), testTarget);
@@ -1694,5 +1705,22 @@ public class TestContractDto {
 		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(4, result.getErrorInfoList().size());
 
+	}
+
+	@Test
+	public void AgencyContractInformationのテスト() throws Exception {
+
+		// 異常系(@Size(max))
+		AgencyContractInformationDto testTarget = new AgencyContractInformationDto();
+		testTarget.setAgencyName(STR_256);
+		testTarget.setSupplierCode(STR_256);
+		ParamterCheckResult result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		Assert.assertEquals(2, result.getErrorInfoList().size());
+
+		// 異常系(@DecimalMin)
+		testTarget = new AgencyContractInformationDto();
+		testTarget.setFeeRate(DECIMAL_MINUS_001);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		Assert.assertEquals(1, result.getErrorInfoList().size());
 	}
 }

@@ -57,4 +57,18 @@ public class ElectricExpertEstimationDto extends DtoBase {
 	@ApiModelProperty(value = "MoM社員ID", required = false, position = 7, allowableValues = "range[0,255]")
 	private String momEmpId;
 
+	/**
+	 * 修正時振替先コード
+	 */
+	@Size(max = 255)
+	@ApiModelProperty(value = "修正時振替先コード", required = false, position = 8, allowableValues = "range[0,255]")
+	private String fixTransferDestinationCode;
+
+	/**
+	 * 修正時振替先課所名
+	 */
+	@Size(max = 255)
+	@ApiModelProperty(value = "修正時振替先課所名", required = false, position = 9, allowableValues = "range[0,255]")
+	private String fixTransferSectionName;
+
 }
