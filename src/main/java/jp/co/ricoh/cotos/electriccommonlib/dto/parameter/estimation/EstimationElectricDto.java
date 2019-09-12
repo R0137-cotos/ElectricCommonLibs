@@ -255,4 +255,26 @@ public class EstimationElectricDto extends DtoBase {
 	@Column(name = "co2_emission_factor")
 	@ApiModelProperty(value = "CO2排出係数", required = false, position = 33, allowableValues = "range[0,255]")
 	private String co2EmissionFactor;
+
+	/**
+	 * アンシラリーサービス契約容量(高圧)
+	 */
+	@DecimalMin("0.00")
+	@Digits(integer = 8, fraction = 2)
+	@ApiModelProperty(value = "アンシラリーサービス契約容量(高圧)", required = false, position = 34, allowableValues = "range[0.00,99999999.99]")
+	private BigDecimal ancillaryCapacityHighPressure;
+
+	/**
+	 * 契約期間
+	 */
+	@Size(max = 255)
+	@ApiModelProperty(value = "契約期間", required = false, position = 35, allowableValues = "range[0,255]")
+	private String contractPeriod;
+
+	/**
+	 * 取次情報
+	 */
+	@Valid
+	@ApiModelProperty(value = "取次情報", required = false, position = 36)
+	private AgencyEstimationInformationDto agencyEstimationInformationt;
 }

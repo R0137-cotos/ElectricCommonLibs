@@ -17,6 +17,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import jp.co.ricoh.cotos.commonlib.util.HeadersProperties;
 import jp.co.ricoh.cotos.electriccommonlib.DBConfig;
 import jp.co.ricoh.cotos.electriccommonlib.TestTools;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.AgencyEstimationInformationDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.ElectricDealerEstimationDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.ElectricExpertEstimationDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.EstimationElectricDto;
@@ -122,8 +123,9 @@ public class TestEstimationDto {
 		testTarget.setElectricCompanyCode(STR_256);
 		testTarget.setElectricMenuCode(STR_256);
 		testTarget.setCo2EmissionFactor(STR_256);
+		testTarget.setContractPeriod(STR_256);
 		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
-		Assert.assertEquals(13, result.getErrorInfoList().size());
+		Assert.assertEquals(14, result.getErrorInfoList().size());
 
 		// 異常系(@Max)
 		testTarget = new EstimationElectricDto();
@@ -147,12 +149,13 @@ public class TestEstimationDto {
 		testTarget.setLoadFactor(DECIMAL_MINUS_001);
 		testTarget.setBasePart(DECIMAL_MINUS_001);
 		testTarget.setFluctuatingPart(DECIMAL_MINUS_001);
+		testTarget.setAncillaryCapacityHighPressure(DECIMAL_MINUS_001);
 		testTarget.setPartialSupplyFlg(INT_MINUS_1);
 		testTarget.setSpareWireFlg(INT_MINUS_1);
 		testTarget.setSparePowerFlg(INT_MINUS_1);
 		testTarget.setAncillaryFlg(INT_MINUS_1);
 		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
-		Assert.assertEquals(9, result.getErrorInfoList().size());
+		Assert.assertEquals(10, result.getErrorInfoList().size());
 
 	}
 
@@ -174,8 +177,10 @@ public class TestEstimationDto {
 		testTarget.setAffiliationCode(STR_256);
 		testTarget.setBelongs(STR_256);
 		testTarget.setMomEmpId(STR_256);
+		testTarget.setFixTransferDestinationCode(STR_256);
+		testTarget.setFixTransferSectionName(STR_256);
 		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
-		Assert.assertEquals(6, result.getErrorInfoList().size());
+		Assert.assertEquals(8, result.getErrorInfoList().size());
 
 	}
 
@@ -259,9 +264,31 @@ public class TestEstimationDto {
 		testTarget.setGrossMarginRj(DECIMAL_MINUS_001);
 		testTarget.setGrossProfitMarginRj(DECIMAL_MINUS_001);
 		testTarget.setBasicRateListPrice(DECIMAL_MINUS_001);
+		testTarget.setAgencyFeeAmount(DECIMAL_MINUS_001);
+		testTarget.setAgencyFeeRate(DECIMAL_MINUS_001);
+		testTarget.setAgencyDiscountPrice(DECIMAL_MINUS_001);
+		testTarget.setAgencyDiscountRate(DECIMAL_MINUS_001);
+		testTarget.setLongtermDiscountRate(DECIMAL_MINUS_001);
 		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
-		Assert.assertEquals(35, result.getErrorInfoList().size());
+		Assert.assertEquals(40, result.getErrorInfoList().size());
 
+	}
+
+	@Test
+	public void AgencyEstimationInformationのテスト() throws Exception {
+
+		// 異常系(@Size(max))
+		AgencyEstimationInformationDto testTarget = new AgencyEstimationInformationDto();
+		testTarget.setAgencyName(STR_256);
+		testTarget.setSupplierCode(STR_256);
+		ParamterCheckResult result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		Assert.assertEquals(2, result.getErrorInfoList().size());
+
+		// 異常系(@DecimalMin)
+		testTarget = new AgencyEstimationInformationDto();
+		testTarget.setFeeRate(DECIMAL_MINUS_001);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		Assert.assertEquals(1, result.getErrorInfoList().size());
 	}
 
 	@Test

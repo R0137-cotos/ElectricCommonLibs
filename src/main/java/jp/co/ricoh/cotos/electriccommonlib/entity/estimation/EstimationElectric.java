@@ -1,7 +1,6 @@
 package jp.co.ricoh.cotos.electriccommonlib.entity.estimation;
 
 import java.math.BigDecimal;
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,8 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Max;
@@ -290,4 +287,8 @@ public class EstimationElectric extends EntityBase {
 	@Column(nullable = true)
 	@ApiModelProperty(value = "契約期間", required = false, position = 35, allowableValues = "range[0,255]")
 	private String contractPeriod;
+
+	@OneToOne(mappedBy = "estimationElectric")
+	@ApiModelProperty(value = "取次情報", required = false, position = 36)
+	private AgencyEstimationInformation agencyEstimationInformation;
 }
