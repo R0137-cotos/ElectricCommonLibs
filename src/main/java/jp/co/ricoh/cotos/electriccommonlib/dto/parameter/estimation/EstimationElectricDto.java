@@ -276,5 +276,5 @@ public class EstimationElectricDto extends DtoBase {
 	 */
 	@Valid
 	@ApiModelProperty(value = "取次情報", required = false, position = 36)
-	private AgencyEstimationInformationDto agencyEstimationInformationt;
+	private AgencyEstimationInformationDto agencyEstimationInformation;
 }
