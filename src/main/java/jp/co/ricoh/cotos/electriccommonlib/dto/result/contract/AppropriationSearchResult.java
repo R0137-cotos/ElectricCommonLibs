@@ -108,6 +108,12 @@ public class AppropriationSearchResult {
 	private BigDecimal rjGrossProfit;
 
 	/**
+	 * 取次手数料金率
+	 */
+	@ApiModelProperty(value = "取次手数料金率", required = false, position = 16)
+	private BigDecimal agencyFeeRate;
+
+	/**
 	 * 取次手数料金額
 	 */
 	@ApiModelProperty(value = "取次手数料金額", required = false, position = 17)

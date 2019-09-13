@@ -116,16 +116,4 @@ public class BillingHistorySearchResult {
 	@Temporal(TemporalType.TIMESTAMP)
 	@ApiModelProperty(value = "未回収分回収日", required = false, position = 16)
 	private Date accruedCollectionDate;
-
-	/**
-	 * 取次手数料金率
-	 */
-	@ApiModelProperty(value = "取次手数料金率", required = false, position = 17)
-	private BigDecimal agencyFeeRate;
-
-	/**
-	 * 取次手数料金額
-	 */
-	@ApiModelProperty(value = "取次手数料金額", required = false, position = 18)
-	private BigDecimal agencyFeeAmount;
 }
