@@ -893,7 +893,7 @@ public class TestContractDto {
 		testTarget.setElectricDealerContract(new ElectricDealerContractCreateExtDto());
 		testTarget.setFeeSimulationHead(new FeeSimulationHeadCreateExtDto());
 		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
-		Assert.assertEquals(39, result.getErrorInfoList().size());
+		Assert.assertEquals(40, result.getErrorInfoList().size());
 
 		// 異常系(@Size(max))
 		entity = contractElectricRepository.findOne(1L);
@@ -903,6 +903,7 @@ public class TestContractDto {
 		testTarget.setCaseTitle(STR_256);
 		testTarget.setClientCode(STR_256);
 		testTarget.setChangePreferredDate(STR_256);
+
 		// 契約(電力)
 		BeanUtils.copyProperties(entity.getEntryContentLowPressure(), contractElectricExtDto);
 		BeanUtils.copyProperties(entity, contractElectricExtDto);
@@ -950,6 +951,7 @@ public class TestContractDto {
 		contractElectricExtDto.setCurrentElectricCompanyDiv(STR_256);
 		contractElectricExtDto.setContractUnit(STR_256);
 		contractElectricExtDto.setSupplyStartScheduledDate(STR_256);
+		contractElectricExtDto.setContractPeriod(STR_256);
 		testTarget.setContractElectric(contractElectricExtDto);
 		// 顧客
 		customerContractExtDto = new CustomerContractCreateExtDto();
@@ -1018,7 +1020,7 @@ public class TestContractDto {
 		feeSimulationHeadExtDto.setUsageFeeOtherSeasonBankPriceRj(BigDecimal.valueOf(100));
 		testTarget.setFeeSimulationHead(feeSimulationHeadExtDto);
 		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
-		Assert.assertEquals(64, result.getErrorInfoList().size());
+		Assert.assertEquals(65, result.getErrorInfoList().size());
 
 		// 異常系(@Min, @Decimal)
 		// テストデータ作成

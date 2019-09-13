@@ -345,4 +345,12 @@ public class ContractElectricCreateExtDto {
 	@ApiModelProperty(value = "振込フラグチェック(業務区)", required = true, position = 44, allowableValues = "range[0,9]")
 	private Integer transferCheckFlg;
 
+	/**
+	 * 契約期間
+	 */
+	@NotNull
+	@Size(max = 255)
+	@ApiModelProperty(value = "契約期間", required = true, position = 45, allowableValues = "range[0,255]")
+	private String contractPeriod;
+
 }
