@@ -966,4 +966,13 @@ public class FfmAccount extends EntityBase {
 	@Column(nullable = true)
 	@ApiModelProperty(value = "本体見積明細番号", required = false, position = 126, allowableValues = "range[0,255]")
 	private String ffmMainQuotationDetailCd;
+	
+	/**
+	 * 課金連携フラグ
+	 */
+	@Column(nullable = true)
+	@Max(9)
+	@Min(0)
+	@ApiModelProperty(value = "課金連携フラグ", required = false, position = 127, allowableValues = "range[0,9]")
+	private Integer ffmBillingCooperationFlg;
 }
