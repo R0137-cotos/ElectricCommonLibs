@@ -17,6 +17,8 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBaseMaster;
 import jp.co.ricoh.cotos.commonlib.entity.EnumType.ServiceCategory;
+import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
+import jp.co.ricoh.cotos.electriccommonlib.repository.master.ElectricMailControlMasterRepository;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -27,6 +29,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Table(name = "electric_mail_control_master")
+@CotosComplementTarget(entity = ElectricMailControlMaster.class, repository = ElectricMailControlMasterRepository.class)
 public class ElectricMailControlMaster extends EntityBaseMaster {
 
 	public enum ElectricNotificationTimingType {
@@ -134,7 +137,7 @@ public class ElectricMailControlMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = false)
 	@ApiModelProperty(value = "条件式追加フラグ", required = true, position = 12, allowableValues = "range[0,9]")
-	private Integer extendsQueryFlg;
+	private int extendsQueryFlg;
 
 	/**
 	 * 条件式

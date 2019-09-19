@@ -9,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.PrePersist;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -20,7 +19,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBase;
 import jp.co.ricoh.cotos.commonlib.entity.common.MailSendHistory.MailSendType;
+import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
 import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricMailControlMaster;
+import jp.co.ricoh.cotos.electriccommonlib.repository.common.ElectricMailSendHistoryRepository;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -31,6 +32,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Table(name = "electric_mail_send_history")
+@CotosComplementTarget(entity = ElectricMailSendHistory.class, repository = ElectricMailSendHistoryRepository.class)
 public class ElectricMailSendHistory extends EntityBase {
 
 	@Id
@@ -88,12 +90,7 @@ public class ElectricMailSendHistory extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Temporal(TemporalType.TIMESTAMP)
-	@ApiModelProperty(value = "実施日時(作成時不要)", required = false, position = 8, readOnly = true)
+	@ApiModelProperty(value = "実施日時", required = false, position = 8, readOnly = true)
 	private Date sendedAt;
 
-	@PrePersist
-	public void prePersist() {
-		super.prePersist();
-		this.sendedAt = super.getCreatedAt();
-	}
 }

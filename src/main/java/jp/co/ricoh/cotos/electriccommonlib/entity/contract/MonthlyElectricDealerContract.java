@@ -1,10 +1,13 @@
 package jp.co.ricoh.cotos.electriccommonlib.entity.contract;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -93,5 +96,19 @@ public class MonthlyElectricDealerContract extends EntityBase {
 	@Column(nullable = true)
 	@ApiModelProperty(value = "支払区分", required = false, position = 10, allowableValues = "定額(\"1\"), 定率(\"2\")", example = "1")
 	private PaymentMethod paymentMethod;
+
+	/**
+	 * 電力支払添付ファイル
+	 */
+	@OneToMany(mappedBy = "monthlyElectricDealerContract")
+	@ApiModelProperty(value = "電力支払添付ファイル", required = false, position = 11)
+	private List<ElectricPaymentAttachedFile> electricPaymentAttachedFileList;
+
+	/**
+	 * 計上実績
+	 */
+	@OneToMany(mappedBy = "monthlyElectricDealerContract")
+	@ApiModelProperty(value = "電力支払添付ファイル", required = false, position = 11)
+	private List<ElectricAppropriation> electricAppropriationList;
 
 }

@@ -15,6 +15,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBaseMaster;
 import jp.co.ricoh.cotos.commonlib.entity.master.MailConvertValueMaster.SubjectVodyType;
+import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
+import jp.co.ricoh.cotos.electriccommonlib.repository.master.ElectricMailConvertValueMasterRepository;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -25,6 +27,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Table(name = "electric_mail_convert_value_master")
+@CotosComplementTarget(entity = ElectricMailConvertValueMaster.class, repository = ElectricMailConvertValueMasterRepository.class)
 public class ElectricMailConvertValueMaster extends EntityBaseMaster {
 
 	@Id

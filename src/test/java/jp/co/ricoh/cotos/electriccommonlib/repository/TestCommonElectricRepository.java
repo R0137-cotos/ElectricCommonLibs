@@ -51,10 +51,16 @@ public class TestCommonElectricRepository extends RepositoryTestBase {
 		}
 	}
 
-	@Test
-	public void 全てのカラムがNullではないことを確認_共通_電力メール送信履歴_対象データIDと電力通知メール変換値マスタとメール送信区分より取得() {
-		全てのカラムがNullではないことを確認_共通(electricMailSendHistoryRepository, 1L);
+	// Todo
+	// 電力メール送信履歴について、今後他ドメインに拡張される可能性があるので、Commonへの配置としている
 
+	@Test
+	public void 全てのカラムがNullではないことを確認_共通_電力メール送信履歴() {
+		全てのカラムがNullではないことを確認_共通(electricMailSendHistoryRepository, 1L);
+	}
+
+	@Test
+	public void 電力メール送信履歴_対象データIDと電力通知メール変換値マスタとメール送信区分より取得_共通() {
 		long targetDataId = 1L;
 		ElectricMailControlMaster master = electricMailControlMasterRepository.findOne(1L);
 
@@ -70,9 +76,7 @@ public class TestCommonElectricRepository extends RepositoryTestBase {
 	}
 
 	@Test
-	public void 全てのカラムがNullではないことを確認_共通_電力メール送信履歴_電力通知メール変換値マスタとメール送信区分より取得() {
-		全てのカラムがNullではないことを確認_共通(electricMailSendHistoryRepository, 1L);
-
+	public void 電力通知メール変換値マスタとメール送信区分より取得_共通_電力メール送信履歴() {
 		ElectricMailControlMaster master = electricMailControlMasterRepository.findOne(1L);
 
 		// 力通知メール変換値マスタとメール送信区分により電力メール送信履歴を取得
