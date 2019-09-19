@@ -104,11 +104,4 @@ public class MonthlyElectricDealerContract extends EntityBase {
 	@ApiModelProperty(value = "電力支払添付ファイル", required = false, position = 11)
 	private List<ElectricPaymentAttachedFile> electricPaymentAttachedFileList;
 
-	/**
-	 * 計上実績
-	 */
-	@OneToMany(mappedBy = "monthlyElectricDealerContract")
-	@ApiModelProperty(value = "電力支払添付ファイル", required = false, position = 11)
-	private List<ElectricAppropriation> electricAppropriationList;
-
 }

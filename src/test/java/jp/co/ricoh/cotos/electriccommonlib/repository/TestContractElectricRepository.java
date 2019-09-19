@@ -1,5 +1,7 @@
 package jp.co.ricoh.cotos.electriccommonlib.repository;
 
+import java.util.List;
+
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Test;
@@ -15,6 +17,8 @@ import jp.co.ricoh.cotos.electriccommonlib.TestTools;
 import jp.co.ricoh.cotos.electriccommonlib.entity.contract.BillingBasicInformation;
 import jp.co.ricoh.cotos.electriccommonlib.entity.contract.ClientMaster;
 import jp.co.ricoh.cotos.electriccommonlib.entity.contract.ContractElectric;
+import jp.co.ricoh.cotos.electriccommonlib.entity.contract.ElectricAppropriation;
+import jp.co.ricoh.cotos.electriccommonlib.entity.contract.MonthlyElectricDealerContract;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.AgencyContractInformationRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.BillingBasicInformationRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.BillingHistoryRepository;
@@ -315,6 +319,48 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 		// null項目なく取得できていることを確認
 		try {
 			Assert.assertEquals(0, contractElectric.getContractElectricAttachedFileList().size());
+		} catch (Exception e1) {
+			Assert.fail("例外が発生した場合、エラー");
+		}
+	}
+
+	@Test
+	public void 契約電力IDより取得_計上実績() {
+
+		long contractElectricId = 1L;
+		List<ElectricAppropriation> electricAppropriation = electricAppropriationRepository.findByContractElectricId(contractElectricId);
+
+		// null項目なく取得できていることを確認
+		try {
+			Assert.assertEquals(1, electricAppropriation.size());
+		} catch (Exception e1) {
+			Assert.fail("例外が発生した場合、エラー");
+		}
+	}
+
+	@Test
+	public void 電力販売店会社IDより取得_計上実績() {
+
+		String electricTradingCompanyId = "販売店1";
+		ElectricAppropriation electricAppropriation = electricAppropriationRepository.findByElectricTradingCompanyId(electricTradingCompanyId);
+
+		// 電力販売店会社IDで取得できていることを確認
+		try {
+			Assert.assertEquals("販売店1", electricAppropriation.getElectricTradingCompanyId());
+		} catch (Exception e1) {
+			Assert.fail("例外が発生した場合、エラー");
+		}
+	}
+
+	@Test
+	public void 企業IDより取得_月次販売店情報() {
+
+		String companyId = "販売店1";
+		MonthlyElectricDealerContract monthlyElectricDealerContract = monthlyElectricDealerContractRepository.findByCompanyId(companyId);
+
+		// 企業IDで取得できていることを確認
+		try {
+			Assert.assertEquals("販売店1", monthlyElectricDealerContract.getCompanyId());
 		} catch (Exception e1) {
 			Assert.fail("例外が発生した場合、エラー");
 		}
