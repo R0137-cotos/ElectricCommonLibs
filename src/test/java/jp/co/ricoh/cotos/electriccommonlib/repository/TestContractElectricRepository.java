@@ -28,11 +28,13 @@ import jp.co.ricoh.cotos.electriccommonlib.repository.contract.ElectricAppropria
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.ElectricBillingAttachedFileRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.ElectricDealerContractRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.ElectricExpertContractRepository;
+import jp.co.ricoh.cotos.electriccommonlib.repository.contract.ElectricPaymentAttachedFileRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.EntryContentHighPressureRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.EntryContentLowPressureRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.FfmAccountRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.ImportantPointExplainerRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.MailAddressInformationRepository;
+import jp.co.ricoh.cotos.electriccommonlib.repository.contract.MonthlyElectricDealerContractRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.UnitPriceHighPressureRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.UnitPriceLowPressureRepository;
 
@@ -42,7 +44,7 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 
 	@Autowired
 	AgencyContractInformationRepository agencyContractInformationRepository;
-	
+
 	@Autowired
 	BillingBasicInformationRepository billingBasicInformationRepository;
 
@@ -72,7 +74,7 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 
 	@Autowired
 	FfmAccountRepository ffmAccountRepository;
-	
+
 	@Autowired
 	ElectricDealerContractRepository electricDealerContractRepository;
 
@@ -99,6 +101,12 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 
 	@Autowired
 	ElectricBillingAttachedFileRepository electricBillingAttachedFileRepository;
+
+	@Autowired
+	MonthlyElectricDealerContractRepository monthlyElectricDealerContractRepository;
+
+	@Autowired
+	ElectricPaymentAttachedFileRepository electricPaymentAttachedFileRepository;
 
 	@Autowired
 	TestTools testTools;
@@ -184,12 +192,12 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 	public void 全てのカラムがNullではないことを確認_請求先Mailアドレス情報() {
 		全てのカラムがNullではないことを確認_共通(billingMailAddressInformationRepository, 1L);
 	}
-	
+
 	@Test
 	public void 全てのカラムがNullではないことを確認_取次情報() {
 		全てのカラムがNullではないことを確認_共通(agencyContractInformationRepository, 1L);
 	}
-	
+
 	@Test
 	public void 全てのカラムがNullではないことを確認_請求基本情報() {
 		全てのカラムがNullではないことを確認_共通(billingBasicInformationRepository, 1L);
@@ -209,7 +217,7 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 	public void 全てのカラムがNullではないことを確認_FFM計上() {
 		全てのカラムがNullではないことを確認_共通(ffmAccountRepository);
 	}
-	
+
 	@Test
 	public void 全てのカラムがNullではないことを確認_重要事項説明者() {
 		全てのカラムがNullではないことを確認_共通(importantPointExplainerRepository, 1L);
@@ -218,6 +226,16 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 	@Test
 	public void 全てのカラムがNullではないことを確認_電力請求添付ファイル() {
 		全てのカラムがNullではないことを確認_共通(electricBillingAttachedFileRepository, 1L);
+	}
+
+	@Test
+	public void 全てのカラムがNullではないことを確認_月次販売店情報() {
+		全てのカラムがNullではないことを確認_共通(monthlyElectricDealerContractRepository, 1L);
+	}
+
+	@Test
+	public void 全てのカラムがNullではないことを確認_電力支払添付ファイル() {
+		全てのカラムがNullではないことを確認_共通(electricPaymentAttachedFileRepository, 1L);
 	}
 
 	@Test
