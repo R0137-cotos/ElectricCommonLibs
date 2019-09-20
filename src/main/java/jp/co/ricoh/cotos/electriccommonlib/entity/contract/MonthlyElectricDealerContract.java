@@ -102,7 +102,7 @@ public class MonthlyElectricDealerContract extends EntityBase {
 	 * メール送信
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "メール送信", required = false, position = 11, allowableValues = "未送信(\"1\"), 送信済み(\"2\"), 送信対象外(\"2\")", example = "1")
+	@ApiModelProperty(value = "メール送信", required = false, position = 11, allowableValues = "未送信(\"0\"), 送信済(\"1\"), 送信対象外(\"9\")", example = "0")
 	private SendMail sendMail;
 
 	/**
