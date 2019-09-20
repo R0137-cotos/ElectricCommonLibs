@@ -1,5 +1,8 @@
 package jp.co.ricoh.cotos.electriccommonlib.repository;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Test;
@@ -15,6 +18,8 @@ import jp.co.ricoh.cotos.electriccommonlib.TestTools;
 import jp.co.ricoh.cotos.electriccommonlib.entity.contract.BillingBasicInformation;
 import jp.co.ricoh.cotos.electriccommonlib.entity.contract.ClientMaster;
 import jp.co.ricoh.cotos.electriccommonlib.entity.contract.ContractElectric;
+import jp.co.ricoh.cotos.electriccommonlib.entity.contract.ElectricAppropriation;
+import jp.co.ricoh.cotos.electriccommonlib.entity.contract.MonthlyElectricDealerContract;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.AgencyContractInformationRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.BillingBasicInformationRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.BillingHistoryRepository;
@@ -28,11 +33,13 @@ import jp.co.ricoh.cotos.electriccommonlib.repository.contract.ElectricAppropria
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.ElectricBillingAttachedFileRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.ElectricDealerContractRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.ElectricExpertContractRepository;
+import jp.co.ricoh.cotos.electriccommonlib.repository.contract.ElectricPaymentAttachedFileRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.EntryContentHighPressureRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.EntryContentLowPressureRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.FfmAccountRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.ImportantPointExplainerRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.MailAddressInformationRepository;
+import jp.co.ricoh.cotos.electriccommonlib.repository.contract.MonthlyElectricDealerContractRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.UnitPriceHighPressureRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.UnitPriceLowPressureRepository;
 
@@ -42,7 +49,7 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 
 	@Autowired
 	AgencyContractInformationRepository agencyContractInformationRepository;
-	
+
 	@Autowired
 	BillingBasicInformationRepository billingBasicInformationRepository;
 
@@ -72,7 +79,7 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 
 	@Autowired
 	FfmAccountRepository ffmAccountRepository;
-	
+
 	@Autowired
 	ElectricDealerContractRepository electricDealerContractRepository;
 
@@ -99,6 +106,12 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 
 	@Autowired
 	ElectricBillingAttachedFileRepository electricBillingAttachedFileRepository;
+
+	@Autowired
+	MonthlyElectricDealerContractRepository monthlyElectricDealerContractRepository;
+
+	@Autowired
+	ElectricPaymentAttachedFileRepository electricPaymentAttachedFileRepository;
 
 	@Autowired
 	TestTools testTools;
@@ -184,12 +197,12 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 	public void 全てのカラムがNullではないことを確認_請求先Mailアドレス情報() {
 		全てのカラムがNullではないことを確認_共通(billingMailAddressInformationRepository, 1L);
 	}
-	
+
 	@Test
 	public void 全てのカラムがNullではないことを確認_取次情報() {
 		全てのカラムがNullではないことを確認_共通(agencyContractInformationRepository, 1L);
 	}
-	
+
 	@Test
 	public void 全てのカラムがNullではないことを確認_請求基本情報() {
 		全てのカラムがNullではないことを確認_共通(billingBasicInformationRepository, 1L);
@@ -209,7 +222,7 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 	public void 全てのカラムがNullではないことを確認_FFM計上() {
 		全てのカラムがNullではないことを確認_共通(ffmAccountRepository);
 	}
-	
+
 	@Test
 	public void 全てのカラムがNullではないことを確認_重要事項説明者() {
 		全てのカラムがNullではないことを確認_共通(importantPointExplainerRepository, 1L);
@@ -218,6 +231,16 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 	@Test
 	public void 全てのカラムがNullではないことを確認_電力請求添付ファイル() {
 		全てのカラムがNullではないことを確認_共通(electricBillingAttachedFileRepository, 1L);
+	}
+
+	@Test
+	public void 全てのカラムがNullではないことを確認_月次販売店情報() {
+		全てのカラムがNullではないことを確認_共通(monthlyElectricDealerContractRepository, 1L);
+	}
+
+	@Test
+	public void 全てのカラムがNullではないことを確認_電力支払添付ファイル() {
+		全てのカラムがNullではないことを確認_共通(electricPaymentAttachedFileRepository, 1L);
 	}
 
 	@Test
@@ -297,6 +320,66 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 		// null項目なく取得できていることを確認
 		try {
 			Assert.assertEquals(0, contractElectric.getContractElectricAttachedFileList().size());
+		} catch (Exception e1) {
+			Assert.fail("例外が発生した場合、エラー");
+		}
+	}
+
+	@Test
+	public void 契約電力IDより取得_計上実績() {
+
+		long contractElectricId = 1L;
+		List<ElectricAppropriation> electricAppropriation = electricAppropriationRepository.findByContractElectricId(contractElectricId);
+
+		// null項目なく取得できていることを確認
+		try {
+			Assert.assertEquals(1, electricAppropriation.size());
+		} catch (Exception e1) {
+			Assert.fail("例外が発生した場合、エラー");
+		}
+	}
+
+	@Test
+	public void 電力販売店会社IDと請求年月より取得_計上実績() {
+
+		String electricTradingCompanyId = "販売店1";
+		String billingYearMonth = "2017/11";
+		ElectricAppropriation electricAppropriation = electricAppropriationRepository.findByElectricTradingCompanyIdAndBillingYearMonth(electricTradingCompanyId, billingYearMonth);
+
+		// 電力販売店会社IDで取得できていることを確認
+		try {
+			Assert.assertEquals("販売店1", electricAppropriation.getElectricTradingCompanyId());
+		} catch (Exception e1) {
+			Assert.fail("例外が発生した場合、エラー");
+		}
+	}
+
+	@Test
+	public void 電力販売店会社IDと複数請求年月より取得_計上実績() {
+
+		String electricTradingCompanyId = "販売店1";
+		List<String> billingYearMonth = new ArrayList<>();
+		billingYearMonth.add("2017/11");
+		List<ElectricAppropriation> electricAppropriation = electricAppropriationRepository.findByElectricTradingCompanyIdAndBillingYearMonth(electricTradingCompanyId, billingYearMonth);
+
+		// 電力販売店会社IDで取得できていることを確認
+		try {
+			Assert.assertEquals(1, electricAppropriation.size());
+		} catch (Exception e1) {
+			Assert.fail("例外が発生した場合、エラー");
+		}
+	}
+
+	@Test
+	public void 企業IDと請求年月より取得_月次販売店情報() {
+
+		String companyId = "販売店1";
+		String billingYearMonth = "2017/11";
+		MonthlyElectricDealerContract monthlyElectricDealerContract = monthlyElectricDealerContractRepository.findByCompanyIdAndBillingYearMonth(companyId, billingYearMonth);
+
+		// 企業IDで取得できていることを確認
+		try {
+			Assert.assertEquals("販売店1", monthlyElectricDealerContract.getCompanyId());
 		} catch (Exception e1) {
 			Assert.fail("例外が発生した場合、エラー");
 		}

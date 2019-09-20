@@ -31,6 +31,8 @@ import jp.co.ricoh.cotos.electriccommonlib.repository.master.ElectricCompanyMast
 import jp.co.ricoh.cotos.electriccommonlib.repository.master.ElectricDealerMasterRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.master.ElectricFormIdentMasterRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.master.ElectricFormMasterRepository;
+import jp.co.ricoh.cotos.electriccommonlib.repository.master.ElectricMailControlMasterRepository;
+import jp.co.ricoh.cotos.electriccommonlib.repository.master.ElectricMailConvertValueMasterRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.master.HighContractCalendarMasterRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.master.ProfitTransferDepartmentMasterRepository;
 
@@ -65,6 +67,12 @@ public class TestMasterElectricRepository extends RepositoryTestBase {
 
 	@Autowired
 	ProfitTransferDepartmentMasterRepository profitTransferDepartmentMasterRepository;
+
+	@Autowired
+	ElectricMailControlMasterRepository electricMailControlMasterRepository;
+
+	@Autowired
+	ElectricMailConvertValueMasterRepository electricMailConvertValueMasterRepository;
 
 	@Autowired
 	TestTools testTools;
@@ -127,6 +135,16 @@ public class TestMasterElectricRepository extends RepositoryTestBase {
 	}
 
 	@Test
+	public void 全てのカラムがNullではないことを確認_マスタ_電力通知メール制御マスタ() {
+		全てのカラムがNullではないことを確認_マスタ(electricMailControlMasterRepository, 1L);
+	}
+
+	@Test
+	public void 全てのカラムがNullではないことを確認_マスタ_電力通知メール変換値マスタ() {
+		全てのカラムがNullではないことを確認_マスタ(electricMailConvertValueMasterRepository, 1L);
+	}
+
+	@Test
 	public void 全てのカラムがNullではないことを確認_マスタ_企業IDより取得() {
 		String hnbitnCd = "test";
 
@@ -170,13 +188,13 @@ public class TestMasterElectricRepository extends RepositoryTestBase {
 			Assert.fail("例外が発生した場合、エラー");
 		}
 	}
-	
+
 	@Test
 	public void 全てのカラムがNullではないことを確認_マスタ_粗利振替先部門マスタ_販社課所コードより取得() {
 		全てのカラムがNullではないことを確認_マスタ(profitTransferDepartmentMasterRepository, 1L);
-		
+
 		String affiliationCode = "2020367";
-		
+
 		// 販社課所コードにより粗利振替先部門マスタを取得
 		List<ProfitTransferDepartmentMaster> profitTransferDepartmentMasterList = profitTransferDepartmentMasterRepository.findByAffiliationCode(affiliationCode);
 		// null項目なく取得できていることを確認
@@ -185,6 +203,6 @@ public class TestMasterElectricRepository extends RepositoryTestBase {
 		} catch (Exception e1) {
 			Assert.fail("例外が発生した場合、エラー");
 		}
-		
+
 	}
 }

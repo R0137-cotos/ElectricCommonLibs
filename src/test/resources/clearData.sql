@@ -38,3 +38,8 @@ DELETE from profit_transfer_department_master;
 DELETE from electric_billing_attached_file;
 DELETE from agency_estimation_information;
 DELETE from agency_contract_information;
+DELETE from electric_mail_control_master;
+DELETE from electric_mail_convert_value_master;
+DELETE from electric_mail_send_history;
+DELETE from monthly_electric_dealer_contract;
+DELETE from electric_payment_attached_file;
