@@ -22,6 +22,8 @@ import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricFormMaster;
 import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricFormMaster.CancellationDiv;
 import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricFormMaster.ElectricFileType;
 import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricFormMaster.ElectricPlan;
+import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricMailControlMaster;
+import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricMailConvertValueMaster;
 import jp.co.ricoh.cotos.electriccommonlib.entity.master.HighContractCalendarMaster;
 import jp.co.ricoh.cotos.electriccommonlib.entity.master.ProfitTransferDepartmentMaster;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.ClientMasterRepository;
@@ -200,6 +202,20 @@ public class TestMasterElectricRepository extends RepositoryTestBase {
 		// null項目なく取得できていることを確認
 		try {
 			testTools.assertColumnsNotNull(profitTransferDepartmentMasterList.get(0));
+		} catch (Exception e1) {
+			Assert.fail("例外が発生した場合、エラー");
+		}
+
+	}
+
+	@Test
+	public void 電力通知メール制御マスタより取得_電力通知メール変換値マスタ() {
+		ElectricMailControlMaster electricMailControlMaster = electricMailControlMasterRepository.findOne(1L);
+		// 電力通知メール制御マスタより電力通知メール変換値マスタを取得
+		List<ElectricMailConvertValueMaster> electricMailConvertValueMasterList = electricMailConvertValueMasterRepository.findByElectricMailControlMaster(electricMailControlMaster);
+		// null項目なく取得できていることを確認
+		try {
+			testTools.assertColumnsNotNull(electricMailConvertValueMasterList.get(0));
 		} catch (Exception e1) {
 			Assert.fail("例外が発生した場合、エラー");
 		}
