@@ -8,6 +8,6 @@ import jp.co.ricoh.cotos.electriccommonlib.entity.contract.MonthlyElectricDealer
 @Repository
 public interface MonthlyElectricDealerContractRepository extends CrudRepository<MonthlyElectricDealerContract, Long> {
 
-	public MonthlyElectricDealerContract findByCompanyId(String companyId);
+	public MonthlyElectricDealerContract findByCompanyIdAndBillingYearMonth(String companyId, String billingYearMonth);
 
 }

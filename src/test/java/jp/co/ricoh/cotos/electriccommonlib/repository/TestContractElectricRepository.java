@@ -1,5 +1,6 @@
 package jp.co.ricoh.cotos.electriccommonlib.repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.AfterClass;
@@ -339,10 +340,11 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 	}
 
 	@Test
-	public void 電力販売店会社IDより取得_計上実績() {
+	public void 電力販売店会社IDと請求年月より取得_計上実績() {
 
 		String electricTradingCompanyId = "販売店1";
-		ElectricAppropriation electricAppropriation = electricAppropriationRepository.findByElectricTradingCompanyId(electricTradingCompanyId);
+		String billingYearMonth = "2017/11";
+		ElectricAppropriation electricAppropriation = electricAppropriationRepository.findByElectricTradingCompanyIdAndBillingYearMonth(electricTradingCompanyId, billingYearMonth);
 
 		// 電力販売店会社IDで取得できていることを確認
 		try {
@@ -353,10 +355,27 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 	}
 
 	@Test
-	public void 企業IDより取得_月次販売店情報() {
+	public void 電力販売店会社IDと複数請求年月より取得_計上実績() {
+
+		String electricTradingCompanyId = "販売店1";
+		List<String> billingYearMonth = new ArrayList<>();
+		billingYearMonth.add("2017/11");
+		List<ElectricAppropriation> electricAppropriation = electricAppropriationRepository.findByElectricTradingCompanyIdAndBillingYearMonth(electricTradingCompanyId, billingYearMonth);
+
+		// 電力販売店会社IDで取得できていることを確認
+		try {
+			Assert.assertEquals(1, electricAppropriation.size());
+		} catch (Exception e1) {
+			Assert.fail("例外が発生した場合、エラー");
+		}
+	}
+
+	@Test
+	public void 企業IDと請求年月より取得_月次販売店情報() {
 
 		String companyId = "販売店1";
-		MonthlyElectricDealerContract monthlyElectricDealerContract = monthlyElectricDealerContractRepository.findByCompanyId(companyId);
+		String billingYearMonth = "2017/11";
+		MonthlyElectricDealerContract monthlyElectricDealerContract = monthlyElectricDealerContractRepository.findByCompanyIdAndBillingYearMonth(companyId, billingYearMonth);
 
 		// 企業IDで取得できていることを確認
 		try {

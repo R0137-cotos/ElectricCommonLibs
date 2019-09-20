@@ -15,6 +15,7 @@ import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBase;
 import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
 import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.PaymentMethod;
+import jp.co.ricoh.cotos.electriccommonlib.entity.contract.BillingHistory.SendMail;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.MonthlyElectricDealerContractRepository;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -98,10 +99,24 @@ public class MonthlyElectricDealerContract extends EntityBase {
 	private PaymentMethod paymentMethod;
 
 	/**
+	 * メール送信
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "メール送信", required = false, position = 11, allowableValues = "未送信(\"1\"), 送信済み(\"2\"), 送信対象外(\"2\")", example = "1")
+	private SendMail sendMail;
+
+	/**
+	 * 請求年月
+	 */
+	@Column(nullable = false)
+	@ApiModelProperty(value = "請求年月", required = true, position = 12, allowableValues = "range[0,255]")
+	private String billingYearMonth;
+
+	/**
 	 * 電力支払添付ファイル
 	 */
 	@OneToMany(mappedBy = "monthlyElectricDealerContract")
-	@ApiModelProperty(value = "電力支払添付ファイル", required = false, position = 11)
+	@ApiModelProperty(value = "電力支払添付ファイル", required = false, position = 13)
 	private List<ElectricPaymentAttachedFile> electricPaymentAttachedFileList;
 
 }

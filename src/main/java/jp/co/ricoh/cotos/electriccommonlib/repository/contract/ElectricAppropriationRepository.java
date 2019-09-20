@@ -12,6 +12,8 @@ public interface ElectricAppropriationRepository extends CrudRepository<Electric
 
 	public List<ElectricAppropriation> findByContractElectricId(Long contractElectricId);
 
-	public ElectricAppropriation findByElectricTradingCompanyId(String electricTradingCompanyId);
+	public ElectricAppropriation findByElectricTradingCompanyIdAndBillingYearMonth(String electricTradingCompanyId, String billingYearMonth);
+
+	public List<ElectricAppropriation> findByElectricTradingCompanyIdAndBillingYearMonth(String electricTradingCompanyId, List<String> billingYearMonth);
 
 }
