@@ -165,7 +165,7 @@ public class ElectricMailControlMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "追加取得電力通知メール制御マスタID", required = false, position = 16, allowableValues = "range[0,9999999999999999999]")
-	private long additionalMailControlMasterId;
+	private Long additionalMailControlMasterId;
 
 	/**
 	 * メールテンプレートマスタID
