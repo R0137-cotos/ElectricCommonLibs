@@ -192,6 +192,6 @@ public class EstimationElectricExtDtoForCreate {
 	/** アンシラリーサービス契約容量 */
 	@DecimalMin("0.00")
 	@Digits(integer = 8, fraction = 2)
-	@ApiModelProperty(value = "契約期間", required = false, position = 30, allowableValues = "range[0.00,99999999.99]")
+	@ApiModelProperty(value = "アンシラリーサービス契約容量", required = false, position = 30, allowableValues = "range[0.00,99999999.99]")
 	private BigDecimal ancillaryCapacityHighPressure;
 }

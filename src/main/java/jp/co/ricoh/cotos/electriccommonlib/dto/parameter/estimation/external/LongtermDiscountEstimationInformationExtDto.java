@@ -27,7 +27,7 @@ public class LongtermDiscountEstimationInformationExtDto {
 	 */
 	@DecimalMax("0.00")
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "長期割引率", required = false, position = 2, allowableValues = "range[-9999999999999999999.99,0.00]")
+	@ApiModelProperty(value = "長期割引単価", required = false, position = 2, allowableValues = "range[-9999999999999999999.99,0.00]")
 	private BigDecimal longtermDiscountPrice;
 
 }
