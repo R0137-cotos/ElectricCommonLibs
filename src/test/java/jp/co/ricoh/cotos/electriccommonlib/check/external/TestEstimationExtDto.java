@@ -19,16 +19,20 @@ import jp.co.ricoh.cotos.commonlib.util.HeadersProperties;
 import jp.co.ricoh.cotos.electriccommonlib.DBConfig;
 import jp.co.ricoh.cotos.electriccommonlib.TestTools;
 import jp.co.ricoh.cotos.electriccommonlib.check.TestCheckController;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.AgencyEstimationInformationExtDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.CustomerEstimationExtDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.ElectricDealerEstimationExtDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.ElectricExpertEstimationExtDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.EstimationAddedEditorEmpExtDto;
-import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.EstimationElectricExtDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.EstimationElectricExtDtoForCreate;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.EstimationElectricExtDtoForPlanChange;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.EstimationExtCreateDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.EstimationExtPlanChangeDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.EstimationPicSaEmpExtDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.FeeSimulationHeadExtDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.LongtermDiscountEstimationInformationExtDto;
 import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.PaymentMethod;
+import jp.co.ricoh.cotos.electriccommonlib.entity.estimation.AgencyEstimationInformation;
 import jp.co.ricoh.cotos.electriccommonlib.entity.estimation.EstimationElectric;
 import jp.co.ricoh.cotos.electriccommonlib.entity.estimation.FeeSimulationHead;
 import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricFormMaster.ElectricPlan;
@@ -47,6 +51,7 @@ public class TestEstimationExtDto {
 			+ "01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890";
 	private static final int INT_MINUS_1 = -1;
 	private static final int INT_10 = 10;
+	private static final int INT_100 = 100;
 	private static final BigDecimal DECIMAL_MINUS_001 = new BigDecimal("-0.01");
 	private static final BigDecimal DECIMAL_0001 = new BigDecimal("0.001");
 
@@ -92,8 +97,9 @@ public class TestEstimationExtDto {
 		target.setCaseNumber("test");
 		target.setOriginContractId(1);
 		EstimationElectric entityEstimation = estimationElectricRepository.findOne(1L);
-		EstimationElectricExtDto targetEstimation = new EstimationElectricExtDto();
+		EstimationElectricExtDtoForPlanChange targetEstimation = new EstimationElectricExtDtoForPlanChange();
 		BeanUtils.copyProperties(entityEstimation, targetEstimation);
+		targetEstimation.setOppSysKeyBn("test");
 		targetEstimation.setElectricArea(entityEstimation.getElectricArea().toString());
 		targetEstimation.setPowerCompany(entityEstimation.getElectricCompany());
 		targetEstimation.setElectricCommercialFlowDivCode("1");
@@ -102,6 +108,7 @@ public class TestEstimationExtDto {
 		targetEstimation.setCo2EmissionFactor("1");
 		targetEstimation.setVoltageCategory(entityEstimation.getVoltageCategory().toString());
 		targetEstimation.setSupplyStartScheduledDate("2019/05");
+		targetEstimation.setContractPeriod(12);
 		target.setEstimationElectric(targetEstimation);
 
 		CustomerEstimationExtDto targetCustomer = 顧客正常データ作成();
@@ -135,7 +142,7 @@ public class TestEstimationExtDto {
 		result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
 		Assert.assertTrue(result.getErrorInfoList().size() == 7);
 
-		target.setEstimationElectric(new EstimationElectricExtDto());
+		target.setEstimationElectric(new EstimationElectricExtDtoForPlanChange());
 		target.setCustomerEstimation(new CustomerEstimationExtDto());
 		target.setEstimationPicSaEmp(new EstimationPicSaEmpExtDto());
 		target.setElectricExpertEstimation(new ElectricExpertEstimationExtDto());
@@ -157,7 +164,7 @@ public class TestEstimationExtDto {
 		target.setCaseTitle("test");
 		target.setCaseNumber("test");
 		EstimationElectric entityEstimation = estimationElectricRepository.findOne(1L);
-		EstimationElectricExtDto targetEstimation = new EstimationElectricExtDto();
+		EstimationElectricExtDtoForCreate targetEstimation = new EstimationElectricExtDtoForCreate();
 		BeanUtils.copyProperties(entityEstimation, targetEstimation);
 		targetEstimation.setElectricArea(entityEstimation.getElectricArea().toString());
 		targetEstimation.setPowerCompany(entityEstimation.getElectricCompany());
@@ -167,7 +174,7 @@ public class TestEstimationExtDto {
 		targetEstimation.setCo2EmissionFactor("1");
 		targetEstimation.setVoltageCategory(entityEstimation.getVoltageCategory().toString());
 		targetEstimation.setSupplyStartScheduledDate("2019/05");
-		targetEstimation.setContractPeriod(entityEstimation.getContractPeriod());
+		targetEstimation.setContractPeriod(12);
 		target.setEstimationElectric(targetEstimation);
 
 		CustomerEstimationExtDto targetCustomer = 顧客正常データ作成();
@@ -203,7 +210,7 @@ public class TestEstimationExtDto {
 		result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
 		Assert.assertTrue(result.getErrorInfoList().size() == 7);
 
-		target.setEstimationElectric(new EstimationElectricExtDto());
+		target.setEstimationElectric(new EstimationElectricExtDtoForCreate());
 		target.setCustomerEstimation(new CustomerEstimationExtDto());
 		target.setEstimationPicSaEmp(new EstimationPicSaEmpExtDto());
 		target.setElectricExpertEstimation(new ElectricExpertEstimationExtDto());
@@ -212,16 +219,15 @@ public class TestEstimationExtDto {
 		target.setEstimationAddedEditorEmpList(Arrays.asList(new EstimationAddedEditorEmpExtDto()));
 
 		result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
-		Assert.assertTrue(result.getErrorInfoList().size() == 88);
-
+		Assert.assertEquals(result.getErrorInfoList().size(), 87);
 	}
 
 	@Test
-	public void EstimationElectricExtDtoのテスト() {
+	public void EstimationElectricExtDtoForCreateのテスト() {
 
 		// 正常系
 		EstimationElectric entity = estimationElectricRepository.findOne(1L);
-		EstimationElectricExtDto target = new EstimationElectricExtDto();
+		EstimationElectricExtDtoForCreate target = new EstimationElectricExtDtoForCreate();
 		BeanUtils.copyProperties(entity, target);
 		target.setElectricArea(entity.getElectricArea().toString());
 		target.setPowerCompany(entity.getElectricCompany());
@@ -231,7 +237,7 @@ public class TestEstimationExtDto {
 		target.setCo2EmissionMenu(ElectricPlan.CO2フリー);
 		target.setCo2EmissionFactor("1");
 		target.setVoltageCategory(entity.getVoltageCategory().toString());
-		target.setContractPeriod("test");
+		target.setContractPeriod(12);
 		ParamterCheckResult result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
 		testTool.assertValidationOk(result);
 
@@ -254,7 +260,6 @@ public class TestEstimationExtDto {
 		target.setSupplyStartScheduledDate(null);
 		target.setPowerSupplyCycle(null);
 		target.setContractQuantity(null);
-		target.setTypeOfContract(null);
 		target.setPartialSupplyFlg(null);
 		target.setBasePart(null);
 		target.setFluctuatingPart(null);
@@ -263,7 +268,7 @@ public class TestEstimationExtDto {
 		target.setAncillaryFlg(null);
 		target.setContractPeriod(null);
 		result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
-		Assert.assertTrue(result.getErrorInfoList().size() == 26);
+		Assert.assertTrue(result.getErrorInfoList().size() == 25);
 
 		// 異常系（@Size(max))
 		BeanUtils.copyProperties(entity, target);
@@ -283,7 +288,7 @@ public class TestEstimationExtDto {
 		target.setTypeOfContract(STR_256);
 		target.setVoltageCategory(STR_256);
 		target.setSupplyStartScheduledDate(STR_256);
-		target.setContractPeriod(STR_256);
+		target.setContractPeriod(INT_MINUS_1);
 		result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
 		Assert.assertTrue(result.getErrorInfoList().size() == 15);
 
@@ -301,8 +306,9 @@ public class TestEstimationExtDto {
 		target.setSpareWireFlg(INT_MINUS_1);
 		target.setSparePowerFlg(INT_MINUS_1);
 		target.setAncillaryFlg(INT_MINUS_1);
+		target.setContractPeriod(INT_MINUS_1);
 		result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
-		Assert.assertTrue(result.getErrorInfoList().size() == 4);
+		Assert.assertTrue(result.getErrorInfoList().size() == 5);
 
 		// 異常系(@Max)
 		BeanUtils.copyProperties(entity, target);
@@ -312,12 +318,14 @@ public class TestEstimationExtDto {
 		target.setCo2EmissionMenu(ElectricPlan.CO2フリー);
 		target.setCo2EmissionFactor("1");
 		target.setVoltageCategory(entity.getVoltageCategory().toString());
+		target.setContractPeriod(12);
 		target.setPartialSupplyFlg(INT_10);
 		target.setSpareWireFlg(INT_10);
 		target.setSparePowerFlg(INT_10);
 		target.setAncillaryFlg(INT_10);
+		target.setContractPeriod(INT_100);
 		result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
-		Assert.assertTrue(result.getErrorInfoList().size() == 4);
+		Assert.assertTrue(result.getErrorInfoList().size() == 5);
 
 		// 異常系(@DecimalMin)
 		BeanUtils.copyProperties(entity, target);
@@ -327,13 +335,15 @@ public class TestEstimationExtDto {
 		target.setCo2EmissionMenu(ElectricPlan.CO2フリー);
 		target.setCo2EmissionFactor("1");
 		target.setVoltageCategory(entity.getVoltageCategory().toString());
+		target.setContractPeriod(12);
 		target.setContractPower(DECIMAL_MINUS_001);
 		target.setPowerRate(DECIMAL_MINUS_001);
 		target.setLoadFactor(DECIMAL_MINUS_001);
 		target.setBasePart(DECIMAL_MINUS_001);
 		target.setFluctuatingPart(DECIMAL_MINUS_001);
+		target.setAncillaryCapacityHighPressure(DECIMAL_MINUS_001);
 		result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
-		Assert.assertTrue(result.getErrorInfoList().size() == 5);
+		Assert.assertTrue(result.getErrorInfoList().size() == 6);
 
 		// 異常系(@Decimal)
 		BeanUtils.copyProperties(entity, target);
@@ -348,8 +358,9 @@ public class TestEstimationExtDto {
 		target.setLoadFactor(DECIMAL_0001);
 		target.setBasePart(DECIMAL_0001);
 		target.setFluctuatingPart(DECIMAL_0001);
+		target.setAncillaryCapacityHighPressure(DECIMAL_0001);
 		result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
-		Assert.assertTrue(result.getErrorInfoList().size() == 5);
+		Assert.assertTrue(result.getErrorInfoList().size() == 6);
 	}
 
 	@Test
@@ -640,6 +651,196 @@ public class TestEstimationExtDto {
 
 		result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
 		Assert.assertTrue(result.getErrorInfoList().size() == 35);
+	}
+
+	@Test
+	public void AgencyInformationExtDtoのテスト() {
+
+		// 正常系
+		AgencyEstimationInformation agencyInformation = estimationElectricRepository.findOne(1L).getAgencyEstimationInformation();
+		AgencyEstimationInformationExtDto target = new AgencyEstimationInformationExtDto();
+		BeanUtils.copyProperties(agencyInformation, target);
+		ParamterCheckResult result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
+		testTool.assertValidationOk(result);
+
+		// 異常系(@Size(max=255))
+		target.setAgencyName(STR_256);
+		target.setSupplierCode(STR_256);
+		result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
+		Assert.assertTrue(result.getErrorInfoList().size() == 2);
+
+		// 異常系(@DecimalMin)
+		BeanUtils.copyProperties(agencyInformation, target);
+		target.setAgencyFeeAmount(DECIMAL_MINUS_001);
+		target.setAgencyFeeRate(DECIMAL_MINUS_001);
+		target.setAgencyDiscountPrice(DECIMAL_MINUS_001);
+		target.setAgencyDiscountRate(DECIMAL_MINUS_001);
+		result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
+		Assert.assertTrue(result.getErrorInfoList().size() == 4);
+
+	}
+
+	@Test
+	public void LongtermDiscountEstimationInformationExtDtoのテスト() {
+
+		// 正常系
+		LongtermDiscountEstimationInformationExtDto target = new LongtermDiscountEstimationInformationExtDto();
+		ParamterCheckResult result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
+		testTool.assertValidationOk(result);
+		
+		// 異常系(@DecimalMin)
+		target.setLongtermDiscountRate(DECIMAL_MINUS_001);
+		result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
+		Assert.assertTrue(result.getErrorInfoList().size() == 1);
+		
+		// 異常系(@DecimalMax, 桁)
+		target = new LongtermDiscountEstimationInformationExtDto();
+		target.setLongtermDiscountPrice(DECIMAL_0001);
+		result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
+		Assert.assertTrue(result.getErrorInfoList().size() == 2);
+
+	}
+
+	@Test
+	public void EstimationElectricExtDtoForPlanChangeのテスト() {
+
+		// 正常系
+		EstimationElectric entity = estimationElectricRepository.findOne(1L);
+		EstimationElectricExtDtoForPlanChange target = new EstimationElectricExtDtoForPlanChange();
+		BeanUtils.copyProperties(entity, target);
+		target.setElectricArea(entity.getElectricArea().toString());
+		target.setPowerCompany(entity.getElectricCompany());
+		target.setElectricCommercialFlowDivCode("1");
+		target.setSupplyStartScheduledDate("2019/05");
+		target.setElectricCommercialFlowDiv(entity.getElectricCommercialFlowDiv().toString());
+		target.setCo2EmissionMenu(ElectricPlan.CO2フリー);
+		target.setCo2EmissionFactor("1");
+		target.setVoltageCategory(entity.getVoltageCategory().toString());
+		target.setContractPeriod(12);
+		ParamterCheckResult result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
+		testTool.assertValidationOk(result);
+
+		// 異常系（@NotNull）
+		target.setOppSysKeyBn(null);
+		target.setElectricCommercialFlowDiv(null);
+		target.setElectricCommercialFlowDivCode(null);
+		target.setElectricArea(null);
+		target.setPowerCompany(null);
+		target.setElectricCompanyCode(null);
+		target.setVoltageCategory(null);
+		target.setElectricMenu(null);
+		target.setElectricMenuCode(null);
+		target.setCo2EmissionMenu(null);
+		target.setCo2EmissionFactor(null);
+		target.setItemCode(null);
+		target.setContractPower(null);
+		target.setScale(null);
+		target.setPowerRate(null);
+		target.setLoadFactor(null);
+		target.setSupplyStartScheduledDate(null);
+		target.setPowerSupplyCycle(null);
+		target.setContractQuantity(null);
+		target.setPartialSupplyFlg(null);
+		target.setBasePart(null);
+		target.setFluctuatingPart(null);
+		target.setSpareWireFlg(null);
+		target.setSparePowerFlg(null);
+		target.setAncillaryFlg(null);
+		target.setContractPeriod(null);
+		result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
+		Assert.assertTrue(result.getErrorInfoList().size() == 26);
+
+		// 異常系（@Size(max))
+		BeanUtils.copyProperties(entity, target);
+		target.setOppSysKeyBn(STR_256);
+		target.setElectricCommercialFlowDiv(STR_256);
+		target.setElectricCommercialFlowDivCode(STR_256);
+		target.setElectricArea(STR_256);
+		target.setPowerCompany(STR_256);
+		target.setElectricCompanyCode(STR_256);
+		target.setElectricMenu(STR_256);
+		target.setSupplyStartScheduledDate(STR_256);
+		target.setElectricMenuCode(STR_256);
+		target.setCo2EmissionFactor(STR_256);
+		target.setItemCode(STR_256);
+		target.setPowerSupplyCycle(STR_256);
+		target.setContractQuantity(STR_256);
+		target.setTypeOfContract(STR_256);
+		target.setVoltageCategory(STR_256);
+		target.setSupplyStartScheduledDate(STR_256);
+		target.setContractPeriod(INT_MINUS_1);
+		result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
+		Assert.assertTrue(result.getErrorInfoList().size() == 15);
+
+		// 異常系(@Min)
+		BeanUtils.copyProperties(entity, target);
+		target.setElectricArea(entity.getElectricArea().toString());
+		target.setPowerCompany(entity.getElectricCompany());
+		target.setSupplyStartScheduledDate("2019/05");
+		target.setElectricCommercialFlowDivCode("1");
+		target.setElectricCommercialFlowDiv(entity.getElectricCommercialFlowDiv().toString());
+		target.setCo2EmissionMenu(ElectricPlan.CO2フリー);
+		target.setCo2EmissionFactor("1");
+		target.setVoltageCategory(entity.getVoltageCategory().toString());
+		target.setPartialSupplyFlg(INT_MINUS_1);
+		target.setSpareWireFlg(INT_MINUS_1);
+		target.setSparePowerFlg(INT_MINUS_1);
+		target.setAncillaryFlg(INT_MINUS_1);
+		target.setContractPeriod(INT_MINUS_1);
+		result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
+		Assert.assertTrue(result.getErrorInfoList().size() == 5);
+
+		// 異常系(@Max)
+		BeanUtils.copyProperties(entity, target);
+		target.setSupplyStartScheduledDate("2019/05");
+		target.setElectricCommercialFlowDivCode("1");
+		target.setElectricCommercialFlowDiv(entity.getElectricCommercialFlowDiv().toString());
+		target.setCo2EmissionMenu(ElectricPlan.CO2フリー);
+		target.setCo2EmissionFactor("1");
+		target.setVoltageCategory(entity.getVoltageCategory().toString());
+		target.setContractPeriod(12);
+		target.setPartialSupplyFlg(INT_10);
+		target.setSpareWireFlg(INT_10);
+		target.setSparePowerFlg(INT_10);
+		target.setAncillaryFlg(INT_10);
+		target.setContractPeriod(INT_100);
+		result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
+		Assert.assertTrue(result.getErrorInfoList().size() == 5);
+
+		// 異常系(@DecimalMin)
+		BeanUtils.copyProperties(entity, target);
+		target.setSupplyStartScheduledDate("2019/05");
+		target.setElectricCommercialFlowDivCode("1");
+		target.setElectricCommercialFlowDiv(entity.getElectricCommercialFlowDiv().toString());
+		target.setCo2EmissionMenu(ElectricPlan.CO2フリー);
+		target.setCo2EmissionFactor("1");
+		target.setVoltageCategory(entity.getVoltageCategory().toString());
+		target.setContractPeriod(12);
+		target.setContractPower(DECIMAL_MINUS_001);
+		target.setPowerRate(DECIMAL_MINUS_001);
+		target.setLoadFactor(DECIMAL_MINUS_001);
+		target.setBasePart(DECIMAL_MINUS_001);
+		target.setFluctuatingPart(DECIMAL_MINUS_001);
+		target.setAncillaryCapacityHighPressure(DECIMAL_MINUS_001);
+		result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
+		Assert.assertTrue(result.getErrorInfoList().size() == 6);
+
+		// 異常系(@Decimal)
+		BeanUtils.copyProperties(entity, target);
+		target.setSupplyStartScheduledDate("2019/05");
+		target.setElectricCommercialFlowDivCode("1");
+		target.setElectricCommercialFlowDiv(entity.getElectricCommercialFlowDiv().toString());
+		target.setCo2EmissionMenu(ElectricPlan.CO2フリー);
+		target.setCo2EmissionFactor("1");
+		target.setVoltageCategory(entity.getVoltageCategory().toString());
+		target.setContractPower(DECIMAL_0001);
+		target.setPowerRate(DECIMAL_0001);
+		target.setLoadFactor(DECIMAL_0001);
+		target.setBasePart(DECIMAL_0001);
+		target.setFluctuatingPart(DECIMAL_0001);
+		target.setAncillaryCapacityHighPressure(DECIMAL_0001);
+		result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
+		Assert.assertTrue(result.getErrorInfoList().size() == 6);
 	}
 
 	private CustomerEstimationExtDto 顧客正常データ作成() {

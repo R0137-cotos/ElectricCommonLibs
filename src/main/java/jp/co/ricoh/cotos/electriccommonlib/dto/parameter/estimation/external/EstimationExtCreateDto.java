@@ -36,7 +36,7 @@ public class EstimationExtCreateDto {
 	@Valid
 	@NotNull
 	@ApiModelProperty(value = "見積（電力用）", required = true, position = 6)
-	private EstimationElectricExtDto estimationElectric;
+	private EstimationElectricExtDtoForCreate estimationElectric;
 
 	/**
 	 * 顧客（見積用）
@@ -83,5 +83,19 @@ public class EstimationExtCreateDto {
 	@NotNull
 	@ApiModelProperty(value = "料金シミュレーション（本部用）", required = true, position = 12)
 	private FeeSimulationHeadExtDto feeSimulationHead;
+	
+	/**
+	 * 取次情報
+	 */
+	@Valid
+	@ApiModelProperty(value = "取次情報", required = false, position = 13)
+	AgencyEstimationInformationExtDto agencyInformation;
+	
+	/**
+	 * 長期割引情報
+	 */
+	@Valid
+	@ApiModelProperty(value = "長期割引情報", required = false, position = 14)
+	LongtermDiscountEstimationInformationExtDto longtermDiscountInformation;
 
 }
