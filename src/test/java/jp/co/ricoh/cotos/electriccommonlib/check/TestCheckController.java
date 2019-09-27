@@ -48,15 +48,18 @@ import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.ElectricExpe
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.EstimationElectricDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.EstimationUpdateParameter;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.FeeSimulationHeadDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.AgencyEstimationInformationExtDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.CustomerEstimationExtDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.ElectricDealerEstimationExtDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.ElectricExpertEstimationExtDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.EstimationAddedEditorEmpExtDto;
-import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.EstimationElectricExtDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.EstimationElectricExtDtoForCreate;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.EstimationElectricExtDtoForPlanChange;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.EstimationExtCreateDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.EstimationExtPlanChangeDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.EstimationPicSaEmpExtDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.FeeSimulationHeadExtDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.LongtermDiscountEstimationInformationExtDto;
 import jp.co.ricoh.cotos.electriccommonlib.security.bean.ParamterCheckResult;
 import lombok.Data;
 
@@ -198,8 +201,8 @@ public class TestCheckController {
 		return createParameterCheckResult(result);
 	}
 
-	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/EstimationElectricExtDto")
-	public ParamterCheckResult callParamterCheck(@RequestBody @Validated EstimationElectricExtDto dto, BindingResult result) {
+	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/EstimationElectricExtDtoForPlanChange")
+	public ParamterCheckResult callParamterCheck(@RequestBody @Validated EstimationElectricExtDtoForPlanChange dto, BindingResult result) {
 		return createParameterCheckResult(result);
 	}
 
@@ -287,14 +290,29 @@ public class TestCheckController {
 	public ParamterCheckResult callParamterCheck(@RequestBody @Validated RegisterArrangementResultExtDto dto, BindingResult result) {
 		return createParameterCheckResult(result);
 	}
-	
+
 	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/AgencyEstimationInformationDto")
 	public ParamterCheckResult callParamterCheck(@RequestBody @Validated AgencyEstimationInformationDto dto, BindingResult result) {
 		return createParameterCheckResult(result);
 	}
-	
+
 	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/AgencyContractInformationDto")
 	public ParamterCheckResult callParamterCheck(@RequestBody @Validated AgencyContractInformationDto dto, BindingResult result) {
+		return createParameterCheckResult(result);
+	}
+
+	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/AgencyEstimationInformationExtDto")
+	public ParamterCheckResult callParamterCheck(@RequestBody @Validated AgencyEstimationInformationExtDto dto, BindingResult result) {
+		return createParameterCheckResult(result);
+	}
+
+	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/LongtermDiscountEstimationInformationExtDto")
+	public ParamterCheckResult callParamterCheck(@RequestBody @Validated LongtermDiscountEstimationInformationExtDto dto, BindingResult result) {
+		return createParameterCheckResult(result);
+	}
+
+	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/EstimationElectricExtDtoForCreate")
+	public ParamterCheckResult callParamterCheck(@RequestBody @Validated EstimationElectricExtDtoForCreate dto, BindingResult result) {
 		return createParameterCheckResult(result);
 	}
 }

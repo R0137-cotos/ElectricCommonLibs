@@ -1,0 +1,33 @@
+package jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external;
+
+import java.math.BigDecimal;
+
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Digits;
+
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+@EqualsAndHashCode(callSuper = false)
+@Data
+public class LongtermDiscountEstimationInformationExtDto {
+
+	/**
+	 * 長期割引率
+	 */
+	@DecimalMin("0.00")
+	@Digits(integer = 3, fraction = 2)
+	@ApiModelProperty(value = "長期割引率", required = false, position = 1, allowableValues = "range[0,999.99]")
+	private BigDecimal longtermDiscountRate;
+
+	/**
+	 * 長期割引単価
+	 */
+	@DecimalMax("0.00")
+	@Digits(integer = 17, fraction = 2)
+	@ApiModelProperty(value = "長期割引単価", required = false, position = 2, allowableValues = "range[-9999999999999999999.99,0.00]")
+	private BigDecimal longtermDiscountPrice;
+
+}
