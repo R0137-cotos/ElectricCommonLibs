@@ -237,5 +237,23 @@ public class EntryContentHighPressure extends EntityBase {
 	@Min(0)
 	@ApiModelProperty(value = "協議制で契約電力増加の場合", required = false, position = 23, allowableValues = "range[0,9]")
 	private Integer increaseElectricPowerFlg;
+	
+	/**
+	 * 取次手数料額
+	 */
+	@Column(nullable = true)
+	@DecimalMin("0.00")
+	@Digits(integer = 17, fraction = 2)
+	@ApiModelProperty(value = "取次手数料額", required = false, position = 24, allowableValues = "range[0.00,99999999999999999.99]")
+	private BigDecimal agencyFeeAmount;
+
+	/**
+	 * 取次手数料率
+	 */
+	@Column(nullable = true)
+	@DecimalMin("0.00")
+	@Digits(integer = 3, fraction = 2)
+	@ApiModelProperty(value = "取次手数料率", required = false, position = 25, allowableValues = "range[0.00,999.99]")
+	private BigDecimal agencyFeeRate;
 
 }
