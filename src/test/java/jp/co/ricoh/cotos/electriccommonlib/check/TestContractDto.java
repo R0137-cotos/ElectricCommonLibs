@@ -308,8 +308,10 @@ public class TestContractDto {
 		testTarget.setBase(DECIMAL_MINUS_001);
 		testTarget.setVariable(DECIMAL_MINUS_001);
 		testTarget.setAncillaryCapacityHighPressure(DECIMAL_MINUS_001);
+		testTarget.setAgencyFeeAmount(DECIMAL_MINUS_001);
+		testTarget.setAgencyFeeRate(DECIMAL_MINUS_001);
 		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
-		Assert.assertEquals(7, result.getErrorInfoList().size());
+		Assert.assertEquals(9, result.getErrorInfoList().size());
 
 		// 異常系(@Decimal)
 		BeanUtils.copyProperties(entity.getEntryContentHighPressure(), testTarget);
@@ -319,8 +321,11 @@ public class TestContractDto {
 		testTarget.setPartialSupplySettingValue(DECIMAL_0001);
 		testTarget.setBase(DECIMAL_0001);
 		testTarget.setVariable(DECIMAL_0001);
+		testTarget.setAncillaryCapacityHighPressure(DECIMAL_0001);
+		testTarget.setAgencyFeeAmount(DECIMAL_0001);
+		testTarget.setAgencyFeeRate(DECIMAL_0001);
 		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
-		Assert.assertEquals(6, result.getErrorInfoList().size());
+		Assert.assertEquals(9, result.getErrorInfoList().size());
 
 	}
 
