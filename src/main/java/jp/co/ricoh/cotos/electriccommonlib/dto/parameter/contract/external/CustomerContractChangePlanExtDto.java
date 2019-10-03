@@ -41,35 +41,35 @@ public class CustomerContractChangePlanExtDto {
 	 * MoM非連携_担当者氏名
 	 */
 	@Size(max = 255)
-	@ApiModelProperty(value = "MoM非連携_担当者氏名", required = true, position = 4, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "MoM非連携_担当者氏名", required = false, position = 4, allowableValues = "range[0,255]")
 	private String picName;
 
 	/**
 	 * MoM非連携_担当者氏名（カナ）
 	 */
 	@Size(max = 255)
-	@ApiModelProperty(value = "MoM非連携_担当者氏名（カナ）", required = true, position = 5, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "MoM非連携_担当者氏名（カナ）", required = false, position = 5, allowableValues = "range[0,255]")
 	private String picNameKana;
 
 	/**
 	 * MoM非連携_担当者部署
 	 */
 	@Size(max = 255)
-	@ApiModelProperty(value = "MoM非連携_担当者部署", required = true, position = 6, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "MoM非連携_担当者部署", required = false, position = 6, allowableValues = "range[0,255]")
 	private String picDeptName;
 
 	/**
 	 * MoM非連携_担当者電話番号
 	 */
 	@Size(max = 255)
-	@ApiModelProperty(value = "MoM非連携_担当者電話番号", required = true, position = 7, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "MoM非連携_担当者電話番号", required = false, position = 7, allowableValues = "range[0,255]")
 	private String picPhoneNumber;
 
 	/**
 	 * MoM非連携_担当者FAX番号
 	 */
 	@Size(max = 255)
-	@ApiModelProperty(value = "MoM非連携_担当者FAX番号", required = true, position = 8, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "MoM非連携_担当者FAX番号", required = false, position = 8, allowableValues = "range[0,255]")
 	private String picFaxNumber;
 
 	/**
@@ -77,6 +77,6 @@ public class CustomerContractChangePlanExtDto {
 	 */
 	@NotNull
 	@Size(max = 255)
-	@ApiModelProperty(value = "MoM非連携_担当者メールアドレス", required = true, position = 9, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "MoM非連携_担当者メールアドレス", required = false, position = 9, allowableValues = "range[0,255]")
 	private String picMailAddress;
 }

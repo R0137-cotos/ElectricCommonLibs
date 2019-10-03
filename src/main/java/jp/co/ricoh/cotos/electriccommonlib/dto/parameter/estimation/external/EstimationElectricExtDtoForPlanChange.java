@@ -39,9 +39,8 @@ public class EstimationElectricExtDtoForPlanChange {
 	private String electricCommercialFlowDivCode;
 
 	/** 電力エリア */
-	@NotNull
 	@Size(max = 255)
-	@ApiModelProperty(value = "電力エリア", required = true, position = 6, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "電力エリア", required = false, position = 6, allowableValues = "range[0,255]")
 	private String electricArea;
 
 	/** 電力会社 */
@@ -75,16 +74,14 @@ public class EstimationElectricExtDtoForPlanChange {
 	private String electricMenuCode;
 
 	/** CO2排出メニュー */
-	@NotNull
 	@Column(name = "co2_emission_menu")
-	@ApiModelProperty(value = "CO2排出メニュー", required = true, position = 12, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "CO2排出メニュー", required = false, position = 12, allowableValues = "range[0,255]")
 	private ElectricPlan co2EmissionMenu;
 
 	/** CO2排出係数 */
-	@NotNull
 	@Size(max = 255)
 	@Column(name = "co2_emission_factor")
-	@ApiModelProperty(value = "CO2排出係数", required = true, position = 13, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "CO2排出係数", required = false, position = 13, allowableValues = "range[0,255]")
 	private String co2EmissionFactor;
 
 	/** 品種コード */
@@ -142,24 +139,21 @@ public class EstimationElectricExtDtoForPlanChange {
 	private String typeOfContract;
 
 	/** 部分供給 */
-	@NotNull
 	@Max(9)
 	@Min(0)
-	@ApiModelProperty(value = "部分供給", required = true, position = 23, allowableValues = "range[0,9]")
+	@ApiModelProperty(value = "部分供給", required = false, position = 23, allowableValues = "range[0,9]")
 	private Integer partialSupplyFlg;
 
 	/** ベース部 */
-	@NotNull
 	@DecimalMin("0.00")
 	@Digits(integer = 8, fraction = 2)
-	@ApiModelProperty(value = "ベース部", required = true, position = 24, allowableValues = "range[0.00,99999999.99]")
+	@ApiModelProperty(value = "ベース部", required = false, position = 24, allowableValues = "range[0.00,99999999.99]")
 	private BigDecimal basePart;
 
 	/** 変動部 */
-	@NotNull
 	@DecimalMin("0.00")
 	@Digits(integer = 8, fraction = 2)
-	@ApiModelProperty(value = "変動部", required = true, position = 25, allowableValues = "range[0.00,99999999.99]")
+	@ApiModelProperty(value = "変動部", required = false, position = 25, allowableValues = "range[0.00,99999999.99]")
 	private BigDecimal fluctuatingPart;
 
 	/** 予備線 */

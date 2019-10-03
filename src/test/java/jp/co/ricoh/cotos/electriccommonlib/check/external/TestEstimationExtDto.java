@@ -244,14 +244,11 @@ public class TestEstimationExtDto {
 		// 異常系（@NotNull）
 		target.setElectricCommercialFlowDiv(null);
 		target.setElectricCommercialFlowDivCode(null);
-		target.setElectricArea(null);
 		target.setPowerCompany(null);
 		target.setElectricCompanyCode(null);
 		target.setVoltageCategory(null);
 		target.setElectricMenu(null);
 		target.setElectricMenuCode(null);
-		target.setCo2EmissionMenu(null);
-		target.setCo2EmissionFactor(null);
 		target.setItemCode(null);
 		target.setContractPower(null);
 		target.setScale(null);
@@ -260,15 +257,12 @@ public class TestEstimationExtDto {
 		target.setSupplyStartScheduledDate(null);
 		target.setPowerSupplyCycle(null);
 		target.setContractQuantity(null);
-		target.setPartialSupplyFlg(null);
-		target.setBasePart(null);
-		target.setFluctuatingPart(null);
 		target.setSpareWireFlg(null);
 		target.setSparePowerFlg(null);
 		target.setAncillaryFlg(null);
 		target.setContractPeriod(null);
 		result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
-		Assert.assertTrue(result.getErrorInfoList().size() == 25);
+		Assert.assertTrue(result.getErrorInfoList().size() == 19);
 
 		// 異常系（@Size(max))
 		BeanUtils.copyProperties(entity, target);
@@ -373,24 +367,8 @@ public class TestEstimationExtDto {
 		target.setMomCustId(null);
 		target.setCompanyId(null);
 		target.setOfficeId(null);
-		target.setCustomerName(null);
-		target.setCompanyName(null);
-		target.setCompanyNameKana(null);
-		target.setOfficeName(null);
-		target.setDepartmentName(null);
-		target.setPostNumber(null);
-		target.setAddress(null);
-		target.setPhoneNumber(null);
-		target.setFaxNumber(null);
-		target.setCompanyRepresentativeName(null);
-		target.setPicName(null);
-		target.setPicNameKana(null);
-		target.setPicDeptName(null);
-		target.setPicPhoneNumber(null);
-		target.setPicFaxNumber(null);
-		target.setPicMailAddress(null);
 		result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
-		Assert.assertTrue(result.getErrorInfoList().size() == 19);
+		Assert.assertTrue(result.getErrorInfoList().size() == 3);
 
 		// 異常系（@Size(max))
 		target = 顧客正常データ作成();
@@ -465,11 +443,6 @@ public class TestEstimationExtDto {
 		ParamterCheckResult result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
 		testTool.assertValidationOk(result);
 
-		// 異常系（@NotNull）
-		target.setMomEmployeeId(null);
-		result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
-		Assert.assertTrue(result.getErrorInfoList().size() == 1);
-
 		// 異常系（@Size(max))
 		target.setMomEmployeeId(STR_256);
 		result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
@@ -520,7 +493,6 @@ public class TestEstimationExtDto {
 		// 異常系（@NotNull）
 		target.setSimNumberMain(null);
 		target.setSimNumberSub(null);
-		target.setCreatedDate(null);
 		target.setAnnualElectricityRateCurrent(null);
 		target.setAnnualElectricityRateAfter(null);
 		target.setReductionAmount(null);
@@ -558,7 +530,7 @@ public class TestEstimationExtDto {
 		target.setGrossProfitMarginRj(null);
 
 		result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
-		Assert.assertTrue(result.getErrorInfoList().size() == 38);
+		Assert.assertTrue(result.getErrorInfoList().size() == 37);
 
 		// 異常系（@Size(max))
 		BeanUtils.copyProperties(entity, target);
@@ -687,12 +659,12 @@ public class TestEstimationExtDto {
 		LongtermDiscountEstimationInformationExtDto target = new LongtermDiscountEstimationInformationExtDto();
 		ParamterCheckResult result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
 		testTool.assertValidationOk(result);
-		
+
 		// 異常系(@DecimalMin)
 		target.setLongtermDiscountRate(DECIMAL_MINUS_001);
 		result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
 		Assert.assertTrue(result.getErrorInfoList().size() == 1);
-		
+
 		// 異常系(@DecimalMax, 桁)
 		target = new LongtermDiscountEstimationInformationExtDto();
 		target.setLongtermDiscountPrice(DECIMAL_0001);
@@ -724,14 +696,11 @@ public class TestEstimationExtDto {
 		target.setOppSysKeyBn(null);
 		target.setElectricCommercialFlowDiv(null);
 		target.setElectricCommercialFlowDivCode(null);
-		target.setElectricArea(null);
 		target.setPowerCompany(null);
 		target.setElectricCompanyCode(null);
 		target.setVoltageCategory(null);
 		target.setElectricMenu(null);
 		target.setElectricMenuCode(null);
-		target.setCo2EmissionMenu(null);
-		target.setCo2EmissionFactor(null);
 		target.setItemCode(null);
 		target.setContractPower(null);
 		target.setScale(null);
@@ -740,15 +709,12 @@ public class TestEstimationExtDto {
 		target.setSupplyStartScheduledDate(null);
 		target.setPowerSupplyCycle(null);
 		target.setContractQuantity(null);
-		target.setPartialSupplyFlg(null);
-		target.setBasePart(null);
-		target.setFluctuatingPart(null);
 		target.setSpareWireFlg(null);
 		target.setSparePowerFlg(null);
 		target.setAncillaryFlg(null);
 		target.setContractPeriod(null);
 		result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
-		Assert.assertTrue(result.getErrorInfoList().size() == 26);
+		Assert.assertTrue(result.getErrorInfoList().size() == 20);
 
 		// 異常系（@Size(max))
 		BeanUtils.copyProperties(entity, target);

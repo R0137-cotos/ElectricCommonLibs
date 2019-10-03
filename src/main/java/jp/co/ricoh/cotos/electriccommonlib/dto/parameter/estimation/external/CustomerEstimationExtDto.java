@@ -38,24 +38,21 @@ public class CustomerEstimationExtDto {
 	/**
 	 * 顧客名
 	 */
-	@NotNull
 	@Size(max = 255)
-	@ApiModelProperty(value = "顧客名", required = true, position = 5, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "顧客名", required = false, position = 4, allowableValues = "range[0,255]")
 	private String customerName;
 
 	/**
 	 * 企業名
 	 */
 	@Size(max = 255)
-	@NotNull
-	@ApiModelProperty(value = "企業名", required = false, position = 6, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "企業名", required = false, position = 5, allowableValues = "range[0,255]")
 	private String companyName;
 
 	/**
 	 * 企業名（カナ）
 	 */
 	@Size(max = 255)
-	@NotNull
 	@ApiModelProperty(value = "企業名（カナ）", required = false, position = 7, allowableValues = "range[0,255]")
 	private String companyNameKana;
 
@@ -63,7 +60,6 @@ public class CustomerEstimationExtDto {
 	 * 事業所名
 	 */
 	@Size(max = 255)
-	@NotNull
 	@ApiModelProperty(value = "事業所名", required = false, position = 8, allowableValues = "range[0,255]")
 	private String officeName;
 
@@ -71,7 +67,6 @@ public class CustomerEstimationExtDto {
 	 * 部門名
 	 */
 	@Size(max = 255)
-	@NotNull
 	@ApiModelProperty(value = "部門名", required = false, position = 9, allowableValues = "range[0,255]")
 	private String departmentName;
 
@@ -79,7 +74,6 @@ public class CustomerEstimationExtDto {
 	 * 郵便番号
 	 */
 	@Size(max = 255)
-	@NotNull
 	@ApiModelProperty(value = "郵便番号", required = false, position = 10, allowableValues = "range[0,255]")
 	private String postNumber;
 
@@ -87,7 +81,6 @@ public class CustomerEstimationExtDto {
 	 * 住所
 	 */
 	@Size(max = 1000)
-	@NotNull
 	@ApiModelProperty(value = "住所", required = false, position = 11, allowableValues = "range[0,1000]")
 	private String address;
 
@@ -95,7 +88,6 @@ public class CustomerEstimationExtDto {
 	 * 電話番号
 	 */
 	@Size(max = 255)
-	@NotNull
 	@ApiModelProperty(value = "電話番号", required = false, position = 12, allowableValues = "range[0,255]")
 	private String phoneNumber;
 
@@ -103,7 +95,6 @@ public class CustomerEstimationExtDto {
 	 * FAX番号
 	 */
 	@Size(max = 255)
-	@NotNull
 	@ApiModelProperty(value = "FAX番号", required = false, position = 13, allowableValues = "range[0,255]")
 	private String faxNumber;
 
@@ -111,7 +102,6 @@ public class CustomerEstimationExtDto {
 	 * 企業代表者名
 	 */
 	@Size(max = 255)
-	@NotNull
 	@ApiModelProperty(value = "企業代表者名", required = false, position = 14, allowableValues = "range[0,255]")
 	private String companyRepresentativeName;
 
@@ -119,7 +109,6 @@ public class CustomerEstimationExtDto {
 	 * MoM非連携_担当者氏名
 	 */
 	@Size(max = 255)
-	@NotNull
 	@ApiModelProperty(value = "MoM非連携_担当者氏名", required = false, position = 15, allowableValues = "range[0,255]")
 	private String picName;
 
@@ -127,7 +116,6 @@ public class CustomerEstimationExtDto {
 	 * MoM非連携_担当者氏名（カナ）
 	 */
 	@Size(max = 255)
-	@NotNull
 	@ApiModelProperty(value = "MoM非連携_担当者氏名（カナ）", required = false, position = 16, allowableValues = "range[0,255]")
 	private String picNameKana;
 
@@ -135,7 +123,6 @@ public class CustomerEstimationExtDto {
 	 * MoM非連携_担当者部署
 	 */
 	@Size(max = 255)
-	@NotNull
 	@ApiModelProperty(value = "MoM非連携_担当者部署", required = false, position = 17, allowableValues = "range[0,255]")
 	private String picDeptName;
 
@@ -143,7 +130,6 @@ public class CustomerEstimationExtDto {
 	 * MoM非連携_担当者電話番号
 	 */
 	@Size(max = 255)
-	@NotNull
 	@ApiModelProperty(value = "MoM非連携_担当者電話番号", required = false, position = 18, allowableValues = "range[0,255]")
 	private String picPhoneNumber;
 
@@ -151,7 +137,6 @@ public class CustomerEstimationExtDto {
 	 * MoM非連携_担当者FAX番号
 	 */
 	@Size(max = 255)
-	@NotNull
 	@ApiModelProperty(value = "MoM非連携_担当者FAX番号", required = false, position = 19, allowableValues = "range[0,255]")
 	private String picFaxNumber;
 
@@ -159,7 +144,6 @@ public class CustomerEstimationExtDto {
 	 * MoM非連携_担当者メールアドレス
 	 */
 	@Size(max = 255)
-	@NotNull
 	@ApiModelProperty(value = "MoM非連携_担当者メールアドレス", required = false, position = 20, allowableValues = "range[0,255]")
 	private String picMailAddress;
 

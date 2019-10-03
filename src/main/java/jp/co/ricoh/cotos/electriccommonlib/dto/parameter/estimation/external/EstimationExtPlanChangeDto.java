@@ -18,6 +18,7 @@ public class EstimationExtPlanChangeDto {
 	/**
 	 * 変更元契約ID
 	 */
+	@NotNull
 	@Min(0)
 	@ApiModelProperty(value = "契約ID", required = true, position = 3, allowableValues = "range[0,9223372036854775807]")
 	private long originContractId;
@@ -91,14 +92,14 @@ public class EstimationExtPlanChangeDto {
 	@NotNull
 	@ApiModelProperty(value = "料金シミュレーション（本部用）", required = true, position = 12)
 	private FeeSimulationHeadExtDto feeSimulationHead;
-	
+
 	/**
 	 * 取次情報
 	 */
 	@Valid
 	@ApiModelProperty(value = "取次情報", required = false, position = 13)
 	AgencyEstimationInformationExtDto agencyInformation;
-	
+
 	/**
 	 * 長期割引情報
 	 */

@@ -898,7 +898,7 @@ public class TestContractDto {
 		testTarget.setElectricDealerContract(new ElectricDealerContractCreateExtDto());
 		testTarget.setFeeSimulationHead(new FeeSimulationHeadCreateExtDto());
 		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
-		Assert.assertEquals(40, result.getErrorInfoList().size());
+		Assert.assertEquals(39, result.getErrorInfoList().size());
 
 		// 異常系(@Size(max))
 		entity = contractElectricRepository.findOne(1L);
@@ -1240,7 +1240,7 @@ public class TestContractDto {
 		testTarget.setElectricDealerContract(new ElectricDealerContractChangePlanExtDto());
 		testTarget.setFeeSimulationHead(new FeeSimulationHeadChangePlanExtDto());
 		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
-		Assert.assertEquals(41, result.getErrorInfoList().size());
+		Assert.assertEquals(40, result.getErrorInfoList().size());
 
 		// 異常系(@Size(max))
 		entity = contractElectricRepository.findOne(1L);

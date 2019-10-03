@@ -31,6 +31,6 @@ public class BillingMailAddressInformationChangePlanExtDto {
 	 * MyRicohユーザID
 	 */
 	@Size(max = 255)
-	@ApiModelProperty(value = "MyRicohユーザID", required = true, position = 3, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "MyRicohユーザID", required = false, position = 3, allowableValues = "range[0,255]")
 	private String myricohId;
 }

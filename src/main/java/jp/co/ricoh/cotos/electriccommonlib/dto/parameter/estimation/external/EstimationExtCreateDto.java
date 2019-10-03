@@ -19,7 +19,7 @@ public class EstimationExtCreateDto {
 	 */
 	@NotNull
 	@Size(max = 255)
-	@ApiModelProperty(value = "案件番号", required = true, position = 4, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "案件番号", required = true, position = 1, allowableValues = "range[0,255]")
 	private String caseNumber;
 
 	/**
@@ -27,7 +27,7 @@ public class EstimationExtCreateDto {
 	 */
 	@NotNull
 	@Size(max = 255)
-	@ApiModelProperty(value = "案件名", required = true, position = 5, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "案件名", required = true, position = 2, allowableValues = "range[0,255]")
 	private String caseTitle;
 
 	/**
@@ -35,7 +35,7 @@ public class EstimationExtCreateDto {
 	 */
 	@Valid
 	@NotNull
-	@ApiModelProperty(value = "見積（電力用）", required = true, position = 6)
+	@ApiModelProperty(value = "見積（電力用）", required = true, position = 3)
 	private EstimationElectricExtDtoForCreate estimationElectric;
 
 	/**
@@ -43,7 +43,7 @@ public class EstimationExtCreateDto {
 	 */
 	@Valid
 	@NotNull
-	@ApiModelProperty(value = "顧客（見積用）", required = true, position = 7)
+	@ApiModelProperty(value = "顧客（見積用）", required = true, position = 4)
 	private CustomerEstimationExtDto customerEstimation;
 
 	/**
@@ -51,7 +51,7 @@ public class EstimationExtCreateDto {
 	 */
 	@Valid
 	@NotNull
-	@ApiModelProperty(value = "見積担当SA社員", required = true, position = 8)
+	@ApiModelProperty(value = "見積担当SA社員", required = true, position = 5)
 	private EstimationPicSaEmpExtDto estimationPicSaEmp;
 
 	/**
@@ -59,21 +59,21 @@ public class EstimationExtCreateDto {
 	 */
 	@Valid
 	@NotNull
-	@ApiModelProperty(value = "電力専任情報", required = true, position = 9)
+	@ApiModelProperty(value = "電力専任情報", required = true, position = 6)
 	private ElectricExpertEstimationExtDto electricExpertEstimation;
 
 	/**
 	 * 追加編集者
 	 */
 	@Valid
-	@ApiModelProperty(value = "追加編集者", required = false, position = 10)
+	@ApiModelProperty(value = "追加編集者", required = false, position = 7)
 	private List<EstimationAddedEditorEmpExtDto> estimationAddedEditorEmpList;
 
 	/**
 	 * 販売店情報
 	 */
 	@Valid
-	@ApiModelProperty(value = "販売店情報", required = false, position = 11)
+	@ApiModelProperty(value = "販売店情報", required = false, position = 8)
 	private ElectricDealerEstimationExtDto electricDealerEstimation;
 
 	/**
@@ -81,21 +81,21 @@ public class EstimationExtCreateDto {
 	 */
 	@Valid
 	@NotNull
-	@ApiModelProperty(value = "料金シミュレーション（本部用）", required = true, position = 12)
+	@ApiModelProperty(value = "料金シミュレーション（本部用）", required = true, position = 9)
 	private FeeSimulationHeadExtDto feeSimulationHead;
-	
+
 	/**
 	 * 取次情報
 	 */
 	@Valid
-	@ApiModelProperty(value = "取次情報", required = false, position = 13)
-	AgencyEstimationInformationExtDto agencyInformation;
-	
+	@ApiModelProperty(value = "取次情報", required = false, position = 10)
+	private AgencyEstimationInformationExtDto agencyInformation;
+
 	/**
 	 * 長期割引情報
 	 */
 	@Valid
-	@ApiModelProperty(value = "長期割引情報", required = false, position = 14)
-	LongtermDiscountEstimationInformationExtDto longtermDiscountInformation;
+	@ApiModelProperty(value = "長期割引情報", required = false, position = 11)
+	private LongtermDiscountEstimationInformationExtDto longtermDiscountInformation;
 
 }

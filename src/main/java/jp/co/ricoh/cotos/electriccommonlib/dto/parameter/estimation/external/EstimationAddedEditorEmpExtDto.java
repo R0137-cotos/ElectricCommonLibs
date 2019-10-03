@@ -1,6 +1,5 @@
 package jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external;
 
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import io.swagger.annotations.ApiModelProperty;
@@ -14,9 +13,8 @@ public class EstimationAddedEditorEmpExtDto {
 	/**
 	 * MoM社員ID
 	 */
-	@NotNull
 	@Size(max = 255)
-	@ApiModelProperty(value = "MoM社員ID", required = true, position = 3, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "MoM社員ID", required = false, position = 1, allowableValues = "range[0,255]")
 	private String momEmployeeId;
 
 }
