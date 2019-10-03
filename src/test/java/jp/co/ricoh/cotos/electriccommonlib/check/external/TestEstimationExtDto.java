@@ -151,7 +151,7 @@ public class TestEstimationExtDto {
 		target.setEstimationAddedEditorEmpList(Arrays.asList(new EstimationAddedEditorEmpExtDto()));
 
 		result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
-		Assert.assertTrue(result.getErrorInfoList().size() == 88);
+		Assert.assertEquals(result.getErrorInfoList().size(), 64);
 
 	}
 
@@ -219,7 +219,7 @@ public class TestEstimationExtDto {
 		target.setEstimationAddedEditorEmpList(Arrays.asList(new EstimationAddedEditorEmpExtDto()));
 
 		result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
-		Assert.assertEquals(result.getErrorInfoList().size(), 87);
+		Assert.assertEquals(result.getErrorInfoList().size(), 63);
 	}
 
 	@Test
