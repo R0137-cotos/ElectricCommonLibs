@@ -41,63 +41,63 @@ public class RegisterArrangementResultContractElectricExtDto {
 	 * ご契約者名（法人名）
 	 */
 	@Size(max = 255)
-	@ApiModelProperty(value = "ご契約者名（法人名）", required = true, position = 4, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "ご契約者名（法人名）", required = false, position = 4, allowableValues = "range[0,255]")
 	private String customerName;
 
 	/**
 	 * ご契約者名（カナ）
 	 */
 	@Size(max = 255)
-	@ApiModelProperty(value = "ご契約者名（カナ）", required = true, position = 6, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "ご契約者名（カナ）", required = false, position = 6, allowableValues = "range[0,255]")
 	private String customerNameKana;
 
 	/**
 	 * 使用場所 郵便番号
 	 */
 	@Size(max = 255)
-	@ApiModelProperty(value = "使用場所　郵便番号", required = true, position = 7, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "使用場所　郵便番号", required = false, position = 7, allowableValues = "range[0,255]")
 	private String zipCode;
 
 	/**
 	 * 使用場所 都道府県
 	 */
 	@Size(max = 255)
-	@ApiModelProperty(value = "使用場所　都道府県", required = true, position = 8, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "使用場所　都道府県", required = false, position = 8, allowableValues = "range[0,255]")
 	private String bildInfo;
 
 	/**
 	 * 使用場所 市区町村
 	 */
 	@Size(max = 255)
-	@ApiModelProperty(value = "使用場所　市区町村", required = true, position = 9, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "使用場所　市区町村", required =false, position = 9, allowableValues = "range[0,255]")
 	private String city;
 
 	/**
 	 * 使用場所 番地
 	 */
 	@Size(max = 255)
-	@ApiModelProperty(value = "使用場所　番地", required = true, position = 10, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "使用場所　番地", required = false, position = 10, allowableValues = "range[0,255]")
 	private String address;
 
 	/**
 	 * 使用場所 建物名
 	 */
 	@Size(max = 255)
-	@ApiModelProperty(value = "使用場所　建物名", required = true, position = 11, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "使用場所　建物名", required = false, position = 11, allowableValues = "range[0,255]")
 	private String buildingName;
 
 	/**
 	 * 使用場所 電話番号
 	 */
 	@Size(max = 255)
-	@ApiModelProperty(value = "使用場所　電話番号", required = true, position = 12, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "使用場所　電話番号", required = false, position = 12, allowableValues = "range[0,255]")
 	private String phoneNumber;
 
 	/**
 	 * 申込日
 	 */
 	@Size(max = 255)
-	@ApiModelProperty(value = "申込日", required = true, position = 16, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "申込日", required = false, position = 16, allowableValues = "range[0,255]")
 	private String entryDate;
 
 	/**
@@ -113,7 +113,7 @@ public class RegisterArrangementResultContractElectricExtDto {
 	 */
 	@DecimalMin("0.00")
 	@Digits(integer = 8, fraction = 2)
-	@ApiModelProperty(value = "契約容量(従量電灯)", required = true, position = 30, allowableValues = "range[0.00,99999999.99]")
+	@ApiModelProperty(value = "契約容量(従量電灯)", required = false, position = 30, allowableValues = "range[0.00,99999999.99]")
 	private BigDecimal contractCapacityUsage;
 
 	/**
@@ -121,7 +121,7 @@ public class RegisterArrangementResultContractElectricExtDto {
 	 */
 	@DecimalMin("0.00")
 	@Digits(integer = 8, fraction = 2)
-	@ApiModelProperty(value = "契約電流", required = true, position = 31, allowableValues = "range[0.00,99999999.99]")
+	@ApiModelProperty(value = "契約電流", required = false, position = 31, allowableValues = "range[0.00,99999999.99]")
 	private BigDecimal contractElectricCurrent;
 
 	/**
@@ -129,27 +129,27 @@ public class RegisterArrangementResultContractElectricExtDto {
 	 */
 	@DecimalMin("0.00")
 	@Digits(integer = 8, fraction = 2)
-	@ApiModelProperty(value = "契約電力(動力)", required = true, position = 32, allowableValues = "range[0.00,99999999.99]")
+	@ApiModelProperty(value = "契約電力(動力)", required = false, position = 32, allowableValues = "range[0.00,99999999.99]")
 	private BigDecimal contractElectricPower;
 
 	/**
 	 * 電気主任技術者 - 氏名
 	 */
 	@Size(max = 255)
-	@ApiModelProperty(value = "電気主任技術者 - 氏名", required = true, position = 38, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "電気主任技術者 - 氏名", required = false, position = 38, allowableValues = "range[0,255]")
 	private String licensedEngineerName;
 
 	/**
 	 * 電気主任技術者 - 電話番号
 	 */
 	@Size(max = 255)
-	@ApiModelProperty(value = "電気主任技術者 - 電話番号", required = true, position = 39, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "電気主任技術者 - 電話番号", required = false, position = 39, allowableValues = "range[0,255]")
 	private String licensedEngineerTel;
 
 	/**
 	 * 電気主任技術者 - 所属名
 	 */
 	@Size(max = 255)
-	@ApiModelProperty(value = "電気主任技術者 - 所属名", required = true, position = 40, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "電気主任技術者 - 所属名", required = false, position = 40, allowableValues = "range[0,255]")
 	private String licensedEngineerDep;
 }

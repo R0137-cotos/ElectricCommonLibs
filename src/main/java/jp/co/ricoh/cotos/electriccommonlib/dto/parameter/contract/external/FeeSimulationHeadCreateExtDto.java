@@ -19,7 +19,7 @@ public class FeeSimulationHeadCreateExtDto {
 	 * 作成日
 	 */
 	@Size(max = 255)
-	@ApiModelProperty(value = "作成日", required = true, position = 1, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "作成日", required = false, position = 1, allowableValues = "range[0,255]")
 	private String createdDate;
 
 	/**
