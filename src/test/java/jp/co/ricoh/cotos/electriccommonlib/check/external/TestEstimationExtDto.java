@@ -95,7 +95,7 @@ public class TestEstimationExtDto {
 		// 正常系
 		target.setCaseTitle("test");
 		target.setCaseNumber("test");
-		target.setOriginContractId(1);
+		target.setId(1);
 		EstimationElectric entityEstimation = estimationElectricRepository.findOne(1L);
 		EstimationElectricExtDtoForPlanChange targetEstimation = new EstimationElectricExtDtoForPlanChange();
 		BeanUtils.copyProperties(entityEstimation, targetEstimation);

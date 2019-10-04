@@ -21,7 +21,7 @@ public class EstimationExtPlanChangeDto {
 	@NotNull
 	@Min(0)
 	@ApiModelProperty(value = "契約ID", required = true, position = 3, allowableValues = "range[0,9223372036854775807]")
-	private long originContractId;
+	private long id;
 
 	/**
 	 * 案件番号

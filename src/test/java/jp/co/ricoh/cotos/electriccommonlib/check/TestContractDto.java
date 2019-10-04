@@ -804,7 +804,7 @@ public class TestContractDto {
 		BeanUtils.copyProperties(entity, contractElectricExtDto);
 		contractElectricExtDto.setBasicMeterReadingDate("dd");
 		contractElectricExtDto.setElectricCommercialFlowDiv("直売");
-		contractElectricExtDto.setElectricCommercialFlowDivCd("1");
+		contractElectricExtDto.setElectricCommercialFlowDivCode("1");
 		contractElectricExtDto.setFixTransferDestinationCode("修正時振替先コード");
 		contractElectricExtDto.setVoltageCategory("1");
 		contractElectricExtDto.setEntryDate("2019/05/31");
@@ -914,7 +914,7 @@ public class TestContractDto {
 		BeanUtils.copyProperties(entity, contractElectricExtDto);
 		contractElectricExtDto.setBasicMeterReadingDate("dd");
 		contractElectricExtDto.setElectricCommercialFlowDiv("直売");
-		contractElectricExtDto.setElectricCommercialFlowDivCd("1");
+		contractElectricExtDto.setElectricCommercialFlowDivCode("1");
 		contractElectricExtDto.setFixTransferDestinationCode("修正時振替先コード");
 		contractElectricExtDto.setOppSysKeyBn(STR_256);
 		contractElectricExtDto.setSimNumberMain(STR_256);
@@ -931,7 +931,7 @@ public class TestContractDto {
 		contractElectricExtDto.setDemandPlaceOld(STR_256);
 		contractElectricExtDto.setCurrentElectricCompany(STR_256);
 		contractElectricExtDto.setElectricCommercialFlowDiv(STR_256);
-		contractElectricExtDto.setElectricCommercialFlowDivCd(STR_256);
+		contractElectricExtDto.setElectricCommercialFlowDivCode(STR_256);
 		contractElectricExtDto.setPowerArea(STR_256);
 		contractElectricExtDto.setPowerCompany(STR_256);
 		contractElectricExtDto.setElectricCompanyCode(STR_256);
@@ -948,7 +948,6 @@ public class TestContractDto {
 		contractElectricExtDto.setLicensedEngineerName(STR_256);
 		contractElectricExtDto.setLicensedEngineerTel(STR_256);
 		contractElectricExtDto.setLicensedEngineerDep(STR_256);
-		contractElectricExtDto.setSupplyStartDate(STR_256);
 		contractElectricExtDto.setEntryNumber(STR_256);
 		contractElectricExtDto.setZipCode(STR_256);
 		contractElectricExtDto.setCurrentContractNumber(STR_256);
@@ -1025,7 +1024,7 @@ public class TestContractDto {
 		feeSimulationHeadExtDto.setUsageFeeOtherSeasonBankPriceRj(BigDecimal.valueOf(100));
 		testTarget.setFeeSimulationHead(feeSimulationHeadExtDto);
 		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
-		Assert.assertEquals(65, result.getErrorInfoList().size());
+		Assert.assertEquals(64, result.getErrorInfoList().size());
 
 		// 異常系(@Min, @Decimal)
 		// テストデータ作成
@@ -1039,7 +1038,7 @@ public class TestContractDto {
 		BeanUtils.copyProperties(entity, contractElectricExtDto);
 		contractElectricExtDto.setBasicMeterReadingDate("dd");
 		contractElectricExtDto.setElectricCommercialFlowDiv("直売");
-		contractElectricExtDto.setElectricCommercialFlowDivCd("1");
+		contractElectricExtDto.setElectricCommercialFlowDivCode("1");
 		contractElectricExtDto.setFixTransferDestinationCode("修正時振替先コード");
 		contractElectricExtDto.setVoltageCategory("1");
 		contractElectricExtDto.setPowerArea(entity.getElectricArea().toString());
@@ -1147,7 +1146,7 @@ public class TestContractDto {
 		BeanUtils.copyProperties(entity, contractElectricExtDto);
 		contractElectricExtDto.setBasicMeterReadingDate("dd");
 		contractElectricExtDto.setElectricCommercialFlowDiv("直売");
-		contractElectricExtDto.setElectricCommercialFlowDivCd("1");
+		contractElectricExtDto.setElectricCommercialFlowDivCode("1");
 		contractElectricExtDto.setFixTransferDestinationCode("修正時振替先コード");
 		contractElectricExtDto.setVoltageCategory("1");
 		contractElectricExtDto.setEntryDate("2019/05/31");
@@ -1256,7 +1255,7 @@ public class TestContractDto {
 		BeanUtils.copyProperties(entity, contractElectricExtDto);
 		contractElectricExtDto.setBasicMeterReadingDate("dd");
 		contractElectricExtDto.setElectricCommercialFlowDiv("直売");
-		contractElectricExtDto.setElectricCommercialFlowDivCd("1");
+		contractElectricExtDto.setElectricCommercialFlowDivCode("1");
 		contractElectricExtDto.setFixTransferDestinationCode("修正時振替先コード");
 		contractElectricExtDto.setOppSysKeyBn(STR_256);
 		contractElectricExtDto.setSimNumberMain(STR_256);
@@ -1273,7 +1272,7 @@ public class TestContractDto {
 		contractElectricExtDto.setDemandPlaceOld(STR_256);
 		contractElectricExtDto.setCurrentElectricCompany(STR_256);
 		contractElectricExtDto.setElectricCommercialFlowDiv(STR_256);
-		contractElectricExtDto.setElectricCommercialFlowDivCd(STR_256);
+		contractElectricExtDto.setElectricCommercialFlowDivCode(STR_256);
 		contractElectricExtDto.setPowerArea(STR_256);
 		contractElectricExtDto.setPowerCompany(STR_256);
 		contractElectricExtDto.setElectricCompanyCode(STR_256);
@@ -1290,7 +1289,6 @@ public class TestContractDto {
 		contractElectricExtDto.setLicensedEngineerName(STR_256);
 		contractElectricExtDto.setLicensedEngineerTel(STR_256);
 		contractElectricExtDto.setLicensedEngineerDep(STR_256);
-		contractElectricExtDto.setSupplyStartDate(STR_256);
 		contractElectricExtDto.setEntryNumber(STR_256);
 		contractElectricExtDto.setZipCode(STR_256);
 		contractElectricExtDto.setCurrentContractNumber(STR_256);
@@ -1364,7 +1362,7 @@ public class TestContractDto {
 		feeSimulationHeadExtDto.setUsageFeeOtherSeasonBankPriceRj(BigDecimal.valueOf(100));
 		testTarget.setFeeSimulationHead(feeSimulationHeadExtDto);
 		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
-		Assert.assertEquals(62, result.getErrorInfoList().size());
+		Assert.assertEquals(61, result.getErrorInfoList().size());
 
 		// 異常系(@Min, @Decimal)
 		// テストデータ作成
@@ -1379,7 +1377,7 @@ public class TestContractDto {
 		BeanUtils.copyProperties(entity, contractElectricExtDto);
 		contractElectricExtDto.setBasicMeterReadingDate("dd");
 		contractElectricExtDto.setElectricCommercialFlowDiv("直売");
-		contractElectricExtDto.setElectricCommercialFlowDivCd("1");
+		contractElectricExtDto.setElectricCommercialFlowDivCode("1");
 		contractElectricExtDto.setFixTransferDestinationCode("修正時振替先コード");
 		contractElectricExtDto.setVoltageCategory("1");
 		contractElectricExtDto.setPowerArea(entity.getElectricArea().toString());

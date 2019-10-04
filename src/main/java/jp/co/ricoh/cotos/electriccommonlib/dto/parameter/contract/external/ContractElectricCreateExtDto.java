@@ -161,7 +161,7 @@ public class ContractElectricCreateExtDto {
 	@NotNull
 	@Size(max = 255)
 	@ApiModelProperty(value = "商流区分コード", required = true, position = 20, allowableValues = "range[0,255]")
-	private String electricCommercialFlowDivCd;
+	private String electricCommercialFlowDivCode;
 
 	/**
 	 * 電力エリア
@@ -330,18 +330,11 @@ public class ContractElectricCreateExtDto {
 	private String licensedEngineerDep;
 
 	/**
-	 * 供給開始月
-	 */
-	@Size(max = 255)
-	@ApiModelProperty(value = "供給開始月", required = false, position = 43, allowableValues = "range[0,255]")
-	private String supplyStartDate;
-
-	/**
 	 * 振込フラグチェック(業務区)
 	 */
 	@Max(9)
 	@Min(0)
-	@ApiModelProperty(value = "振込フラグチェック(業務区)", required = false, position = 44, allowableValues = "range[0,9]")
+	@ApiModelProperty(value = "振込フラグチェック(業務区)", required = false, position = 43, allowableValues = "range[0,9]")
 	private Integer transferCheckFlg;
 
 	/**
@@ -349,7 +342,7 @@ public class ContractElectricCreateExtDto {
 	 */
 	@NotNull
 	@Size(max = 255)
-	@ApiModelProperty(value = "契約期間", required = true, position = 45, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "契約期間", required = true, position = 44, allowableValues = "range[0,255]")
 	private String contractPeriod;
 
 }
