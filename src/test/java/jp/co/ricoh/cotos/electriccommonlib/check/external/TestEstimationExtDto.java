@@ -186,8 +186,6 @@ public class TestEstimationExtDto {
 
 		ElectricExpertEstimationExtDto targetExpert = new ElectricExpertEstimationExtDto();
 		targetExpert.setMomEmployeeId("test");
-		targetExpert.setFixTransferDestinationCode("test");
-		targetExpert.setAffiliationCode("test");
 		target.setElectricExpertEstimation(targetExpert);
 
 		FeeSimulationHead entitySimulation = estimationElectricRepository.findOne(1L).getFeeSimulationHead();
@@ -429,10 +427,8 @@ public class TestEstimationExtDto {
 
 		// 異常系（@Size(max))
 		target.setMomEmployeeId(STR_256);
-		target.setAffiliationCode(STR_256);
-		target.setFixTransferDestinationCode(STR_256);
 		result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
-		Assert.assertTrue(result.getErrorInfoList().size() == 3);
+		Assert.assertTrue(result.getErrorInfoList().size() == 1);
 
 	}
 
