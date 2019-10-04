@@ -75,7 +75,6 @@ public class CustomerContractChangePlanExtDto {
 	/**
 	 * MoM非連携_担当者メールアドレス
 	 */
-	@NotNull
 	@Size(max = 255)
 	@ApiModelProperty(value = "MoM非連携_担当者メールアドレス", required = false, position = 9, allowableValues = "range[0,255]")
 	private String picMailAddress;
