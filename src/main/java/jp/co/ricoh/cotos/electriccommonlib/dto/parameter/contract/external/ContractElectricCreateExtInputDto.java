@@ -97,7 +97,7 @@ public class ContractElectricCreateExtInputDto {
 	 * 追加編集者
 	 */
 	@Valid
-	@ApiModelProperty(value = "追加編集者", required = true, position = 12)
+	@ApiModelProperty(value = "追加編集者", required = false, position = 12)
 	private List<ContractAddedEditorEmpCreateExtDto> contractAddedEditorEmpList;
 
 	/**
