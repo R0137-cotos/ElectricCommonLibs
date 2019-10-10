@@ -106,7 +106,6 @@ public class ContractElectricChangePlanExtInputDto {
 	 * 追加編集者
 	 */
 	@Valid
-	@NotNull
 	@ApiModelProperty(value = "追加編集者", required = true, position = 12)
 	private List<ContractAddedEditorEmpChangePlanExtDto> contractAddedEditorEmpList;
 
