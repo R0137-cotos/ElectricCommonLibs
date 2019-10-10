@@ -1587,10 +1587,9 @@ public class TestContractDto {
 		testTarget.setCustomerContract(null);
 		testTarget.setContractPicSaEmp(null);
 		testTarget.setElectricExpertContract(null);
-		testTarget.setContractAddedEditorEmpList(null);
 
 		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
-		Assert.assertEquals(7, result.getErrorInfoList().size());
+		Assert.assertEquals(6, result.getErrorInfoList().size());
 
 		// 異常系(@Size(max))
 		contractElectric = contractElectricRepository.findOne(1L);

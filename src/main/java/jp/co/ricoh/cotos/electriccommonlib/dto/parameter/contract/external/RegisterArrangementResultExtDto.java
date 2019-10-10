@@ -66,16 +66,14 @@ public class RegisterArrangementResultExtDto {
 	 * 契約担当者メールアドレス
 	 */
 	@Valid
-	@NotNull
-	@ApiModelProperty(value = "契約担当者メールアドレス", required = true, position = 7)
+	@ApiModelProperty(value = "契約担当者メールアドレス", required = false, position = 7)
 	private List<RegisterArrangementResultMailAddressInfoExtDto> contractPersonMailAddressList;
 
 	/**
 	 * 請求先メールアドレスリスト
 	 */
 	@Valid
-	@NotNull
-	@ApiModelProperty(value = "請求先メールアドレスリスト", required = true, position = 8)
+	@ApiModelProperty(value = "請求先メールアドレスリスト", required = false, position = 8)
 	private List<RegisterArrangementResultBillingMailAddressInfoExtDto> billingMailAddressList;
 
 	/**
@@ -98,8 +96,7 @@ public class RegisterArrangementResultExtDto {
 	 * 追加編集者
 	 */
 	@Valid
-	@NotNull
-	@ApiModelProperty(value = "追加編集者", required = true, position = 11)
+	@ApiModelProperty(value = "追加編集者", required = false, position = 11)
 	private List<RegisterArrangementResultContractAddedEditorEmpExtDto> contractAddedEditorEmpList;
 
 	/**

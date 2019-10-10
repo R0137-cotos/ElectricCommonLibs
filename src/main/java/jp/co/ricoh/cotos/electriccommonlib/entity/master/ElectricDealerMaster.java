@@ -275,7 +275,7 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	@ApiModelProperty(value = "登録ユーザID", required = false, position = 31, allowableValues = "range[0,1000]")
 	@JsonProperty("REGIST_USER_ID")
 	private String registUserId;
-	
+
 	/**
 	 * 登録日時
 	 */
@@ -291,7 +291,7 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	@ApiModelProperty(value = "更新ユーザID", required = false, position = 33, allowableValues = "range[0,1000]")
 	@JsonProperty("UPDATE_USER_ID")
 	private String updateUserId;
-	
+
 	/**
 	 * 更新日時
 	 */
@@ -299,7 +299,7 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	@ApiModelProperty(value = "更新日時", required = false, position = 34)
 	@Temporal(TemporalType.DATE)
 	private Date updateTime;
-	
+
 	/**
 	 * バージョン
 	 */
