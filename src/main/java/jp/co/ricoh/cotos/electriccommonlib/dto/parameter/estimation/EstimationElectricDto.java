@@ -272,9 +272,16 @@ public class EstimationElectricDto extends DtoBase {
 	private String contractPeriod;
 
 	/**
+	 * 承認ルート名
+	 */
+	@Size(max = 255)
+	@ApiModelProperty(value = "承認ルート名", required = false, position = 36, allowableValues = "range[0,255]")
+	private String approvalRouteName;
+
+	/**
 	 * 取次情報
 	 */
 	@Valid
-	@ApiModelProperty(value = "取次情報", required = false, position = 36)
+	@ApiModelProperty(value = "取次情報", required = false, position = 37)
 	private AgencyEstimationInformationDto agencyEstimationInformation;
 }

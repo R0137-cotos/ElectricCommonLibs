@@ -288,7 +288,14 @@ public class EstimationElectric extends EntityBase {
 	@ApiModelProperty(value = "契約期間", required = false, position = 35, allowableValues = "range[0,255]")
 	private String contractPeriod;
 
+	/**
+	 * 承認ルート名
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "承認ルート名", required = false, position = 36, allowableValues = "range[0,255]")
+	private String approvalRouteName;
+
 	@OneToOne(mappedBy = "estimationElectric")
-	@ApiModelProperty(value = "取次情報", required = false, position = 36)
+	@ApiModelProperty(value = "取次情報", required = false, position = 37)
 	private AgencyEstimationInformation agencyEstimationInformation;
 }
