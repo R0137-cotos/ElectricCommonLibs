@@ -44,7 +44,7 @@ public class TestEstimationDto {
 	private static final int INT_MINUS_1 = -1;
 	private static final int INT_10 = 10;
 	private static final BigDecimal DECIMAL_MINUS_001 = new BigDecimal("-0.01");
-	private static final BigDecimal DECIMAL_MINUS_002 = new BigDecimal("-10000000000000000000.00");
+	private static final BigDecimal DECIMAL_MINUS_AND_DIGIT = new BigDecimal("-10000000000000000000.00");
 
 	static ConfigurableApplicationContext context;
 
@@ -267,10 +267,10 @@ public class TestEstimationDto {
 		testTarget.setBasicRateListPrice(DECIMAL_MINUS_001);
 		testTarget.setAgencyFeeAmount(DECIMAL_MINUS_001);
 		testTarget.setAgencyFeeRate(DECIMAL_MINUS_001);
-		testTarget.setAgencyDiscountPrice(DECIMAL_MINUS_002);
+		testTarget.setAgencyDiscountPrice(DECIMAL_MINUS_AND_DIGIT);
 		testTarget.setAgencyDiscountRate(DECIMAL_MINUS_001);
 		testTarget.setLongtermDiscountRate(DECIMAL_MINUS_001);
-		testTarget.setLongtermDiscountPrice(DECIMAL_MINUS_002);
+		testTarget.setLongtermDiscountPrice(DECIMAL_MINUS_AND_DIGIT);
 		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(43, result.getErrorInfoList().size());
 
