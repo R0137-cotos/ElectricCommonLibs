@@ -32,7 +32,7 @@ public class HighContractCalendarMaster extends EntityBaseMaster {
 
 	public enum DetermineCondition {
 
-		契約電力500kW以上("1"), 部分供給_付帯外契約等("2"), 契約電力500kW未満("3"), 新電力から切替("4"), 計量日("5");
+		契約電力500kW以上("1"), 部分供給_付帯外契約等("2"), 契約電力500kW未満("3"), 新電力から切替("4"), 計量日("5"), 取次協議性_契約電力増加("6");
 
 		private final String text;
 
