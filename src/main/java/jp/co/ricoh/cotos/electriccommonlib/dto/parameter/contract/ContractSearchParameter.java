@@ -107,6 +107,13 @@ public class ContractSearchParameter {
 	private String voltageCategory;
 
 	/**
+	 * 電力メニュー
+	 */
+	@ApiParam(value = "電力メニュー", required = false)
+	@ApiModelProperty(value = "電力メニュー", required = false)
+	private String likeElectricMenu;
+
+	/**
 	 * 見積番号
 	 */
 	@ApiParam(value = "見積番号", required = false)
