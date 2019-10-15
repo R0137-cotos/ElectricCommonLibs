@@ -296,6 +296,6 @@ public class EstimationElectric extends EntityBase {
 	private String approvalRouteName;
 
 	@OneToOne(mappedBy = "estimationElectric")
-	@ApiModelProperty(value = "取次情報", required = false, position = 36)
+	@ApiModelProperty(value = "取次情報", required = false, position = 37)
 	private AgencyEstimationInformation agencyEstimationInformation;
 }
