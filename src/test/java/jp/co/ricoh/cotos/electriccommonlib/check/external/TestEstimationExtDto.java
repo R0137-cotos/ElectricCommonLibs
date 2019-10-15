@@ -51,8 +51,8 @@ public class TestEstimationExtDto {
 			+ "01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890";
 	private static final int INT_MINUS_1 = -1;
 	private static final int INT_10 = 10;
-	private static final int INT_100 = 100;
 	private static final BigDecimal DECIMAL_MINUS_001 = new BigDecimal("-0.01");
+	private static final BigDecimal DECIMAL_MINUS_AND_DIGIT = new BigDecimal("-10000000000000000000.00");
 	private static final BigDecimal DECIMAL_0001 = new BigDecimal("0.001");
 
 	static ConfigurableApplicationContext context;
@@ -108,7 +108,7 @@ public class TestEstimationExtDto {
 		targetEstimation.setCo2EmissionFactor("1");
 		targetEstimation.setVoltageCategory(entityEstimation.getVoltageCategory().toString());
 		targetEstimation.setSupplyStartScheduledDate("2019/05");
-		targetEstimation.setContractPeriod(12);
+		targetEstimation.setContractPeriod("12");
 		target.setEstimationElectric(targetEstimation);
 
 		CustomerEstimationExtDto targetCustomer = 顧客正常データ作成();
@@ -174,7 +174,7 @@ public class TestEstimationExtDto {
 		targetEstimation.setCo2EmissionFactor("1");
 		targetEstimation.setVoltageCategory(entityEstimation.getVoltageCategory().toString());
 		targetEstimation.setSupplyStartScheduledDate("2019/05");
-		targetEstimation.setContractPeriod(12);
+		targetEstimation.setContractPeriod("12");
 		target.setEstimationElectric(targetEstimation);
 
 		CustomerEstimationExtDto targetCustomer = 顧客正常データ作成();
@@ -235,7 +235,7 @@ public class TestEstimationExtDto {
 		target.setCo2EmissionMenu(ElectricPlan.CO2フリー);
 		target.setCo2EmissionFactor("1");
 		target.setVoltageCategory(entity.getVoltageCategory().toString());
-		target.setContractPeriod(12);
+		target.setContractPeriod("12");
 		ParamterCheckResult result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
 		testTool.assertValidationOk(result);
 
@@ -280,7 +280,7 @@ public class TestEstimationExtDto {
 		target.setTypeOfContract(STR_256);
 		target.setVoltageCategory(STR_256);
 		target.setSupplyStartScheduledDate(STR_256);
-		target.setContractPeriod(INT_MINUS_1);
+		target.setContractPeriod(STR_256);
 		result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
 		Assert.assertTrue(result.getErrorInfoList().size() == 15);
 
@@ -298,9 +298,9 @@ public class TestEstimationExtDto {
 		target.setSpareWireFlg(INT_MINUS_1);
 		target.setSparePowerFlg(INT_MINUS_1);
 		target.setAncillaryFlg(INT_MINUS_1);
-		target.setContractPeriod(INT_MINUS_1);
+		target.setContractPeriod("12");
 		result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
-		Assert.assertTrue(result.getErrorInfoList().size() == 5);
+		Assert.assertTrue(result.getErrorInfoList().size() == 4);
 
 		// 異常系(@Max)
 		BeanUtils.copyProperties(entity, target);
@@ -310,14 +310,13 @@ public class TestEstimationExtDto {
 		target.setCo2EmissionMenu(ElectricPlan.CO2フリー);
 		target.setCo2EmissionFactor("1");
 		target.setVoltageCategory(entity.getVoltageCategory().toString());
-		target.setContractPeriod(12);
 		target.setPartialSupplyFlg(INT_10);
 		target.setSpareWireFlg(INT_10);
 		target.setSparePowerFlg(INT_10);
 		target.setAncillaryFlg(INT_10);
-		target.setContractPeriod(INT_100);
+		target.setContractPeriod("12");
 		result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
-		Assert.assertTrue(result.getErrorInfoList().size() == 5);
+		Assert.assertTrue(result.getErrorInfoList().size() == 4);
 
 		// 異常系(@DecimalMin)
 		BeanUtils.copyProperties(entity, target);
@@ -327,7 +326,7 @@ public class TestEstimationExtDto {
 		target.setCo2EmissionMenu(ElectricPlan.CO2フリー);
 		target.setCo2EmissionFactor("1");
 		target.setVoltageCategory(entity.getVoltageCategory().toString());
-		target.setContractPeriod(12);
+		target.setContractPeriod("12");
 		target.setContractPower(DECIMAL_MINUS_001);
 		target.setPowerRate(DECIMAL_MINUS_001);
 		target.setLoadFactor(DECIMAL_MINUS_001);
@@ -641,10 +640,10 @@ public class TestEstimationExtDto {
 		BeanUtils.copyProperties(agencyInformation, target);
 		target.setAgencyFeeAmount(DECIMAL_MINUS_001);
 		target.setAgencyFeeRate(DECIMAL_MINUS_001);
-		target.setAgencyDiscountPrice(DECIMAL_MINUS_001);
+		target.setAgencyDiscountPrice(DECIMAL_MINUS_AND_DIGIT);
 		target.setAgencyDiscountRate(DECIMAL_MINUS_001);
 		result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
-		Assert.assertTrue(result.getErrorInfoList().size() == 4);
+		Assert.assertTrue(result.getErrorInfoList().size() == 5);
 
 	}
 
@@ -661,9 +660,9 @@ public class TestEstimationExtDto {
 		result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
 		Assert.assertTrue(result.getErrorInfoList().size() == 1);
 
-		// 異常系(@DecimalMax, 桁)
+		// 異常系(@DecimalMin, 桁)
 		target = new LongtermDiscountEstimationInformationExtDto();
-		target.setLongtermDiscountPrice(DECIMAL_0001);
+		target.setLongtermDiscountPrice(DECIMAL_MINUS_AND_DIGIT);
 		result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
 		Assert.assertTrue(result.getErrorInfoList().size() == 2);
 
@@ -684,7 +683,7 @@ public class TestEstimationExtDto {
 		target.setCo2EmissionMenu(ElectricPlan.CO2フリー);
 		target.setCo2EmissionFactor("1");
 		target.setVoltageCategory(entity.getVoltageCategory().toString());
-		target.setContractPeriod(12);
+		target.setContractPeriod("12");
 		ParamterCheckResult result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
 		testTool.assertValidationOk(result);
 
@@ -730,7 +729,7 @@ public class TestEstimationExtDto {
 		target.setTypeOfContract(STR_256);
 		target.setVoltageCategory(STR_256);
 		target.setSupplyStartScheduledDate(STR_256);
-		target.setContractPeriod(INT_MINUS_1);
+		target.setContractPeriod(STR_256);
 		result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
 		Assert.assertTrue(result.getErrorInfoList().size() == 15);
 
@@ -748,9 +747,8 @@ public class TestEstimationExtDto {
 		target.setSpareWireFlg(INT_MINUS_1);
 		target.setSparePowerFlg(INT_MINUS_1);
 		target.setAncillaryFlg(INT_MINUS_1);
-		target.setContractPeriod(INT_MINUS_1);
 		result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
-		Assert.assertTrue(result.getErrorInfoList().size() == 5);
+		Assert.assertTrue(result.getErrorInfoList().size() == 4);
 
 		// 異常系(@Max)
 		BeanUtils.copyProperties(entity, target);
@@ -760,14 +758,12 @@ public class TestEstimationExtDto {
 		target.setCo2EmissionMenu(ElectricPlan.CO2フリー);
 		target.setCo2EmissionFactor("1");
 		target.setVoltageCategory(entity.getVoltageCategory().toString());
-		target.setContractPeriod(12);
 		target.setPartialSupplyFlg(INT_10);
 		target.setSpareWireFlg(INT_10);
 		target.setSparePowerFlg(INT_10);
 		target.setAncillaryFlg(INT_10);
-		target.setContractPeriod(INT_100);
 		result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
-		Assert.assertTrue(result.getErrorInfoList().size() == 5);
+		Assert.assertTrue(result.getErrorInfoList().size() == 4);
 
 		// 異常系(@DecimalMin)
 		BeanUtils.copyProperties(entity, target);
@@ -777,7 +773,6 @@ public class TestEstimationExtDto {
 		target.setCo2EmissionMenu(ElectricPlan.CO2フリー);
 		target.setCo2EmissionFactor("1");
 		target.setVoltageCategory(entity.getVoltageCategory().toString());
-		target.setContractPeriod(12);
 		target.setContractPower(DECIMAL_MINUS_001);
 		target.setPowerRate(DECIMAL_MINUS_001);
 		target.setLoadFactor(DECIMAL_MINUS_001);

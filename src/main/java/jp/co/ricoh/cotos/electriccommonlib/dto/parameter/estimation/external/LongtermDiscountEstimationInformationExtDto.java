@@ -2,7 +2,6 @@ package jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external;
 
 import java.math.BigDecimal;
 
-import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Digits;
 
@@ -25,9 +24,9 @@ public class LongtermDiscountEstimationInformationExtDto {
 	/**
 	 * 長期割引単価
 	 */
-	@DecimalMax("0.00")
+	@DecimalMin("-99999999999999999.99")
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "長期割引単価", required = false, position = 2, allowableValues = "range[-9999999999999999999.99,0.00]")
+	@ApiModelProperty(value = "長期割引単価", required = false, position = 2, allowableValues = "range[-99999999999999999.99,99999999999999999.99]")
 	private BigDecimal longtermDiscountPrice;
 
 }

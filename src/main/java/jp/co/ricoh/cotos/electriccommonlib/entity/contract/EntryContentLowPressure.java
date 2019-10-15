@@ -36,7 +36,7 @@ import lombok.EqualsAndHashCode;
 @CotosComplementTarget(entity = EntryContentLowPressure.class, repository = EntryContentLowPressureRepository.class)
 public class EntryContentLowPressure extends EntityBase {
 
-	
+
 	public enum LowPressureType {
 
 		 従量電灯1("1"), 従量電灯2("2"), 動力("3");
@@ -58,10 +58,10 @@ public class EntryContentLowPressure extends EntityBase {
 			return Arrays.stream(values()).filter(v -> v.text.equals(string)).findFirst().orElseThrow(() -> new IllegalArgumentException(String.valueOf(string)));
 		}
 	}
-	
+
 	public enum ContractUnit {
 
-		 A("1"), KvA("2"), 契約("3"), kW("4");
+		 A("1"), kVA("2"), 契約("3"), kW("4");
 
 		private final String text;
 
@@ -145,14 +145,14 @@ public class EntryContentLowPressure extends EntityBase {
 	@Column(nullable = true)
 	@ApiModelProperty(value = "備考", required = false, position = 10, allowableValues = "range[0,4000]")
 	private String notes;
-	
+
 	/**
 	 * 低圧種別
 	 */
 	@Column(nullable = false)
 	@ApiModelProperty(value = "低圧種別", required = true, position = 11, allowableValues = "従量電灯1(\"1\"), 従量電灯2(\"2\"), 動力(\"3\")", example = "1")
 	private LowPressureType lowPressureType;
-	
+
 	/**
 	 * 契約単位
 	 */

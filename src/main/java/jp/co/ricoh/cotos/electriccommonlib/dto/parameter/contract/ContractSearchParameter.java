@@ -107,10 +107,10 @@ public class ContractSearchParameter {
 	private String voltageCategory;
 
 	/**
-	 * 電力メニュー
+	 * 商品名称
 	 */
-	@ApiParam(value = "電力メニュー", required = false)
-	@ApiModelProperty(value = "電力メニュー", required = false)
+	@ApiParam(value = "商品名称:部分一致", required = false)
+	@ApiModelProperty(value = "商品名称:部分一致<br />条件入力時、最低2文字以上の入力とする。", required = false)
 	private String likeElectricMenu;
 
 	/**
@@ -399,6 +399,20 @@ public class ContractSearchParameter {
 	@ApiParam(value = "東北取次（RJ電力からの切り替え）", required = false)
 	@ApiModelProperty(value = "東北取次（RJ電力からの切り替え）", required = false)
 	private Integer tohokuAgencySwitchFlg;
+
+	/**
+	 * 協議制で契約電力増加の場合
+	 */
+	@ApiParam(value = "協議制で契約電力増加の場合", required = false)
+	@ApiModelProperty(value = "協議制で契約電力増加の場合", required = false)
+	private Integer increaseElectricPowerFlg;
+
+	/**
+	 * その他
+	 */
+	@ApiParam(value = "その他", required = false)
+	@ApiModelProperty(value = "その他", required = false)
+	private Integer otherFlg;
 
 	/**
 	 * 契約種別

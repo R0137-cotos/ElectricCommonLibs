@@ -179,10 +179,9 @@ public class EstimationElectricExtDtoForPlanChange {
 
 	/** 契約期間 */
 	@NotNull
-	@Max(99)
-	@Min(0)
-	@ApiModelProperty(value = "契約期間", required = true, position = 29, allowableValues = "range[0,99]")
-	private Integer contractPeriod;
+	@Size(max = 255)
+	@ApiModelProperty(value = "契約期間", required = true, position = 29, allowableValues = "range[0,255]")
+	private String contractPeriod;
 
 	/** アンシラリーサービス契約容量 */
 	@DecimalMin("0.00")
