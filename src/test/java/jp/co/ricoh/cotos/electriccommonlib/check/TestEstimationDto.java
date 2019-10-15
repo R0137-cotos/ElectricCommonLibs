@@ -125,6 +125,7 @@ public class TestEstimationDto {
 		testTarget.setElectricMenuCode(STR_256);
 		testTarget.setCo2EmissionFactor(STR_256);
 		testTarget.setContractPeriod(STR_256);
+		testTarget.setApprovalRouteName(STR_256);
 		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(14, result.getErrorInfoList().size());
 
