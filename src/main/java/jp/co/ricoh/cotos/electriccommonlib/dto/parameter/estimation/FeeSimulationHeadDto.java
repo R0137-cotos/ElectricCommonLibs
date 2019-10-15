@@ -350,9 +350,9 @@ public class FeeSimulationHeadDto extends DtoBase {
 	/**
 	 * 取次割引単価
 	 */
-	@DecimalMin("0.00")
+	@DecimalMin("-9999999999999999999.99")
 	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "取次割引単価", required = false, position = 44, allowableValues = "range[0.00,9999999999999999999.99]")
+	@ApiModelProperty(value = "取次割引単価", required = false, position = 44, allowableValues = "range[-9999999999999999999.99,9999999999999999999.99]")
 	private BigDecimal agencyDiscountPrice;
 
 	/**
@@ -368,6 +368,6 @@ public class FeeSimulationHeadDto extends DtoBase {
 	 */
 	@DecimalMin("-9999999999999999999.99")
 	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "長期割引単価", required = false, position = 46, allowableValues = "range[-9999999999999999999.99,0.00]")
+	@ApiModelProperty(value = "長期割引単価", required = false, position = 46, allowableValues = "range[-9999999999999999999.99,9999999999999999999.99]")
 	private BigDecimal longtermDiscountPrice;
 }

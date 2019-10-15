@@ -328,7 +328,7 @@ public class FeeSimulationHead extends EntityBase {
 	@Digits(integer = 19, fraction = 2)
 	@ApiModelProperty(value = "取次手数料額", required = false, position = 41, allowableValues = "range[0.00,9999999999999999999.99]")
 	private BigDecimal agencyFeeAmount;
-	
+
 	/**
 	 * 取次手数料率（％）
 	 */
@@ -351,9 +351,9 @@ public class FeeSimulationHead extends EntityBase {
 	 * 取次割引単価
 	 */
 	@Column(nullable = true)
-	@DecimalMin("0.00")
+	@DecimalMin("-9999999999999999999.99")
 	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "取次割引単価", required = false, position = 44, allowableValues = "range[0.00,9999999999999999999.99]")
+	@ApiModelProperty(value = "取次割引単価", required = false, position = 44, allowableValues = "range[-9999999999999999999.99,9999999999999999999.99]")
 	private BigDecimal agencyDiscountPrice;
 
 	/**
@@ -371,7 +371,7 @@ public class FeeSimulationHead extends EntityBase {
 	@Column(nullable = true)
 	@DecimalMin("-9999999999999999999.99")
 	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "長期割引単価", required = false, position = 46, allowableValues = "range[-9999999999999999999.99,0.00]")
+	@ApiModelProperty(value = "長期割引単価", required = false, position = 46, allowableValues = "range[-9999999999999999999.99,9999999999999999999.99]")
 	private BigDecimal longtermDiscountPrice;
-	
+
 }

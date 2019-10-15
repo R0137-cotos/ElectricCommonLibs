@@ -43,9 +43,9 @@ public class AgencyEstimationInformationExtDto {
 	/**
 	 * 取次割引単価
 	 */
-	@DecimalMin("0.00")
+	@DecimalMin("-99999999999999999.99")
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "取次割引単価", required = false, position = 5, allowableValues = "range[0.00,99999999999999999.99]")
+	@ApiModelProperty(value = "取次割引単価", required = false, position = 5, allowableValues = "range[-99999999999999999.99,99999999999999999.99]")
 	private BigDecimal agencyDiscountPrice;
 
 	/**
