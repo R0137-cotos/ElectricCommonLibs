@@ -309,6 +309,12 @@ public class ContractSearchResult {
 	@ApiModelProperty(value = "解約金額", required = false, position = 47, allowableValues = "range[0,20]")
 	private String cancellationAmount;
 
+	/**
+	 * 電力メニュー
+	 */
+	@ApiModelProperty(value = "電力メニュー", required = false, position = 48, allowableValues = "range[0,255]")
+	private String electricMenu;
+
 	@PrePersist
 	public void prePersist() {
 		throw new IllegalAccessError();

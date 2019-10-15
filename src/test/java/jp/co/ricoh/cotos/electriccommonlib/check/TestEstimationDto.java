@@ -127,7 +127,7 @@ public class TestEstimationDto {
 		testTarget.setContractPeriod(STR_256);
 		testTarget.setApprovalRouteName(STR_256);
 		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
-		Assert.assertEquals(14, result.getErrorInfoList().size());
+		Assert.assertEquals(15, result.getErrorInfoList().size());
 
 		// 異常系(@Max)
 		testTarget = new EstimationElectricDto();
