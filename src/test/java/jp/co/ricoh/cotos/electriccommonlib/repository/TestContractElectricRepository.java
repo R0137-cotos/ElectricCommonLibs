@@ -344,11 +344,13 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 
 		String electricTradingCompanyId = "販売店1";
 		String billingYearMonth = "2017/11";
-		ElectricAppropriation electricAppropriation = electricAppropriationRepository.findByElectricTradingCompanyIdAndBillingYearMonth(electricTradingCompanyId, billingYearMonth);
+		List<ElectricAppropriation> electricAppropriation = electricAppropriationRepository.findByElectricTradingCompanyIdAndBillingYearMonth(electricTradingCompanyId, billingYearMonth);
 
 		// 電力販売店会社IDで取得できていることを確認
 		try {
-			Assert.assertEquals("販売店1", electricAppropriation.getElectricTradingCompanyId());
+			electricAppropriation.stream().forEach(entity -> {
+				Assert.assertEquals("販売店1", entity.getElectricTradingCompanyId());
+			});
 		} catch (Exception e1) {
 			Assert.fail("例外が発生した場合、エラー");
 		}
