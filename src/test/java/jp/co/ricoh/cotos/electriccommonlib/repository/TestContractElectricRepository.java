@@ -12,10 +12,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.util.ObjectUtils;
 
 import jp.co.ricoh.cotos.electriccommonlib.DBConfig;
 import jp.co.ricoh.cotos.electriccommonlib.TestTools;
 import jp.co.ricoh.cotos.electriccommonlib.entity.contract.BillingBasicInformation;
+import jp.co.ricoh.cotos.electriccommonlib.entity.contract.BillingHistory;
 import jp.co.ricoh.cotos.electriccommonlib.entity.contract.ClientMaster;
 import jp.co.ricoh.cotos.electriccommonlib.entity.contract.ContractElectric;
 import jp.co.ricoh.cotos.electriccommonlib.entity.contract.ElectricAppropriation;
@@ -337,6 +339,19 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 		} catch (Exception e1) {
 			Assert.fail("例外が発生した場合、エラー");
 		}
+	}
+
+	@Test
+	public void 請求基本情報IDと請求年月より取得_請求実績() {
+		long billingBasicInformationId = 1L;
+		String billingYearMonth = "2017/11";
+		BillingHistory billingHistoryEntity = null;
+		try {
+			billingHistoryEntity = billingHistoryRepository.findByBillingBasicInformationIdAndBillingYearMonth(billingBasicInformationId, billingYearMonth);
+		} catch (Exception e) {
+			Assert.fail("想定外のエラーが発生した。");
+		}
+		Assert.assertFalse("請求実績が1件取得", ObjectUtils.isEmpty(billingHistoryEntity));
 	}
 
 	@Test
