@@ -714,9 +714,8 @@ public class TestContractDto {
 		BeanUtils.copyProperties(entity, testTarget);
 		testTarget.setName(null);
 		testTarget.setMailAddress(null);
-		testTarget.setMyricohId(null);
 		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
-		Assert.assertEquals(3, result.getErrorInfoList().size());
+		Assert.assertEquals(2, result.getErrorInfoList().size());
 
 		// 異常系(@Size(max))
 		BeanUtils.copyProperties(entity, testTarget);

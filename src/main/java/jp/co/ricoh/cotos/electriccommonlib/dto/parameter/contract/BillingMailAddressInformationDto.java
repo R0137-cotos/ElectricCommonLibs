@@ -20,7 +20,7 @@ public class BillingMailAddressInformationDto extends DtoBase {
 	 */
 	@NotNull
 	@Size(max = 255)
-	@ApiModelProperty(value = "氏名", required = true, position = 3, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "氏名", required = true, position = 1, allowableValues = "range[0,255]")
 	private String name;
 
 	/**
@@ -28,14 +28,13 @@ public class BillingMailAddressInformationDto extends DtoBase {
 	 */
 	@NotNull
 	@Size(max = 255)
-	@ApiModelProperty(value = "メールアドレス", required = true, position = 3, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "メールアドレス", required = true, position = 2, allowableValues = "range[0,255]")
 	private String mailAddress;
 
 	/**
 	 * MｙRicohユーザID
 	 */
-	@NotNull
 	@Size(max = 255)
-	@ApiModelProperty(value = "MｙRicohユーザID", required = true, position = 4, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "MｙRicohユーザID", required = false, position = 3, allowableValues = "range[0,255]")
 	private String myricohId;
 }
