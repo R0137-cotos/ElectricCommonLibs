@@ -6,6 +6,7 @@ import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
 
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.dto.parameter.common.DtoBase;
@@ -202,4 +203,11 @@ public class EntryContentHighPressureDto extends DtoBase {
 	@Digits(integer = 3, fraction = 2)
 	@ApiModelProperty(value = "取次手数料率", required = false, position = 25, allowableValues = "range[0.00,999.99]")
 	private BigDecimal agencyFeeRate;
+
+	/**
+	 * 備考
+	 */
+	@Size(max = 4000)
+	@ApiModelProperty(value = "備考", required = false, position = 26, allowableValues = "range[0,4000]")
+	private String notes;
 }
