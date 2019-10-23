@@ -192,7 +192,7 @@ public class EntryContentHighPressure extends EntityBase {
 	@Digits(integer = 8, fraction = 2)
 	@ApiModelProperty(value = "変動部", required = false, position = 18, allowableValues = "range[0.00,99999999.99]")
 	private BigDecimal variable;
-	
+
 	/**
 	 * アンシラリーサービス契約容量(高圧)
 	 */
@@ -201,7 +201,7 @@ public class EntryContentHighPressure extends EntityBase {
 	@Digits(integer = 8, fraction = 2)
 	@ApiModelProperty(value = "アンシラリーサービス契約容量(高圧)", required = false, position = 19, allowableValues = "range[0.00,99999999.99]")
 	private BigDecimal ancillaryCapacityHighPressure;
-	
+
 	/**
 	 * 該当なし
 	 */
@@ -237,7 +237,7 @@ public class EntryContentHighPressure extends EntityBase {
 	@Min(0)
 	@ApiModelProperty(value = "協議制で契約電力増加の場合", required = false, position = 23, allowableValues = "range[0,9]")
 	private Integer increaseElectricPowerFlg;
-	
+
 	/**
 	 * 取次手数料額
 	 */
@@ -255,5 +255,12 @@ public class EntryContentHighPressure extends EntityBase {
 	@Digits(integer = 3, fraction = 2)
 	@ApiModelProperty(value = "取次手数料率", required = false, position = 25, allowableValues = "range[0.00,999.99]")
 	private BigDecimal agencyFeeRate;
+
+	/**
+	 * 備考
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "備考", required = false, position = 26, allowableValues = "range[0,4000]")
+	private String notes;
 
 }

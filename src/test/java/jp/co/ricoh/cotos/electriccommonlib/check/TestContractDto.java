@@ -278,8 +278,9 @@ public class TestContractDto {
 		testTarget.setTohokuAgencyNewFlg(INT_10);
 		testTarget.setTohokuAgencySwitchFlg(INT_10);
 		testTarget.setIncreaseElectricPowerFlg(INT_10);
+		testTarget.setNotes(STR_1001 + STR_1001 + STR_1001 + STR_1001);
 		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
-		Assert.assertEquals(13, result.getErrorInfoList().size());
+		Assert.assertEquals(14, result.getErrorInfoList().size());
 
 		// 異常系(＠Min)
 		BeanUtils.copyProperties(entity.getEntryContentHighPressure(), testTarget);
