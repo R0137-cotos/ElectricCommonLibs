@@ -73,11 +73,25 @@ public class EstimationSearchParameter {
 	private String picDivisionId;
 
 	/**
+	 * 商品名称
+	 */
+	@ApiParam(value = "商品名称:部分一致", required = false)
+	@ApiModelProperty(value = "商品名称:部分一致<br />条件入力時、最低2文字以上の入力とする。", required = false, allowableValues = "range[2,255]")
+	private String electricMenu;
+
+	/**
 	 * 見積ステータス
 	 */
 	@ApiParam(value = "見積ステータス", required = false)
 	@ApiModelProperty(value = "見積ステータス<br />状態遷移上のワークフロー状態を表す。", required = false)
 	private String status;
+
+	/**
+	 * 見積種別
+	 */
+	@ApiParam(value = "見積種別", required = false)
+	@ApiModelProperty(value = "見積種別", required = false)
+	private String estimationType;
 
 	/**
 	 * 見積番号
