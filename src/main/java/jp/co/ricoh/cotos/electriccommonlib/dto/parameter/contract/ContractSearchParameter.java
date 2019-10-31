@@ -212,13 +212,6 @@ public class ContractSearchParameter {
 	private String feedPointNumber;
 
 	/**
-	 * 仕入元拠点ID
-	 */
-	@ApiParam(value = "仕入元拠点ID", required = false)
-	@ApiModelProperty(value = "仕入元拠点ID", required = false, allowableValues = "range[0,255]")
-	private String supplierCustId;
-
-	/**
 	 * 管轄電力会社
 	 */
 	@ApiParam(value = "管轄電力会社", required = false)
