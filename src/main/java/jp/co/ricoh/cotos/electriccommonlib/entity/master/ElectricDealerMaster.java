@@ -2,6 +2,7 @@ package jp.co.ricoh.cotos.electriccommonlib.entity.master;
 
 import java.math.BigDecimal;
 import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,6 +12,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import io.swagger.annotations.ApiModelProperty;
@@ -282,6 +284,7 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	@Column(nullable = true)
 	@ApiModelProperty(value = "登録日時", required = false, position = 32)
 	@Temporal(TemporalType.DATE)
+	@JsonProperty("REGIST_TIME")
 	private Date registTime;
 
 	/**
@@ -298,6 +301,7 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	@Column(nullable = true)
 	@ApiModelProperty(value = "更新日時", required = false, position = 34)
 	@Temporal(TemporalType.DATE)
+	@JsonProperty("UPDATE_TIME")
 	private Date updateTime;
 
 	/**
@@ -305,6 +309,6 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "バージョン", required = false, position = 35, allowableValues = "range[0,9999999999999999999]")
-	@JsonProperty("R_VERSION")
+	@JsonProperty("VERSION")
 	private BigDecimal rVersion;
 }
