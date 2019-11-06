@@ -437,27 +437,24 @@ public class ElectricAppropriation extends EntityBase {
 	 * RJ粗利金額
 	 */
 	@Column(nullable = true)
-	@DecimalMin("0.00")
 	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "RJ粗利金額", required = false, position = 48, allowableValues = "range[0.00,9999999999999999999.99]")
+	@ApiModelProperty(value = "RJ粗利金額", required = false, position = 48)
 	private BigDecimal rjGrossProfit;
 
 	/**
 	 * 営業区粗利金額
 	 */
 	@Column(nullable = true)
-	@DecimalMin("0.00")
 	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "営業区粗利金額", required = false, position = 49, allowableValues = "range[0.00,9999999999999999999.99]")
+	@ApiModelProperty(value = "営業区粗利金額", required = false, position = 49)
 	private BigDecimal salesSectionGrossProfit;
 
 	/**
 	 * 本部粗利金額
 	 */
 	@Column(nullable = true)
-	@DecimalMin("0.00")
 	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "本部粗利金額", required = false, position = 50, allowableValues = "range[0.00,9999999999999999999.99]")
+	@ApiModelProperty(value = "本部粗利金額", required = false, position = 50)
 	private BigDecimal headofficeGrossProfit;
 
 	/**

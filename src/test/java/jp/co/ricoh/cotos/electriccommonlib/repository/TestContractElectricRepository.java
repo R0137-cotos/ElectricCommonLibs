@@ -1,5 +1,6 @@
 package jp.co.ricoh.cotos.electriccommonlib.repository;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
 
 import jp.co.ricoh.cotos.electriccommonlib.DBConfig;
@@ -382,6 +384,32 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 		// 電力販売店会社IDで取得できていることを確認
 		try {
 			Assert.assertEquals(1, electricAppropriation.size());
+		} catch (Exception e1) {
+			Assert.fail("例外が発生した場合、エラー");
+		}
+	}
+
+	@Test
+	@Transactional
+	public void マイナス値登録_計上実績() {
+
+		final BigDecimal DECIMAL_MINUS_001 = BigDecimal.valueOf(0.01).negate();
+		Assert.assertEquals("-0.01", DECIMAL_MINUS_001.toString());
+
+		ElectricAppropriation electricAppropriation = electricAppropriationRepository.findOne(1L);
+
+		// RJ粗利金額
+		electricAppropriation.setRjGrossProfit(DECIMAL_MINUS_001);
+
+		// 営業区粗利金額
+		electricAppropriation.setSalesSectionGrossProfit(DECIMAL_MINUS_001);
+
+		// 本部粗利金額
+		electricAppropriation.setHeadofficeGrossProfit(DECIMAL_MINUS_001);
+
+		try {
+			// 例外が発生せずにsaveが実行されることを確認
+			electricAppropriationRepository.save(electricAppropriation);
 		} catch (Exception e1) {
 			Assert.fail("例外が発生した場合、エラー");
 		}
