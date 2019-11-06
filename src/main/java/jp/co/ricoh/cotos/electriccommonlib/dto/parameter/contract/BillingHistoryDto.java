@@ -73,7 +73,7 @@ public class BillingHistoryDto extends DtoBase {
 	 * 請求金額(税込)
 	 */
 	@DecimalMin("0.00")
-	@Digits(integer = 19, fraction = 2)
+	@Digits(integer = 17, fraction = 2)
 	@ApiModelProperty(value = "請求金額(税込)", required = false, position = 8, allowableValues = "range[0.00,9999999999999999999.99]")
 	private BigDecimal claimAmountInTax;
 
@@ -81,7 +81,7 @@ public class BillingHistoryDto extends DtoBase {
 	 * 請求消費税額
 	 */
 	@DecimalMin("0.00")
-	@Digits(integer = 19, fraction = 2)
+	@Digits(integer = 17, fraction = 2)
 	@ApiModelProperty(value = "請求消費税額", required = false, position = 9, allowableValues = "range[0.00,9999999999999999999.99]")
 	private BigDecimal claimTax;
 
@@ -89,7 +89,7 @@ public class BillingHistoryDto extends DtoBase {
 	 * 請求金額(税抜)
 	 */
 	@DecimalMin("0.00")
-	@Digits(integer = 19, fraction = 2)
+	@Digits(integer = 17, fraction = 2)
 	@ApiModelProperty(value = "請求金額(税抜)", required = false, position = 10, allowableValues = "range[0.00,9999999999999999999.99]")
 	private BigDecimal claimAmountOutTax;
 
