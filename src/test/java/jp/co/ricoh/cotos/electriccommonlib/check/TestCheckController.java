@@ -24,12 +24,14 @@ import jp.co.ricoh.cotos.commonlib.logic.check.CheckUtil;
 import jp.co.ricoh.cotos.commonlib.util.HeadersProperties;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.AgencyContractInformationDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.BillingBasicInformationDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.BillingHistoryDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.BillingMailAddressInformationDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.CancellationInformationDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.ClientInformationDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.ClientMasterDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.ContractElectricAttachedFileDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.ContractElectricDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.ElectricBillingAttachedFileDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.ElectricDealerContractDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.ElectricExpertContractDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.EntryContentHighPressureDto;
@@ -313,6 +315,16 @@ public class TestCheckController {
 
 	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/EstimationElectricExtDtoForCreate")
 	public ParamterCheckResult callParamterCheck(@RequestBody @Validated EstimationElectricExtDtoForCreate dto, BindingResult result) {
+		return createParameterCheckResult(result);
+	}
+
+	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/BillingHistoryDto")
+	public ParamterCheckResult callParamterCheck(@RequestBody @Validated BillingHistoryDto dto, BindingResult result) {
+		return createParameterCheckResult(result);
+	}
+
+	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/ElectricBillingAttachedFileDto")
+	public ParamterCheckResult callParamterCheck(@RequestBody @Validated ElectricBillingAttachedFileDto dto, BindingResult result) {
 		return createParameterCheckResult(result);
 	}
 }
