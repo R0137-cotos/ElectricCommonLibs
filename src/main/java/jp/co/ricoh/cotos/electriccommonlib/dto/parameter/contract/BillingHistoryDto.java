@@ -202,7 +202,7 @@ public class BillingHistoryDto extends DtoBase {
 	/**
 	 * 請求基本情報
 	 */
-	@ApiModelProperty(value = "請求基本情報ID", required = true, position = 27)
+	@ApiModelProperty(value = "請求基本情報", required = true, position = 27)
 	private BillingBasicInformationDto billingBasicInformation;
 
 }
