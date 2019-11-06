@@ -2,6 +2,7 @@ package jp.co.ricoh.cotos.electriccommonlib.check;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.junit.AfterClass;
@@ -21,12 +22,14 @@ import jp.co.ricoh.cotos.electriccommonlib.DBConfig;
 import jp.co.ricoh.cotos.electriccommonlib.TestTools;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.AgencyContractInformationDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.BillingBasicInformationDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.BillingHistoryDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.BillingMailAddressInformationDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.CancellationInformationDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.ClientInformationDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.ClientMasterDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.ContractElectricAttachedFileDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.ContractElectricDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.ElectricBillingAttachedFileDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.ElectricDealerContractDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.ElectricExpertContractDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.EntryContentHighPressureDto;
@@ -68,10 +71,18 @@ import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.Regis
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.RegisterArrangementResultElectricExpertContractExtDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.RegisterArrangementResultExtDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external.RegisterArrangementResultMailAddressInfoExtDto;
+import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.BeforeDebitContact;
+import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.SendInvoiceDiv;
+import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.SendMyRicoh;
 import jp.co.ricoh.cotos.electriccommonlib.entity.contract.BillingBasicInformation;
+import jp.co.ricoh.cotos.electriccommonlib.entity.contract.BillingHistory.AccruedSection;
+import jp.co.ricoh.cotos.electriccommonlib.entity.contract.BillingHistory.InvoiceCreateDiv;
+import jp.co.ricoh.cotos.electriccommonlib.entity.contract.BillingHistory.InvoiceForm;
+import jp.co.ricoh.cotos.electriccommonlib.entity.contract.BillingHistory.SendMail;
 import jp.co.ricoh.cotos.electriccommonlib.entity.contract.BillingMailAddressInformation;
 import jp.co.ricoh.cotos.electriccommonlib.entity.contract.ClientMaster;
 import jp.co.ricoh.cotos.electriccommonlib.entity.contract.ContractElectric;
+import jp.co.ricoh.cotos.electriccommonlib.entity.contract.ElectricBillingAttachedFile.FileKind;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.BillingBasicInformationRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.BillingMailAddressInformationRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.ClientMasterRepository;
@@ -1726,5 +1737,133 @@ public class TestContractDto {
 		testTarget.setFeeRate(DECIMAL_MINUS_001);
 		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(1, result.getErrorInfoList().size());
+	}
+
+	@Test
+	public void BillingHistoryのテスト() throws Exception {
+
+		//データ作成
+		BillingHistoryDto testTarget = new BillingHistoryDto();
+		testTarget.setDisplaySequenceNumber(1L);
+		testTarget.setClaimNumber("claimNo");
+		testTarget.setBillingYearMonth("201911");
+		testTarget.setSalesDate("20191106");
+		testTarget.setFeeAppropriationDay(new Date());
+		testTarget.setClaimAmountInTax(new BigDecimal(0));
+		testTarget.setClaimTax(new BigDecimal(0));
+		testTarget.setClaimAmountOutTax(new BigDecimal(0));
+		testTarget.setDebitScheduleDay("20191106");
+		testTarget.setAccruedSection(AccruedSection.未回収);
+		testTarget.setAccruedReason("事由");
+		testTarget.setAccuredJudgeDay(new Date());
+		testTarget.setAccruedFlg(1);
+		testTarget.setAccruedCollectionDate(new Date());
+		testTarget.setSendInvoiceDiv(SendInvoiceDiv.メール);
+		testTarget.setInvoiceOutputFlg(1);
+		testTarget.setBeforeDebitContact(BeforeDebitContact.未送信);
+		testTarget.setSendMyRicoh(SendMyRicoh.未送信);
+		testTarget.setElectricSupplyYmdStart(new Date());
+		testTarget.setElectricSupplyYmdEnd(new Date());
+		testTarget.setInvoiceCreateDiv(InvoiceCreateDiv.作成済);
+		testTarget.setSendMail(SendMail.未送信);
+		testTarget.setInvoiceForm(InvoiceForm.単一);
+
+		// 正常系
+		ParamterCheckResult result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		testTool.assertValidationOk(result);
+
+		// 異常系(@NotNull)
+		testTarget.setBillingYearMonth(null);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		Assert.assertEquals(1, result.getErrorInfoList().size());
+		testTarget.setBillingYearMonth("201911");
+
+		// 異常系(@Max)
+		testTarget.setDisplaySequenceNumber(100000L);
+		testTarget.setAccruedFlg(99);
+		testTarget.setInvoiceOutputFlg(99);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		Assert.assertEquals(3, result.getErrorInfoList().size());
+		testTarget.setDisplaySequenceNumber(1L);
+		testTarget.setAccruedFlg(1);
+		testTarget.setInvoiceOutputFlg(1);
+
+		// 異常系(@Min)
+		testTarget.setAccruedFlg(INT_MINUS_1);
+		testTarget.setInvoiceOutputFlg(INT_MINUS_1);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		Assert.assertEquals(2, result.getErrorInfoList().size());
+		testTarget.setAccruedFlg(1);
+		testTarget.setInvoiceOutputFlg(1);
+
+		// 異常系(@Size)
+		testTarget.setClaimNumber(STR_256);
+		testTarget.setBillingYearMonth(STR_256);
+		testTarget.setSalesDate(STR_256);
+		testTarget.setDebitScheduleDay(STR_256);
+		testTarget.setAccruedReason(STR_256);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		Assert.assertEquals(5, result.getErrorInfoList().size());
+		testTarget.setClaimNumber("test");
+		testTarget.setBillingYearMonth("test");
+		testTarget.setSalesDate("test");
+		testTarget.setDebitScheduleDay("test");
+		testTarget.setAccruedReason("test");
+
+		// 異常系(@DecimalMin)
+		testTarget.setClaimAmountInTax(DECIMAL_MINUS_001);
+		testTarget.setClaimTax(DECIMAL_MINUS_001);
+		testTarget.setClaimAmountOutTax(DECIMAL_MINUS_001);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		Assert.assertEquals(3, result.getErrorInfoList().size());
+		testTarget.setClaimAmountInTax(new BigDecimal(0));
+		testTarget.setClaimTax(new BigDecimal(0));
+		testTarget.setClaimAmountOutTax(new BigDecimal(0));
+
+		// 異常系(@Digits)
+		testTarget.setClaimAmountInTax(DECIMAL_0001);
+		testTarget.setClaimTax(DECIMAL_0001);
+		testTarget.setClaimAmountOutTax(DECIMAL_0001);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		Assert.assertEquals(3, result.getErrorInfoList().size());
+
+	}
+
+	@Test
+	public void ElectricBillingAttachedFileのテスト() throws Exception {
+
+		//データ作成
+		ElectricBillingAttachedFileDto testTarget = new ElectricBillingAttachedFileDto();
+		testTarget.setFileName("test");
+		testTarget.setFileKind(FileKind.日別電力量明細表Excel);
+		testTarget.setFilePhysicsName("test");
+		testTarget.setFileSize(1);
+		testTarget.setContentType("test");
+		testTarget.setSavedPath("test");
+
+		// 正常系
+		ParamterCheckResult result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		testTool.assertValidationOk(result);
+
+		// 異常系(@NotNull)
+		testTarget.setFileName(null);
+		testTarget.setFilePhysicsName(null);
+		testTarget.setContentType(null);
+		testTarget.setSavedPath(null);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		Assert.assertEquals(4, result.getErrorInfoList().size());
+		testTarget.setFileName("test");
+		testTarget.setFilePhysicsName("test");
+		testTarget.setContentType("test");
+		testTarget.setSavedPath("test");
+
+		// 異常系(@Size)
+		testTarget.setFileName(STR_256);
+		testTarget.setFilePhysicsName(STR_256);
+		testTarget.setContentType(STR_256);
+		testTarget.setSavedPath(STR_256);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		Assert.assertEquals(4, result.getErrorInfoList().size());
+
 	}
 }
