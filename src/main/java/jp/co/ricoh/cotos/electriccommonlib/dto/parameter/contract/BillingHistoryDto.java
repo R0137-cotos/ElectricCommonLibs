@@ -199,4 +199,10 @@ public class BillingHistoryDto extends DtoBase {
 	@ApiModelProperty(value = "請求書様式", required = false, position = 26, allowableValues = "単一(\"1\"), 複数(\"2\")", example = "1")
 	private InvoiceForm invoiceForm;
 
+	/**
+	 * 請求基本情報
+	 */
+	@ApiModelProperty(value = "請求基本情報", required = true, position = 27)
+	private BillingBasicInformationDto billingBasicInformation;
+
 }
