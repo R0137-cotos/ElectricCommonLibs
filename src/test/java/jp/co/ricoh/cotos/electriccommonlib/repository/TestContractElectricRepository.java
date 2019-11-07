@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.validation.ConstraintViolationException;
+
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Test;
@@ -17,6 +19,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.preauth.PreAuthenticatedAuthenticationToken;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.TransactionSystemException;
 import org.springframework.util.ObjectUtils;
 
 import com.auth0.jwt.JWT;
@@ -438,6 +441,40 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 			e1.printStackTrace();
 			Assert.fail("例外が発生した場合、エラー");
 		}
+	}
+
+	@Test
+	public void 整数18桁登録_計上実績() {
+
+		// JWT作成
+		Algorithm algorithm = Algorithm.HMAC256(jwtProperties.getSecretKey());
+		String jwt = JWT.create().withExpiresAt(new Date(25340226839900L)).withClaim(claimsProperties.getMomEmpId(), "00500784").withClaim(claimsProperties.getSingleUserId(), "u02901149").withClaim(claimsProperties.getOrigin(), "cotos.ricoh.co.jp").withClaim(claimsProperties.getApplicationId(), "cotos_electric_dev").sign(algorithm);
+
+		CotosElcAuthenticationDetails principal = new CotosElcAuthenticationDetails("00500784", "u02901149", "https://dev-1.cotos.ricoh.co.jp", "cotos_dev_1", jwt, false, false, null);
+		Authentication auth = new PreAuthenticatedAuthenticationToken(principal, null, null);
+		SecurityContextHolder.getContext().setAuthentication(auth);
+
+		ElectricAppropriation electricAppropriation = electricAppropriationRepository.findOne(1L);
+		final BigDecimal DECIMAL_OVER_MAX = BigDecimal.valueOf(123456789012345678.99);
+		// RJ粗利金額
+		electricAppropriation.setRjGrossProfit(DECIMAL_OVER_MAX);
+
+		// 営業区粗利金額
+		electricAppropriation.setSalesSectionGrossProfit(DECIMAL_OVER_MAX);
+
+		// 本部粗利金額
+		electricAppropriation.setHeadofficeGrossProfit(DECIMAL_OVER_MAX);
+		try {
+			// 例外が発生することを確認
+			testCheckComponent.update(electricAppropriationRepository, electricAppropriation);
+		} catch (TransactionSystemException expected) {
+			Assert.assertTrue("整数桁あふれのバリデーションチェックによる例外が根本原因であること", expected.getRootCause() instanceof ConstraintViolationException);
+			return;
+		} catch (Exception unexpected) {
+			unexpected.printStackTrace();
+			Assert.fail("想定外の例外が発生した");
+		}
+		Assert.fail("例外が発生しなかった");
 	}
 
 	@Test

@@ -437,7 +437,7 @@ public class ElectricAppropriation extends EntityBase {
 	 * RJ粗利金額
 	 */
 	@Column(nullable = true)
-	@Digits(integer = 19, fraction = 2)
+	@Digits(integer = 17, fraction = 2)
 	@ApiModelProperty(value = "RJ粗利金額", required = false, position = 48)
 	private BigDecimal rjGrossProfit;
 
@@ -445,7 +445,7 @@ public class ElectricAppropriation extends EntityBase {
 	 * 営業区粗利金額
 	 */
 	@Column(nullable = true)
-	@Digits(integer = 19, fraction = 2)
+	@Digits(integer = 17, fraction = 2)
 	@ApiModelProperty(value = "営業区粗利金額", required = false, position = 49)
 	private BigDecimal salesSectionGrossProfit;
 
@@ -453,7 +453,7 @@ public class ElectricAppropriation extends EntityBase {
 	 * 本部粗利金額
 	 */
 	@Column(nullable = true)
-	@Digits(integer = 19, fraction = 2)
+	@Digits(integer = 17, fraction = 2)
 	@ApiModelProperty(value = "本部粗利金額", required = false, position = 50)
 	private BigDecimal headofficeGrossProfit;
 
