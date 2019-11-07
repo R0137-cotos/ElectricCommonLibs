@@ -23,6 +23,7 @@ import jp.co.ricoh.cotos.electriccommonlib.TestTools;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.AgencyContractInformationDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.BillingBasicInformationDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.BillingHistoryDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.BillingHistoryUpdateDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.BillingMailAddressInformationDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.CancellationInformationDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.ClientInformationDto;
@@ -1864,6 +1865,49 @@ public class TestContractDto {
 		testTarget.setSavedPath(STR_256);
 		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(4, result.getErrorInfoList().size());
+
+	}
+
+	@Test
+	public void BillingHistoryUpdateのテスト() throws Exception {
+
+		//データ作成
+		BillingHistoryUpdateDto testTarget = new BillingHistoryUpdateDto();
+		testTarget.setBillingYearMonth("201911");
+		testTarget.setAccruedFlg(1);
+		testTarget.setInvoiceOutputFlg(1);
+
+		// 正常系
+		ParamterCheckResult result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		testTool.assertValidationOk(result);
+
+		// 異常系(@NotNull)
+		testTarget.setBillingYearMonth(null);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		Assert.assertEquals(1, result.getErrorInfoList().size());
+		testTarget.setBillingYearMonth("201911");
+
+		// 異常系(@Max)
+		testTarget.setAccruedFlg(99);
+		testTarget.setInvoiceOutputFlg(99);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		Assert.assertEquals(2, result.getErrorInfoList().size());
+		testTarget.setAccruedFlg(1);
+		testTarget.setInvoiceOutputFlg(1);
+
+		// 異常系(@Min)
+		testTarget.setAccruedFlg(INT_MINUS_1);
+		testTarget.setInvoiceOutputFlg(INT_MINUS_1);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		Assert.assertEquals(2, result.getErrorInfoList().size());
+		testTarget.setAccruedFlg(1);
+		testTarget.setInvoiceOutputFlg(1);
+
+		// 異常系(@Size)
+		testTarget.setBillingYearMonth(STR_256);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		Assert.assertEquals(1, result.getErrorInfoList().size());
+		testTarget.setBillingYearMonth("test");
 
 	}
 }
