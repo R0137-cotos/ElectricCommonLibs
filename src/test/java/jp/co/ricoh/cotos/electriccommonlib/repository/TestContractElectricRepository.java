@@ -2,6 +2,7 @@ package jp.co.ricoh.cotos.electriccommonlib.repository;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.junit.AfterClass;
@@ -12,10 +13,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.preauth.PreAuthenticatedAuthenticationToken;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
 
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.algorithms.Algorithm;
+
+import jp.co.ricoh.cotos.commonlib.util.ClaimsProperties;
+import jp.co.ricoh.cotos.commonlib.util.JwtProperties;
 import jp.co.ricoh.cotos.electriccommonlib.DBConfig;
 import jp.co.ricoh.cotos.electriccommonlib.TestTools;
 import jp.co.ricoh.cotos.electriccommonlib.entity.contract.BillingBasicInformation;
@@ -46,6 +54,7 @@ import jp.co.ricoh.cotos.electriccommonlib.repository.contract.MailAddressInform
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.MonthlyElectricDealerContractRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.UnitPriceHighPressureRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.UnitPriceLowPressureRepository;
+import jp.co.ricoh.cotos.electriccommonlib.security.CotosElcAuthenticationDetails;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
@@ -119,6 +128,15 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 
 	@Autowired
 	TestTools testTools;
+
+	@Autowired
+	JwtProperties jwtProperties;
+
+	@Autowired
+	ClaimsProperties claimsProperties;
+
+	@Autowired
+	TestCheckComponent testCheckComponent;
 
 	static ConfigurableApplicationContext context;
 
@@ -390,8 +408,15 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 	}
 
 	@Test
-	@Transactional
 	public void マイナス値登録_計上実績() {
+
+		// JWT作成
+		Algorithm algorithm = Algorithm.HMAC256(jwtProperties.getSecretKey());
+		String jwt = JWT.create().withExpiresAt(new Date(25340226839900L)).withClaim(claimsProperties.getMomEmpId(), "00500784").withClaim(claimsProperties.getSingleUserId(), "u02901149").withClaim(claimsProperties.getOrigin(), "cotos.ricoh.co.jp").withClaim(claimsProperties.getApplicationId(), "cotos_electric_dev").sign(algorithm);
+
+		CotosElcAuthenticationDetails principal = new CotosElcAuthenticationDetails("00500784", "u02901149", "https://dev-1.cotos.ricoh.co.jp", "cotos_dev_1", jwt, false, false, null);
+		Authentication auth = new PreAuthenticatedAuthenticationToken(principal, null, null);
+		SecurityContextHolder.getContext().setAuthentication(auth);
 
 		final BigDecimal DECIMAL_MINUS_001 = BigDecimal.valueOf(0.01).negate();
 		Assert.assertEquals("-0.01", DECIMAL_MINUS_001.toString());
@@ -406,11 +431,11 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 
 		// 本部粗利金額
 		electricAppropriation.setHeadofficeGrossProfit(DECIMAL_MINUS_001);
-
 		try {
 			// 例外が発生せずにsaveが実行されることを確認
-			electricAppropriationRepository.save(electricAppropriation);
+			testCheckComponent.update(electricAppropriationRepository, electricAppropriation);
 		} catch (Exception e1) {
+			e1.printStackTrace();
 			Assert.fail("例外が発生した場合、エラー");
 		}
 	}
@@ -429,5 +454,4 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 			Assert.fail("例外が発生した場合、エラー");
 		}
 	}
-
 }
