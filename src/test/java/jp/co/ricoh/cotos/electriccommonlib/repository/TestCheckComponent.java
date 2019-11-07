@@ -10,11 +10,15 @@ import jp.co.ricoh.cotos.commonlib.entity.EntityBase;
 public class TestCheckComponent {
 
 	/**
+	 * Repository.save実行メソッド
 	 * 
-	 * 計上実績.RJ粗利金額
+	 * @param repository
+	 *            save実行対象のrepository
+	 * @param entity
+	 *            repositoryの対となる、保存対象のentity
 	 */
 	@Transactional
-	public <T extends CrudRepository<U, Long>, U extends EntityBase> void update(CrudRepository<U, Long> repository, U entity) {
+	public <U extends EntityBase> void update(CrudRepository<U, Long> repository, U entity) {
 		repository.save(entity);
 	}
 }
