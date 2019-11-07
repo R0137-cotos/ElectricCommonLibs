@@ -65,7 +65,7 @@ public class FeeSimulationHeadCreateExtDto {
 	@DecimalMin("0.00")
 	@Digits(integer = 19, fraction = 2)
 	@ApiModelProperty(value = "従量料金(従量電灯)_定価", required = true, position = 6, allowableValues = "range[0.00,9999999999999999999.99]")
-	private BigDecimal perUseLightListPrice;
+	private BigDecimal peruseLightListPrice;
 
 	/**
 	 * 従量料金(従量電灯)_売価
@@ -83,7 +83,7 @@ public class FeeSimulationHeadCreateExtDto {
 	@DecimalMin("0.00")
 	@Digits(integer = 19, fraction = 2)
 	@ApiModelProperty(value = "従量料金(従量電灯)_仕切価格(営業)", required = true, position = 8, allowableValues = "range[0.00,9999999999999999999.99]")
-	private BigDecimal peruseLightBankPriceBusiness;
+	private BigDecimal perUseLightBankPriceBusiness;
 
 	/**
 	 * 従量料金(従量電灯)_仕切価格(RJ)
@@ -92,7 +92,7 @@ public class FeeSimulationHeadCreateExtDto {
 	@DecimalMin("0.00")
 	@Digits(integer = 19, fraction = 2)
 	@ApiModelProperty(value = "従量料金(従量電灯)_仕切価格(RJ)", required = true, position = 9, allowableValues = "range[0.00,9999999999999999999.99]")
-	private BigDecimal peruseLightBankPriceRj;
+	private BigDecimal perUseLightBankPriceRj;
 
 	/**
 	 * 従量料金(動力)_夏季_定価
