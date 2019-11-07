@@ -116,4 +116,17 @@ public class BillingHistorySearchResult {
 	@Temporal(TemporalType.TIMESTAMP)
 	@ApiModelProperty(value = "未回収分回収日", required = false, position = 16)
 	private Date accruedCollectionDate;
+
+	/**
+	 * 請求実績ID
+	 */
+	@ApiModelProperty(value = "請求実績ID", required = false, position = 17)
+	private Long billingHistoryId;
+
+	/**
+	 * 請求書出力フラグ
+	 */
+	@ApiModelProperty(value = "請求書出力フラグ", required = false, position = 18)
+	private Integer invoiceOutputFlg;
+
 }
