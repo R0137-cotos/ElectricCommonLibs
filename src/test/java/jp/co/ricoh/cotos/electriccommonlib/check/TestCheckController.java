@@ -25,6 +25,7 @@ import jp.co.ricoh.cotos.commonlib.util.HeadersProperties;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.AgencyContractInformationDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.BillingBasicInformationDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.BillingHistoryDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.BillingHistoryUpdateDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.BillingMailAddressInformationDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.CancellationInformationDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.ClientInformationDto;
@@ -325,6 +326,11 @@ public class TestCheckController {
 
 	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/ElectricBillingAttachedFileDto")
 	public ParamterCheckResult callParamterCheck(@RequestBody @Validated ElectricBillingAttachedFileDto dto, BindingResult result) {
+		return createParameterCheckResult(result);
+	}
+
+	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/BillingHistoryUpdateDto")
+	public ParamterCheckResult callParamterCheck(@RequestBody @Validated BillingHistoryUpdateDto dto, BindingResult result) {
 		return createParameterCheckResult(result);
 	}
 }
