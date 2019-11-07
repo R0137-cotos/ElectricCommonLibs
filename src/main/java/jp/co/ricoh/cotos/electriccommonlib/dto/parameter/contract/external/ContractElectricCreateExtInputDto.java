@@ -104,7 +104,6 @@ public class ContractElectricCreateExtInputDto {
 	 * 重要項目説明者
 	 */
 	@Valid
-	@NotNull
 	@ApiModelProperty(value = "重要項目説明者", required = true, position = 13)
 	private ImportantPointExplainerCreateExtDto importantPointExplainer;
 
