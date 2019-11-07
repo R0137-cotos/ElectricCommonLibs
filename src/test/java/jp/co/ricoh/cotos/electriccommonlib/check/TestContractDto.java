@@ -1873,19 +1873,13 @@ public class TestContractDto {
 
 		//データ作成
 		BillingHistoryUpdateDto testTarget = new BillingHistoryUpdateDto();
-		testTarget.setBillingYearMonth("201911");
+		testTarget.setBillingHistoryId(1L);
 		testTarget.setAccruedFlg(1);
 		testTarget.setInvoiceOutputFlg(1);
 
 		// 正常系
 		ParamterCheckResult result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		testTool.assertValidationOk(result);
-
-		// 異常系(@NotNull)
-		testTarget.setBillingYearMonth(null);
-		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
-		Assert.assertEquals(1, result.getErrorInfoList().size());
-		testTarget.setBillingYearMonth("201911");
 
 		// 異常系(@Max)
 		testTarget.setAccruedFlg(99);
@@ -1902,12 +1896,5 @@ public class TestContractDto {
 		Assert.assertEquals(2, result.getErrorInfoList().size());
 		testTarget.setAccruedFlg(1);
 		testTarget.setInvoiceOutputFlg(1);
-
-		// 異常系(@Size)
-		testTarget.setBillingYearMonth(STR_256);
-		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
-		Assert.assertEquals(1, result.getErrorInfoList().size());
-		testTarget.setBillingYearMonth("test");
-
 	}
 }
