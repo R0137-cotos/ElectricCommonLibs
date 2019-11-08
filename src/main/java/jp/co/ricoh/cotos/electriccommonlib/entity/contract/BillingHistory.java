@@ -17,7 +17,6 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -190,27 +189,24 @@ public class BillingHistory extends EntityBase {
 	 * 請求金額(税込)
 	 */
 	@Column(nullable = true)
-	@DecimalMin("0.00")
-	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "請求金額(税込)", required = false, position = 8, allowableValues = "range[0.00,9999999999999999999.99]")
+	@Digits(integer = 17, fraction = 2)
+	@ApiModelProperty(value = "請求金額(税込)", required = false, position = 8)
 	private BigDecimal claimAmountInTax;
 
 	/**
 	 * 請求消費税額
 	 */
 	@Column(nullable = true)
-	@DecimalMin("0.00")
-	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "請求消費税額", required = false, position = 9, allowableValues = "range[0.00,9999999999999999999.99]")
+	@Digits(integer = 17, fraction = 2)
+	@ApiModelProperty(value = "請求消費税額", required = false, position = 9)
 	private BigDecimal claimTax;
 
 	/**
 	 * 請求金額(税抜)
 	 */
 	@Column(nullable = true)
-	@DecimalMin("0.00")
-	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "請求金額(税抜)", required = false, position = 10, allowableValues = "range[0.00,9999999999999999999.99]")
+	@Digits(integer = 17, fraction = 2)
+	@ApiModelProperty(value = "請求金額(税抜)", required = false, position = 10)
 	private BigDecimal claimAmountOutTax;
 
 	/**

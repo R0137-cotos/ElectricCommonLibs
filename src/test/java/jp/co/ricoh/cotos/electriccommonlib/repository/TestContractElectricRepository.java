@@ -426,14 +426,27 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 
 		ElectricAppropriation electricAppropriation = electricAppropriationRepository.findOne(1L);
 
+		// 売上金額(税込)
+		electricAppropriation.setProceedsInTax(DECIMAL_MINUS_001);
+		// 売上消費税額
+		electricAppropriation.setProceedsTax(DECIMAL_MINUS_001);
+		// 売上金額(税抜)
+		electricAppropriation.setProceedsOutTax(DECIMAL_MINUS_001);
+
+		// 仕入合計料金(税込)
+		electricAppropriation.setPurchaserTotalChargeInTax(DECIMAL_MINUS_001);
+		// 仕入消費税額
+		electricAppropriation.setPurchaserTax(DECIMAL_MINUS_001);
+		// 仕入合計料金(税抜)
+		electricAppropriation.setPurchaserTotalChargeOutTax(DECIMAL_MINUS_001);
+
 		// RJ粗利金額
 		electricAppropriation.setRjGrossProfit(DECIMAL_MINUS_001);
-
 		// 営業区粗利金額
 		electricAppropriation.setSalesSectionGrossProfit(DECIMAL_MINUS_001);
-
 		// 本部粗利金額
 		electricAppropriation.setHeadofficeGrossProfit(DECIMAL_MINUS_001);
+
 		try {
 			// 例外が発生せずにsaveが実行されることを確認
 			testCheckComponent.update(electricAppropriationRepository, electricAppropriation);
@@ -456,17 +469,96 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 
 		ElectricAppropriation electricAppropriation = electricAppropriationRepository.findOne(1L);
 		final BigDecimal DECIMAL_OVER_MAX = BigDecimal.valueOf(123456789012345678.99);
+
+		// 売上金額(税込)
+		electricAppropriation.setProceedsInTax(DECIMAL_OVER_MAX);
+		// 売上消費税額
+		electricAppropriation.setProceedsTax(DECIMAL_OVER_MAX);
+		// 売上金額(税抜)
+		electricAppropriation.setProceedsOutTax(DECIMAL_OVER_MAX);
+
+		// 仕入合計料金(税込)
+		electricAppropriation.setPurchaserTotalChargeInTax(DECIMAL_OVER_MAX);
+		// 仕入消費税額
+		electricAppropriation.setPurchaserTax(DECIMAL_OVER_MAX);
+		// 仕入合計料金(税抜)
+		electricAppropriation.setPurchaserTotalChargeOutTax(DECIMAL_OVER_MAX);
+
 		// RJ粗利金額
 		electricAppropriation.setRjGrossProfit(DECIMAL_OVER_MAX);
-
 		// 営業区粗利金額
 		electricAppropriation.setSalesSectionGrossProfit(DECIMAL_OVER_MAX);
-
 		// 本部粗利金額
 		electricAppropriation.setHeadofficeGrossProfit(DECIMAL_OVER_MAX);
 		try {
 			// 例外が発生することを確認
 			testCheckComponent.update(electricAppropriationRepository, electricAppropriation);
+		} catch (TransactionSystemException expected) {
+			Assert.assertTrue("整数桁あふれのバリデーションチェックによる例外が根本原因であること", expected.getRootCause() instanceof ConstraintViolationException);
+			return;
+		} catch (Exception unexpected) {
+			unexpected.printStackTrace();
+			Assert.fail("想定外の例外が発生した");
+		}
+		Assert.fail("例外が発生しなかった");
+	}
+
+	@Test
+	public void マイナス値登録_請求実績() {
+
+		// JWT作成
+		Algorithm algorithm = Algorithm.HMAC256(jwtProperties.getSecretKey());
+		String jwt = JWT.create().withExpiresAt(new Date(25340226839900L)).withClaim(claimsProperties.getMomEmpId(), "00500784").withClaim(claimsProperties.getSingleUserId(), "u02901149").withClaim(claimsProperties.getOrigin(), "cotos.ricoh.co.jp").withClaim(claimsProperties.getApplicationId(), "cotos_electric_dev").sign(algorithm);
+
+		CotosElcAuthenticationDetails principal = new CotosElcAuthenticationDetails("00500784", "u02901149", "https://dev-1.cotos.ricoh.co.jp", "cotos_dev_1", jwt, false, false, null);
+		Authentication auth = new PreAuthenticatedAuthenticationToken(principal, null, null);
+		SecurityContextHolder.getContext().setAuthentication(auth);
+
+		final BigDecimal DECIMAL_MINUS_001 = BigDecimal.valueOf(0.01).negate();
+		Assert.assertEquals("-0.01", DECIMAL_MINUS_001.toString());
+
+		BillingHistory billingHistory = billingHistoryRepository.findOne(1L);
+
+		// 請求金額(税込)
+		billingHistory.setClaimAmountInTax(DECIMAL_MINUS_001);
+		// 売上消費税額
+		billingHistory.setClaimTax(DECIMAL_MINUS_001);
+		// 売上金額(税抜)
+		billingHistory.setClaimAmountOutTax(DECIMAL_MINUS_001);
+
+		try {
+			// 例外が発生せずにsaveが実行されることを確認
+			testCheckComponent.update(billingHistoryRepository, billingHistory);
+		} catch (Exception e1) {
+			e1.printStackTrace();
+			Assert.fail("例外が発生した場合、エラー");
+		}
+	}
+
+	@Test
+	public void 整数18桁登録_請求実績() {
+
+		// JWT作成
+		Algorithm algorithm = Algorithm.HMAC256(jwtProperties.getSecretKey());
+		String jwt = JWT.create().withExpiresAt(new Date(25340226839900L)).withClaim(claimsProperties.getMomEmpId(), "00500784").withClaim(claimsProperties.getSingleUserId(), "u02901149").withClaim(claimsProperties.getOrigin(), "cotos.ricoh.co.jp").withClaim(claimsProperties.getApplicationId(), "cotos_electric_dev").sign(algorithm);
+
+		CotosElcAuthenticationDetails principal = new CotosElcAuthenticationDetails("00500784", "u02901149", "https://dev-1.cotos.ricoh.co.jp", "cotos_dev_1", jwt, false, false, null);
+		Authentication auth = new PreAuthenticatedAuthenticationToken(principal, null, null);
+		SecurityContextHolder.getContext().setAuthentication(auth);
+
+		BillingHistory billingHistory = billingHistoryRepository.findOne(1L);
+		final BigDecimal DECIMAL_OVER_MAX = BigDecimal.valueOf(123456789012345678.99);
+
+		// 請求金額(税込)
+		billingHistory.setClaimAmountInTax(DECIMAL_OVER_MAX);
+		// 売上消費税額
+		billingHistory.setClaimTax(DECIMAL_OVER_MAX);
+		// 売上金額(税抜)
+		billingHistory.setClaimAmountOutTax(DECIMAL_OVER_MAX);
+
+		try {
+			// 例外が発生することを確認
+			testCheckComponent.update(billingHistoryRepository, billingHistory);
 		} catch (TransactionSystemException expected) {
 			Assert.assertTrue("整数桁あふれのバリデーションチェックによる例外が根本原因であること", expected.getRootCause() instanceof ConstraintViolationException);
 			return;
