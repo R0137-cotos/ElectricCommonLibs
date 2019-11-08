@@ -167,27 +167,24 @@ public class ElectricAppropriation extends EntityBase {
 	 * 売上金額(税込)
 	 */
 	@Column(nullable = true)
-	@DecimalMin("0.00")
-	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "売上金額(税込)", required = false, position = 18, allowableValues = "range[0.00,9999999999999999999.99]")
+	@Digits(integer = 17, fraction = 2)
+	@ApiModelProperty(value = "売上金額(税込)", required = false, position = 18)
 	private BigDecimal proceedsInTax;
 
 	/**
 	 * 売上消費税額
 	 */
 	@Column(nullable = true)
-	@DecimalMin("0.00")
-	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "売上消費税額", required = false, position = 19, allowableValues = "range[0.00,9999999999999999999.99]")
+	@Digits(integer = 17, fraction = 2)
+	@ApiModelProperty(value = "売上消費税額", required = false, position = 19)
 	private BigDecimal proceedsTax;
 
 	/**
 	 * 売上金額(税抜)
 	 */
 	@Column(nullable = true)
-	@DecimalMin("0.00")
-	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "売上金額(税抜)", required = false, position = 20, allowableValues = "range[0.00,9999999999999999999.99]")
+	@Digits(integer = 17, fraction = 2)
+	@ApiModelProperty(value = "売上金額(税抜)", required = false, position = 20)
 	private BigDecimal proceedsOutTax;
 
 	/**
@@ -347,27 +344,24 @@ public class ElectricAppropriation extends EntityBase {
 	 * 仕入合計料金(税込)
 	 */
 	@Column(nullable = true)
-	@DecimalMin("0.00")
-	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "仕入合計料金(税込)", required = false, position = 38, allowableValues = "range[0.00,9999999999999999999.99]")
+	@Digits(integer = 17, fraction = 2)
+	@ApiModelProperty(value = "仕入合計料金(税込)", required = false, position = 38)
 	private BigDecimal purchaserTotalChargeInTax;
 
 	/**
 	 * 仕入消費税額
 	 */
 	@Column(nullable = true)
-	@DecimalMin("0.00")
-	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "仕入消費税額", required = false, position = 39, allowableValues = "range[0.00,9999999999999999999.99]")
+	@Digits(integer = 17, fraction = 2)
+	@ApiModelProperty(value = "仕入消費税額", required = false, position = 39)
 	private BigDecimal purchaserTax;
 
 	/**
 	 * 仕入合計料金(税抜)
 	 */
 	@Column(nullable = true)
-	@DecimalMin("0.00")
-	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "仕入合計料金(税抜)", required = false, position = 40, allowableValues = "range[0.00,9999999999999999999.99]")
+	@Digits(integer = 17, fraction = 2)
+	@ApiModelProperty(value = "仕入合計料金(税抜)", required = false, position = 40)
 	private BigDecimal purchaserTotalChargeOutTax;
 
 	/**

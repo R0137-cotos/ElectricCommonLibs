@@ -266,7 +266,8 @@ public class FeeSimulationHead extends EntityBase {
 	 * 粗利額（営業）
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "粗利額（営業）", required = false, position = 33, allowableValues = "range[0.00,9999999999999999999.99]")
+	@Digits(integer = 17, fraction = 2)
+	@ApiModelProperty(value = "粗利額（営業）", required = false, position = 33)
 	private BigDecimal grossMarginBusiness;
 
 	/**
@@ -287,7 +288,8 @@ public class FeeSimulationHead extends EntityBase {
 	 * 粗利額（ＲＪ）
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "粗利額（ＲＪ）", required = false, position = 36, allowableValues = "range[0.00,9999999999999999999.99]")
+	@Digits(integer = 17, fraction = 2)
+	@ApiModelProperty(value = "粗利額（ＲＪ）", required = false, position = 36)
 	private BigDecimal grossMarginRj;
 
 	/**
