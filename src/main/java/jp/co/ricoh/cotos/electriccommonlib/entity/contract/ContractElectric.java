@@ -551,4 +551,12 @@ public class ContractElectric extends EntityBase {
 	@OneToOne(mappedBy = "contractElectric")
 	@ApiModelProperty(value = "取次情報", required = false, position = 68)
 	private AgencyContractInformation agencyContractInformation;
+
+	/**
+	 * 承認ルート名
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "承認ルート名", required = false, position = 69, allowableValues = "range[0,255]")
+	private String approvalRouteName;
+
 }
