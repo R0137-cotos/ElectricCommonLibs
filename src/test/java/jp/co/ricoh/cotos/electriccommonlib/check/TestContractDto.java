@@ -203,8 +203,9 @@ public class TestContractDto {
 		testTarget.setElectricMenuCode(STR_256);
 		testTarget.setCo2EmissionFactor(STR_256);
 		testTarget.setContractPeriod(STR_256);
+		testTarget.setApprovalRouteName(STR_256);
 		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
-		Assert.assertEquals(35, result.getErrorInfoList().size());
+		Assert.assertEquals(36, result.getErrorInfoList().size());
 
 		// 異常系(@Min)
 		BeanUtils.copyProperties(entity, testTarget);

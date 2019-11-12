@@ -463,14 +463,14 @@ public class ContractElectricDto extends DtoBase {
 	@Column(name = "co2_emission_factor")
 	@ApiModelProperty(value = "CO2排出係数", required = false, position = 62, allowableValues = "range[0,255]")
 	private String co2EmissionFactor;
-	
+
 	/**
 	 * 契約期間
 	 */
 	@Size(max = 255)
 	@ApiModelProperty(value = "契約期間", required = false, position = 67, allowableValues = "range[0,255]")
 	private String contractPeriod;
-	
+
 	/**
 	 * 取次情報
 	 */
@@ -484,4 +484,12 @@ public class ContractElectricDto extends DtoBase {
 	//TODO 契約更新修正時に初回供給開始日を追加
 	//@ApiModelProperty(value = "初回供給開始日", required = false, position = 63)
 	//private @Temporal(TemporalType.DATE) firstSupplyStartDate;
+
+	/**
+	 * 承認ルート名
+	 */
+	@Size(max = 255)
+	@ApiModelProperty(value = "承認ルート名", required = false, position = 68, allowableValues = "range[0,255]")
+	private String approvalRouteName;
+
 }
