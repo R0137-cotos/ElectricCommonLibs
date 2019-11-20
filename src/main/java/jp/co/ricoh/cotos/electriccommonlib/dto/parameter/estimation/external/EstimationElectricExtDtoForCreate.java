@@ -72,6 +72,7 @@ public class EstimationElectricExtDtoForCreate {
 	private String electricMenuCode;
 
 	/** CO2排出メニュー */
+	@Size(max = 255)
 	@Column(name = "co2_emission_menu")
 	@ApiModelProperty(value = "CO2排出メニュー", required = false, position = 10, allowableValues = "range[0,255]")
 	private String co2EmissionMenu;
