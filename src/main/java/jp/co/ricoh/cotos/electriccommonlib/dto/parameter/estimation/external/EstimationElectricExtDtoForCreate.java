@@ -12,7 +12,6 @@ import javax.validation.constraints.Size;
 
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.Scale;
-import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricFormMaster.ElectricPlan;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -75,7 +74,7 @@ public class EstimationElectricExtDtoForCreate {
 	/** CO2排出メニュー */
 	@Column(name = "co2_emission_menu")
 	@ApiModelProperty(value = "CO2排出メニュー", required = false, position = 10, allowableValues = "range[0,255]")
-	private ElectricPlan co2EmissionMenu;
+	private String co2EmissionMenu;
 
 	/** CO2排出係数 */
 	@Size(max = 255)
