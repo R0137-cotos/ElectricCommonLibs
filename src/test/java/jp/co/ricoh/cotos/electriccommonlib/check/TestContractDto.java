@@ -203,8 +203,9 @@ public class TestContractDto {
 		testTarget.setElectricMenuCode(STR_256);
 		testTarget.setCo2EmissionFactor(STR_256);
 		testTarget.setContractPeriod(STR_256);
+		testTarget.setApprovalRouteName(STR_256);
 		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
-		Assert.assertEquals(35, result.getErrorInfoList().size());
+		Assert.assertEquals(36, result.getErrorInfoList().size());
 
 		// 異常系(@Min)
 		BeanUtils.copyProperties(entity, testTarget);
@@ -879,10 +880,10 @@ public class TestContractDto {
 		feeSimulationHeadExtDto.setBasicSellingPrice(BigDecimal.valueOf(100));
 		feeSimulationHeadExtDto.setBasicBankPriceBusiness(BigDecimal.valueOf(100));
 		feeSimulationHeadExtDto.setBasicBankPriceRj(BigDecimal.valueOf(100));
-		feeSimulationHeadExtDto.setPerUseLightListPrice(BigDecimal.valueOf(100));
+		feeSimulationHeadExtDto.setPeruseLightListPrice(BigDecimal.valueOf(100));
 		feeSimulationHeadExtDto.setPerUseLightSellingPrice(BigDecimal.valueOf(100));
-		feeSimulationHeadExtDto.setPeruseLightBankPriceBusiness(BigDecimal.valueOf(100));
-		feeSimulationHeadExtDto.setPeruseLightBankPriceRj(BigDecimal.valueOf(100));
+		feeSimulationHeadExtDto.setPerUseLightBankPriceBusiness(BigDecimal.valueOf(100));
+		feeSimulationHeadExtDto.setPerUseLightBankPriceRj(BigDecimal.valueOf(100));
 		feeSimulationHeadExtDto.setUsageFeeSummerListPrice(BigDecimal.valueOf(100));
 		feeSimulationHeadExtDto.setUsageFeeSummerSellingPrice(BigDecimal.valueOf(100));
 		feeSimulationHeadExtDto.setUsageFeeSummerBankPriceBusiness(BigDecimal.valueOf(100));
@@ -1022,10 +1023,10 @@ public class TestContractDto {
 		feeSimulationHeadExtDto.setBasicSellingPrice(BigDecimal.valueOf(100));
 		feeSimulationHeadExtDto.setBasicBankPriceBusiness(BigDecimal.valueOf(100));
 		feeSimulationHeadExtDto.setBasicBankPriceRj(BigDecimal.valueOf(100));
-		feeSimulationHeadExtDto.setPerUseLightListPrice(BigDecimal.valueOf(100));
+		feeSimulationHeadExtDto.setPeruseLightListPrice(BigDecimal.valueOf(100));
 		feeSimulationHeadExtDto.setPerUseLightSellingPrice(BigDecimal.valueOf(100));
-		feeSimulationHeadExtDto.setPeruseLightBankPriceBusiness(BigDecimal.valueOf(100));
-		feeSimulationHeadExtDto.setPeruseLightBankPriceRj(BigDecimal.valueOf(100));
+		feeSimulationHeadExtDto.setPerUseLightBankPriceBusiness(BigDecimal.valueOf(100));
+		feeSimulationHeadExtDto.setPerUseLightBankPriceRj(BigDecimal.valueOf(100));
 		feeSimulationHeadExtDto.setUsageFeeSummerListPrice(BigDecimal.valueOf(100));
 		feeSimulationHeadExtDto.setUsageFeeSummerSellingPrice(BigDecimal.valueOf(100));
 		feeSimulationHeadExtDto.setUsageFeeSummerBankPriceBusiness(BigDecimal.valueOf(100));
@@ -1117,10 +1118,10 @@ public class TestContractDto {
 		feeSimulationHeadExtDto.setBasicSellingPrice(DECIMAL_MINUS_001);
 		feeSimulationHeadExtDto.setBasicBankPriceBusiness(DECIMAL_MINUS_001);
 		feeSimulationHeadExtDto.setBasicBankPriceRj(DECIMAL_MINUS_001);
-		feeSimulationHeadExtDto.setPerUseLightListPrice(DECIMAL_MINUS_001);
+		feeSimulationHeadExtDto.setPeruseLightListPrice(DECIMAL_MINUS_001);
 		feeSimulationHeadExtDto.setPerUseLightSellingPrice(DECIMAL_MINUS_001);
-		feeSimulationHeadExtDto.setPeruseLightBankPriceBusiness(DECIMAL_MINUS_001);
-		feeSimulationHeadExtDto.setPeruseLightBankPriceRj(DECIMAL_MINUS_001);
+		feeSimulationHeadExtDto.setPerUseLightBankPriceBusiness(DECIMAL_MINUS_001);
+		feeSimulationHeadExtDto.setPerUseLightBankPriceRj(DECIMAL_MINUS_001);
 		feeSimulationHeadExtDto.setUsageFeeSummerListPrice(DECIMAL_MINUS_001);
 		feeSimulationHeadExtDto.setUsageFeeSummerSellingPrice(DECIMAL_MINUS_001);
 		feeSimulationHeadExtDto.setUsageFeeSummerBankPriceBusiness(DECIMAL_MINUS_001);
@@ -1220,10 +1221,10 @@ public class TestContractDto {
 		feeSimulationHeadExtDto.setBasicSellingPrice(BigDecimal.valueOf(100));
 		feeSimulationHeadExtDto.setBasicBankPriceBusiness(BigDecimal.valueOf(100));
 		feeSimulationHeadExtDto.setBasicBankPriceRj(BigDecimal.valueOf(100));
-		feeSimulationHeadExtDto.setPerUseLightListPrice(BigDecimal.valueOf(100));
+		feeSimulationHeadExtDto.setPeruseLightListPrice(BigDecimal.valueOf(100));
 		feeSimulationHeadExtDto.setPerUseLightSellingPrice(BigDecimal.valueOf(100));
-		feeSimulationHeadExtDto.setPeruseLightBankPriceBusiness(BigDecimal.valueOf(100));
-		feeSimulationHeadExtDto.setPeruseLightBankPriceRj(BigDecimal.valueOf(100));
+		feeSimulationHeadExtDto.setPerUseLightBankPriceBusiness(BigDecimal.valueOf(100));
+		feeSimulationHeadExtDto.setPerUseLightBankPriceRj(BigDecimal.valueOf(100));
 		feeSimulationHeadExtDto.setUsageFeeSummerListPrice(BigDecimal.valueOf(100));
 		feeSimulationHeadExtDto.setUsageFeeSummerSellingPrice(BigDecimal.valueOf(100));
 		feeSimulationHeadExtDto.setUsageFeeSummerBankPriceBusiness(BigDecimal.valueOf(100));
@@ -1360,10 +1361,10 @@ public class TestContractDto {
 		feeSimulationHeadExtDto.setBasicSellingPrice(BigDecimal.valueOf(100));
 		feeSimulationHeadExtDto.setBasicBankPriceBusiness(BigDecimal.valueOf(100));
 		feeSimulationHeadExtDto.setBasicBankPriceRj(BigDecimal.valueOf(100));
-		feeSimulationHeadExtDto.setPerUseLightListPrice(BigDecimal.valueOf(100));
+		feeSimulationHeadExtDto.setPeruseLightListPrice(BigDecimal.valueOf(100));
 		feeSimulationHeadExtDto.setPerUseLightSellingPrice(BigDecimal.valueOf(100));
-		feeSimulationHeadExtDto.setPeruseLightBankPriceBusiness(BigDecimal.valueOf(100));
-		feeSimulationHeadExtDto.setPeruseLightBankPriceRj(BigDecimal.valueOf(100));
+		feeSimulationHeadExtDto.setPerUseLightBankPriceBusiness(BigDecimal.valueOf(100));
+		feeSimulationHeadExtDto.setPerUseLightBankPriceRj(BigDecimal.valueOf(100));
 		feeSimulationHeadExtDto.setUsageFeeSummerListPrice(BigDecimal.valueOf(100));
 		feeSimulationHeadExtDto.setUsageFeeSummerSellingPrice(BigDecimal.valueOf(100));
 		feeSimulationHeadExtDto.setUsageFeeSummerBankPriceBusiness(BigDecimal.valueOf(100));
@@ -1455,10 +1456,10 @@ public class TestContractDto {
 		feeSimulationHeadExtDto.setBasicSellingPrice(DECIMAL_MINUS_001);
 		feeSimulationHeadExtDto.setBasicBankPriceBusiness(DECIMAL_MINUS_001);
 		feeSimulationHeadExtDto.setBasicBankPriceRj(DECIMAL_MINUS_001);
-		feeSimulationHeadExtDto.setPerUseLightListPrice(DECIMAL_MINUS_001);
+		feeSimulationHeadExtDto.setPeruseLightListPrice(DECIMAL_MINUS_001);
 		feeSimulationHeadExtDto.setPerUseLightSellingPrice(DECIMAL_MINUS_001);
-		feeSimulationHeadExtDto.setPeruseLightBankPriceBusiness(DECIMAL_MINUS_001);
-		feeSimulationHeadExtDto.setPeruseLightBankPriceRj(DECIMAL_MINUS_001);
+		feeSimulationHeadExtDto.setPerUseLightBankPriceBusiness(DECIMAL_MINUS_001);
+		feeSimulationHeadExtDto.setPerUseLightBankPriceRj(DECIMAL_MINUS_001);
 		feeSimulationHeadExtDto.setUsageFeeSummerListPrice(DECIMAL_MINUS_001);
 		feeSimulationHeadExtDto.setUsageFeeSummerSellingPrice(DECIMAL_MINUS_001);
 		feeSimulationHeadExtDto.setUsageFeeSummerBankPriceBusiness(DECIMAL_MINUS_001);
