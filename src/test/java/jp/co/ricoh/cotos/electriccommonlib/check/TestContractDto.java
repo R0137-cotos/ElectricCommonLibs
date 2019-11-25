@@ -1572,7 +1572,7 @@ public class TestContractDto {
 		testTarget.setContractPicSaEmp(registerArrangementResultContractPicSaEmpExtDto);
 
 		RegisterArrangementResultElectricExpertContractExtDto registerArrangementResultElectricExpertContractExtDto = new RegisterArrangementResultElectricExpertContractExtDto();
-		registerArrangementResultElectricExpertContractExtDto.setMomEmployeeId("MoM社員ID");
+		registerArrangementResultElectricExpertContractExtDto.setMomEmpId("MoM社員ID");
 		testTarget.setElectricExpertContract(registerArrangementResultElectricExpertContractExtDto);
 
 		List<RegisterArrangementResultContractAddedEditorEmpExtDto> registerArrangementResultContractAddedEditorEmpExtDtoList = new ArrayList<RegisterArrangementResultContractAddedEditorEmpExtDto>();
@@ -1654,7 +1654,7 @@ public class TestContractDto {
 		registerArrangementResultContractPicSaEmpExtDto.setMomEmployeeId(STR_256);
 		testTarget.setContractPicSaEmp(registerArrangementResultContractPicSaEmpExtDto);
 
-		registerArrangementResultElectricExpertContractExtDto.setMomEmployeeId(STR_256);
+		registerArrangementResultElectricExpertContractExtDto.setMomEmpId(STR_256);
 		testTarget.setElectricExpertContract(registerArrangementResultElectricExpertContractExtDto);
 
 		registerArrangementResultContractAddedEditorEmpExtDto.setMomEmployeeId(STR_256);
@@ -1708,7 +1708,7 @@ public class TestContractDto {
 		registerArrangementResultContractPicSaEmpExtDto.setMomEmployeeId("MoM社員ID");
 		testTarget.setContractPicSaEmp(registerArrangementResultContractPicSaEmpExtDto);
 
-		registerArrangementResultElectricExpertContractExtDto.setMomEmployeeId("MoM社員ID");
+		registerArrangementResultElectricExpertContractExtDto.setMomEmpId("MoM社員ID");
 		testTarget.setElectricExpertContract(registerArrangementResultElectricExpertContractExtDto);
 
 		registerArrangementResultContractAddedEditorEmpExtDto.setMomEmployeeId("MoM社員ID");
