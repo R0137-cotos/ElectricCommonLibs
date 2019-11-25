@@ -17,5 +17,5 @@ public class RegisterArrangementResultElectricExpertContractExtDto {
 	@NotNull
 	@Size(max = 255)
 	@ApiModelProperty(value = "MoM社員ID", required = true, position = 1, allowableValues = "range[0,255]")
-	private String momEmployeeId;
+	private String momEmpId;
 }
