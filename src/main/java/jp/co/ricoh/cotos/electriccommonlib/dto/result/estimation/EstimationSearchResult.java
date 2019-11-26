@@ -86,7 +86,7 @@ public class EstimationSearchResult {
 	 * 見積ステータス
 	 */
 	@ApiModelProperty(value = "見積ステータス", required = false, position = 11, allowableValues = "作成中(\"1\"), 業務依頼中(\"2\"), 業務処理完了(\"3\"), 承認依頼中(\"4\"), 承認済(\"5\"), 顧客提示済(\"6\")")
-	private WorkflowStatus status;
+	private WorkflowStatus workflowStatus;
 
 	/**
 	 * 見積状態
