@@ -48,7 +48,6 @@ public class ElectricAppropriation extends EntityBase {
 	 * 契約(電力用)
 	 */
 	@Column(nullable = false)
-	@JsonIgnore
 	@ApiModelProperty(value = "ID", required = true, position = 2, allowableValues = "range[0,9223372036854775807]")
 	private long contractElectricId;
 
