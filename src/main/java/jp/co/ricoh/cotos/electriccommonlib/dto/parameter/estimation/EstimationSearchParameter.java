@@ -84,7 +84,7 @@ public class EstimationSearchParameter {
 	 */
 	@ApiParam(value = "見積ステータス", required = false)
 	@ApiModelProperty(value = "見積ステータス<br />状態遷移上のワークフロー状態を表す。", required = false)
-	private String status;
+	private String workflowStatus;
 
 	/**
 	 * 見積種別
