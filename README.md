@@ -202,4 +202,4 @@
 |197|計上実績.契約(電力)IDのJsonIgnoreアノテーションを削除|
 |198|見積一覧結果のstatusをworkflowStatusに修正|
 |199|見積検索パラメータのstatusをworkflowStatusに修正|
-|200|請求実績更新用DTOに項目追加|
+|200|請求実績一覧取得用DTOに未収区分追加|
