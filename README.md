@@ -200,5 +200,6 @@
 |195|見積・契約詳細取得DTO調整|
 |196|手配結果登録DTOの電力専任.MoM社員IDをmomEmpIdに修正|
 |197|計上実績.契約(電力)IDのJsonIgnoreアノテーションを削除|
-|198|見積一覧結果のstatusをworkfliwStatusに修正|
-|199|請求実績更新用DTOに項目追加|
+|198|見積一覧結果のstatusをworkflowStatusに修正|
+|199|見積検索パラメータのstatusをworkflowStatusに修正|
+|200|請求実績更新用DTOに項目追加|
