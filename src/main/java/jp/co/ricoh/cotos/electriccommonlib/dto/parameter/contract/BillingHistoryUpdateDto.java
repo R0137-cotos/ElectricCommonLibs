@@ -23,7 +23,7 @@ public class BillingHistoryUpdateDto {
 	 */
 	@Max(9)
 	@Min(0)
-	@ApiModelProperty(value = "未回収フラグ", required = false, position = 3, allowableValues = "range[0,9]")
+	@ApiModelProperty(value = "未回収フラグ", required = false, position = 2, allowableValues = "range[0,9]")
 	private Integer accruedFlg;
 
 	/**
@@ -31,7 +31,7 @@ public class BillingHistoryUpdateDto {
 	 */
 	@Max(9)
 	@Min(0)
-	@ApiModelProperty(value = "請求書出力フラグ", required = false, position = 4, allowableValues = "range[0,9]")
+	@ApiModelProperty(value = "請求書出力フラグ", required = false, position = 3, allowableValues = "range[0,9]")
 	private Integer invoiceOutputFlg;
 
 }
