@@ -9,6 +9,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import io.swagger.annotations.ApiModelProperty;
+import jp.co.ricoh.cotos.electriccommonlib.entity.contract.BillingHistory.AccruedSection;
 import lombok.Data;
 
 /**
@@ -128,5 +129,11 @@ public class BillingHistorySearchResult {
 	 */
 	@ApiModelProperty(value = "請求書出力フラグ", required = false, position = 18)
 	private Integer invoiceOutputFlg;
+
+	/**
+	 * 未収区分
+	 */
+	@ApiModelProperty(value = "未収区分", required = false, position = 19)
+	private AccruedSection accruedSection;
 
 }

@@ -1,7 +1,6 @@
 package jp.co.ricoh.cotos.electriccommonlib.check;
 
 import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -1878,8 +1877,6 @@ public class TestContractDto {
 		testTarget.setBillingHistoryId(1L);
 		testTarget.setAccruedFlg(1);
 		testTarget.setInvoiceOutputFlg(1);
-		testTarget.setAccruedSection(AccruedSection.未受信);
-		testTarget.setAccruedCollectionDate(new SimpleDateFormat("yyyy/mm/dd").parse("2019/11/26"));
 
 		// 正常系
 		ParamterCheckResult result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
