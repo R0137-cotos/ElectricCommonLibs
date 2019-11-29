@@ -203,3 +203,4 @@
 |198|見積一覧結果のstatusをworkflowStatusに修正|
 |199|見積検索パラメータのstatusをworkflowStatusに修正|
 |200|請求実績一覧取得用DTOに未収区分追加|
+|201|契約情報取得APIの返りDTOの電力(契約)内のオブジェクトを外だし|
