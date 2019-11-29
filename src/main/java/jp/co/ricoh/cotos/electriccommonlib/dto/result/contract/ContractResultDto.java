@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
-import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -42,8 +41,20 @@ import jp.co.ricoh.cotos.commonlib.entity.contract.CustomerContract;
 import jp.co.ricoh.cotos.commonlib.entity.contract.DealerContract;
 import jp.co.ricoh.cotos.commonlib.entity.contract.ManagedEstimationDetail;
 import jp.co.ricoh.cotos.commonlib.entity.contract.ProductContract;
+import jp.co.ricoh.cotos.electriccommonlib.entity.contract.AgencyContractInformation;
 import jp.co.ricoh.cotos.electriccommonlib.entity.contract.BillingBasicInformation;
+import jp.co.ricoh.cotos.electriccommonlib.entity.contract.CancellationInformation;
+import jp.co.ricoh.cotos.electriccommonlib.entity.contract.ClientInformation;
 import jp.co.ricoh.cotos.electriccommonlib.entity.contract.ContractElectric;
+import jp.co.ricoh.cotos.electriccommonlib.entity.contract.ContractElectricAttachedFile;
+import jp.co.ricoh.cotos.electriccommonlib.entity.contract.ElectricDealerContract;
+import jp.co.ricoh.cotos.electriccommonlib.entity.contract.ElectricExpertContract;
+import jp.co.ricoh.cotos.electriccommonlib.entity.contract.EntryContentHighPressure;
+import jp.co.ricoh.cotos.electriccommonlib.entity.contract.EntryContentLowPressure;
+import jp.co.ricoh.cotos.electriccommonlib.entity.contract.ImportantPointExplainer;
+import jp.co.ricoh.cotos.electriccommonlib.entity.contract.MailAddressInformation;
+import jp.co.ricoh.cotos.electriccommonlib.entity.contract.UnitPriceHighPressure;
+import jp.co.ricoh.cotos.electriccommonlib.entity.contract.UnitPriceLowPressure;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -558,4 +569,88 @@ public class ContractResultDto {
 	 */
 	@ApiModelProperty(value = "請求基本情報", required = false, position = 73)
 	private BillingBasicInformation billingBasicInformation;
+	
+	/**
+	 * お申込み内容(高圧)
+	 */
+	@OneToOne(mappedBy = "contractElectric")
+	@ApiModelProperty(value = "お申込み内容(高圧)", required = false, position = 74)
+	private EntryContentHighPressure entryContentHighPressure;
+
+	/**
+	 * お申込み内容(低圧)
+	 */
+	@OneToOne(mappedBy = "contractElectric")
+	@ApiModelProperty(value = "お申込み内容(低圧)", required = false, position = 75)
+	private EntryContentLowPressure entryContentLowPressure;
+
+	/**
+	 * 解約情報
+	 */
+	@OneToOne(mappedBy = "contractElectric")
+	@ApiModelProperty(value = "解約情報", required = false, position = 76)
+	private CancellationInformation cancellationInformation;
+
+	/**
+	 * 電力専任情報
+	 */
+	@OneToOne(mappedBy = "contractElectric", optional = false)
+	@ApiModelProperty(value = "電力専任情報", required = true, position = 77)
+	private ElectricExpertContract electricExpertContract;
+
+	/**
+	 * 販売店情報
+	 */
+	@OneToOne(mappedBy = "contractElectric")
+	@ApiModelProperty(value = "販売店情報", required = false, position = 78)
+	private ElectricDealerContract electricDealerContract;
+
+	/**
+	 * Mailアドレス情報
+	 */
+	@OneToMany(mappedBy = "contractElectric")
+	@ApiModelProperty(value = "Mailアドレス情報", required = false, position = 79)
+	private List<MailAddressInformation> mailAddressInformationList;
+
+	/**
+	 * 契約(電力)添付ファイル
+	 */
+	@OneToMany(mappedBy = "contractElectric")
+	@ApiModelProperty(value = "契約(電力)添付ファイル", required = false, position = 80)
+	private List<ContractElectricAttachedFile> contractElectricAttachedFileList;
+
+	/**
+	 * 単価情報(高圧)
+	 */
+	@OneToMany(mappedBy = "contractElectric")
+	@ApiModelProperty(value = "単価情報(高圧)", required = false, position = 81)
+	private List<UnitPriceHighPressure> unitPriceHighPressureList;
+
+	/**
+	 * 単価情報(低圧)
+	 */
+	@OneToMany(mappedBy = "contractElectric")
+	@ApiModelProperty(value = "単価情報(低圧)", required = false, position = 82)
+	private List<UnitPriceLowPressure> unitPriceLowPressureList;
+
+	/**
+	 * 得意先情報
+	 */
+	@OneToMany(mappedBy = "contractElectric")
+	@ApiModelProperty(value = "得意先情報", required = false, position = 83)
+	private List<ClientInformation> clientInformationList;
+	
+	/**
+	 * 重要事項説明者
+	 */
+	@OneToOne(mappedBy = "contractElectric")
+	@ApiModelProperty(value = "重要事項説明者", required = false, position = 84)
+	private ImportantPointExplainer importantPointExplainer;
+	
+	/**
+	 * 取次情報
+	 */
+	@OneToOne(mappedBy = "contractElectric")
+	@ApiModelProperty(value = "取次情報", required = false, position = 85)
+	private AgencyContractInformation agencyContractInformation;
 }
