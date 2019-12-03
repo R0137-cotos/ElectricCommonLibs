@@ -44,6 +44,8 @@ public class TestEstimationDto {
 	private static final int INT_MINUS_1 = -1;
 	private static final int INT_10 = 10;
 	private static final BigDecimal DECIMAL_MINUS_001 = new BigDecimal("-0.01");
+	private static final BigDecimal DECIMAL_MINUS_MIN_04DIGIT = new BigDecimal("-1000.01");
+	private static final BigDecimal DECIMAL_MINUS_MIN_18DIGIT = new BigDecimal("-100000000000000000.01");
 	private static final BigDecimal DECIMAL_MINUS_AND_DIGIT = new BigDecimal("-10000000000000000000.00");
 
 	static ConfigurableApplicationContext context;
@@ -231,14 +233,10 @@ public class TestEstimationDto {
 		// 異常系(@DecimaiMin)
 		testTarget = new FeeSimulationHeadDto();
 		BeanUtils.copyProperties(entity, testTarget);
-		testTarget.setAnnualElectricityRateCurrent(DECIMAL_MINUS_001);
-		testTarget.setAnnualElectricityRateAfter(DECIMAL_MINUS_001);
-		testTarget.setReductionAmount(DECIMAL_MINUS_001);
-		testTarget.setReductionRate(DECIMAL_MINUS_001);
+		// マイナス不許可
 		testTarget.setOverallPrice1(DECIMAL_MINUS_001);
 		testTarget.setOverallPrice2(DECIMAL_MINUS_001);
 		testTarget.setOverallPrice3(DECIMAL_MINUS_001);
-		testTarget.setLoadFactor(DECIMAL_MINUS_001);
 		testTarget.setBasicRateSellingPrice(DECIMAL_MINUS_001);
 		testTarget.setBasicRateBankPriceBusiness(DECIMAL_MINUS_001);
 		testTarget.setBasicRateBankPriceRj(DECIMAL_MINUS_001);
@@ -257,23 +255,31 @@ public class TestEstimationDto {
 		testTarget.setAncillarySellingPrice(DECIMAL_MINUS_001);
 		testTarget.setAncillaryBankPriceBusiness(DECIMAL_MINUS_001);
 		testTarget.setAncillaryBankPriceRj(DECIMAL_MINUS_001);
-		testTarget.setFeeFixedAmountInTax(DECIMAL_MINUS_001);
-		testTarget.setFeeFixedRate(DECIMAL_MINUS_001);
-		testTarget.setElectricityChargeBusiness(DECIMAL_MINUS_001);
-		testTarget.setGrossMarginBusiness(DECIMAL_MINUS_001);
-		testTarget.setGrossProfitMarginBusiness(DECIMAL_MINUS_001);
-		testTarget.setElectricityChargeRj(DECIMAL_MINUS_001);
-		testTarget.setGrossMarginRj(DECIMAL_MINUS_001);
-		testTarget.setGrossProfitMarginRj(DECIMAL_MINUS_001);
+		testTarget.setAnnualElectricityRateCurrent(DECIMAL_MINUS_001);
+		testTarget.setAnnualElectricityRateAfter(DECIMAL_MINUS_001);
 		testTarget.setBasicRateListPrice(DECIMAL_MINUS_001);
-		testTarget.setAgencyFeeAmount(DECIMAL_MINUS_001);
-		testTarget.setAgencyFeeRate(DECIMAL_MINUS_001);
-		testTarget.setAgencyDiscountPrice(DECIMAL_MINUS_AND_DIGIT);
-		testTarget.setAgencyDiscountRate(DECIMAL_MINUS_001);
-		testTarget.setLongtermDiscountRate(DECIMAL_MINUS_001);
-		testTarget.setLongtermDiscountPrice(DECIMAL_MINUS_AND_DIGIT);
+		// マイナス許可(整数3桁）
+		testTarget.setReductionRate(DECIMAL_MINUS_MIN_04DIGIT);
+		testTarget.setLoadFactor(DECIMAL_MINUS_MIN_04DIGIT);
+		testTarget.setFeeFixedRate(DECIMAL_MINUS_MIN_04DIGIT);
+		testTarget.setGrossProfitMarginRj(DECIMAL_MINUS_MIN_04DIGIT);
+		testTarget.setGrossProfitMarginBusiness(DECIMAL_MINUS_MIN_04DIGIT);
+		testTarget.setAgencyFeeRate(DECIMAL_MINUS_MIN_04DIGIT);
+		testTarget.setAgencyDiscountRate(DECIMAL_MINUS_MIN_04DIGIT);
+		testTarget.setLongtermDiscountRate(DECIMAL_MINUS_MIN_04DIGIT);
+		// マイナス許可(整数17桁）
+		testTarget.setReductionAmount(DECIMAL_MINUS_MIN_18DIGIT);
+		testTarget.setFeeFixedAmountInTax(DECIMAL_MINUS_MIN_18DIGIT);
+		testTarget.setElectricityChargeBusiness(DECIMAL_MINUS_MIN_18DIGIT);
+		testTarget.setGrossMarginBusiness(DECIMAL_MINUS_MIN_18DIGIT);
+		testTarget.setElectricityChargeRj(DECIMAL_MINUS_MIN_18DIGIT);
+		testTarget.setGrossMarginRj(DECIMAL_MINUS_MIN_18DIGIT);
+		testTarget.setAgencyFeeAmount(DECIMAL_MINUS_MIN_18DIGIT);
+		testTarget.setAgencyDiscountPrice(DECIMAL_MINUS_MIN_18DIGIT);
+		testTarget.setLongtermDiscountPrice(DECIMAL_MINUS_MIN_18DIGIT);
+
 		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
-		Assert.assertEquals(43, result.getErrorInfoList().size());
+		Assert.assertEquals(58, result.getErrorInfoList().size());
 
 	}
 

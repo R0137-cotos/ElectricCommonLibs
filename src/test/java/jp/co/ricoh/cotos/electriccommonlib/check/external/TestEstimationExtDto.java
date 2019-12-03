@@ -52,6 +52,8 @@ public class TestEstimationExtDto {
 	private static final int INT_MINUS_1 = -1;
 	private static final int INT_10 = 10;
 	private static final BigDecimal DECIMAL_MINUS_001 = new BigDecimal("-0.01");
+	private static final BigDecimal DECIMAL_MINUS_MIN_04DIGIT = new BigDecimal("-1000.01");
+	private static final BigDecimal DECIMAL_MINUS_MIN_18DIGIT = new BigDecimal("-100000000000000000.01");
 	private static final BigDecimal DECIMAL_MINUS_AND_DIGIT = new BigDecimal("-10000000000000000000.00");
 	private static final BigDecimal DECIMAL_0001 = new BigDecimal("0.001");
 
@@ -545,14 +547,12 @@ public class TestEstimationExtDto {
 
 		// 異常系(@DecimalMin)
 		BeanUtils.copyProperties(entity, target);
+		// マイナス不許可
 		target.setAnnualElectricityRateCurrent(DECIMAL_MINUS_001);
 		target.setAnnualElectricityRateAfter(DECIMAL_MINUS_001);
-		target.setReductionAmount(DECIMAL_MINUS_001);
-		target.setReductionRate(DECIMAL_MINUS_001);
 		target.setOverallPrice1(DECIMAL_MINUS_001);
 		target.setOverallPrice2(DECIMAL_MINUS_001);
 		target.setOverallPrice3(DECIMAL_MINUS_001);
-		target.setLoadFactor(DECIMAL_MINUS_001);
 		target.setBasicRateListPrice(DECIMAL_MINUS_001);
 		target.setBasicRateSellingPrice(DECIMAL_MINUS_001);
 		target.setBasicRateBankPriceBusiness(DECIMAL_MINUS_001);
@@ -572,60 +572,68 @@ public class TestEstimationExtDto {
 		target.setAncillarySellingPrice(DECIMAL_MINUS_001);
 		target.setAncillaryBankPriceBusiness(DECIMAL_MINUS_001);
 		target.setAncillaryBankPriceRj(DECIMAL_MINUS_001);
-		target.setFeeFixedAmountInTax(DECIMAL_MINUS_001);
-		target.setFeeFixedRate(DECIMAL_MINUS_001);
-		target.setElectricityChargeBusiness(DECIMAL_MINUS_001);
-		target.setGrossMarginBusiness(DECIMAL_MINUS_001);
-		target.setGrossProfitMarginBusiness(DECIMAL_MINUS_001);
-		target.setElectricityChargeRj(DECIMAL_MINUS_001);
-		target.setGrossMarginRj(DECIMAL_MINUS_001);
-		target.setGrossProfitMarginRj(DECIMAL_MINUS_001);
+		// マイナス許可(整数3桁）
+		target.setReductionRate(DECIMAL_MINUS_MIN_04DIGIT);
+		target.setLoadFactor(DECIMAL_MINUS_MIN_04DIGIT);
+		target.setFeeFixedRate(DECIMAL_MINUS_MIN_04DIGIT);
+		target.setGrossProfitMarginBusiness(DECIMAL_MINUS_MIN_04DIGIT);
+		target.setGrossProfitMarginRj(DECIMAL_MINUS_MIN_04DIGIT);
+		// マイナス許可(整数17桁）
+		target.setReductionAmount(DECIMAL_MINUS_MIN_18DIGIT);
+		target.setFeeFixedAmountInTax(DECIMAL_MINUS_MIN_18DIGIT);
+		target.setElectricityChargeBusiness(DECIMAL_MINUS_MIN_18DIGIT);
+		target.setGrossMarginBusiness(DECIMAL_MINUS_MIN_18DIGIT);
+		target.setElectricityChargeRj(DECIMAL_MINUS_MIN_18DIGIT);
+		target.setGrossMarginRj(DECIMAL_MINUS_MIN_18DIGIT);
+
 		target.setCreatedDate("2019/05/31");
 
 		result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
-		Assert.assertTrue(result.getErrorInfoList().size() == 35);
+		Assert.assertEquals("エラー件数が想定通りであること", 46, result.getErrorInfoList().size());
 
 		// 異常系(@Decimal)
 		BeanUtils.copyProperties(entity, target);
-		target.setAnnualElectricityRateCurrent(DECIMAL_0001);
-		target.setAnnualElectricityRateAfter(DECIMAL_0001);
-		target.setReductionAmount(DECIMAL_0001);
-		target.setReductionRate(DECIMAL_0001);
-		target.setOverallPrice1(DECIMAL_0001);
-		target.setOverallPrice2(DECIMAL_0001);
-		target.setOverallPrice3(DECIMAL_0001);
-		target.setLoadFactor(DECIMAL_0001);
-		target.setBasicRateListPrice(DECIMAL_0001);
-		target.setBasicRateSellingPrice(DECIMAL_0001);
-		target.setBasicRateBankPriceBusiness(DECIMAL_0001);
-		target.setBasicRateBankPriceRj(DECIMAL_0001);
-		target.setUsageFeeSummerSellingPrice(DECIMAL_0001);
-		target.setUsageFeeSummerBankPriceBusiness(DECIMAL_0001);
-		target.setUsageFeeSummerBankPriceRj(DECIMAL_0001);
-		target.setUsageFeeOtherSeasonSellingPrice(DECIMAL_0001);
-		target.setUsageFeeOtherSeasonBankPriceBusiness(DECIMAL_0001);
-		target.setUsageFeeOtherSeasonBankPriceRj(DECIMAL_0001);
-		target.setSpareLineSellingPrice(DECIMAL_0001);
-		target.setSpareLineBankPriceBusiness(DECIMAL_0001);
-		target.setSpareLineBankPriceRj(DECIMAL_0001);
-		target.setSparePowerSellingPrice(DECIMAL_0001);
-		target.setSparePowerBankPriceBusiness(DECIMAL_0001);
-		target.setSparePowerBankPriceRj(DECIMAL_0001);
-		target.setAncillarySellingPrice(DECIMAL_0001);
-		target.setAncillaryBankPriceBusiness(DECIMAL_0001);
-		target.setAncillaryBankPriceRj(DECIMAL_0001);
-		target.setFeeFixedAmountInTax(DECIMAL_0001);
-		target.setFeeFixedRate(DECIMAL_0001);
-		target.setElectricityChargeBusiness(DECIMAL_0001);
-		target.setGrossMarginBusiness(DECIMAL_0001);
-		target.setGrossProfitMarginBusiness(DECIMAL_0001);
-		target.setElectricityChargeRj(DECIMAL_0001);
-		target.setGrossMarginRj(DECIMAL_0001);
-		target.setGrossProfitMarginRj(DECIMAL_0001);
+		target.setAnnualElectricityRateCurrent(DECIMAL_MINUS_001);
+		target.setAnnualElectricityRateAfter(DECIMAL_MINUS_001);
+		target.setOverallPrice1(DECIMAL_MINUS_001);
+		target.setOverallPrice2(DECIMAL_MINUS_001);
+		target.setOverallPrice3(DECIMAL_MINUS_001);
+		target.setBasicRateListPrice(DECIMAL_MINUS_001);
+		target.setBasicRateSellingPrice(DECIMAL_MINUS_001);
+		target.setBasicRateBankPriceBusiness(DECIMAL_MINUS_001);
+		target.setBasicRateBankPriceRj(DECIMAL_MINUS_001);
+		target.setUsageFeeSummerSellingPrice(DECIMAL_MINUS_001);
+		target.setUsageFeeSummerBankPriceBusiness(DECIMAL_MINUS_001);
+		target.setUsageFeeSummerBankPriceRj(DECIMAL_MINUS_001);
+		target.setUsageFeeOtherSeasonSellingPrice(DECIMAL_MINUS_001);
+		target.setUsageFeeOtherSeasonBankPriceBusiness(DECIMAL_MINUS_001);
+		target.setUsageFeeOtherSeasonBankPriceRj(DECIMAL_MINUS_001);
+		target.setSpareLineSellingPrice(DECIMAL_MINUS_001);
+		target.setSpareLineBankPriceBusiness(DECIMAL_MINUS_001);
+		target.setSpareLineBankPriceRj(DECIMAL_MINUS_001);
+		target.setSparePowerSellingPrice(DECIMAL_MINUS_001);
+		target.setSparePowerBankPriceBusiness(DECIMAL_MINUS_001);
+		target.setSparePowerBankPriceRj(DECIMAL_MINUS_001);
+		target.setAncillarySellingPrice(DECIMAL_MINUS_001);
+		target.setAncillaryBankPriceBusiness(DECIMAL_MINUS_001);
+		target.setAncillaryBankPriceRj(DECIMAL_MINUS_001);
+		// マイナス許可(整数3桁）
+		target.setReductionRate(DECIMAL_MINUS_MIN_04DIGIT);
+		target.setLoadFactor(DECIMAL_MINUS_MIN_04DIGIT);
+		target.setFeeFixedRate(DECIMAL_MINUS_MIN_04DIGIT);
+		target.setGrossProfitMarginBusiness(DECIMAL_MINUS_MIN_04DIGIT);
+		target.setGrossProfitMarginRj(DECIMAL_MINUS_MIN_04DIGIT);
+		// マイナス許可(整数17桁）
+		target.setReductionAmount(DECIMAL_MINUS_MIN_18DIGIT);
+		target.setFeeFixedAmountInTax(DECIMAL_MINUS_MIN_18DIGIT);
+		target.setElectricityChargeBusiness(DECIMAL_MINUS_MIN_18DIGIT);
+		target.setGrossMarginBusiness(DECIMAL_MINUS_MIN_18DIGIT);
+		target.setElectricityChargeRj(DECIMAL_MINUS_MIN_18DIGIT);
+		target.setGrossMarginRj(DECIMAL_MINUS_MIN_18DIGIT);
 		target.setCreatedDate("2019/05/31");
 
 		result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
-		Assert.assertTrue(result.getErrorInfoList().size() == 35);
+		Assert.assertEquals("エラー件数が想定通りであること", 46, result.getErrorInfoList().size());
 	}
 
 	@Test
