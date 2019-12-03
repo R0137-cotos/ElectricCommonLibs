@@ -28,5 +28,5 @@ public class ClientMasterDto extends DtoBase {
 	 * 請求先Mailアドレス情報
 	 */
 	@ApiModelProperty(value = "請求先Mailアドレス情報", required = false, position = 3)
-	private List<BillingMailAddressInformationDto> BillingMailAddressInformationList;
+	private List<BillingMailAddressInformationDto> billingMailAddressInformationList;
 }
