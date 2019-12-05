@@ -8,7 +8,6 @@ import javax.persistence.Embeddable;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -270,27 +269,24 @@ public class FfmAccount extends EntityBase {
 	 * 契約金額
 	 */
 	@Column(nullable = true)
-	@DecimalMin("0.00")
-	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "契約金額", required = false, position = 33, allowableValues = "range[0.00,9999999999999999999.99]")
+	@Digits(integer = 17, fraction = 2)
+	@ApiModelProperty(value = "契約金額", required = false, position = 33, allowableValues = "range[-99999999999999999.99,99999999999999999.99]")
 	private BigDecimal ffmContractPrice;
 
 	/**
 	 * 仕切前計上金額
 	 */
 	@Column(nullable = true)
-	@DecimalMin("0.00")
-	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "仕切前計上金額", required = false, position = 34, allowableValues = "range[0.00,9999999999999999999.99]")
+	@Digits(integer = 17, fraction = 2)
+	@ApiModelProperty(value = "仕切前計上金額", required = false, position = 34, allowableValues = "range[-99999999999999999.99,99999999999999999.99]")
 	private BigDecimal ffmPriceBeforeInvoice;
 
 	/**
 	 * 仕切前消費税額
 	 */
 	@Column(nullable = true)
-	@DecimalMin("0.00")
-	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "仕切前消費税額", required = false, position = 35, allowableValues = "range[0.00,9999999999999999999.99]")
+	@Digits(integer = 17, fraction = 2)
+	@ApiModelProperty(value = "仕切前消費税額", required = false, position = 35, allowableValues = "range[-99999999999999999.99,99999999999999999.99]")
 	private BigDecimal ffmTaxPriceBeforeInvoice;
 
 	/**
@@ -417,36 +413,32 @@ public class FfmAccount extends EntityBase {
 	 * 仕入単価
 	 */
 	@Column(nullable = true)
-	@DecimalMin("0.00")
-	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "仕入単価", required = false, position = 53, allowableValues = "range[0.00,9999999999999999999.99]")
+	@Digits(integer = 17, fraction = 2)
+	@ApiModelProperty(value = "仕入単価", required = false, position = 53, allowableValues = "range[-99999999999999999.99,99999999999999999.99]")
 	private BigDecimal ffmPurchasePrice;
 
 	/**
 	 * 仕入単価(税込)
 	 */
 	@Column(nullable = true)
-	@DecimalMin("0.00")
-	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "仕入単価(税込)", required = false, position = 54, allowableValues = "range[0.00,9999999999999999999.99]")
+	@Digits(integer = 17, fraction = 2)
+	@ApiModelProperty(value = "仕入単価(税込)", required = false, position = 54, allowableValues = "range[-99999999999999999.99,99999999999999999.99]")
 	private BigDecimal ffmPurchasePriceInTax;
 
 	/**
 	 * 仕入金額
 	 */
 	@Column(nullable = true)
-	@DecimalMin("0.00")
-	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "仕入金額", required = false, position = 55, allowableValues = "range[0.00,9999999999999999999.99]")
+	@Digits(integer = 17, fraction = 2)
+	@ApiModelProperty(value = "仕入金額", required = false, position = 55, allowableValues = "range[-99999999999999999.99,99999999999999999.99]")
 	private BigDecimal ffmPurchaseAmt;
 
 	/**
 	 * 仕入金額(税込)
 	 */
 	@Column(nullable = true)
-	@DecimalMin("0.00")
-	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "仕入金額(税込)", required = false, position = 56, allowableValues = "range[0.00,9999999999999999999.99]")
+	@Digits(integer = 17, fraction = 2)
+	@ApiModelProperty(value = "仕入金額(税込)", required = false, position = 56, allowableValues = "range[-99999999999999999.99,99999999999999999.99]")
 	private BigDecimal ffmPurchaseAmtInTax;
 
 	/**
@@ -467,9 +459,8 @@ public class FfmAccount extends EntityBase {
 	 * 仕入消費税額
 	 */
 	@Column(nullable = true)
-	@DecimalMin("0.00")
-	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "仕入消費税額", required = false, position = 59, allowableValues = "range[0.00,9999999999999999999.99]")
+	@Digits(integer = 17, fraction = 2)
+	@ApiModelProperty(value = "仕入消費税額", required = false, position = 59, allowableValues = "range[-99999999999999999.99,99999999999999999.99]")
 	private BigDecimal ffmRjPurchaseTaxPrice;
 
 	/**
@@ -568,36 +559,32 @@ public class FfmAccount extends EntityBase {
 	 * 売上単価
 	 */
 	@Column(nullable = true)
-	@DecimalMin("0.00")
-	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "売上単価", required = false, position = 73, allowableValues = "range[0.00,9999999999999999999.99]")
+	@Digits(integer = 17, fraction = 2)
+	@ApiModelProperty(value = "売上単価", required = false, position = 73, allowableValues = "range[-99999999999999999.99,99999999999999999.99]")
 	private BigDecimal ffmUserSalesPrice;
 
 	/**
 	 * 売上単価(税込)
 	 */
 	@Column(nullable = true)
-	@DecimalMin("0.00")
-	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "売上単価(税込)", required = false, position = 74, allowableValues = "range[0.00,9999999999999999999.99]")
+	@Digits(integer = 17, fraction = 2)
+	@ApiModelProperty(value = "売上単価(税込)", required = false, position = 74, allowableValues = "range[-99999999999999999.99,99999999999999999.99]")
 	private BigDecimal ffmUserSalesPriceInTax;
 
 	/**
 	 * 売上金額
 	 */
 	@Column(nullable = true)
-	@DecimalMin("0.00")
-	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "売上金額", required = false, position = 75, allowableValues = "range[0.00,9999999999999999999.99]")
+	@Digits(integer = 17, fraction = 2)
+	@ApiModelProperty(value = "売上金額", required = false, position = 75, allowableValues = "range[-99999999999999999.99,99999999999999999.99]")
 	private BigDecimal ffmUserSalesAmt;
 
 	/**
 	 * 売上金額(税込)
 	 */
 	@Column(nullable = true)
-	@DecimalMin("0.00")
-	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "売上金額(税込)", required = false, position = 76, allowableValues = "range[0.00,9999999999999999999.99]")
+	@Digits(integer = 17, fraction = 2)
+	@ApiModelProperty(value = "売上金額(税込)", required = false, position = 76, allowableValues = "range[-99999999999999999.99,99999999999999999.99]")
 	private BigDecimal ffmUserSalesAmtInTax;
 
 	/**
@@ -618,9 +605,8 @@ public class FfmAccount extends EntityBase {
 	 * 売上消費税額
 	 */
 	@Column(nullable = true)
-	@DecimalMin("0.00")
-	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "売上消費税額", required = false, position = 79, allowableValues = "range[0.00,9999999999999999999.99]")
+	@Digits(integer = 17, fraction = 2)
+	@ApiModelProperty(value = "売上消費税額", required = false, position = 79, allowableValues = "range[-99999999999999999.99,99999999999999999.99]")
 	private BigDecimal ffmUserSalesTaxPrice;
 
 	/**
@@ -634,18 +620,16 @@ public class FfmAccount extends EntityBase {
 	 * 売上原価金額
 	 */
 	@Column(nullable = true)
-	@DecimalMin("0.00")
-	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "売上原価金額", required = false, position = 81, allowableValues = "range[0.00,9999999999999999999.99]")
+	@Digits(integer = 17, fraction = 2)
+	@ApiModelProperty(value = "売上原価金額", required = false, position = 81, allowableValues = "range[-99999999999999999.99,99999999999999999.99]")
 	private BigDecimal ffmRevenueCostprice;
 
 	/**
 	 * 振替金額
 	 */
 	@Column(nullable = true)
-	@DecimalMin("0.00")
-	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "振替金額", required = false, position = 82, allowableValues = "range[0.00,9999999999999999999.99]")
+	@Digits(integer = 17, fraction = 2)
+	@ApiModelProperty(value = "振替金額", required = false, position = 82, allowableValues = "range[-99999999999999999.99,9999999999999999.99]")
 	private BigDecimal ffmTrnsPrice;
 
 	/**
@@ -659,18 +643,16 @@ public class FfmAccount extends EntityBase {
 	 * 販売店売上単価
 	 */
 	@Column(nullable = true)
-	@DecimalMin("0.00")
-	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "販売店売上単価", required = false, position = 84, allowableValues = "range[0.00,9999999999999999999.99]")
+	@Digits(integer = 17, fraction = 2)
+	@ApiModelProperty(value = "販売店売上単価", required = false, position = 84, allowableValues = "range[-99999999999999999.99,99999999999999999.99]")
 	private BigDecimal ffmShopSalesPrice;
 
 	/**
 	 * 販売店税抜金額
 	 */
 	@Column(nullable = true)
-	@DecimalMin("0.00")
-	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "販売店税抜金額", required = false, position = 85, allowableValues = "range[0.00,9999999999999999999.99]")
+	@Digits(integer = 17, fraction = 2)
+	@ApiModelProperty(value = "販売店税抜金額", required = false, position = 85, allowableValues = "range[-99999999999999999.99,99999999999999999.99]")
 	private BigDecimal ffmShopSalesAmt;
 
 	/**
@@ -932,18 +914,16 @@ public class FfmAccount extends EntityBase {
 	 * 支払利息相当額
 	 */
 	@Column(nullable = true)
-	@DecimalMin("0.00")
-	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "支払利息相当額", required = false, position = 122, allowableValues = "range[0.00,9999999999999999999.99]")
+	@Digits(integer = 17, fraction = 2)
+	@ApiModelProperty(value = "支払利息相当額", required = false, position = 122, allowableValues = "range[-99999999999999999.99,99999999999999999.99]")
 	private BigDecimal ffmInterestExpensePrice;
 
 	/**
 	 * 受取利息相当額
 	 */
 	@Column(nullable = true)
-	@DecimalMin("0.00")
-	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "受取利息相当額", required = false, position = 123, allowableValues = "range[0.00,9999999999999999999.99]")
+	@Digits(integer = 17, fraction = 2)
+	@ApiModelProperty(value = "受取利息相当額", required = false, position = 123, allowableValues = "range[-99999999999999999.99,99999999999999999.99]")
 	private BigDecimal ffmInterestIncomePrice;
 
 	/**
@@ -966,7 +946,7 @@ public class FfmAccount extends EntityBase {
 	@Column(nullable = true)
 	@ApiModelProperty(value = "本体見積明細番号", required = false, position = 126, allowableValues = "range[0,255]")
 	private String ffmMainQuotationDetailCd;
-	
+
 	/**
 	 * 課金連携フラグ
 	 */
