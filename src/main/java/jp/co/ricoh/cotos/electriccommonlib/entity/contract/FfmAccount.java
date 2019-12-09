@@ -407,7 +407,7 @@ public class FfmAccount extends EntityBase {
 	@Column(nullable = true)
 	@Max(99999)
 	@ApiModelProperty(value = "仕入数量", required = false, position = 52, allowableValues = "range[0,99999]")
-	private long ffmPurchaseCnt;
+	private Long ffmPurchaseCnt;
 
 	/**
 	 * 仕入単価
@@ -553,7 +553,7 @@ public class FfmAccount extends EntityBase {
 	@Column(nullable = true)
 	@Max(99999)
 	@ApiModelProperty(value = "売上数量", required = false, position = 72, allowableValues = "range[0,99999]")
-	private long ffmUserSalesCnt;
+	private Long ffmUserSalesCnt;
 
 	/**
 	 * 売上単価
