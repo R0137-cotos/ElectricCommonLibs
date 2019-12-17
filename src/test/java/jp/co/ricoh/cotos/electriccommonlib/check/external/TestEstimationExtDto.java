@@ -107,6 +107,7 @@ public class TestEstimationExtDto {
 		targetEstimation.setElectricCommercialFlowDiv(entityEstimation.getElectricCommercialFlowDiv().toString());
 		targetEstimation.setCo2EmissionMenu("CO2");
 		targetEstimation.setCo2EmissionFactor("1");
+		targetEstimation.setScale("01");
 		targetEstimation.setVoltageCategory(entityEstimation.getVoltageCategory().toString());
 		targetEstimation.setSupplyStartScheduledDate("2019/05");
 		targetEstimation.setContractPeriod("12");
@@ -699,6 +700,7 @@ public class TestEstimationExtDto {
 		target.setCo2EmissionFactor("1");
 		target.setVoltageCategory(entity.getVoltageCategory().toString());
 		target.setContractPeriod("12");
+		target.setScale("01");
 		ParamterCheckResult result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
 		testTool.assertValidationOk(result);
 
@@ -746,8 +748,9 @@ public class TestEstimationExtDto {
 		target.setVoltageCategory(STR_256);
 		target.setSupplyStartScheduledDate(STR_256);
 		target.setContractPeriod(STR_256);
+		target.setScale(STR_256);
 		result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
-		Assert.assertTrue(result.getErrorInfoList().size() == 16);
+		Assert.assertTrue(result.getErrorInfoList().size() == 17);
 
 		// 異常系(@Min)
 		BeanUtils.copyProperties(entity, target);
@@ -758,6 +761,7 @@ public class TestEstimationExtDto {
 		target.setElectricCommercialFlowDiv(entity.getElectricCommercialFlowDiv().toString());
 		target.setCo2EmissionMenu("CO2");
 		target.setCo2EmissionFactor("1");
+		target.setScale("01");
 		target.setVoltageCategory(entity.getVoltageCategory().toString());
 		target.setPartialSupplyFlg(INT_MINUS_1);
 		target.setSpareWireFlg(INT_MINUS_1);
@@ -773,6 +777,7 @@ public class TestEstimationExtDto {
 		target.setElectricCommercialFlowDiv(entity.getElectricCommercialFlowDiv().toString());
 		target.setCo2EmissionMenu("CO2");
 		target.setCo2EmissionFactor("1");
+		target.setScale("01");
 		target.setVoltageCategory(entity.getVoltageCategory().toString());
 		target.setPartialSupplyFlg(INT_10);
 		target.setSpareWireFlg(INT_10);
@@ -788,6 +793,7 @@ public class TestEstimationExtDto {
 		target.setElectricCommercialFlowDiv(entity.getElectricCommercialFlowDiv().toString());
 		target.setCo2EmissionMenu("CO2");
 		target.setCo2EmissionFactor("1");
+		target.setScale("01");
 		target.setVoltageCategory(entity.getVoltageCategory().toString());
 		target.setContractPower(DECIMAL_MINUS_001);
 		target.setPowerRate(DECIMAL_MINUS_001);
@@ -805,6 +811,7 @@ public class TestEstimationExtDto {
 		target.setElectricCommercialFlowDiv(entity.getElectricCommercialFlowDiv().toString());
 		target.setCo2EmissionMenu("CO2");
 		target.setCo2EmissionFactor("1");
+		target.setScale("01");
 		target.setVoltageCategory(entity.getVoltageCategory().toString());
 		target.setContractPower(DECIMAL_0001);
 		target.setPowerRate(DECIMAL_0001);
