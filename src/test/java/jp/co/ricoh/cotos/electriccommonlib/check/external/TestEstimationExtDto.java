@@ -35,7 +35,6 @@ import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.PaymentMethod;
 import jp.co.ricoh.cotos.electriccommonlib.entity.estimation.AgencyEstimationInformation;
 import jp.co.ricoh.cotos.electriccommonlib.entity.estimation.EstimationElectric;
 import jp.co.ricoh.cotos.electriccommonlib.entity.estimation.FeeSimulationHead;
-import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricFormMaster.ElectricPlan;
 import jp.co.ricoh.cotos.electriccommonlib.repository.estimation.EstimationElectricRepository;
 import jp.co.ricoh.cotos.electriccommonlib.security.bean.ParamterCheckResult;
 
@@ -106,7 +105,7 @@ public class TestEstimationExtDto {
 		targetEstimation.setPowerCompany(entityEstimation.getElectricCompany());
 		targetEstimation.setElectricCommercialFlowDivCode("1");
 		targetEstimation.setElectricCommercialFlowDiv(entityEstimation.getElectricCommercialFlowDiv().toString());
-		targetEstimation.setCo2EmissionMenu(ElectricPlan.CO2フリー);
+		targetEstimation.setCo2EmissionMenu("CO2");
 		targetEstimation.setCo2EmissionFactor("1");
 		targetEstimation.setVoltageCategory(entityEstimation.getVoltageCategory().toString());
 		targetEstimation.setSupplyStartScheduledDate("2019/05");
@@ -696,7 +695,7 @@ public class TestEstimationExtDto {
 		target.setElectricCommercialFlowDivCode("1");
 		target.setSupplyStartScheduledDate("2019/05");
 		target.setElectricCommercialFlowDiv(entity.getElectricCommercialFlowDiv().toString());
-		target.setCo2EmissionMenu(ElectricPlan.CO2フリー);
+		target.setCo2EmissionMenu("CO2");
 		target.setCo2EmissionFactor("1");
 		target.setVoltageCategory(entity.getVoltageCategory().toString());
 		target.setContractPeriod("12");
@@ -739,6 +738,7 @@ public class TestEstimationExtDto {
 		target.setSupplyStartScheduledDate(STR_256);
 		target.setElectricMenuCode(STR_256);
 		target.setCo2EmissionFactor(STR_256);
+		target.setCo2EmissionMenu(STR_256);
 		target.setItemCode(STR_256);
 		target.setPowerSupplyCycle(STR_256);
 		target.setContractQuantity(STR_256);
@@ -747,7 +747,7 @@ public class TestEstimationExtDto {
 		target.setSupplyStartScheduledDate(STR_256);
 		target.setContractPeriod(STR_256);
 		result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
-		Assert.assertTrue(result.getErrorInfoList().size() == 15);
+		Assert.assertTrue(result.getErrorInfoList().size() == 16);
 
 		// 異常系(@Min)
 		BeanUtils.copyProperties(entity, target);
@@ -756,7 +756,7 @@ public class TestEstimationExtDto {
 		target.setSupplyStartScheduledDate("2019/05");
 		target.setElectricCommercialFlowDivCode("1");
 		target.setElectricCommercialFlowDiv(entity.getElectricCommercialFlowDiv().toString());
-		target.setCo2EmissionMenu(ElectricPlan.CO2フリー);
+		target.setCo2EmissionMenu("CO2");
 		target.setCo2EmissionFactor("1");
 		target.setVoltageCategory(entity.getVoltageCategory().toString());
 		target.setPartialSupplyFlg(INT_MINUS_1);
@@ -771,7 +771,7 @@ public class TestEstimationExtDto {
 		target.setSupplyStartScheduledDate("2019/05");
 		target.setElectricCommercialFlowDivCode("1");
 		target.setElectricCommercialFlowDiv(entity.getElectricCommercialFlowDiv().toString());
-		target.setCo2EmissionMenu(ElectricPlan.CO2フリー);
+		target.setCo2EmissionMenu("CO2");
 		target.setCo2EmissionFactor("1");
 		target.setVoltageCategory(entity.getVoltageCategory().toString());
 		target.setPartialSupplyFlg(INT_10);
@@ -786,7 +786,7 @@ public class TestEstimationExtDto {
 		target.setSupplyStartScheduledDate("2019/05");
 		target.setElectricCommercialFlowDivCode("1");
 		target.setElectricCommercialFlowDiv(entity.getElectricCommercialFlowDiv().toString());
-		target.setCo2EmissionMenu(ElectricPlan.CO2フリー);
+		target.setCo2EmissionMenu("CO2");
 		target.setCo2EmissionFactor("1");
 		target.setVoltageCategory(entity.getVoltageCategory().toString());
 		target.setContractPower(DECIMAL_MINUS_001);
@@ -803,7 +803,7 @@ public class TestEstimationExtDto {
 		target.setSupplyStartScheduledDate("2019/05");
 		target.setElectricCommercialFlowDivCode("1");
 		target.setElectricCommercialFlowDiv(entity.getElectricCommercialFlowDiv().toString());
-		target.setCo2EmissionMenu(ElectricPlan.CO2フリー);
+		target.setCo2EmissionMenu("CO2");
 		target.setCo2EmissionFactor("1");
 		target.setVoltageCategory(entity.getVoltageCategory().toString());
 		target.setContractPower(DECIMAL_0001);

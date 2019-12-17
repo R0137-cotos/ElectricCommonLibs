@@ -74,9 +74,10 @@ public class EstimationElectricExtDtoForPlanChange {
 	private String electricMenuCode;
 
 	/** CO2排出メニュー */
+	@Size(max = 255)
 	@Column(name = "co2_emission_menu")
 	@ApiModelProperty(value = "CO2排出メニュー", required = false, position = 12, allowableValues = "range[0,255]")
-	private ElectricPlan co2EmissionMenu;
+	private String co2EmissionMenu;
 
 	/** CO2排出係数 */
 	@Size(max = 255)
