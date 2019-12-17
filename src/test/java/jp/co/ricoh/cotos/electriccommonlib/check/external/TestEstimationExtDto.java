@@ -107,6 +107,7 @@ public class TestEstimationExtDto {
 		targetEstimation.setElectricCommercialFlowDiv(entityEstimation.getElectricCommercialFlowDiv().toString());
 		targetEstimation.setCo2EmissionMenu("CO2");
 		targetEstimation.setCo2EmissionFactor("1");
+		targetEstimation.setScale("01");
 		targetEstimation.setVoltageCategory(entityEstimation.getVoltageCategory().toString());
 		targetEstimation.setSupplyStartScheduledDate("2019/05");
 		targetEstimation.setContractPeriod("12");
