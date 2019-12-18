@@ -36,7 +36,7 @@ public class FeeCalcInterface extends EntityBase {
 	@SequenceGenerator(name = "fee_calc_interface_seq", sequenceName = "fee_calc_interface_seq", allocationSize = 1)
 	@ApiModelProperty(value = "ID", required = true, position = 1)
 	private long id;
-	
+
 	/**
 	 * 全体番号
 	 */
@@ -68,7 +68,7 @@ public class FeeCalcInterface extends EntityBase {
 	@ApiModelProperty(value = "契約番号", required = true, position = 5)
 	@JsonProperty("契約番号")
 	private String ctctBn;
-	
+
 	/**
 	 * 料金計算明細番号
 	 */
@@ -108,7 +108,7 @@ public class FeeCalcInterface extends EntityBase {
 	@ApiModelProperty(value = "料金名称", required = true, position = 10)
 	@JsonProperty("料金名称")
 	private String feeMnunMs;
-	
+
 	/**
 	 * 合計金額
 	 */
@@ -123,7 +123,7 @@ public class FeeCalcInterface extends EntityBase {
 	@Column(nullable = true)
 	@ApiModelProperty(value = "課税対象税抜合計金額", required = true, position = 12)
 	@JsonProperty("課税対象税抜合計金額")
-	private Long taxObjTaxOutSumMny;
+	private BigDecimal taxObjTaxOutSumMny;
 
 	/**
 	 * 税抜合計金額
@@ -131,7 +131,7 @@ public class FeeCalcInterface extends EntityBase {
 	@Column(nullable = true)
 	@ApiModelProperty(value = "税抜合計金額", required = true, position = 13)
 	@JsonProperty("税抜合計金額")
-	private Long feeClcFeeTaxOut;
+	private BigDecimal feeClcFeeTaxOut;
 
 	/**
 	 * 消費税
@@ -140,7 +140,7 @@ public class FeeCalcInterface extends EntityBase {
 	@ApiModelProperty(value = "消費税", required = true, position = 14)
 	@JsonProperty("消費税")
 	private Long taxmny;
-	
+
 	/**
 	 * 消費税対象区分
 	 */
@@ -148,7 +148,7 @@ public class FeeCalcInterface extends EntityBase {
 	@ApiModelProperty(value = "消費税対象区分", required = false, position = 15)
 	@JsonProperty("消費税対象区分")
 	private String taxAplyKbn;
-	
+
 	/**
 	 * 料金計算明細種別コード
 	 */
@@ -156,7 +156,7 @@ public class FeeCalcInterface extends EntityBase {
 	@ApiModelProperty(value = "料金計算明細種別コード", required = false, position = 16)
 	@JsonProperty("料金計算明細種別コード")
 	private String feeClcDtlClsCd;
-	
+
 	/**
 	 * 明細種別名称
 	 */
@@ -164,7 +164,7 @@ public class FeeCalcInterface extends EntityBase {
 	@ApiModelProperty(value = "明細種別名称", required = false, position = 17)
 	@JsonProperty("明細種別名称")
 	private String dtlClsNms;
-	
+
 	/**
 	 * 料金計算単価
 	 */
@@ -172,7 +172,7 @@ public class FeeCalcInterface extends EntityBase {
 	@ApiModelProperty(value = "料金計算単価", required = false, position = 18)
 	@JsonProperty("料金計算単価")
 	private BigDecimal feeClcUprc;
-	
+
 	/**
 	 * 料金計算数量
 	 */
@@ -180,7 +180,7 @@ public class FeeCalcInterface extends EntityBase {
 	@ApiModelProperty(value = "料金計算数量", required = false, position = 19)
 	@JsonProperty("料金計算数量")
 	private Long feeClcNum;
-	
+
 	/**
 	 * 料金計算開始日時
 	 */
@@ -189,7 +189,7 @@ public class FeeCalcInterface extends EntityBase {
 	@JsonProperty("料金計算開始日時")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "JST")
 	private Date feeClcStrDatTim;
-	
+
 	/**
 	 * 料金計算終了日時
 	 */
@@ -198,7 +198,7 @@ public class FeeCalcInterface extends EntityBase {
 	@JsonProperty("料金計算終了日時")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "JST")
 	private Date feeClcEndDatTim;
-	
+
 	/**
 	 * 前月電力量
 	 */
@@ -206,7 +206,7 @@ public class FeeCalcInterface extends EntityBase {
 	@ApiModelProperty(value = "前月電力量", required = false, position = 22)
 	@JsonProperty("前月電力量")
 	private Long lstMnthElc;
-	
+
 	/**
 	 * 前年同月電力量
 	 */
@@ -214,7 +214,7 @@ public class FeeCalcInterface extends EntityBase {
 	@ApiModelProperty(value = "前年同月電力量", required = false, position = 23)
 	@JsonProperty("前年同月電力量")
 	private Long lstYearSmnthElcNum;
-	
+
 	/**
 	 * 料金計算対象開始日
 	 */
@@ -222,7 +222,7 @@ public class FeeCalcInterface extends EntityBase {
 	@ApiModelProperty(value = "料金計算対象開始日", required = false, position = 24)
 	@JsonProperty("料金計算対象開始日")
 	private String feeClcStrYmd;
-	
+
 	/**
 	 * 料金計算対象終了日
 	 */
@@ -230,7 +230,7 @@ public class FeeCalcInterface extends EntityBase {
 	@ApiModelProperty(value = "料金計算対象終了日", required = false, position = 25)
 	@JsonProperty("料金計算対象終了日")
 	private String feeClcEndYmd;
-	
+
 	/**
 	 * 発電種類コード
 	 */
@@ -238,7 +238,7 @@ public class FeeCalcInterface extends EntityBase {
 	@ApiModelProperty(value = "発電種類コード", required = false, position = 26)
 	@JsonProperty("発電種類コード")
 	private String pwrGnClsCd;
-	
+
 	/**
 	 * 発電種類名
 	 */
@@ -246,7 +246,7 @@ public class FeeCalcInterface extends EntityBase {
 	@ApiModelProperty(value = "発電種類名", required = false, position = 27)
 	@JsonProperty("発電種類名")
 	private String pwrGnClsNm;
-	
+
 	/**
 	 * 単価アイテムコード
 	 */
