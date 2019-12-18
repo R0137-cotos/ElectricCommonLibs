@@ -118,7 +118,7 @@ public class ContractSearchResult {
 	 * 見積番号
 	 */
 	@ApiModelProperty(value = "見積番号<br />" + "見積番号 + \"-\" + 見積番号枝番", required = false, position = 16, allowableValues = "range[0,18]")
-	private String estimateNumber;
+	private String estimationNumber;
 
 	/**
 	 * 見積件名
