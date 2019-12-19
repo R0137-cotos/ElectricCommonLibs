@@ -31,6 +31,7 @@ import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
 import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.BeforeDebitContact;
 import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.SendInvoiceDiv;
 import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.SendMyRicoh;
+import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.VoltageCategory;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.BillingHistoryRepository;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -328,5 +329,12 @@ public class BillingHistory extends EntityBase {
 	@Column(nullable = true)
 	@ApiModelProperty(value = "請求書様式", required = false, position = 26, allowableValues = "単一(\"1\"), 複数(\"2\")", example = "1")
 	private InvoiceForm invoiceForm;
+
+	/**
+	 * 電力区分
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "電力区分", required = false, position = 27, allowableValues = "高圧(\"1\"), 低圧(\"2\")", example = "1")
+	private VoltageCategory voltageCategory;
 
 }
