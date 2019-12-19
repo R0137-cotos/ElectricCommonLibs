@@ -104,7 +104,7 @@ public class EstimationSearchResult {
 	 * 掲示日
 	 */
 	@ApiModelProperty(value = "掲示日", required = false, position = 14)
-	@JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ", timezone = "Asia/Tokyo")
+	@JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ssZ", timezone = "Asia/Tokyo")
 	private Date coverPresentationDate;
 
 	/**
