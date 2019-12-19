@@ -153,7 +153,7 @@ public class ContractSearchResult {
 	/**
 	 * 契約書初回作成日
 	 */
-	@JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ", timezone = "Asia/Tokyo")
+	@JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ssZ", timezone = "Asia/Tokyo")
 	@ApiModelProperty(value = "契約書初回作成日", required = false, position = 22)
 	private Date contractFirstCreationDate;
 
@@ -166,14 +166,14 @@ public class ContractSearchResult {
 	/**
 	 * サービス開始
 	 */
-	@JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ", timezone = "Asia/Tokyo")
+	@JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ssZ", timezone = "Asia/Tokyo")
 	@ApiModelProperty(value = "サービス開始", required = false, position = 24)
 	private Date contractYmdStart;
 
 	/**
 	 * サービス終了
 	 */
-	@JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ", timezone = "Asia/Tokyo")
+	@JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ssZ", timezone = "Asia/Tokyo")
 	@ApiModelProperty(value = "サービス終了", required = false, position = 25)
 	private Date contractYmdEnd;
 
