@@ -5,8 +5,8 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.PrePersist;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.entity.contract.Contract.ContractType;
@@ -153,7 +153,7 @@ public class ContractSearchResult {
 	/**
 	 * 契約書初回作成日
 	 */
-	@Temporal(TemporalType.TIMESTAMP)
+	@JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ", timezone = "Asia/Tokyo")
 	@ApiModelProperty(value = "契約書初回作成日", required = false, position = 22)
 	private Date contractFirstCreationDate;
 
@@ -166,14 +166,14 @@ public class ContractSearchResult {
 	/**
 	 * サービス開始
 	 */
-	@Temporal(TemporalType.TIMESTAMP)
+	@JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ", timezone = "Asia/Tokyo")
 	@ApiModelProperty(value = "サービス開始", required = false, position = 24)
 	private Date contractYmdStart;
 
 	/**
 	 * サービス終了
 	 */
-	@Temporal(TemporalType.TIMESTAMP)
+	@JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ", timezone = "Asia/Tokyo")
 	@ApiModelProperty(value = "サービス終了", required = false, position = 25)
 	private Date contractYmdEnd;
 

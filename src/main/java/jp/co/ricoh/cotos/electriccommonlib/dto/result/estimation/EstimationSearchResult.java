@@ -6,8 +6,8 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.PrePersist;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.entity.estimation.Estimation.EstimationType;
@@ -104,7 +104,7 @@ public class EstimationSearchResult {
 	 * 掲示日
 	 */
 	@ApiModelProperty(value = "掲示日", required = false, position = 14)
-	@Temporal(TemporalType.TIMESTAMP)
+	@JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ", timezone = "Asia/Tokyo")
 	private Date coverPresentationDate;
 
 	/**
