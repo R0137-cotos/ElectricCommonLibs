@@ -207,7 +207,7 @@ public class FfmAccount extends EntityBase {
 	@Column(nullable = true)
 	@Max(99)
 	@ApiModelProperty(value = "請求分割回数", required = false, position = 24, allowableValues = "range[0,99]")
-	private long ffmTotalBillingCount;
+	private Long ffmTotalBillingCount;
 
 	/**
 	 * 契約締結日
@@ -759,7 +759,7 @@ public class FfmAccount extends EntityBase {
 	@Column(nullable = true)
 	@Max(99999)
 	@ApiModelProperty(value = "今回の請求回数", required = false, position = 100, allowableValues = "range[0,99999]")
-	private long ffmThisBillingCnt;
+	private Long ffmThisBillingCnt;
 
 	/**
 	 * 商品名用カウンター情報
