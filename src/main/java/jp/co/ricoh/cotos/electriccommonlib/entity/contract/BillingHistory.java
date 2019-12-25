@@ -333,8 +333,8 @@ public class BillingHistory extends EntityBase {
 	/**
 	 * 電力区分
 	 */
-	@Column(nullable = true)
-	@ApiModelProperty(value = "電力区分", required = false, position = 27, allowableValues = "高圧(\"1\"), 低圧(\"2\")", example = "1")
+	@Column(nullable = false)
+	@ApiModelProperty(value = "電力区分", required = true, position = 27, allowableValues = "高圧(\"1\"), 低圧(\"2\")", example = "1")
 	private VoltageCategory voltageCategory;
 
 }
