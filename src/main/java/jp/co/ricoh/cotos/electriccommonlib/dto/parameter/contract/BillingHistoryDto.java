@@ -19,6 +19,7 @@ import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
 import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.BeforeDebitContact;
 import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.SendInvoiceDiv;
 import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.SendMyRicoh;
+import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.VoltageCategory;
 import jp.co.ricoh.cotos.electriccommonlib.entity.contract.BillingHistory;
 import jp.co.ricoh.cotos.electriccommonlib.entity.contract.BillingHistory.AccruedSection;
 import jp.co.ricoh.cotos.electriccommonlib.entity.contract.BillingHistory.InvoiceCreateDiv;
@@ -200,9 +201,15 @@ public class BillingHistoryDto extends DtoBase {
 	private InvoiceForm invoiceForm;
 
 	/**
+	 * 電力区分
+	 */
+	@ApiModelProperty(value = "電力区分", required = true, position = 27, allowableValues = "高圧(\"1\"), 低圧(\"2\")", example = "1")
+	private VoltageCategory voltageCategory;
+
+	/**
 	 * 請求基本情報
 	 */
-	@ApiModelProperty(value = "請求基本情報", required = true, position = 27)
+	@ApiModelProperty(value = "請求基本情報", required = true, position = 28)
 	private BillingBasicInformationDto billingBasicInformation;
 
 }
