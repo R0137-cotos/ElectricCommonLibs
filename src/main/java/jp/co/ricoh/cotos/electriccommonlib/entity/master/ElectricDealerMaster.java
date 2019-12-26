@@ -43,7 +43,7 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = false)
 	@ApiModelProperty(value = "販売店コード", required = true, position = 2, allowableValues = "range[0,10]")
-	@JsonProperty("HNBITN_CD")
+	@JsonProperty("販売店コード")
 	private String hnbitnCd;
 
 	/**
@@ -51,7 +51,7 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "販売店名(カナ)", required = false, position = 3, allowableValues = "range[0,1000]")
-	@JsonProperty("HNBITN_MI_KN")
+	@JsonProperty("販売店名(カナ)")
 	private String hnbitnMiKn;
 
 	/**
@@ -59,7 +59,7 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "販売店名", required = false, position = 4, allowableValues = "range[0,1000]")
-	@JsonProperty("HNBITN_MI")
+	@JsonProperty("販売店名")
 	private String hnbitnMi;
 
 	/**
@@ -67,7 +67,7 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "販売店事業所名", required = false, position = 5, allowableValues = "range[0,1000]")
-	@JsonProperty("HNBITN_JGYSY_MI")
+	@JsonProperty("販売店事業所名")
 	private String hnbitnJgysyMi;
 
 	/**
@@ -75,7 +75,7 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "電話番号", required = false, position = 6, allowableValues = "range[0,1000]")
-	@JsonProperty("DNW_BNGU")
+	@JsonProperty("電話番号")
 	private String dnwBngu;
 
 	/**
@@ -83,7 +83,7 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "郵便番号", required = false, position = 7, allowableValues = "range[0,1000]")
-	@JsonProperty("YBN_BNGU")
+	@JsonProperty("郵便番号")
 	private String ybnBngu;
 
 	/**
@@ -91,7 +91,7 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "住所1", required = false, position = 8, allowableValues = "range[0,1000]")
-	@JsonProperty("ZYUSY1")
+	@JsonProperty("住所１")
 	private String zyusy1;
 
 	/**
@@ -99,7 +99,7 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "住所2", required = false, position = 9, allowableValues = "range[0,1000]")
-	@JsonProperty("ZYUSY2")
+	@JsonProperty("住所２")
 	private String zyusy2;
 
 	/**
@@ -107,7 +107,7 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "銀行番号", required = false, position = 10, allowableValues = "range[0,1000]")
-	@JsonProperty("GNNKU_BNGU")
+	@JsonProperty("銀行番号")
 	private String gnnkuBngu;
 
 	/**
@@ -115,7 +115,7 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "銀行名", required = false, position = 11, allowableValues = "range[0,1000]")
-	@JsonProperty("GNNKU_MI")
+	@JsonProperty("銀行名")
 	private String gnnkuMi;
 
 	/**
@@ -123,7 +123,7 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "支店コード", required = false, position = 12, allowableValues = "range[0,10]")
-	@JsonProperty("SHTN_CD")
+	@JsonProperty("支店コード")
 	private String shtnCd;
 
 	/**
@@ -131,7 +131,7 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "支店名", required = false, position = 13, allowableValues = "range[0,1000]")
-	@JsonProperty("SHTN_MI")
+	@JsonProperty("支店名")
 	private String shtnMi;
 
 	/**
@@ -139,7 +139,7 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "口座種別", required = false, position = 14, allowableValues = "range[0,1000]")
-	@JsonProperty("KUZ_SYBTS")
+	@JsonProperty("口座種別")
 	private String kuzSybts;
 
 	/**
@@ -147,7 +147,7 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "口座番号", required = false, position = 15, allowableValues = "range[0,1000]")
-	@JsonProperty("KUZ_BNGU")
+	@JsonProperty("口座番号")
 	private String kuzBngu;
 
 	/**
@@ -155,7 +155,7 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "口座名義人名カナ", required = false, position = 16, allowableValues = "range[0,1000]")
-	@JsonProperty("KUZ_MIGNN_MI_KN")
+	@JsonProperty("口座名義人名カナ")
 	private String kuzMignnMiKn;
 
 	/**
@@ -163,7 +163,7 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "担当者名", required = false, position = 17, allowableValues = "range[0,1000]")
-	@JsonProperty("TNTSY_MI")
+	@JsonProperty("担当者名")
 	private String tntsyMi;
 
 	/**
@@ -171,7 +171,7 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "メールアドレス1", required = false, position = 18, allowableValues = "range[0,1000]")
-	@JsonProperty("MAIL_ADDRESS1")
+	@JsonProperty("メールアドレス１")
 	private String mailAddress1;
 
 	/**
@@ -179,7 +179,7 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "メールアドレス2", required = false, position = 19, allowableValues = "range[0,1000]")
-	@JsonProperty("MAIL_ADDRESS2")
+	@JsonProperty("メールアドレス２")
 	private String mailAddress2;
 
 	/**
@@ -187,7 +187,7 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "メールアドレス3", required = false, position = 20, allowableValues = "range[0,1000]")
-	@JsonProperty("MAIL_ADDRESS3")
+	@JsonProperty("メールアドレス３")
 	private String mailAddress3;
 
 	/**
@@ -195,7 +195,7 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "契約期間(自)", required = false, position = 21, allowableValues = "range[0,10]")
-	@JsonProperty("KIYK_KKN_FROM")
+	@JsonProperty("契約期間(自)")
 	private String kiykKknFrom;
 
 	/**
@@ -203,7 +203,7 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "契約期間(至)", required = false, position = 22, allowableValues = "range[0,10]")
-	@JsonProperty("KIYK_KKN_TO")
+	@JsonProperty("契約期間(至)")
 	private String kiykKknTo;
 
 	/**
@@ -211,7 +211,7 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "商流区分コード", required = false, allowableValues = "range[0,1]", position = 23)
-	@JsonProperty("SYURYU_KBN_CD")
+	@JsonProperty("商流区分コード")
 	private String syuryuKbnCd;
 
 	/**
@@ -219,7 +219,7 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "商流区分名", required = false, allowableValues = "range[0,1000]", position = 24)
-	@JsonProperty("SYURYU_KBN_MI")
+	@JsonProperty("商流区分名")
 	private String syuryuKbnMi;
 
 	/**
@@ -227,7 +227,7 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "支払方法区分コード", required = false, position = 25, allowableValues = "range[0,1]")
-	@JsonProperty("SHHRI_HUHU_KBN_CD")
+	@JsonProperty("支払方法区分コード")
 	private String shhriHuhuKbnCd;
 
 	/**
@@ -235,7 +235,7 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "支払方法区分名", required = false, position = 26, allowableValues = "range[0,1000]")
-	@JsonProperty("SHHRI_HUHU_KBN_MI")
+	@JsonProperty("支払方法区分名")
 	private String shhriHuhuKbnMi;
 
 	/**
@@ -243,7 +243,7 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "媒介手数料率", required = false, position = 27, allowableValues = "range[0,99999999999.99]")
-	@JsonProperty("BIKI_TSURYU_RT")
+	@JsonProperty("媒介手数料率")
 	private BigDecimal bikiTsuryuRt;
 
 	/**
@@ -251,7 +251,7 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "口座名義人名", required = false, position = 28, allowableValues = "range[0,1000]")
-	@JsonProperty("KUZ_MIGNN_MI")
+	@JsonProperty("口座名義人名")
 	private String kuzMignnMi;
 
 	/**
@@ -259,7 +259,7 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "支払先サイト(支払先コード)", required = false, position = 29, allowableValues = "range[0,1000]")
-	@JsonProperty("SHHRI_SITE")
+	@JsonProperty("支払先サイト（支払先コード）")
 	private String shhriSite;
 
 	/**
@@ -267,7 +267,7 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "上流工程コード", required = false, position = 30, allowableValues = "range[0,1000]")
-	@JsonProperty("PROCESS_CD")
+	@JsonProperty("上流工程コード")
 	private String processCd;
 
 	/**
@@ -275,7 +275,7 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "登録ユーザID", required = false, position = 31, allowableValues = "range[0,1000]")
-	@JsonProperty("REGIST_USER_ID")
+	@JsonProperty("登録ユーザID")
 	private String registUserId;
 
 	/**
@@ -283,8 +283,8 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "登録日時", required = false, position = 32)
-	@Temporal(TemporalType.DATE)
-	@JsonProperty("REGIST_TIME")
+	@Temporal(TemporalType.TIMESTAMP)
+	@JsonProperty("登録日時")
 	private Date registTime;
 
 	/**
@@ -292,7 +292,7 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "更新ユーザID", required = false, position = 33, allowableValues = "range[0,1000]")
-	@JsonProperty("UPDATE_USER_ID")
+	@JsonProperty("更新ユーザID")
 	private String updateUserId;
 
 	/**
@@ -300,8 +300,8 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "更新日時", required = false, position = 34)
-	@Temporal(TemporalType.DATE)
-	@JsonProperty("UPDATE_TIME")
+	@Temporal(TemporalType.TIMESTAMP)
+	@JsonProperty("更新日時")
 	private Date updateTime;
 
 	/**
@@ -309,6 +309,6 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "バージョン", required = false, position = 35, allowableValues = "range[0,9999999999999999999]")
-	@JsonProperty("VERSION")
+	@JsonProperty("バージョン")
 	private BigDecimal rVersion;
 }
