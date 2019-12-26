@@ -38,7 +38,7 @@ public class CommissionMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = false)
 	@ApiModelProperty(value = "電力区分", required = true, position = 2, allowableValues = "range[0,255]")
-	@JsonProperty("DNRYK_KBN")
+	@JsonProperty("電力区分")
 	private String dnrykKbn;
 
 	/**
@@ -46,7 +46,7 @@ public class CommissionMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = false)
 	@ApiModelProperty(value = "管轄地域電力会社コード", required = true, position = 3, allowableValues = "range[0,255]")
-	@JsonProperty("KNKTTIK_DNRYKKISH_CD")
+	@JsonProperty("管轄地域電力会社コード")
 	private String knkttikDnrykkishCd;
 
 	/**
@@ -54,7 +54,7 @@ public class CommissionMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = false)
 	@ApiModelProperty(value = "想定年間電力料金(From)", required = true, position = 4, allowableValues = "range[0,99999999999]")
-	@JsonProperty("SUTI_NNKN_DNRYK_RYUKN_FROM")
+	@JsonProperty("想定年間電力料金(From)")
 	private Long sutiNnknDnrykRyuknFrom;
 
 	/**
@@ -62,7 +62,7 @@ public class CommissionMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = false)
 	@ApiModelProperty(value = "想定年間電力料金(To)", required = true, position = 5, allowableValues = "range[0,99999999999]")
-	@JsonProperty("SUTI_NNKN_DNRYK_RYUKN_TO")
+	@JsonProperty("想定年間電力料金(To)")
 	private Long sutiNnknDnrykRyuknTo;
 
 	/**
@@ -70,7 +70,7 @@ public class CommissionMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "媒介手数料額", required = false, position = 6, allowableValues = "range[0,99999999999]")
-	@JsonProperty("BIKI_TSURYU_GK")
+	@JsonProperty("媒介手数料額")
 	private Long bikiTsuryuGk;
 
 	/**
@@ -78,7 +78,7 @@ public class CommissionMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "適用開始年月日", required = false, position = 7, allowableValues = "range[0,255]")
-	@JsonProperty("TKYU_KISH_YMD")
+	@JsonProperty("適用開始年月日")
 	private String tkyuKishYmd;
 
 	/**
@@ -86,7 +86,7 @@ public class CommissionMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "適用終了年月日", required = false, position = 8, allowableValues = "range[0,255]")
-	@JsonProperty("TKYU_SHURYU_YMD")
+	@JsonProperty("適用終了年月日")
 	private String tkyuShuryuYmd;
 
 }
