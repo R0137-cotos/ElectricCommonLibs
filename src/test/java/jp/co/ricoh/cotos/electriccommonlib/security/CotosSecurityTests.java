@@ -1,8 +1,10 @@
 package jp.co.ricoh.cotos.electriccommonlib.security;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -456,6 +458,44 @@ public class CotosSecurityTests {
 
 		// 結果判定
 		Assert.assertTrue("権限ありと判定されること", result);
+	}
+	
+	@Test
+	@Transactional
+	public void 正常_MoM権限_参照_次回承認者() throws Exception {
+
+		Mockito.doReturn(AuthLevel.不可).when((MomAuthorityService) elcMomAuthorityService).searchMomAuthority(Mockito.any(), Mockito.any(), Mockito.any());
+
+		AuthorityJudgeParameter authParam = new AuthorityJudgeParameter();
+		authParam.setActorMvEmployeeMaster(mvEmployeeMasterRepository.findOne("00220552"));
+		authParam.setManualApprover(true);
+
+		List<MvEmployeeMaster> approverList = new ArrayList<MvEmployeeMaster>();
+		MvEmployeeMaster approver = new MvEmployeeMaster();
+		approver.setMomEmployeeId("00220552");
+		approverList.add(approver);
+		authParam.setApproverMvEmployeeMasterList(approverList);;
+
+		boolean result = context.getBean(ElcMomAuthorityService.class).hasAuthority(authParam, ActionDiv.照会, AuthDiv.見積_契約_手配, AccessType.参照);
+		Assert.assertTrue("対象の権限があること", result);
+	}
+	
+	@Test
+	@Transactional
+	public void 正常_MoM権限_編集_次回承認者() throws Exception {
+
+		Mockito.doReturn(AuthLevel.不可).when((MomAuthorityService) elcMomAuthorityService).searchMomAuthority(Mockito.any(), Mockito.any(), Mockito.any());
+
+		AuthorityJudgeParameter authParam = new AuthorityJudgeParameter();
+		authParam.setActorMvEmployeeMaster(mvEmployeeMasterRepository.findOne("00220552"));
+		authParam.setManualApprover(true);
+
+		MvEmployeeMaster nextApprover = new MvEmployeeMaster();
+		nextApprover.setMomEmployeeId("00220552");
+		authParam.setNextApproverMvEmployeeMaster(nextApprover);
+
+		boolean result = context.getBean(ElcMomAuthorityService.class).hasAuthority(authParam, ActionDiv.照会, AuthDiv.見積_契約_手配, AccessType.編集);
+		Assert.assertTrue("対象の権限があること", result);
 	}
 
 	@Test
