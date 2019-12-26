@@ -13,6 +13,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import io.swagger.annotations.ApiModelProperty;
@@ -285,6 +286,7 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	@ApiModelProperty(value = "登録日時", required = false, position = 32)
 	@Temporal(TemporalType.TIMESTAMP)
 	@JsonProperty("登録日時")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Tokyo")
 	private Date registTime;
 
 	/**
@@ -302,6 +304,7 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	@ApiModelProperty(value = "更新日時", required = false, position = 34)
 	@Temporal(TemporalType.TIMESTAMP)
 	@JsonProperty("更新日時")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Tokyo")
 	private Date updateTime;
 
 	/**
