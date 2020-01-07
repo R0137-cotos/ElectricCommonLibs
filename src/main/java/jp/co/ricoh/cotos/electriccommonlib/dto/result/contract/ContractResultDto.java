@@ -8,11 +8,11 @@ import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.OrderBy;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.entity.contract.Contract;
@@ -162,15 +162,15 @@ public class ContractResultDto {
 	/**
 	 * 変更希望日
 	 */
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Tokyo")
 	@ApiModelProperty(value = "変更希望日", required = false, position = 15)
-	@Temporal(TemporalType.DATE)
 	private Date changePreferredDate;
 
 	/**
 	 * 契約日
 	 */
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Tokyo")
 	@ApiModelProperty(value = "契約日", required = false, position = 16)
-	@Temporal(TemporalType.DATE)
 	private Date contractDate;
 
 	/**
@@ -183,29 +183,29 @@ public class ContractResultDto {
 	/**
 	 * 請求開始日
 	 */
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Tokyo")
 	@ApiModelProperty(value = "請求開始日", required = false, position = 18)
-	@Temporal(TemporalType.DATE)
 	private Date billingDate;
 
 	/**
 	 * サービス開始日
 	 */
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Tokyo")
 	@ApiModelProperty(value = "サービス開始日", required = false, position = 19)
-	@Temporal(TemporalType.DATE)
 	private Date serviceTermStart;
 
 	/**
 	 * サービス終了日
 	 */
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Tokyo")
 	@ApiModelProperty(value = "サービス終了日", required = false, position = 20)
-	@Temporal(TemporalType.DATE)
 	private Date serviceTermEnd;
 
 	/**
 	 * 解約予定日
 	 */
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Tokyo")
 	@ApiModelProperty(value = "解約予定日", required = false, position = 21)
-	@Temporal(TemporalType.DATE)
 	private Date cancelScheduledDate;
 
 	/**
@@ -317,8 +317,8 @@ public class ContractResultDto {
 	/**
 	 * 課金開始日(ランニング)
 	 */
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Tokyo")
 	@ApiModelProperty(value = "課金開始日(ランニング)", required = false, position = 37)
-	@Temporal(TemporalType.DATE)
 	private Date billingStartDate;
 
 	/**
@@ -331,8 +331,8 @@ public class ContractResultDto {
 	/**
 	 * サービス利用希望日
 	 */
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Tokyo")
 	@ApiModelProperty(value = "サービス利用希望日", required = false, position = 39)
-	@Temporal(TemporalType.DATE)
 	private Date conclusionPreferredDate;
 
 	/**
@@ -344,8 +344,8 @@ public class ContractResultDto {
 	/**
 	 * IFS連携用CSV作成日
 	 */
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Tokyo")
 	@ApiModelProperty(value = "IFS連携用CSV作成日", required = false, position = 41)
-	@Temporal(TemporalType.DATE)
 	private Date ifsLinkageCsvCreateDate;
 
 	/**
@@ -371,8 +371,8 @@ public class ContractResultDto {
 	/**
 	 * 申込日
 	 */
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Tokyo")
 	@ApiModelProperty(value = "申込日", required = false, position = 45)
-	@Temporal(TemporalType.DATE)
 	private Date applicationDate;
 
 	/**
@@ -528,6 +528,7 @@ public class ContractResultDto {
 	 * 契約自動更新日
 	 */
 	@Column
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Tokyo")
 	@ApiModelProperty(value = "契約自動更新日", required = false, position = 67)
 	private Date contractAutoUpdateDate;
 
@@ -549,6 +550,7 @@ public class ContractResultDto {
 	 * 検収日
 	 */
 	@Column
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Tokyo")
 	@ApiModelProperty(value = "検収日", required = false, position = 70)
 	private Date acceptanceDate;
 
