@@ -1,6 +1,12 @@
 package jp.co.ricoh.cotos.electriccommonlib.repository;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.apache.commons.codec.binary.StringUtils;
+import org.hamcrest.Matchers;
 import org.junit.AfterClass;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +17,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import jp.co.ricoh.cotos.electriccommonlib.DBConfig;
 import jp.co.ricoh.cotos.electriccommonlib.TestTools;
+import jp.co.ricoh.cotos.electriccommonlib.entity.nishiki.MaximumDemandPowerHighVolt;
 import jp.co.ricoh.cotos.electriccommonlib.repository.nishiki.ExcsChargeInfoHighVoltRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.nishiki.FeeCalcInterfaceRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.nishiki.FeeClcUssInterfaceRepository;
@@ -99,4 +106,18 @@ public class TestNishikiRepository extends RepositoryTestBase {
 		全てのカラムがNullではないことを確認_共通(limDscInfoHighVoltRepository, 1L);
 	}
 
+	@Test
+	public void 最大需要電力情報レコードがリストで取得できること() {
+		final Long[] expect = { 201907L, 201906L, 201905L, 201904L };
+		final String ctctBn = "1";
+		final String feeClcYm = "201907";
+		List<MaximumDemandPowerHighVolt> findresult = null;
+		try {
+			findresult = maximumDemandPowerHighVoltRepository.findByCtctBnAndFeeClcYmOrderByMaxDmdElcRsYmDesc(ctctBn, feeClcYm);
+		} catch (Exception e) {
+			Assert.fail("想定外のエラーが発生した。");
+		}
+		Assert.assertThat("ソート順が正しいことを確認", findresult.stream().map(elem -> elem.getMaxDmdElcRsYm()).collect(Collectors.toList()), Matchers.contains(expect));
+		Assert.assertTrue("契約番号,料金計算対象年月が同一のレコードのみが取得できていることを確認", findresult.stream().allMatch(elem -> StringUtils.equals(elem.getCtctBn(), ctctBn) && StringUtils.equals(elem.getFeeClcYm(), feeClcYm)));
+	}
 }
