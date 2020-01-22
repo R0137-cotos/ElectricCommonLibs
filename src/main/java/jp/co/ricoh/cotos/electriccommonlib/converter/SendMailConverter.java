@@ -9,10 +9,10 @@ import jp.co.ricoh.cotos.electriccommonlib.entity.contract.BillingHistory.SendMa
 public class SendMailConverter implements AttributeConverter<SendMail, String> {
 
 	@Override
-	public String convertToDatabaseColumn(SendMail voltageCategory) {
-		if (voltageCategory == null)
+	public String convertToDatabaseColumn(SendMail sendMail) {
+		if (sendMail == null)
 			return null;
-		return voltageCategory.toString();
+		return sendMail.toString();
 	}
 
 	@Override
