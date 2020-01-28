@@ -58,6 +58,7 @@ import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.Ele
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.EstimationAddedEditorEmpExtDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.EstimationElectricExtDtoForCreate;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.EstimationElectricExtDtoForPlanChange;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.EstimationElectricPlanChangeParamDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.EstimationExtCreateDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.EstimationExtPlanChangeDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.EstimationPicSaEmpExtDto;
@@ -331,6 +332,11 @@ public class TestCheckController {
 
 	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/BillingHistoryUpdateDto")
 	public ParamterCheckResult callParamterCheck(@RequestBody @Validated BillingHistoryUpdateDto dto, BindingResult result) {
+		return createParameterCheckResult(result);
+	}
+
+	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/EstimationElectricPlanChangeParamDto")
+	public ParamterCheckResult callParamterCheck(@RequestBody @Validated EstimationElectricPlanChangeParamDto dto, BindingResult result) {
 		return createParameterCheckResult(result);
 	}
 }
