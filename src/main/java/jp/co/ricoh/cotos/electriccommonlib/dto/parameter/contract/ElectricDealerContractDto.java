@@ -1,5 +1,7 @@
 package jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 
 import io.swagger.annotations.ApiModelProperty;
@@ -77,4 +79,12 @@ public class ElectricDealerContractDto extends DtoBase {
 	@Size(max = 255)
 	@ApiModelProperty(value = "メールアドレス3", required = false, position = 11, allowableValues = "range[0,255]")
 	private String mailAddress3;
+
+	/**
+	 * 1ショット支払済フラグ
+	 */
+	@Max(9)
+	@Min(0)
+	@ApiModelProperty(value = "1ショット支払済フラグ", required = false, position = 12, allowableValues = "range[0,9]")
+	private Integer oneShotPaidFlg;
 }

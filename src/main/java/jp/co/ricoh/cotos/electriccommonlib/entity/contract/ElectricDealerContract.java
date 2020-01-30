@@ -9,6 +9,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -106,4 +108,13 @@ public class ElectricDealerContract extends EntityBase {
 	@Column(nullable = false)
 	@ApiModelProperty(value = "メールアドレス3", required = true, position = 11, allowableValues = "range[0,255]")
 	private String mailAddress3;
+
+	/**
+	 * 1ショット支払済フラグ
+	 */
+	@Column(nullable = false)
+	@Max(9)
+	@Min(0)
+	@ApiModelProperty(value = "1ショット支払済フラグ", required = false, position = 12, allowableValues = "range[0,9]")
+	private Integer oneShotPaidFlg;
 }
