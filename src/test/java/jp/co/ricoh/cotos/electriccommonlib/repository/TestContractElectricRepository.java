@@ -34,6 +34,7 @@ import jp.co.ricoh.cotos.electriccommonlib.entity.contract.BillingHistory;
 import jp.co.ricoh.cotos.electriccommonlib.entity.contract.ClientMaster;
 import jp.co.ricoh.cotos.electriccommonlib.entity.contract.ContractElectric;
 import jp.co.ricoh.cotos.electriccommonlib.entity.contract.ElectricAppropriation;
+import jp.co.ricoh.cotos.electriccommonlib.entity.contract.ElectricDealerContract;
 import jp.co.ricoh.cotos.electriccommonlib.entity.contract.MonthlyElectricDealerContract;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.AgencyContractInformationRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.BillingBasicInformationRepository;
@@ -582,5 +583,19 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 		} catch (Exception e1) {
 			Assert.fail("例外が発生した場合、エラー");
 		}
+	}
+
+	@Test
+	public void 販売店情報が取得できること() {
+		final long expect = 1L;
+
+		ElectricDealerContract findResult = null;
+		try {
+			findResult = electricDealerContractRepository.findByContractElectricId(expect);
+		} catch (Exception e) {
+			Assert.fail("想定外のエラーが発生した。");
+		}
+		Assert.assertFalse("販売店情報エンティティが取得できること", ObjectUtils.isEmpty(findResult));
+		Assert.assertEquals("契約（電力用）IDが期待値通りであること", expect, findResult.getContractElectric().getId());
 	}
 }
