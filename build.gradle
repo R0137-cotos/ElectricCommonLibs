@@ -24,7 +24,7 @@ apply plugin: 'maven'
 repositories {
     jcenter()
     mavenCentral()
-    maven { url 'https://mygithub.ritscm.xyz/raw/cotos/LibsRepo/develop/repository/CommonLibs' }
+    maven { url 'https://mygithub.ritscm.xyz/raw/cotos/LibsRepo/release/v1.0.0-el/repository/CommonLibs' }
 }
 
 dependencies {
@@ -79,7 +79,8 @@ uploadArchives {
     repositories {
         mavenDeployer {
             repository url: "file://${repo.absolutePath}"
-            pom.version = '0.0.222'
+
+            pom.version = '0.0.224'
             pom.groupId = 'jp.co.ricoh.cotos'
             pom.artifactId = 'electric-common-libraries'
         }
