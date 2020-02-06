@@ -19,6 +19,7 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonValue;
 
@@ -81,6 +82,7 @@ public class CancellationInformation extends EntityBase {
 	 * 解約希望日
 	 */
 	@Column(nullable = true)
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Tokyo")
 	@ApiModelProperty(value = "解約希望日", required = false, position = 3)
 	private Date cancellationHopeDate;
 
@@ -101,9 +103,10 @@ public class CancellationInformation extends EntityBase {
 	private String specifiedTime;
 
 	/**
-	 * 解約望日
+	 * 解約日
 	 */
 	@Column(nullable = true)
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Tokyo")
 	@ApiModelProperty(value = "解約日", required = false, position = 6)
 	private Date cancellationDate;
 

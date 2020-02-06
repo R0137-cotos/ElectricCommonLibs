@@ -9,6 +9,8 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.dto.parameter.common.DtoBase;
 import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
@@ -26,6 +28,7 @@ public class CancellationInformationDto extends DtoBase {
 	/**
 	 * 解約希望日
 	 */
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Tokyo")
 	@ApiModelProperty(value = "解約希望日", required = false, position = 3)
 	private Date cancellationHopeDate;
 
@@ -45,8 +48,9 @@ public class CancellationInformationDto extends DtoBase {
 	private String specifiedTime;
 
 	/**
-	 * 解約望日
+	 * 解約日
 	 */
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Tokyo")
 	@ApiModelProperty(value = "解約日", required = false, position = 6)
 	private Date cancellationDate;
 
