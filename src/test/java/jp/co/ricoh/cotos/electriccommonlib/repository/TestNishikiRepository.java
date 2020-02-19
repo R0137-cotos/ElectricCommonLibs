@@ -120,4 +120,18 @@ public class TestNishikiRepository extends RepositoryTestBase {
 		Assert.assertThat("ソート順が正しいことを確認", findresult.stream().map(elem -> elem.getMaxDmdElcRsYm()).collect(Collectors.toList()), Matchers.contains(expect));
 		Assert.assertTrue("契約番号,料金計算対象年月が同一のレコードのみが取得できていることを確認", findresult.stream().allMatch(elem -> StringUtils.equals(elem.getCtctBn(), ctctBn) && StringUtils.equals(elem.getFeeClcYm(), feeClcYm)));
 	}
+
+	@Test
+	public void 最大需要電力情報レコードの対象月全件がリストで取得できること() {
+		final Long[] expect = { 201903L, 201902L, 201907L, 201906L, 201905L, 201904L };
+		final String feeClcYm = "201907";
+		List<MaximumDemandPowerHighVolt> findresult = null;
+		try {
+			findresult = maximumDemandPowerHighVoltRepository.findByFeeClcYmOrderByCtctBnDescMaxDmdElcRsYmDesc(feeClcYm);
+		} catch (Exception e) {
+			Assert.fail("想定外のエラーが発生した。");
+		}
+		Assert.assertThat("ソート順が正しいことを確認", findresult.stream().map(elem -> elem.getMaxDmdElcRsYm()).collect(Collectors.toList()), Matchers.contains(expect));
+		Assert.assertTrue("料金計算対象年月が同一のレコードのみが取得できていることを確認", findresult.stream().allMatch(elem -> StringUtils.equals(elem.getFeeClcYm(), feeClcYm)));
+	}
 }

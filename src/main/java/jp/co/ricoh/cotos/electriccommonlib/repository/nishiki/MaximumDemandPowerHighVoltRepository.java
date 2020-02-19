@@ -11,4 +11,6 @@ import jp.co.ricoh.cotos.electriccommonlib.entity.nishiki.MaximumDemandPowerHigh
 public interface MaximumDemandPowerHighVoltRepository extends CrudRepository<MaximumDemandPowerHighVolt, Long> {
 
 	public List<MaximumDemandPowerHighVolt> findByCtctBnAndFeeClcYmOrderByMaxDmdElcRsYmDesc(String ctctBn, String feeClcYm);
+
+	public List<MaximumDemandPowerHighVolt> findByFeeClcYmOrderByCtctBnDescMaxDmdElcRsYmDesc(String feeClcYm);
 }
