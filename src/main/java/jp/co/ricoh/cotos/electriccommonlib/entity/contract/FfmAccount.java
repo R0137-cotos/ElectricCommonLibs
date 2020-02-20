@@ -12,6 +12,10 @@ import javax.validation.constraints.Digits;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBase;
 import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
@@ -27,6 +31,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @Table(name = "ffm_account")
 @CotosComplementTarget(entity = FfmAccount.class, repository = FfmAccountRepository.class)
+@JsonPropertyOrder({ "データ作成日", "データ作成時間", "FFM会社コード", "契約種類区分", "作成データパターン", "勘定識別", "データ種別", "赤黒区分", "債権債務照合キー", "NSPユニークキー", "案件番号", "契約書番号", "契約番号", "契約明細番号", "請求明細番号", "お問合せ番号", "お問合せ明細番号", "手配時の案件番号", "手配時の問合せ番号", "赤伝理由", "元契約番号", "元請求明細番号", "請求条件", "請求分割回数", "契約締結日", "契約期間(開始)", "契約期間(終了)", "契約ＳＳコード", "契約ＳＳ社員コード", "振替先課所コード", "振替先社員コード", "保守契約／リース/レンタルＮｏ", "契約金額", "仕切前計上金額", "仕切前消費税額", "商品コード", "機種略号", "機番", "見積時の入力商品名", "原価計上商品コード", "仕入区分", "仕入値引区分", "仕入購買区分", "仕入取引日", "他社商品区分", "仕入取引先コード", "仕入課所設定区分", "仕入課所コード", "仕入責任得意先コード", "在庫区コード", "特価番号", "仕入数量", "仕入単価", "仕入単価(税込)", "仕入金額", "仕入金額(税込)", "仕入消費税区分", "仕入消費税率区分", "仕入消費税額", "仕入先請求ＮＯ", "商品名(支払通知書用)", "売上区分", "売上値引区分", "売上取引日(納品日)", "得意先コード", "売上課所設定区分", "売上課所コード", "売上社員設定区分", "売上社員コード", "値引番号", "伝票番号", "売上数量", "売上単価", "売上単価(税込)", "売上金額", "売上金額(税込)", "売上消費税区分", "売上消費税率区分", "売上消費税額", "契約区分", "売上原価金額", "振替金額", "代直区分(販売店データリンク・売上用)", "販売店売上単価", "販売店税抜金額", "販売店消費税区分", "販売店消費税率区分", "請求書明細識別コード", "納品書要否区分", "納品書出力パターン", "納品書出力形式", "請求書発行システム", "商品名パターン番号(納品書・請求書用)", "商品名(納品書・請求書用)", "業務への連絡事項", "備考(納品書・請求書用)", "請求期間(開始)", "請求期間(終了)", "請求年月", "今回の請求回数", "商品名用カウンター情報", "コメント１", "コメント２", "強制フラグ", "機器設置先名", "機器設置先部課名", "RINGS届先コード(3桁)", "OE届先コード(11桁)", "納品場所識別", "届先名１(会社名)", "届先名２(会社部課名)", "顧客名", "届先住所１", "届先住所２", "届先住所３", "届先郵便番号", "届先電話番号", "届先ＦＡＸ番号", "届先名(カナ)", "得意先コード(二次店)", "届先コード(二次店)", "支払利息相当額", "受取利息相当額", "見積番号", "見積明細番号", "本体見積明細番号" })
 public class FfmAccount extends EntityBase {
 
 	@Embeddable
@@ -52,13 +57,33 @@ public class FfmAccount extends EntityBase {
 	}
 
 	@EmbeddedId
+	@JsonIgnore
 	private Id id;
+
+	/**
+	 * Jackson用
+	 * @return 作成データパターン
+	 */
+	@JsonProperty("作成データパターン")
+	public String getFfmDataPtn() {
+		return this.id != null ? this.id.getFfmDataPtn() : null;
+	}
+
+	/**
+	 * Jackson用
+	 * @return NSPユニークキー
+	 */
+	@JsonProperty("NSPユニークキー")
+	public String getFfmNspKey() {
+		return this.id != null ? this.id.getFfmNspKey() : null;
+	}
 
 	/**
 	 * データ作成日
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "データ作成日", required = false, position = 1, allowableValues = "range[0,255]")
+	@JsonProperty("データ作成日")
 	private String ffmDataCreateDate;
 
 	/**
@@ -66,6 +91,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "データ作成時間", required = false, position = 2, allowableValues = "range[0,255]")
+	@JsonProperty("データ作成時間")
 	private String ffmDataCreateTime;
 
 	/**
@@ -73,6 +99,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "FFM会社コード", required = false, position = 3, allowableValues = "range[0,255]")
+	@JsonProperty("FFM会社コード")
 	private String ffmCompanyCd;
 
 	/**
@@ -80,6 +107,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "契約種類区分", required = false, position = 4, allowableValues = "range[0,255]")
+	@JsonProperty("契約種類区分")
 	private String ffmContractTypeKbn;
 
 	/**
@@ -87,6 +115,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "勘定識別", required = false, position = 6, allowableValues = "range[0,255]")
+	@JsonProperty("勘定識別")
 	private String ffmAccountType;
 
 	/**
@@ -94,6 +123,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "データ種別", required = false, position = 7, allowableValues = "range[0,255]")
+	@JsonProperty("データ種別")
 	private String ffmDataType;
 
 	/**
@@ -101,6 +131,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "赤黒区分", required = false, position = 8, allowableValues = "range[0,255]")
+	@JsonProperty("赤黒区分")
 	private String ffmRedBlackType;
 
 	/**
@@ -108,6 +139,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "債権債務照合キー", required = false, position = 9, allowableValues = "range[0,255]")
+	@JsonProperty("債権債務照合キー")
 	private String ffmMatchingKey;
 
 	/**
@@ -115,6 +147,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "案件番号", required = false, position = 11, allowableValues = "range[0,255]")
+	@JsonProperty("案件番号")
 	private String ffmProjectNo;
 
 	/**
@@ -122,6 +155,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "契約書番号", required = false, position = 12, allowableValues = "range[0,255]")
+	@JsonProperty("契約書番号")
 	private String ffmContractDocNo;
 
 	/**
@@ -129,6 +163,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "契約番号", required = false, position = 13, allowableValues = "range[0,255]")
+	@JsonProperty("契約番号")
 	private String ffmContractNo;
 
 	/**
@@ -136,6 +171,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "契約明細番号", required = false, position = 14, allowableValues = "range[0,255]")
+	@JsonProperty("契約明細番号")
 	private String ffmContractDetailNo;
 
 	/**
@@ -143,6 +179,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "請求明細番号", required = false, position = 15, allowableValues = "range[0,255]")
+	@JsonProperty("請求明細番号")
 	private String ffmBillingDetailNo;
 
 	/**
@@ -150,6 +187,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "お問合せ番号", required = false, position = 16, allowableValues = "range[0,255]")
+	@JsonProperty("お問合せ番号")
 	private String ffmInqNo;
 
 	/**
@@ -157,6 +195,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "お問合せ明細番号", required = false, position = 17, allowableValues = "range[0,255]")
+	@JsonProperty("お問合せ明細番号")
 	private String ffmInqDetailNo;
 
 	/**
@@ -164,6 +203,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "手配時の案件番号", required = false, position = 18, allowableValues = "range[0,255]")
+	@JsonProperty("手配時の案件番号")
 	private String ffmArrProjectNo;
 
 	/**
@@ -171,6 +211,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "手配時の問合せ番号", required = false, position = 19, allowableValues = "range[0,255]")
+	@JsonProperty("手配時の問合せ番号")
 	private String ffmArrInqNo;
 
 	/**
@@ -178,6 +219,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "赤伝理由", required = false, position = 20, allowableValues = "range[0,255]")
+	@JsonProperty("赤伝理由")
 	private String ffmCancelReason;
 
 	/**
@@ -185,6 +227,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "元契約番号", required = false, position = 21, allowableValues = "range[0,255]")
+	@JsonProperty("元契約番号")
 	private String ffmOrgContractCd;
 
 	/**
@@ -192,6 +235,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "元請求明細番号", required = false, position = 22, allowableValues = "range[0,255]")
+	@JsonProperty("元請求明細番号")
 	private String ffmOrgContractDetailNo;
 
 	/**
@@ -199,6 +243,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "請求条件", required = false, position = 23, allowableValues = "range[0,255]")
+	@JsonProperty("請求条件")
 	private String ffmBillingCondition;
 
 	/**
@@ -207,6 +252,7 @@ public class FfmAccount extends EntityBase {
 	@Column(nullable = true)
 	@Max(99)
 	@ApiModelProperty(value = "請求分割回数", required = false, position = 24, allowableValues = "range[0,99]")
+	@JsonProperty("請求分割回数")
 	private Long ffmTotalBillingCount;
 
 	/**
@@ -214,6 +260,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "契約締結日", required = false, position = 25, allowableValues = "range[0,255]")
+	@JsonProperty("契約締結日")
 	private String ffmContractDate;
 
 	/**
@@ -221,6 +268,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "契約期間(開始)", required = false, position = 26, allowableValues = "range[0,255]")
+	@JsonProperty("契約期間(開始)")
 	private String ffmContractPeriodStart;
 
 	/**
@@ -228,6 +276,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "契約期間(終了)", required = false, position = 27, allowableValues = "range[0,255]")
+	@JsonProperty("契約期間(終了)")
 	private String ffmContractPeriodEnd;
 
 	/**
@@ -235,6 +284,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "契約ＳＳコード", required = false, position = 28, allowableValues = "range[0,255]")
+	@JsonProperty("契約ＳＳコード")
 	private String ffmContractSscd;
 
 	/**
@@ -242,6 +292,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "契約ＳＳ社員コード", required = false, position = 29, allowableValues = "range[0,255]")
+	@JsonProperty("契約ＳＳ社員コード")
 	private String ffmContractSspiccd;
 
 	/**
@@ -249,6 +300,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "振替先課所コード", required = false, position = 30, allowableValues = "range[0,255]")
+	@JsonProperty("振替先課所コード")
 	private String ffmTrnsLocationCd;
 
 	/**
@@ -256,6 +308,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "振替先社員コード", required = false, position = 31, allowableValues = "range[0,255]")
+	@JsonProperty("振替先社員コード")
 	private String ffmTrnsPicCd;
 
 	/**
@@ -263,6 +316,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "保守契約／リース/レンタルＮｏ", required = false, position = 32, allowableValues = "range[0,255]")
+	@JsonProperty("保守契約／リース/レンタルＮｏ")
 	private String ffmMntLeaseNo;
 
 	/**
@@ -271,6 +325,7 @@ public class FfmAccount extends EntityBase {
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
 	@ApiModelProperty(value = "契約金額", required = false, position = 33, allowableValues = "range[-99999999999999999.99,99999999999999999.99]")
+	@JsonProperty("契約金額")
 	private BigDecimal ffmContractPrice;
 
 	/**
@@ -279,6 +334,7 @@ public class FfmAccount extends EntityBase {
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
 	@ApiModelProperty(value = "仕切前計上金額", required = false, position = 34, allowableValues = "range[-99999999999999999.99,99999999999999999.99]")
+	@JsonProperty("仕切前計上金額")
 	private BigDecimal ffmPriceBeforeInvoice;
 
 	/**
@@ -287,6 +343,7 @@ public class FfmAccount extends EntityBase {
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
 	@ApiModelProperty(value = "仕切前消費税額", required = false, position = 35, allowableValues = "range[-99999999999999999.99,99999999999999999.99]")
+	@JsonProperty("仕切前消費税額")
 	private BigDecimal ffmTaxPriceBeforeInvoice;
 
 	/**
@@ -294,6 +351,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "商品コード", required = false, position = 36, allowableValues = "range[0,255]")
+	@JsonProperty("商品コード")
 	private String ffmProdactCd;
 
 	/**
@@ -301,6 +359,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "機種略号", required = false, position = 37, allowableValues = "range[0,255]")
+	@JsonProperty("機種略号")
 	private String ffmModelId;
 
 	/**
@@ -308,6 +367,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "機番", required = false, position = 38, allowableValues = "range[0,255]")
+	@JsonProperty("機番")
 	private String ffmSerialId;
 
 	/**
@@ -315,6 +375,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "見積時の入力商品名", required = false, position = 39, allowableValues = "range[0,255]")
+	@JsonProperty("見積時の入力商品名")
 	private String ffmQuotationProdactName;
 
 	/**
@@ -322,6 +383,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "原価計上商品コード", required = false, position = 40, allowableValues = "range[0,255]")
+	@JsonProperty("原価計上商品コード")
 	private String ffmCostProdactName;
 
 	/**
@@ -329,6 +391,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "仕入区分", required = false, position = 41, allowableValues = "range[0,255]")
+	@JsonProperty("仕入区分")
 	private String ffmPurchaseType;
 
 	/**
@@ -336,6 +399,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "仕入値引区分", required = false, position = 42, allowableValues = "range[0,255]")
+	@JsonProperty("仕入値引区分")
 	private String ffmPurchaseDiscntType;
 
 	/**
@@ -343,6 +407,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "仕入購買区分", required = false, position = 43, allowableValues = "range[0,255]")
+	@JsonProperty("仕入購買区分")
 	private String ffmPurchaseClassType;
 
 	/**
@@ -350,6 +415,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "仕入取引日", required = false, position = 44, allowableValues = "range[0,255]")
+	@JsonProperty("仕入取引日")
 	private String ffmPurchaseDate;
 
 	/**
@@ -357,6 +423,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true, name = "ffm_non_r_item_cd")
 	@ApiModelProperty(value = "他社商品区分", required = false, position = 45, allowableValues = "range[0,255]")
+	@JsonProperty("他社商品区分")
 	private String ffmNonRItemCd;
 
 	/**
@@ -364,6 +431,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "仕入取引先コード", required = false, position = 46, allowableValues = "range[0,255]")
+	@JsonProperty("仕入取引先コード")
 	private String ffmSupplierCd;
 
 	/**
@@ -371,6 +439,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "仕入課所設定区分", required = false, position = 47, allowableValues = "range[0,255]")
+	@JsonProperty("仕入課所設定区分")
 	private String ffmDeptAssortType;
 
 	/**
@@ -378,6 +447,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "仕入課所コード", required = false, position = 48, allowableValues = "range[0,255]")
+	@JsonProperty("仕入課所コード")
 	private String ffmPurchaseLocationCd;
 
 	/**
@@ -385,6 +455,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "仕入責任得意先コード", required = false, position = 49, allowableValues = "range[0,255]")
+	@JsonProperty("仕入責任得意先コード")
 	private String ffmPurchaseRespClientCd;
 
 	/**
@@ -392,6 +463,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "在庫区コード", required = false, position = 50, allowableValues = "range[0,255]")
+	@JsonProperty("在庫区コード")
 	private String ffmRdStrctInventoryCd;
 
 	/**
@@ -399,6 +471,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "特価番号", required = false, position = 51, allowableValues = "range[0,255]")
+	@JsonProperty("特価番号")
 	private String ffmDealsNo;
 
 	/**
@@ -407,6 +480,7 @@ public class FfmAccount extends EntityBase {
 	@Column(nullable = true)
 	@Max(99999)
 	@ApiModelProperty(value = "仕入数量", required = false, position = 52, allowableValues = "range[0,99999]")
+	@JsonProperty("仕入数量")
 	private Long ffmPurchaseCnt;
 
 	/**
@@ -415,6 +489,7 @@ public class FfmAccount extends EntityBase {
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
 	@ApiModelProperty(value = "仕入単価", required = false, position = 53, allowableValues = "range[-99999999999999999.99,99999999999999999.99]")
+	@JsonProperty("仕入単価")
 	private BigDecimal ffmPurchasePrice;
 
 	/**
@@ -423,6 +498,7 @@ public class FfmAccount extends EntityBase {
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
 	@ApiModelProperty(value = "仕入単価(税込)", required = false, position = 54, allowableValues = "range[-99999999999999999.99,99999999999999999.99]")
+	@JsonProperty("仕入単価(税込)")
 	private BigDecimal ffmPurchasePriceInTax;
 
 	/**
@@ -431,6 +507,7 @@ public class FfmAccount extends EntityBase {
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
 	@ApiModelProperty(value = "仕入金額", required = false, position = 55, allowableValues = "range[-99999999999999999.99,99999999999999999.99]")
+	@JsonProperty("仕入金額")
 	private BigDecimal ffmPurchaseAmt;
 
 	/**
@@ -439,6 +516,7 @@ public class FfmAccount extends EntityBase {
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
 	@ApiModelProperty(value = "仕入金額(税込)", required = false, position = 56, allowableValues = "range[-99999999999999999.99,99999999999999999.99]")
+	@JsonProperty("仕入金額(税込)")
 	private BigDecimal ffmPurchaseAmtInTax;
 
 	/**
@@ -446,6 +524,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "仕入消費税区分", required = false, position = 57, allowableValues = "range[0,255]")
+	@JsonProperty("仕入消費税区分")
 	private String ffmRjPurchaseTaxType;
 
 	/**
@@ -453,6 +532,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "仕入消費税率区分", required = false, position = 58, allowableValues = "range[0,255]")
+	@JsonProperty("仕入消費税率区分")
 	private String ffmRjPurchaseTaxRate;
 
 	/**
@@ -461,6 +541,7 @@ public class FfmAccount extends EntityBase {
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
 	@ApiModelProperty(value = "仕入消費税額", required = false, position = 59, allowableValues = "range[-99999999999999999.99,99999999999999999.99]")
+	@JsonProperty("仕入消費税額")
 	private BigDecimal ffmRjPurchaseTaxPrice;
 
 	/**
@@ -468,6 +549,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "仕入先請求ＮＯ", required = false, position = 60, allowableValues = "range[0,255]")
+	@JsonProperty("仕入先請求ＮＯ")
 	private String ffmSupplierBillingNo;
 
 	/**
@@ -475,6 +557,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "商品名(支払通知書用)", required = false, position = 61, allowableValues = "range[0,255]")
+	@JsonProperty("商品名(支払通知書用)")
 	private String ffmProdactName;
 
 	/**
@@ -482,6 +565,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "売上区分", required = false, position = 62, allowableValues = "range[0,255]")
+	@JsonProperty("売上区分")
 	private String ffmSalesType;
 
 	/**
@@ -489,6 +573,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "売上値引区分", required = false, position = 63, allowableValues = "range[0,255]")
+	@JsonProperty("売上値引区分")
 	private String ffmSalesDiscountType;
 
 	/**
@@ -496,6 +581,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "売上取引日(納品日)", required = false, position = 64, allowableValues = "range[0,255]")
+	@JsonProperty("売上取引日(納品日)")
 	private String ffmSalesTradeDate;
 
 	/**
@@ -503,6 +589,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "得意先コード", required = false, position = 65, allowableValues = "range[0,255]")
+	@JsonProperty("得意先コード")
 	private String ffmClientCd;
 
 	/**
@@ -510,6 +597,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "売上課所設定区分", required = false, position = 66, allowableValues = "range[0,255]")
+	@JsonProperty("売上課所設定区分")
 	private String ffmSalesLocationType;
 
 	/**
@@ -517,6 +605,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "売上課所コード", required = false, position = 67, allowableValues = "range[0,255]")
+	@JsonProperty("売上課所コード")
 	private String ffmSalesLocationCd;
 
 	/**
@@ -524,6 +613,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "売上社員設定区分", required = false, position = 68, allowableValues = "range[0,255]")
+	@JsonProperty("売上社員設定区分")
 	private String ffmSalesEmpType;
 
 	/**
@@ -531,6 +621,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "売上社員コード", required = false, position = 69, allowableValues = "range[0,255]")
+	@JsonProperty("売上社員コード")
 	private String ffmSalesEmpCd;
 
 	/**
@@ -538,6 +629,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "値引番号", required = false, position = 70, allowableValues = "range[0,255]")
+	@JsonProperty("値引番号")
 	private String ffmDiscntNo;
 
 	/**
@@ -545,6 +637,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "伝票番号", required = false, position = 71, allowableValues = "range[0,255]")
+	@JsonProperty("伝票番号")
 	private String ffmSlipNo;
 
 	/**
@@ -553,6 +646,7 @@ public class FfmAccount extends EntityBase {
 	@Column(nullable = true)
 	@Max(99999)
 	@ApiModelProperty(value = "売上数量", required = false, position = 72, allowableValues = "range[0,99999]")
+	@JsonProperty("売上数量")
 	private Long ffmUserSalesCnt;
 
 	/**
@@ -561,6 +655,7 @@ public class FfmAccount extends EntityBase {
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
 	@ApiModelProperty(value = "売上単価", required = false, position = 73, allowableValues = "range[-99999999999999999.99,99999999999999999.99]")
+	@JsonProperty("売上単価")
 	private BigDecimal ffmUserSalesPrice;
 
 	/**
@@ -569,6 +664,7 @@ public class FfmAccount extends EntityBase {
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
 	@ApiModelProperty(value = "売上単価(税込)", required = false, position = 74, allowableValues = "range[-99999999999999999.99,99999999999999999.99]")
+	@JsonProperty("売上単価(税込)")
 	private BigDecimal ffmUserSalesPriceInTax;
 
 	/**
@@ -577,6 +673,7 @@ public class FfmAccount extends EntityBase {
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
 	@ApiModelProperty(value = "売上金額", required = false, position = 75, allowableValues = "range[-99999999999999999.99,99999999999999999.99]")
+	@JsonProperty("売上金額")
 	private BigDecimal ffmUserSalesAmt;
 
 	/**
@@ -585,6 +682,7 @@ public class FfmAccount extends EntityBase {
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
 	@ApiModelProperty(value = "売上金額(税込)", required = false, position = 76, allowableValues = "range[-99999999999999999.99,99999999999999999.99]")
+	@JsonProperty("売上金額(税込)")
 	private BigDecimal ffmUserSalesAmtInTax;
 
 	/**
@@ -592,6 +690,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "売上消費税率区分", required = false, position = 77, allowableValues = "range[0,255]")
+	@JsonProperty("売上消費税区分")
 	private String ffmUserSalesTaxType;
 
 	/**
@@ -599,6 +698,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "売上消費税率区分", required = false, position = 78, allowableValues = "range[0,255]")
+	@JsonProperty("売上消費税率区分")
 	private String ffmUserSalesTaxRate;
 
 	/**
@@ -607,6 +707,7 @@ public class FfmAccount extends EntityBase {
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
 	@ApiModelProperty(value = "売上消費税額", required = false, position = 79, allowableValues = "range[-99999999999999999.99,99999999999999999.99]")
+	@JsonProperty("売上消費税額")
 	private BigDecimal ffmUserSalesTaxPrice;
 
 	/**
@@ -614,6 +715,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "契約区分", required = false, position = 80, allowableValues = "range[0,255]")
+	@JsonProperty("契約区分")
 	private String ffmContractType;
 
 	/**
@@ -622,6 +724,7 @@ public class FfmAccount extends EntityBase {
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
 	@ApiModelProperty(value = "売上原価金額", required = false, position = 81, allowableValues = "range[-99999999999999999.99,99999999999999999.99]")
+	@JsonProperty("売上原価金額")
 	private BigDecimal ffmRevenueCostprice;
 
 	/**
@@ -630,6 +733,7 @@ public class FfmAccount extends EntityBase {
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
 	@ApiModelProperty(value = "振替金額", required = false, position = 82, allowableValues = "range[-99999999999999999.99,9999999999999999.99]")
+	@JsonProperty("振替金額")
 	private BigDecimal ffmTrnsPrice;
 
 	/**
@@ -637,6 +741,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "代直区分(販売店データリンク・売上用)", required = false, position = 83, allowableValues = "range[0,255]")
+	@JsonProperty("代直区分(販売店データリンク・売上用)")
 	private String ffmDistType;
 
 	/**
@@ -645,6 +750,7 @@ public class FfmAccount extends EntityBase {
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
 	@ApiModelProperty(value = "販売店売上単価", required = false, position = 84, allowableValues = "range[-99999999999999999.99,99999999999999999.99]")
+	@JsonProperty("販売店売上単価")
 	private BigDecimal ffmShopSalesPrice;
 
 	/**
@@ -653,6 +759,7 @@ public class FfmAccount extends EntityBase {
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
 	@ApiModelProperty(value = "販売店税抜金額", required = false, position = 85, allowableValues = "range[-99999999999999999.99,99999999999999999.99]")
+	@JsonProperty("販売店税抜金額")
 	private BigDecimal ffmShopSalesAmt;
 
 	/**
@@ -660,6 +767,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "販売店消費税区分", required = false, position = 86, allowableValues = "range[0,255]")
+	@JsonProperty("販売店消費税区分")
 	private String ffmShopSalesTaxType;
 
 	/**
@@ -667,6 +775,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "販売店消費税率区分", required = false, position = 87, allowableValues = "range[0,255]")
+	@JsonProperty("販売店消費税率区分")
 	private String ffmShopSalesTaxRate;
 
 	/**
@@ -674,6 +783,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "請求書明細識別コード", required = false, position = 88, allowableValues = "range[0,255]")
+	@JsonProperty("請求書明細識別コード")
 	private String ffmBillDetailCd;
 
 	/**
@@ -681,6 +791,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "納品書要否区分", required = false, position = 89, allowableValues = "range[0,255]")
+	@JsonProperty("納品書要否区分")
 	private String ffmBillOutputFlg;
 
 	/**
@@ -688,6 +799,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "納品書出力パターン", required = false, position = 90, allowableValues = "range[0,255]")
+	@JsonProperty("納品書出力パターン")
 	private String ffmBillOutputPtn;
 
 	/**
@@ -695,6 +807,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "納品書出力形式", required = false, position = 91, allowableValues = "range[0,255]")
+	@JsonProperty("納品書出力形式")
 	private String ffmBillOutputFmt;
 
 	/**
@@ -702,6 +815,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "請求書発行システム", required = false, position = 92, allowableValues = "range[0,255]")
+	@JsonProperty("請求書発行システム")
 	private String ffmBillOutputSystem;
 
 	/**
@@ -709,6 +823,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "商品名パターン番号(納品書・請求書用)", required = false, position = 93, allowableValues = "range[0,255]")
+	@JsonProperty("商品名パターン番号(納品書・請求書用)")
 	private String ffmProdactPtnNo;
 
 	/**
@@ -716,6 +831,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "商品名(納品書・請求書用)", required = false, position = 94, allowableValues = "range[0,255]")
+	@JsonProperty("商品名(納品書・請求書用)")
 	private String ffmProdactNameForBill;
 
 	/**
@@ -723,6 +839,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "業務への連絡事項", required = false, position = 95, allowableValues = "range[0,255]")
+	@JsonProperty("業務への連絡事項")
 	private String ffmMessageForBiz;
 
 	/**
@@ -730,6 +847,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "備考(納品書・請求書用)", required = false, position = 96, allowableValues = "range[0,255]")
+	@JsonProperty("備考(納品書・請求書用)")
 	private String ffmRemarkForBill;
 
 	/**
@@ -737,6 +855,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true, name = "ffm_r_billing_period_start")
 	@ApiModelProperty(value = "請求期間(開始)", required = false, position = 97, allowableValues = "range[0,255]")
+	@JsonProperty("請求期間(開始)")
 	private String ffmRBillingPeriodStart;
 
 	/**
@@ -744,6 +863,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true, name = "ffm_r_billing_period_end")
 	@ApiModelProperty(value = "請求期間(終了)", required = false, position = 98, allowableValues = "range[0,255]")
+	@JsonProperty("請求期間(終了)")
 	private String ffmRBillingPeriodEnd;
 
 	/**
@@ -751,6 +871,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "請求年月", required = false, position = 99, allowableValues = "range[0,255]")
+	@JsonProperty("請求年月")
 	private String ffmBillingYm;
 
 	/**
@@ -759,6 +880,7 @@ public class FfmAccount extends EntityBase {
 	@Column(nullable = true)
 	@Max(99999)
 	@ApiModelProperty(value = "今回の請求回数", required = false, position = 100, allowableValues = "range[0,99999]")
+	@JsonProperty("今回の請求回数")
 	private Long ffmThisBillingCnt;
 
 	/**
@@ -766,6 +888,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "商品名用カウンター情報", required = false, position = 101, allowableValues = "range[0,255]")
+	@JsonProperty("商品名用カウンター情報")
 	private String ffmCounter;
 
 	/**
@@ -773,6 +896,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "コメント１", required = false, position = 102, allowableValues = "range[0,255]")
+	@JsonProperty("コメント１")
 	private String ffmOutputComment1;
 
 	/**
@@ -780,6 +904,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "コメント２", required = false, position = 103, allowableValues = "range[0,255]")
+	@JsonProperty("コメント２")
 	private String ffmOutputComment2;
 
 	/**
@@ -789,6 +914,7 @@ public class FfmAccount extends EntityBase {
 	@Max(9)
 	@Min(0)
 	@ApiModelProperty(value = "強制フラグ", required = false, position = 104, allowableValues = "range[0,9]")
+	@JsonProperty("強制フラグ")
 	private Integer ffmForcedFlg;
 
 	/**
@@ -796,6 +922,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "機器設置先名", required = false, position = 105, allowableValues = "range[0,255]")
+	@JsonProperty("機器設置先名")
 	private String ffmInstalltionName;
 
 	/**
@@ -803,6 +930,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "機器設置先部課名", required = false, position = 106, allowableValues = "range[0,255]")
+	@JsonProperty("機器設置先部課名")
 	private String ffmInstalltionDptName;
 
 	/**
@@ -810,6 +938,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "RINGS届先コード(3桁)", required = false, position = 107, allowableValues = "range[0,255]")
+	@JsonProperty("RINGS届先コード(3桁)")
 	private String ffmRingsDstCd;
 
 	/**
@@ -817,6 +946,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "OE届先コード(11桁)", required = false, position = 108, allowableValues = "range[0,255]")
+	@JsonProperty("OE届先コード(11桁)")
 	private String ffmOeDstCd;
 
 	/**
@@ -824,6 +954,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "納品場所識別", required = false, position = 109, allowableValues = "range[0,255]")
+	@JsonProperty("納品場所識別")
 	private String ffmDstType;
 
 	/**
@@ -831,6 +962,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "届先名１(会社名)", required = false, position = 110, allowableValues = "range[0,255]")
+	@JsonProperty("届先名１(会社名)")
 	private String ffmDstName1;
 
 	/**
@@ -838,6 +970,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "届先名２(会社部課名)", required = false, position = 111, allowableValues = "range[0,255]")
+	@JsonProperty("届先名２(会社部課名)")
 	private String ffmDstName2;
 
 	/**
@@ -845,6 +978,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "顧客名", required = false, position = 112, allowableValues = "range[0,255]")
+	@JsonProperty("顧客名")
 	private String ffmDstClientName;
 
 	/**
@@ -852,6 +986,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "届先住所１", required = false, position = 113, allowableValues = "range[0,255]")
+	@JsonProperty("届先住所１")
 	private String ffmDstAddr1;
 
 	/**
@@ -859,6 +994,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "届先住所２", required = false, position = 114, allowableValues = "range[0,255]")
+	@JsonProperty("届先住所２")
 	private String ffmDstAddr2;
 
 	/**
@@ -866,6 +1002,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "届先住所３", required = false, position = 115, allowableValues = "range[0,255]")
+	@JsonProperty("届先住所３")
 	private String ffmDstAddr3;
 
 	/**
@@ -873,6 +1010,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "届先郵便番号", required = false, position = 116, allowableValues = "range[0,255]")
+	@JsonProperty("届先郵便番号")
 	private String ffmDstZipCd;
 
 	/**
@@ -880,6 +1018,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "届先電話番号", required = false, position = 117, allowableValues = "range[0,255]")
+	@JsonProperty("届先電話番号")
 	private String ffmDstTel;
 
 	/**
@@ -887,6 +1026,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "届先ＦＡＸ番号", required = false, position = 118, allowableValues = "range[0,255]")
+	@JsonProperty("届先ＦＡＸ番号")
 	private String ffmDstFax;
 
 	/**
@@ -894,6 +1034,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "届先名(カナ)", required = false, position = 119, allowableValues = "range[0,255]")
+	@JsonProperty("届先名(カナ)")
 	private String ffmDstNameKana;
 
 	/**
@@ -901,6 +1042,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "得意先コード(二次店)", required = false, position = 120, allowableValues = "range[0,255]")
+	@JsonProperty("得意先コード(二次店)")
 	private String ffmClientCdSec;
 
 	/**
@@ -908,6 +1050,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "届先コード(二次店)", required = false, position = 121, allowableValues = "range[0,255]")
+	@JsonProperty("届先コード(二次店)")
 	private String ffmDstCdSec;
 
 	/**
@@ -916,6 +1059,7 @@ public class FfmAccount extends EntityBase {
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
 	@ApiModelProperty(value = "支払利息相当額", required = false, position = 122, allowableValues = "range[-99999999999999999.99,99999999999999999.99]")
+	@JsonProperty("支払利息相当額")
 	private BigDecimal ffmInterestExpensePrice;
 
 	/**
@@ -924,6 +1068,7 @@ public class FfmAccount extends EntityBase {
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
 	@ApiModelProperty(value = "受取利息相当額", required = false, position = 123, allowableValues = "range[-99999999999999999.99,99999999999999999.99]")
+	@JsonProperty("受取利息相当額")
 	private BigDecimal ffmInterestIncomePrice;
 
 	/**
@@ -931,6 +1076,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "見積番号", required = false, position = 124, allowableValues = "range[0,255]")
+	@JsonProperty("見積番号")
 	private String ffmQuotationCd;
 
 	/**
@@ -938,6 +1084,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "見積明細番号", required = false, position = 125, allowableValues = "range[0,255]")
+	@JsonProperty("見積明細番号")
 	private String ffmQuotationDetailCd;
 
 	/**
@@ -945,6 +1092,7 @@ public class FfmAccount extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "本体見積明細番号", required = false, position = 126, allowableValues = "range[0,255]")
+	@JsonProperty("本体見積明細番号")
 	private String ffmMainQuotationDetailCd;
 
 	/**
@@ -954,5 +1102,6 @@ public class FfmAccount extends EntityBase {
 	@Max(9)
 	@Min(0)
 	@ApiModelProperty(value = "課金連携フラグ", required = false, position = 127, allowableValues = "range[0,9]")
+	@JsonIgnore
 	private Integer ffmBillingCooperationFlg;
 }
