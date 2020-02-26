@@ -37,9 +37,9 @@ import jp.co.ricoh.cotos.commonlib.entity.master.UrlAuthMaster.AccessType;
 import jp.co.ricoh.cotos.commonlib.entity.master.UrlAuthMaster.ActionDiv;
 import jp.co.ricoh.cotos.commonlib.entity.master.UrlAuthMaster.AuthDiv;
 import jp.co.ricoh.cotos.commonlib.repository.master.MvEmployeeMasterRepository;
-import jp.co.ricoh.cotos.commonlib.security.mom.MomAuthorityService;
 import jp.co.ricoh.cotos.commonlib.security.mom.MomAuthorityService.AuthLevel;
 import jp.co.ricoh.cotos.commonlib.util.HeadersProperties;
+import jp.co.ricoh.cotos.electriccommonlib.WithMockCustomUser;
 import jp.co.ricoh.cotos.electriccommonlib.security.mom.ElcMomAuthorityService;
 import jp.co.ricoh.cotos.electriccommonlib.util.RestTemplateCreator;
 import jp.co.ricoh.cotos.electriccommonlib.util.StandardProperties;
@@ -49,13 +49,17 @@ import lombok.val;
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 public class CotosSecurityTests {
 
+	private static final String WITHIN_PERIOD_HAS_MOM_AUTH_JWT = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJtb21BdXRoIjoie1wiMDNcIjp7XCIyMjEwXCI6XCIwMFwiLFwiMjIyMFwiOlwiMDBcIixcIjIyMzBcIjpcIjEwXCIsXCIyMjAwXCI6XCI1MFwifSxcIjA1XCI6e1wiMjIxMFwiOlwiMDBcIixcIjIyMjBcIjpcIjAwXCIsXCIyMjMwXCI6XCIxMFwiLFwiMjIwMFwiOlwiNTBcIn0sXCIwN1wiOntcIjIyMTBcIjpcIjAwXCIsXCIyMjIwXCI6XCIwMFwiLFwiMjIzMFwiOlwiMTBcIixcIjIyMDBcIjpcIjUwXCJ9LFwiMDFcIjp7XCIyMjEwXCI6XCIwMFwiLFwiMjIyMFwiOlwiMDBcIixcIjIyMzBcIjpcIjEwXCIsXCIyMjAwXCI6XCI1MFwifSxcIjA0XCI6e1wiMjIxMFwiOlwiMDBcIixcIjIyMjBcIjpcIjAwXCIsXCIyMjMwXCI6XCIxMFwiLFwiMjIwMFwiOlwiNTBcIn0sXCIwNlwiOntcIjIyMTBcIjpcIjAwXCIsXCIyMjIwXCI6XCIwMFwiLFwiMjIzMFwiOlwiMTBcIixcIjIyMDBcIjpcIjUwXCJ9LFwiMDJcIjp7XCIyMjEwXCI6XCIwMFwiLFwiMjIyMFwiOlwiMDBcIixcIjIyMzBcIjpcIjEwXCIsXCIyMjAwXCI6XCI1MFwifX0iLCJvcmlnaW4iOiJodHRwczovL2Rldi5jb3Rvcy5yaWNvaC5jby5qcCIsInNpbmdsZVVzZXJJZCI6InUwMjAxMTI1IiwibW9tRW1wSWQiOiIwMDIyOTc0NiIsImV4cCI6MjUzNDAyMjY4Mzk5LCJhcHBsaWNhdGlvbklkIjoiY290b3NfZGV2In0.DVREQfy-8H2hOAX44ktBfi8IVKB45I43dinEN_a8I5E";
+
+	private static final String WITHIN_PERIOD_MOM_AUTH_IS_NO_AUTHORITIES_JWT = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJtb21BdXRoIjoiTk9fQVVUSE9SSVRJRVMiLCJvcmlnaW4iOiJodHRwczovL2Rldi5jb3Rvcy5yaWNvaC5jby5qcCIsInNpbmdsZVVzZXJJZCI6InUwMjkwMTE0OSIsIm1vbUVtcElkIjoiMDA1MDA3ODQiLCJleHAiOjI1ODI3MDc1NzMsImFwcGxpY2F0aW9uSWQiOiJjb3Rvc19kZXYifQ.s9ab8korhw_7lUNQFhplALBKsuALiuL0FPcZ8voVOkM";
+
+	private static final String WITHIN_PERIOD_MOM_AUTH_IS_NULL_JWT = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJvcmlnaW4iOiJodHRwczovL2Rldi5jb3Rvcy5yaWNvaC5jby5qcCIsInNpbmdsZVVzZXJJZCI6InUwMjAxMTI1IiwibW9tRW1wSWQiOiIwMDIyOTc0NiIsImV4cCI6MjUzNDAyMjY4Mzk5LCJhcHBsaWNhdGlvbklkIjoiY290b3NfZGV2In0.OT-pRq6L-LfZOU_yaec7GhhTasROqt4qN1PWzIrntNk";
+
 	private static final String WITHIN_PERIOD_JWT = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJvcmlnaW4iOiJjb3Rvcy5yaWNvaC5jby5qcCIsInNpbmdsZVVzZXJJZCI6InNpZCIsIm1vbUVtcElkIjoibWlkIiwiZXhwIjoyNTM0MDIyNjgzOTksImFwcGxpY2F0aW9uSWQiOiJjb3Rvc19kZXYifQ.qJBFsMJFZcLdF7jWwEafZSOQfmL1EqPVDcRuz6WvsCI";
 
-	private static final String WITHIN_PERIOD_JWT_SUPER_USER = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJvcmlnaW4iOiJjb3Rvcy5yaWNvaC5jby5qcCIsInNpbmdsZVVzZXJJZCI6InNpZCIsIm1vbUVtcElkIjoiMDA1MDA3ODQiLCJleHAiOjI1MzQwMjI2ODM5OSwiYXBwbGljYXRpb25JZCI6ImNvdG9zLnJpY29oLmNvLmpwIn0.P72uE-VnrC_BPlIGC3LSKbgA7tCtOrBRk-xUO077o88";
+	private static final String WITHIN_PERIOD_JWT_SUPER_USER = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJtb21BdXRoIjoie1wiMDZcIjp7XCIyMjMwXCI6XCIxMFwiLFwiMjIyMFwiOlwiMDBcIixcIjIyMTBcIjpcIjAwXCIsXCIyMjAwXCI6XCI3MFwifSxcIjA1XCI6e1wiMjIzMFwiOlwiMTBcIixcIjIyMjBcIjpcIjAwXCIsXCIyMjEwXCI6XCIwMFwiLFwiMjIwMFwiOlwiNzBcIn0sXCIwMlwiOntcIjIyMzBcIjpcIjEwXCIsXCIyMjIwXCI6XCIwMFwiLFwiMjIxMFwiOlwiMDBcIixcIjIyMDBcIjpcIjcwXCJ9LFwiMDFcIjp7XCIyMjMwXCI6XCIxMFwiLFwiMjIyMFwiOlwiMDBcIixcIjIyMTBcIjpcIjAwXCIsXCIyMjAwXCI6XCI3MFwifSxcIjAzXCI6e1wiMjIzMFwiOlwiMTBcIixcIjIyMjBcIjpcIjAwXCIsXCIyMjEwXCI6XCIwMFwiLFwiMjIwMFwiOlwiNzBcIn0sXCIwNFwiOntcIjIyMzBcIjpcIjEwXCIsXCIyMjIwXCI6XCIwMFwiLFwiMjIxMFwiOlwiMDBcIixcIjIyMDBcIjpcIjcwXCJ9LFwiMDdcIjp7XCIyMjMwXCI6XCIxMFwiLFwiMjIyMFwiOlwiMDBcIixcIjIyMTBcIjpcIjAwXCIsXCIyMjAwXCI6XCI3MFwifX0iLCJvcmlnaW4iOiJodHRwczovL2Rldi5jb3Rvcy5yaWNvaC5jby5qcCIsInNpbmdsZVVzZXJJZCI6InUwMjkwMTE0OSIsIm1vbUVtcElkIjoiMDA1MDA3ODQiLCJleHAiOjI1MzQwMjI2ODM5OSwiYXBwbGljYXRpb25JZCI6ImNvdG9zX2RldiJ9.laSviNxIvxCQnOk2lLLtVtwmvlmYR6K8Nvgq34ZHsyY";
 
-	private static final String WITHIN_PERIOD_JWT_DUMMY_USER = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJvcmlnaW4iOiJjb3Rvcy5yaWNvaC5jby5qcCIsInNpbmdsZVVzZXJJZCI6InNpZCIsIm1vbUVtcElkIjoiQ09UT1NfQkFUQ0hfVVNFUiIsImV4cCI6MjUzNDAyMjY4Mzk5LCJhcHBsaWNhdGlvbklkIjoiY290b3Mucmljb2guY28uanAifQ.Blbmd9ZfCMrUTU0IynWsgxRcC9jycjP0CHOuyRtg7Og";
-
-	private static final String WITHOUT_PERIOD_JWT = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJvcmlnaW4iOiJjb3Rvcy5yaWNvaC5jby5qcCIsInNpbmdsZVVzZXJJZCI6InNpZCIsIm1vbUVtcElkIjoibWlkIiwiZXhwIjoxNTM5NTY5MDQsImFwcGxpY2F0aW9uSWQiOiJjb3Rvc19kZXYifQ.NO_r4hID2vt3_fJWa4Mwmk1tKvZe5ndCwHF17wkv1Bo";
+	private static final String WITHOUT_PERIOD_JWT = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJtb21BdXRoIjoie1wiMDNcIjp7XCIyMjMwXCI6XCIxMFwiLFwiMjIwMFwiOlwiNzBcIixcIjIyMjBcIjpcIjAwXCIsXCIyMjEwXCI6XCIwMFwifSxcIjAyXCI6e1wiMjIzMFwiOlwiMTBcIixcIjIyMDBcIjpcIjcwXCIsXCIyMjIwXCI6XCIwMFwiLFwiMjIxMFwiOlwiMDBcIn0sXCIwNVwiOntcIjIyMzBcIjpcIjEwXCIsXCIyMjAwXCI6XCI3MFwiLFwiMjIyMFwiOlwiMDBcIixcIjIyMTBcIjpcIjAwXCJ9LFwiMDdcIjp7XCIyMjMwXCI6XCIxMFwiLFwiMjIwMFwiOlwiNzBcIixcIjIyMjBcIjpcIjAwXCIsXCIyMjEwXCI6XCIwMFwifSxcIjAxXCI6e1wiMjIzMFwiOlwiMTBcIixcIjIyMDBcIjpcIjcwXCIsXCIyMjIwXCI6XCIwMFwiLFwiMjIxMFwiOlwiMDBcIn0sXCIwNlwiOntcIjIyMzBcIjpcIjEwXCIsXCIyMjAwXCI6XCI3MFwiLFwiMjIyMFwiOlwiMDBcIixcIjIyMTBcIjpcIjAwXCJ9LFwiMDRcIjp7XCIyMjMwXCI6XCIxMFwiLFwiMjIwMFwiOlwiNzBcIixcIjIyMjBcIjpcIjAwXCIsXCIyMjEwXCI6XCIwMFwifX0iLCJvcmlnaW4iOiJodHRwczovL2Rldi5jb3Rvcy5yaWNvaC5jby5qcCIsInNpbmdsZVVzZXJJZCI6InUwMjkwMTE0OSIsIm1vbUVtcElkIjoiMDA1MDA3ODQiLCJleHAiOjI1MzQwMjI2OCwiYXBwbGljYXRpb25JZCI6ImNvdG9zX2RldiJ9.u2tE3LF_iaSJv5mIu870k7VKmq7hkIPMYY8oa72njOc";
 
 	private static final String FALSIFICATION_JWT = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJvcmlnaW4iOiJjb3Rvcy5yaWNvaC5jby5qcCIsInNpbmdsZVVzZXJJZCI6InNpZCIsIm1vbUVtcElkIjoibWlkIiwiZXhwIjoyNTM0MDIyNjgzOTksImFwcGxpY2F0aW9uSWQiOiJjb3Rvc19kZXYifQA.qJBFsMJFZcLdF7jWwEafZSOQfmL1EqPVDcRuz6WvsCI";
 
@@ -130,10 +134,10 @@ public class CotosSecurityTests {
 			Assert.fail("モック差し替えに失敗");
 		}
 
-		RestTemplate rest = initRest(WITHIN_PERIOD_JWT);
+		RestTemplate rest = initRest(WITHIN_PERIOD_HAS_MOM_AUTH_JWT);
 		ResponseEntity<String> response = rest.getForEntity(loadTopURL() + "securitytest/api/test/1?isSuccess=true&hasBody=false&isAbstain=false", String.class);
 		Assert.assertEquals("正常終了", 200, response.getStatusCodeValue());
-		Assert.assertEquals("正常終了", "sid,mid,cotos.ricoh.co.jp,cotos_dev," + WITHIN_PERIOD_JWT + ",false,false,true", response.getBody());
+		Assert.assertEquals("正常終了", "u0201125,00229746,https://dev.cotos.ricoh.co.jp,cotos_dev," + WITHIN_PERIOD_HAS_MOM_AUTH_JWT + ",false,false,true", response.getBody());
 	}
 
 	@Test
@@ -180,24 +184,42 @@ public class CotosSecurityTests {
 		RestTemplate rest = initRest(WITHIN_PERIOD_JWT_SUPER_USER);
 		ResponseEntity<String> response = rest.getForEntity(loadTopURL() + "securitytest/api/test/1?isSuccess=true&hasBody=false&isAbstain=false", String.class);
 		Assert.assertEquals("正常終了", 200, response.getStatusCodeValue());
-		Assert.assertEquals("正常終了", "sid,00500784,cotos.ricoh.co.jp,cotos.ricoh.co.jp," + WITHIN_PERIOD_JWT_SUPER_USER + ",true,false,false", response.getBody());
+		Assert.assertEquals("正常終了", "u02901149,00500784,https://dev.cotos.ricoh.co.jp,cotos_dev," + WITHIN_PERIOD_JWT_SUPER_USER + ",true,false,true", response.getBody());
 	}
 
 	@Test
 	@Transactional
-	public void 認証_トークンあり_オリジンなし_正常_ダミーユーザー() throws Exception {
+	public void 認証_トークンあり_オリジンなし_正常_NO_AUTHORITIES_スーパーユーザ() throws Exception {
 
-		try {
-			// MoM権限マップをMockにより差し替え
-			Mockito.doReturn(new HashMap<ActionDiv, Map<AuthDiv, AuthLevel>>()).when(elcMomAuthorityService).searchAllMomAuthorities(Mockito.anyString());
-		} catch (Exception e) {
-			Assert.fail("モック差し替えに失敗");
-		}
-
-		RestTemplate rest = initRest(WITHIN_PERIOD_JWT_DUMMY_USER);
+		RestTemplate rest = initRest(WITHIN_PERIOD_MOM_AUTH_IS_NO_AUTHORITIES_JWT);
 		ResponseEntity<String> response = rest.getForEntity(loadTopURL() + "securitytest/api/test/1?isSuccess=true&hasBody=false&isAbstain=false", String.class);
 		Assert.assertEquals("正常終了", 200, response.getStatusCodeValue());
-		Assert.assertEquals("正常終了", "sid,COTOS_BATCH_USER,cotos.ricoh.co.jp,cotos.ricoh.co.jp," + WITHIN_PERIOD_JWT_DUMMY_USER + ",true,true,true", response.getBody());
+		Assert.assertEquals("正常終了", "u02901149,00500784,https://dev.cotos.ricoh.co.jp,cotos_dev," + WITHIN_PERIOD_MOM_AUTH_IS_NO_AUTHORITIES_JWT + ",true,false,false", response.getBody());
+	}
+
+	@Test
+	@Transactional
+	public void 認証_トークンあり_異常_MoM権限がnull() throws Exception {
+		RestTemplate rest = initRest(FALSIFICATION_JWT);
+		try {
+			rest.getForEntity(loadTopURL() + "test/api/test/1?isSuccess=true&hasBody=false", String.class);
+			Assert.fail("正常終了");
+		} catch (HttpClientErrorException e) {
+			Assert.assertEquals("アクセス不可であること", 401, e.getStatusCode().value());
+		}
+	}
+
+	@Test
+	@Transactional
+	public void 認証_トークンあり_異常_MoM権限null() throws Exception {
+		RestTemplate rest = initRest(WITHIN_PERIOD_MOM_AUTH_IS_NULL_JWT);
+		Mockito.doReturn(null).when(elcMomAuthorityService).searchAllMomAuthorities(Mockito.any());
+		try {
+			rest.getForEntity(loadTopURL() + "test/api/test/1?isSuccess=true&hasBody=false", String.class);
+			Assert.fail("正常終了");
+		} catch (HttpClientErrorException e) {
+			Assert.assertEquals("アクセス不可であること", 401, e.getStatusCode().value());
+		}
 	}
 
 	@Test
@@ -266,6 +288,7 @@ public class CotosSecurityTests {
 	}
 
 	@Test
+	@WithMockCustomUser(actionDiv = ActionDiv.照会, authDiv = AuthDiv.見積_契約_手配, authLevel = AuthLevel.自顧客)
 	public void MoM権限_正常_自顧客_権限あり_参照() throws Exception {
 
 		AuthorityJudgeParameter parameter = new AuthorityJudgeParameter();
@@ -285,10 +308,6 @@ public class CotosSecurityTests {
 
 		parameter.setMvEmployeeMasterList(Arrays.asList(sa, subEditor));
 
-		Mockito.doReturn(AuthLevel.自顧客).when((MomAuthorityService) elcMomAuthorityService).searchMomAuthority(Mockito.any(), Mockito.any(), Mockito.any());
-
-		// context.getBean(ElcMomAuthorityService.class).
-
 		// 電力用MoM権限共通処理を実行
 		boolean result = context.getBean(ElcMomAuthorityService.class).hasAuthority(parameter, ActionDiv.照会, AuthDiv.見積_契約_手配, AccessType.参照);
 
@@ -297,6 +316,7 @@ public class CotosSecurityTests {
 	}
 
 	@Test
+	@WithMockCustomUser(actionDiv = ActionDiv.照会, authDiv = AuthDiv.見積_契約_手配, authLevel = AuthLevel.自顧客)
 	public void MoM権限_正常_自顧客_権限あり_編集() throws Exception {
 
 		AuthorityJudgeParameter parameter = new AuthorityJudgeParameter();
@@ -316,10 +336,6 @@ public class CotosSecurityTests {
 
 		parameter.setMvEmployeeMasterList(Arrays.asList(sa, subEditor));
 
-		Mockito.doReturn(AuthLevel.自顧客).when((MomAuthorityService) elcMomAuthorityService).searchMomAuthority(Mockito.any(), Mockito.any(), Mockito.any());
-
-		// context.getBean(ElcMomAuthorityService.class).
-
 		// 電力用MoM権限共通処理を実行
 		boolean result = context.getBean(ElcMomAuthorityService.class).hasAuthority(parameter, ActionDiv.照会, AuthDiv.見積_契約_手配, AccessType.編集);
 
@@ -328,6 +344,7 @@ public class CotosSecurityTests {
 	}
 
 	@Test
+	@WithMockCustomUser(actionDiv = ActionDiv.照会, authDiv = AuthDiv.見積_契約_手配, authLevel = AuthLevel.自顧客)
 	public void MoM権限_正常_自顧客_権限なし() throws Exception {
 
 		AuthorityJudgeParameter parameter = new AuthorityJudgeParameter();
@@ -347,8 +364,6 @@ public class CotosSecurityTests {
 
 		parameter.setMvEmployeeMasterList(Arrays.asList(sa, subEditor));
 
-		Mockito.doReturn(AuthLevel.自顧客).when((MomAuthorityService) elcMomAuthorityService).searchMomAuthority(Mockito.any(), Mockito.any(), Mockito.any());
-
 		// 電力用MoM権限共通処理を実行
 		boolean result = context.getBean(ElcMomAuthorityService.class).hasAuthority(parameter, ActionDiv.照会, AuthDiv.見積_契約_手配, AccessType.編集);
 
@@ -357,6 +372,7 @@ public class CotosSecurityTests {
 	}
 
 	@Test
+	@WithMockCustomUser(actionDiv = ActionDiv.照会, authDiv = AuthDiv.見積_契約_手配, authLevel = AuthLevel.配下)
 	public void MoM権限_正常_配下_権限あり_参照() throws Exception {
 
 		AuthorityJudgeParameter parameter = new AuthorityJudgeParameter();
@@ -373,8 +389,6 @@ public class CotosSecurityTests {
 
 		parameter.setMvEmployeeMasterList(Arrays.asList(sa, subEditor));
 
-		Mockito.doReturn(AuthLevel.配下).when((MomAuthorityService) elcMomAuthorityService).searchMomAuthority(Mockito.any(), Mockito.any(), Mockito.any());
-
 		// 電力用MoM権限共通処理を実行
 		boolean result = context.getBean(ElcMomAuthorityService.class).hasAuthority(parameter, ActionDiv.照会, AuthDiv.見積_契約_手配, AccessType.参照);
 
@@ -383,6 +397,7 @@ public class CotosSecurityTests {
 	}
 
 	@Test
+	@WithMockCustomUser(actionDiv = ActionDiv.照会, authDiv = AuthDiv.見積_契約_手配, authLevel = AuthLevel.配下)
 	public void MoM権限_正常_配下_権限あり_編集() throws Exception {
 
 		AuthorityJudgeParameter parameter = new AuthorityJudgeParameter();
@@ -399,8 +414,6 @@ public class CotosSecurityTests {
 
 		parameter.setMvEmployeeMasterList(Arrays.asList(sa, subEditor));
 
-		Mockito.doReturn(AuthLevel.配下).when((MomAuthorityService) elcMomAuthorityService).searchMomAuthority(Mockito.any(), Mockito.any(), Mockito.any());
-
 		// 電力用MoM権限共通処理を実行
 		boolean result = context.getBean(ElcMomAuthorityService.class).hasAuthority(parameter, ActionDiv.照会, AuthDiv.見積_契約_手配, AccessType.編集);
 
@@ -409,6 +422,7 @@ public class CotosSecurityTests {
 	}
 
 	@Test
+	@WithMockCustomUser(actionDiv = ActionDiv.照会, authDiv = AuthDiv.見積_契約_手配, authLevel = AuthLevel.配下)
 	public void MoM権限_正常_配下_権限なし() throws Exception {
 
 		AuthorityJudgeParameter parameter = new AuthorityJudgeParameter();
@@ -431,8 +445,6 @@ public class CotosSecurityTests {
 
 		parameter.setMvEmployeeMasterList(Arrays.asList(sa, subEditor));
 
-		Mockito.doReturn(AuthLevel.配下).when((MomAuthorityService) elcMomAuthorityService).searchMomAuthority(Mockito.any(), Mockito.any(), Mockito.any());
-
 		// 電力用MoM権限共通処理を実行
 		boolean result = context.getBean(ElcMomAuthorityService.class).hasAuthority(parameter, ActionDiv.照会, AuthDiv.見積_契約_手配, AccessType.編集);
 
@@ -441,6 +453,7 @@ public class CotosSecurityTests {
 	}
 
 	@Test
+	@WithMockCustomUser(actionDiv = ActionDiv.更新, authDiv = AuthDiv.見積_契約_手配, authLevel = AuthLevel.不可)
 	public void MoM権限_正常_権限あり_直接指定_承認() throws Exception {
 
 		AuthorityJudgeParameter parameter = new AuthorityJudgeParameter();
@@ -451,20 +464,17 @@ public class CotosSecurityTests {
 		actor.setMomOrgId("DUMMY");
 		parameter.setActorMvEmployeeMaster(actor);
 
-		Mockito.doReturn(AuthLevel.不可).when((MomAuthorityService) elcMomAuthorityService).searchMomAuthority(Mockito.any(), Mockito.any(), Mockito.any());
-
 		// 電力用MoM権限共通処理を実行
 		boolean result = context.getBean(ElcMomAuthorityService.class).hasAuthority(parameter, ActionDiv.更新, AuthDiv.見積_契約_手配, AccessType.承認);
 
 		// 結果判定
 		Assert.assertTrue("権限ありと判定されること", result);
 	}
-	
+
 	@Test
 	@Transactional
+	@WithMockCustomUser(actionDiv = ActionDiv.照会, authDiv = AuthDiv.見積_契約_手配, authLevel = AuthLevel.不可)
 	public void 正常_MoM権限_参照_次回承認者() throws Exception {
-
-		Mockito.doReturn(AuthLevel.不可).when((MomAuthorityService) elcMomAuthorityService).searchMomAuthority(Mockito.any(), Mockito.any(), Mockito.any());
 
 		AuthorityJudgeParameter authParam = new AuthorityJudgeParameter();
 		authParam.setActorMvEmployeeMaster(mvEmployeeMasterRepository.findOne("00220552"));
@@ -474,17 +484,17 @@ public class CotosSecurityTests {
 		MvEmployeeMaster approver = new MvEmployeeMaster();
 		approver.setMomEmployeeId("00220552");
 		approverList.add(approver);
-		authParam.setApproverMvEmployeeMasterList(approverList);;
+		authParam.setApproverMvEmployeeMasterList(approverList);
+		;
 
 		boolean result = context.getBean(ElcMomAuthorityService.class).hasAuthority(authParam, ActionDiv.照会, AuthDiv.見積_契約_手配, AccessType.参照);
 		Assert.assertTrue("対象の権限があること", result);
 	}
-	
+
 	@Test
 	@Transactional
+	@WithMockCustomUser(actionDiv = ActionDiv.照会, authDiv = AuthDiv.見積_契約_手配, authLevel = AuthLevel.不可)
 	public void 正常_MoM権限_編集_次回承認者() throws Exception {
-
-		Mockito.doReturn(AuthLevel.不可).when((MomAuthorityService) elcMomAuthorityService).searchMomAuthority(Mockito.any(), Mockito.any(), Mockito.any());
 
 		AuthorityJudgeParameter authParam = new AuthorityJudgeParameter();
 		authParam.setActorMvEmployeeMaster(mvEmployeeMasterRepository.findOne("00220552"));
@@ -499,6 +509,7 @@ public class CotosSecurityTests {
 	}
 
 	@Test
+	@WithMockCustomUser(actionDiv = ActionDiv.照会, authDiv = AuthDiv.見積_契約_手配, authLevel = AuthLevel.配下)
 	public void MoM権限_正常_権限あり_直接指定以外_承認() throws Exception {
 
 		AuthorityJudgeParameter parameter = new AuthorityJudgeParameter();
@@ -514,8 +525,6 @@ public class CotosSecurityTests {
 		requester.setSingleUserId("u0201125");
 		parameter.setRequesterMvEmployeeMaster(requester);
 
-		Mockito.doReturn(AuthLevel.配下).when((MomAuthorityService) elcMomAuthorityService).searchMomAuthority(Mockito.any(), Mockito.any(), Mockito.any());
-
 		// 電力用MoM権限共通処理を実行
 		boolean result = context.getBean(ElcMomAuthorityService.class).hasAuthority(parameter, ActionDiv.照会, AuthDiv.見積_契約_手配, AccessType.承認);
 
@@ -524,6 +533,7 @@ public class CotosSecurityTests {
 	}
 
 	@Test
+	@WithMockCustomUser(actionDiv = ActionDiv.照会, authDiv = AuthDiv.見積_契約_手配, authLevel = AuthLevel.不可)
 	public void MoM権限_正常_権限なし_承認() throws Exception {
 
 		AuthorityJudgeParameter parameter = new AuthorityJudgeParameter();
@@ -538,8 +548,6 @@ public class CotosSecurityTests {
 		MvEmployeeMaster requester = new MvEmployeeMaster();
 		requester.setSingleUserId("u0201125");
 		parameter.setRequesterMvEmployeeMaster(requester);
-
-		Mockito.doReturn(AuthLevel.不可).when((MomAuthorityService) elcMomAuthorityService).searchMomAuthority(Mockito.any(), Mockito.any(), Mockito.any());
 
 		// 電力用MoM権限共通処理を実行
 		boolean result = context.getBean(ElcMomAuthorityService.class).hasAuthority(parameter, ActionDiv.照会, AuthDiv.見積_契約_手配, AccessType.承認);

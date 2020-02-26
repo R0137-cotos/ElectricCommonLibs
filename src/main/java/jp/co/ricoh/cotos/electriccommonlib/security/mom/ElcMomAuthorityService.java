@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
 import jp.co.ricoh.cotos.commonlib.dto.parameter.common.AuthorityJudgeParameter;
@@ -15,6 +16,7 @@ import jp.co.ricoh.cotos.commonlib.entity.master.UrlAuthMaster.ActionDiv;
 import jp.co.ricoh.cotos.commonlib.entity.master.UrlAuthMaster.AuthDiv;
 import jp.co.ricoh.cotos.commonlib.logic.message.MessageUtil;
 import jp.co.ricoh.cotos.commonlib.security.mom.MomAuthorityService;
+import jp.co.ricoh.cotos.electriccommonlib.security.CotosElcAuthenticationDetails;
 
 @Component
 public class ElcMomAuthorityService extends MomAuthorityService {
@@ -32,7 +34,7 @@ public class ElcMomAuthorityService extends MomAuthorityService {
 	public boolean hasAuthority(AuthorityJudgeParameter authParam, ActionDiv actionDiv, AuthDiv authDiv, AccessType accessType) throws Exception {
 
 		// 権限レベルを取得
-		AuthLevel authLevel = this.searchMomAuthority(authParam.getActorMvEmployeeMaster().getSingleUserId(), actionDiv, authDiv);
+		AuthLevel authLevel = ((CotosElcAuthenticationDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getMomAuthorities().get(actionDiv).get(authDiv);
 
 		// 認可判定処理開始
 		log.info(messageUtil.createMessageInfo("AuthorizeProcessJudgeStartInfo", Arrays.asList(accessType.name(), authLevel.name()).toArray(new String[0])).getMsg());
