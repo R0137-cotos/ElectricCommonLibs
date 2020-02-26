@@ -14,6 +14,9 @@ public class TestProperties {
 
 	@Autowired
 	StandardProperties standardProperties;
+	
+	@Autowired
+	ElectricClaimsProperties electricClaimsPropertires;
 
 	@Autowired
 	ElectricProperties electricProperties;
@@ -48,5 +51,14 @@ public class TestProperties {
 		Assert.assertEquals("MoM権限ヘッダー情報を取得できること", "X-Cotos-Mom-Authorization", electricHeadersProperties.getMomAuthorization());
 		Assert.assertEquals("MoM権限要否ヘッダー情報を取得できること", "X-Cotos-Require-Mom-Authorize", electricHeadersProperties.getRequireMomAuthorize());
 		Assert.assertEquals("親クラスのヘッダー情報を取得できること", "X-Cotos-Disp-Authorization", electricHeadersProperties.getDispAuthorization());
+	}
+	
+	@Test
+	public void JWT情報を取得できること() {
+		Assert.assertEquals("MoM社員IDを取得できること", "momEmpId", electricClaimsPropertires.getMomEmpId());
+		Assert.assertEquals("シングルユーザIDを取得できること", "singleUserId", electricClaimsPropertires.getSingleUserId());
+		Assert.assertEquals("オリジンを取得できること", "origin", electricClaimsPropertires.getOrigin());
+		Assert.assertEquals("アプリケーションIDを取得できること", "applicationId", electricClaimsPropertires.getApplicationId());
+		Assert.assertEquals("MoM権限情報を取得できること", "momAuth", electricClaimsPropertires.getMomAuth());
 	}
 }
