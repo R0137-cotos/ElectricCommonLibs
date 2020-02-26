@@ -8,6 +8,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import jp.co.ricoh.cotos.commonlib.util.ClaimsProperties;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 public class TestProperties {
@@ -16,7 +18,7 @@ public class TestProperties {
 	StandardProperties standardProperties;
 	
 	@Autowired
-	ElectricClaimsProperties electricClaimsPropertires;
+	ClaimsProperties claimsPropertires;
 
 	@Autowired
 	ElectricProperties electricProperties;
@@ -55,10 +57,10 @@ public class TestProperties {
 	
 	@Test
 	public void JWT情報を取得できること() {
-		Assert.assertEquals("MoM社員IDを取得できること", "momEmpId", electricClaimsPropertires.getMomEmpId());
-		Assert.assertEquals("シングルユーザIDを取得できること", "singleUserId", electricClaimsPropertires.getSingleUserId());
-		Assert.assertEquals("オリジンを取得できること", "origin", electricClaimsPropertires.getOrigin());
-		Assert.assertEquals("アプリケーションIDを取得できること", "applicationId", electricClaimsPropertires.getApplicationId());
-		Assert.assertEquals("MoM権限情報を取得できること", "momAuth", electricClaimsPropertires.getMomAuth());
+		Assert.assertEquals("MoM社員IDを取得できること", "momEmpId", claimsPropertires.getMomEmpId());
+		Assert.assertEquals("シングルユーザIDを取得できること", "singleUserId", claimsPropertires.getSingleUserId());
+		Assert.assertEquals("オリジンを取得できること", "origin", claimsPropertires.getOrigin());
+		Assert.assertEquals("アプリケーションIDを取得できること", "applicationId", claimsPropertires.getApplicationId());
+		Assert.assertEquals("MoM権限情報を取得できること", "momAuth", claimsPropertires.getMomAuth());
 	}
 }
