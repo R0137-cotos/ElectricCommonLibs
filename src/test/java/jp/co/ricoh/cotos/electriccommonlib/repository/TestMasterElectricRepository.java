@@ -28,6 +28,8 @@ import jp.co.ricoh.cotos.electriccommonlib.entity.master.HighContractCalendarMas
 import jp.co.ricoh.cotos.electriccommonlib.entity.master.ProfitTransferDepartmentMaster;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.ClientMasterRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.master.CommissionMasterRepository;
+import jp.co.ricoh.cotos.electriccommonlib.repository.master.ElectricApprovalRouteMasterRepository;
+import jp.co.ricoh.cotos.electriccommonlib.repository.master.ElectricApprovalRoutePatternMasterRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.master.ElectricAreaMasterRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.master.ElectricCompanyMasterRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.master.ElectricDealerMasterRepository;
@@ -75,6 +77,12 @@ public class TestMasterElectricRepository extends RepositoryTestBase {
 
 	@Autowired
 	ElectricMailConvertValueMasterRepository electricMailConvertValueMasterRepository;
+
+	@Autowired
+	ElectricApprovalRouteMasterRepository electricApprovalRouteMasterRepository;
+
+	@Autowired
+	ElectricApprovalRoutePatternMasterRepository electricApprovalRoutePatternMasterRepository;
 
 	@Autowired
 	TestTools testTools;
@@ -144,6 +152,16 @@ public class TestMasterElectricRepository extends RepositoryTestBase {
 	@Test
 	public void 全てのカラムがNullではないことを確認_マスタ_電力通知メール変換値マスタ() {
 		全てのカラムがNullではないことを確認_マスタ(electricMailConvertValueMasterRepository, 1L);
+	}
+
+	@Test
+	public void 全てのカラムがNullではないことを確認_マスタ_電力承認ルートマスタ() {
+		全てのカラムがNullではないことを確認_マスタ(electricApprovalRouteMasterRepository, 1L);
+	}
+
+	@Test
+	public void 全てのカラムがNullではないことを確認_マスタ_電力承認ルートパターンマスタ() {
+		全てのカラムがNullではないことを確認_マスタ(electricApprovalRoutePatternMasterRepository, 1L);
 	}
 
 	@Test
