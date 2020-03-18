@@ -99,7 +99,7 @@ public class MailAddressInformation extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@DecimalMin("0.00")
-	@Digits(integer = 8, fraction = 2)
-	@ApiModelProperty(value = "ピークアラートしきい値", required = false, position = 6, allowableValues = "range[0.00,99999999.99]")
+	@Digits(integer = 6, fraction = 2)
+	@ApiModelProperty(value = "ピークアラートしきい値", required = false, position = 6, allowableValues = "range[0.00,999999.99]")
 	private BigDecimal peakAlertThreshold;
 }

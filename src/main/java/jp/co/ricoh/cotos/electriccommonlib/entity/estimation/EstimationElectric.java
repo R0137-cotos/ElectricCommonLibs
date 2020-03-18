@@ -86,8 +86,8 @@ public class EstimationElectric extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@DecimalMin("0.00")
-	@Digits(integer = 8, fraction = 2)
-	@ApiModelProperty(value = "契約電力", required = false, position = 7, allowableValues = "range[0.00,99999999.99]")
+	@Digits(integer = 6, fraction = 2)
+	@ApiModelProperty(value = "契約電力", required = false, position = 7, allowableValues = "range[0.00,999999.99]")
 	private BigDecimal contractPower;
 
 	/**
@@ -102,8 +102,8 @@ public class EstimationElectric extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@DecimalMin("0.00")
-	@Digits(integer = 5, fraction = 2)
-	@ApiModelProperty(value = "力率", required = false, position = 6, allowableValues = "range[0.00,99999.99]")
+	@Digits(integer = 3, fraction = 2)
+	@ApiModelProperty(value = "力率", required = false, position = 6, allowableValues = "range[0.00,999.99]")
 	private BigDecimal powerRate;
 
 	/**
@@ -111,8 +111,8 @@ public class EstimationElectric extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@DecimalMin("0.00")
-	@Digits(integer = 5, fraction = 2)
-	@ApiModelProperty(value = "負荷率", required = false, position = 7, allowableValues = "range[0.00,99999.99]")
+	@Digits(integer = 3, fraction = 2)
+	@ApiModelProperty(value = "負荷率", required = false, position = 7, allowableValues = "range[0.00,999.99]")
 	private BigDecimal loadFactor;
 
 	/**
@@ -190,8 +190,8 @@ public class EstimationElectric extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@DecimalMin("0.00")
-	@Digits(integer = 8, fraction = 2)
-	@ApiModelProperty(value = "ベース部", required = false, position = 23, allowableValues = "range[0.00,99999999.99]")
+	@Digits(integer = 6, fraction = 2)
+	@ApiModelProperty(value = "ベース部", required = false, position = 23, allowableValues = "range[0.00,999999.99]")
 	private BigDecimal basePart;
 
 	/**
@@ -199,8 +199,8 @@ public class EstimationElectric extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@DecimalMin("0.00")
-	@Digits(integer = 8, fraction = 2)
-	@ApiModelProperty(value = "変動部", required = false, position = 24, allowableValues = "range[0.00,99999999.99]")
+	@Digits(integer = 6, fraction = 2)
+	@ApiModelProperty(value = "変動部", required = false, position = 24, allowableValues = "range[0.00,999999.99]")
 	private BigDecimal fluctuatingPart;
 
 	/**
@@ -277,8 +277,8 @@ public class EstimationElectric extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@DecimalMin("0.00")
-	@Digits(integer = 8, fraction = 2)
-	@ApiModelProperty(value = "アンシラリーサービス契約容量(高圧)", required = false, position = 34, allowableValues = "range[0.00,99999999.99]")
+	@Digits(integer = 6, fraction = 2)
+	@ApiModelProperty(value = "アンシラリーサービス契約容量(高圧)", required = false, position = 34, allowableValues = "range[0.00,999999.99]")
 	private BigDecimal ancillaryCapacityHighPressure;
 
 	/**

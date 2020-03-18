@@ -15,6 +15,7 @@ import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Digits;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBase;
 import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
@@ -55,27 +56,27 @@ public class AgencyContractInformation extends EntityBase {
 	@Column(nullable = true)
 	@ApiModelProperty(value = "MOM顧客ID企業ID", required = false, position = 3, allowableValues = "range[0,9223372036854775807]")
 	private long momCustomerIdCompanyId;
-	
+
 	/**
 	 * 取次会社
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "取次会社", required = false, position = 4, allowableValues = "range[0,255]")
 	private String agencyName;
-	
+
 	/**
 	 * 仕入先CD
 	 */
 	@Column(nullable = true)
 	@ApiModelProperty(value = "仕入先CD", required = false, position = 5, allowableValues = "range[0,255]")
 	private String supplierCode;
-	
+
 	/**
 	 * 手数料率
 	 */
 	@Column(nullable = true)
 	@DecimalMin("0.00")
-	@Digits(integer = 5, fraction = 2)
-	@ApiModelProperty(value = "手数料率", required = false, position = 6, allowableValues = "range[0.00,99999.99]")
+	@Digits(integer = 3, fraction = 2)
+	@ApiModelProperty(value = "手数料率", required = false, position = 6, allowableValues = "range[0.00,999.99]")
 	private BigDecimal feeRate;
 }

@@ -72,8 +72,8 @@ public class UnitPriceHighPressure extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@DecimalMin("0.00")
-	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "基本料金_定価", required = false, position = 5, allowableValues = "range[0.00,9999999999999999999.99]")
+	@Digits(integer = 17, fraction = 2)
+	@ApiModelProperty(value = "基本料金_定価", required = false, position = 5, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal basicListPrice;
 
 	/**
@@ -81,8 +81,8 @@ public class UnitPriceHighPressure extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@DecimalMin("0.00")
-	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "基本料金_売価", required = false, position = 6, allowableValues = "range[0.00,9999999999999999999.99]")
+	@Digits(integer = 17, fraction = 2)
+	@ApiModelProperty(value = "基本料金_売価", required = false, position = 6, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal basicSellingPrice;
 
 	/**
@@ -90,8 +90,8 @@ public class UnitPriceHighPressure extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@DecimalMin("0.00")
-	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "従量料金_夏季", required = false, position = 7, allowableValues = "range[0.00,9999999999999999999.99]")
+	@Digits(integer = 17, fraction = 2)
+	@ApiModelProperty(value = "従量料金_夏季", required = false, position = 7, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal usageFeeSummerPrice;
 
 	/**
@@ -99,8 +99,8 @@ public class UnitPriceHighPressure extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@DecimalMin("0.00")
-	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "従量料金_その他季", required = false, position = 8, allowableValues = "range[0.00,9999999999999999999.99]")
+	@Digits(integer = 17, fraction = 2)
+	@ApiModelProperty(value = "従量料金_その他季", required = false, position = 8, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal usageFeeOtherSeasonPrice;
 
 	/**
@@ -108,8 +108,8 @@ public class UnitPriceHighPressure extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@DecimalMin("0.00")
-	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "オプション_予備線", required = false, position = 9, allowableValues = "range[0.00,9999999999999999999.99]")
+	@Digits(integer = 17, fraction = 2)
+	@ApiModelProperty(value = "オプション_予備線", required = false, position = 9, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal spareLinePrice;
 
 	/**
@@ -117,8 +117,8 @@ public class UnitPriceHighPressure extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@DecimalMin("0.00")
-	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "オプション_予備線", required = false, position = 10, allowableValues = "range[0.00,9999999999999999999.99]")
+	@Digits(integer = 17, fraction = 2)
+	@ApiModelProperty(value = "オプション_予備線", required = false, position = 10, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal sparePowerPrice;
 
 	/**
@@ -126,8 +126,8 @@ public class UnitPriceHighPressure extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@DecimalMin("0.00")
-	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "オプション_アンシラリー", required = false, position = 11, allowableValues = "range[0.00,9999999999999999999.99]")
+	@Digits(integer = 17, fraction = 2)
+	@ApiModelProperty(value = "オプション_アンシラリー", required = false, position = 11, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal ancillaryPrice;
 
 	/**
