@@ -129,8 +129,8 @@ public class CancellationInformation extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@DecimalMin("0.00")
-	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "解約金額", required = false, position = 9, allowableValues = "range[0.00,9999999999999999999.99]")
+	@Digits(integer = 17, fraction = 2)
+	@ApiModelProperty(value = "解約金額", required = false, position = 9, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal cancellationAmount;
 
 	/**
@@ -138,8 +138,8 @@ public class CancellationInformation extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@DecimalMin("0.00")
-	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "調整後金額", required = false, position = 10, allowableValues = "range[0.00,9999999999999999999.99]")
+	@Digits(integer = 17, fraction = 2)
+	@ApiModelProperty(value = "調整後金額", required = false, position = 10, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal adjustmentAmount;
 
 	/**
@@ -147,8 +147,8 @@ public class CancellationInformation extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@DecimalMin("0.00")
-	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "清算金", required = false, position = 11, allowableValues = "range[0.00,9999999999999999999.99]")
+	@Digits(integer = 17, fraction = 2)
+	@ApiModelProperty(value = "清算金", required = false, position = 11, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal liquidationAmount;
 
 	/**
@@ -156,8 +156,8 @@ public class CancellationInformation extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@DecimalMin("0.00")
-	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "調整後(清算金)", required = false, position = 12, allowableValues = "range[0.00,9999999999999999999.99]")
+	@Digits(integer = 17, fraction = 2)
+	@ApiModelProperty(value = "調整後(清算金)", required = false, position = 12, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal adjustmentLiquidationAmount;
 
 	/**
@@ -165,8 +165,8 @@ public class CancellationInformation extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@DecimalMin("0.00")
-	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "違約金", required = false, position = 13, allowableValues = "range[0.00,9999999999999999999.99]")
+	@Digits(integer = 17, fraction = 2)
+	@ApiModelProperty(value = "違約金", required = false, position = 13, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal penaltyAmount;
 
 	/**
@@ -174,8 +174,8 @@ public class CancellationInformation extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@DecimalMin("0.00")
-	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "調整後(違約金)", required = false, position = 14, allowableValues = "range[0.00,9999999999999999999.99]")
+	@Digits(integer = 17, fraction = 2)
+	@ApiModelProperty(value = "調整後(違約金)", required = false, position = 14, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal adjustmentPenaltyAmount;
 
 	/**

@@ -36,10 +36,9 @@ import lombok.EqualsAndHashCode;
 @CotosComplementTarget(entity = EntryContentLowPressure.class, repository = EntryContentLowPressureRepository.class)
 public class EntryContentLowPressure extends EntityBase {
 
-
 	public enum LowPressureType {
 
-		 従量電灯1("1"), 従量電灯2("2"), 動力("3");
+		従量電灯1("1"), 従量電灯2("2"), 動力("3");
 
 		private final String text;
 
@@ -61,7 +60,7 @@ public class EntryContentLowPressure extends EntityBase {
 
 	public enum ContractUnit {
 
-		 A("1"), kVA("2"), 契約("3"), kW("4");
+		A("1"), kVA("2"), 契約("3"), kW("4");
 
 		private final String text;
 
@@ -101,8 +100,8 @@ public class EntryContentLowPressure extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@DecimalMin("0.00")
-	@Digits(integer = 8, fraction = 2)
-	@ApiModelProperty(value = "契約容量(従量電灯)", required = false, position = 3, allowableValues = "range[0.00,99999999.99]")
+	@Digits(integer = 6, fraction = 2)
+	@ApiModelProperty(value = "契約容量(従量電灯)", required = false, position = 3, allowableValues = "range[0.00,999999.99]")
 	private BigDecimal contractCapacityUsage;
 
 	/**
@@ -110,8 +109,8 @@ public class EntryContentLowPressure extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@DecimalMin("0.00")
-	@Digits(integer = 8, fraction = 2)
-	@ApiModelProperty(value = "契約電流", required = false, position = 5, allowableValues = "range[0.00,99999999.99]")
+	@Digits(integer = 6, fraction = 2)
+	@ApiModelProperty(value = "契約電流", required = false, position = 5, allowableValues = "range[0.00,999999.99]")
 	private BigDecimal contractElectricCurrent;
 
 	/**
@@ -119,8 +118,8 @@ public class EntryContentLowPressure extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@DecimalMin("0.00")
-	@Digits(integer = 8, fraction = 2)
-	@ApiModelProperty(value = "契約電力", required = false, position = 7, allowableValues = "range[0.00,99999999.99]")
+	@Digits(integer = 6, fraction = 2)
+	@ApiModelProperty(value = "契約電力", required = false, position = 7, allowableValues = "range[0.00,999999.99]")
 	private BigDecimal contractElectricPower;
 
 	/**
@@ -128,8 +127,8 @@ public class EntryContentLowPressure extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@DecimalMin("0.00")
-	@Digits(integer = 5, fraction = 2)
-	@ApiModelProperty(value = "負荷率", required = false, position = 8, allowableValues = "range[0.00,99999.99]")
+	@Digits(integer = 3, fraction = 2)
+	@ApiModelProperty(value = "負荷率", required = false, position = 8, allowableValues = "range[0.00,999.99]")
 	private BigDecimal loadFactor;
 
 	/**
