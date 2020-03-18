@@ -21,7 +21,7 @@ import jp.co.ricoh.cotos.commonlib.logic.check.CheckUtil;
 import jp.co.ricoh.cotos.commonlib.logic.findcommonmaster.FindCommonMaster;
 
 /**
- * 消費税取得・計算クラス
+ * 消費税取得・計算Utility
  */
 @Component
 public class ConsumptionTaxUtility {
@@ -35,6 +35,12 @@ public class ConsumptionTaxUtility {
 	/** 消費税率 */
 	private static String TAX_RATE;
 
+	/**
+	 * 消費税率の取得<br>
+	 * ※Bean生成直後のタイミングでのみ動く想定<br>
+	 * 
+	 * @throws Exception
+	 */
 	@PostConstruct
 	public void findTaxRate() throws Exception {
 		if (StringUtils.isBlank(TAX_RATE)) {
@@ -42,18 +48,11 @@ public class ConsumptionTaxUtility {
 		}
 	}
 
-	private String getTaxRate() throws ErrorCheckException {
-		CommonMasterSearchParameter parameter = new CommonMasterSearchParameter();
-		parameter.setServiceCategory(ServiceCategory.共通);
-		List<CommonMasterResult> commonMasterResultList = findCommonMaster.findCommonMaster(parameter);
-		if (CollectionUtils.isEmpty(commonMasterResultList)) {
-			List<ErrorInfo> error = checkUtil.addErrorInfo(new ArrayList<ErrorInfo>(), "MasterDoesNotExist", new String[] { "汎用マスタ" });
-			throw new ErrorCheckException(error);
-		}
-		CommonMasterDetailResult taxRate = commonMasterResultList.stream().filter(commonMaster -> "sales_tax_rate".equals(commonMaster.getColumnName())).map(commonMaster -> commonMaster.getCommonMasterDetailResultList().stream().findFirst().get()).findFirst().get();
-		return taxRate.getCodeValue();
-	}
-
+	/**
+	 * 消費税率をBigDecimal型で取得
+	 * 
+	 * @return BigDecimal型の消費税率
+	 */
 	public BigDecimal getBigDecimalTaxRate() {
 		return new BigDecimal(TAX_RATE);
 	}
@@ -106,4 +105,21 @@ public class ConsumptionTaxUtility {
 		return inAmount.multiply(getBigDecimalTaxRate()).divide(getBigDecimalTaxRate().add(BigDecimal.valueOf(100)), 0, BigDecimal.ROUND_DOWN);
 	}
 
+	/**
+	 * 汎用マスタから消費税率を取得する
+	 * 
+	 * @return 消費税率
+	 * @throws ErrorCheckException
+	 */
+	private String getTaxRate() throws ErrorCheckException {
+		CommonMasterSearchParameter parameter = new CommonMasterSearchParameter();
+		parameter.setServiceCategory(ServiceCategory.共通);
+		List<CommonMasterResult> commonMasterResultList = findCommonMaster.findCommonMaster(parameter);
+		if (CollectionUtils.isEmpty(commonMasterResultList)) {
+			List<ErrorInfo> error = checkUtil.addErrorInfo(new ArrayList<ErrorInfo>(), "MasterDoesNotExist", new String[] { "汎用マスタ" });
+			throw new ErrorCheckException(error);
+		}
+		CommonMasterDetailResult taxRate = commonMasterResultList.stream().filter(commonMaster -> "sales_tax_rate".equals(commonMaster.getColumnName())).map(commonMaster -> commonMaster.getCommonMasterDetailResultList().stream().findFirst().get()).findFirst().get();
+		return taxRate.getCodeValue();
+	}
 }
