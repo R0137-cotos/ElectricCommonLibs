@@ -44,12 +44,21 @@ public class ConsumptionTaxUtility {
 	@PostConstruct
 	public void findTaxRate() throws Exception {
 		if (StringUtils.isBlank(TAX_RATE)) {
-			TAX_RATE = getTaxRate();
+			TAX_RATE = getTaxRateFromCommonMaster();
 		}
 	}
 
 	/**
-	 * 消費税率をBigDecimal型で取得
+	 * 消費税率を返却する
+	 * 
+	 * @return 消費税率
+	 */
+	public String getTaxRate() {
+		return TAX_RATE;
+	}
+
+	/**
+	 * 消費税率をBigDecimal型で返却する
 	 * 
 	 * @return BigDecimal型の消費税率
 	 */
@@ -111,7 +120,7 @@ public class ConsumptionTaxUtility {
 	 * @return 消費税率
 	 * @throws ErrorCheckException
 	 */
-	private String getTaxRate() throws ErrorCheckException {
+	private String getTaxRateFromCommonMaster() throws ErrorCheckException {
 		CommonMasterSearchParameter parameter = new CommonMasterSearchParameter();
 		parameter.setServiceCategory(ServiceCategory.共通);
 		List<CommonMasterResult> commonMasterResultList = findCommonMaster.findCommonMaster(parameter);
