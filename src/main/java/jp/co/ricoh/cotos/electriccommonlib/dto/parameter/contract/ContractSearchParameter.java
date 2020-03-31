@@ -191,13 +191,6 @@ public class ContractSearchParameter {
 	private String collaborationEmptxId;
 
 	/**
-	 * 請求開始月(前)
-	 */
-	@ApiParam(value = "請求開始月(前)", required = false)
-	@ApiModelProperty(value = "請求開始月(前)<br />日付フォーマット：yyyy/MM", required = false)
-	private String billingMonthFrom;
-
-	/**
 	 * お客様識別番号
 	 */
 	@ApiParam(value = "お客様識別番号", required = false)
