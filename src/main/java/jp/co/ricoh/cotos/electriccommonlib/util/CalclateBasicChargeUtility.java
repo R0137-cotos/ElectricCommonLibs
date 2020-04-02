@@ -74,7 +74,7 @@ public class CalclateBasicChargeUtility {
 	 *
 	 * @param param
 	 *            基本料金計算パラメータ
-	 * @return 仕入基本料金計算(小数第3位切捨)
+	 * @return 基本料金計算(小数第3位切捨)
 	 * @throws ParseException
 	 */
 	public BigDecimal calculateBasicCharge(CalclateParameter param) throws ParseException {
@@ -108,11 +108,11 @@ public class CalclateBasicChargeUtility {
 			// 低圧の場合
 			if (LowPressureType.従量電灯1.equals(param.getLowPressureType())) {
 				// 従量電灯1の場合
-				// 仕入基本単価×日割り
+				// 基本単価×日割り
 				khnRyokin = param.getBasicPrice().multiply(dailyRate);
 			} else {
 				// 従量電灯2,動力の場合
-				// 仕入基本単価×基本電力量×日割り
+				// 基本単価×基本電力量×日割り
 				khnRyokin = param.getBasicPrice().multiply(param.getBasicPowerAmount()).multiply(dailyRate);
 			}
 			if (BigDecimal.ZERO.equals(param.getUseAmount())) {
@@ -194,7 +194,7 @@ public class CalclateBasicChargeUtility {
 	}
 
 	/**
-	 * 取次の仕入/仕切基本料金計算
+	 * 取次の基本料金計算
 	 *
 	 * @param calcRet
 	 *            【処理１】の結果
@@ -208,7 +208,7 @@ public class CalclateBasicChargeUtility {
 	 *            長期割引率
 	 * @param Itemcode
 	 *            品種コード
-	 * @return 取次時の仕入/仕切基本料金
+	 * @return 取次時の基本料金
 	 */
 	private BigDecimal calculateBasicFeeForAgency(BigDecimal calcRet, BigDecimal calcElem1, BigDecimal calcElem2, BigDecimal agencyDiscountPrice, BigDecimal longtermDiscountRate, String itemcode) {
 		BigDecimal result = null;
