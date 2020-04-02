@@ -597,4 +597,165 @@ public class ElectricAppropriation extends EntityBase {
 	@Digits(integer = 17, fraction = 2)
 	@ApiModelProperty(value = "取次手数料金額", required = false, position = 69, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal agencyFeeAmount;
+
+	/**
+	 * 日割り率.
+	 */
+	@Column(nullable = true)
+	@Digits(integer = 3, fraction = 2)
+	@ApiModelProperty(value = "日割り率", required = false, position = 70)
+	private BigDecimal proratedRate;
+
+	/**
+	 * 取次割引単価.
+	 */
+	@Column(nullable = true)
+	@Digits(integer = 17, fraction = 2)
+	@ApiModelProperty(value = "取次割引単価", required = false, position = 71)
+	private BigDecimal agencyDiscountPrice;
+
+	/**
+	 * 長期割引率.
+	 */
+	@Column(nullable = true)
+	@Digits(integer = 3, fraction = 2)
+	@ApiModelProperty(value = "長期割引率", required = false, position = 72)
+	private BigDecimal longtermDiscountRate;
+
+	/**
+	 * 超過電力.
+	 */
+	@Column(nullable = true)
+	@Digits(integer = 6, fraction = 2)
+	@ApiModelProperty(value = "超過電力", required = false, position = 73)
+	private BigDecimal excessPower;
+
+	/**
+	 * 燃料費調整額単価.
+	 */
+	@Column(nullable = true)
+	@Digits(integer = 17, fraction = 2)
+	@ApiModelProperty(value = "燃調費調整額単価", required = false, position = 74)
+	private BigDecimal fuelAdjustmentPrice;
+
+	/**
+	 * 再エネ賦課金単価.
+	 */
+	@Column(nullable = true)
+	@Digits(integer = 17, fraction = 2)
+	@ApiModelProperty(value = "再エネ賦課金単価", required = false, position = 75)
+	private BigDecimal renewableLevyPrice;
+
+	/**
+	 * 燃料費調整額.
+	 */
+	@Column(nullable = true)
+	@Digits(integer = 17, fraction = 2)
+	@ApiModelProperty(value = "燃料費調整額", required = false, position = 76)
+	private BigDecimal fuelAdjustmentCost;
+
+	/**
+	 * 再エネ賦課金.
+	 */
+	@Column(nullable = true)
+	@Digits(integer = 17, fraction = 2)
+	@ApiModelProperty(value = "再エネ賦課金", required = false, position = 77)
+	private BigDecimal renewableLevyCost;
+
+	/**
+	 * 制限中止割引.
+	 */
+	@Column(nullable = true)
+	@Digits(integer = 17, fraction = 2)
+	@ApiModelProperty(value = "制限中止割引", required = false, position = 78)
+	private BigDecimal restrictionCancelDiscount;
+
+	/**
+	 * その他.
+	 */
+	@Column(nullable = true)
+	@Digits(integer = 17, fraction = 2)
+	@ApiModelProperty(value = "その他", required = false, position = 79)
+	private BigDecimal otherCost;
+
+	/**
+	 * 仕入契約超過金.
+	 */
+	@Column(nullable = true)
+	@Digits(integer = 17, fraction = 2)
+	@ApiModelProperty(value = "仕入契約超過金", required = false, position = 80)
+	private BigDecimal purchaserContractExcess;
+
+	/**
+	 * 仕入前月調整.
+	 */
+	@Column(nullable = true)
+	@Digits(integer = 17, fraction = 2)
+	@ApiModelProperty(value = "仕入前月調整", required = false, position = 81)
+	private BigDecimal purchaserAdjustment;
+
+	/**
+	 * 仕入アンシラリー.
+	 */
+	@Column(nullable = true)
+	@Digits(integer = 17, fraction = 2)
+	@ApiModelProperty(value = "仕入アンシラリー", required = false, position = 82)
+	private BigDecimal purchaserAncillary;
+
+	/**
+	 * 仕入予備線.
+	 */
+	@Column(nullable = true)
+	@Digits(integer = 17, fraction = 2)
+	@ApiModelProperty(value = "仕入予備線", required = false, position = 83)
+	private BigDecimal purchaserSpareLine;
+
+	/**
+	 * 仕入予備電源.
+	 */
+	@Column(nullable = true)
+	@Digits(integer = 17, fraction = 2)
+	@ApiModelProperty(value = "仕入予備電源", required = false, position = 84)
+	private BigDecimal purchaserSparePower;
+
+	/**
+	 * 仕切契約超過金.
+	 */
+	@Column(nullable = true)
+	@Digits(integer = 17, fraction = 2)
+	@ApiModelProperty(value = "仕切契約超過金", required = false, position = 85)
+	private BigDecimal partitionContractExcess;
+
+	/**
+	 * 仕切前月調整.
+	 */
+	@Column(nullable = true)
+	@Digits(integer = 17, fraction = 2)
+	@ApiModelProperty(value = "仕切前月調整", required = false, position = 86)
+	private BigDecimal partitionAdjustment;
+
+	/**
+	 * 仕切アンシラリー.
+	 */
+	@Column(nullable = true)
+	@Digits(integer = 17, fraction = 2)
+	@ApiModelProperty(value = "仕切アンシラリー", required = false, position = 87)
+	private BigDecimal partitionAncillary;
+
+	/**
+	 * 仕切予備線.
+	 */
+	@Column(nullable = true)
+	@Digits(integer = 17, fraction = 2)
+	@ApiModelProperty(value = "仕切予備線", required = false, position = 88)
+	private BigDecimal partitionSpareLine;
+
+	/**
+	 * 仕切予備電源.
+	 */
+	@Column(nullable = true)
+	@Digits(integer = 17, fraction = 2)
+	@ApiModelProperty(value = "仕切予備電源", required = false, position = 89)
+	private BigDecimal partitionSparePower;
+
 }
