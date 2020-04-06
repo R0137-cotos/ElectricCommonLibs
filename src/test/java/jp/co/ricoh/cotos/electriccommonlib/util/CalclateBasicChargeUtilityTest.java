@@ -49,7 +49,7 @@ public class CalclateBasicChargeUtilityTest {
 		Assert.assertEquals("計算結果が期待値通りであること", new BigDecimal("1485504.02").setScale(2), result);
 
 		/* 電力使用量 = 0, 日割り = 0.9 */
-		param.setDailyRate(new BigDecimal("0.9"));
+		param.setDailyRate(new BigDecimal("90"));
 		result = testTarget.calculateBasicCharge(param);
 		// 計算結果①：基本単価×基本電力量×日割り×0.5 = 1,336,953.6243
 		Assert.assertEquals("計算結果が期待値通りであること", new BigDecimal("1336953.62").setScale(2), result);
