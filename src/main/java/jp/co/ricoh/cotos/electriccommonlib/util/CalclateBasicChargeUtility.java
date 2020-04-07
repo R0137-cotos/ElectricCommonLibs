@@ -151,7 +151,7 @@ public class CalclateBasicChargeUtility {
 	 * @return 日割り
 	 * @throws ParseException
 	 */
-	private BigDecimal calculateDailyRate(Date startDate, Date endDate, String targetStartDate, String targetEndDate) throws ParseException {
+	public BigDecimal calculateDailyRate(Date startDate, Date endDate, String targetStartDate, String targetEndDate) throws ParseException {
 
 		// 日割計算対象日数の算出
 		int nissu1 = dateDiff(convertDate(startDate), convertDate(endDate));
