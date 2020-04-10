@@ -34,9 +34,9 @@ public class CalclateBasicChargeUtility {
 		BigDecimal basicPrice;
 		/** 基本電力量. */
 		BigDecimal basicPowerAmount;
-		/** 力率. */
+		/** 力率(%). */
 		BigDecimal powerRate;
-		/** 日割り率. */
+		/** 日割り率(%). */
 		BigDecimal dailyRate;
 		/** 商流区分. */
 		ElectricCommercialFlowDiv electricCommercialFlowDiv;
@@ -44,7 +44,7 @@ public class CalclateBasicChargeUtility {
 		BigDecimal agencyDiscountPrice;
 		/** 品種コード. */
 		String itemCode;
-		/** 長期割引率. */
+		/** 長期割引率(%). */
 		BigDecimal longtermDiscountRate;
 
 		// 日割り率未指定時の計算用
@@ -84,6 +84,8 @@ public class CalclateBasicChargeUtility {
 		// 日割り率が未計算の場合は計算する
 		if (dailyRate == null) {
 			dailyRate = calculateDailyRate(param.getFeeClcStrDatTim(), param.getFeeClcEndDatTim(), param.getFeeClcStrYmd(), param.getFeeClcEndYmd());
+		} else {
+			dailyRate = dailyRate.divide(BigDecimal.valueOf(100));
 		}
 
 		if (VoltageCategory.高圧.equals(param.getVoltageCategory())) {
@@ -149,7 +151,7 @@ public class CalclateBasicChargeUtility {
 	 * @return 日割り
 	 * @throws ParseException
 	 */
-	private BigDecimal calculateDailyRate(Date startDate, Date endDate, String targetStartDate, String targetEndDate) throws ParseException {
+	public BigDecimal calculateDailyRate(Date startDate, Date endDate, String targetStartDate, String targetEndDate) throws ParseException {
 
 		// 日割計算対象日数の算出
 		int nissu1 = dateDiff(convertDate(startDate), convertDate(endDate));
