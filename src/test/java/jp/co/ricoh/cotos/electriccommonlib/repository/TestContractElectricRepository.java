@@ -448,6 +448,41 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 		// 本部粗利金額
 		electricAppropriation.setHeadofficeGrossProfit(DECIMAL_MINUS_001);
 
+		// 取次割引単価
+		electricAppropriation.setAgencyDiscountPrice(DECIMAL_MINUS_001);
+		// 燃料費調整額単価
+		electricAppropriation.setFuelAdjustmentPrice(DECIMAL_MINUS_001);
+		// 再エネ賦課金単価
+		electricAppropriation.setRenewableLevyPrice(DECIMAL_MINUS_001);
+		// 燃料費調整額
+		electricAppropriation.setFuelAdjustmentCost(DECIMAL_MINUS_001);
+		// 再エネ賦課金
+		electricAppropriation.setRenewableLevyCost(DECIMAL_MINUS_001);
+		// 制限中止割引
+		electricAppropriation.setRestrictionCancelDiscount(DECIMAL_MINUS_001);
+		// その他
+		electricAppropriation.setOtherCost(DECIMAL_MINUS_001);
+		// 仕入契約超過金
+		electricAppropriation.setPurchaserContractExcess(DECIMAL_MINUS_001);
+		// 仕入前月調整
+		electricAppropriation.setPurchaserAdjustment(DECIMAL_MINUS_001);
+		// 仕入アンシラリー
+		electricAppropriation.setPurchaserAncillary(DECIMAL_MINUS_001);
+		// 仕入予備線
+		electricAppropriation.setPurchaserSpareLine(DECIMAL_MINUS_001);
+		// 仕入予備電源
+		electricAppropriation.setPurchaserSparePower(DECIMAL_MINUS_001);
+		// 仕切契約超過金
+		electricAppropriation.setPartitionContractExcess(DECIMAL_MINUS_001);
+		// 仕切前月調整
+		electricAppropriation.setPartitionAdjustment(DECIMAL_MINUS_001);
+		// 仕切アンシラリー
+		electricAppropriation.setPartitionAncillary(DECIMAL_MINUS_001);
+		// 仕切予備線
+		electricAppropriation.setPartitionSpareLine(DECIMAL_MINUS_001);
+		// 仕切予備電源
+		electricAppropriation.setPartitionSparePower(DECIMAL_MINUS_001);
+
 		try {
 			// 例外が発生せずにsaveが実行されることを確認
 			testCheckComponent.update(electricAppropriationRepository, electricAppropriation);
@@ -491,11 +526,48 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 		electricAppropriation.setSalesSectionGrossProfit(DECIMAL_OVER_MAX);
 		// 本部粗利金額
 		electricAppropriation.setHeadofficeGrossProfit(DECIMAL_OVER_MAX);
+
+		// 取次割引単価
+		electricAppropriation.setAgencyDiscountPrice(DECIMAL_OVER_MAX);
+		// 燃料費調整額単価
+		electricAppropriation.setFuelAdjustmentPrice(DECIMAL_OVER_MAX);
+		// 再エネ賦課金単価
+		electricAppropriation.setRenewableLevyPrice(DECIMAL_OVER_MAX);
+		// 燃料費調整額
+		electricAppropriation.setFuelAdjustmentCost(DECIMAL_OVER_MAX);
+		// 再エネ賦課金
+		electricAppropriation.setRenewableLevyCost(DECIMAL_OVER_MAX);
+		// 制限中止割引
+		electricAppropriation.setRestrictionCancelDiscount(DECIMAL_OVER_MAX);
+		// その他
+		electricAppropriation.setOtherCost(DECIMAL_OVER_MAX);
+		// 仕入契約超過金
+		electricAppropriation.setPurchaserContractExcess(DECIMAL_OVER_MAX);
+		// 仕入前月調整
+		electricAppropriation.setPurchaserAdjustment(DECIMAL_OVER_MAX);
+		// 仕入アンシラリー
+		electricAppropriation.setPurchaserAncillary(DECIMAL_OVER_MAX);
+		// 仕入予備線
+		electricAppropriation.setPurchaserSpareLine(DECIMAL_OVER_MAX);
+		// 仕入予備電源
+		electricAppropriation.setPurchaserSparePower(DECIMAL_OVER_MAX);
+		// 仕切契約超過金
+		electricAppropriation.setPartitionContractExcess(DECIMAL_OVER_MAX);
+		// 仕切前月調整
+		electricAppropriation.setPartitionAdjustment(DECIMAL_OVER_MAX);
+		// 仕切アンシラリー
+		electricAppropriation.setPartitionAncillary(DECIMAL_OVER_MAX);
+		// 仕切予備線
+		electricAppropriation.setPartitionSpareLine(DECIMAL_OVER_MAX);
+		// 仕切予備電源
+		electricAppropriation.setPartitionSparePower(DECIMAL_OVER_MAX);
+
 		try {
 			// 例外が発生することを確認
 			testCheckComponent.update(electricAppropriationRepository, electricAppropriation);
 		} catch (TransactionSystemException expected) {
 			Assert.assertTrue("整数桁あふれのバリデーションチェックによる例外が根本原因であること", expected.getRootCause() instanceof ConstraintViolationException);
+			Assert.assertEquals("整数桁あふれが発生する項目数が２６であること", 26, ((ConstraintViolationException) expected.getRootCause()).getConstraintViolations().size());
 			return;
 		} catch (Exception unexpected) {
 			unexpected.printStackTrace();
