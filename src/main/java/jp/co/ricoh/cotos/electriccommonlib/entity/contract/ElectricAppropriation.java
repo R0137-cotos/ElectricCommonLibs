@@ -758,4 +758,18 @@ public class ElectricAppropriation extends EntityBase {
 	@ApiModelProperty(value = "仕切予備電源", required = false, position = 89)
 	private BigDecimal partitionSparePower;
 
+	/**
+	 * 料金計算日数.
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "料金計算日数", required = false, position = 90, allowableValues = "range[0,99999]")
+	private Integer chargeCalcDays;
+
+	/**
+	 * 料金計算対象日数.
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "料金計算対象日数", required = false, position = 91, allowableValues = "range[0,99999]")
+	private Integer chargeCalcTargetDays;
+
 }
