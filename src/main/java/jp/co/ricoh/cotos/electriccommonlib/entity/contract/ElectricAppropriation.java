@@ -373,37 +373,36 @@ public class ElectricAppropriation extends EntityBase {
 	private BigDecimal partitionBasicCharge;
 
 	/**
-	 * 仕切電力両料金(夏季)
+	 * 仕切電力量料金(夏季)
 	 */
 	@Column(nullable = true)
 	@DecimalMin("0.00")
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "仕切電力両料金(夏季)", required = false, position = 42, allowableValues = "range[0.00,99999999999999999.99]")
+	@ApiModelProperty(value = "仕切電力量料金(夏季)", required = false, position = 42, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal partitionPowerAmountChargeSummer;
 
 	/**
-	 * 仕切電力両料金(その他季)
+	 * 仕切電力量料金(その他季)
 	 */
 	@Column(nullable = true)
 	@DecimalMin("0.00")
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "仕切電力両料金(その他季)", required = false, position = 43, allowableValues = "range[0.00,99999999999999999.99]")
+	@ApiModelProperty(value = "仕切電力量料金(その他季)", required = false, position = 43, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal partitionPowerAmountChargeOtherSeason;
 
 	/**
-	 * 仕切電力両料金(共通)
+	 * 仕切電力量料金(共通)
 	 */
 	@Column(nullable = true)
 	@DecimalMin("0.00")
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "仕切電力両料金(共通)", required = false, position = 44, allowableValues = "range[0.00,99999999999999999.99]")
+	@ApiModelProperty(value = "仕切電力量料金(共通)", required = false, position = 44, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal partitionPowerAmountChargeCommon;
 
 	/**
 	 * 仕切合計料金(税込)
 	 */
 	@Column(nullable = true)
-	@DecimalMin("0.00")
 	@Digits(integer = 17, fraction = 2)
 	@ApiModelProperty(value = "仕切合計料金(税込)", required = false, position = 45, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal partitionTotalChargeInTax;
@@ -412,7 +411,6 @@ public class ElectricAppropriation extends EntityBase {
 	 * 仕切消費税額
 	 */
 	@Column(nullable = true)
-	@DecimalMin("0.00")
 	@Digits(integer = 17, fraction = 2)
 	@ApiModelProperty(value = "仕切消費税額", required = false, position = 46, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal partitionTax;
@@ -421,7 +419,6 @@ public class ElectricAppropriation extends EntityBase {
 	 * 仕切合計料金(税抜)
 	 */
 	@Column(nullable = true)
-	@DecimalMin("0.00")
 	@Digits(integer = 17, fraction = 2)
 	@ApiModelProperty(value = "仕切合計料金(税抜)", required = false, position = 47, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal partitionTotalChargeOutTax;
