@@ -12,9 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.ElectricCommercialFlowDiv;
 import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.VoltageCategory;
-import jp.co.ricoh.cotos.electriccommonlib.entity.contract.ElectricAppropriation;
 import jp.co.ricoh.cotos.electriccommonlib.entity.contract.EntryContentLowPressure.LowPressureType;
 import jp.co.ricoh.cotos.electriccommonlib.util.CalclateBasicChargeUtility.CalclateParameter;
 
@@ -32,7 +30,6 @@ public class CalclateBasicChargeUtilityTest {
 		/* 高圧 */
 
 		/* 電力使用量 = 0, 日割り = 1 */
-		ElectricAppropriation electricAppropriation = new ElectricAppropriation();
 		param.setBasicPrice(new BigDecimal("1800.12"));
 		param.setBasicPowerAmount(new BigDecimal("1650.45"));
 
@@ -67,27 +64,10 @@ public class CalclateBasicChargeUtilityTest {
 		param.setPowerRate(new BigDecimal(90));
 
 		param.setUseAmount(new BigDecimal("2048"));
-		param.setElectricCommercialFlowDiv(ElectricCommercialFlowDiv.直売);
 		result = testTarget.calculateBasicCharge(param);
-		// 計算結果②：基本単価×基本電力量×(1-(力率/100 -0.85)) × 日割り = 1,411,228.82565
+		// 計算結果②：A1)基本単価×基本電力量×日割り（小数第3位四捨五入）
+		//             ＋ A1 × ((85 - 力率) ÷ 100)（小数第3位四捨五入） = 1,411,228.82
 		Assert.assertEquals("計算結果が期待値通りであること", new BigDecimal("1411228.82").setScale(2), result);
-
-		/* 電力使用量 != 0, 日割り = 0.5, 商流区分 = 取次(1年) */
-		electricAppropriation.setPowerRate(new BigDecimal(90));
-
-		param.setElectricCommercialFlowDiv(ElectricCommercialFlowDiv.取次);
-		param.setAgencyDiscountPrice(new BigDecimal(-250));
-		param.setItemCode("ITEM_CODE");
-		result = testTarget.calculateBasicCharge(param);
-		// 計算結果③：計算結果②-基本電力量×取次割引単価 = 998,616.32565
-		Assert.assertEquals("計算結果が期待値通りであること", new BigDecimal("998616.32").setScale(2), result);
-
-		/* 電力使用量 != 0, 日割り = 0.5, 商流区分 = 取次(3年) */
-		param.setItemCode("915793");
-		param.setLongtermDiscountRate(BigDecimal.valueOf(15));
-		result = testTarget.calculateBasicCharge(param);
-		// 計算結果④：計算結果③-基本単価×基本電力量×(長期割引率/100) = 552,965.11755
-		Assert.assertEquals("計算結果が期待値通りであること", new BigDecimal("552965.11").setScale(2), result);
 
 		/* 低圧 */
 		/* 電力使用量 != 0, 日割り = 0.5 */
@@ -95,7 +75,6 @@ public class CalclateBasicChargeUtilityTest {
 		param.setBasicPowerAmount(new BigDecimal("30.45"));
 
 		param.setVoltageCategory(VoltageCategory.低圧);
-		param.setElectricCommercialFlowDiv(ElectricCommercialFlowDiv.直売);
 		param.setLowPressureType(LowPressureType.従量電灯1);
 		result = testTarget.calculateBasicCharge(param);
 		// 計算結果⑤:基本単価×日割り = 600.06
@@ -117,6 +96,16 @@ public class CalclateBasicChargeUtilityTest {
 		/* 電力使用量 = 0, 日割り = 0.5 */
 		param.setLowPressureType(LowPressureType.動力);
 		param.setUseAmount(new BigDecimal("0"));
+		result = testTarget.calculateBasicCharge(param);
+		// 計算結果⑧:計算結果⑥×0.5 = 9,135.9135‬
+		Assert.assertEquals("計算結果が期待値通りであること", new BigDecimal("9135.91").setScale(2), result);
+
+		/* 電力使用量 = 0, 日割り = 0.5（日数計算） */
+		param.setLowPressureType(LowPressureType.動力);
+		param.setUseAmount(new BigDecimal("0"));
+		param.setDailyRate(null);
+		param.setChargeCalcDays(10);
+		param.setChargeCalcTargetDays(20);
 		result = testTarget.calculateBasicCharge(param);
 		// 計算結果⑧:計算結果⑥×0.5 = 9,135.9135‬
 		Assert.assertEquals("計算結果が期待値通りであること", new BigDecimal("9135.91").setScale(2), result);
