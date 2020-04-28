@@ -5,10 +5,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
-import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.ElectricCommercialFlowDiv;
 import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.VoltageCategory;
 import jp.co.ricoh.cotos.electriccommonlib.entity.contract.EntryContentLowPressure.LowPressureType;
 import lombok.Data;
@@ -36,18 +34,18 @@ public class CalclateBasicChargeUtility {
 		BigDecimal basicPowerAmount;
 		/** 力率(%). */
 		BigDecimal powerRate;
+
+		// 日割り率 ＞ 日割り率計算用（日数指定） ＞ 日割り率計算用（日時指定）のいずれか必須
 		/** 日割り率(%). */
 		BigDecimal dailyRate;
-		/** 商流区分. */
-		ElectricCommercialFlowDiv electricCommercialFlowDiv;
-		/** 取次割引単価. */
-		BigDecimal agencyDiscountPrice;
-		/** 品種コード. */
-		String itemCode;
-		/** 長期割引率(%). */
-		BigDecimal longtermDiscountRate;
 
-		// 日割り率未指定時の計算用
+		// 日割り率計算用（日数指定）
+		/** 料金計算日数. */
+		Integer chargeCalcDays;
+		/** 料金計算対象日数. */
+		Integer chargeCalcTargetDays;
+
+		// 日割り率計算用（日時指定）
 		/** 料金計算開始日時. */
 		Date feeClcStrDatTim;
 		/** 料金計算終了日時. */
@@ -83,7 +81,14 @@ public class CalclateBasicChargeUtility {
 
 		// 日割り率が未計算の場合は計算する
 		if (dailyRate == null) {
-			dailyRate = calculateDailyRate(param.getFeeClcStrDatTim(), param.getFeeClcEndDatTim(), param.getFeeClcStrYmd(), param.getFeeClcEndYmd());
+
+			if (param.getChargeCalcDays() != null && param.getChargeCalcTargetDays() != null) {
+				// 日数指定されている場合、料金計算日数÷料金計算対象日数
+				dailyRate = BigDecimal.valueOf(param.getChargeCalcDays()).divide(BigDecimal.valueOf(param.getChargeCalcTargetDays()));
+			} else {
+				// 日時指定の場合、日数を計算の上日割り率計算
+				dailyRate = calculateDailyRate(param.getFeeClcStrDatTim(), param.getFeeClcEndDatTim(), param.getFeeClcStrYmd(), param.getFeeClcEndYmd());
+			}
 		} else {
 			dailyRate = dailyRate.divide(BigDecimal.valueOf(100));
 		}
@@ -96,15 +101,16 @@ public class CalclateBasicChargeUtility {
 				khnRyokin = param.getBasicPrice().multiply(param.getBasicPowerAmount()).multiply(dailyRate).multiply(BigDecimal.valueOf(0.5));
 			} else {
 				// 料金計算数量が0以外の場合
-				// 基本単価×基本電力量×(1-(力率/100 - 0.85))×日割り
-				BigDecimal tmp1 = param.getPowerRate().divide(BigDecimal.valueOf(100)).subtract(BigDecimal.valueOf(0.85));
-				BigDecimal tmp2 = BigDecimal.valueOf(1).subtract(tmp1);
-				khnRyokin = param.getBasicPrice().multiply(param.getBasicPowerAmount()).multiply(tmp2).multiply(dailyRate);
-				// （１）商流区分＝４(取次)の場合
-				if (ElectricCommercialFlowDiv.取次.equals(param.getElectricCommercialFlowDiv())) {
-					// 計算結果、基本電力量、基本単価、基本電力量、取次割引単価、長期割引率、品種コード
-					khnRyokin = calculateBasicFeeForAgency(khnRyokin, param.getBasicPowerAmount(), param.getBasicPrice(), param.getAgencyDiscountPrice(), param.getLongtermDiscountRate(), param.getItemCode());
-				}
+
+				// A1. 基本単価×基本電力量×日割り（小数第3位四捨五入）
+				BigDecimal a1 = param.getBasicPrice().multiply(param.getBasicPowerAmount()).multiply(dailyRate).setScale(2, BigDecimal.ROUND_DOWN);
+
+				// A2. A1 × ((85 - 力率) ÷ 100)（小数第3位四捨五入）
+				BigDecimal a2 = a1.multiply(((BigDecimal.valueOf(85).subtract(param.getPowerRate())).divide(BigDecimal.valueOf(100)))).setScale(2, BigDecimal.ROUND_DOWN);
+
+				// A1 ＋ A2
+				khnRyokin = a1.add(a2);
+
 			}
 		} else {
 			// 低圧の場合
@@ -154,17 +160,32 @@ public class CalclateBasicChargeUtility {
 	public BigDecimal calculateDailyRate(Date startDate, Date endDate, String targetStartDate, String targetEndDate) throws ParseException {
 
 		// 日割計算対象日数の算出
-		int nissu1 = dateDiff(convertDate(startDate), convertDate(endDate));
-		if (!targetStartDate.contains("/")) {
-			targetStartDate = targetStartDate.substring(0, 4) + "/" + targetStartDate.substring(4, 6) + "/" + targetStartDate.substring(6, 8);
-		}
-		if (!targetEndDate.contains("/")) {
-			targetEndDate = targetEndDate.substring(0, 4) + "/" + targetEndDate.substring(4, 6) + "/" + targetEndDate.substring(6, 8);
-		}
+		int nissu1 = dateDiff(startDate, endDate);
+
 		// 計量期間日数の算出
 		int nissu2 = dateDiff(targetStartDate, targetEndDate);
-		BigDecimal dailyRate = BigDecimal.valueOf(nissu1).divide(BigDecimal.valueOf(nissu2), 2, BigDecimal.ROUND_HALF_UP);
+		BigDecimal dailyRate = BigDecimal.valueOf(nissu1).divide(BigDecimal.valueOf(nissu2));
 		return dailyRate;
+	}
+
+	/**
+	 * 日付の日数計算
+	 *
+	 * @param dateFrom
+	 * @param dateTo
+	 * @return
+	 * @throws ParseException
+	 */
+	public int dateDiff(Date dateFrom, Date dateTo) throws ParseException {
+
+		// 差分の日数を計算
+		long dateTimeFrom = dateFrom.getTime();
+		long dateTimeTo = dateTo.getTime();
+		long dayDiff = (dateTimeTo - dateTimeFrom) / (1000 * 60 * 60 * 24);
+
+		// 返却値は日数の為、差分に＋1する
+		return (int) dayDiff + 1;
+
 	}
 
 	/**
@@ -175,52 +196,24 @@ public class CalclateBasicChargeUtility {
 	 * @return
 	 * @throws ParseException
 	 */
-	private int dateDiff(String dateFromStrig, String dateToString) throws ParseException {
+	public int dateDiff(String dateFromStrig, String dateToString) throws ParseException {
+
+		if (!dateFromStrig.contains("/")) {
+			dateFromStrig = dateFromStrig.substring(0, 4) + "/" + dateFromStrig.substring(4, 6) + "/" + dateFromStrig.substring(6, 8);
+		}
+		if (!dateToString.contains("/")) {
+			dateToString = dateToString.substring(0, 4) + "/" + dateToString.substring(4, 6) + "/" + dateToString.substring(6, 8);
+		}
+
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 		sdf.setLenient(false);
 
-		Date dateTo = null;
-		Date dateFrom = null;
-
 		// Date型に変換
-		dateFrom = sdf.parse(dateFromStrig);
-		dateTo = sdf.parse(dateToString);
-
-		// 差分の日数を計算
-		long dateTimeTo = dateTo.getTime();
-		long dateTimeFrom = dateFrom.getTime();
-		long dayDiff = (dateTimeTo - dateTimeFrom) / (1000 * 60 * 60 * 24);
+		Date dateFrom = sdf.parse(dateFromStrig);
+		Date dateTo = sdf.parse(dateToString);
 
 		// 返却値は日数の為、差分に＋1する
-		return (int) dayDiff + 1;
-	}
-
-	/**
-	 * 取次の基本料金計算
-	 *
-	 * @param calcRet
-	 *            【処理１】の結果
-	 * @param calcElem1
-	 *            基本電力量
-	 * @param calcElem2
-	 *            基本単価
-	 * @param agencyDiscountPrice
-	 *            取次割引単価
-	 * @param longtermDiscountRate
-	 *            長期割引率
-	 * @param Itemcode
-	 *            品種コード
-	 * @return 取次時の基本料金
-	 */
-	private BigDecimal calculateBasicFeeForAgency(BigDecimal calcRet, BigDecimal calcElem1, BigDecimal calcElem2, BigDecimal agencyDiscountPrice, BigDecimal longtermDiscountRate, String itemcode) {
-		BigDecimal result = null;
-		// 【処理１】の結果 －calcElem1 × 取次割引単価
-		result = calcRet.subtract(calcElem1.multiply(agencyDiscountPrice.negate()));
-		if (StringUtils.equals(itemcode, "915793") || StringUtils.equals(itemcode, "915794")) {
-			// 上記の結果 －calcElem2 × calcElem1 × (長期割引率/100)
-			result = result.subtract(calcElem2.multiply(calcElem1.multiply(longtermDiscountRate.divide(BigDecimal.valueOf(100)))));
-		}
-		return result;
+		return dateDiff(dateFrom, dateTo);
 	}
 
 }
