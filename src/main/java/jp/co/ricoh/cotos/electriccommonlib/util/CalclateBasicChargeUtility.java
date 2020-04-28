@@ -97,15 +97,15 @@ public class CalclateBasicChargeUtility {
 			// 高圧の場合
 			if (BigDecimal.ZERO.equals(param.getUseAmount())) {
 				// 料金計算数量が0の場合
-				// 基本単価×基本電力量×日割り×0.5（小数第3位四捨五入）
+				// 基本単価×基本電力量×日割り×0.5（小数第3位切捨て　※端数処理は後続処理）
 				khnRyokin = param.getBasicPrice().multiply(param.getBasicPowerAmount()).multiply(dailyRate).multiply(BigDecimal.valueOf(0.5));
 			} else {
 				// 料金計算数量が0以外の場合
 
-				// A1. 基本単価×基本電力量×日割り（小数第3位四捨五入）
+				// A1. 基本単価×基本電力量×日割り（小数第3位切捨て）
 				BigDecimal a1 = param.getBasicPrice().multiply(param.getBasicPowerAmount()).multiply(dailyRate).setScale(2, BigDecimal.ROUND_DOWN);
 
-				// A2. A1 × ((85 - 力率) ÷ 100)（小数第3位四捨五入）
+				// A2. A1 × ((85 - 力率) ÷ 100)（小数第3位切捨て）
 				BigDecimal a2 = a1.multiply(((BigDecimal.valueOf(85).subtract(param.getPowerRate())).divide(BigDecimal.valueOf(100)))).setScale(2, BigDecimal.ROUND_DOWN);
 
 				// A1 ＋ A2
