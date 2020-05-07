@@ -84,7 +84,7 @@ public class CalclateBasicChargeUtility {
 
 			if (param.getChargeCalcDays() != null && param.getChargeCalcTargetDays() != null) {
 				// 日数指定されている場合、料金計算日数÷料金計算対象日数
-				dailyRate = BigDecimal.valueOf(param.getChargeCalcDays()).divide(BigDecimal.valueOf(param.getChargeCalcTargetDays()));
+				dailyRate = BigDecimal.valueOf(param.getChargeCalcDays()).divide(BigDecimal.valueOf(param.getChargeCalcTargetDays()), 9, BigDecimal.ROUND_HALF_UP);
 			} else {
 				// 日時指定の場合、日数を計算の上日割り率計算
 				dailyRate = calculateDailyRate(param.getFeeClcStrDatTim(), param.getFeeClcEndDatTim(), param.getFeeClcStrYmd(), param.getFeeClcEndYmd());
@@ -164,7 +164,7 @@ public class CalclateBasicChargeUtility {
 
 		// 計量期間日数の算出
 		int nissu2 = dateDiff(targetStartDate, targetEndDate);
-		BigDecimal dailyRate = BigDecimal.valueOf(nissu1).divide(BigDecimal.valueOf(nissu2));
+		BigDecimal dailyRate = BigDecimal.valueOf(nissu1).divide(BigDecimal.valueOf(nissu2), 9, BigDecimal.ROUND_HALF_UP);
 		return dailyRate;
 	}
 
