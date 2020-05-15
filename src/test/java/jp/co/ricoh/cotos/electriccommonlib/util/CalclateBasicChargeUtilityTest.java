@@ -60,19 +60,34 @@ public class CalclateBasicChargeUtilityTest {
 		// 計算結果①：基本単価×基本電力量×日割り×0.5 = 742,752.0135
 		Assert.assertEquals("計算結果が期待値通りであること", new BigDecimal("742752.01").setScale(2), result);
 
-		/* 電力使用量 != 0, 日割り = 0.5, 商流区分 != 取次 */
+		/* 電力使用量 != 0, 日割り = 0.5 */
 		param.setPowerRate(new BigDecimal(90));
-
 		param.setUseAmount(new BigDecimal("2048"));
 		result = testTarget.calculateBasicCharge(param);
 		// 計算結果②：A1)基本単価×基本電力量×日割り（小数第3位四捨五入）
 		//             ＋ A1 × ((85 - 力率) ÷ 100)（小数第3位四捨五入） = 1,411,228.82
 		Assert.assertEquals("計算結果が期待値通りであること", new BigDecimal("1411228.82").setScale(2), result);
 
+		/* 電力使用量 != 0, 日割り = 0.3333...(循環小数) */
+		param.setPowerRate(new BigDecimal(90));
+		param.setUseAmount(new BigDecimal("2048"));
+		param.setFeeClcStrDatTim(createDate("2020/01/01"));
+		param.setFeeClcEndDatTim(createDate("2020/01/01"));
+		param.setFeeClcStrYmd("20200101");
+		param.setFeeClcEndYmd("20200103");
+		result = testTarget.calculateBasicCharge(param);
+		// 計算結果②：A1)基本単価×基本電力量×日割り（小数第3位四捨五入）
+		//             ＋ A1 × ((85 - 力率) ÷ 100)（小数第3位四捨五入） = 940,819.21
+		Assert.assertEquals("計算結果が期待値通りであること", new BigDecimal("940819.21").setScale(2), result);
+
 		/* 低圧 */
 		/* 電力使用量 != 0, 日割り = 0.5 */
 		param.setBasicPrice(new BigDecimal("1200.12"));
 		param.setBasicPowerAmount(new BigDecimal("30.45"));
+		param.setFeeClcStrDatTim(createDate("2020/01/01"));
+		param.setFeeClcEndDatTim(createDate("2020/01/15"));
+		param.setFeeClcStrYmd("2020/01/01");
+		param.setFeeClcEndYmd("2020/01/30");
 
 		param.setVoltageCategory(VoltageCategory.低圧);
 		param.setLowPressureType(LowPressureType.従量電灯1);
