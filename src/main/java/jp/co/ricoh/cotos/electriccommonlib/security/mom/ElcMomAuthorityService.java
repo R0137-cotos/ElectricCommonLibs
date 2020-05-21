@@ -8,6 +8,7 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
+import org.springframework.util.ObjectUtils;
 
 import jp.co.ricoh.cotos.commonlib.dto.parameter.common.AuthorityJudgeParameter;
 import jp.co.ricoh.cotos.commonlib.entity.master.MvEmployeeMaster;
@@ -44,14 +45,16 @@ public class ElcMomAuthorityService extends MomAuthorityService {
 
 			if (AccessType.参照.equals(accessType)) {
 				// 承認者に含まれる場合、参照権限を付与
-				if (authParam.getApproverMvEmployeeMasterList() != null && !authParam.getApproverMvEmployeeMasterList().isEmpty() && authParam.getApproverMvEmployeeMasterList().stream().filter(approver -> approver.getMomEmployeeId().equals(authParam.getActorMvEmployeeMaster().getMomEmployeeId())).count() > 0) {
+				if (!ObjectUtils.isEmpty(authParam.getApproverMvEmployeeMasterList()) && authParam.getApproverMvEmployeeMasterList().stream().filter(approver -> approver.getMomEmployeeId().equals(authParam.getActorMvEmployeeMaster().getMomEmployeeId())).count() > 0) {
 					return true;
 				}
 			}
 
 			if (AccessType.編集.equals(accessType)) {
-				// 次回承認者の場合、編集権限を付与
-				if (authParam.getNextApproverMvEmployeeMaster() != null && authParam.getNextApproverMvEmployeeMaster().getMomEmployeeId().equals(authParam.getActorMvEmployeeMaster().getMomEmployeeId())) {
+				// 次回承認者または次回代理承認者の場合、編集権限を付与
+				if (!ObjectUtils.isEmpty(authParam.getNextApproverMvEmployeeMaster()) && authParam.getNextApproverMvEmployeeMaster().getMomEmployeeId().equals(authParam.getActorMvEmployeeMaster().getMomEmployeeId())) {
+					return true;
+				} else if (!ObjectUtils.isEmpty(authParam.getNextSubApproverMvEmployeeMaster()) && authParam.getNextSubApproverMvEmployeeMaster().getMomEmployeeId().equals(authParam.getActorMvEmployeeMaster().getMomEmployeeId())) {
 					return true;
 				}
 			}
@@ -62,6 +65,11 @@ public class ElcMomAuthorityService extends MomAuthorityService {
 
 			// 直接指定された承認者であれば、権限あり
 			if (authParam.isManualApprover()) {
+				return true;
+			}
+
+			// 代理承認者であれば、権限あり
+			if (!ObjectUtils.isEmpty(authParam.getNextSubApproverMvEmployeeMaster()) && authParam.getActorMvEmployeeMaster().getMomEmployeeId().equals(authParam.getNextSubApproverMvEmployeeMaster().getMomEmployeeId())) {
 				return true;
 			}
 
