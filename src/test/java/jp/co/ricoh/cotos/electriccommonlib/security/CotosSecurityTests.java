@@ -494,6 +494,30 @@ public class CotosSecurityTests {
 	@Test
 	@Transactional
 	@WithMockCustomUser(actionDiv = ActionDiv.照会, authDiv = AuthDiv.見積_契約_手配, authLevel = AuthLevel.不可)
+	public void 正常_MoM権限_参照_次回代理承認者() throws Exception {
+
+		AuthorityJudgeParameter authParam = new AuthorityJudgeParameter();
+		authParam.setActorMvEmployeeMaster(mvEmployeeMasterRepository.findOne("00220552"));
+		authParam.setManualApprover(true);
+
+		List<MvEmployeeMaster> approverList = new ArrayList<MvEmployeeMaster>();
+		MvEmployeeMaster approver = new MvEmployeeMaster();
+		approver.setMomEmployeeId("00229746");
+		approverList.add(approver);
+
+		MvEmployeeMaster subApprover = new MvEmployeeMaster();
+		subApprover.setMomEmployeeId("00220552");
+		approverList.add(subApprover);
+
+		authParam.setApproverMvEmployeeMasterList(approverList);
+
+		boolean result = context.getBean(ElcMomAuthorityService.class).hasAuthority(authParam, ActionDiv.照会, AuthDiv.見積_契約_手配, AccessType.参照);
+		Assert.assertTrue("対象の権限があること", result);
+	}
+
+	@Test
+	@Transactional
+	@WithMockCustomUser(actionDiv = ActionDiv.照会, authDiv = AuthDiv.見積_契約_手配, authLevel = AuthLevel.不可)
 	public void 正常_MoM権限_編集_次回承認者() throws Exception {
 
 		AuthorityJudgeParameter authParam = new AuthorityJudgeParameter();
@@ -503,6 +527,27 @@ public class CotosSecurityTests {
 		MvEmployeeMaster nextApprover = new MvEmployeeMaster();
 		nextApprover.setMomEmployeeId("00220552");
 		authParam.setNextApproverMvEmployeeMaster(nextApprover);
+
+		boolean result = context.getBean(ElcMomAuthorityService.class).hasAuthority(authParam, ActionDiv.照会, AuthDiv.見積_契約_手配, AccessType.編集);
+		Assert.assertTrue("対象の権限があること", result);
+	}
+
+	@Test
+	@Transactional
+	@WithMockCustomUser(actionDiv = ActionDiv.照会, authDiv = AuthDiv.見積_契約_手配, authLevel = AuthLevel.不可)
+	public void 正常_MoM権限_編集_次回代理承認者() throws Exception {
+
+		AuthorityJudgeParameter authParam = new AuthorityJudgeParameter();
+		authParam.setActorMvEmployeeMaster(mvEmployeeMasterRepository.findOne("00220552"));
+		authParam.setManualApprover(true);
+
+		MvEmployeeMaster nextApprover = new MvEmployeeMaster();
+		nextApprover.setMomEmployeeId("00229746");
+		authParam.setNextApproverMvEmployeeMaster(nextApprover);
+
+		MvEmployeeMaster nextSubApprover = new MvEmployeeMaster();
+		nextSubApprover.setMomEmployeeId("00220552");
+		authParam.setNextApproverMvEmployeeMaster(nextSubApprover);
 
 		boolean result = context.getBean(ElcMomAuthorityService.class).hasAuthority(authParam, ActionDiv.照会, AuthDiv.見積_契約_手配, AccessType.編集);
 		Assert.assertTrue("対象の権限があること", result);
@@ -524,6 +569,40 @@ public class CotosSecurityTests {
 		MvEmployeeMaster requester = new MvEmployeeMaster();
 		requester.setSingleUserId("u0201125");
 		parameter.setRequesterMvEmployeeMaster(requester);
+
+		// 電力用MoM権限共通処理を実行
+		boolean result = context.getBean(ElcMomAuthorityService.class).hasAuthority(parameter, ActionDiv.照会, AuthDiv.見積_契約_手配, AccessType.承認);
+
+		// 結果判定
+		Assert.assertTrue("権限ありと判定されること", result);
+	}
+
+	@Test
+	@WithMockCustomUser(actionDiv = ActionDiv.照会, authDiv = AuthDiv.見積_契約_手配, authLevel = AuthLevel.不可)
+	public void MoM権限_正常_権限あり_直接指定以外_代理承認() throws Exception {
+
+		AuthorityJudgeParameter parameter = new AuthorityJudgeParameter();
+		parameter.setManualApprover(false);
+
+		// アクター
+		MvEmployeeMaster actor = new MvEmployeeMaster();
+		actor.setMomEmployeeId("01901092");
+		parameter.setActorMvEmployeeMaster(actor);
+
+		// 承認依頼者
+		MvEmployeeMaster requester = new MvEmployeeMaster();
+		requester.setMomEmployeeId("00229746");
+		parameter.setRequesterMvEmployeeMaster(requester);
+
+		// 承認者
+		MvEmployeeMaster approver = new MvEmployeeMaster();
+		approver.setMomEmployeeId("00229692");
+		parameter.setNextApproverMvEmployeeMaster(approver);
+
+		// 代理承認者
+		MvEmployeeMaster subApprover = new MvEmployeeMaster();
+		subApprover.setMomEmployeeId("01901092");
+		parameter.setNextSubApproverMvEmployeeMaster(subApprover);
 
 		// 電力用MoM権限共通処理を実行
 		boolean result = context.getBean(ElcMomAuthorityService.class).hasAuthority(parameter, ActionDiv.照会, AuthDiv.見積_契約_手配, AccessType.承認);
