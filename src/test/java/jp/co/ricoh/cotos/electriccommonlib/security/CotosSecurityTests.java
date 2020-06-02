@@ -554,6 +554,44 @@ public class CotosSecurityTests {
 	}
 
 	@Test
+	@Transactional
+	@WithMockCustomUser(actionDiv = ActionDiv.照会, authDiv = AuthDiv.見積_契約_手配, authLevel = AuthLevel.不可)
+	public void 正常_MoM権限_編集_前回承認者() throws Exception {
+
+		AuthorityJudgeParameter authParam = new AuthorityJudgeParameter();
+		authParam.setActorMvEmployeeMaster(mvEmployeeMasterRepository.findOne("00220552"));
+		authParam.setManualApprover(true);
+
+		MvEmployeeMaster nextApprover = new MvEmployeeMaster();
+		nextApprover.setMomEmployeeId("00220552");
+		authParam.setPrevApproverMvEmployeeMaster(nextApprover);
+
+		boolean result = context.getBean(ElcMomAuthorityService.class).hasAuthority(authParam, ActionDiv.照会, AuthDiv.見積_契約_手配, AccessType.編集);
+		Assert.assertTrue("対象の権限があること", result);
+	}
+
+	@Test
+	@Transactional
+	@WithMockCustomUser(actionDiv = ActionDiv.照会, authDiv = AuthDiv.見積_契約_手配, authLevel = AuthLevel.不可)
+	public void 正常_MoM権限_編集_前回代理承認者() throws Exception {
+
+		AuthorityJudgeParameter authParam = new AuthorityJudgeParameter();
+		authParam.setActorMvEmployeeMaster(mvEmployeeMasterRepository.findOne("00220552"));
+		authParam.setManualApprover(true);
+
+		MvEmployeeMaster nextApprover = new MvEmployeeMaster();
+		nextApprover.setMomEmployeeId("00229746");
+		authParam.setPrevApproverMvEmployeeMaster(nextApprover);
+
+		MvEmployeeMaster nextSubApprover = new MvEmployeeMaster();
+		nextSubApprover.setMomEmployeeId("00220552");
+		authParam.setPrevApproverMvEmployeeMaster(nextSubApprover);
+
+		boolean result = context.getBean(ElcMomAuthorityService.class).hasAuthority(authParam, ActionDiv.照会, AuthDiv.見積_契約_手配, AccessType.編集);
+		Assert.assertTrue("対象の権限があること", result);
+	}
+
+	@Test
 	@WithMockCustomUser(actionDiv = ActionDiv.照会, authDiv = AuthDiv.見積_契約_手配, authLevel = AuthLevel.配下)
 	public void MoM権限_正常_権限あり_直接指定以外_承認() throws Exception {
 
