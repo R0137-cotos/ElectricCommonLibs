@@ -111,7 +111,7 @@ public class ContractSearchParameter {
 	 */
 	@ApiParam(value = "商品名称:部分一致", required = false)
 	@ApiModelProperty(value = "商品名称:部分一致<br />条件入力時、最低2文字以上の入力とする。", required = false)
-	private String likeElectricMenu;
+	private String likeSearchElectricMenu;
 
 	/**
 	 * 見積番号
@@ -205,18 +205,18 @@ public class ContractSearchParameter {
 	private String feedPointNumber;
 
 	/**
-	 * 管轄電力会社
+	 * 電力会社
 	 */
-	@ApiParam(value = "管轄電力会社", required = false)
-	@ApiModelProperty(value = "管轄電力会社", required = false, allowableValues = "range[0,255]")
-	private String powerCompany;
+	@ApiParam(value = "電力会社:部分一致", required = false)
+	@ApiModelProperty(value = "電力会社:部分一致<br />条件入力時、最低2文字以上の入力とする。", required = false, allowableValues = "range[0,255]")
+	private String likeSearchPowerCompany;
 
 	/**
 	 * 電力専任 - 氏名
 	 */
-	@ApiParam(value = "電力専任 - 氏名", required = false)
-	@ApiModelProperty(value = "電力専任 - 氏名", required = false, allowableValues = "range[0,255]")
-	private String electricExpertName;
+	@ApiParam(value = "電力専任 - 氏名:部分一致", required = false)
+	@ApiModelProperty(value = "電力専任 - 氏名:部分一致<br />条件入力時、最低2文字以上の入力とする。", required = false, allowableValues = "range[0,255]")
+	private String likeSearchElectricExpertName;
 
 	/**
 	 * 請求書発送区分
