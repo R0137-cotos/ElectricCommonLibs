@@ -769,4 +769,12 @@ public class ElectricAppropriation extends EntityBase {
 	@ApiModelProperty(value = "料金計算対象日数", required = false, position = 91, allowableValues = "range[0,99999]")
 	private Integer chargeCalcTargetDays;
 
+	/**
+	 * 販売店電力料金.
+	 */
+	@Column(nullable = true)
+	@Digits(integer = 17, fraction = 2)
+	@ApiModelProperty(value = "販売店電力料金", required = false, position = 92)
+	private BigDecimal tradingCompanyElectricCharge;
+
 }
