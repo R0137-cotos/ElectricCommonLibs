@@ -1,5 +1,7 @@
 package jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -170,5 +172,13 @@ public class BillingBasicInformationDto extends DtoBase {
 	@Size(max = 255)
 	@ApiModelProperty(value = "請求先分類", required = false, position = 23, allowableValues = "range[0,255]")
 	private String billingDiv;
+
+	/**
+	 * メール配信
+	 */
+	@Max(9)
+	@Min(0)
+	@ApiModelProperty(value = "メール配信", required = false, position = 24, allowableValues = "range[0,9]")
+	private Integer sendMailFlg;
 
 }
