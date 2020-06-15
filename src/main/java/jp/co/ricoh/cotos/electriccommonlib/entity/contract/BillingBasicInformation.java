@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -250,5 +252,14 @@ public class BillingBasicInformation extends EntityBase {
 	@Column(nullable = true)
 	@ApiModelProperty(value = "請求先分類", required = false, position = 25, allowableValues = "range[0,255]")
 	private String billingDiv;
+
+	/**
+	 * メール配信
+	 */
+	@Column(nullable = true)
+	@Max(9)
+	@Min(0)
+	@ApiModelProperty(value = "メール配信", required = false, position = 26, allowableValues = "range[0,9]")
+	private Integer sendMailFlg;
 
 }
