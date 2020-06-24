@@ -13,13 +13,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonValue;
 
@@ -82,7 +83,7 @@ public class CancellationInformation extends EntityBase {
 	 * 解約希望日
 	 */
 	@Column(nullable = true)
-	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Tokyo")
+	@Temporal(TemporalType.DATE)
 	@ApiModelProperty(value = "解約希望日", required = false, position = 3)
 	private Date cancellationHopeDate;
 
@@ -106,7 +107,7 @@ public class CancellationInformation extends EntityBase {
 	 * 解約日
 	 */
 	@Column(nullable = true)
-	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Tokyo")
+	@Temporal(TemporalType.DATE)
 	@ApiModelProperty(value = "解約日", required = false, position = 6)
 	private Date cancellationDate;
 
