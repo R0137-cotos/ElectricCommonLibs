@@ -3,13 +3,13 @@ package jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.dto.parameter.common.DtoBase;
@@ -28,7 +28,7 @@ public class CancellationInformationDto extends DtoBase {
 	/**
 	 * 解約希望日
 	 */
-	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Tokyo")
+	@Temporal(TemporalType.DATE)
 	@ApiModelProperty(value = "解約希望日", required = false, position = 3)
 	private Date cancellationHopeDate;
 
@@ -50,7 +50,7 @@ public class CancellationInformationDto extends DtoBase {
 	/**
 	 * 解約日
 	 */
-	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Tokyo")
+	@Temporal(TemporalType.DATE)
 	@ApiModelProperty(value = "解約日", required = false, position = 6)
 	private Date cancellationDate;
 
