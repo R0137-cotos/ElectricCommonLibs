@@ -284,6 +284,23 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 	}
 
 	@Test
+	public void 全てのカラムがNullではないことを確認_契約_電力用を外部キーより取得() {
+
+		// 契約IDにより契約(電力)を取得
+		List<ContractElectric> contractElectricList = contractElectricRepository.findByOppSysKeyBn("test");
+
+		Assert.assertEquals("1件取得されること", 1, contractElectricList.size());
+		// null項目なく取得できていることを確認
+		contractElectricList.stream().forEach(contractElectric -> {
+			try {
+				testTools.assertColumnsNotNull(contractElectric);
+			} catch (Exception e1) {
+				Assert.fail("例外が発生した場合、エラー");
+			}
+		});
+	}
+
+	@Test
 	public void 全てのカラムがNullではないことを確認_契約_得意先マスタを得意先CDから取得() {
 
 		ClientMaster clientMaster = clientMasterRepository.findByClientCode("1234567");
