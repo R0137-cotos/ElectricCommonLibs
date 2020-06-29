@@ -13,4 +13,6 @@ public interface ContractElectricRepository extends CrudRepository<ContractElect
 	public ContractElectric findByContractId(Long contractId);
 
 	public List<ContractElectric> findByOppSysKeyBn(String oppSysKeyBn);
+
+	public List<ContractElectric> findBySimNumberMainAndSimNumberSub(String simNumberMain, String simNumberSub);
 }
