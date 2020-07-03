@@ -2,6 +2,7 @@ package jp.co.ricoh.cotos.electriccommonlib.repository;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 import javax.validation.ConstraintViolationException;
 
@@ -26,6 +27,7 @@ import jp.co.ricoh.cotos.commonlib.util.ClaimsProperties;
 import jp.co.ricoh.cotos.commonlib.util.JwtProperties;
 import jp.co.ricoh.cotos.electriccommonlib.DBConfig;
 import jp.co.ricoh.cotos.electriccommonlib.TestTools;
+import jp.co.ricoh.cotos.electriccommonlib.entity.estimation.EstimationElectric;
 import jp.co.ricoh.cotos.electriccommonlib.entity.estimation.FeeSimulationHead;
 import jp.co.ricoh.cotos.electriccommonlib.repository.estimation.AgencyEstimationInformationRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.estimation.ElectricDealerEstimationRepository;
@@ -85,6 +87,23 @@ public class TestEstimationElectricRepository extends RepositoryTestBase {
 	@Test
 	public void 全てのカラムがNullではないことを確認_見積_電力用() {
 		全てのカラムがNullではないことを確認_共通(estimationElectricRepository, 1L);
+	}
+
+	@Test
+	public void 全てのカラムがNullではないことを確認_見積_電力用を外部キーより取得() {
+
+		// 外部キーにより契約(電力)を取得
+		List<EstimationElectric> estimationElectricList = estimationElectricRepository.findByOppSysKeyBn("test");
+
+		Assert.assertEquals("1件取得されること", 1, estimationElectricList.size());
+		// null項目なく取得できていることを確認
+		estimationElectricList.stream().forEach(estimationElectric -> {
+			try {
+				testTools.assertColumnsNotNull(estimationElectric);
+			} catch (Exception e1) {
+				Assert.fail("例外が発生した場合、エラー");
+			}
+		});
 	}
 
 	@Test
