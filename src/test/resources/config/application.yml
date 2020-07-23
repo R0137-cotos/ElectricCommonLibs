@@ -1,0 +1,65 @@
+cotos:
+  auth:
+    throughURIs: /dummy, /swagger-ui.html, /dummy2
+    jwt:
+      secretKey: cotosSecretKey
+      tillExpired: 10
+      claims:
+        momEmpId: momEmpId
+        singleUserId: singleUserId
+        origin: origin
+        applicationId: applicationId
+        momAuth: momAuth
+    headers:
+      momEmpId: headers_mom_emp_id
+      singleUserId: headers_single_user_id
+      applicationId: headers_applicationId
+      pass: headers_pass
+      authorization: X-Cotos-Authorization
+      requireDispAuthorize: X-Cotos-Require-Disp-Authorize
+      requireMomAuthorize: X-Cotos-Require-Mom-Authorize
+      dispAuthorization: X-Cotos-Disp-Authorization
+      momAuthorization: X-Cotos-Mom-Authorization
+      contentType: Content-type
+      filename: filename
+  api:
+    standard:
+      estimation: https://dev-api.cotos.ricoh.co.jp/estimaiton/api
+      contract: https://dev-api.cotos.ricoh.co.jp/contract/api
+      master: https://dev-api.cotos.ricoh.co.jp/master/api
+      reports: https://dev-api.cotos.ricoh.co.jp/reports/api
+    electric:
+      estimation: https://dev-api.cotos.ricoh.co.jp/estimaiton/electric/api
+      contract: https://dev-api.cotos.ricoh.co.jp/contract/electric/api
+  external:
+    database:
+      schema: test_schema
+spring:
+  datasource:
+    url: jdbc:oracle:thin:@dev-db.cotos.ricoh.co.jp:1521/pdb1
+    username: cotos_ci_commonlibs_electric
+    password: cotos_ci_commonlibs_electric
+    driverClassName: oracle.jdbc.OracleDriver
+  jpa:
+    database-platform: org.hibernate.dialect.Oracle12cDialect
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        show_sql: true
+        use_sql_comments: true
+        format_sql: true
+        default_schema: cotos_ci_commonlibs_electric
+        proc:
+          param_null_passing: true
+        enable_lazy_load_no_trans: true
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
+  messages:
+    basename: Messages,ElectricMessages
+    defaultEncoding: UTF-8
+remote:
+  momauthority:
+    url: http://165.96.254.183:10110/jmo/services/KengenService
+    relatedid: CSP

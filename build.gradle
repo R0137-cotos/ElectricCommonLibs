@@ -24,6 +24,7 @@ apply plugin: 'maven'
 repositories {
     jcenter()
     mavenCentral()
+    maven { url 'https://mygithub.ritscm.xyz/raw/cotos/Dentos_LibsRepo/master/repository/Dentos_CommonLibs' }
 }
 
 dependencies {
@@ -39,6 +40,8 @@ dependencies {
     compile 'org.jxls:jxls-poi:1.0.14'
     compile group: 'org.apache.poi', name : 'poi', version: '3.17'
     compile('com.auth0:java-jwt:3.4.0')
+
+    compile('jp.co.ricoh.cotos:dentos-common-libraries:0.0.344')
 
     compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.7.0'
     compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.7.0'
@@ -59,6 +62,7 @@ dependencies {
     testCompile('org.springframework.security:spring-security-test')
     testCompile group: 'com.ninja-squad', name: 'DbSetup', version: '2.1.0'
     testCompile 'org.apache.commons:commons-lang3:3.4'
+    testCompile group: 'commons-io', name: 'commons-io', version: '2.6'
     testRuntime('com.h2database:h2')
 }
 
@@ -75,7 +79,7 @@ uploadArchives {
     repositories {
         mavenDeployer {
             repository url: "file://${repo.absolutePath}"
-            pom.version = '0.0.1'
+            pom.version = '0.0.253'
             pom.groupId = 'jp.co.ricoh.cotos'
             pom.artifactId = 'electric-common-libraries'
         }
