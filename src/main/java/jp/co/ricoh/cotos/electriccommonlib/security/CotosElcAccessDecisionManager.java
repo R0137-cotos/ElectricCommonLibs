@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.security.access.AccessDecisionVoter;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.access.ConfigAttribute;
@@ -16,13 +15,9 @@ public class CotosElcAccessDecisionManager extends AbstractAccessDecisionManager
 
 	/** ロガー */
 	private static final Log log = LogFactory.getLog(CotosElcAccessDecisionManager.class);
-	ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
 
 	public CotosElcAccessDecisionManager(List<AccessDecisionVoter<? extends Object>> decisionVoters) {
 		super(decisionVoters);
-		messageSource.addBasenames("ElectricMessages");
-		messageSource.setDefaultEncoding("UTF-8");
-		super.setMessageSource(messageSource);
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
