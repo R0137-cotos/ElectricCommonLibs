@@ -423,6 +423,31 @@ public class CotosSecurityTests {
 
 	@Test
 	@WithMockCustomUser(actionDiv = ActionDiv.照会, authDiv = AuthDiv.見積_契約_手配, authLevel = AuthLevel.配下)
+	public void MoM権限_正常_配下_権限あり_編集_退職者混在() throws Exception {
+
+		AuthorityJudgeParameter parameter = new AuthorityJudgeParameter();
+
+		// アクター
+		MvEmployeeMaster actor = mvEmployeeMasterRepository.findOne("00229692");
+		parameter.setActorMvEmployeeMaster(actor);
+
+		// 担当SA
+		MvEmployeeMaster sa = mvEmployeeMasterRepository.findOne("00229692");
+
+		// 追加編集者
+		MvEmployeeMaster subEditor = mvEmployeeMasterRepository.findOne("99999999");
+
+		parameter.setMvEmployeeMasterList(Arrays.asList(sa, subEditor));
+
+		// 電力用MoM権限共通処理を実行
+		boolean result = context.getBean(ElcMomAuthorityService.class).hasAuthority(parameter, ActionDiv.照会, AuthDiv.見積_契約_手配, AccessType.編集);
+
+		// 結果判定
+		Assert.assertTrue("権限ありと判定されること", result);
+	}
+
+	@Test
+	@WithMockCustomUser(actionDiv = ActionDiv.照会, authDiv = AuthDiv.見積_契約_手配, authLevel = AuthLevel.配下)
 	public void MoM権限_正常_配下_権限なし() throws Exception {
 
 		AuthorityJudgeParameter parameter = new AuthorityJudgeParameter();
@@ -665,6 +690,28 @@ public class CotosSecurityTests {
 		MvEmployeeMaster requester = new MvEmployeeMaster();
 		requester.setSingleUserId("u0201125");
 		parameter.setRequesterMvEmployeeMaster(requester);
+
+		// 電力用MoM権限共通処理を実行
+		boolean result = context.getBean(ElcMomAuthorityService.class).hasAuthority(parameter, ActionDiv.照会, AuthDiv.見積_契約_手配, AccessType.承認);
+
+		// 結果判定
+		Assert.assertFalse("権限なしと判定されること", result);
+	}
+
+	@Test
+	@WithMockCustomUser(actionDiv = ActionDiv.照会, authDiv = AuthDiv.見積_契約_手配, authLevel = AuthLevel.不可)
+	public void MoM権限_正常_権限なし_承認_退職者() throws Exception {
+
+		AuthorityJudgeParameter parameter = new AuthorityJudgeParameter();
+		parameter.setManualApprover(false);
+
+		// アクター
+		MvEmployeeMaster actor = new MvEmployeeMaster();
+		actor.setSingleUserId("u0200757");
+		parameter.setActorMvEmployeeMaster(actor);
+
+		// 承認依頼者
+		parameter.setRequesterMvEmployeeMaster(null);
 
 		// 電力用MoM権限共通処理を実行
 		boolean result = context.getBean(ElcMomAuthorityService.class).hasAuthority(parameter, ActionDiv.照会, AuthDiv.見積_契約_手配, AccessType.承認);
