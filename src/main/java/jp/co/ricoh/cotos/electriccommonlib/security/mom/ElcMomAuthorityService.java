@@ -2,6 +2,7 @@ package jp.co.ricoh.cotos.electriccommonlib.security.mom;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -98,10 +99,10 @@ public class ElcMomAuthorityService extends MomAuthorityService {
 			return false;
 		case 自顧客:
 			// 担当SA、追加編集者、担当CE、担当SEであるかを確認
-			return targetEmployeeMasterList.stream().anyMatch(targetEmployeeMaster -> editor.getMomEmployeeId().equals(targetEmployeeMaster.getMomEmployeeId()));
+			return targetEmployeeMasterList.stream().filter(Objects::nonNull).anyMatch(targetEmployeeMaster -> editor.getMomEmployeeId().equals(targetEmployeeMaster.getMomEmployeeId()));
 		case 配下:
 			// 担当SA、追加編集者、担当CE、担当SEの所属組織が配下であるか確認
-			return targetEmployeeMasterList.stream().anyMatch(targetEmployeeMaster -> this.isLowerOrg(targetEmployeeMaster.getMomOrgId(), editor.getMomOrgId()));
+			return targetEmployeeMasterList.stream().filter(Objects::nonNull).anyMatch(targetEmployeeMaster -> this.isLowerOrg(targetEmployeeMaster.getMomOrgId(), editor.getMomOrgId()));
 		case 自社:
 		case 地域:
 		case 東西:
