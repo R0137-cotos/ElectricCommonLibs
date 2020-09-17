@@ -911,7 +911,7 @@ public class TestContractDto {
 		testTarget.setElectricDealerContract(new ElectricDealerContractCreateExtDto());
 		testTarget.setFeeSimulationHead(new FeeSimulationHeadCreateExtDto());
 		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
-		Assert.assertEquals(39, result.getErrorInfoList().size());
+		Assert.assertEquals(41, result.getErrorInfoList().size());
 
 		// 異常系(@Size(max))
 		entity = contractElectricRepository.findOne(1L);
@@ -1038,6 +1038,78 @@ public class TestContractDto {
 		testTarget.setFeeSimulationHead(feeSimulationHeadExtDto);
 		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(64, result.getErrorInfoList().size());
+
+		// 異常系(@Size(min))
+		testTarget.setCaseNumber("案件番号");
+		testTarget.setCaseTitle("案件名");
+		testTarget.setClientCode("得意先コード");
+		testTarget.setChangePreferredDate("2019/05/31");
+		// 契約(電力)
+		BeanUtils.copyProperties(entity.getEntryContentLowPressure(), contractElectricExtDto);
+		BeanUtils.copyProperties(entity, contractElectricExtDto);
+		contractElectricExtDto.setBasicMeterReadingDate("dd");
+		contractElectricExtDto.setElectricCommercialFlowDiv("直売");
+		contractElectricExtDto.setElectricCommercialFlowDivCode("1");
+		contractElectricExtDto.setFixTransferDestinationCode("修正時振替先コード");
+		contractElectricExtDto.setVoltageCategory("1");
+		contractElectricExtDto.setEntryDate("2019/05/31");
+		contractElectricExtDto.setCurrentElectricCompanyDiv("1");
+		contractElectricExtDto.setContractUnit("A");
+		contractElectricExtDto.setSupplyStartScheduledDate("2019/05/31");
+		contractElectricExtDto.setPowerArea(entity.getElectricArea().toString());
+		testTarget.setContractElectric(contractElectricExtDto);
+		// 顧客
+		customerContractExtDto.setMomCustId("MoMkjbID");
+		customerContractExtDto.setCompanyId("MoM企業ID");
+		customerContractExtDto.setOfficeId("MoM事業所ID");
+		customerContractExtDto.setPicName("担当者氏名");
+		customerContractExtDto.setPicNameKana("担当者氏名(カナ)");
+		customerContractExtDto.setPicDeptName("担当者部署");
+		customerContractExtDto.setPicPhoneNumber("担当者電話番号");
+		customerContractExtDto.setPicFaxNumber("担当者FAX番号");
+		customerContractExtDto.setPicMailAddress("担当者メールアドレス");
+		testTarget.setCustomerContract(customerContractExtDto);
+		// メールアドレス情報
+		testTarget.setContractPersonMailAddressList(new ArrayList<MailAddressInformationCreateExtDto>());
+		// 請求先メールアドレス
+		billingMailAddressInformationExtDtoList.add(billingMailAddressInformationExtDto);
+		testTarget.setBillingMailAddressList(new ArrayList<BillingMailAddressInformationCreateExtDto>());
+		// 契約担当SA社員
+		contractPicSaEmpExtDto.setMomEmployeeId("MoM社員ID");
+		testTarget.setContractPicSaEmp(contractPicSaEmpExtDto);
+		// 電力専任情報
+		electricExpertContractExtDto.setMomEmpId("MoM社員ID");
+		testTarget.setElectricExpertContract(electricExpertContractExtDto);
+		// 追加編集者
+		contractAddedEditorEmpExtDto.setMomEmployeeId("MoM社員ID");
+		contractAddedEditorEmpExtDtoList.add(contractAddedEditorEmpExtDto);
+		testTarget.setContractAddedEditorEmpList(contractAddedEditorEmpExtDtoList);
+		// 重要項目説明者
+		importantPointExplainerExtDto.setDescriptionName("説明者");
+		importantPointExplainerExtDto.setOrganizationName1("所属組織名1");
+		importantPointExplainerExtDto.setOrganizationName2("所属組織名2");
+		testTarget.setImportantPointExplainer(importantPointExplainerExtDto);
+		// 料金シュミレーション
+		feeSimulationHeadExtDto.setCreatedDate("2019/05/31");
+		feeSimulationHeadExtDto.setBasicListPrice(BigDecimal.valueOf(100));
+		feeSimulationHeadExtDto.setBasicSellingPrice(BigDecimal.valueOf(100));
+		feeSimulationHeadExtDto.setBasicBankPriceBusiness(BigDecimal.valueOf(100));
+		feeSimulationHeadExtDto.setBasicBankPriceRj(BigDecimal.valueOf(100));
+		feeSimulationHeadExtDto.setPeruseLightListPrice(BigDecimal.valueOf(100));
+		feeSimulationHeadExtDto.setPerUseLightSellingPrice(BigDecimal.valueOf(100));
+		feeSimulationHeadExtDto.setPerUseLightBankPriceBusiness(BigDecimal.valueOf(100));
+		feeSimulationHeadExtDto.setPerUseLightBankPriceRj(BigDecimal.valueOf(100));
+		feeSimulationHeadExtDto.setUsageFeeSummerListPrice(BigDecimal.valueOf(100));
+		feeSimulationHeadExtDto.setUsageFeeSummerSellingPrice(BigDecimal.valueOf(100));
+		feeSimulationHeadExtDto.setUsageFeeSummerBankPriceBusiness(BigDecimal.valueOf(100));
+		feeSimulationHeadExtDto.setUsageFeeSummerBankPriceRj(BigDecimal.valueOf(100));
+		feeSimulationHeadExtDto.setUsageFeeOtherSeasonListPrice(BigDecimal.valueOf(100));
+		feeSimulationHeadExtDto.setUsageFeeOtherSeasonSellingPrice(BigDecimal.valueOf(100));
+		feeSimulationHeadExtDto.setUsageFeeOtherSeasonBankPriceBusiness(BigDecimal.valueOf(100));
+		feeSimulationHeadExtDto.setUsageFeeOtherSeasonBankPriceRj(BigDecimal.valueOf(100));
+		testTarget.setFeeSimulationHead(feeSimulationHeadExtDto);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		Assert.assertEquals(2, result.getErrorInfoList().size());
 
 		// 異常系(@Min, @Decimal)
 		// テストデータ作成
@@ -1252,7 +1324,7 @@ public class TestContractDto {
 		testTarget.setElectricDealerContract(new ElectricDealerContractChangePlanExtDto());
 		testTarget.setFeeSimulationHead(new FeeSimulationHeadChangePlanExtDto());
 		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
-		Assert.assertEquals(39, result.getErrorInfoList().size());
+		Assert.assertEquals(41, result.getErrorInfoList().size());
 
 		// 異常系(@Size(max))
 		entity = contractElectricRepository.findOne(1L);
@@ -1376,6 +1448,78 @@ public class TestContractDto {
 		testTarget.setFeeSimulationHead(feeSimulationHeadExtDto);
 		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(61, result.getErrorInfoList().size());
+
+		// 異常系(@Size(min))
+		// テストデータ作成
+		testTarget.setCaseNumber("案件番号");
+		testTarget.setCaseTitle("案件名");
+		testTarget.setClientCode("得意先コード");
+		testTarget.setChangePreferredDate("2019/05/31");
+		testTarget.setId(1L);
+		// 契約(電力)
+		BeanUtils.copyProperties(entity.getEntryContentLowPressure(), contractElectricExtDto);
+		BeanUtils.copyProperties(entity, contractElectricExtDto);
+		contractElectricExtDto.setBasicMeterReadingDate("dd");
+		contractElectricExtDto.setElectricCommercialFlowDiv("直売");
+		contractElectricExtDto.setElectricCommercialFlowDivCode("1");
+		contractElectricExtDto.setFixTransferDestinationCode("修正時振替先コード");
+		contractElectricExtDto.setVoltageCategory("1");
+		contractElectricExtDto.setEntryDate("2019/05/31");
+		contractElectricExtDto.setContractUnit("1");
+		contractElectricExtDto.setSupplyStartScheduledDate("2019/05/31");
+		contractElectricExtDto.setPowerArea(entity.getElectricArea().toString());
+		testTarget.setContractElectric(contractElectricExtDto);
+		// 顧客
+		customerContractExtDto.setMomCustId("MoMkjbID");
+		customerContractExtDto.setCompanyId("MoM企業ID");
+		customerContractExtDto.setOfficeId("MoM事業所ID");
+		customerContractExtDto.setPicName("担当者氏名");
+		customerContractExtDto.setPicNameKana("担当者氏名(カナ)");
+		customerContractExtDto.setPicDeptName("担当者部署");
+		customerContractExtDto.setPicPhoneNumber("担当者電話番号");
+		customerContractExtDto.setPicFaxNumber("担当者FAX番号");
+		customerContractExtDto.setPicMailAddress("担当者メールアドレス");
+		testTarget.setCustomerContract(customerContractExtDto);
+		// メールアドレス情報
+		testTarget.setContractPersonMailAddressList(new ArrayList<MailAddressInformationChangePlanExtDto>());
+		// 請求先メールアドレス
+		testTarget.setBillingMailAddressList(new ArrayList<BillingMailAddressInformationChangePlanExtDto>());
+		// 契約担当SA社員
+		contractPicSaEmpExtDto.setMomEmployeeId("MoM社員ID");
+		testTarget.setContractPicSaEmp(contractPicSaEmpExtDto);
+		// 電力専任情報
+		electricExpertContractExtDto.setMomEmpId("MoM社員ID");
+		testTarget.setElectricExpertContract(electricExpertContractExtDto);
+		// 追加編集者
+		contractAddedEditorEmpExtDto.setMomEmployeeId("MoM社員ID");
+		contractAddedEditorEmpExtDtoList.add(contractAddedEditorEmpExtDto);
+		testTarget.setContractAddedEditorEmpList(contractAddedEditorEmpExtDtoList);
+		// 重要項目説明者
+		importantPointExplainerExtDto.setDescriptionName("説明者");
+		importantPointExplainerExtDto.setOrganizationName1("所属組織名1");
+		importantPointExplainerExtDto.setOrganizationName2("所属組織名2");
+		testTarget.setImportantPointExplainer(importantPointExplainerExtDto);
+		// 料金シュミレーション
+		feeSimulationHeadExtDto.setCreatedDate("2019/05/31");
+		feeSimulationHeadExtDto.setBasicListPrice(BigDecimal.valueOf(100));
+		feeSimulationHeadExtDto.setBasicSellingPrice(BigDecimal.valueOf(100));
+		feeSimulationHeadExtDto.setBasicBankPriceBusiness(BigDecimal.valueOf(100));
+		feeSimulationHeadExtDto.setBasicBankPriceRj(BigDecimal.valueOf(100));
+		feeSimulationHeadExtDto.setPeruseLightListPrice(BigDecimal.valueOf(100));
+		feeSimulationHeadExtDto.setPerUseLightSellingPrice(BigDecimal.valueOf(100));
+		feeSimulationHeadExtDto.setPerUseLightBankPriceBusiness(BigDecimal.valueOf(100));
+		feeSimulationHeadExtDto.setPerUseLightBankPriceRj(BigDecimal.valueOf(100));
+		feeSimulationHeadExtDto.setUsageFeeSummerListPrice(BigDecimal.valueOf(100));
+		feeSimulationHeadExtDto.setUsageFeeSummerSellingPrice(BigDecimal.valueOf(100));
+		feeSimulationHeadExtDto.setUsageFeeSummerBankPriceBusiness(BigDecimal.valueOf(100));
+		feeSimulationHeadExtDto.setUsageFeeSummerBankPriceRj(BigDecimal.valueOf(100));
+		feeSimulationHeadExtDto.setUsageFeeOtherSeasonListPrice(BigDecimal.valueOf(100));
+		feeSimulationHeadExtDto.setUsageFeeOtherSeasonSellingPrice(BigDecimal.valueOf(100));
+		feeSimulationHeadExtDto.setUsageFeeOtherSeasonBankPriceBusiness(BigDecimal.valueOf(100));
+		feeSimulationHeadExtDto.setUsageFeeOtherSeasonBankPriceRj(BigDecimal.valueOf(100));
+		testTarget.setFeeSimulationHead(feeSimulationHeadExtDto);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		Assert.assertEquals(2, result.getErrorInfoList().size());
 
 		// 異常系(@Min, @Decimal)
 		// テストデータ作成

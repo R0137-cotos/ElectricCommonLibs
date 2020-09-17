@@ -75,6 +75,7 @@ public class ContractElectricChangePlanExtInputDto {
 	 */
 	@Valid
 	@NotNull
+	@Size(min = 1)
 	@ApiModelProperty(value = "契約担当者メールアドレス", required = true, position = 8)
 	private List<MailAddressInformationChangePlanExtDto> contractPersonMailAddressList;
 
@@ -83,6 +84,7 @@ public class ContractElectricChangePlanExtInputDto {
 	 */
 	@Valid
 	@NotNull
+	@Size(min = 1)
 	@ApiModelProperty(value = "請求先メールアドレスリスト", required = true, position = 9)
 	private List<BillingMailAddressInformationChangePlanExtDto> billingMailAddressList;
 
