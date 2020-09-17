@@ -1072,7 +1072,6 @@ public class TestContractDto {
 		// メールアドレス情報
 		testTarget.setContractPersonMailAddressList(new ArrayList<MailAddressInformationCreateExtDto>());
 		// 請求先メールアドレス
-		billingMailAddressInformationExtDtoList.add(billingMailAddressInformationExtDto);
 		testTarget.setBillingMailAddressList(new ArrayList<BillingMailAddressInformationCreateExtDto>());
 		// 契約担当SA社員
 		contractPicSaEmpExtDto.setMomEmployeeId("MoM社員ID");
