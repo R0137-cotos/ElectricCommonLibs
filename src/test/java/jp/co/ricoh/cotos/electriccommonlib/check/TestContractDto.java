@@ -796,8 +796,11 @@ public class TestContractDto {
 		testTarget.setSalesDivisionCode(STR_256);
 		testTarget.setCollectMethod(STR_256);
 		testTarget.setBillingDiv(STR_256);
+		testTarget.setRjDepartmentName(STR_256);
+		testTarget.setTransferBankName(STR_256);
+		testTarget.setTransferBranchName(STR_256);
 		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
-		Assert.assertEquals(18, result.getErrorInfoList().size());
+		Assert.assertEquals(21, result.getErrorInfoList().size());
 	}
 
 	@Test
