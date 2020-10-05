@@ -111,19 +111,19 @@ public class AppropriationSearchResult {
 	 * 仕入金額(税抜)
 	 */
 	@ApiModelProperty(value = "仕入金額(税抜)", required = false, position = 16)
-	private BigDecimal partitionTotalChargeOutTax;
+	private BigDecimal purchaserTotalChargeOutTax;
 
 	/**
 	 * 仕入金額(税額)
 	 */
 	@ApiModelProperty(value = "仕入金額(税額)", required = false, position = 17)
-	private BigDecimal partitionTax;
+	private BigDecimal purchaserTax;
 
 	/**
 	 * 仕入金額(税込)
 	 */
 	@ApiModelProperty(value = "仕入金額(税込)", required = false, position = 18)
-	private BigDecimal partitionTotalChargeInTax;
+	private BigDecimal purchaserTotalChargeInTax;
 
 	/**
 	 * 仲介区分
