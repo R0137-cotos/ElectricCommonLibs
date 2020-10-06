@@ -275,6 +275,7 @@ public class ContractElectricChangePlanExtDto {
 	/**
 	 * 基本検針日(低圧)
 	 */
+	@NotNull
 	@Size(max = 255)
 	@ApiModelProperty(value = "基本検針日(低圧)", required = false, position = 33, allowableValues = "range[0,255]")
 	private String basicMeterReadingDate;

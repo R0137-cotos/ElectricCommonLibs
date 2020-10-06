@@ -174,11 +174,32 @@ public class BillingBasicInformationDto extends DtoBase {
 	private String billingDiv;
 
 	/**
-	 * メール配信
+	 * 口座引落前連絡メール配信
 	 */
 	@Max(9)
 	@Min(0)
-	@ApiModelProperty(value = "メール配信", required = false, position = 24, allowableValues = "range[0,9]")
+	@ApiModelProperty(value = "口座引落前連絡メール配信", required = false, position = 24, allowableValues = "range[0,9]")
 	private Integer sendMailFlg;
+
+	/**
+	 * RJ部門名
+	 */
+	@Size(max = 255)
+	@ApiModelProperty(value = "RJ部門名", required = false, position = 25, allowableValues = "range[0,255]")
+	private String rjDepartmentName;
+
+	/**
+	 * 振込先銀行名
+	 */
+	@Size(max = 255)
+	@ApiModelProperty(value = "振込先銀行名", required = false, position = 26, allowableValues = "range[0,255]")
+	private String transferBankName;
+
+	/**
+	 * 振込先銀行支店名
+	 */
+	@Size(max = 255)
+	@ApiModelProperty(value = "振込先銀行支店名", required = false, position = 27, allowableValues = "range[0,255]")
+	private String transferBranchName;
 
 }
