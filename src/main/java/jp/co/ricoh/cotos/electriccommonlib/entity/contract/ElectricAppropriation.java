@@ -777,4 +777,11 @@ public class ElectricAppropriation extends EntityBase {
 	@ApiModelProperty(value = "販売店電力料金", required = false, position = 92)
 	private BigDecimal tradingCompanyElectricCharge;
 
+	/**
+	 * 負荷率(動力).
+	 */
+	@Column(nullable = true)
+	@Digits(integer = 3, fraction = 2)
+	@ApiModelProperty(value = "負荷率", required = false, position = 93)
+	private BigDecimal loadFactor;
 }

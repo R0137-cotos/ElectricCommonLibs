@@ -796,8 +796,11 @@ public class TestContractDto {
 		testTarget.setSalesDivisionCode(STR_256);
 		testTarget.setCollectMethod(STR_256);
 		testTarget.setBillingDiv(STR_256);
+		testTarget.setRjDepartmentName(STR_256);
+		testTarget.setTransferBankName(STR_256);
+		testTarget.setTransferBranchName(STR_256);
 		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
-		Assert.assertEquals(18, result.getErrorInfoList().size());
+		Assert.assertEquals(21, result.getErrorInfoList().size());
 	}
 
 	@Test
@@ -823,6 +826,7 @@ public class TestContractDto {
 		contractElectricExtDto.setEntryDate("2019/05/31");
 		contractElectricExtDto.setCurrentElectricCompanyDiv("1");
 		contractElectricExtDto.setContractUnit("A");
+		contractElectricExtDto.setBasicMeterReadingDate("18");
 		contractElectricExtDto.setSupplyStartScheduledDate("2019/05/31");
 		contractElectricExtDto.setPowerArea(entity.getElectricArea().toString());
 		testTarget.setContractElectric(contractElectricExtDto);
@@ -911,7 +915,7 @@ public class TestContractDto {
 		testTarget.setElectricDealerContract(new ElectricDealerContractCreateExtDto());
 		testTarget.setFeeSimulationHead(new FeeSimulationHeadCreateExtDto());
 		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
-		Assert.assertEquals(39, result.getErrorInfoList().size());
+		Assert.assertEquals(40, result.getErrorInfoList().size());
 
 		// 異常系(@Size(max))
 		entity = contractElectricRepository.findOne(1L);
@@ -1063,6 +1067,7 @@ public class TestContractDto {
 		contractElectricExtDto.setEntryDate("2019/05/31");
 		contractElectricExtDto.setCurrentElectricCompanyDiv("1");
 		contractElectricExtDto.setContractUnit("A");
+		contractElectricExtDto.setBasicMeterReadingDate("18");
 		contractElectricExtDto.setSupplyStartScheduledDate("2019/05/31");
 		testTarget.setContractElectric(contractElectricExtDto);
 		// 顧客
@@ -1164,6 +1169,7 @@ public class TestContractDto {
 		contractElectricExtDto.setVoltageCategory("1");
 		contractElectricExtDto.setEntryDate("2019/05/31");
 		contractElectricExtDto.setContractUnit("1");
+		contractElectricExtDto.setBasicMeterReadingDate("18");
 		contractElectricExtDto.setSupplyStartScheduledDate("2019/05/31");
 		contractElectricExtDto.setPowerArea(entity.getElectricArea().toString());
 		testTarget.setContractElectric(contractElectricExtDto);
@@ -1252,7 +1258,7 @@ public class TestContractDto {
 		testTarget.setElectricDealerContract(new ElectricDealerContractChangePlanExtDto());
 		testTarget.setFeeSimulationHead(new FeeSimulationHeadChangePlanExtDto());
 		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
-		Assert.assertEquals(39, result.getErrorInfoList().size());
+		Assert.assertEquals(40, result.getErrorInfoList().size());
 
 		// 異常系(@Size(max))
 		entity = contractElectricRepository.findOne(1L);
@@ -1401,6 +1407,7 @@ public class TestContractDto {
 		contractElectricExtDto.setTransferCheckFlg(INT_MINUS_1);
 		contractElectricExtDto.setEntryDate("2019/05/31");
 		contractElectricExtDto.setContractUnit("1");
+		contractElectricExtDto.setBasicMeterReadingDate("18");
 		contractElectricExtDto.setSupplyStartScheduledDate("2019/05/31");
 		testTarget.setContractElectric(contractElectricExtDto);
 		// 顧客
