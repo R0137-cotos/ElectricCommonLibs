@@ -283,4 +283,11 @@ public class BillingBasicInformation extends EntityBase {
 	@ApiModelProperty(value = "振込先銀行支店名", required = false, position = 29, allowableValues = "range[0,255]")
 	private String transferBranchName;
 
+	/**
+	 * 自振口座_口座種別
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "自振口座_口座種別", required = false, position = 30, allowableValues = "range[0,255]")
+	private String debitBankAccountType;
+
 }
