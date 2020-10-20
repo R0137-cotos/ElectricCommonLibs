@@ -559,4 +559,11 @@ public class ContractElectric extends EntityBase {
 	@ApiModelProperty(value = "承認ルート名", required = false, position = 69, allowableValues = "range[0,255]")
 	private String approvalRouteName;
 
+	/**
+	 * 契約番号フリー入力フラグ
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "契約番号フリー入力フラグ", required = false, position = 70, allowableValues = "range[0,9]")
+	private Integer contractNumberFreeFlg;
+
 }
