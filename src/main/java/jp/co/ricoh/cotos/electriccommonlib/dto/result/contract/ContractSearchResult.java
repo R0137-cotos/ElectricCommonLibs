@@ -250,69 +250,81 @@ public class ContractSearchResult {
 	private ElectricCommercialFlowDiv commercialFlowDiv;
 
 	/**
+	 * 得意先CD
+	 */
+	@ApiModelProperty(value = "得意先CD", required = false, position = 38, allowableValues = "range[0,255]")
+	private String clientCode;
+
+	/**
+	 * 請求No
+	 */
+	@ApiModelProperty(value = "請求No", required = false, position = 39, allowableValues = "range[0,255]")
+	private String claimNumber;
+
+	/**
 	 * 請求年月
 	 */
-	@ApiModelProperty(value = "請求年月", required = false, position = 38, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "請求年月", required = false, position = 40, allowableValues = "range[0,255]")
 	private String billingYearMonth;
 
 	/**
 	 * 請求書発送区分
 	 */
-	@ApiModelProperty(value = "請求書発送区分", required = false, position = 39, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "請求書発送区分", required = false, position = 41, allowableValues = "range[0,255]")
 	private SendInvoiceDiv sendInvoiceDiv;
 
 	/**
 	 * 請求書出力フラグ
 	 */
-	@ApiModelProperty(value = "請求書出力フラグ", required = false, position = 40, allowableValues = "range[0,1]")
+	@ApiModelProperty(value = "請求書出力フラグ", required = false, position = 42, allowableValues = "range[0,1]")
 	private Integer invoiceOutputFlg;
 
 	/**
 	 * 未回収フラグ
 	 */
-	@ApiModelProperty(value = "未回収フラグ", required = false, position = 41, allowableValues = "range[0,1]")
+	@ApiModelProperty(value = "未回収フラグ", required = false, position = 43, allowableValues = "range[0,1]")
 	private Integer accruedFlg;
 
 	/**
 	 * 手数料金額
 	 */
-	@ApiModelProperty(value = "手数料金額", required = false, position = 42, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "手数料金額", required = false, position = 44, allowableValues = "range[0,255]")
 	private String tradingCompanyMediationFeeAmountInTax;
 
 	/**
 	 * 販売店ID
 	 */
-	@ApiModelProperty(value = "販売店ID", required = false, position = 43, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "販売店ID", required = false, position = 45, allowableValues = "range[0,255]")
 	private String companyId;
 
 	/**
 	 * 販売店名
 	 */
-	@ApiModelProperty(value = "販売店名", required = false, position = 44, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "販売店名", required = false, position = 46, allowableValues = "range[0,255]")
 	private String companyBusinessName;
 
 	/**
 	 * 解約月
 	 */
-	@ApiModelProperty(value = "解約月", required = false, position = 45, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "解約月", required = false, position = 47, allowableValues = "range[0,255]")
 	private String cancellationDate;
 
 	/**
 	 * 解約金請求
 	 */
-	@ApiModelProperty(value = "解約金請求", required = false, position = 46, allowableValues = "range[0,1]")
+	@ApiModelProperty(value = "解約金請求", required = false, position = 48, allowableValues = "range[0,1]")
 	private Integer cancellationBillingFlg;
 
 	/**
 	 * 解約金額
 	 */
-	@ApiModelProperty(value = "解約金額", required = false, position = 47, allowableValues = "range[0,20]")
+	@ApiModelProperty(value = "解約金額", required = false, position = 49, allowableValues = "range[0,20]")
 	private String cancellationAmount;
 
 	/**
 	 * 電力メニュー
 	 */
-	@ApiModelProperty(value = "電力メニュー", required = false, position = 48, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "電力メニュー", required = false, position = 50, allowableValues = "range[0,255]")
 	private String electricMenu;
 
 	@PrePersist
