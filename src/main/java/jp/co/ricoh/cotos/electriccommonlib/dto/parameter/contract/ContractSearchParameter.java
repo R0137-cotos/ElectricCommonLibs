@@ -408,6 +408,13 @@ public class ContractSearchParameter {
 	private String contractType;
 
 	/**
+	 * 更新案件は除く
+	 */
+	@ApiParam(value = "更新案件は除く", required = false)
+	@ApiModelProperty(value = "更新案件は除く", required = false)
+	private Integer autoUpdateExclude;
+
+	/**
 	 * パラメータをMapにする。
 	 */
 	public Map<String, Object> createParamaterMap() {
