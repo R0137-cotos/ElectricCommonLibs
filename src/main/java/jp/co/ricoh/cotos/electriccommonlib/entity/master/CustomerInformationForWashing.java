@@ -9,7 +9,7 @@ import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBaseMaster;
 import jp.co.ricoh.cotos.commonlib.entity.master.VKjbMaster.DepartmentDiv;
 import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
-import jp.co.ricoh.cotos.electriccommonlib.repository.master.CommissionMasterRepository;
+import jp.co.ricoh.cotos.electriccommonlib.repository.master.CustomerInformationForWashingRepository;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -20,7 +20,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Table(name = "customer_information_for_washing")
-@CotosComplementTarget(entity = CustomerInformationForWashing.class, repository = CommissionMasterRepository.class)
+@CotosComplementTarget(entity = CustomerInformationForWashing.class, repository = CustomerInformationForWashingRepository.class)
 public class CustomerInformationForWashing extends EntityBaseMaster {
 
 	@Id
