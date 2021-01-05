@@ -93,11 +93,16 @@ public class TestMasterElectricRepository extends RepositoryTestBase {
 
 	static ConfigurableApplicationContext context;
 
+	private static boolean dataLoaded = false;
+
 	@Autowired
 	public void injectContext(ConfigurableApplicationContext injectContext) {
 		context = injectContext;
-		context.getBean(DBConfig.class).clearData();
-		context.getBean(DBConfig.class).initTargetTestData("repository/master/Master.sql");
+		if (!dataLoaded) {
+			context.getBean(DBConfig.class).clearData();
+			context.getBean(DBConfig.class).initTargetTestData("repository/master/Master.sql");
+			dataLoaded = true;
+		}
 	}
 
 	@AfterClass
