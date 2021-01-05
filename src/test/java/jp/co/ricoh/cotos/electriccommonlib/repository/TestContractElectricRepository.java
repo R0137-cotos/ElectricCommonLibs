@@ -144,11 +144,15 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 
 	static ConfigurableApplicationContext context;
 
+	private static boolean dataLoaded = false;
+
 	@Autowired
 	public void injectContext(ConfigurableApplicationContext injectContext) {
 		context = injectContext;
-		context.getBean(DBConfig.class).clearData();
-		context.getBean(DBConfig.class).initTargetTestData("repository/contract/Electric.sql");
+		if (!dataLoaded) {
+			テストデータ設定();
+			dataLoaded = true;
+		}
 	}
 
 	@AfterClass
@@ -157,6 +161,11 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 			context.getBean(DBConfig.class).clearData();
 			context.stop();
 		}
+	}
+
+	public void テストデータ設定() {
+		context.getBean(DBConfig.class).clearData();
+		context.getBean(DBConfig.class).initTargetTestData("repository/contract/Electric.sql");
 	}
 
 	@Test
@@ -355,6 +364,7 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 		} catch (Exception e1) {
 			Assert.fail("例外が発生した場合、エラー");
 		}
+		テストデータ設定();
 	}
 
 	@Test
@@ -369,6 +379,7 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 		} catch (Exception e1) {
 			Assert.fail("例外が発生した場合、エラー");
 		}
+		テストデータ設定();
 	}
 
 	@Test
@@ -383,6 +394,7 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 		} catch (Exception e1) {
 			Assert.fail("例外が発生した場合、エラー");
 		}
+		テストデータ設定();
 	}
 
 	@Test
@@ -524,6 +536,7 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 			e1.printStackTrace();
 			Assert.fail("例外が発生した場合、エラー");
 		}
+		テストデータ設定();
 	}
 
 	@Test
@@ -640,6 +653,7 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 			e1.printStackTrace();
 			Assert.fail("例外が発生した場合、エラー");
 		}
+		テストデータ設定();
 	}
 
 	@Test
