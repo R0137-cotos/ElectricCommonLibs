@@ -42,6 +42,6 @@ public class MyricohUploadHistory extends EntityBase {
 	 * MyRICOHユーザーID
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "MyRICOHユーザーID", required = true, position = 3, allowableValues = "range[0,1000]")
+	@ApiModelProperty(value = "MyRICOHユーザーID", required = true, position = 3, allowableValues = "range[0,255]")
 	private String myricohId;
 }
