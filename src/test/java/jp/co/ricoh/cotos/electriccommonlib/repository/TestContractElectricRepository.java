@@ -36,6 +36,7 @@ import jp.co.ricoh.cotos.electriccommonlib.entity.contract.ContractElectric;
 import jp.co.ricoh.cotos.electriccommonlib.entity.contract.ElectricAppropriation;
 import jp.co.ricoh.cotos.electriccommonlib.entity.contract.ElectricDealerContract;
 import jp.co.ricoh.cotos.electriccommonlib.entity.contract.MonthlyElectricDealerContract;
+import jp.co.ricoh.cotos.electriccommonlib.entity.contract.MyricohUploadHistory;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.AgencyContractInformationRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.BillingBasicInformationRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.BillingHistoryRepository;
@@ -56,6 +57,7 @@ import jp.co.ricoh.cotos.electriccommonlib.repository.contract.FfmAccountReposit
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.ImportantPointExplainerRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.MailAddressInformationRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.MonthlyElectricDealerContractRepository;
+import jp.co.ricoh.cotos.electriccommonlib.repository.contract.MyricohUploadHistoryRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.UnitPriceHighPressureRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.UnitPriceLowPressureRepository;
 import jp.co.ricoh.cotos.electriccommonlib.security.CotosElcAuthenticationDetails;
@@ -129,6 +131,9 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 
 	@Autowired
 	ElectricPaymentAttachedFileRepository electricPaymentAttachedFileRepository;
+
+	@Autowired
+	MyricohUploadHistoryRepository myricohUploadHistoryRepository;
 
 	@Autowired
 	TestTools testTools;
@@ -347,6 +352,19 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 		// null項目なく取得できていることを確認
 		try {
 			testTools.assertColumnsNotNull(billingBasicInformation);
+		} catch (Exception e1) {
+			Assert.fail("例外が発生した場合、エラー");
+		}
+	}
+
+	@Test
+	public void 全てのカラムがNullではないことを確認_MyRICOH連携実績() {
+
+		MyricohUploadHistory myricohUploadHistory = myricohUploadHistoryRepository.findOne(1L);
+
+		// null項目なく取得できていることを確認
+		try {
+			testTools.assertColumnsNotNull(myricohUploadHistory);
 		} catch (Exception e1) {
 			Assert.fail("例外が発生した場合、エラー");
 		}
