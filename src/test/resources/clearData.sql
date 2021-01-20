@@ -46,3 +46,4 @@ DELETE from electric_payment_attached_file;
 DELETE from electric_approval_route_master;
 DELETE from electric_approval_route_pattern_master;
 DELETE from customer_information_for_washing;
+DELETE from myricoh_upload_history;
