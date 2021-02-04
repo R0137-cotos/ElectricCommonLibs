@@ -630,7 +630,7 @@ public class CotosSecurityTests {
 
 		// 承認依頼者
 		MvEmployeeMaster requester = new MvEmployeeMaster();
-		requester.setSingleUserId("u0201125");
+		requester.setSingleUserId("u0201364");
 		parameter.setRequesterMvEmployeeMaster(requester);
 
 		// 電力用MoM権限共通処理を実行
