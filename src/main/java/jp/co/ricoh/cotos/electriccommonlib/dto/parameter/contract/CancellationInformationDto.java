@@ -126,6 +126,7 @@ public class CancellationInformationDto extends DtoBase {
 	/**
 	 * 非請求理由
 	 */
+	@Size(max = 4000)
 	@ApiModelProperty(value = "非請求理由", required = true, position = 16, allowableValues = "range[0,4000]")
 	private String nonBillingReason;
 
