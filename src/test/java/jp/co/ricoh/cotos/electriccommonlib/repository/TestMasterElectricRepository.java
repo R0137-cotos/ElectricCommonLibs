@@ -28,6 +28,7 @@ import jp.co.ricoh.cotos.electriccommonlib.entity.master.HighContractCalendarMas
 import jp.co.ricoh.cotos.electriccommonlib.entity.master.ProfitTransferDepartmentMaster;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.ClientMasterRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.master.CommissionMasterRepository;
+import jp.co.ricoh.cotos.electriccommonlib.repository.master.CustomerInformationForWashingRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.master.ElectricApprovalRouteMasterRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.master.ElectricApprovalRoutePatternMasterRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.master.ElectricAreaMasterRepository;
@@ -47,6 +48,9 @@ public class TestMasterElectricRepository extends RepositoryTestBase {
 
 	@Autowired
 	ClientMasterRepository clientMasterRepository;
+
+	@Autowired
+	CustomerInformationForWashingRepository customerInformationForWashingRepository;
 
 	@Autowired
 	ElectricCompanyMasterRepository electricCompanyMasterRepository;
@@ -89,11 +93,16 @@ public class TestMasterElectricRepository extends RepositoryTestBase {
 
 	static ConfigurableApplicationContext context;
 
+	private static boolean dataLoaded = false;
+
 	@Autowired
 	public void injectContext(ConfigurableApplicationContext injectContext) {
 		context = injectContext;
-		context.getBean(DBConfig.class).clearData();
-		context.getBean(DBConfig.class).initTargetTestData("repository/master/Master.sql");
+		if (!dataLoaded) {
+			context.getBean(DBConfig.class).clearData();
+			context.getBean(DBConfig.class).initTargetTestData("repository/master/Master.sql");
+			dataLoaded = true;
+		}
 	}
 
 	@AfterClass
@@ -107,6 +116,11 @@ public class TestMasterElectricRepository extends RepositoryTestBase {
 	@Test
 	public void 全てのカラムがNullではないことを確認_マスタ_電力エリアマスタ() {
 		全てのカラムがNullではないことを確認_マスタ(electricAreaMasterRepository, 1L);
+	}
+
+	@Test
+	public void 全てのカラムがNullではないことを確認_マスタ_洗替用_企業情報() {
+		全てのカラムがNullではないことを確認_マスタ(customerInformationForWashingRepository, 1L);
 	}
 
 	@Test

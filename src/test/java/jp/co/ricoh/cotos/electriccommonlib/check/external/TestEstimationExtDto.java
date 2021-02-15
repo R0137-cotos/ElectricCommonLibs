@@ -59,6 +59,8 @@ public class TestEstimationExtDto {
 
 	static ConfigurableApplicationContext context;
 
+	private static boolean dataLoaded = false;
+
 	@Autowired
 	TestTools testTool;
 
@@ -68,8 +70,11 @@ public class TestEstimationExtDto {
 	@Autowired
 	public void injectContext(ConfigurableApplicationContext injectContext) {
 		context = injectContext;
-		context.getBean(DBConfig.class).clearData();
-		context.getBean(DBConfig.class).initTargetTestData("repository/estimation/EstimationElectric.sql");
+		if (!dataLoaded) {
+			context.getBean(DBConfig.class).clearData();
+			context.getBean(DBConfig.class).initTargetTestData("repository/estimation/EstimationElectric.sql");
+			dataLoaded = true;
+		}
 	}
 
 	@Autowired

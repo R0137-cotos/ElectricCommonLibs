@@ -192,7 +192,7 @@ public class CancellationInformation extends EntityBase {
 	 * 非請求理由
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "非請求理由", required = false, position = 16, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "非請求理由", required = false, position = 16, allowableValues = "range[0,4000]")
 	private String nonBillingReason;
 
 	/**

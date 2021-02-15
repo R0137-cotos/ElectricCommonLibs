@@ -337,4 +337,11 @@ public class BillingHistory extends EntityBase {
 	@ApiModelProperty(value = "電力区分", required = true, position = 27, allowableValues = "高圧(\"1\"), 低圧(\"2\")", example = "1")
 	private VoltageCategory voltageCategory;
 
+	/**
+	 * 請求書発行年月日
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "請求書発行年月日", required = false, position = 28)
+	@Temporal(TemporalType.DATE)
+	private Date invoiceIssueDate;
 }
