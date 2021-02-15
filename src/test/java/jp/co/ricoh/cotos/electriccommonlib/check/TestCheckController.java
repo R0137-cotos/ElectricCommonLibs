@@ -64,6 +64,8 @@ import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.Est
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.EstimationPicSaEmpExtDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.FeeSimulationHeadExtDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.LongtermDiscountEstimationInformationExtDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.master.external.CustomerInformationExtWashingDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.master.external.CustomerInformationForWashingExtDto;
 import jp.co.ricoh.cotos.electriccommonlib.security.bean.ParamterCheckResult;
 import lombok.Data;
 
@@ -337,6 +339,16 @@ public class TestCheckController {
 
 	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/EstimationElectricPlanChangeParamDto")
 	public ParamterCheckResult callParamterCheck(@RequestBody @Validated EstimationElectricPlanChangeParamDto dto, BindingResult result) {
+		return createParameterCheckResult(result);
+	}
+
+	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/CustomerInformationForWashingExtDto")
+	public ParamterCheckResult callParamterCheck(@RequestBody @Validated CustomerInformationForWashingExtDto dto, BindingResult result) {
+		return createParameterCheckResult(result);
+	}
+
+	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/CustomerInformationExtWashingDto")
+	public ParamterCheckResult callParamterCheck(@RequestBody @Validated CustomerInformationExtWashingDto dto, BindingResult result) {
 		return createParameterCheckResult(result);
 	}
 }
