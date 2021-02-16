@@ -498,4 +498,10 @@ public class ContractElectricDto extends DtoBase {
 	@ApiModelProperty(value = "契約番号フリー入力フラグ", required = false, position = 69, allowableValues = "range[0,9]")
 	private Integer contractNumberFreeFlg;
 
+	/**
+	 * 締め日カレンダーチェックフラグ
+	 */
+	@ApiModelProperty(value = "締め日カレンダーチェックフラグ", required = false, position = 70, allowableValues = "range[0,9]")
+	private Integer contractCalendarCheckFlg;
+
 }
