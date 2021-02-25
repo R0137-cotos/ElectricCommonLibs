@@ -10,6 +10,8 @@ import javax.persistence.Table;
 
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBaseMaster;
+import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
+import jp.co.ricoh.cotos.electriccommonlib.repository.master.ContractSignatureMasterRepository;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -20,6 +22,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Table(name = "contract_signature_master")
+@CotosComplementTarget(entity = ContractSignatureMaster.class, repository = ContractSignatureMasterRepository.class)
 public class ContractSignatureMaster extends EntityBaseMaster {
 
 	@Id
