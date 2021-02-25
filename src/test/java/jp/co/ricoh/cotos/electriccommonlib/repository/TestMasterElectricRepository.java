@@ -28,6 +28,7 @@ import jp.co.ricoh.cotos.electriccommonlib.entity.master.HighContractCalendarMas
 import jp.co.ricoh.cotos.electriccommonlib.entity.master.ProfitTransferDepartmentMaster;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.ClientMasterRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.master.CommissionMasterRepository;
+import jp.co.ricoh.cotos.electriccommonlib.repository.master.ContractSignatureMasterRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.master.CustomerInformationForWashingRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.master.ElectricApprovalRouteMasterRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.master.ElectricApprovalRoutePatternMasterRepository;
@@ -87,6 +88,9 @@ public class TestMasterElectricRepository extends RepositoryTestBase {
 
 	@Autowired
 	ElectricApprovalRoutePatternMasterRepository electricApprovalRoutePatternMasterRepository;
+
+	@Autowired
+	ContractSignatureMasterRepository contractSignatureMasterRepository;
 
 	@Autowired
 	TestTools testTools;
@@ -176,6 +180,11 @@ public class TestMasterElectricRepository extends RepositoryTestBase {
 	@Test
 	public void 全てのカラムがNullではないことを確認_マスタ_電力承認ルートパターンマスタ() {
 		全てのカラムがNullではないことを確認_マスタ(electricApprovalRoutePatternMasterRepository, 1L);
+	}
+
+	@Test
+	public void 全てのカラムがNullではないことを確認_マスタ_契約書署名マスタ() {
+		全てのカラムがNullではないことを確認_マスタ(contractSignatureMasterRepository, 1L);
 	}
 
 	@Test
