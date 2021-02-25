@@ -17,6 +17,7 @@ import jp.co.ricoh.cotos.electriccommonlib.DBConfig;
 import jp.co.ricoh.cotos.electriccommonlib.TestTools;
 import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.ElectricCommercialFlowDiv;
 import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.VoltageCategory;
+import jp.co.ricoh.cotos.electriccommonlib.entity.master.ContractSignatureMaster;
 import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricDealerMaster;
 import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricFormMaster;
 import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricFormMaster.CancellationDiv;
@@ -261,5 +262,21 @@ public class TestMasterElectricRepository extends RepositoryTestBase {
 			Assert.fail("例外が発生した場合、エラー");
 		}
 
+	}
+
+	@Test
+	public void 全てのカラムがNullではないことを確認_マスタ_契約書署名マスタ_検索キーより取得() {
+
+		String searchKey = "SEARCH_KEY";
+
+		// 検索キーより契約書署名マスタを取得
+		ContractSignatureMaster contractSignatureMaster = contractSignatureMasterRepository.findBySearchKey(searchKey);
+
+		// null項目なく取得できていることを確認
+		try {
+			testTools.assertColumnsNotNull(contractSignatureMaster);
+		} catch (Exception e1) {
+			Assert.fail("例外が発生した場合、エラー");
+		}
 	}
 }
