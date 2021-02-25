@@ -8,4 +8,6 @@ import jp.co.ricoh.cotos.electriccommonlib.entity.master.ContractSignatureMaster
 @Repository
 public interface ContractSignatureMasterRepository extends CrudRepository<ContractSignatureMaster, Long> {
 
+	public ContractSignatureMaster findBySearchKey(String searchKey);
+
 }
