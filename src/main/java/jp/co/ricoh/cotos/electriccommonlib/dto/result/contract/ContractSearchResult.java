@@ -151,11 +151,11 @@ public class ContractSearchResult {
 	private String simNumber;
 
 	/**
-	 * 契約書初回作成日
+	 * 契約書最終作成日
 	 */
 	@JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ssZ", timezone = "Asia/Tokyo")
-	@ApiModelProperty(value = "契約書初回作成日", required = false, position = 22)
-	private Date contractFirstCreationDate;
+	@ApiModelProperty(value = "契約書最終作成日", required = false, position = 22)
+	private Date contractLastCreationDate;
 
 	/**
 	 * 請求開始月
