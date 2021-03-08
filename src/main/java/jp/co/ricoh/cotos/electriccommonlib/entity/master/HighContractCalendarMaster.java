@@ -18,6 +18,8 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBaseMaster;
+import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
+import jp.co.ricoh.cotos.electriccommonlib.repository.master.HighContractCalendarMasterRepository;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -28,6 +30,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Table(name = "high_contract_calendar_master")
+@CotosComplementTarget(entity = HighContractCalendarMaster.class, repository = HighContractCalendarMasterRepository.class)
 public class HighContractCalendarMaster extends EntityBaseMaster {
 
 	public enum DetermineCondition {
