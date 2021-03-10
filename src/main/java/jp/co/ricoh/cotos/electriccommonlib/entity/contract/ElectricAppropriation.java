@@ -784,4 +784,20 @@ public class ElectricAppropriation extends EntityBase {
 	@Digits(integer = 3, fraction = 2)
 	@ApiModelProperty(value = "負荷率", required = false, position = 93)
 	private BigDecimal loadFactor;
+
+	/**
+	 * 再エネ賦課金減免額.
+	 */
+	@Column(nullable = true)
+	@Digits(integer = 17, fraction = 2)
+	@ApiModelProperty(value = "再エネ賦課金減免額", required = false, position = 94)
+	private BigDecimal reExemptionAmount;
+
+	/**
+	 * 再エネ賦課金減免率.
+	 */
+	@Column(nullable = true)
+	@Digits(integer = 3, fraction = 2)
+	@ApiModelProperty(value = "再エネ賦課金減免率", required = false, position = 95)
+	private BigDecimal reExemptionRate;
 }
