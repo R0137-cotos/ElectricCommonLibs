@@ -573,4 +573,11 @@ public class ContractElectric extends EntityBase {
 	@ApiModelProperty(value = "締め日カレンダーチェックフラグ", required = false, position = 71, allowableValues = "range[0,9]")
 	private Integer contractCalendarCheckFlg;
 
+	/**
+	 * 契約締結促進メールフラグ
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "契約締結促進メールフラグ", required = false, position = 72, allowableValues = "range[0,9]")
+	private Integer contractReminderMailFlg;
+
 }
