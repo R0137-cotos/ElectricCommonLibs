@@ -510,4 +510,11 @@ public class ContractElectricDto extends DtoBase {
 	@ApiModelProperty(value = "契約締結促進メールフラグ", required = false, position = 71, allowableValues = "range[0,9]")
 	private Integer contractReminderMailFlg;
 
+	/**
+	 * 契約書未返送アラート判定基準日
+	 */
+	@ApiModelProperty(value = "契約書未返送アラート判定基準日", required = false, position = 72)
+	@Temporal(TemporalType.DATE)
+	private Date contractReminderJudgeDate;
+
 }

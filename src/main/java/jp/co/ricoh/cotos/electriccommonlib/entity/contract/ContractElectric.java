@@ -580,4 +580,11 @@ public class ContractElectric extends EntityBase {
 	@ApiModelProperty(value = "契約締結促進メールフラグ", required = false, position = 72, allowableValues = "range[0,9]")
 	private Integer contractReminderMailFlg;
 
+	/**
+	 * 契約書未返送アラート判定基準日
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "契約書未返送アラート判定基準日", required = false, position = 73)
+	@Temporal(TemporalType.DATE)
+	private Date contractReminderJudgeDate;
 }
