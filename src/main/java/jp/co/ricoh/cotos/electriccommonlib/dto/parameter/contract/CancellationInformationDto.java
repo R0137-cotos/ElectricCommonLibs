@@ -143,4 +143,18 @@ public class CancellationInformationDto extends DtoBase {
 	 */
 	@ApiModelProperty(value = "解約種別", required = true, position = 18, allowableValues = "消滅(\"1\"), 他社への切り替え(\"1\")", example = "1")
 	private CancellationDiv cancellationDiv;
+
+	/**
+	 * 訪問予定日
+	 */
+	@Temporal(TemporalType.DATE)
+	@ApiModelProperty(value = "訪問予定日", required = false, position = 19)
+	private Date expectedVisitDate;
+
+	/**
+	 * 変更先の電力会社
+	 */
+	@Size(max = 255)
+	@ApiModelProperty(value = "変更先の電力会社", required = false, position = 20, allowableValues = "range[0,255]")
+	private String powerCompanyAfterChange;
 }
