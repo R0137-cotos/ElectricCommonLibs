@@ -487,12 +487,12 @@ public class ContractElectric extends EntityBase {
 	private String electricMenuCode;
 
 	/**
-	 * 契約書初回作成日
+	 * 契約書最終作成日
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "契約書初回作成日", required = false, position = 59)
+	@ApiModelProperty(value = "契約書最終作成日", required = false, position = 59)
 	@Temporal(TemporalType.DATE)
-	private Date contractFirstCreationDate;
+	private Date contractLastCreationDate;
 
 	/**
 	 * 重要事項説明者
@@ -573,4 +573,18 @@ public class ContractElectric extends EntityBase {
 	@ApiModelProperty(value = "締め日カレンダーチェックフラグ", required = false, position = 71, allowableValues = "range[0,9]")
 	private Integer contractCalendarCheckFlg;
 
+	/**
+	 * 契約締結促進メールフラグ
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "契約締結促進メールフラグ", required = false, position = 72, allowableValues = "range[0,9]")
+	private Integer contractReminderMailFlg;
+
+	/**
+	 * 契約書未返送アラート判定基準日
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "契約書未返送アラート判定基準日", required = false, position = 73)
+	@Temporal(TemporalType.DATE)
+	private Date contractReminderJudgeDate;
 }
