@@ -284,4 +284,18 @@ public class SettleUssDifferrenceInfoHighVolt extends EntityBase {
 	@ApiModelProperty(value = "仕切前月調整", required = false, position = 35)
 	private BigDecimal partitionAdjustment;
 
+	/**
+	 * 前月_再エネ賦課金減免率
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "前月_再エネ賦課金減免率", required = false, position = 36)
+	private BigDecimal ultReExemptionRate;
+
+	/**
+	 * 確定後_再エネ賦課金減免額.
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "確定後_再エネ賦課金減免額", required = false, position = 37)
+	private BigDecimal confirmReExemptionAmount;
+
 }
