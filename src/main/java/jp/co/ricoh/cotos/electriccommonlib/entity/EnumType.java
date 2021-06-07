@@ -79,7 +79,7 @@ public class EnumType {
 	public enum SendInvoiceDiv {
 
 		// メール+MyRICOH
-		メール_MyRICOH("1"), メール("2"), 紙請求("3"), メール_紙請求("4"), MyRICOH("5");
+		メール_MyRICOH("1"), メール("2"), 紙請求("3"), メール_紙請求("4"), MyRICOH("5"), 特殊加工請求("6");
 
 		private final String text;
 
