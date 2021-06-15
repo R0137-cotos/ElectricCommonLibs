@@ -47,11 +47,18 @@ public class RegisterArrangementResultExtDto {
 	private String changePreferredDate;
 
 	/**
+	 * 解約日
+	 */
+	@Size(max = 255)
+	@ApiModelProperty(value = "解約日", required = false, position = 5, allowableValues = "range[0,255]")
+	private String cancellationDate;
+
+	/**
 	 * 契約(電力)
 	 */
 	@Valid
 	@NotNull
-	@ApiModelProperty(value = "契約(電力)", required = true, position = 5)
+	@ApiModelProperty(value = "契約(電力)", required = true, position = 6)
 	private RegisterArrangementResultContractElectricExtDto contractElectric;
 
 	/**
@@ -59,21 +66,21 @@ public class RegisterArrangementResultExtDto {
 	 */
 	@Valid
 	@NotNull
-	@ApiModelProperty(value = "顧客", required = true, position = 6)
+	@ApiModelProperty(value = "顧客", required = true, position = 7)
 	private RegisterArrangementResultCustomerContractExtDto customerContract;
 
 	/**
 	 * 契約担当者メールアドレス
 	 */
 	@Valid
-	@ApiModelProperty(value = "契約担当者メールアドレス", required = false, position = 7)
+	@ApiModelProperty(value = "契約担当者メールアドレス", required = false, position = 8)
 	private List<RegisterArrangementResultMailAddressInfoExtDto> contractPersonMailAddressList;
 
 	/**
 	 * 請求先メールアドレスリスト
 	 */
 	@Valid
-	@ApiModelProperty(value = "請求先メールアドレスリスト", required = false, position = 8)
+	@ApiModelProperty(value = "請求先メールアドレスリスト", required = false, position = 9)
 	private List<RegisterArrangementResultBillingMailAddressInfoExtDto> billingMailAddressList;
 
 	/**
@@ -81,7 +88,7 @@ public class RegisterArrangementResultExtDto {
 	 */
 	@Valid
 	@NotNull
-	@ApiModelProperty(value = "契約担当SA社員", required = true, position = 9)
+	@ApiModelProperty(value = "契約担当SA社員", required = true, position = 10)
 	private RegisterArrangementResultContractPicSaEmpExtDto contractPicSaEmp;
 
 	/**
@@ -89,20 +96,20 @@ public class RegisterArrangementResultExtDto {
 	 */
 	@Valid
 	@NotNull
-	@ApiModelProperty(value = "電力専任情報", required = true, position = 10)
+	@ApiModelProperty(value = "電力専任情報", required = true, position = 11)
 	private RegisterArrangementResultElectricExpertContractExtDto electricExpertContract;
 
 	/**
 	 * 追加編集者
 	 */
 	@Valid
-	@ApiModelProperty(value = "追加編集者", required = false, position = 11)
+	@ApiModelProperty(value = "追加編集者", required = false, position = 12)
 	private List<RegisterArrangementResultContractAddedEditorEmpExtDto> contractAddedEditorEmpList;
 
 	/**
 	 * 販売店情報
 	 */
 	@Valid
-	@ApiModelProperty(value = "販売店情報", required = false, position = 12)
+	@ApiModelProperty(value = "販売店情報", required = false, position = 13)
 	private RegisterArrangementResultElectricDealerContractExtDto electricDealerContract;
 }
