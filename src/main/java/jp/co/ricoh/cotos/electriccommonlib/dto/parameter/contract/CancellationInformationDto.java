@@ -157,4 +157,11 @@ public class CancellationInformationDto extends DtoBase {
 	@Size(max = 255)
 	@ApiModelProperty(value = "変更先の電力会社", required = false, position = 20, allowableValues = "range[0,255]")
 	private String powerCompanyAfterChange;
+
+	/**
+	 * 手配結果登録日
+	 */
+	@Temporal(TemporalType.DATE)
+	@ApiModelProperty(value = "手配結果登録日", required = false, position = 21)
+	private Date registerArrangedDate;
 }
