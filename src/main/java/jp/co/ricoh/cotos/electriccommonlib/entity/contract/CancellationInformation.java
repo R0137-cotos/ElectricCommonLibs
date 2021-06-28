@@ -210,4 +210,12 @@ public class CancellationInformation extends EntityBase {
 	@Column(nullable = true)
 	@ApiModelProperty(value = "解約種別", required = false, position = 18, allowableValues = "消滅(\"1\"), 他社への切り替え(\"2\"), 無し(\"99\")", example = "1")
 	private CancellationDiv cancellationDiv;
+
+	/**
+	 * 手配結果登録日
+	 */
+	@Column(nullable = true)
+	@Temporal(TemporalType.DATE)
+	@ApiModelProperty(value = "手配結果登録日", required = false, position = 19)
+	private Date registerArrangedDate;
 }
