@@ -44,7 +44,7 @@ public class CancellationInformation extends EntityBase {
 
 	public enum CancellationReason {
 
-		倒産("1"), 会社統合("2"), 事業所閉鎖("3"), 強制解約("4"), 未払い("5"), 約款に違反し申し出ても是正されない("6");
+		移転("1"), 売却("2"), 閉鎖("3"), 建替え("4"), 使用停止("5"), 低圧ー高圧("6"), リコージャパンよりも削減効果が大きい("11"), 切替先と取引関係がある("12"), リコージャパンの対応に不満("13"), その他("14");
 
 		private final String text;
 
@@ -210,4 +210,27 @@ public class CancellationInformation extends EntityBase {
 	@Column(nullable = true)
 	@ApiModelProperty(value = "解約種別", required = false, position = 18, allowableValues = "消滅(\"1\"), 他社への切り替え(\"2\"), 無し(\"99\")", example = "1")
 	private CancellationDiv cancellationDiv;
+
+	/**
+	 * 訪問予定日
+	 */
+	@Column(nullable = true)
+	@Temporal(TemporalType.DATE)
+	@ApiModelProperty(value = "訪問予定日", required = false, position = 19)
+	private Date expectedVisitDate;
+
+	/**
+	 * 変更先の電力会社
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "変更先の電力会社", required = false, position = 20, allowableValues = "range[0,255]")
+	private String powerCompanyAfterChange;
+
+	/**
+	 * 手配結果登録日
+	 */
+	@Column(nullable = true)
+	@Temporal(TemporalType.DATE)
+	@ApiModelProperty(value = "手配結果登録日", required = false, position = 21)
+	private Date registerArrangedDate;
 }
