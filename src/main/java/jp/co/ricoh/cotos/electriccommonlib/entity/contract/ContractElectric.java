@@ -587,4 +587,11 @@ public class ContractElectric extends EntityBase {
 	@ApiModelProperty(value = "契約書未返送アラート判定基準日", required = false, position = 73)
 	@Temporal(TemporalType.DATE)
 	private Date contractReminderJudgeDate;
+
+	/**
+	 * 現在の契約番号入力フォーム識別子
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "現在の契約番号入力フォーム識別子", required = false, position = 74, allowableValues = "range[0,9]")
+	private Integer currentContractNumberFormIdentifier;
 }

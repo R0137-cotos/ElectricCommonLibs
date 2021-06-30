@@ -517,4 +517,10 @@ public class ContractElectricDto extends DtoBase {
 	@Temporal(TemporalType.DATE)
 	private Date contractReminderJudgeDate;
 
+	/**
+	 * 現在の契約番号入力フォーム識別子
+	 */
+	@ApiModelProperty(value = "現在の契約番号入力フォーム識別子", required = false, position = 73, allowableValues = "range[0,9]")
+	private Integer currentContractNumberFormIdentifier;
+
 }
