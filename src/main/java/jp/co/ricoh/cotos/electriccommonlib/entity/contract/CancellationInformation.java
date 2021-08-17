@@ -227,11 +227,11 @@ public class CancellationInformation extends EntityBase {
 	private String powerCompanyAfterChange;
 
 	/**
-	 * 手配結果登録日
+	 * 手配結果登録確定日
 	 */
 	@Column(nullable = true)
 	@Temporal(TemporalType.DATE)
-	@ApiModelProperty(value = "手配結果登録日", required = false, position = 21)
+	@ApiModelProperty(value = "手配結果登録確定日", required = false, position = 21)
 	private Date registerArrangedDate;
 
 	/**
