@@ -35,4 +35,18 @@ public class ImportantPointExplainerDto extends DtoBase {
 	@Size(max = 255)
 	@ApiModelProperty(value = "所属組織名2", required = false, position = 5, allowableValues = "range[0,255]")
 	private String organizationName2;
+
+	/**
+	 * 連絡先
+	 */
+	@Size(max = 255)
+	@ApiModelProperty(value = "連絡先", required = false, position = 6, allowableValues = "range[0,255]")
+	private String contactInformation;
+
+	/**
+	 * 会社名
+	 */
+	@Size(max = 255)
+	@ApiModelProperty(value = "会社名", required = false, position = 7, allowableValues = "range[0,255]")
+	private String companyName;
 }
