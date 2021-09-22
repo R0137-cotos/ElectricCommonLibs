@@ -523,4 +523,9 @@ public class ContractElectricDto extends DtoBase {
 	@ApiModelProperty(value = "現在の契約番号入力フォーム識別子", required = false, position = 73, allowableValues = "range[0,9]")
 	private Integer currentContractNumberFormIdentifier;
 
+	/**
+	 * 契約満了前チェックフラグ
+	 */
+	@ApiModelProperty(value = "契約満了前チェックフラグ", required = false, position = 74, allowableValues = "range[0,9]")
+	private Integer beforeContractExpiryCheckFlg;
 }
