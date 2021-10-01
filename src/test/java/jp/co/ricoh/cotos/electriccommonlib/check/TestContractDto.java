@@ -764,8 +764,10 @@ public class TestContractDto {
 		testTarget.setDescriptionName(STR_256);
 		testTarget.setOrganizationName1(STR_256);
 		testTarget.setOrganizationName2(STR_256);
+		testTarget.setContactInformation(STR_256);
+		testTarget.setCompanyName(STR_256);
 		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
-		Assert.assertEquals(3, result.getErrorInfoList().size());
+		Assert.assertEquals(5, result.getErrorInfoList().size());
 	}
 
 	@Test
