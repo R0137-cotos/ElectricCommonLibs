@@ -143,4 +143,18 @@ public class CancellationInformationDto extends DtoBase {
 	 */
 	@ApiModelProperty(value = "解約種別", required = true, position = 18, allowableValues = "消滅(\"1\"), 他社への切り替え(\"1\")", example = "1")
 	private CancellationDiv cancellationDiv;
+
+	/**
+	 * 手配結果登録確定日
+	 */
+	@Temporal(TemporalType.DATE)
+	@ApiModelProperty(value = "手配結果登録確定日", required = false, position = 19)
+	private Date registerArrangedDate;
+
+	/**
+	 * （解約手続時点）需給（供給）期間 終了日
+	 */
+	@Temporal(TemporalType.DATE)
+	@ApiModelProperty(value = "（解約手続時点）需給（供給）期間 終了日", required = false, position = 20)
+	private Date contractYmdEndAtCancellation;
 }
