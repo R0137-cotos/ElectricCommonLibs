@@ -85,7 +85,7 @@ public class ElectricFormMaster extends EntityBaseMaster {
 	
 	public enum CancellationDiv {
 
-		消滅("1"), 他社への切り替え("2"), 無し("99");
+		消滅("1"), 他社への切り替え_お客様申込("2"), 他社への切り替え_広域申込("3"), 無し("99");
 
 		private final String text;
 
