@@ -2,6 +2,8 @@ DELETE from mail_address_information;
 DELETE from entry_content_high_pressure;
 DELETE from entry_content_low_pressure;
 DELETE from cancellation_information;
+DELETE from cancellation_detail_information;
+DELETE from cancellation_reason_information;
 DELETE from contract_electric_attached_file;
 DELETE from unit_price_high_pressure;
 DELETE from unit_price_low_pressure;

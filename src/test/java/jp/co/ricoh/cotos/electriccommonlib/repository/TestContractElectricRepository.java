@@ -41,7 +41,9 @@ import jp.co.ricoh.cotos.electriccommonlib.repository.contract.AgencyContractInf
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.BillingBasicInformationRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.BillingHistoryRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.BillingMailAddressInformationRepository;
+import jp.co.ricoh.cotos.electriccommonlib.repository.contract.CancellationDetailInformationRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.CancellationInformationRepository;
+import jp.co.ricoh.cotos.electriccommonlib.repository.contract.CancellationReasonInformationRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.ClientInformationRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.ClientMasterRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.ContractElectricAttachedFileRepository;
@@ -81,6 +83,12 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 
 	@Autowired
 	CancellationInformationRepository cancellationInformationRepository;
+
+	@Autowired
+	CancellationDetailInformationRepository cancellationDetailInformationRepository;
+
+	@Autowired
+	CancellationReasonInformationRepository cancellationReasonInformationRepository;
 
 	@Autowired
 	ClientInformationRepository clientInformationRepository;
@@ -215,6 +223,16 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 	@Test
 	public void 全てのカラムがNullではないことを確認_解約情報() {
 		全てのカラムがNullではないことを確認_共通(cancellationInformationRepository, 1L);
+	}
+
+	@Test
+	public void 全てのカラムがNullではないことを確認_解約詳細情報() {
+		全てのカラムがNullではないことを確認_共通(cancellationDetailInformationRepository, 1L);
+	}
+
+	@Test
+	public void 全てのカラムがNullではないことを確認_解約理由情報() {
+		全てのカラムがNullではないことを確認_共通(cancellationReasonInformationRepository, 1L);
 	}
 
 	@Test
