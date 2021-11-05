@@ -165,12 +165,12 @@ public class CancellationInformationDto extends DtoBase {
 	 */
 	@Valid
 	@ApiModelProperty(value = "解約詳細情報", required = false, position = 21)
-	private CancellationDetailInformationDto cancellationDetailInformationDto;
+	private CancellationDetailInformationDto cancellationDetailInformation;
 
 	/**
 	 * 解約理由情報
 	 */
 	@Valid
 	@ApiModelProperty(value = "解約理由情報", required = false, position = 22)
-	private CancellationReasonInformationDto cancellationReasonInformationDto;
+	private CancellationReasonInformationDto cancellationReasonInformation;
 }
