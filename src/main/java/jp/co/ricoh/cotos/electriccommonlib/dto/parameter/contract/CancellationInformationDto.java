@@ -15,6 +15,7 @@ import javax.validation.constraints.Size;
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.dto.parameter.common.DtoBase;
 import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
+import jp.co.ricoh.cotos.electriccommonlib.entity.contract.CancellationInformation.CancellationAmountType;
 import jp.co.ricoh.cotos.electriccommonlib.entity.contract.CancellationInformation.CancellationReason;
 import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricFormMaster.CancellationDiv;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.CancellationInformationRepository;
@@ -161,16 +162,22 @@ public class CancellationInformationDto extends DtoBase {
 	private Date contractYmdEndAtCancellation;
 
 	/**
+	 * 解約金額分類
+	 */
+	@ApiModelProperty(value = "解約金額分類", required = false, position = 21, allowableValues = "満額請求(\"1\"), 減額請求(\"2\"), 免除(\"3\")")
+	private CancellationAmountType cancellationAmountType;
+
+	/**
 	 * 解約詳細情報
 	 */
 	@Valid
-	@ApiModelProperty(value = "解約詳細情報", required = false, position = 21)
-	private CancellationDetailInformationDto cancellationDetailInformationDto;
+	@ApiModelProperty(value = "解約詳細情報", required = false, position = 22)
+	private CancellationDetailInformationDto cancellationDetailInformation;
 
 	/**
 	 * 解約理由情報
 	 */
 	@Valid
-	@ApiModelProperty(value = "解約理由情報", required = false, position = 22)
-	private CancellationReasonInformationDto cancellationReasonInformationDto;
+	@ApiModelProperty(value = "解約理由情報", required = false, position = 23)
+	private CancellationReasonInformationDto cancellationReasonInformation;
 }
