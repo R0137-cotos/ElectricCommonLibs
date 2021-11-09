@@ -106,19 +106,10 @@ public class CancellationDetailInformation extends EntityBase {
 	private Date dismantlingExpectedDate;
 
 	/**
-	 * 解体予定時刻指定有無フラグ
-	 */
-	@Column(nullable = true)
-	@Max(9)
-	@Min(0)
-	@ApiModelProperty(value = "解体予定時刻指定有無フラグ", required = false, position = 10, allowableValues = "range[0,9]")
-	private Integer dismantlingExpectedTimeFlg;
-
-	/**
 	 * 解体予定時刻
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "解体予定時刻", required = false, position = 11, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "解体予定時刻", required = false, position = 10, allowableValues = "range[0,255]")
 	private String dismantlingExpectedTime;
 
 	/**
@@ -126,7 +117,7 @@ public class CancellationDetailInformation extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Temporal(TemporalType.DATE)
-	@ApiModelProperty(value = "供給設備の撤去希望日", required = false, position = 12)
+	@ApiModelProperty(value = "供給設備の撤去希望日", required = false, position = 11)
 	private Date removalHopeDate;
 
 	/**
@@ -135,14 +126,14 @@ public class CancellationDetailInformation extends EntityBase {
 	@Column(nullable = true)
 	@Max(9)
 	@Min(0)
-	@ApiModelProperty(value = "供給設備の撤去希望時刻指定有無フラグ", required = false, position = 13, allowableValues = "range[0,9]")
+	@ApiModelProperty(value = "供給設備の撤去希望時刻指定有無フラグ", required = false, position = 12, allowableValues = "range[0,9]")
 	private Integer removalHopeTimeFlg;
 
 	/**
 	 * 供給設備の撤去希望時刻
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "供給設備の撤去希望時刻", required = false, position = 14, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "供給設備の撤去希望時刻", required = false, position = 13, allowableValues = "range[0,255]")
 	private String removalHopeTime;
 
 	/**
@@ -151,77 +142,56 @@ public class CancellationDetailInformation extends EntityBase {
 	@Column(nullable = true)
 	@Max(9)
 	@Min(0)
-	@ApiModelProperty(value = "立会可否フラグ", required = false, position = 15, allowableValues = "range[0,9]")
+	@ApiModelProperty(value = "立会可否フラグ", required = false, position = 14, allowableValues = "range[0,9]")
 	private Integer witnessingFlg;
 
 	/**
 	 * 立合者氏名
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "立合者氏名", required = false, position = 16, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "立合者氏名", required = false, position = 15, allowableValues = "range[0,255]")
 	private String witnessingName;
 
 	/**
 	 * 廃止申込書用-企業名
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "廃止申込書用-企業名", required = false, position = 17, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "廃止申込書用-企業名", required = false, position = 16, allowableValues = "range[0,255]")
 	private String reportCompanyName;
 
 	/**
 	 * 廃止申込書用-事業所名
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "廃止申込書用-事業所名", required = false, position = 18, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "廃止申込書用-事業所名", required = false, position = 17, allowableValues = "range[0,255]")
 	private String reportOfficeName;
 
 	/**
 	 * 廃止申込書用-住所
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "廃止申込書用-住所", required = false, position = 19, allowableValues = "range[0,1000]")
+	@ApiModelProperty(value = "廃止申込書用-住所", required = false, position = 18, allowableValues = "range[0,1000]")
 	private String reportAddress;
 
 	/**
 	 * 廃止申込書用-担当者氏名
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "廃止申込書用-担当者氏名", required = false, position = 20, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "廃止申込書用-担当者氏名", required = false, position = 19, allowableValues = "range[0,255]")
 	private String reportPicName;
 
 	/**
 	 * 廃止申込書用-担当者部署
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "廃止申込書用-担当者部署", required = false, position = 21, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "廃止申込書用-担当者部署", required = false, position = 20, allowableValues = "range[0,255]")
 	private String reportPicDeptName;
 
 	/**
 	 * 廃止申込書用-担当者電話番号
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "廃止申込書用-担当者電話番号", required = false, position = 22, allowableValues = "range[0,255]")
+	@ApiModelProperty(value = "廃止申込書用-担当者電話番号", required = false, position = 21, allowableValues = "range[0,255]")
 	private String reportPicPhoneNumber;
-
-	/**
-	 * 廃止申込書用-電気主任技術者氏名
-	 */
-	@Column(nullable = true)
-	@ApiModelProperty(value = "廃止申込書用-電気主任技術者氏名", required = false, position = 23, allowableValues = "range[0,255]")
-	private String reportLicensedEngineerName;
-
-	/**
-	 * 廃止申込書用-電気主任技術者電話番号
-	 */
-	@Column(nullable = true)
-	@ApiModelProperty(value = "廃止申込書用-電気主任技術者電話番号", required = false, position = 24, allowableValues = "range[0,255]")
-	private String reportLicensedEngineerTel;
-
-	/**
-	 * 廃止申込書用-電気主任技術者所属名
-	 */
-	@Column(nullable = true)
-	@ApiModelProperty(value = "廃止申込書用-電気主任技術者所属名", required = false, position = 25, allowableValues = "range[0,255]")
-	private String reportLicensedEngineerDep;
 
 }
