@@ -64,6 +64,28 @@ public class CancellationInformation extends EntityBase {
 		}
 	}
 
+	public enum CancellationAmountType {
+
+		満額請求("1"), 減額請求("2"), 免除("3");
+
+		private final String text;
+
+		private CancellationAmountType(final String text) {
+			this.text = text;
+		}
+
+		@Override
+		@JsonValue
+		public String toString() {
+			return this.text;
+		}
+
+		@JsonCreator
+		public static CancellationAmountType fromString(String string) {
+			return Arrays.stream(values()).filter(v -> v.text.equals(string)).findFirst().orElseThrow(() -> new IllegalArgumentException(String.valueOf(string)));
+		}
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cancellation_information_seq")
 	@SequenceGenerator(name = "cancellation_information_seq", sequenceName = "cancellation_information_seq", allocationSize = 1)
@@ -229,16 +251,23 @@ public class CancellationInformation extends EntityBase {
 	private Date contractYmdEndAtCancellation;
 
 	/**
+	 * 解約金額分類
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "解約金額分類", required = false, position = 23, allowableValues = "満額請求(\"1\"), 減額請求(\"2\"), 免除(\"3\")")
+	private CancellationAmountType cancellationAmountType;
+
+	/**
 	 * 解約詳細情報
 	 */
 	@OneToOne(mappedBy = "cancellationInformation")
-	@ApiModelProperty(value = "解約詳細情報", required = false, position = 23)
+	@ApiModelProperty(value = "解約詳細情報", required = false, position = 24)
 	private CancellationDetailInformation cancellationDetailInformation;
 
 	/**
 	 * 解約理由情報
 	 */
 	@OneToOne(mappedBy = "cancellationInformation")
-	@ApiModelProperty(value = "解約理由情報", required = false, position = 24)
+	@ApiModelProperty(value = "解約理由情報", required = false, position = 25)
 	private CancellationReasonInformation cancellationReasonInformation;
 }
