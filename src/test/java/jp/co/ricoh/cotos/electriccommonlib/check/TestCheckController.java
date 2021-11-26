@@ -27,7 +27,9 @@ import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.BillingBasicIn
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.BillingHistoryDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.BillingHistoryUpdateDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.BillingMailAddressInformationDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.CancellationDetailInformationDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.CancellationInformationDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.CancellationReasonInformationDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.ClientInformationDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.ClientMasterDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.ContractElectricAttachedFileDto;
@@ -169,6 +171,16 @@ public class TestCheckController {
 
 	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/CancellationInformationDto")
 	public ParamterCheckResult callParamterCheck(@RequestBody @Validated CancellationInformationDto dto, BindingResult result) {
+		return createParameterCheckResult(result);
+	}
+
+	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/CancellationDetailInformationDto")
+	public ParamterCheckResult callParamterCheck(@RequestBody @Validated CancellationDetailInformationDto dto, BindingResult result) {
+		return createParameterCheckResult(result);
+	}
+
+	@RequestMapping(method = RequestMethod.POST, path = "/ParameterCheck/CancellationReasonInformationDto")
+	public ParamterCheckResult callParamterCheck(@RequestBody @Validated CancellationReasonInformationDto dto, BindingResult result) {
 		return createParameterCheckResult(result);
 	}
 
