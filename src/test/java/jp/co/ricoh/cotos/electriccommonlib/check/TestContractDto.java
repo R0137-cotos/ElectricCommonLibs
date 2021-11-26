@@ -25,7 +25,9 @@ import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.BillingBasicIn
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.BillingHistoryDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.BillingHistoryUpdateDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.BillingMailAddressInformationDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.CancellationDetailInformationDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.CancellationInformationDto;
+import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.CancellationReasonInformationDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.ClientInformationDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.ClientMasterDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.ContractElectricAttachedFileDto;
@@ -615,6 +617,95 @@ public class TestContractDto {
 		testTarget.setAdjustmentPenaltyAmount(DECIMAL_0001);
 		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
 		Assert.assertEquals(6, result.getErrorInfoList().size());
+	}
+
+	@Test
+	public void CancellationDetailInformationDtoのテスト() throws Exception {
+
+		ContractElectric entity = contractElectricRepository.findOne(1L);
+		CancellationDetailInformationDto testTarget = new CancellationDetailInformationDto();
+		BeanUtils.copyProperties(entity.getCancellationInformation().getCancellationDetailInformation(), testTarget);
+
+		// 正常系
+		ParamterCheckResult result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		testTool.assertValidationOk(result);
+
+		// 異常系(@Size(max))
+		BeanUtils.copyProperties(entity.getCancellationInformation().getCancellationDetailInformation(), testTarget);
+		testTarget.setPowerCompanyAfterChangeCode(STR_256);
+		testTarget.setPowerCompanyAfterChangeName(STR_256);
+		testTarget.setPowerCompanyAfterChangeNote(STR_4001);
+		testTarget.setDismantlingExpectedTime(STR_256);
+		testTarget.setRemovalHopeTime(STR_256);
+		testTarget.setWitnessingName(STR_256);
+		testTarget.setReportCompanyName(STR_256);
+		testTarget.setReportOfficeName(STR_256);
+		testTarget.setReportAddress(STR_1001);
+		testTarget.setReportPicName(STR_256);
+		testTarget.setReportPicDeptName(STR_256);
+		testTarget.setReportPicPhoneNumber(STR_256);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		Assert.assertEquals(12, result.getErrorInfoList().size());
+
+		// 異常系(@Max)
+		BeanUtils.copyProperties(entity.getCancellationInformation().getCancellationDetailInformation(), testTarget);
+		testTarget.setPowerCompanyAfterChangeUnknownFlg(INT_10);
+		testTarget.setEquipmentDismantlingFlg(INT_10);
+		testTarget.setRemovalHopeTimeFlg(INT_10);
+		testTarget.setWitnessingFlg(INT_10);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		Assert.assertEquals(4, result.getErrorInfoList().size());
+
+		// 異常系(@Min)
+		BeanUtils.copyProperties(entity.getCancellationInformation().getCancellationDetailInformation(), testTarget);
+		testTarget.setPowerCompanyAfterChangeUnknownFlg(INT_MINUS_1);
+		testTarget.setEquipmentDismantlingFlg(INT_MINUS_1);
+		testTarget.setRemovalHopeTimeFlg(INT_MINUS_1);
+		testTarget.setWitnessingFlg(INT_MINUS_1);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		Assert.assertEquals(4, result.getErrorInfoList().size());
+	}
+
+	@Test
+	public void CancellationReasonInformationDtoのテスト() throws Exception {
+
+		ContractElectric entity = contractElectricRepository.findOne(1L);
+		CancellationReasonInformationDto testTarget = new CancellationReasonInformationDto();
+		BeanUtils.copyProperties(entity.getCancellationInformation().getCancellationReasonInformation(), testTarget);
+
+		// 正常系
+		ParamterCheckResult result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		testTool.assertValidationOk(result);
+
+		// 異常系(@Size(max))
+		BeanUtils.copyProperties(entity.getCancellationInformation().getCancellationReasonInformation(), testTarget);
+		testTarget.setSwitchingOtherNote(STR_256);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		Assert.assertEquals(1, result.getErrorInfoList().size());
+
+		// 異常系(@Max)
+		BeanUtils.copyProperties(entity.getCancellationInformation().getCancellationReasonInformation(), testTarget);
+		testTarget.setSwitchingReductionEffectFlg(INT_10);
+		testTarget.setSwitchingBuisinessRelationFlg(INT_10);
+		testTarget.setSwitchingComplainFlg(INT_10);
+		testTarget.setSwitchingComplainBusinessFlg(INT_10);
+		testTarget.setSwitchingComplainCcFlg(INT_10);
+		testTarget.setSwitchingComplainHeadFlg(INT_10);
+		testTarget.setSwitchingOtherFlg(INT_10);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		Assert.assertEquals(7, result.getErrorInfoList().size());
+
+		// 異常系(@Min)
+		BeanUtils.copyProperties(entity.getCancellationInformation().getCancellationReasonInformation(), testTarget);
+		testTarget.setSwitchingReductionEffectFlg(INT_MINUS_1);
+		testTarget.setSwitchingBuisinessRelationFlg(INT_MINUS_1);
+		testTarget.setSwitchingComplainFlg(INT_MINUS_1);
+		testTarget.setSwitchingComplainBusinessFlg(INT_MINUS_1);
+		testTarget.setSwitchingComplainCcFlg(INT_MINUS_1);
+		testTarget.setSwitchingComplainHeadFlg(INT_MINUS_1);
+		testTarget.setSwitchingOtherFlg(INT_MINUS_1);
+		result = testCheckController.callParameterCheck(testTarget, headersProperties, localServerPort);
+		Assert.assertEquals(7, result.getErrorInfoList().size());
 	}
 
 	@Test
