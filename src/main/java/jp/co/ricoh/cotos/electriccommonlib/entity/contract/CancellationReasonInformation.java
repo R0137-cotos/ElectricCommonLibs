@@ -14,6 +14,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -37,18 +39,33 @@ public class CancellationReasonInformation extends EntityBase {
 
 	public enum DemandDisappearsType {
 
-		移転("1"), 売却("2"), 閉鎖("3"), 建替え("4"), 使用停止("5"), 低圧ー高圧("6");
+		移転("1"), 売却("2"), 閉鎖("3"), 建替え("4"), 使用停止("5"), 低圧ー高圧("6", "低圧⇔高圧"), 事業譲渡("7");
 
 		private final String text;
+		private final String label;
+
+		private DemandDisappearsType(final String text, final String label) {
+			this.text = text;
+			this.label = label;
+		}
 
 		private DemandDisappearsType(final String text) {
 			this.text = text;
+			this.label = null;
 		}
 
 		@Override
 		@JsonValue
 		public String toString() {
 			return this.text;
+		}
+
+		public String getLabel() {
+			if (StringUtils.isNotEmpty(this.label)) {
+				return this.label;
+			} else {
+				return this.name();
+			}
 		}
 
 		@JsonCreator
