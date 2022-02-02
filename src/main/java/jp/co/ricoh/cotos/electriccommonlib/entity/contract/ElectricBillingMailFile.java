@@ -2,10 +2,7 @@ package jp.co.ricoh.cotos.electriccommonlib.entity.contract;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import io.swagger.annotations.ApiModelProperty;
@@ -26,8 +23,6 @@ import lombok.EqualsAndHashCode;
 public class ElectricBillingMailFile extends EntityBase {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "electric_billing_mail_file_seq")
-	@SequenceGenerator(name = "electric_billing_mail_file_seq", sequenceName = "electric_billing_mail_file_seq", allocationSize = 1)
 	@ApiModelProperty(value = "ID", required = true, position = 1, allowableValues = "range[0,9223372036854775807]")
 	private long id;
 
