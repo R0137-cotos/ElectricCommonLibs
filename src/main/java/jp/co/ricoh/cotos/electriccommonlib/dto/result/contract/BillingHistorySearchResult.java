@@ -136,4 +136,35 @@ public class BillingHistorySearchResult {
 	@ApiModelProperty(value = "未収区分", required = false, position = 19)
 	private AccruedSection accruedSection;
 
+	/**
+	 * 請求メール送信日時
+	 */
+	@Temporal(TemporalType.TIMESTAMP)
+	@ApiModelProperty(value = "請求メール送信日時", required = false, position = 20)
+	private Date invoiceSendMailAt;
+
+	/**
+	 * 請求書通知メールファイルID
+	 */
+	@ApiModelProperty(value = "請求書通知メールファイルID", required = false, position = 21)
+	private Long electricBillingMailFileId;
+
+	/**
+	 * パスワード通知メールファイルID
+	 */
+	@ApiModelProperty(value = "パスワード通知メールファイルID", required = false, position = 22)
+	private Long electricPasswordMailFileId;
+
+	/**
+	 * 請求書通知メールファイル
+	 */
+	@ApiModelProperty(value = "請求書通知メールファイル", required = false, position = 23)
+	private String billingMailPhysicsName;
+
+	/**
+	 * パスワード通知メールファイル
+	 */
+	@ApiModelProperty(value = "パスワード通知メールファイルル", required = false, position = 24)
+	private String passwordMailPhysicsName;
+
 }
