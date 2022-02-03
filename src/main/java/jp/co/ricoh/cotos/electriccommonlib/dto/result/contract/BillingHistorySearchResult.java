@@ -165,6 +165,6 @@ public class BillingHistorySearchResult {
 	 * パスワード通知メールファイル
 	 */
 	@ApiModelProperty(value = "パスワード通知メールファイルル", required = false, position = 24)
-	private String PasswordMailPhysicsName;
+	private String passwordMailPhysicsName;
 
 }
