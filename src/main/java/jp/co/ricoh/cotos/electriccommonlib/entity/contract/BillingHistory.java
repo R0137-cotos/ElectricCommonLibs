@@ -344,4 +344,12 @@ public class BillingHistory extends EntityBase {
 	@ApiModelProperty(value = "請求書発行年月日", required = false, position = 28)
 	@Temporal(TemporalType.DATE)
 	private Date invoiceIssueDate;
+
+	/**
+	 * 請求メール送信日時
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "請求メール送信日時", required = false, position = 29)
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date invoiceSendMailAt;
 }
