@@ -207,9 +207,23 @@ public class BillingHistoryDto extends DtoBase {
 	private VoltageCategory voltageCategory;
 
 	/**
+	 * 請求書発行年月日
+	 */
+	@ApiModelProperty(value = "請求書発行年月日", required = false, position = 28)
+	@Temporal(TemporalType.DATE)
+	private Date invoiceIssueDate;
+
+	/**
+	 * 請求メール送信日時
+	 */
+	@ApiModelProperty(value = "請求メール送信日時", required = false, position = 29)
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date invoiceSendMailAt;
+
+	/**
 	 * 請求基本情報
 	 */
-	@ApiModelProperty(value = "請求基本情報", required = true, position = 28)
+	@ApiModelProperty(value = "請求基本情報", required = true, position = 30)
 	private BillingBasicInformationDto billingBasicInformation;
 
 }
