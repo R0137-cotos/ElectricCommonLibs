@@ -5,6 +5,7 @@ import java.util.Date;
 
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.Valid;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Max;
@@ -14,6 +15,7 @@ import javax.validation.constraints.Size;
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.dto.parameter.common.DtoBase;
 import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
+import jp.co.ricoh.cotos.electriccommonlib.entity.contract.CancellationInformation.CancellationAmountType;
 import jp.co.ricoh.cotos.electriccommonlib.entity.contract.CancellationInformation.CancellationReason;
 import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricFormMaster.CancellationDiv;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.CancellationInformationRepository;
@@ -56,8 +58,9 @@ public class CancellationInformationDto extends DtoBase {
 
 	/**
 	 * 解約理由
+	 * ※解約理由情報エンティティに移行するため以後、未使用
 	 */
-	@ApiModelProperty(value = "解約理由", required = true, position = 7, allowableValues = "その他(\"1\")", example = "1")
+	@ApiModelProperty(value = "解約理由", required = false, position = 7, allowableValues = "その他(\"1\")", example = "1")
 	private CancellationReason cancellationReason;
 
 	/**
@@ -141,7 +144,7 @@ public class CancellationInformationDto extends DtoBase {
 	/**
 	 * 解約種別
 	 */
-	@ApiModelProperty(value = "解約種別", required = true, position = 18, allowableValues = "消滅(\"1\"), 他社への切り替え(\"1\")", example = "1")
+	@ApiModelProperty(value = "解約種別", required = true, position = 18, allowableValues = "消滅(\"1\"), 他社への切り替え_お客様申込(\"2\"), 他社への切り替え_広域申込(\"3\")", example = "1")
 	private CancellationDiv cancellationDiv;
 
 	/**
@@ -157,4 +160,24 @@ public class CancellationInformationDto extends DtoBase {
 	@Temporal(TemporalType.DATE)
 	@ApiModelProperty(value = "（解約手続時点）需給（供給）期間 終了日", required = false, position = 20)
 	private Date contractYmdEndAtCancellation;
+
+	/**
+	 * 解約金額分類
+	 */
+	@ApiModelProperty(value = "解約金額分類", required = false, position = 21, allowableValues = "満額請求(\"1\"), 減額請求(\"2\"), 免除(\"3\")")
+	private CancellationAmountType cancellationAmountType;
+
+	/**
+	 * 解約詳細情報
+	 */
+	@Valid
+	@ApiModelProperty(value = "解約詳細情報", required = false, position = 22)
+	private CancellationDetailInformationDto cancellationDetailInformation;
+
+	/**
+	 * 解約理由情報
+	 */
+	@Valid
+	@ApiModelProperty(value = "解約理由情報", required = false, position = 23)
+	private CancellationReasonInformationDto cancellationReasonInformation;
 }
