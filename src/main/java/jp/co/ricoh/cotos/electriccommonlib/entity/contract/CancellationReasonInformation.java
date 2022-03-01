@@ -39,7 +39,7 @@ public class CancellationReasonInformation extends EntityBase {
 
 	public enum DemandDisappearsType {
 
-		移転("1"), 売却("2"), 閉鎖("3"), 建替え("4"), 使用停止("5"), 低圧ー高圧("6", "低圧⇔高圧"), 事業譲渡("7");
+		移転("1"), 売却("2"), 閉鎖("3"), 建替え("4"), 使用停止("5"), 低圧ー高圧("6", "低圧⇔高圧"), 事業譲渡("7"), 供給前解約("8");
 
 		private final String text;
 		private final String label;
