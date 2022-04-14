@@ -27,6 +27,7 @@ import jp.co.ricoh.cotos.commonlib.entity.EntityBase;
 import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
 import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.ElectricArea;
 import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.ElectricCommercialFlowDiv;
+import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.RequiredIndicationDiv;
 import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.VoltageCategory;
 import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricFormMaster.ElectricPlan;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.ContractElectricRepository;
@@ -601,4 +602,11 @@ public class ContractElectric extends EntityBase {
 	@Column(nullable = true)
 	@ApiModelProperty(value = "契約満了前チェックフラグ", required = false, position = 75, allowableValues = "range[0,9]")
 	private Integer beforeContractExpiryCheckFlg;
+
+	/**
+	 * 必須表示区分
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "必須表示区分", required = false, position = 76, allowableValues = "帳票出力(\"1\"), 承認依頼(\"2\")", example = "1")
+	private RequiredIndicationDiv requiredIndicationDiv;
 }
