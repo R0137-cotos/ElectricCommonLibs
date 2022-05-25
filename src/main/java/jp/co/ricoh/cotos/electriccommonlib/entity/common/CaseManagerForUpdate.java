@@ -16,7 +16,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
- * 電力メール送信履歴情報を表すEntity
+ * [更新用]案件担当者更新用テーブルを表すEntity
  */
 @Entity
 @EqualsAndHashCode(callSuper = true)
