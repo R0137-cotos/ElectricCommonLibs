@@ -2,10 +2,7 @@ package jp.co.ricoh.cotos.electriccommonlib.entity.common;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import io.swagger.annotations.ApiModelProperty;
@@ -26,8 +23,6 @@ import lombok.EqualsAndHashCode;
 public class CaseManagerForUpdate extends EntityBase {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "case_manager_for_update_seq")
-	@SequenceGenerator(name = "case_manager_for_update_seq", sequenceName = "case_manager_for_update_seq", allocationSize = 1)
 	@ApiModelProperty(value = "ID", required = true, position = 1, allowableValues = "range[0,9999999999999999999]")
 	private long id;
 
