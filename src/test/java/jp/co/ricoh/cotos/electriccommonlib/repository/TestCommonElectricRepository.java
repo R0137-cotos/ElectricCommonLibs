@@ -17,6 +17,7 @@ import jp.co.ricoh.cotos.electriccommonlib.DBConfig;
 import jp.co.ricoh.cotos.electriccommonlib.TestTools;
 import jp.co.ricoh.cotos.electriccommonlib.entity.common.ElectricMailSendHistory;
 import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricMailControlMaster;
+import jp.co.ricoh.cotos.electriccommonlib.repository.common.CaseManagerForUpdateRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.common.ElectricMailSendHistoryRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.master.ElectricMailControlMasterRepository;
 
@@ -30,6 +31,9 @@ public class TestCommonElectricRepository extends RepositoryTestBase {
 
 	@Autowired
 	ElectricMailControlMasterRepository electricMailControlMasterRepository;
+
+	@Autowired
+	CaseManagerForUpdateRepository caseManagerForUpdateRepository;
 
 	@Autowired
 	TestTools testTools;
@@ -93,6 +97,11 @@ public class TestCommonElectricRepository extends RepositoryTestBase {
 			Assert.fail("例外が発生した場合、エラー");
 		}
 
+	}
+
+	@Test
+	public void 全てのカラムがNullではないことを確認_共通_案件担当者更新用() {
+		全てのカラムがNullではないことを確認_共通(caseManagerForUpdateRepository, 1L);
 	}
 
 }
