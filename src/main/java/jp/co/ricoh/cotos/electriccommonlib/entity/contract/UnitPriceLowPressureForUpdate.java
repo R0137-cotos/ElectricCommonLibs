@@ -23,7 +23,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
- * [更新用]単価情報（高圧）を表すEntity
+ * [更新用]単価情報（低圧）を表すEntity
  */
 @Entity
 @EqualsAndHashCode(callSuper = true)
