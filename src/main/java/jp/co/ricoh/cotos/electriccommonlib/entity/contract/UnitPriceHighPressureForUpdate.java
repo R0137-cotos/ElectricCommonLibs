@@ -205,4 +205,11 @@ public class UnitPriceHighPressureForUpdate extends EntityBase {
 	@Temporal(TemporalType.DATE)
 	private Date priceLastModified;
 
+	/**
+	 * 備考
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "備考", required = false, position = 24, allowableValues = "range[0,4000]")
+	private String notes;
+
 }
