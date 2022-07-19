@@ -52,3 +52,6 @@ DELETE from myricoh_upload_history;
 DELETE from contract_signature_master;
 DELETE from electric_provider_master;
 DELETE from electric_billing_mail_file;
+DELETE from case_manager_for_update;
+DELETE from unit_price_high_pressure_for_update;
+DELETE from unit_price_low_pressure_for_update;
