@@ -61,7 +61,9 @@ import jp.co.ricoh.cotos.electriccommonlib.repository.contract.ImportantPointExp
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.MailAddressInformationRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.MonthlyElectricDealerContractRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.MyricohUploadHistoryRepository;
+import jp.co.ricoh.cotos.electriccommonlib.repository.contract.UnitPriceHighPressureForUpdateRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.UnitPriceHighPressureRepository;
+import jp.co.ricoh.cotos.electriccommonlib.repository.contract.UnitPriceLowPressureForUpdateRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.UnitPriceLowPressureRepository;
 import jp.co.ricoh.cotos.electriccommonlib.security.CotosElcAuthenticationDetails;
 
@@ -146,6 +148,12 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 
 	@Autowired
 	ElectricBillingMailFileRepository electricBillingMailFileRepository;
+
+	@Autowired
+	UnitPriceHighPressureForUpdateRepository unitPriceHighPressureForUpdateRepository;
+
+	@Autowired
+	UnitPriceLowPressureForUpdateRepository unitPriceLowPressureForUpdateRepository;
 
 	@Autowired
 	TestTools testTools;
@@ -308,6 +316,16 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 	@Test
 	public void 全てのカラムがNullではないことを確認_請求書通知メールファイル情報() {
 		全てのカラムがNullではないことを確認_共通(electricBillingMailFileRepository, 1L);
+	}
+
+	@Test
+	public void 全てのカラムがNullではないことを確認_更新用単価情報_高圧() {
+		全てのカラムがNullではないことを確認_共通(unitPriceHighPressureForUpdateRepository, 1L);
+	}
+
+	@Test
+	public void 全てのカラムがNullではないことを確認_更新用単価情報_低圧() {
+		全てのカラムがNullではないことを確認_共通(unitPriceLowPressureForUpdateRepository, 1L);
 	}
 
 	@Test
