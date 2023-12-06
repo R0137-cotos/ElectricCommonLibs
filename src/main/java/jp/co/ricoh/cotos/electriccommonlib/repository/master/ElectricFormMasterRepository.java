@@ -9,12 +9,9 @@ import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.VoltageCategory;
 import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricFormMaster;
 import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricFormMaster.CancellationDiv;
 import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricFormMaster.ElectricFileType;
-import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricFormMaster.ElectricPlan;
 
 @Repository
 public interface ElectricFormMasterRepository extends CrudRepository<ElectricFormMaster, Long> {
-
-	public ElectricFormMaster findByVoltageCategoryAndElectricCommercialFlowDivAndElectricPlanAndCancellationDivAndCancellationMoneyGeneratedFlgAndElectricFileTypeAndDomain(VoltageCategory voltageCategory, ElectricCommercialFlowDiv electricCommercialFlowDiv, ElectricPlan electricPlan, CancellationDiv cancellationDiv, Integer cancellationMoneyGeneratedFlg, ElectricFileType electricFileType, Domain domain);
 
 	public ElectricFormMaster findByVoltageCategoryAndElectricCommercialFlowDivAndCancellationDivAndCancellationMoneyGeneratedFlgAndElectricFileTypeAndDomainAndFormPatternId(VoltageCategory voltageCategory, ElectricCommercialFlowDiv electricCommercialFlowDiv, CancellationDiv cancellationDiv, Integer cancellationMoneyGeneratedFlg, ElectricFileType electricFileType, Domain domain, Long formPatternId);
 
