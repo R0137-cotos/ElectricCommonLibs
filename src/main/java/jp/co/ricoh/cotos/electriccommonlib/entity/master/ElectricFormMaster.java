@@ -161,8 +161,15 @@ public class ElectricFormMaster extends EntityBaseMaster {
 	@ApiModelProperty(value = "ドメイン", required = true, position = 8)
 	private Domain domain;
 
+	/**
+	 * 帳票パターンID
+	 */
+	@Column
+	@ApiModelProperty(value = "帳票パターンID", required = false, position = 9)
+	private Long formPatternId;
+
 	@ManyToMany
 	@JoinTable(name = "form_ident", joinColumns = @JoinColumn(name = "electric_form_master_id"), inverseJoinColumns = @JoinColumn(name = "electric_form_ident_master_id"))
-	@ApiModelProperty(value = "電力帳票マスタ", required = true, position = 9)
+	@ApiModelProperty(value = "電力帳票マスタ", required = true, position = 10)
 	private List<ElectricFormIdentMaster> electricFormIdentMasterList;
 }

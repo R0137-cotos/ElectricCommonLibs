@@ -55,3 +55,5 @@ DELETE from electric_provider_master;
 DELETE from case_manager_for_update;
 DELETE from unit_price_high_pressure_for_update;
 DELETE from unit_price_low_pressure_for_update;
+DELETE from contract_article_master;
+DELETE from contract_form_article_jadge_master;
