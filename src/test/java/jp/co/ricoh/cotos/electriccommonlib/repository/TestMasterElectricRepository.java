@@ -26,7 +26,6 @@ import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricDealerMaster;
 import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricFormMaster;
 import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricFormMaster.CancellationDiv;
 import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricFormMaster.ElectricFileType;
-import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricFormMaster.ElectricPlan;
 import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricMailControlMaster;
 import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricMailConvertValueMaster;
 import jp.co.ricoh.cotos.electriccommonlib.entity.master.HighContractCalendarMaster;
@@ -229,20 +228,6 @@ public class TestMasterElectricRepository extends RepositoryTestBase {
 		// null項目なく取得できていることを確認
 		try {
 			testTools.assertColumnsNotNull(electricDealerMaster);
-		} catch (Exception e1) {
-			Assert.fail("例外が発生した場合、エラー");
-		}
-	}
-
-	@Test
-	public void 全てのカラムがNullではないことを確認_マスタ_必要な要素をすべて取得() {
-
-		// 必須情報によりマスタを取得
-		ElectricFormMaster electricFormMaster = electricFormMasterRepository.findByVoltageCategoryAndElectricCommercialFlowDivAndElectricPlanAndCancellationDivAndCancellationMoneyGeneratedFlgAndElectricFileTypeAndDomain(VoltageCategory.高圧, ElectricCommercialFlowDiv.直売, ElectricPlan.CO2フリー, CancellationDiv.消滅, 1, ElectricFileType.新規, Domain.contract);
-
-		// null項目なく取得できていることを確認
-		try {
-			testTools.assertColumnsNotNull(electricFormMaster);
 		} catch (Exception e1) {
 			Assert.fail("例外が発生した場合、エラー");
 		}
