@@ -11,7 +11,7 @@ import javax.persistence.Table;
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBaseMaster;
 import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
-import jp.co.ricoh.cotos.electriccommonlib.repository.master.ElectricFormMasterRepository;
+import jp.co.ricoh.cotos.electriccommonlib.repository.master.ContractFormArticleJudgeMasterRepository;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -22,7 +22,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Table(name = "contract_form_article_jadge_master")
-@CotosComplementTarget(entity = ContractFormArticleJudgeMaster.class, repository = ElectricFormMasterRepository.class)
+@CotosComplementTarget(entity = ContractFormArticleJudgeMaster.class, repository = ContractFormArticleJudgeMasterRepository.class)
 public class ContractFormArticleJudgeMaster extends EntityBaseMaster {
 
 	@Id
