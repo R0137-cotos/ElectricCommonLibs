@@ -12,7 +12,7 @@ import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBaseMaster;
 import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
 import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.ElectricCommercialFlowDiv;
-import jp.co.ricoh.cotos.electriccommonlib.repository.master.ElectricFormMasterRepository;
+import jp.co.ricoh.cotos.electriccommonlib.repository.master.ContractArticleMasterRepository;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -23,7 +23,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Table(name = "contract_article_master")
-@CotosComplementTarget(entity = ContractArticleMaster.class, repository = ElectricFormMasterRepository.class)
+@CotosComplementTarget(entity = ContractArticleMaster.class, repository = ContractArticleMasterRepository.class)
 public class ContractArticleMaster extends EntityBaseMaster {
 
 	@Id
