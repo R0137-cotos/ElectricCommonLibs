@@ -1,5 +1,7 @@
 package jp.co.ricoh.cotos.electriccommonlib.repository;
 
+import static org.junit.Assert.*;
+
 import java.util.List;
 
 import org.junit.AfterClass;
@@ -17,18 +19,21 @@ import jp.co.ricoh.cotos.electriccommonlib.DBConfig;
 import jp.co.ricoh.cotos.electriccommonlib.TestTools;
 import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.ElectricCommercialFlowDiv;
 import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.VoltageCategory;
+import jp.co.ricoh.cotos.electriccommonlib.entity.master.ContractArticleMaster;
+import jp.co.ricoh.cotos.electriccommonlib.entity.master.ContractFormArticleJudgeMaster;
 import jp.co.ricoh.cotos.electriccommonlib.entity.master.ContractSignatureMaster;
 import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricDealerMaster;
 import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricFormMaster;
 import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricFormMaster.CancellationDiv;
 import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricFormMaster.ElectricFileType;
-import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricFormMaster.ElectricPlan;
 import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricMailControlMaster;
 import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricMailConvertValueMaster;
 import jp.co.ricoh.cotos.electriccommonlib.entity.master.HighContractCalendarMaster;
 import jp.co.ricoh.cotos.electriccommonlib.entity.master.ProfitTransferDepartmentMaster;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.ClientMasterRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.master.CommissionMasterRepository;
+import jp.co.ricoh.cotos.electriccommonlib.repository.master.ContractArticleMasterRepository;
+import jp.co.ricoh.cotos.electriccommonlib.repository.master.ContractFormArticleJudgeMasterRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.master.ContractSignatureMasterRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.master.CustomerInformationForWashingRepository;
 import jp.co.ricoh.cotos.electriccommonlib.repository.master.ElectricApprovalRouteMasterRepository;
@@ -96,6 +101,12 @@ public class TestMasterElectricRepository extends RepositoryTestBase {
 
 	@Autowired
 	ElectricProviderMasterRepository electricProviderMasterRepository;
+
+	@Autowired
+	ContractArticleMasterRepository contractArticleMasterRepository;
+
+	@Autowired
+	ContractFormArticleJudgeMasterRepository contractFormArticleJudgeMasterRepository;
 
 	@Autowired
 	TestTools testTools;
@@ -198,6 +209,16 @@ public class TestMasterElectricRepository extends RepositoryTestBase {
 	}
 
 	@Test
+	public void 全てのカラムがNullではないことを確認_マスタ_契約書条文マスタ() {
+		全てのカラムがNullではないことを確認_マスタ(contractArticleMasterRepository, 1L);
+	}
+
+	@Test
+	public void 全てのカラムがNullではないことを確認_マスタ_契約書帳票条文判定マスタ() {
+		全てのカラムがNullではないことを確認_マスタ(contractFormArticleJudgeMasterRepository, 1L);
+	}
+
+	@Test
 	public void 全てのカラムがNullではないことを確認_マスタ_企業IDより取得() {
 		String hnbitnCd = "test";
 
@@ -207,20 +228,6 @@ public class TestMasterElectricRepository extends RepositoryTestBase {
 		// null項目なく取得できていることを確認
 		try {
 			testTools.assertColumnsNotNull(electricDealerMaster);
-		} catch (Exception e1) {
-			Assert.fail("例外が発生した場合、エラー");
-		}
-	}
-
-	@Test
-	public void 全てのカラムがNullではないことを確認_マスタ_必要な要素をすべて取得() {
-
-		// 必須情報によりマスタを取得
-		ElectricFormMaster electricFormMaster = electricFormMasterRepository.findByVoltageCategoryAndElectricCommercialFlowDivAndElectricPlanAndCancellationDivAndCancellationMoneyGeneratedFlgAndElectricFileTypeAndDomain(VoltageCategory.高圧, ElectricCommercialFlowDiv.直売, ElectricPlan.CO2フリー, CancellationDiv.消滅, 1, ElectricFileType.新規, Domain.contract);
-
-		// null項目なく取得できていることを確認
-		try {
-			testTools.assertColumnsNotNull(electricFormMaster);
 		} catch (Exception e1) {
 			Assert.fail("例外が発生した場合、エラー");
 		}
@@ -287,5 +294,51 @@ public class TestMasterElectricRepository extends RepositoryTestBase {
 		} catch (Exception e1) {
 			Assert.fail("例外が発生した場合、エラー");
 		}
+	}
+
+	@Test
+	public void 全てのカラムがNullではないことを確認_マスタ_電力帳票マスタ_検索条件より取得() {
+
+		// 各種条件により契約書条文マスタを取得
+		ElectricFormMaster electricFormMaster = electricFormMasterRepository.findByVoltageCategoryAndElectricCommercialFlowDivAndCancellationDivAndCancellationMoneyGeneratedFlgAndElectricFileTypeAndDomainAndFormPatternId(VoltageCategory.高圧, ElectricCommercialFlowDiv.直売, CancellationDiv.消滅, 1, ElectricFileType.新規, Domain.contract, 1L);
+		// null項目なく取得できていることを確認
+		try {
+			testTools.assertColumnsNotNull(electricFormMaster);
+		} catch (Exception e1) {
+			Assert.fail("例外が発生した場合、エラー");
+		}
+
+	}
+
+	@Test
+	public void 全てのカラムがNullではないことを確認_マスタ_契約書条文マスタ_検索条件より取得() {
+
+		// 商流区分、条文パターンIDにより契約書条文マスタを取得
+		List<ContractArticleMaster> contractArticleMasterList = contractArticleMasterRepository.findByElectricCommercialFlowDivAndArticlePatternId(ElectricCommercialFlowDiv.直売, 1L);
+		// null項目なく取得できていることを確認
+		try {
+			testTools.assertColumnsNotNull(contractArticleMasterList.get(0));
+		} catch (Exception e1) {
+			Assert.fail("例外が発生した場合、エラー");
+		}
+
+	}
+
+	@Test
+	public void 優先度でソートされて全件取得されることを確認_マスタ_契約書帳票条文判定マスタ() {
+
+		// 契約書帳票条文判定マスタを全件取得
+		List<ContractFormArticleJudgeMaster> contractFormArticleJudgeMasterList = contractFormArticleJudgeMasterRepository.findAllByOrderByJudgePriorityAsc();
+		// null項目なく取得できていることを確認
+		try {
+			testTools.assertColumnsNotNull(contractFormArticleJudgeMasterList.get(0));
+			testTools.assertColumnsNotNull(contractFormArticleJudgeMasterList.get(1));
+
+			assertEquals("1件目(優先度1)のIDが2であること", 2, contractFormArticleJudgeMasterList.get(0).getId());
+			assertEquals("2件目(優先度2)のIDが2であること", 1, contractFormArticleJudgeMasterList.get(1).getId());
+		} catch (Exception e1) {
+			Assert.fail("例外が発生した場合、エラー");
+		}
+
 	}
 }
