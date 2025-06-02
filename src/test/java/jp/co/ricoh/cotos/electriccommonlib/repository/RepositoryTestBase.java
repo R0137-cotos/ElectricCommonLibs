@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.transaction.Transactional;
+import jakarta.transaction.Transactional;
 
 import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +26,7 @@ public class RepositoryTestBase {
 
 		idList.stream().forEach(id -> {
 			// データが取得できることを確認
-			T found = repository.findOne(id);
+			T found = repository.findById(id).get();
 			Assert.assertNotNull(found);
 			// 全てのカラムがNullではないことを確認
 			try {
@@ -44,7 +44,7 @@ public class RepositoryTestBase {
 
 		idList.stream().forEach(id -> {
 			// データが取得できることを確認
-			T found = repository.findOne(id);
+			T found = repository.findById(id).get();
 			Assert.assertNotNull(found);
 			// 全てのカラムがNullではないことを確認
 			try {

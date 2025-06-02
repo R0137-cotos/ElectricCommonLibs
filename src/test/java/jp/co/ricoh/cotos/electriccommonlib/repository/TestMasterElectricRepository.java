@@ -10,7 +10,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -50,7 +49,7 @@ import jp.co.ricoh.cotos.electriccommonlib.repository.master.HighContractCalenda
 import jp.co.ricoh.cotos.electriccommonlib.repository.master.ProfitTransferDepartmentMasterRepository;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+@SpringBootTest
 
 public class TestMasterElectricRepository extends RepositoryTestBase {
 
@@ -268,7 +267,7 @@ public class TestMasterElectricRepository extends RepositoryTestBase {
 
 	@Test
 	public void 電力通知メール制御マスタより取得_電力通知メール変換値マスタ() {
-		ElectricMailControlMaster electricMailControlMaster = electricMailControlMasterRepository.findOne(1L);
+		ElectricMailControlMaster electricMailControlMaster = electricMailControlMasterRepository.findById(1L).get();
 		// 電力通知メール制御マスタより電力通知メール変換値マスタを取得
 		List<ElectricMailConvertValueMaster> electricMailConvertValueMasterList = electricMailConvertValueMasterRepository.findByElectricMailControlMaster(electricMailControlMaster);
 		// null項目なく取得できていることを確認

@@ -9,9 +9,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.embedded.LocalServerPort;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -40,7 +40,7 @@ import jp.co.ricoh.cotos.electriccommonlib.repository.estimation.EstimationElect
 import jp.co.ricoh.cotos.electriccommonlib.security.bean.ParamterCheckResult;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT, properties = "test.context.id = TestEstimationExtDto")
 public class TestEstimationExtDto {
 
 	private static final String STR_256 = "0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345";
@@ -103,7 +103,7 @@ public class TestEstimationExtDto {
 		target.setCaseTitle("test");
 		target.setCaseNumber("test");
 		target.setId(1);
-		EstimationElectric entityEstimation = estimationElectricRepository.findOne(1L);
+		EstimationElectric entityEstimation = estimationElectricRepository.findById(1L).get();
 		EstimationElectricExtDtoForPlanChange targetEstimation = new EstimationElectricExtDtoForPlanChange();
 		BeanUtils.copyProperties(entityEstimation, targetEstimation);
 		targetEstimation.setOppSysKeyBn("test");
@@ -130,7 +130,7 @@ public class TestEstimationExtDto {
 		targetExpert.setMomEmployeeId("test");
 		target.setElectricExpertEstimation(targetExpert);
 
-		FeeSimulationHead entitySimulation = estimationElectricRepository.findOne(1L).getFeeSimulationHead();
+		FeeSimulationHead entitySimulation = estimationElectricRepository.findById(1L).get().getFeeSimulationHead();
 		FeeSimulationHeadExtDto targetSimulation = new FeeSimulationHeadExtDto();
 		BeanUtils.copyProperties(entitySimulation, targetSimulation);
 		target.setFeeSimulationHead(targetSimulation);
@@ -171,7 +171,7 @@ public class TestEstimationExtDto {
 		// 正常系
 		target.setCaseTitle("test");
 		target.setCaseNumber("test");
-		EstimationElectric entityEstimation = estimationElectricRepository.findOne(1L);
+		EstimationElectric entityEstimation = estimationElectricRepository.findById(1L).get();
 		EstimationElectricExtDtoForCreate targetEstimation = new EstimationElectricExtDtoForCreate();
 		BeanUtils.copyProperties(entityEstimation, targetEstimation);
 		targetEstimation.setElectricArea(entityEstimation.getElectricArea().toString());
@@ -197,7 +197,7 @@ public class TestEstimationExtDto {
 		targetExpert.setMomEmployeeId("test");
 		target.setElectricExpertEstimation(targetExpert);
 
-		FeeSimulationHead entitySimulation = estimationElectricRepository.findOne(1L).getFeeSimulationHead();
+		FeeSimulationHead entitySimulation = estimationElectricRepository.findById(1L).get().getFeeSimulationHead();
 		FeeSimulationHeadExtDto targetSimulation = new FeeSimulationHeadExtDto();
 		BeanUtils.copyProperties(entitySimulation, targetSimulation);
 		target.setFeeSimulationHead(targetSimulation);
@@ -233,7 +233,7 @@ public class TestEstimationExtDto {
 	public void EstimationElectricExtDtoForCreateのテスト() {
 
 		// 正常系
-		EstimationElectric entity = estimationElectricRepository.findOne(1L);
+		EstimationElectric entity = estimationElectricRepository.findById(1L).get();
 		EstimationElectricExtDtoForCreate target = new EstimationElectricExtDtoForCreate();
 		BeanUtils.copyProperties(entity, target);
 		target.setElectricArea(entity.getElectricArea().toString());
@@ -494,7 +494,7 @@ public class TestEstimationExtDto {
 	public void FeeSimulationHeadExtDtoのテスト() {
 
 		// 正常系
-		FeeSimulationHead entity = estimationElectricRepository.findOne(1L).getFeeSimulationHead();
+		FeeSimulationHead entity = estimationElectricRepository.findById(1L).get().getFeeSimulationHead();
 		FeeSimulationHeadExtDto target = new FeeSimulationHeadExtDto();
 		BeanUtils.copyProperties(entity, target);
 		target.setCreatedDate("2019/05/31");
@@ -646,7 +646,7 @@ public class TestEstimationExtDto {
 	public void AgencyInformationExtDtoのテスト() {
 
 		// 正常系
-		AgencyEstimationInformation agencyInformation = estimationElectricRepository.findOne(1L).getAgencyEstimationInformation();
+		AgencyEstimationInformation agencyInformation = estimationElectricRepository.findById(1L).get().getAgencyEstimationInformation();
 		AgencyEstimationInformationExtDto target = new AgencyEstimationInformationExtDto();
 		BeanUtils.copyProperties(agencyInformation, target);
 		ParamterCheckResult result = testCheckController.callParameterCheck(target, headersProperties, localServerPort);
@@ -694,7 +694,7 @@ public class TestEstimationExtDto {
 	public void EstimationElectricExtDtoForPlanChangeのテスト() {
 
 		// 正常系
-		EstimationElectric entity = estimationElectricRepository.findOne(1L);
+		EstimationElectric entity = estimationElectricRepository.findById(1L).get();
 		EstimationElectricExtDtoForPlanChange target = new EstimationElectricExtDtoForPlanChange();
 		BeanUtils.copyProperties(entity, target);
 		target.setElectricArea(entity.getElectricArea().toString());
@@ -838,7 +838,7 @@ public class TestEstimationExtDto {
 		target.setCaseNumber("test");
 		target.setCustomerNumber("test");
 		target.setId(1);
-		EstimationElectric entityEstimation = estimationElectricRepository.findOne(1L);
+		EstimationElectric entityEstimation = estimationElectricRepository.findById(1L).get();
 		EstimationElectricExtDtoForPlanChange targetEstimation = new EstimationElectricExtDtoForPlanChange();
 		BeanUtils.copyProperties(entityEstimation, targetEstimation);
 		targetEstimation.setOppSysKeyBn("test");
@@ -865,7 +865,7 @@ public class TestEstimationExtDto {
 		targetExpert.setMomEmployeeId("test");
 		target.setElectricExpertEstimation(targetExpert);
 
-		FeeSimulationHead entitySimulation = estimationElectricRepository.findOne(1L).getFeeSimulationHead();
+		FeeSimulationHead entitySimulation = estimationElectricRepository.findById(1L).get().getFeeSimulationHead();
 		FeeSimulationHeadExtDto targetSimulation = new FeeSimulationHeadExtDto();
 		BeanUtils.copyProperties(entitySimulation, targetSimulation);
 		target.setFeeSimulationHead(targetSimulation);

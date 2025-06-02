@@ -2,7 +2,7 @@ package jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract;
 
 import java.util.List;
 
-import javax.validation.constraints.Size;
+import jakarta.validation.constraints.Size;
 
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.dto.parameter.common.DtoBase;

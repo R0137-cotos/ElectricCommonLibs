@@ -1,6 +1,7 @@
 package jp.co.ricoh.cotos.electriccommonlib.util;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -84,7 +85,7 @@ public class CalclateBasicChargeUtility {
 
 			if (param.getChargeCalcDays() != null && param.getChargeCalcTargetDays() != null) {
 				// 日数指定されている場合、料金計算日数÷料金計算対象日数
-				dailyRate = BigDecimal.valueOf(param.getChargeCalcDays()).divide(BigDecimal.valueOf(param.getChargeCalcTargetDays()), 9, BigDecimal.ROUND_HALF_UP);
+				dailyRate = BigDecimal.valueOf(param.getChargeCalcDays()).divide(BigDecimal.valueOf(param.getChargeCalcTargetDays()), 9, RoundingMode.HALF_UP);
 			} else {
 				// 日時指定の場合、日数を計算の上日割り率計算
 				dailyRate = calculateDailyRate(param.getFeeClcStrDatTim(), param.getFeeClcEndDatTim(), param.getFeeClcStrYmd(), param.getFeeClcEndYmd());
@@ -103,10 +104,10 @@ public class CalclateBasicChargeUtility {
 				// 料金計算数量が0以外の場合
 
 				// A1. 基本単価×基本電力量×日割り（小数第3位切捨て）
-				BigDecimal a1 = param.getBasicPrice().multiply(param.getBasicPowerAmount()).multiply(dailyRate).setScale(2, BigDecimal.ROUND_DOWN);
+				BigDecimal a1 = param.getBasicPrice().multiply(param.getBasicPowerAmount()).multiply(dailyRate).setScale(2, RoundingMode.DOWN);
 
 				// A2. A1 × ((85 - 力率) ÷ 100)（小数第3位切捨て）
-				BigDecimal a2 = a1.multiply(((BigDecimal.valueOf(85).subtract(param.getPowerRate())).divide(BigDecimal.valueOf(100)))).setScale(2, BigDecimal.ROUND_DOWN);
+				BigDecimal a2 = a1.multiply(((BigDecimal.valueOf(85).subtract(param.getPowerRate())).divide(BigDecimal.valueOf(100)))).setScale(2, RoundingMode.DOWN);
 
 				// A1 ＋ A2
 				khnRyokin = a1.add(a2);
@@ -129,7 +130,7 @@ public class CalclateBasicChargeUtility {
 				khnRyokin = khnRyokin.multiply(BigDecimal.valueOf(0.5));
 			}
 		}
-		return khnRyokin.setScale(2, BigDecimal.ROUND_DOWN);
+		return khnRyokin.setScale(2, RoundingMode.DOWN);
 	}
 
 	/**
@@ -164,7 +165,7 @@ public class CalclateBasicChargeUtility {
 
 		// 計量期間日数の算出
 		int nissu2 = dateDiff(targetStartDate, targetEndDate);
-		BigDecimal dailyRate = BigDecimal.valueOf(nissu1).divide(BigDecimal.valueOf(nissu2), 9, BigDecimal.ROUND_HALF_UP);
+		BigDecimal dailyRate = BigDecimal.valueOf(nissu1).divide(BigDecimal.valueOf(nissu2), 9, RoundingMode.HALF_UP);
 		return dailyRate;
 	}
 

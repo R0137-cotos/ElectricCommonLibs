@@ -1,6 +1,6 @@
 package jp.co.ricoh.cotos.electriccommonlib.converter;
 
-import javax.persistence.AttributeConverter;
+import jakarta.persistence.AttributeConverter;
 
 import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.ElectricArea;
 

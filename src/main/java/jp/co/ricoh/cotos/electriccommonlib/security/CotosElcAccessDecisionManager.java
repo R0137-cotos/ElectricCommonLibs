@@ -1,40 +1,39 @@
 package jp.co.ricoh.cotos.electriccommonlib.security;
 
-import java.util.Collection;
 import java.util.List;
+import java.util.function.Supplier;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.security.access.AccessDecisionVoter;
+import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.security.access.AccessDeniedException;
-import org.springframework.security.access.ConfigAttribute;
-import org.springframework.security.access.vote.AbstractAccessDecisionManager;
+import org.springframework.security.authorization.AuthorizationDecision;
+import org.springframework.security.authorization.AuthorizationManager;
+import org.springframework.security.authorization.AuthorizationResult;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.SpringSecurityMessageSource;
+import org.springframework.security.web.access.intercept.RequestAuthorizationContext;
 
-public class CotosElcAccessDecisionManager extends AbstractAccessDecisionManager {
+public class CotosElcAccessDecisionManager implements AuthorizationManager<RequestAuthorizationContext> {
 
 	/** ロガー */
 	private static final Log log = LogFactory.getLog(CotosElcAccessDecisionManager.class);
 
-	public CotosElcAccessDecisionManager(List<AccessDecisionVoter<? extends Object>> decisionVoters) {
-		super(decisionVoters);
+	protected MessageSourceAccessor messages = SpringSecurityMessageSource.getAccessor();
+
+	List<AuthorizationManager<RequestAuthorizationContext>> decisionVoters;
+
+	public CotosElcAccessDecisionManager(List<AuthorizationManager<RequestAuthorizationContext>> decisionVoters) {
+		this.decisionVoters = decisionVoters;
 	}
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public void decide(Authentication authentication, Object object, Collection<ConfigAttribute> configAttributes) throws AccessDeniedException {
-
-		for (AccessDecisionVoter voter : getDecisionVoters()) {
-			int result = voter.vote(authentication, object, configAttributes);
-
-			switch (result) {
-			case AccessDecisionVoter.ACCESS_GRANTED:
-				return;
-
-			case AccessDecisionVoter.ACCESS_DENIED:
-				// 一度でも拒否された場合
-				throw new AccessDeniedException(messages.getMessage("AbstractAccessDecisionManager.accessDenied", "Access is denied"));
-
-			default:
+	@Override
+	public AuthorizationDecision check(Supplier<Authentication> auth, RequestAuthorizationContext context) {
+		for (AuthorizationManager<RequestAuthorizationContext> voter : decisionVoters) {
+			AuthorizationResult decision = voter.authorize(auth, context);
+			if (decision != null) {
+				return new AuthorizationDecision(decision.isGranted());
+			} else {
 				continue;
 			}
 		}
@@ -42,6 +41,6 @@ public class CotosElcAccessDecisionManager extends AbstractAccessDecisionManager
 		// 最終結果が棄権の場合
 		// ToDO:#4025
 		log.info("対応する投票クラスが存在しません。");
-		checkAllowIfAllAbstainDecisions();
+		throw new AccessDeniedException(this.messages.getMessage("AbstractAccessDecisionManager.accessDenied", "Access is denied"));
 	}
 }

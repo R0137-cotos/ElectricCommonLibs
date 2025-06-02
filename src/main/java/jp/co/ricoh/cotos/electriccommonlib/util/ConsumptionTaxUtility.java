@@ -1,10 +1,11 @@
 package jp.co.ricoh.cotos.electriccommonlib.util;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PostConstruct;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -99,7 +100,7 @@ public class ConsumptionTaxUtility {
 	 * @throws Exception
 	 */
 	public BigDecimal calcConsumptionformOutTax(BigDecimal outAmount) {
-		return outAmount.multiply(getBigDecimalTaxRate().movePointRight(-2)).setScale(0, BigDecimal.ROUND_DOWN);
+		return outAmount.multiply(getBigDecimalTaxRate().movePointRight(-2)).setScale(0, RoundingMode.DOWN);
 	}
 
 	/**
@@ -111,7 +112,7 @@ public class ConsumptionTaxUtility {
 	 * @throws Exception
 	 */
 	public BigDecimal calcConsumptionfromInTax(BigDecimal inAmount) {
-		return inAmount.multiply(getBigDecimalTaxRate()).divide(getBigDecimalTaxRate().add(BigDecimal.valueOf(100)), 0, BigDecimal.ROUND_DOWN);
+		return inAmount.multiply(getBigDecimalTaxRate()).divide(getBigDecimalTaxRate().add(BigDecimal.valueOf(100)), 0, RoundingMode.DOWN);
 	}
 
 	/**

@@ -8,9 +8,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.embedded.LocalServerPort;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -37,7 +37,7 @@ import jp.co.ricoh.cotos.electriccommonlib.repository.estimation.FeeSimulationHe
 import jp.co.ricoh.cotos.electriccommonlib.security.bean.ParamterCheckResult;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT, properties = "test.context.id = TestEstimationDto")
 public class TestEstimationDto {
 
 	private static final String STR_256 = "0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345";
@@ -97,7 +97,7 @@ public class TestEstimationDto {
 	@Test
 	public void EstimationElectricDtoのテスト() throws Exception {
 
-		EstimationElectric entity = estimationElectricRepository.findOne(1L);
+		EstimationElectric entity = estimationElectricRepository.findById(1L).get();
 		EstimationElectricDto testTarget = new EstimationElectricDto();
 		BeanUtils.copyProperties(entity, testTarget);
 		testTarget.setFeeSimulationHead(new FeeSimulationHeadDto());
@@ -171,7 +171,7 @@ public class TestEstimationDto {
 	@Test
 	public void ElectricExpertEstimationDtoのテスト() throws Exception {
 
-		ElectricExpertEstimation entity = electricExpertEstimationRepository.findOne(1L);
+		ElectricExpertEstimation entity = electricExpertEstimationRepository.findById(1L).get();
 		ElectricExpertEstimationDto testTarget = new ElectricExpertEstimationDto();
 		BeanUtils.copyProperties(entity, testTarget);
 
@@ -196,7 +196,7 @@ public class TestEstimationDto {
 	@Test
 	public void ElectricDealerEstimationDtoのテスト() throws Exception {
 
-		ElectricDealerEstimation entity = electricDealerEstimationRepository.findOne(1L);
+		ElectricDealerEstimation entity = electricDealerEstimationRepository.findById(1L).get();
 		ElectricDealerEstimationDto testTarget = new ElectricDealerEstimationDto();
 		BeanUtils.copyProperties(entity, testTarget);
 
@@ -221,7 +221,7 @@ public class TestEstimationDto {
 	@Test
 	public void FeeSimulationHeadDtoのテスト() throws Exception {
 
-		FeeSimulationHead entity = feeSimulationHeadRepository.findOne(1L);
+		FeeSimulationHead entity = feeSimulationHeadRepository.findById(1L).get();
 		FeeSimulationHeadDto testTarget = new FeeSimulationHeadDto();
 		BeanUtils.copyProperties(entity, testTarget);
 

@@ -2,8 +2,8 @@ package jp.co.ricoh.cotos.electriccommonlib.dto.result.contract;
 
 import java.math.BigDecimal;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
