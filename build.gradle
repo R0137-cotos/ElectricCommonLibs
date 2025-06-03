@@ -94,9 +94,9 @@ publishing {
 			groupId = 'jp.co.ricoh.cotos'
 			artifactId = 'electric-common-libraries'
 			from components.java
-        }
-    }
-    repositories {
+		}
+	}
+	repositories {
 		maven {
 			url = "file://${repo.absolutePath}"
 		}
