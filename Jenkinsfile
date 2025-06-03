@@ -6,6 +6,7 @@ pipeline {
         script {
           def url = scm.getUserRemoteConfigs()[0].getUrl()
           echo "Git repository URL: ${url}"
+          sh "git branch --contains"
           sh "gradle clean"
           sh "export SPRING_PROFILES_ACTIVE=ci"
           sh "gradle -Dtest.maxHeapSize=8G test"
