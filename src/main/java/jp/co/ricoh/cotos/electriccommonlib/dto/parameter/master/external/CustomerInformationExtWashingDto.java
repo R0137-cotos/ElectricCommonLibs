@@ -2,8 +2,8 @@ package jp.co.ricoh.cotos.electriccommonlib.dto.parameter.master.external;
 
 import java.util.List;
 
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

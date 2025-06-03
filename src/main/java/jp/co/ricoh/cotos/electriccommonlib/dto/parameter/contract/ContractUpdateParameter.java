@@ -1,7 +1,7 @@
 package jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract;
 
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 
 import jp.co.ricoh.cotos.commonlib.dto.parameter.contract.ContractDto;
 import lombok.Data;

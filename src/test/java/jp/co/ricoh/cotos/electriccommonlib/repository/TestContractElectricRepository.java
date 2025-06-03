@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.validation.ConstraintViolationException;
+import jakarta.validation.ConstraintViolationException;
 
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -13,7 +13,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -68,7 +67,7 @@ import jp.co.ricoh.cotos.electriccommonlib.repository.contract.UnitPriceLowPress
 import jp.co.ricoh.cotos.electriccommonlib.security.CotosElcAuthenticationDetails;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+@SpringBootTest
 public class TestContractElectricRepository extends RepositoryTestBase {
 
 	@Autowired
@@ -405,7 +404,7 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 	@Test
 	public void 全てのカラムがNullではないことを確認_MyRICOH連携実績() {
 
-		MyricohUploadHistory myricohUploadHistory = myricohUploadHistoryRepository.findOne(1L);
+		MyricohUploadHistory myricohUploadHistory = myricohUploadHistoryRepository.findById(1L).get();
 
 		// null項目なく取得できていることを確認
 		try {
@@ -419,7 +418,7 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 	public void 請求先Mailアドレス情報を取得できないことを確認_得意先情報マスタIDにより削除() {
 
 		billingMailAddressInformationRepository.deleteByClientMasterId(1L);
-		ClientMaster clientMaster = clientMasterRepository.findOne(1L);
+		ClientMaster clientMaster = clientMasterRepository.findById(1L).get();
 
 		// null項目なく取得できていることを確認
 		try {
@@ -434,7 +433,7 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 	public void Mailアドレス情報を取得できないことを確認_契約電力IDにより削除() {
 
 		mailAddressInformationRepository.deleteByContractElectricId(1L);
-		ContractElectric contractElectric = contractElectricRepository.findOne(1L);
+		ContractElectric contractElectric = contractElectricRepository.findById(1L).get();
 
 		// null項目なく取得できていることを確認
 		try {
@@ -449,7 +448,7 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 	public void 添付ファイルを取得できないことを確認_契約電力IDにより削除() {
 
 		contractElectricAttachedFileRepository.deleteByContractElectricId(1L);
-		ContractElectric contractElectric = contractElectricRepository.findOne(1L);
+		ContractElectric contractElectric = contractElectricRepository.findById(1L).get();
 
 		// null項目なく取得できていることを確認
 		try {
@@ -534,7 +533,7 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 		final BigDecimal DECIMAL_MINUS_001 = BigDecimal.valueOf(0.01).negate();
 		Assert.assertEquals("-0.01", DECIMAL_MINUS_001.toString());
 
-		ElectricAppropriation electricAppropriation = electricAppropriationRepository.findOne(1L);
+		ElectricAppropriation electricAppropriation = electricAppropriationRepository.findById(1L).get();
 
 		// 売上金額(税込)
 		electricAppropriation.setProceedsInTax(DECIMAL_MINUS_001);
@@ -613,7 +612,7 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 		Authentication auth = new PreAuthenticatedAuthenticationToken(principal, null, null);
 		SecurityContextHolder.getContext().setAuthentication(auth);
 
-		ElectricAppropriation electricAppropriation = electricAppropriationRepository.findOne(1L);
+		ElectricAppropriation electricAppropriation = electricAppropriationRepository.findById(1L).get();
 		final BigDecimal DECIMAL_OVER_MAX = BigDecimal.valueOf(123456789012345678.99);
 
 		// 売上金額(税込)
@@ -700,7 +699,7 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 		final BigDecimal DECIMAL_MINUS_001 = BigDecimal.valueOf(0.01).negate();
 		Assert.assertEquals("-0.01", DECIMAL_MINUS_001.toString());
 
-		BillingHistory billingHistory = billingHistoryRepository.findOne(1L);
+		BillingHistory billingHistory = billingHistoryRepository.findById(1L).get();
 
 		// 請求金額(税込)
 		billingHistory.setClaimAmountInTax(DECIMAL_MINUS_001);
@@ -730,7 +729,7 @@ public class TestContractElectricRepository extends RepositoryTestBase {
 		Authentication auth = new PreAuthenticatedAuthenticationToken(principal, null, null);
 		SecurityContextHolder.getContext().setAuthentication(auth);
 
-		BillingHistory billingHistory = billingHistoryRepository.findOne(1L);
+		BillingHistory billingHistory = billingHistoryRepository.findById(1L).get();
 		final BigDecimal DECIMAL_OVER_MAX = BigDecimal.valueOf(123456789012345678.99);
 
 		// 請求金額(税込)

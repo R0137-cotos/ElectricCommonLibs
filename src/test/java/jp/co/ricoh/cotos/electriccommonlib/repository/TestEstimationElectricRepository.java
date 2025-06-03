@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
-import javax.validation.ConstraintViolationException;
+import jakarta.validation.ConstraintViolationException;
 
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -12,7 +12,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -37,7 +36,7 @@ import jp.co.ricoh.cotos.electriccommonlib.repository.estimation.FeeSimulationHe
 import jp.co.ricoh.cotos.electriccommonlib.security.CotosElcAuthenticationDetails;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+@SpringBootTest
 public class TestEstimationElectricRepository extends RepositoryTestBase {
 
 	@Autowired
@@ -145,7 +144,7 @@ public class TestEstimationElectricRepository extends RepositoryTestBase {
 		final BigDecimal DECIMAL_MINUS_001 = BigDecimal.valueOf(0.01).negate();
 		Assert.assertEquals("-0.01", DECIMAL_MINUS_001.toString());
 
-		FeeSimulationHead feeSimulationHead = feeSimulationHeadRepository.findOne(1L);
+		FeeSimulationHead feeSimulationHead = feeSimulationHeadRepository.findById(1L).get();
 
 		// 粗利額（営業）
 		feeSimulationHead.setGrossMarginBusiness(DECIMAL_MINUS_001);
@@ -172,7 +171,7 @@ public class TestEstimationElectricRepository extends RepositoryTestBase {
 		Authentication auth = new PreAuthenticatedAuthenticationToken(principal, null, null);
 		SecurityContextHolder.getContext().setAuthentication(auth);
 
-		FeeSimulationHead feeSimulationHead = feeSimulationHeadRepository.findOne(1L);
+		FeeSimulationHead feeSimulationHead = feeSimulationHeadRepository.findById(1L).get();
 		final BigDecimal DECIMAL_OVER_MAX = BigDecimal.valueOf(123456789012345678.99);
 
 		feeSimulationHead.setEstimationElectric(null);

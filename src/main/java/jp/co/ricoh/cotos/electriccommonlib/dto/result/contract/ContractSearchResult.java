@@ -2,9 +2,9 @@ package jp.co.ricoh.cotos.electriccommonlib.dto.result.contract;
 
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.PrePersist;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
