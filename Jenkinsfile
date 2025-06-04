@@ -11,7 +11,7 @@ pipeline {
           echo "ターゲットブランチ： ${env.CHANGE_TARGET}" 
           sh "gradle clean"
           def targetBranch = ${env.CHANGE_TARGET}
-          if ("$targetBranch" == 'master') {
+          if ("${targetBranch}" == 'master') {
             echo "targetBranchがmaster"
             sh "export SPRING_PROFILES_ACTIVE=ci"
           } else {
