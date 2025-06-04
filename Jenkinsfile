@@ -4,6 +4,10 @@ pipeline {
     stage("build") {
       steps {
         script {
+          def jobName = "${env.JOB_NAME}"
+          if ("${jobName}".contains("PullRequestBuild")) {
+            echo "buildを実行します"
+          }
           echo ">> PullRequestの情報を表示します。"
           echo "PR作成者： ${env.CHANGE_AUTHOR}"
           echo "Forkリポジトリ： ${env.CHANGE_FORK}"
@@ -21,10 +25,6 @@ pipeline {
           sh "gradle -Dtest.maxHeapSize=8G test"
           junit "build/test-results/test/*.xml"
           archiveArtifacts "build/test-results/test/*.xml"
-          def jobName = "${env.JOB_NAME}"
-          if (${jobName}.contains("PullRequestBuild")) {
-            echo "buildを実行します"
-          }
         }
       }
     }
