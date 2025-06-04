@@ -21,7 +21,10 @@ pipeline {
           sh "gradle -Dtest.maxHeapSize=8G test"
           junit "build/test-results/test/*.xml"
           archiveArtifacts "build/test-results/test/*.xml"
-          step([$class: 'GitHubCommitStatusSetter', statusResultSource: [$class: 'ConditionalStatusResultSource', results: [[$class: 'AnyBuildResult', message: '', state: state]]]])
+          def jobName = "${env.JOB_NAME}"
+          if (${jobName}.contains("PullRequestBuild")) {
+            echo "buildを実行します"
+          }
         }
       }
     }
