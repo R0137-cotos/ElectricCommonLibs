@@ -11,7 +11,7 @@ pipeline {
           echo "ターゲットブランチ： ${env.CHANGE_TARGET}" 
           sh "gradle clean"
           def targetBranch = "${env.CHANGE_TARGET}"
-          if ("${targetBranch}" == 'master') {
+          if ("${targetBranch}" == 'verify/eosl') {
             echo "targetBranchがmaster"
             sh "export SPRING_PROFILES_ACTIVE=ci"
           } else {
@@ -21,6 +21,7 @@ pipeline {
           sh "gradle -Dtest.maxHeapSize=8G test"
           junit "build/test-results/test/*.xml"
           archiveArtifacts "build/test-results/test/*.xml"
+          step([$class: 'GitHubCommitStatusSetter', statusResultSource: [$class: 'ConditionalStatusResultSource', results: [[$class: 'AnyBuildResult', message: '', state: state]]]])
         }
       }
     }
