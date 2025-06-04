@@ -8,9 +8,16 @@ pipeline {
           echo "PR作成者： ${env.CHANGE_AUTHOR}"
           echo "Forkリポジトリ： ${env.CHANGE_FORK}"
           echo "PRブランチ： ${env.CHANGE_BRANCH}"
-          echo "ターゲットブランチ： ${env.CHANGE_TARGET}"
+          echo "ターゲットブランチ： ${env.CHANGE_TARGET}" 
           sh "gradle clean"
-          sh "export SPRING_PROFILES_ACTIVE=ci"
+          def targetBranch = ${env.CHANGE_TARGET}
+          if [ "$targetBranch" = "master" ]; then
+            echo "targetBranchがmaster"
+            sh "export SPRING_PROFILES_ACTIVE=ci"
+          else
+            echo "targetBranchがmaster以外"
+            sh "export SPRING_PROFILES_ACTIVE=ci"
+          fi
           sh "gradle -Dtest.maxHeapSize=8G test"
           junit "build/test-results/test/*.xml"
           archiveArtifacts "build/test-results/test/*.xml"
