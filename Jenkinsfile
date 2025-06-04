@@ -10,7 +10,7 @@ pipeline {
           echo "PRブランチ： ${env.CHANGE_BRANCH}"
           echo "ターゲットブランチ： ${env.CHANGE_TARGET}" 
           sh "gradle clean"
-          def targetBranch = ${env.CHANGE_TARGET}
+          def targetBranch = "${env.CHANGE_TARGET}"
           if ("${targetBranch}" == 'master') {
             echo "targetBranchがmaster"
             sh "export SPRING_PROFILES_ACTIVE=ci"
