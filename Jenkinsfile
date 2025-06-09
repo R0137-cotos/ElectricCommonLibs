@@ -11,7 +11,7 @@ pipeline {
       }
       steps {
         script {
-          githubNotify context: 'gradle test', status: 'PENDING'
+          // githubNotify context: 'gradle test', status: 'PENDING'
           echo "buildを実行します"
           echo ">> PullRequestの情報を表示します。"
           echo "PR作成者： ${env.CHANGE_AUTHOR}"
@@ -30,9 +30,9 @@ pipeline {
             sh "gradle -Dtest.maxHeapSize=8G test"
             junit "build/test-results/test/*.xml"
             archiveArtifacts "build/test-results/test/*.xml"
-            githubNotify context: 'gradle test', status: 'SUCCESS', description: 'Gradle tests passed!'
+            // githubNotify context: 'gradle test', status: 'SUCCESS', description: 'Gradle tests passed!'
           } catch (e) {
-            githubNotify context: 'gradle test', status: 'FAILURE', description: 'Gradle tests failed.'
+            // githubNotify context: 'gradle test', status: 'FAILURE', description: 'Gradle tests failed.'
           }
         }
       }
