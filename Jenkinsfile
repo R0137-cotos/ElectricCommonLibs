@@ -5,7 +5,7 @@ pipeline {
       when {
         expression {
           def isJobNameMatch = "${env.JOB_NAME}".contains("PullRequestBuild")
-          def isTargetBranchMatch = "${env.CHANGE_TARGET}" == "verify/aws"
+          def isTargetBranchMatch = "${env.CHANGE_TARGET}" == "verify/eosl"
           return isJobNameMatch && isTargetBranchMatch
         }
       }
@@ -27,7 +27,8 @@ pipeline {
             } else {
               sh "export SPRING_PROFILES_ACTIVE=ci"
             }
-            sh "gradle -Dtest.maxHeapSize=8G test"
+            def gradleTestOption = "${env.GRADLE_TEST_OPTION}"
+            sh "gradle ${gradleTestOption} test"
             junit "build/test-results/test/*.xml"
             archiveArtifacts "build/test-results/test/*.xml"
             // githubNotify context: 'gradle test', status: 'SUCCESS', description: 'Gradle tests passed!'
