@@ -14,14 +14,6 @@ pipeline {
           script {
             def GITHUB_TOKEN="7bb109e2c08f82c0ba2f49f0dce3158baed759ee"
             echo "${GITHUB_TOKEN}"
-            // Jsonペイロード
-            def payload = groovy.json.JsonOutput.toJson([
-              state: 'pending',
-              context: 'gradle test',
-              description: 'starting gradle test.',
-              target_url: ${env.BUILD_URL},
-            ])
-            echo "${payload}"
             def revision = sh(script: 'git rev-parse HEAD', returnStdout: true).trim()
             echo "${revision}"
             // curl で POST
@@ -29,7 +21,6 @@ pipeline {
               curl -s -X POST https://api.github.com/repos/cotos/ElectricCommonLibs/statuses/${revision} \\
                 -H "Authorization: token ${GITHUB_TOKEN}" \\
                 -H "Content-Type: application/json" \\
-                -H '${payload}'
             '''
             echo "buildを実行します"
             echo ">> PullRequestの情報を表示します。"
