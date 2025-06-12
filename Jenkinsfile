@@ -14,7 +14,7 @@ pipeline {
       }
       steps {
         script {
-          notifyStatus('pending', 'starting gradle test.', ${GITHUB_TOKEN })
+          notifyStatus('pending', 'starting gradle test.', ${GITHUB_TOKEN})
           echo "buildを実行します"
           echo ">> PullRequestの情報を表示します。"
           echo "PR作成者： ${env.CHANGE_AUTHOR}"
@@ -32,9 +32,9 @@ pipeline {
             sh "gradle ${gradleTestOption} test"
             junit "build/test-results/test/*.xml"
             archiveArtifacts "build/test-results/test/*.xml"
-            notifyStatus('success', 'All tests passed.', ${GITHUB_TOKEN })
+            notifyStatus('success', 'All tests passed.', ${GITHUB_TOKEN})
           } catch (e) {
-            notifyStatus('failure', 'Some tests failed.', ${GITHUB_TOKEN })
+            notifyStatus('failure', 'Some tests failed.', ${GITHUB_TOKEN})
           }
         }
       }
