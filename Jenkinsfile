@@ -1,5 +1,8 @@
 pipeline {
   agent any
+  environment {
+    GITHUB_TOKEN = credentials('jenkins-github-likner')
+  }
   stages {
     stage("build") {
       when {
@@ -11,7 +14,7 @@ pipeline {
       }
       steps {
         script {
-          githubNotify context: 'gradle test', status: 'PENDING'
+          notifyStatus('pending', 'starting gradle test.', ${GITHUB_TOKEN })
           echo "buildを実行します"
           echo ">> PullRequestの情報を表示します。"
           echo "PR作成者： ${env.CHANGE_AUTHOR}"
@@ -20,8 +23,7 @@ pipeline {
           echo "ターゲットブランチ： ${env.CHANGE_TARGET}" 
           try {
             sh "gradle clean"
-            def targetBranch = "${env.CHANGE_TARGET}"
-            if ("${targetBranch}" == 'master') {
+            if ("${env.CHANGE_TARGET}" == 'master') {
               sh "export SPRING_PROFILES_ACTIVE=ci"
             } else {
               sh "export SPRING_PROFILES_ACTIVE=ci"
@@ -30,12 +32,29 @@ pipeline {
             sh "gradle ${gradleTestOption} test"
             junit "build/test-results/test/*.xml"
             archiveArtifacts "build/test-results/test/*.xml"
-            githubNotify context: 'gradle test', status: 'SUCCESS', description: 'Gradle tests passed!'
+            notifyStatus('success', 'All tests passed.', ${GITHUB_TOKEN })
           } catch (e) {
-            githubNotify context: 'gradle test', status: 'FAILURE', description: 'Gradle tests failed.'
+            notifyStatus('failure', 'Some tests failed.', ${GITHUB_TOKEN })
           }
         }
       }
     }
   }
+}
+def notifyStatus(state, description, token) {
+  // Jsonペイロード
+  def payload = groovy.json.JsonOutput.toJson([
+    state: ${state},
+    context: 'gradle test',
+    description: ${description},
+    target_url: ${env.BUILD_URL},
+  ])
+  def revision = sh(script: 'git rev-parse HEAD', returnStdout: true).trim()
+  // curl で POST
+  sh '''
+    curl -s -X POST https://api.github.com/repos/cotos/ElectricCommonLibs/statuses/${revision} \\
+      -H "Authorization: tolen ${env.GITHUB_TOKEN}" \\
+      -H "Content-Type: application/json" \\
+      -H '${payload}'
+  '''
 }
