@@ -13,6 +13,7 @@ pipeline {
         // withCredentials([string(credentialsId: 'jenkins-github-likner', variable: 'GITHUB_TOKEN')]){
           script {
             def GITHUB_TOKEN="7bb109e2c08f82c0ba2f49f0dce3158baed759ee"
+            echo "${GITHUB_TOKEN}"
             notifyStatus('pending', 'starting gradle test.', ${GITHUB_TOKEN})
             echo "buildを実行します"
             echo ">> PullRequestの情報を表示します。"
