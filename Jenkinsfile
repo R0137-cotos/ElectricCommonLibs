@@ -42,6 +42,7 @@ pipeline {
   }
 }
 def notifyStatus(state, description, token) {
+  echo "notifyStatusを実行します"
   // Jsonペイロード
   def payload = groovy.json.JsonOutput.toJson([
     state: ${state},
@@ -49,7 +50,9 @@ def notifyStatus(state, description, token) {
     description: ${description},
     target_url: ${env.BUILD_URL},
   ])
+  echo "${payload}"
   def revision = sh(script: 'git rev-parse HEAD', returnStdout: true).trim()
+  echo "${revision}"
   // curl で POST
   sh '''
     curl -s -X POST https://api.github.com/repos/cotos/ElectricCommonLibs/statuses/${revision} \\
