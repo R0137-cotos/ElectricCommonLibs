@@ -24,12 +24,12 @@ pipeline {
             def revision = sh(script: 'git rev-parse HEAD', returnStdout: true).trim()
             echo "${revision}"
             // curl で POST
-            sh '''
+            sh """
               curl -s -X POST https://api.github.com/repos/cotos/ElectricCommonLibs/statuses/${revision} \\
                 -H "Authorization: token ${GITHUB_TOKEN}" \\
                 -H "Content-Type: application/json" \\
                 -H '${payload}'
-            '''
+            """
             echo "buildを実行します"
             echo ">> PullRequestの情報を表示します。"
             echo "PR作成者： ${env.CHANGE_AUTHOR}"
