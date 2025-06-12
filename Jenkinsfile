@@ -26,7 +26,7 @@ pipeline {
             // curl で POST
             sh '''
               curl -s -X POST https://api.github.com/repos/cotos/ElectricCommonLibs/statuses/${revision} \\
-                -H "Authorization: token ${env.GITHUB_TOKEN}" \\
+                -H "Authorization: token ${GITHUB_TOKEN}" \\
                 -H "Content-Type: application/json" \\
                 -H '${payload}'
             '''
