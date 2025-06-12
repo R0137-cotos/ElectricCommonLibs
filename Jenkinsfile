@@ -1,8 +1,5 @@
 pipeline {
   agent any
-  environment {
-    GITHUB_TOKEN = credentials('jenkins-github-likner')
-  }
   stages {
     stage("build") {
       when {
@@ -13,28 +10,30 @@ pipeline {
         }
       }
       steps {
-        script {
-          notifyStatus('pending', 'starting gradle test.', ${GITHUB_TOKEN})
-          echo "buildを実行します"
-          echo ">> PullRequestの情報を表示します。"
-          echo "PR作成者： ${env.CHANGE_AUTHOR}"
-          echo "Forkリポジトリ： ${env.CHANGE_FORK}"
-          echo "PRブランチ： ${env.CHANGE_BRANCH}"
-          echo "ターゲットブランチ： ${env.CHANGE_TARGET}" 
-          try {
-            sh "gradle clean"
-            if ("${env.CHANGE_TARGET}" == 'master') {
-              sh "export SPRING_PROFILES_ACTIVE=ci"
-            } else {
-              sh "export SPRING_PROFILES_ACTIVE=ci"
+        withCredentials([string(credentialsId: 'jenkins-github-likner', variable: 'GITHUB_TOKEN')]){
+          script {
+            notifyStatus('pending', 'starting gradle test.', ${GITHUB_TOKEN})
+            echo "buildを実行します"
+            echo ">> PullRequestの情報を表示します。"
+            echo "PR作成者： ${env.CHANGE_AUTHOR}"
+            echo "Forkリポジトリ： ${env.CHANGE_FORK}"
+            echo "PRブランチ： ${env.CHANGE_BRANCH}"
+            echo "ターゲットブランチ： ${env.CHANGE_TARGET}" 
+            try {
+              sh "gradle clean"
+              if ("${env.CHANGE_TARGET}" == 'master') {
+                sh "export SPRING_PROFILES_ACTIVE=ci"
+              } else {
+                sh "export SPRING_PROFILES_ACTIVE=ci"
+              }
+              def gradleTestOption = "${env.GRADLE_TEST_OPTION}"
+              sh "gradle ${gradleTestOption} test"
+              junit "build/test-results/test/*.xml"
+              archiveArtifacts "build/test-results/test/*.xml"
+              notifyStatus('success', 'All tests passed.', ${GITHUB_TOKEN})
+            } catch (e) {
+              notifyStatus('failure', 'Some tests failed.', ${GITHUB_TOKEN})
             }
-            def gradleTestOption = "${env.GRADLE_TEST_OPTION}"
-            sh "gradle ${gradleTestOption} test"
-            junit "build/test-results/test/*.xml"
-            archiveArtifacts "build/test-results/test/*.xml"
-            notifyStatus('success', 'All tests passed.', ${GITHUB_TOKEN})
-          } catch (e) {
-            notifyStatus('failure', 'Some tests failed.', ${GITHUB_TOKEN})
           }
         }
       }
