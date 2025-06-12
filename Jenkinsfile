@@ -10,8 +10,9 @@ pipeline {
         }
       }
       steps {
-        withCredentials([string(credentialsId: 'jenkins-github-likner', variable: 'GITHUB_TOKEN')]){
+        // withCredentials([string(credentialsId: 'jenkins-github-likner', variable: 'GITHUB_TOKEN')]){
           script {
+            GITHUB_TOKEN="7bb109e2c08f82c0ba2f49f0dce3158baed759ee"
             notifyStatus('pending', 'starting gradle test.', ${GITHUB_TOKEN})
             echo "buildを実行します"
             echo ">> PullRequestの情報を表示します。"
@@ -35,7 +36,7 @@ pipeline {
               notifyStatus('failure', 'Some tests failed.', ${GITHUB_TOKEN})
             }
           }
-        }
+        // }
       }
     }
   }
@@ -52,7 +53,7 @@ def notifyStatus(state, description, token) {
   // curl で POST
   sh '''
     curl -s -X POST https://api.github.com/repos/cotos/ElectricCommonLibs/statuses/${revision} \\
-      -H "Authorization: tolen ${env.GITHUB_TOKEN}" \\
+      -H "Authorization: token ${env.GITHUB_TOKEN}" \\
       -H "Content-Type: application/json" \\
       -H '${payload}'
   '''
