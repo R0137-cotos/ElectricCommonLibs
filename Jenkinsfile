@@ -25,10 +25,10 @@ pipeline {
             echo "${revision}"
             // curl で POST
             sh """
-              curl -s -X POST https://api.github.com/repos/cotos/ElectricCommonLibs/statuses/${revision} \\
-                -H "Authorization: token ${GITHUB_TOKEN}" \\
-                -H "Content-Type: application/json" \\
-                -H '${payload}'
+              curl -s -X POST https://mygithub.ritscm.xyz/api/v3/repos/cotos/ElectricCommonLibs/statuses/${revision} \
+                -H "Authorization: token ${GITHUB_TOKEN}" \
+                -H "Content-Type: application/json" \
+                -d "${payload}"
             """
             echo "buildを実行します"
             echo ">> PullRequestの情報を表示します。"
