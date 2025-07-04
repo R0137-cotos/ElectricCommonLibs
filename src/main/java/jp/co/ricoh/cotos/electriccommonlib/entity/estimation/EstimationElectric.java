@@ -31,7 +31,7 @@ import lombok.EqualsAndHashCode;
  * 見積(電力用)
  */
 @Entity
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = true, exclude={"electricExpertEstimation", "electricDealerEstimation", "feeSimulationHead", "agencyEstimationInformation"})
 @Data
 @Table(name = "estimation_electric")
 @CotosComplementTarget(entity = EstimationElectric.class, repository = EstimationElectricRepository.class)

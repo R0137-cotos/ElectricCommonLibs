@@ -310,3 +310,4 @@
 |305|MFP販促対応マスタ追加|
 |306|EOSL対応|
 |307|EOSL対応 Jenkinsfile追加|
+|308|EOSL対応 EqualsAndHashCodeアノテーションを修正|

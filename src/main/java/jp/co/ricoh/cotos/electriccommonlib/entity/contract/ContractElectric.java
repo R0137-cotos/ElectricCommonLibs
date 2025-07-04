@@ -38,7 +38,7 @@ import lombok.EqualsAndHashCode;
  * 契約(電力用)を表すEntity
  */
 @Entity
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = true, exclude = {"entryContentHighPressure", "entryContentLowPressure", "cancellationInformation", "electricExpertContract", "electricDealerContract", "mailAddressInformationList", "contractElectricAttachedFileList", "unitPriceHighPressureList", "unitPriceLowPressureList", "clientInformationList", "importantPointExplainer", "agencyContractInformation"})
 @Data
 @Table(name = "contract_electric")
 @EntityListeners(ContractElectricListener.class)
