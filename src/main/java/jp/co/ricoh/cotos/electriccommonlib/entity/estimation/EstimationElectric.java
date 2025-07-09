@@ -26,12 +26,14 @@ import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricFormMaster.Elec
 import jp.co.ricoh.cotos.electriccommonlib.repository.estimation.EstimationElectricRepository;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 /**
  * 見積(電力用)
  */
 @Entity
 @EqualsAndHashCode(callSuper = true, exclude={"electricExpertEstimation", "electricDealerEstimation", "feeSimulationHead", "agencyEstimationInformation"})
+@ToString(callSuper = true, exclude = {"electricExpertEstimation", "electricDealerEstimation", "feeSimulationHead", "agencyEstimationInformation"})
 @Data
 @Table(name = "estimation_electric")
 @CotosComplementTarget(entity = EstimationElectric.class, repository = EstimationElectricRepository.class)
