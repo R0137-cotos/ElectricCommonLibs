@@ -33,12 +33,14 @@ import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricFormMaster.Elec
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.ContractElectricRepository;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 /**
  * 契約(電力用)を表すEntity
  */
 @Entity
 @EqualsAndHashCode(callSuper = true, exclude = {"entryContentHighPressure", "entryContentLowPressure", "cancellationInformation", "electricExpertContract", "electricDealerContract", "mailAddressInformationList", "contractElectricAttachedFileList", "unitPriceHighPressureList", "unitPriceLowPressureList", "clientInformationList", "importantPointExplainer", "agencyContractInformation"})
+@ToString(callSuper = true, exclude = {"entryContentHighPressure", "entryContentLowPressure", "cancellationInformation", "electricExpertContract", "electricDealerContract", "mailAddressInformationList", "contractElectricAttachedFileList", "unitPriceHighPressureList", "unitPriceLowPressureList", "clientInformationList", "importantPointExplainer", "agencyContractInformation"})
 @Data
 @Table(name = "contract_electric")
 @EntityListeners(ContractElectricListener.class)
