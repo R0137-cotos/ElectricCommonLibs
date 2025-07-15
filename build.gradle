@@ -48,7 +48,7 @@ dependencies {
     implementation group: 'org.apache.poi', name : 'poi', version: '3.17'
     implementation('com.auth0:java-jwt:4.5.0')
 
-    implementation('jp.co.ricoh.cotos:dentos-common-libraries:0.0.363')
+    implementation('jp.co.ricoh.cotos:dentos-common-libraries:0.0.368')
 
     implementation group: 'io.springfox', name: 'springfox-swagger2', version: '2.8.0'
     implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.8.0'
@@ -76,6 +76,8 @@ dependencies {
     implementation ('log4j:log4j:1.2.17')
     implementation ('net.bytebuddy:byte-buddy:1.17.5')
     implementation ('com.oracle.database.jdbc:ojdbc8:23.7.0.25.01')
+
+    implementation("javax.xml.soap:javax.xml.soap-api:1.4.0")
 }
 
 sonarqube {
@@ -90,7 +92,7 @@ def repo = new File(rootDir, "repository")
 publishing {
 	publications {
 		mavenJava(MavenPublication) {
-			version = '0.0.309'
+			version = '0.0.310'
 			groupId = 'jp.co.ricoh.cotos'
 			artifactId = 'electric-common-libraries'
 			from components.java

@@ -13,7 +13,6 @@ import jakarta.transaction.Transactional;
 
 import org.junit.AfterClass;
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -249,7 +248,6 @@ public class CotosSecurityTests {
 
 	@Test
 	@Transactional
-	@Ignore("TODO kengenService.jarをjava21に差し替えたら削除")
 	public void 認証_トークンあり_異常_MoM権限無し() throws Exception {
 		RestTemplate rest = initRest(WITHIN_PERIOD_JWT);
 		try {
