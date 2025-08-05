@@ -24,19 +24,19 @@ cotos:
       filename: filename
   api:
     standard:
-      estimation: https://dev-api.cotos.ricoh.co.jp/estimaiton/api
-      contract: https://dev-api.cotos.ricoh.co.jp/contract/api
-      master: https://dev-api.cotos.ricoh.co.jp/master/api
-      reports: https://dev-api.cotos.ricoh.co.jp/reports/api
+      estimation: https://st-el-api-aws.cotos.ricoh.co.jp/estimaiton/api
+      contract: https://st-el-api-aws.cotos.ricoh.co.jp/contract/api
+      master: https://st-el-api-aws.cotos.ricoh.co.jp/master/api
+      reports: https://st-el-api-aws.cotos.ricoh.co.jp/reports/api
     electric:
-      estimation: https://dev-api.cotos.ricoh.co.jp/estimaiton/electric/api
-      contract: https://dev-api.cotos.ricoh.co.jp/contract/electric/api
+      estimation: https://st-el-api-aws.cotos.ricoh.co.jp/estimaiton/electric/api
+      contract: https://st-el-api-aws.cotos.ricoh.co.jp/contract/electric/api
   external:
     database:
       schema: test_schema
 spring:
   datasource:
-    url: jdbc:oracle:thin:@dev-db.cotos.ricoh.co.jp:1521/pdb1
+    url: jdbc:oracle:thin:@el-st-db-aws.cotos.ricoh.co.jp:1521/pdb1
     username: cotos_ci_commonlibs_electric
     password: cotos_ci_commonlibs_electric
     driverClassName: oracle.jdbc.OracleDriver
