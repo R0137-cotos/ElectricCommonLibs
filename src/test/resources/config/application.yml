@@ -24,13 +24,13 @@ cotos:
       filename: filename
   api:
     standard:
-      estimation: https://st-el-api-aws.cotos.ricoh.co.jp/estimaiton/api
-      contract: https://st-el-api-aws.cotos.ricoh.co.jp/contract/api
-      master: https://st-el-api-aws.cotos.ricoh.co.jp/master/api
-      reports: https://st-el-api-aws.cotos.ricoh.co.jp/reports/api
+      estimation: https://el-st-api-aws.cotos.ricoh.co.jp/estimaiton/api
+      contract: https://el-st-api-aws.cotos.ricoh.co.jp/contract/api
+      master: https://el-st-api-aws.cotos.ricoh.co.jp/master/api
+      reports: https://el-st-api-aws.cotos.ricoh.co.jp/reports/api
     electric:
-      estimation: https://st-el-api-aws.cotos.ricoh.co.jp/estimaiton/electric/api
-      contract: https://st-el-api-aws.cotos.ricoh.co.jp/contract/electric/api
+      estimation: https://el-st-api-aws.cotos.ricoh.co.jp/estimaiton/electric/api
+      contract: https://el-st-api-aws.cotos.ricoh.co.jp/contract/electric/api
   external:
     database:
       schema: test_schema
