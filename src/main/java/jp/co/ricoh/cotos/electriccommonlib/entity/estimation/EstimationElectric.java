@@ -2,18 +2,18 @@ package jp.co.ricoh.cotos.electriccommonlib.entity.estimation;
 
 import java.math.BigDecimal;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
-import javax.validation.constraints.DecimalMin;
-import javax.validation.constraints.Digits;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 
 import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBase;
@@ -26,12 +26,14 @@ import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricFormMaster.Elec
 import jp.co.ricoh.cotos.electriccommonlib.repository.estimation.EstimationElectricRepository;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 /**
  * 見積(電力用)
  */
 @Entity
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = true, exclude={"electricExpertEstimation", "electricDealerEstimation", "feeSimulationHead", "agencyEstimationInformation"})
+@ToString(callSuper = true, exclude = {"electricExpertEstimation", "electricDealerEstimation", "feeSimulationHead", "agencyEstimationInformation"})
 @Data
 @Table(name = "estimation_electric")
 @CotosComplementTarget(entity = EstimationElectric.class, repository = EstimationElectricRepository.class)

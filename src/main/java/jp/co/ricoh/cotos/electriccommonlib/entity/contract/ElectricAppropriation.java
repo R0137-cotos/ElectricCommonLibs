@@ -3,21 +3,21 @@ package jp.co.ricoh.cotos.electriccommonlib.entity.contract;
 import java.math.BigDecimal;
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.validation.constraints.DecimalMin;
-import javax.validation.constraints.Digits;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -64,6 +64,7 @@ public class ElectricAppropriation extends EntityBase {
 	 * 請求年月
 	 */
 	@Column(nullable = false)
+	@JoinColumn(name = "billing_year_month")
 	@ApiModelProperty(value = "請求年月", required = true, position = 4, allowableValues = "range[0,255]")
 	private String billingYearMonth;
 
@@ -127,6 +128,7 @@ public class ElectricAppropriation extends EntityBase {
 	 * 電力販売店会社ID
 	 */
 	@Column(nullable = true)
+	@JoinColumn(name = "electric_trading_company_id")
 	@ApiModelProperty(value = "電力販売店会社ID", required = false, position = 13, allowableValues = "range[0,255]")
 	private String electricTradingCompanyId;
 

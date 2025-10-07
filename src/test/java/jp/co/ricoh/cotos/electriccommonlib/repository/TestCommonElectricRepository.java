@@ -8,7 +8,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -22,7 +21,7 @@ import jp.co.ricoh.cotos.electriccommonlib.repository.common.ElectricMailSendHis
 import jp.co.ricoh.cotos.electriccommonlib.repository.master.ElectricMailControlMasterRepository;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+@SpringBootTest
 
 public class TestCommonElectricRepository extends RepositoryTestBase {
 
@@ -71,7 +70,7 @@ public class TestCommonElectricRepository extends RepositoryTestBase {
 	@Test
 	public void 電力メール送信履歴_対象データIDと電力通知メール変換値マスタとメール送信区分より取得_共通() {
 		long targetDataId = 1L;
-		ElectricMailControlMaster master = electricMailControlMasterRepository.findOne(1L);
+		ElectricMailControlMaster master = electricMailControlMasterRepository.findById(1L).get();
 
 		// 対象データIDと電力通知メール変換値マスタとメール送信区分により電力メール送信履歴を取得
 		ElectricMailSendHistory electricMailSendHistory = electricMailSendHistoryRepository.findByTargetDataIdAndElectricMailControlMasterAndMailSendType(targetDataId, master, MailSendType.完了);
@@ -86,7 +85,7 @@ public class TestCommonElectricRepository extends RepositoryTestBase {
 
 	@Test
 	public void 電力通知メール変換値マスタとメール送信区分より取得_共通_電力メール送信履歴() {
-		ElectricMailControlMaster master = electricMailControlMasterRepository.findOne(1L);
+		ElectricMailControlMaster master = electricMailControlMasterRepository.findById(1L).get();
 
 		// 力通知メール変換値マスタとメール送信区分により電力メール送信履歴を取得
 		List<ElectricMailSendHistory> electricMailSendHistoryList = electricMailSendHistoryRepository.findByElectricMailControlMasterAndMailSendType(master, MailSendType.完了);

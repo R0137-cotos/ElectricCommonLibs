@@ -8,9 +8,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.embedded.LocalServerPort;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -24,7 +24,7 @@ import jp.co.ricoh.cotos.electriccommonlib.repository.master.CustomerInformation
 import jp.co.ricoh.cotos.electriccommonlib.security.bean.ParamterCheckResult;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT, properties = "test.context.id = TestMasterDto")
 public class TestMasterDto {
 
 	private static final String STR_256 = "0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345";
@@ -69,7 +69,7 @@ public class TestMasterDto {
 	@Test
 	public void CustomerInformationForWashingExtDtoのテスト() throws Exception {
 
-		CustomerInformationForWashing entity = customerInformationForWashingRepository.findOne(1L);
+		CustomerInformationForWashing entity = customerInformationForWashingRepository.findById(1L).get();
 		CustomerInformationForWashingExtDto testTarget = new CustomerInformationForWashingExtDto();
 		BeanUtils.copyProperties(entity, testTarget);
 

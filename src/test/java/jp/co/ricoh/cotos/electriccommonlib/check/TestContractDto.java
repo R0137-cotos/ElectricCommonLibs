@@ -11,9 +11,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.embedded.LocalServerPort;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -93,7 +93,7 @@ import jp.co.ricoh.cotos.electriccommonlib.repository.contract.ContractElectricR
 import jp.co.ricoh.cotos.electriccommonlib.security.bean.ParamterCheckResult;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT, properties = "test.context.id = TestContractDto")
 public class TestContractDto {
 
 	private static final String STR_256 = "0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345";
@@ -155,7 +155,7 @@ public class TestContractDto {
 	@Test
 	public void ContractElectricDtoのテスト() throws Exception {
 
-		ContractElectric entity = contractElectricRepository.findOne(1L);
+		ContractElectric entity = contractElectricRepository.findById(1L).get();
 		ContractElectricDto testTarget = new ContractElectricDto();
 		BeanUtils.copyProperties(entity, testTarget);
 
@@ -238,7 +238,7 @@ public class TestContractDto {
 	@Test
 	public void MailAddressInformationDtoのテスト() throws Exception {
 
-		ContractElectric entity = contractElectricRepository.findOne(1L);
+		ContractElectric entity = contractElectricRepository.findById(1L).get();
 		MailAddressInformationDto testTarget = new MailAddressInformationDto();
 		BeanUtils.copyProperties(entity.getMailAddressInformationList().get(0), testTarget);
 
@@ -276,7 +276,7 @@ public class TestContractDto {
 	@Test
 	public void EntryContentHighPressureDtoのテスト() throws Exception {
 
-		ContractElectric entity = contractElectricRepository.findOne(1L);
+		ContractElectric entity = contractElectricRepository.findById(1L).get();
 		EntryContentHighPressureDto testTarget = new EntryContentHighPressureDto();
 		BeanUtils.copyProperties(entity.getEntryContentHighPressure(), testTarget);
 
@@ -354,7 +354,7 @@ public class TestContractDto {
 	@Test
 	public void EntryContentLowPressureDtoのテスト() throws Exception {
 
-		ContractElectric entity = contractElectricRepository.findOne(1L);
+		ContractElectric entity = contractElectricRepository.findById(1L).get();
 		EntryContentLowPressureDto testTarget = new EntryContentLowPressureDto();
 		BeanUtils.copyProperties(entity.getEntryContentLowPressure(), testTarget);
 
@@ -396,7 +396,7 @@ public class TestContractDto {
 	@Test
 	public void ContractElectricAttachedFileDtoのテスト() throws Exception {
 
-		ContractElectric entity = contractElectricRepository.findOne(1L);
+		ContractElectric entity = contractElectricRepository.findById(1L).get();
 		ContractElectricAttachedFileDto testTarget = new ContractElectricAttachedFileDto();
 		BeanUtils.copyProperties(entity.getContractElectricAttachedFileList().get(0), testTarget);
 
@@ -441,7 +441,7 @@ public class TestContractDto {
 	@Test
 	public void UnitPriceHighPressureDtoのテスト() throws Exception {
 
-		ContractElectric entity = contractElectricRepository.findOne(1L);
+		ContractElectric entity = contractElectricRepository.findById(1L).get();
 		UnitPriceHighPressureDto testTarget = new UnitPriceHighPressureDto();
 		BeanUtils.copyProperties(entity.getUnitPriceHighPressureList().get(0), testTarget);
 
@@ -502,7 +502,7 @@ public class TestContractDto {
 	@Test
 	public void UnitPriceLowPressureDtoのテスト() throws Exception {
 
-		ContractElectric entity = contractElectricRepository.findOne(1L);
+		ContractElectric entity = contractElectricRepository.findById(1L).get();
 		UnitPriceLowPressureDto testTarget = new UnitPriceLowPressureDto();
 		BeanUtils.copyProperties(entity.getUnitPriceLowPressureList().get(0), testTarget);
 
@@ -564,7 +564,7 @@ public class TestContractDto {
 	@Test
 	public void CancellationInformationDtoのテスト() throws Exception {
 
-		ContractElectric entity = contractElectricRepository.findOne(1L);
+		ContractElectric entity = contractElectricRepository.findById(1L).get();
 		CancellationInformationDto testTarget = new CancellationInformationDto();
 		BeanUtils.copyProperties(entity.getCancellationInformation(), testTarget);
 
@@ -622,7 +622,7 @@ public class TestContractDto {
 	@Test
 	public void CancellationDetailInformationDtoのテスト() throws Exception {
 
-		ContractElectric entity = contractElectricRepository.findOne(1L);
+		ContractElectric entity = contractElectricRepository.findById(1L).get();
 		CancellationDetailInformationDto testTarget = new CancellationDetailInformationDto();
 		BeanUtils.copyProperties(entity.getCancellationInformation().getCancellationDetailInformation(), testTarget);
 
@@ -669,7 +669,7 @@ public class TestContractDto {
 	@Test
 	public void CancellationReasonInformationDtoのテスト() throws Exception {
 
-		ContractElectric entity = contractElectricRepository.findOne(1L);
+		ContractElectric entity = contractElectricRepository.findById(1L).get();
 		CancellationReasonInformationDto testTarget = new CancellationReasonInformationDto();
 		BeanUtils.copyProperties(entity.getCancellationInformation().getCancellationReasonInformation(), testTarget);
 
@@ -711,7 +711,7 @@ public class TestContractDto {
 	@Test
 	public void ElectricExpertContractDtoのテスト() throws Exception {
 
-		ContractElectric entity = contractElectricRepository.findOne(1L);
+		ContractElectric entity = contractElectricRepository.findById(1L).get();
 		ElectricExpertContractDto testTarget = new ElectricExpertContractDto();
 		BeanUtils.copyProperties(entity.getElectricExpertContract(), testTarget);
 
@@ -737,7 +737,7 @@ public class TestContractDto {
 	@Test
 	public void ElectricDealerContractDtoのテスト() throws Exception {
 
-		ContractElectric entity = contractElectricRepository.findOne(1L);
+		ContractElectric entity = contractElectricRepository.findById(1L).get();
 		ElectricDealerContractDto testTarget = new ElectricDealerContractDto();
 		BeanUtils.copyProperties(entity.getElectricDealerContract(), testTarget);
 
@@ -760,7 +760,7 @@ public class TestContractDto {
 	@Test
 	public void ClientInformationDtoのテスト() throws Exception {
 
-		ContractElectric entity = contractElectricRepository.findOne(1L);
+		ContractElectric entity = contractElectricRepository.findById(1L).get();
 		ClientInformationDto testTarget = new ClientInformationDto();
 		BeanUtils.copyProperties(entity.getClientInformationList().get(0), testTarget);
 
@@ -796,7 +796,7 @@ public class TestContractDto {
 	@Test
 	public void ClientMasterDtoのテスト() throws Exception {
 
-		ClientMaster entity = clientMasterRepository.findOne(1L);
+		ClientMaster entity = clientMasterRepository.findById(1L).get();
 		ClientMasterDto testTarget = new ClientMasterDto();
 		BeanUtils.copyProperties(entity, testTarget);
 
@@ -815,7 +815,7 @@ public class TestContractDto {
 	@Test
 	public void BillingMailAddressInformationDtoのテスト() throws Exception {
 
-		BillingMailAddressInformation entity = billingMailAddressInformationRepository.findOne(1L);
+		BillingMailAddressInformation entity = billingMailAddressInformationRepository.findById(1L).get();
 		BillingMailAddressInformationDto testTarget = new BillingMailAddressInformationDto();
 		BeanUtils.copyProperties(entity, testTarget);
 
@@ -842,7 +842,7 @@ public class TestContractDto {
 	@Test
 	public void ImportantPointExplainerDtoのテスト() throws Exception {
 
-		ContractElectric entity = contractElectricRepository.findOne(1L);
+		ContractElectric entity = contractElectricRepository.findById(1L).get();
 		ImportantPointExplainerDto testTarget = new ImportantPointExplainerDto();
 		BeanUtils.copyProperties(entity.getImportantPointExplainer(), testTarget);
 
@@ -863,7 +863,7 @@ public class TestContractDto {
 
 	@Test
 	public void BillingBasicInformationDtoのテスト() {
-		BillingBasicInformation entity = billingBasicInformationRepository.findOne(1L);
+		BillingBasicInformation entity = billingBasicInformationRepository.findById(1L).get();
 		BillingBasicInformationDto testTarget = new BillingBasicInformationDto();
 		BeanUtils.copyProperties(entity, testTarget);
 
@@ -907,7 +907,7 @@ public class TestContractDto {
 	@Test
 	public void ContractElectricCreateExtInputDtoのテスト() throws Exception {
 
-		ContractElectric entity = contractElectricRepository.findOne(1L);
+		ContractElectric entity = contractElectricRepository.findById(1L).get();
 
 		// テストデータ作成
 		ContractElectricCreateExtInputDto testTarget = new ContractElectricCreateExtInputDto();
@@ -1019,7 +1019,7 @@ public class TestContractDto {
 		Assert.assertEquals(40, result.getErrorInfoList().size());
 
 		// 異常系(@Size(max))
-		entity = contractElectricRepository.findOne(1L);
+		entity = contractElectricRepository.findById(1L).get();
 		// テストデータ作成
 		testTarget = new ContractElectricCreateExtInputDto();
 		testTarget.setCaseNumber(STR_256);
@@ -1250,7 +1250,7 @@ public class TestContractDto {
 	@Test
 	public void ContractElectricChangePlanExtInputDtoのテスト() throws Exception {
 
-		ContractElectric entity = contractElectricRepository.findOne(1L);
+		ContractElectric entity = contractElectricRepository.findById(1L).get();
 
 		// テストデータ作成
 		ContractElectricChangePlanExtInputDto testTarget = new ContractElectricChangePlanExtInputDto();
@@ -1362,7 +1362,7 @@ public class TestContractDto {
 		Assert.assertEquals(40, result.getErrorInfoList().size());
 
 		// 異常系(@Size(max))
-		entity = contractElectricRepository.findOne(1L);
+		entity = contractElectricRepository.findById(1L).get();
 		// テストデータ作成
 		testTarget = new ContractElectricChangePlanExtInputDto();
 		testTarget.setCaseNumber(STR_256);
@@ -1636,7 +1636,7 @@ public class TestContractDto {
 	public void RegisterArrangementResultExtDtoのテスト() throws Exception {
 
 		// テストデータ作成
-		ContractElectric contractElectric = contractElectricRepository.findOne(1L);
+		ContractElectric contractElectric = contractElectricRepository.findById(1L).get();
 		RegisterArrangementResultExtDto testTarget = new RegisterArrangementResultExtDto();
 		testTarget.setContractId(1L);
 		testTarget.setCaseNumber("案件番号");
@@ -1699,7 +1699,7 @@ public class TestContractDto {
 		testTool.assertValidationOk(result);
 
 		// 異常系(@NotNull)
-		contractElectric = contractElectricRepository.findOne(1L);
+		contractElectric = contractElectricRepository.findById(1L).get();
 		BeanUtils.copyProperties(contractElectric, registerArrangementResultContractElectricExtDto);
 		BeanUtils.copyProperties(contractElectric.getEntryContentLowPressure(), registerArrangementResultContractElectricExtDto);
 		testTarget.setCaseNumber(null);
@@ -1713,7 +1713,7 @@ public class TestContractDto {
 		Assert.assertEquals(6, result.getErrorInfoList().size());
 
 		// 異常系(@Size(max))
-		contractElectric = contractElectricRepository.findOne(1L);
+		contractElectric = contractElectricRepository.findById(1L).get();
 		BeanUtils.copyProperties(contractElectric, registerArrangementResultContractElectricExtDto);
 		BeanUtils.copyProperties(contractElectric.getEntryContentLowPressure(), registerArrangementResultContractElectricExtDto);
 		testTarget.setCaseNumber(STR_256);
@@ -1777,7 +1777,7 @@ public class TestContractDto {
 		Assert.assertEquals(43, result.getErrorInfoList().size());
 
 		// 異常系(@Min, @Decimal)
-		contractElectric = contractElectricRepository.findOne(1L);
+		contractElectric = contractElectricRepository.findById(1L).get();
 		BeanUtils.copyProperties(contractElectric, registerArrangementResultContractElectricExtDto);
 		BeanUtils.copyProperties(contractElectric.getEntryContentLowPressure(), registerArrangementResultContractElectricExtDto);
 

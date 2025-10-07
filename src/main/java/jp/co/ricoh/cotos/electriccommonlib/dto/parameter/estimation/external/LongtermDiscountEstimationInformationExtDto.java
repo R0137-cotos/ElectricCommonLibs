@@ -2,8 +2,8 @@ package jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external;
 
 import java.math.BigDecimal;
 
-import javax.validation.constraints.DecimalMin;
-import javax.validation.constraints.Digits;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Digits;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

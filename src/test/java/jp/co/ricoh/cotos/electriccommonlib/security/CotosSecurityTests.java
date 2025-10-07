@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import javax.transaction.Transactional;
+import jakarta.transaction.Transactional;
 
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -17,10 +17,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.embedded.LocalServerPort;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.mock.mockito.SpyBean;
+import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.ResponseEntity;
@@ -46,7 +46,7 @@ import jp.co.ricoh.cotos.electriccommonlib.util.StandardProperties;
 import lombok.val;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT, properties = "test.context.id = CotosSecurityTests")
 public class CotosSecurityTests {
 
 	private static final String WITHIN_PERIOD_HAS_MOM_AUTH_JWT = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJtb21BdXRoIjoie1wiMDNcIjp7XCIyMjEwXCI6XCIwMFwiLFwiMjIyMFwiOlwiMDBcIixcIjIyMzBcIjpcIjEwXCIsXCIyMjAwXCI6XCI1MFwifSxcIjA1XCI6e1wiMjIxMFwiOlwiMDBcIixcIjIyMjBcIjpcIjAwXCIsXCIyMjMwXCI6XCIxMFwiLFwiMjIwMFwiOlwiNTBcIn0sXCIwN1wiOntcIjIyMTBcIjpcIjAwXCIsXCIyMjIwXCI6XCIwMFwiLFwiMjIzMFwiOlwiMTBcIixcIjIyMDBcIjpcIjUwXCJ9LFwiMDFcIjp7XCIyMjEwXCI6XCIwMFwiLFwiMjIyMFwiOlwiMDBcIixcIjIyMzBcIjpcIjEwXCIsXCIyMjAwXCI6XCI1MFwifSxcIjA0XCI6e1wiMjIxMFwiOlwiMDBcIixcIjIyMjBcIjpcIjAwXCIsXCIyMjMwXCI6XCIxMFwiLFwiMjIwMFwiOlwiNTBcIn0sXCIwNlwiOntcIjIyMTBcIjpcIjAwXCIsXCIyMjIwXCI6XCIwMFwiLFwiMjIzMFwiOlwiMTBcIixcIjIyMDBcIjpcIjUwXCJ9LFwiMDJcIjp7XCIyMjEwXCI6XCIwMFwiLFwiMjIyMFwiOlwiMDBcIixcIjIyMzBcIjpcIjEwXCIsXCIyMjAwXCI6XCI1MFwifX0iLCJvcmlnaW4iOiJodHRwczovL2Rldi5jb3Rvcy5yaWNvaC5jby5qcCIsInNpbmdsZVVzZXJJZCI6InUwMjAxMTI1IiwibW9tRW1wSWQiOiIwMDIyOTc0NiIsImV4cCI6MjUzNDAyMjY4Mzk5LCJhcHBsaWNhdGlvbklkIjoiY290b3NfZGV2In0.DVREQfy-8H2hOAX44ktBfi8IVKB45I43dinEN_a8I5E";
@@ -136,7 +136,7 @@ public class CotosSecurityTests {
 
 		RestTemplate rest = initRest(WITHIN_PERIOD_HAS_MOM_AUTH_JWT);
 		ResponseEntity<String> response = rest.getForEntity(loadTopURL() + "securitytest/api/test/1?isSuccess=true&hasBody=false&isAbstain=false", String.class);
-		Assert.assertEquals("正常終了", 200, response.getStatusCodeValue());
+		Assert.assertEquals("正常終了", 200, response.getStatusCode().value());
 		Assert.assertEquals("正常終了", "u0201125,00229746,https://dev.cotos.ricoh.co.jp,cotos_dev," + WITHIN_PERIOD_HAS_MOM_AUTH_JWT + ",false,false,true", response.getBody());
 	}
 
@@ -153,7 +153,7 @@ public class CotosSecurityTests {
 
 		RestTemplate rest = initRest(WITHIN_PERIOD_JWT);
 		ResponseEntity<String> response = rest.getForEntity(loadTopURL() + "securitytest/api/test/1?isSuccess=true&hasBody=false&isAbstain=true", String.class);
-		Assert.assertEquals("正常終了", 200, response.getStatusCodeValue());
+		Assert.assertEquals("正常終了", 200, response.getStatusCode().value());
 		Assert.assertEquals("正常終了", "sid,mid,cotos.ricoh.co.jp,cotos_dev," + WITHIN_PERIOD_JWT + ",false,false,true", response.getBody());
 	}
 
@@ -183,7 +183,7 @@ public class CotosSecurityTests {
 
 		RestTemplate rest = initRest(WITHIN_PERIOD_JWT_SUPER_USER);
 		ResponseEntity<String> response = rest.getForEntity(loadTopURL() + "securitytest/api/test/1?isSuccess=true&hasBody=false&isAbstain=false", String.class);
-		Assert.assertEquals("正常終了", 200, response.getStatusCodeValue());
+		Assert.assertEquals("正常終了", 200, response.getStatusCode().value());
 		Assert.assertEquals("正常終了", "u02901149,00500784,https://dev.cotos.ricoh.co.jp,cotos_dev," + WITHIN_PERIOD_JWT_SUPER_USER + ",true,false,true", response.getBody());
 	}
 
@@ -193,7 +193,7 @@ public class CotosSecurityTests {
 
 		RestTemplate rest = initRest(WITHIN_PERIOD_MOM_AUTH_IS_NO_AUTHORITIES_JWT);
 		ResponseEntity<String> response = rest.getForEntity(loadTopURL() + "securitytest/api/test/1?isSuccess=true&hasBody=false&isAbstain=false", String.class);
-		Assert.assertEquals("正常終了", 200, response.getStatusCodeValue());
+		Assert.assertEquals("正常終了", 200, response.getStatusCode().value());
 		Assert.assertEquals("正常終了", "u02901149,00500784,https://dev.cotos.ricoh.co.jp,cotos_dev," + WITHIN_PERIOD_MOM_AUTH_IS_NO_AUTHORITIES_JWT + ",true,false,false", response.getBody());
 	}
 
@@ -262,7 +262,7 @@ public class CotosSecurityTests {
 	public void 指定されたURLには未認証でアクセス可能なこと() {
 		RestTemplate rest = initRest(null);
 		val response = rest.getForEntity(loadTopURL() + "securitytest/api/swagger-ui.html", String.class);
-		Assert.assertEquals("アクセス可能であること", 200, response.getStatusCodeValue());
+		Assert.assertEquals("アクセス可能であること", 200, response.getStatusCode().value());
 		Assert.assertEquals("コンテンツが取得できていること", context.getBean(TestSecurityController.class).getSwaggerBody(), response.getBody());
 	}
 
@@ -378,14 +378,14 @@ public class CotosSecurityTests {
 		AuthorityJudgeParameter parameter = new AuthorityJudgeParameter();
 
 		// アクター
-		MvEmployeeMaster actor = mvEmployeeMasterRepository.findOne("00229692");
+		MvEmployeeMaster actor = mvEmployeeMasterRepository.findById("00229692").get();
 		parameter.setActorMvEmployeeMaster(actor);
 
 		// 担当SA
-		MvEmployeeMaster sa = mvEmployeeMasterRepository.findOne("00229692");
+		MvEmployeeMaster sa = mvEmployeeMasterRepository.findById("00229692").get();
 
 		// 追加編集者
-		MvEmployeeMaster subEditor = mvEmployeeMasterRepository.findOne("00220552");
+		MvEmployeeMaster subEditor = mvEmployeeMasterRepository.findById("00220552").get();
 
 		parameter.setMvEmployeeMasterList(Arrays.asList(sa, subEditor));
 
@@ -403,14 +403,14 @@ public class CotosSecurityTests {
 		AuthorityJudgeParameter parameter = new AuthorityJudgeParameter();
 
 		// アクター
-		MvEmployeeMaster actor = mvEmployeeMasterRepository.findOne("00229692");
+		MvEmployeeMaster actor = mvEmployeeMasterRepository.findById("00229692").get();
 		parameter.setActorMvEmployeeMaster(actor);
 
 		// 担当SA
-		MvEmployeeMaster sa = mvEmployeeMasterRepository.findOne("00229692");
+		MvEmployeeMaster sa = mvEmployeeMasterRepository.findById("00229692").get();
 
 		// 追加編集者
-		MvEmployeeMaster subEditor = mvEmployeeMasterRepository.findOne("00220552");
+		MvEmployeeMaster subEditor = mvEmployeeMasterRepository.findById("00220552").get();
 
 		parameter.setMvEmployeeMasterList(Arrays.asList(sa, subEditor));
 
@@ -428,14 +428,14 @@ public class CotosSecurityTests {
 		AuthorityJudgeParameter parameter = new AuthorityJudgeParameter();
 
 		// アクター
-		MvEmployeeMaster actor = mvEmployeeMasterRepository.findOne("00229692");
+		MvEmployeeMaster actor = mvEmployeeMasterRepository.findById("00229692").get();
 		parameter.setActorMvEmployeeMaster(actor);
 
 		// 担当SA
-		MvEmployeeMaster sa = mvEmployeeMasterRepository.findOne("00229692");
+		MvEmployeeMaster sa = mvEmployeeMasterRepository.findById("00229692").get();
 
 		// 追加編集者
-		MvEmployeeMaster subEditor = mvEmployeeMasterRepository.findOne("99999999");
+		MvEmployeeMaster subEditor = mvEmployeeMasterRepository.findById("99999999").orElse(null);
 
 		parameter.setMvEmployeeMasterList(Arrays.asList(sa, subEditor));
 
@@ -502,7 +502,7 @@ public class CotosSecurityTests {
 	public void 正常_MoM権限_参照_次回承認者() throws Exception {
 
 		AuthorityJudgeParameter authParam = new AuthorityJudgeParameter();
-		authParam.setActorMvEmployeeMaster(mvEmployeeMasterRepository.findOne("00220552"));
+		authParam.setActorMvEmployeeMaster(mvEmployeeMasterRepository.findById("00220552").get());
 		authParam.setManualApprover(true);
 
 		List<MvEmployeeMaster> approverList = new ArrayList<MvEmployeeMaster>();
@@ -522,7 +522,7 @@ public class CotosSecurityTests {
 	public void 正常_MoM権限_参照_次回代理承認者() throws Exception {
 
 		AuthorityJudgeParameter authParam = new AuthorityJudgeParameter();
-		authParam.setActorMvEmployeeMaster(mvEmployeeMasterRepository.findOne("00220552"));
+		authParam.setActorMvEmployeeMaster(mvEmployeeMasterRepository.findById("00220552").get());
 		authParam.setManualApprover(true);
 
 		List<MvEmployeeMaster> approverList = new ArrayList<MvEmployeeMaster>();
@@ -546,7 +546,7 @@ public class CotosSecurityTests {
 	public void 正常_MoM権限_編集_次回承認者() throws Exception {
 
 		AuthorityJudgeParameter authParam = new AuthorityJudgeParameter();
-		authParam.setActorMvEmployeeMaster(mvEmployeeMasterRepository.findOne("00220552"));
+		authParam.setActorMvEmployeeMaster(mvEmployeeMasterRepository.findById("00220552").get());
 		authParam.setManualApprover(true);
 
 		MvEmployeeMaster nextApprover = new MvEmployeeMaster();
@@ -563,7 +563,7 @@ public class CotosSecurityTests {
 	public void 正常_MoM権限_編集_次回代理承認者() throws Exception {
 
 		AuthorityJudgeParameter authParam = new AuthorityJudgeParameter();
-		authParam.setActorMvEmployeeMaster(mvEmployeeMasterRepository.findOne("00220552"));
+		authParam.setActorMvEmployeeMaster(mvEmployeeMasterRepository.findById("00220552").get());
 		authParam.setManualApprover(true);
 
 		MvEmployeeMaster nextApprover = new MvEmployeeMaster();
@@ -584,7 +584,7 @@ public class CotosSecurityTests {
 	public void 正常_MoM権限_編集_前回承認者() throws Exception {
 
 		AuthorityJudgeParameter authParam = new AuthorityJudgeParameter();
-		authParam.setActorMvEmployeeMaster(mvEmployeeMasterRepository.findOne("00220552"));
+		authParam.setActorMvEmployeeMaster(mvEmployeeMasterRepository.findById("00220552").get());
 		authParam.setManualApprover(true);
 
 		MvEmployeeMaster nextApprover = new MvEmployeeMaster();
@@ -601,7 +601,7 @@ public class CotosSecurityTests {
 	public void 正常_MoM権限_編集_前回代理承認者() throws Exception {
 
 		AuthorityJudgeParameter authParam = new AuthorityJudgeParameter();
-		authParam.setActorMvEmployeeMaster(mvEmployeeMasterRepository.findOne("00220552"));
+		authParam.setActorMvEmployeeMaster(mvEmployeeMasterRepository.findById("00220552").get());
 		authParam.setManualApprover(true);
 
 		MvEmployeeMaster nextApprover = new MvEmployeeMaster();

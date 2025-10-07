@@ -1,6 +1,6 @@
 package jp.co.ricoh.cotos.electriccommonlib.security;
 
-import javax.transaction.Transactional;
+import jakarta.transaction.Transactional;
 
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
