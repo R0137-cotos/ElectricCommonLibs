@@ -30,16 +30,16 @@ public class TestProperties {
 
 	@Test
 	public void 標準側のAPIのURLを取得できること() {
-		Assert.assertEquals("契約のURLが取得できること", "https://dev-api.cotos.ricoh.co.jp/contract/api", standardProperties.getContract());
-		Assert.assertEquals("見積のURLが取得できること", "https://dev-api.cotos.ricoh.co.jp/estimaiton/api", standardProperties.getEstimation());
-		Assert.assertEquals("マスターのURLが取得できること", "https://dev-api.cotos.ricoh.co.jp/master/api", standardProperties.getMaster());
-		Assert.assertEquals("帳票のURLが取得できること", "https://dev-api.cotos.ricoh.co.jp/reports/api", standardProperties.getReports());
+		Assert.assertEquals("契約のURLが取得できること", "https://el-st-api-aws.cotos.ricoh.co.jp/contract/api", standardProperties.getContract());
+		Assert.assertEquals("見積のURLが取得できること", "https://el-st-api-aws.cotos.ricoh.co.jp/estimaiton/api", standardProperties.getEstimation());
+		Assert.assertEquals("マスターのURLが取得できること", "https://el-st-api-aws.cotos.ricoh.co.jp/master/api", standardProperties.getMaster());
+		Assert.assertEquals("帳票のURLが取得できること", "https://el-st-api-aws.cotos.ricoh.co.jp/reports/api", standardProperties.getReports());
 	}
 
 	@Test
 	public void 電力側のAPIのURLを取得できること() {
-		Assert.assertEquals("契約のURLが取得できること", "https://dev-api.cotos.ricoh.co.jp/contract/electric/api", electricProperties.getContract());
-		Assert.assertEquals("見積のURLが取得できること", "https://dev-api.cotos.ricoh.co.jp/estimaiton/electric/api", electricProperties.getEstimation());
+		Assert.assertEquals("契約のURLが取得できること", "https://el-st-api-aws.cotos.ricoh.co.jp/contract/electric/api", electricProperties.getContract());
+		Assert.assertEquals("見積のURLが取得できること", "https://el-st-api-aws.cotos.ricoh.co.jp/estimaiton/electric/api", electricProperties.getEstimation());
 	}
 
 	@Test
