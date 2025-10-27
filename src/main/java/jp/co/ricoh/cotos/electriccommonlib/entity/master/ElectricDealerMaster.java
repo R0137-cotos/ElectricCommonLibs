@@ -263,42 +263,18 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	private String shhriSite;
 
 	/**
-	 * 支払間隔
-	 */
-	@Column(nullable = true)
-	@ApiModelProperty(value = "支払間隔", required = false, position = 30, allowableValues = "range[0,2]")
-	@JsonProperty("支払間隔")
-	private String shhriKnkk;
-
-	/**
-	 * 支払期間
-	 */
-	@Column(nullable = true)
-	@ApiModelProperty(value = "支払期間", required = false, position = 31, allowableValues = "range[0,2]")
-	@JsonProperty("支払期間")
-	private String shhriKkn;
-
-	/**
 	 * 上流工程コード
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "上流工程コード", required = false, position = 32, allowableValues = "range[0,1000]")
+	@ApiModelProperty(value = "上流工程コード", required = false, position = 30, allowableValues = "range[0,1000]")
 	@JsonProperty("上流工程コード")
 	private String processCd;
-
-	/**
-	 * 帳票区分
-	 */
-	@Column(nullable = true)
-	@ApiModelProperty(value = "帳票区分", required = false, position = 33, allowableValues = "range[0,1]")
-	@JsonProperty("帳票区分")
-	private String tyohyoKbn;
 
 	/**
 	 * 登録ユーザID
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "登録ユーザID", required = false, position = 34, allowableValues = "range[0,1000]")
+	@ApiModelProperty(value = "登録ユーザID", required = false, position = 31, allowableValues = "range[0,1000]")
 	@JsonProperty("登録ユーザID")
 	private String registUserId;
 
@@ -306,7 +282,7 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	 * 登録日時
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "登録日時", required = false, position = 35)
+	@ApiModelProperty(value = "登録日時", required = false, position = 32)
 	@Temporal(TemporalType.TIMESTAMP)
 	@JsonProperty("登録日時")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Tokyo")
@@ -316,7 +292,7 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	 * 更新ユーザID
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "更新ユーザID", required = false, position = 36, allowableValues = "range[0,1000]")
+	@ApiModelProperty(value = "更新ユーザID", required = false, position = 33, allowableValues = "range[0,1000]")
 	@JsonProperty("更新ユーザID")
 	private String updateUserId;
 
@@ -324,7 +300,7 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	 * 更新日時
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "更新日時", required = false, position = 37)
+	@ApiModelProperty(value = "更新日時", required = false, position = 34)
 	@Temporal(TemporalType.TIMESTAMP)
 	@JsonProperty("更新日時")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Tokyo")
@@ -334,7 +310,32 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	 * バージョン
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "バージョン", required = false, position = 38, allowableValues = "range[0,9999999999999999999]")
+	@ApiModelProperty(value = "バージョン", required = false, position = 35, allowableValues = "range[0,9999999999999999999]")
 	@JsonProperty("バージョン")
 	private BigDecimal rVersion;
+
+	/**
+	 * 支払間隔
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "支払間隔", required = false, position = 36, allowableValues = "range[0,2]")
+	@JsonProperty("支払間隔")
+	private String shhriKnkk;
+
+	/**
+	 * 支払期間
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "支払期間", required = false, position = 37, allowableValues = "range[0,2]")
+	@JsonProperty("支払期間")
+	private String shhriKkn;
+
+	/**
+	 * 帳票区分
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "帳票区分", required = false, position = 38, allowableValues = "range[0,1]")
+	@JsonProperty("帳票区分")
+	private String tyohyoKbn;
+
 }
