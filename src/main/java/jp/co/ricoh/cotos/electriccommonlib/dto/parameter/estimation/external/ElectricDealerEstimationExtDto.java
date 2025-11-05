@@ -1,8 +1,7 @@
 package jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external;
 
-import jakarta.validation.constraints.Size;
-
 import io.swagger.annotations.ApiModelProperty;
+import jakarta.validation.constraints.Size;
 import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.PaymentMethod;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -73,4 +72,21 @@ public class ElectricDealerEstimationExtDto  {
 	@ApiModelProperty(value = "支払区分", required = false, position = 9, allowableValues = "定額(\"1\"), 定率(\"2\")", example = "1")
 	private PaymentMethod paymentMethod;
 
+	/**
+	 * 支払間隔
+	 */
+	@ApiModelProperty(value = "支払間隔", required = false, position = 10, allowableValues = "range[0,2]")
+	private String paymentInterval;
+
+	/**
+	 * 支払期間
+	 */
+	@ApiModelProperty(value = "支払期間", required = false, position = 11, allowableValues = "range[0,2]")
+	private String paymentPeriod;
+
+	/**
+	 * 支払期間
+	 */
+	@ApiModelProperty(value = "帳票区分", required = false, position = 12, allowableValues = "range[0,1]")
+	private String reportsMethod;
 }

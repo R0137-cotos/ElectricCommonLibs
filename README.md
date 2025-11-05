@@ -315,3 +315,4 @@
 |310|EOSL対応 MoM権限サービスのバージョンアップ対応|
 |311|UNIXタイムスタンプ用のカスタムシリアライザを実装|
 |312|販売店マスタ修正|
+|313|DTOとentity修正(ElectricDealerEstimationExtDto,ElectricPaymentAttachedFile)|

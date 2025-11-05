@@ -35,7 +35,7 @@ public class ElectricPaymentAttachedFile extends EntityBase {
 
 	public enum PaymentFileKind {
 
-		媒介支払一覧表("1"), 手数料支払通知書("2"), スターツファシリティサービス支払通知書("3");
+		媒介支払一覧表("1"), 手数料支払通知書("2"), スターツファシリティサービス支払通知書("3"), 代理販売店向け支払通知書("4");
 
 		private final String text;
 
