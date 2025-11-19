@@ -316,4 +316,4 @@
 |311|UNIXタイムスタンプ用のカスタムシリアライザを実装|
 |312|販売店マスタ修正|
 |313|DTOとentity修正(ElectricDealerEstimationExtDto,ElectricPaymentAttachedFile)|
-|314|entity修正(ElectricDealerEstimation,ElectricDealerContract)|
+|314|entity修正(ElectricDealerEstimation,ElectricDealerContract,Enum)|
