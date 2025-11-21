@@ -320,7 +320,7 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	@Column(nullable = true)
 	@ApiModelProperty(value = "支払間隔", required = false, position = 36, allowableValues = "range[0,2]")
 	@JsonProperty("支払間隔")
-	private String shhriKnkk;
+	private String paymentInterval;
 
 	/**
 	 * 支払期間
@@ -328,7 +328,7 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	@Column(nullable = true)
 	@ApiModelProperty(value = "支払期間", required = false, position = 37, allowableValues = "range[0,2]")
 	@JsonProperty("支払期間")
-	private String shhriKkn;
+	private String paymentPeriod;
 
 	/**
 	 * 帳票区分
@@ -336,6 +336,6 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	@Column(nullable = true)
 	@ApiModelProperty(value = "帳票区分", required = false, position = 38, allowableValues = "range[0,1]")
 	@JsonProperty("帳票区分")
-	private String tyohyoKbn;
+	private String reportsMethod;
 
 }

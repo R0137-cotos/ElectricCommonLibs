@@ -317,3 +317,4 @@
 |312|販売店マスタ修正|
 |313|DTOとentity修正(ElectricDealerEstimationExtDto,ElectricPaymentAttachedFile)|
 |314|entity修正(ElectricDealerEstimation,ElectricDealerContract,Enum)|
+|315|カラム名修正(ElectricDealerEstimation,ElectricDealerContract,ElectricDealerMaster)|
