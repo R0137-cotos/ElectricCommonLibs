@@ -3,6 +3,10 @@ package jp.co.ricoh.cotos.electriccommonlib.entity.master;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import io.swagger.annotations.ApiModelProperty;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,11 +16,6 @@ import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-import io.swagger.annotations.ApiModelProperty;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBaseMaster;
 import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
 import jp.co.ricoh.cotos.electriccommonlib.repository.master.ElectricDealerMasterRepository;
@@ -314,4 +313,29 @@ public class ElectricDealerMaster extends EntityBaseMaster {
 	@ApiModelProperty(value = "バージョン", required = false, position = 35, allowableValues = "range[0,9999999999999999999]")
 	@JsonProperty("バージョン")
 	private BigDecimal rVersion;
+
+	/**
+	 * 支払間隔
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "支払間隔", required = false, position = 36, allowableValues = "range[0,2]")
+	@JsonProperty("支払間隔")
+	private String paymentInterval;
+
+	/**
+	 * 支払期間
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "支払期間", required = false, position = 37, allowableValues = "range[0,2]")
+	@JsonProperty("支払期間")
+	private String paymentPeriod;
+
+	/**
+	 * 帳票区分
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "帳票区分", required = false, position = 38, allowableValues = "range[0,1]")
+	@JsonProperty("帳票区分")
+	private String reportsMethod;
+
 }

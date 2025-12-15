@@ -314,3 +314,7 @@
 |309|EOSL対応 ToStringアノテーションを修正|
 |310|EOSL対応 MoM権限サービスのバージョンアップ対応|
 |311|UNIXタイムスタンプ用のカスタムシリアライザを実装|
+|312|販売店マスタ修正|
+|313|DTOとentity修正(ElectricDealerEstimationExtDto,ElectricPaymentAttachedFile)|
+|314|entity修正(ElectricDealerEstimation,ElectricDealerContract,Enum)|
+|315|カラム名修正(ElectricDealerEstimation,ElectricDealerContract,ElectricDealerMaster)|

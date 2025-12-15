@@ -109,4 +109,25 @@ public class ElectricDealerEstimation extends EntityBase {
 	@Column(nullable = true)
 	@ApiModelProperty(value = "メールアドレス3", required = false, position = 10, allowableValues = "range[0,]")
 	private String mailAddress3;
+
+	/**
+	 * 支払間隔
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "支払間隔", required = false, position = 11, allowableValues = "range[0,2]")
+	private String paymentInterval;
+
+	/**
+	 * 支払期間
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "支払期間", required = false, position = 12, allowableValues = "range[0,2]")
+	private String paymentPeriod;
+
+	/**
+	 * 帳票区分
+	 */
+	@Column(nullable = true)
+	@ApiModelProperty(value = "帳票区分", required = false, position = 13, allowableValues = "range[0,1]")
+	private String reportsMethod;
 }
