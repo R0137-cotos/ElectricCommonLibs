@@ -8,7 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBase;
 import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.MyricohUploadHistoryRepository;
@@ -28,20 +28,20 @@ public class MyricohUploadHistory extends EntityBase {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "myricoh_upload_history_seq")
 	@SequenceGenerator(name = "myricoh_upload_history_seq", sequenceName = "myricoh_upload_history_seq", allocationSize = 1)
-	@ApiModelProperty(value = "ID", required = true, position = 1, allowableValues = "range[0,9223372036854775807]")
+	@Schema(description = "ID", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,9223372036854775807]")
 	private long id;
 
 	/**
 	 * 請求実績ID
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "請求実績ID", required = true, position = 2, allowableValues = "range[0,9223372036854775807]")
+	@Schema(description = "請求実績ID", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,9223372036854775807]")
 	private long billingHistoryId;
 
 	/**
 	 * MyRICOHユーザーID
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "MyRICOHユーザーID", required = true, position = 3, allowableValues = "range[0,255]")
+	@Schema(description = "MyRICOHユーザーID", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,255]")
 	private String myricohId;
 }

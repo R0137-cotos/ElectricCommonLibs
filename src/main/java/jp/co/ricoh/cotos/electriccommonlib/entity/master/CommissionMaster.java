@@ -10,7 +10,7 @@ import jakarta.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBaseMaster;
 import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
 import jp.co.ricoh.cotos.electriccommonlib.repository.master.CommissionMasterRepository;
@@ -30,14 +30,14 @@ public class CommissionMaster extends EntityBaseMaster {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "commission_master_seq")
 	@SequenceGenerator(name = "commission_master_seq", sequenceName = "commission_master_seq", allocationSize = 1)
-	@ApiModelProperty(value = "ID", required = true, position = 1, allowableValues = "range[0,9223372036854775807]")
+	@Schema(description = "ID", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,9223372036854775807]")
 	private long id;
 
 	/**
 	 * 電力区分
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "電力区分", required = true, position = 2, allowableValues = "range[0,255]")
+	@Schema(description = "電力区分", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,255]")
 	@JsonProperty("電力区分")
 	private String dnrykKbn;
 
@@ -45,7 +45,7 @@ public class CommissionMaster extends EntityBaseMaster {
 	 * 管轄地域電力会社コード
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "管轄地域電力会社コード", required = true, position = 3, allowableValues = "range[0,255]")
+	@Schema(description = "管轄地域電力会社コード", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,255]")
 	@JsonProperty("管轄地域電力会社コード")
 	private String knkttikDnrykkishCd;
 
@@ -53,7 +53,7 @@ public class CommissionMaster extends EntityBaseMaster {
 	 * 想定年間電力料金(From)
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "想定年間電力料金(From)", required = true, position = 4, allowableValues = "range[0,99999999999]")
+	@Schema(description = "想定年間電力料金(From)", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,99999999999]")
 	@JsonProperty("想定年間電力料金(From)")
 	private Long sutiNnknDnrykRyuknFrom;
 
@@ -61,7 +61,7 @@ public class CommissionMaster extends EntityBaseMaster {
 	 * 想定年間電力料金(To)
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "想定年間電力料金(To)", required = true, position = 5, allowableValues = "range[0,99999999999]")
+	@Schema(description = "想定年間電力料金(To)", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,99999999999]")
 	@JsonProperty("想定年間電力料金(To)")
 	private Long sutiNnknDnrykRyuknTo;
 
@@ -69,7 +69,7 @@ public class CommissionMaster extends EntityBaseMaster {
 	 * 媒介手数料額
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "媒介手数料額", required = false, position = 6, allowableValues = "range[0,99999999999]")
+	@Schema(description = "媒介手数料額", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,99999999999]")
 	@JsonProperty("媒介手数料額")
 	private Long bikiTsuryuGk;
 
@@ -77,7 +77,7 @@ public class CommissionMaster extends EntityBaseMaster {
 	 * 適用開始年月日
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "適用開始年月日", required = false, position = 7, allowableValues = "range[0,255]")
+	@Schema(description = "適用開始年月日", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	@JsonProperty("適用開始年月日")
 	private String tkyuKishYmd;
 
@@ -85,7 +85,7 @@ public class CommissionMaster extends EntityBaseMaster {
 	 * 適用終了年月日
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "適用終了年月日", required = false, position = 8, allowableValues = "range[0,255]")
+	@Schema(description = "適用終了年月日", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	@JsonProperty("適用終了年月日")
 	private String tkyuShuryuYmd;
 

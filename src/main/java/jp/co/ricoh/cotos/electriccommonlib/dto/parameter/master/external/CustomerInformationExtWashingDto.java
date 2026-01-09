@@ -5,7 +5,7 @@ import java.util.List;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -18,7 +18,7 @@ public class CustomerInformationExtWashingDto {
 	 */
 	@Valid
 	@NotNull
-	@ApiModelProperty(value = "(洗替用)企業情報", required = true, position = 1)
+	@Schema(description = "(洗替用)企業情報", requiredMode = Schema.RequiredMode.REQUIRED)
 	private List<CustomerInformationForWashingExtDto> customerInformationList;
 
 }

@@ -2,7 +2,7 @@ package jp.co.ricoh.cotos.electriccommonlib.dto.result.contract;
 
 import java.util.List;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 /**
@@ -15,31 +15,31 @@ public class BillingInformationSearchResult {
 	/**
 	 * 契約ID
 	 */
-	@ApiModelProperty(value = "契約ID", required = false, position = 2)
+	@Schema(description = "契約ID", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private long contractId;
 
 	/**
 	 * 案件番号
 	 */
-	@ApiModelProperty(value = "案件番号", required = false, position = 3)
+	@Schema(description = "案件番号", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private String caseNumber;
 
 	/**
 	 * 契約番号
 	 */
-	@ApiModelProperty(value = "契約番号", required = false, position = 4)
+	@Schema(description = "契約番号", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private String contractNumber;
 
 	/**
 	 * 契約番号枝番
 	 */
-	@ApiModelProperty(value = "契約番号枝番", required = false, position = 5)
+	@Schema(description = "契約番号枝番", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private int contractBranchNumber;
 
 	/**
 	 * 計上実績リスト
 	 */
-	@ApiModelProperty(value = "計上実績リスト", required = false, position = 6)
+	@Schema(description = "計上実績リスト", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private List<ElectricAppropriationResultDto> accountingDetailList;
 
 }

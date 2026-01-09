@@ -12,7 +12,7 @@ import jakarta.persistence.TemporalType;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Digits;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBase;
 import jp.co.ricoh.cotos.commonlib.entity.contract.Contract.ContractType;
 import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
@@ -33,105 +33,105 @@ import lombok.EqualsAndHashCode;
 public class UnitPriceHighPressureForUpdate extends EntityBase {
 
 	@Id
-	@ApiModelProperty(value = "ID", required = true, position = 1, allowableValues = "range[0,9999999999999999999]")
+	@Schema(description = "ID", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,9999999999999999999]")
 	private long id;
 
 	/**
 	 * 契約(電力用)Id
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "契約(電力用)ID", required = false, position = 2)
+	@Schema(description = "契約(電力用)ID", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private Long contractElectricId;
 
 	/**
 	 * COTOS契約番号
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "COTOS契約番号", required = true, position = 3)
+	@Schema(description = "COTOS契約番号", requiredMode = Schema.RequiredMode.REQUIRED)
 	private String contractNumber;
 
 	/**
 	 * RAIDEN案件番号
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "RAIDEN案件番号", required = false, position = 4)
+	@Schema(description = "RAIDEN案件番号", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private String caseNumber;
 
 	/**
 	 * 供給地点特定番号
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "供給地点特定番号", required = false, position = 5)
+	@Schema(description = "供給地点特定番号", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private String feedPointNumber;
 
 	/**
 	 * 契約状態
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "契約状態", required = false, position = 6)
+	@Schema(description = "契約状態", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private String contractStatus;
 
 	/**
 	 * 契約種別
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "契約種別", required = false, position = 7)
+	@Schema(description = "契約種別", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private ContractType contractType;
 
 	/**
 	 * 企業名
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "企業名", required = false, position = 8)
+	@Schema(description = "企業名", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private String conpanyName;
 
 	/**
 	 * 商流区分
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "商流区分", required = false, position = 9)
+	@Schema(description = "商流区分", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private ElectricCommercialFlowDiv electricCommercialFlow;
 
 	/**
 	 * 電力会社
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "電力会社", required = false, position = 10)
+	@Schema(description = "電力会社", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private String powerCompany;
 
 	/**
 	 * メニュー名
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "メニュー名", required = false, position = 11)
+	@Schema(description = "メニュー名", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private String electricMenu;
 
 	/**
 	 * 電力メニューコード
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "電力メニューコード", required = false, position = 12)
+	@Schema(description = "電力メニューコード", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private String electricMenuCode;
 
 	/**
 	 * 需給期間 開始日
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "需給期間 開始日", required = false, position = 13)
+	@Schema(description = "需給期間 開始日", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private String contractYmdStart;
 
 	/**
 	 * 需給期間 終了日
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "需給期間 終了日", required = false, position = 14)
+	@Schema(description = "需給期間 終了日", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private String contractYmdEnd;
 
 	/**
 	 * 単価種別
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "単価種別", required = true, position = 15, allowableValues = "単価(\"1\"), 仕切価格(営業)(\"2\"), 仕切価格(RJ)(\"3\")", example = "1")
+	@Schema(description = "単価種別", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "単価(\"1\"), 仕切価格(営業)(\"2\"), 仕切価格(RJ)(\"3\")", example = "1")
 	private UnitPriceType unitPriceType;
 
 	/**
@@ -140,7 +140,7 @@ public class UnitPriceHighPressureForUpdate extends EntityBase {
 	@Column(nullable = true)
 	@DecimalMin("0.00")
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "基本料金_定価", required = false, position = 16, allowableValues = "range[0.00,99999999999999999.99]")
+	@Schema(description = "基本料金_定価", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal basicListPrice;
 
 	/**
@@ -149,7 +149,7 @@ public class UnitPriceHighPressureForUpdate extends EntityBase {
 	@Column(nullable = true)
 	@DecimalMin("0.00")
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "基本料金_売価", required = false, position = 17, allowableValues = "range[0.00,99999999999999999.99]")
+	@Schema(description = "基本料金_売価", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal basicSellingPrice;
 
 	/**
@@ -158,7 +158,7 @@ public class UnitPriceHighPressureForUpdate extends EntityBase {
 	@Column(nullable = true)
 	@DecimalMin("0.00")
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "従量料金_夏季", required = false, position = 18, allowableValues = "range[0.00,99999999999999999.99]")
+	@Schema(description = "従量料金_夏季", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal usageFeeSummerPrice;
 
 	/**
@@ -167,7 +167,7 @@ public class UnitPriceHighPressureForUpdate extends EntityBase {
 	@Column(nullable = true)
 	@DecimalMin("0.00")
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "従量料金_その他季", required = false, position = 19, allowableValues = "range[0.00,99999999999999999.99]")
+	@Schema(description = "従量料金_その他季", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal usageFeeOtherSeasonPrice;
 
 	/**
@@ -176,7 +176,7 @@ public class UnitPriceHighPressureForUpdate extends EntityBase {
 	@Column(nullable = true)
 	@DecimalMin("0.00")
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "オプション_予備線", required = false, position = 20, allowableValues = "range[0.00,99999999999999999.99]")
+	@Schema(description = "オプション_予備線", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal spareLinePrice;
 
 	/**
@@ -185,7 +185,7 @@ public class UnitPriceHighPressureForUpdate extends EntityBase {
 	@Column(nullable = true)
 	@DecimalMin("0.00")
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "オプション_予備線", required = false, position = 21, allowableValues = "range[0.00,99999999999999999.99]")
+	@Schema(description = "オプション_予備線", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal sparePowerPrice;
 
 	/**
@@ -194,14 +194,14 @@ public class UnitPriceHighPressureForUpdate extends EntityBase {
 	@Column(nullable = true)
 	@DecimalMin("0.00")
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "オプション_アンシラリー", required = false, position = 22, allowableValues = "range[0.00,99999999999999999.99]")
+	@Schema(description = "オプション_アンシラリー", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal ancillaryPrice;
 
 	/**
 	 * 適用日
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "適用日", required = false, position = 23)
+	@Schema(description = "適用日", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	@Temporal(TemporalType.DATE)
 	private Date priceLastModified;
 
@@ -209,7 +209,7 @@ public class UnitPriceHighPressureForUpdate extends EntityBase {
 	 * 備考
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "備考", required = false, position = 24, allowableValues = "range[0,4000]")
+	@Schema(description = "備考", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,4000]")
 	private String notes;
 
 }

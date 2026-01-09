@@ -21,7 +21,7 @@ import jakarta.validation.constraints.Min;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBase;
 import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.ElectricAppropriationRepository;
@@ -41,14 +41,14 @@ public class ElectricAppropriation extends EntityBase {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "electric_appropriation_seq")
 	@SequenceGenerator(name = "electric_appropriation_seq", sequenceName = "electric_appropriation_seq", allocationSize = 1)
-	@ApiModelProperty(value = "ID", required = true, position = 1, allowableValues = "range[0,9223372036854775807]")
+	@Schema(description = "ID", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,9223372036854775807]")
 	private long id;
 
 	/**
 	 * 契約(電力用)
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "ID", required = true, position = 2, allowableValues = "range[0,9223372036854775807]")
+	@Schema(description = "ID", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,9223372036854775807]")
 	private long contractElectricId;
 
 	/**
@@ -56,7 +56,7 @@ public class ElectricAppropriation extends EntityBase {
 	 */
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "billing_basic_information_id", referencedColumnName = "id")
-	@ApiModelProperty(value = "請求基本情報", required = true, position = 3)
+	@Schema(description = "請求基本情報", requiredMode = Schema.RequiredMode.REQUIRED)
 	@JsonIgnore
 	private BillingBasicInformation billingBasicInformation;
 
@@ -65,63 +65,63 @@ public class ElectricAppropriation extends EntityBase {
 	 */
 	@Column(nullable = false)
 	@JoinColumn(name = "billing_year_month")
-	@ApiModelProperty(value = "請求年月", required = true, position = 4, allowableValues = "range[0,255]")
+	@Schema(description = "請求年月", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,255]")
 	private String billingYearMonth;
 
 	/**
 	 * お客様識別番号
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "お客様識別番号", required = true, position = 5, allowableValues = "range[0,255]")
+	@Schema(description = "お客様識別番号", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,255]")
 	private String customerNumber;
 
 	/**
 	 * 料金計算実行番号
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "料金計算実行番号", required = true, position = 6, allowableValues = "range[0,255]")
+	@Schema(description = "料金計算実行番号", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,255]")
 	private String calcExecNumber;
 
 	/**
 	 * 契約番号
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "NISHIKI契約番号", required = true, position = 7, allowableValues = "range[0,255]")
+	@Schema(description = "NISHIKI契約番号", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,255]")
 	private String nishikiContractNumber;
 
 	/**
 	 * 販社コード
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "販社コード", required = true, position = 8, allowableValues = "range[0,255]")
+	@Schema(description = "販社コード", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,255]")
 	private String tradingCompanyCode;
 
 	/**
 	 * 所轄課所コード
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "所轄課所コード", required = true, position = 9, allowableValues = "range[0,255]")
+	@Schema(description = "所轄課所コード", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,255]")
 	private String affiliationCode;
 
 	/**
 	 * 仕入取引先コード
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "仕入取引先コード", required = true, position = 10, allowableValues = "range[0,255]")
+	@Schema(description = "仕入取引先コード", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,255]")
 	private String purchaserCode;
 
 	/**
 	 * リコー品種コード
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "リコー品種コード", required = true, position = 11, allowableValues = "range[0,255]")
+	@Schema(description = "リコー品種コード", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,255]")
 	private String ricohItemCode;
 
 	/**
 	 * リコー電力商品名
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "リコー電力商品名", required = true, position = 12, allowableValues = "range[0,255]")
+	@Schema(description = "リコー電力商品名", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,255]")
 	private String ricohElectricItemName;
 
 	/**
@@ -129,14 +129,14 @@ public class ElectricAppropriation extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@JoinColumn(name = "electric_trading_company_id")
-	@ApiModelProperty(value = "電力販売店会社ID", required = false, position = 13, allowableValues = "range[0,255]")
+	@Schema(description = "電力販売店会社ID", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String electricTradingCompanyId;
 
 	/**
 	 * 売上仕入計上日時
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "売上仕入計上日時", required = false, position = 14)
+	@Schema(description = "売上仕入計上日時", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	@Temporal(TemporalType.DATE)
 	private Date purchaserAppropriationDay;
 
@@ -144,7 +144,7 @@ public class ElectricAppropriation extends EntityBase {
 	 * 振替計上日時
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "振替計上日時", required = false, position = 15)
+	@Schema(description = "振替計上日時", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	@Temporal(TemporalType.DATE)
 	private Date transferAppropriationDay;
 
@@ -152,7 +152,7 @@ public class ElectricAppropriation extends EntityBase {
 	 * 手数料計上日時
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "手数料計上日時", required = false, position = 16)
+	@Schema(description = "手数料計上日時", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	@Temporal(TemporalType.DATE)
 	private Date feeAppropriationDay;
 
@@ -160,7 +160,7 @@ public class ElectricAppropriation extends EntityBase {
 	 * 高圧請求計上日時
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "高圧請求計上日時", required = false, position = 17)
+	@Schema(description = "高圧請求計上日時", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	@Temporal(TemporalType.DATE)
 	private Date highClaimAppropriationDay;
 
@@ -169,7 +169,7 @@ public class ElectricAppropriation extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "売上金額(税込)", required = false, position = 18)
+	@Schema(description = "売上金額(税込)", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal proceedsInTax;
 
 	/**
@@ -177,7 +177,7 @@ public class ElectricAppropriation extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "売上消費税額", required = false, position = 19)
+	@Schema(description = "売上消費税額", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal proceedsTax;
 
 	/**
@@ -185,7 +185,7 @@ public class ElectricAppropriation extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "売上金額(税抜)", required = false, position = 20)
+	@Schema(description = "売上金額(税抜)", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal proceedsOutTax;
 
 	/**
@@ -194,7 +194,7 @@ public class ElectricAppropriation extends EntityBase {
 	@Column(nullable = true)
 	@DecimalMin("0.00")
 	@Digits(integer = 3, fraction = 2)
-	@ApiModelProperty(value = "力率", required = false, position = 21, allowableValues = "range[0.00,999.99]")
+	@Schema(description = "力率", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,999.99]")
 	private BigDecimal powerRate;
 
 	/**
@@ -203,7 +203,7 @@ public class ElectricAppropriation extends EntityBase {
 	@Column(nullable = true)
 	@DecimalMin("0.00")
 	@Digits(integer = 6, fraction = 2)
-	@ApiModelProperty(value = "基本電力量", required = false, position = 22, allowableValues = "range[0.00,999999.99]")
+	@Schema(description = "基本電力量", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,999999.99]")
 	private BigDecimal basicPowerAmount;
 
 	/**
@@ -212,7 +212,7 @@ public class ElectricAppropriation extends EntityBase {
 	@Column(nullable = true)
 	@DecimalMin("0.00")
 	@Digits(integer = 6, fraction = 2)
-	@ApiModelProperty(value = "月間合計電力量(夏季)", required = false, position = 23, allowableValues = "range[0.00,999999.99]")
+	@Schema(description = "月間合計電力量(夏季)", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,999999.99]")
 	private BigDecimal monthlyTotalpowerAmountSummer;
 
 	/**
@@ -221,7 +221,7 @@ public class ElectricAppropriation extends EntityBase {
 	@Column(nullable = true)
 	@DecimalMin("0.00")
 	@Digits(integer = 6, fraction = 2)
-	@ApiModelProperty(value = "月間合計電力量(その他季)", required = false, position = 24, allowableValues = "range[0.00,999999.99]")
+	@Schema(description = "月間合計電力量(その他季)", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,999999.99]")
 	private BigDecimal monthlyTotalpowerAmountOtherSeason;
 
 	/**
@@ -230,7 +230,7 @@ public class ElectricAppropriation extends EntityBase {
 	@Column(nullable = true)
 	@DecimalMin("0.00")
 	@Digits(integer = 6, fraction = 2)
-	@ApiModelProperty(value = "月間合計電力量(共通)", required = false, position = 25, allowableValues = "range[0.00,999999.99]")
+	@Schema(description = "月間合計電力量(共通)", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,999999.99]")
 	private BigDecimal monthlyTotalpowerAmountCommon;
 
 	/**
@@ -239,7 +239,7 @@ public class ElectricAppropriation extends EntityBase {
 	@Column(nullable = true)
 	@DecimalMin("0.00")
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "仕入基本単価", required = false, position = 26, allowableValues = "range[0.00,99999999999999999.99]")
+	@Schema(description = "仕入基本単価", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal purchaserBasicPrice;
 
 	/**
@@ -248,7 +248,7 @@ public class ElectricAppropriation extends EntityBase {
 	@Column(nullable = true)
 	@DecimalMin("0.00")
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "仕入従量単価(夏季)", required = false, position = 27, allowableValues = "range[0.00,99999999999999999.99]")
+	@Schema(description = "仕入従量単価(夏季)", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal purchaserUsagePriceSummer;
 
 	/**
@@ -257,7 +257,7 @@ public class ElectricAppropriation extends EntityBase {
 	@Column(nullable = true)
 	@DecimalMin("0.00")
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "仕入従量単価(その他季)", required = false, position = 28, allowableValues = "range[0.00,99999999999999999.99]")
+	@Schema(description = "仕入従量単価(その他季)", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal purchaserUsagePriceOtherSeason;
 
 	/**
@@ -266,7 +266,7 @@ public class ElectricAppropriation extends EntityBase {
 	@Column(nullable = true)
 	@DecimalMin("0.00")
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "仕入従量単価(共通)", required = false, position = 29, allowableValues = "range[0.00,99999999999999999.99]")
+	@Schema(description = "仕入従量単価(共通)", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal purchaserUsagePriceCommon;
 
 	/**
@@ -275,7 +275,7 @@ public class ElectricAppropriation extends EntityBase {
 	@Column(nullable = true)
 	@DecimalMin("0.00")
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "仕切基本単価)", required = false, position = 30, allowableValues = "range[0.00,99999999999999999.99]")
+	@Schema(description = "仕切基本単価)", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal partitionBasicPrice;
 
 	/**
@@ -284,7 +284,7 @@ public class ElectricAppropriation extends EntityBase {
 	@Column(nullable = true)
 	@DecimalMin("0.00")
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "仕切従量単価(夏季))", required = false, position = 31, allowableValues = "range[0.00,99999999999999999.99]")
+	@Schema(description = "仕切従量単価(夏季))", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal partitionUsagePriceSummer;
 
 	/**
@@ -293,7 +293,7 @@ public class ElectricAppropriation extends EntityBase {
 	@Column(nullable = true)
 	@DecimalMin("0.00")
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "仕切従量単価(その他季))", required = false, position = 32, allowableValues = "range[0.00,99999999999999999.99]")
+	@Schema(description = "仕切従量単価(その他季))", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal partitionUsagePriceOtherSeason;
 
 	/**
@@ -302,7 +302,7 @@ public class ElectricAppropriation extends EntityBase {
 	@Column(nullable = true)
 	@DecimalMin("0.00")
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "仕切従量単価(共通))", required = false, position = 33, allowableValues = "range[0.00,99999999999999999.99]")
+	@Schema(description = "仕切従量単価(共通))", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal partitionUsagePriceCommon;
 
 	/**
@@ -311,7 +311,7 @@ public class ElectricAppropriation extends EntityBase {
 	@Column(nullable = true)
 	@DecimalMin("0.00")
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "仕入基本料金", required = false, position = 34, allowableValues = "range[0.00,99999999999999999.99]")
+	@Schema(description = "仕入基本料金", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal purchaserBasicCharge;
 
 	/**
@@ -320,7 +320,7 @@ public class ElectricAppropriation extends EntityBase {
 	@Column(nullable = true)
 	@DecimalMin("0.00")
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "仕入電力量料金(夏季)", required = false, position = 35, allowableValues = "range[0.00,99999999999999999.99]")
+	@Schema(description = "仕入電力量料金(夏季)", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal purchaserPowerAmountChargeSummer;
 
 	/**
@@ -329,7 +329,7 @@ public class ElectricAppropriation extends EntityBase {
 	@Column(nullable = true)
 	@DecimalMin("0.00")
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "仕入電力量料金(その他季)", required = false, position = 36, allowableValues = "range[0.00,99999999999999999.99]")
+	@Schema(description = "仕入電力量料金(その他季)", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal purchaserPowerAmountChargeOtherSeason;
 
 	/**
@@ -338,7 +338,7 @@ public class ElectricAppropriation extends EntityBase {
 	@Column(nullable = true)
 	@DecimalMin("0.00")
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "仕入電力量料金(共通)", required = false, position = 37, allowableValues = "range[0.00,99999999999999999.99]")
+	@Schema(description = "仕入電力量料金(共通)", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal purchaserPowerAmountChargeCommon;
 
 	/**
@@ -346,7 +346,7 @@ public class ElectricAppropriation extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "仕入合計料金(税込)", required = false, position = 38)
+	@Schema(description = "仕入合計料金(税込)", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal purchaserTotalChargeInTax;
 
 	/**
@@ -354,7 +354,7 @@ public class ElectricAppropriation extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "仕入消費税額", required = false, position = 39)
+	@Schema(description = "仕入消費税額", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal purchaserTax;
 
 	/**
@@ -362,7 +362,7 @@ public class ElectricAppropriation extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "仕入合計料金(税抜)", required = false, position = 40)
+	@Schema(description = "仕入合計料金(税抜)", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal purchaserTotalChargeOutTax;
 
 	/**
@@ -371,7 +371,7 @@ public class ElectricAppropriation extends EntityBase {
 	@Column(nullable = true)
 	@DecimalMin("0.00")
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "仕切基本料金", required = false, position = 41, allowableValues = "range[0.00,99999999999999999.99]")
+	@Schema(description = "仕切基本料金", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal partitionBasicCharge;
 
 	/**
@@ -380,7 +380,7 @@ public class ElectricAppropriation extends EntityBase {
 	@Column(nullable = true)
 	@DecimalMin("0.00")
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "仕切電力量料金(夏季)", required = false, position = 42, allowableValues = "range[0.00,99999999999999999.99]")
+	@Schema(description = "仕切電力量料金(夏季)", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal partitionPowerAmountChargeSummer;
 
 	/**
@@ -389,7 +389,7 @@ public class ElectricAppropriation extends EntityBase {
 	@Column(nullable = true)
 	@DecimalMin("0.00")
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "仕切電力量料金(その他季)", required = false, position = 43, allowableValues = "range[0.00,99999999999999999.99]")
+	@Schema(description = "仕切電力量料金(その他季)", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal partitionPowerAmountChargeOtherSeason;
 
 	/**
@@ -398,7 +398,7 @@ public class ElectricAppropriation extends EntityBase {
 	@Column(nullable = true)
 	@DecimalMin("0.00")
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "仕切電力量料金(共通)", required = false, position = 44, allowableValues = "range[0.00,99999999999999999.99]")
+	@Schema(description = "仕切電力量料金(共通)", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal partitionPowerAmountChargeCommon;
 
 	/**
@@ -406,7 +406,7 @@ public class ElectricAppropriation extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "仕切合計料金(税込)", required = false, position = 45, allowableValues = "range[0.00,99999999999999999.99]")
+	@Schema(description = "仕切合計料金(税込)", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal partitionTotalChargeInTax;
 
 	/**
@@ -414,7 +414,7 @@ public class ElectricAppropriation extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "仕切消費税額", required = false, position = 46, allowableValues = "range[0.00,99999999999999999.99]")
+	@Schema(description = "仕切消費税額", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal partitionTax;
 
 	/**
@@ -422,7 +422,7 @@ public class ElectricAppropriation extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "仕切合計料金(税抜)", required = false, position = 47, allowableValues = "range[0.00,99999999999999999.99]")
+	@Schema(description = "仕切合計料金(税抜)", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal partitionTotalChargeOutTax;
 
 	/**
@@ -430,7 +430,7 @@ public class ElectricAppropriation extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "RJ粗利金額", required = false, position = 48)
+	@Schema(description = "RJ粗利金額", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal rjGrossProfit;
 
 	/**
@@ -438,7 +438,7 @@ public class ElectricAppropriation extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "営業区粗利金額", required = false, position = 49)
+	@Schema(description = "営業区粗利金額", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal salesSectionGrossProfit;
 
 	/**
@@ -446,35 +446,35 @@ public class ElectricAppropriation extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "本部粗利金額", required = false, position = 50)
+	@Schema(description = "本部粗利金額", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal headofficeGrossProfit;
 
 	/**
 	 * 売上課所コード
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "売上課所コード", required = false, position = 51, allowableValues = "range[0,255]")
+	@Schema(description = "売上課所コード", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String proceedsOfficeCode;
 
 	/**
 	 * 営業区粗利分配先販社コード
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "営業区粗利分配先販社コード", required = false, position = 52, allowableValues = "range[0,255]")
+	@Schema(description = "営業区粗利分配先販社コード", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String salesSectionGrossProfitShareTradingConpanyCode;
 
 	/**
 	 * 営業区粗利分配先課所コード
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "営業区粗利分配先販社コード", required = false, position = 53, allowableValues = "range[0,255]")
+	@Schema(description = "営業区粗利分配先販社コード", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String salesSectionGrossProfitShareOfficeCode;
 
 	/**
 	 * 営業区粗利分配先社員コード
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "営業区粗利分配先販社コード", required = false, position = 54, allowableValues = "range[0,255]")
+	@Schema(description = "営業区粗利分配先販社コード", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String salesSectionGrossProfitShareEmployeeCode;
 
 	/**
@@ -483,7 +483,7 @@ public class ElectricAppropriation extends EntityBase {
 	@Column(nullable = true)
 	@DecimalMin("0.00")
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "想定年間電力料金", required = false, position = 55, allowableValues = "range[0.00,99999999999999999.99]")
+	@Schema(description = "想定年間電力料金", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal assumptionYearlyPowerCharge;
 
 	/**
@@ -492,7 +492,7 @@ public class ElectricAppropriation extends EntityBase {
 	@Column(nullable = true)
 	@DecimalMin("0.00")
 	@Digits(integer = 3, fraction = 2)
-	@ApiModelProperty(value = "販売店手数料定率", required = false, position = 56, allowableValues = "range[0.00,999.99]")
+	@Schema(description = "販売店手数料定率", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,999.99]")
 	private BigDecimal tradingCompanyFeeFixedRate;
 
 	/**
@@ -501,7 +501,7 @@ public class ElectricAppropriation extends EntityBase {
 	@Column(nullable = true)
 	@DecimalMin("0.00")
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "販売店手数料定額(税込)", required = false, position = 57, allowableValues = "range[0.00,99999999999999999.99]")
+	@Schema(description = "販売店手数料定額(税込)", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal tradingCompanyFeeFixedAmountInTax;
 
 	/**
@@ -510,7 +510,7 @@ public class ElectricAppropriation extends EntityBase {
 	@Column(nullable = true)
 	@DecimalMin("0.00")
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "販売店仲介手数料額(税込)", required = false, position = 58, allowableValues = "range[0.00,99999999999999999.99]")
+	@Schema(description = "販売店仲介手数料額(税込)", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal tradingCompanyMediationFeeAmountInTax;
 
 	/**
@@ -519,14 +519,14 @@ public class ElectricAppropriation extends EntityBase {
 	@Column(nullable = true)
 	@Max(9)
 	@Min(0)
-	@ApiModelProperty(value = "支払通知書出力フラグ", required = false, position = 59, allowableValues = "range[0,9]")
+	@Schema(description = "支払通知書出力フラグ", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,9]")
 	private Integer paymentOutputFlg;
 
 	/**
 	 * 料金計算対象年月
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "料金計算対象年月", required = false, position = 60, allowableValues = "range[0,255]")
+	@Schema(description = "料金計算対象年月", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String calcDate;
 
 	/**
@@ -534,49 +534,49 @@ public class ElectricAppropriation extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Max(99999)
-	@ApiModelProperty(value = "No.", required = false, position = 61, allowableValues = "range[0,99999]")
+	@Schema(description = "No.", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,99999]")
 	private Long displaySequenceNumber;
 
 	/**
 	 * 供給地点特定番号
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "供給地点特定番号", required = false, position = 62, allowableValues = "range[0,255]")
+	@Schema(description = "供給地点特定番号", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String feedPointNumber;
 
 	/**
 	 * 企業・事業所
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "企業・事業所", required = false, position = 63, allowableValues = "range[0,255]")
+	@Schema(description = "企業・事業所", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String companyAndOffice;
 
 	/**
 	 * 契約者・需要場所
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "契約者・需要場所", required = false, position = 64, allowableValues = "range[0,255]")
+	@Schema(description = "契約者・需要場所", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String customerAndDemandPlace;
 
 	/**
 	 * 供給年月
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "供給年月", required = false, position = 65, allowableValues = "range[0,255]")
+	@Schema(description = "供給年月", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String supplyYearMonth;
 
 	/**
 	 * 使用電力従量kWh
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "使用電力従量kWh", required = false, position = 66, allowableValues = "range[0,255]")
+	@Schema(description = "使用電力従量kWh", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String electricPowerConsumptionUsageFee;
 
 	/**
 	 * 請求データ作成年月
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "請求データ作成年月", required = false, position = 67, allowableValues = "range[0,255]")
+	@Schema(description = "請求データ作成年月", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String billingDataCreateYm;
 
 	/**
@@ -585,7 +585,7 @@ public class ElectricAppropriation extends EntityBase {
 	@Column(nullable = true)
 	@DecimalMin("0.00")
 	@Digits(integer = 3, fraction = 2)
-	@ApiModelProperty(value = "取次手数料金率", required = false, position = 68, allowableValues = "range[0.00,999.99]")
+	@Schema(description = "取次手数料金率", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,999.99]")
 	private BigDecimal agencyFeeRate;
 
 	/**
@@ -594,7 +594,7 @@ public class ElectricAppropriation extends EntityBase {
 	@Column(nullable = true)
 	@DecimalMin("0.00")
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "取次手数料金額", required = false, position = 69, allowableValues = "range[0.00,99999999999999999.99]")
+	@Schema(description = "取次手数料金額", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal agencyFeeAmount;
 
 	/**
@@ -602,7 +602,7 @@ public class ElectricAppropriation extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 3, fraction = 2)
-	@ApiModelProperty(value = "日割り率", required = false, position = 70)
+	@Schema(description = "日割り率", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal proratedRate;
 
 	/**
@@ -610,7 +610,7 @@ public class ElectricAppropriation extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "取次割引単価", required = false, position = 71)
+	@Schema(description = "取次割引単価", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal agencyDiscountPrice;
 
 	/**
@@ -618,7 +618,7 @@ public class ElectricAppropriation extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 3, fraction = 2)
-	@ApiModelProperty(value = "長期割引率", required = false, position = 72)
+	@Schema(description = "長期割引率", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal longtermDiscountRate;
 
 	/**
@@ -626,7 +626,7 @@ public class ElectricAppropriation extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 6, fraction = 2)
-	@ApiModelProperty(value = "超過電力", required = false, position = 73)
+	@Schema(description = "超過電力", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal excessPower;
 
 	/**
@@ -634,7 +634,7 @@ public class ElectricAppropriation extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "燃調費調整額単価", required = false, position = 74)
+	@Schema(description = "燃調費調整額単価", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal fuelAdjustmentPrice;
 
 	/**
@@ -642,7 +642,7 @@ public class ElectricAppropriation extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "再エネ賦課金単価", required = false, position = 75)
+	@Schema(description = "再エネ賦課金単価", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal renewableLevyPrice;
 
 	/**
@@ -650,7 +650,7 @@ public class ElectricAppropriation extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "燃料費調整額", required = false, position = 76)
+	@Schema(description = "燃料費調整額", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal fuelAdjustmentCost;
 
 	/**
@@ -658,7 +658,7 @@ public class ElectricAppropriation extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "再エネ賦課金", required = false, position = 77)
+	@Schema(description = "再エネ賦課金", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal renewableLevyCost;
 
 	/**
@@ -666,7 +666,7 @@ public class ElectricAppropriation extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "制限中止割引", required = false, position = 78)
+	@Schema(description = "制限中止割引", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal restrictionCancelDiscount;
 
 	/**
@@ -674,7 +674,7 @@ public class ElectricAppropriation extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "その他", required = false, position = 79)
+	@Schema(description = "その他", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal otherCost;
 
 	/**
@@ -682,7 +682,7 @@ public class ElectricAppropriation extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "仕入契約超過金", required = false, position = 80)
+	@Schema(description = "仕入契約超過金", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal purchaserContractExcess;
 
 	/**
@@ -690,7 +690,7 @@ public class ElectricAppropriation extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "仕入前月調整", required = false, position = 81)
+	@Schema(description = "仕入前月調整", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal purchaserAdjustment;
 
 	/**
@@ -698,7 +698,7 @@ public class ElectricAppropriation extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "仕入アンシラリー", required = false, position = 82)
+	@Schema(description = "仕入アンシラリー", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal purchaserAncillary;
 
 	/**
@@ -706,7 +706,7 @@ public class ElectricAppropriation extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "仕入予備線", required = false, position = 83)
+	@Schema(description = "仕入予備線", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal purchaserSpareLine;
 
 	/**
@@ -714,7 +714,7 @@ public class ElectricAppropriation extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "仕入予備電源", required = false, position = 84)
+	@Schema(description = "仕入予備電源", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal purchaserSparePower;
 
 	/**
@@ -722,7 +722,7 @@ public class ElectricAppropriation extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "仕切契約超過金", required = false, position = 85)
+	@Schema(description = "仕切契約超過金", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal partitionContractExcess;
 
 	/**
@@ -730,7 +730,7 @@ public class ElectricAppropriation extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "仕切前月調整", required = false, position = 86)
+	@Schema(description = "仕切前月調整", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal partitionAdjustment;
 
 	/**
@@ -738,7 +738,7 @@ public class ElectricAppropriation extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "仕切アンシラリー", required = false, position = 87)
+	@Schema(description = "仕切アンシラリー", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal partitionAncillary;
 
 	/**
@@ -746,7 +746,7 @@ public class ElectricAppropriation extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "仕切予備線", required = false, position = 88)
+	@Schema(description = "仕切予備線", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal partitionSpareLine;
 
 	/**
@@ -754,21 +754,21 @@ public class ElectricAppropriation extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "仕切予備電源", required = false, position = 89)
+	@Schema(description = "仕切予備電源", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal partitionSparePower;
 
 	/**
 	 * 料金計算日数.
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "料金計算日数", required = false, position = 90, allowableValues = "range[0,99999]")
+	@Schema(description = "料金計算日数", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,99999]")
 	private Integer chargeCalcDays;
 
 	/**
 	 * 料金計算対象日数.
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "料金計算対象日数", required = false, position = 91, allowableValues = "range[0,99999]")
+	@Schema(description = "料金計算対象日数", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,99999]")
 	private Integer chargeCalcTargetDays;
 
 	/**
@@ -776,7 +776,7 @@ public class ElectricAppropriation extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "販売店電力料金", required = false, position = 92)
+	@Schema(description = "販売店電力料金", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal tradingCompanyElectricCharge;
 
 	/**
@@ -784,7 +784,7 @@ public class ElectricAppropriation extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 3, fraction = 2)
-	@ApiModelProperty(value = "負荷率", required = false, position = 93)
+	@Schema(description = "負荷率", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal loadFactor;
 
 	/**
@@ -792,7 +792,7 @@ public class ElectricAppropriation extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "再エネ賦課金減免額", required = false, position = 94)
+	@Schema(description = "再エネ賦課金減免額", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal reExemptionAmount;
 
 	/**
@@ -800,6 +800,6 @@ public class ElectricAppropriation extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 3, fraction = 2)
-	@ApiModelProperty(value = "再エネ賦課金減免率", required = false, position = 95)
+	@Schema(description = "再エネ賦課金減免率", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal reExemptionRate;
 }

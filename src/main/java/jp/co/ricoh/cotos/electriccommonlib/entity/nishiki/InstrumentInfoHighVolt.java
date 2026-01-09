@@ -12,7 +12,7 @@ import jakarta.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBase;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -32,14 +32,14 @@ public class InstrumentInfoHighVolt extends EntityBase {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "instrument_info_high_volt_seq")
 	@SequenceGenerator(name = "instrument_info_high_volt_seq", sequenceName = "instrument_info_high_volt_seq", allocationSize = 1)
-	@ApiModelProperty(value = "ID", required = false, position = 1)
+	@Schema(description = "ID", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private long id;
 
 	/**
 	 * 全体番号
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "全体番号", required = true, position = 2)
+	@Schema(description = "全体番号", requiredMode = Schema.RequiredMode.REQUIRED)
 	@JsonProperty("全体番号")
 	private String feeClcAllBn;
 	
@@ -47,7 +47,7 @@ public class InstrumentInfoHighVolt extends EntityBase {
 	 * 供給地点特定番号
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "供給地点特定番号", required = true, position = 3)
+	@Schema(description = "供給地点特定番号", requiredMode = Schema.RequiredMode.REQUIRED)
 	@JsonProperty("供給地点特定番号")
 	private String splyPointIdntBn;
 	
@@ -55,7 +55,7 @@ public class InstrumentInfoHighVolt extends EntityBase {
 	 * 仕訳コード
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "仕訳コード", required = false, position = 4)
+	@Schema(description = "仕訳コード", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	@JsonProperty("仕訳コード")
 	private String jrnlCd;
 	
@@ -63,7 +63,7 @@ public class InstrumentInfoHighVolt extends EntityBase {
 	 * 託送対象年月
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "託送対象年月", required = true, position = 5)
+	@Schema(description = "託送対象年月", requiredMode = Schema.RequiredMode.REQUIRED)
 	@JsonProperty("託送対象年月")
 	private String csAplyYm;
 	
@@ -71,7 +71,7 @@ public class InstrumentInfoHighVolt extends EntityBase {
 	 * 契約番号
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "契約番号", required = true, position = 6)
+	@Schema(description = "契約番号", requiredMode = Schema.RequiredMode.REQUIRED)
 	@JsonProperty("契約番号")
 	private String ctctBn;
 	
@@ -79,7 +79,7 @@ public class InstrumentInfoHighVolt extends EntityBase {
 	 * 料金計算対象年月
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "料金計算対象年月", required = true, position = 7)
+	@Schema(description = "料金計算対象年月", requiredMode = Schema.RequiredMode.REQUIRED)
 	@JsonProperty("料金計算対象年月")
 	private String feeClcYm;
 	
@@ -87,7 +87,7 @@ public class InstrumentInfoHighVolt extends EntityBase {
 	 * 計器管理番号
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "計器管理番号", required = false, position = 8)
+	@Schema(description = "計器管理番号", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	@JsonProperty("計器管理番号")
 	private String keikiMngBn;
 	
@@ -95,7 +95,7 @@ public class InstrumentInfoHighVolt extends EntityBase {
 	 * 計器区分
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "計器区分", required = false, position = 9)
+	@Schema(description = "計器区分", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	@JsonProperty("計器区分")
 	private String keikiKbn;
 	
@@ -103,7 +103,7 @@ public class InstrumentInfoHighVolt extends EntityBase {
 	 * 乗率
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "乗率", required = false, position = 10)
+	@Schema(description = "乗率", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	@JsonProperty("乗率")
 	private Long multiplFctr;
 	
@@ -111,7 +111,7 @@ public class InstrumentInfoHighVolt extends EntityBase {
 	 * 電力損失補正率
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "電力損失補正率", required = false, position = 11)
+	@Schema(description = "電力損失補正率", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	@JsonProperty("電力損失補正率")
 	private BigDecimal elcLossCrctFct;
 	
@@ -119,7 +119,7 @@ public class InstrumentInfoHighVolt extends EntityBase {
 	 * 電力量損失補正率
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "電力量損失補正率", required = false, position = 12)
+	@Schema(description = "電力量損失補正率", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	@JsonProperty("電力量損失補正率")
 	private BigDecimal elcNumLossCrctFct;
 	
@@ -127,7 +127,7 @@ public class InstrumentInfoHighVolt extends EntityBase {
 	 * 最大需要電力
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "最大需要電力", required = false, position = 13)
+	@Schema(description = "最大需要電力", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	@JsonProperty("最大需要電力")
 	private Long maxDmdElc;
 	
@@ -135,7 +135,7 @@ public class InstrumentInfoHighVolt extends EntityBase {
 	 * 最大需要電力当月指示数
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "最大需要電力当月指示数", required = false, position = 14)
+	@Schema(description = "最大需要電力当月指示数", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	@JsonProperty("最大需要電力当月指示数")
 	private BigDecimal maxDmdElcThsMnthIdctNuMm;
 	
@@ -143,7 +143,7 @@ public class InstrumentInfoHighVolt extends EntityBase {
 	 * 時間帯01_全日電力量前月指示数
 	 */
 	@Column(nullable = true, name = "t01_adays_elc_num_lst_mnth_idct_num")
-	@ApiModelProperty(value = "時間帯01_全日電力量前月指示数", required = false, position = 15)
+	@Schema(description = "時間帯01_全日電力量前月指示数", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	@JsonProperty("時間帯01_全日電力量前月指示数")
 	private BigDecimal t01AdaysElcNumLstMnthIdctNum;
 	
@@ -151,7 +151,7 @@ public class InstrumentInfoHighVolt extends EntityBase {
 	 * 時間帯01_全日電力量当月指示数
 	 */
 	@Column(nullable = true, name = "t01_adays_elc_num_ths_mnth_idct_num")
-	@ApiModelProperty(value = "時間帯01_全日電力量当月指示数", required = false, position = 16)
+	@Schema(description = "時間帯01_全日電力量当月指示数", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	@JsonProperty("時間帯01_全日電力量当月指示数")
 	private BigDecimal t01AdaysElcNumThsMnthIdctNum;
 	
@@ -159,7 +159,7 @@ public class InstrumentInfoHighVolt extends EntityBase {
 	 * 時間帯02_全日電力量前月指示数
 	 */
 	@Column(nullable = true, name = "t02_adays_elc_num_lst_mnth_idct_num")
-	@ApiModelProperty(value = "時間帯02_全日電力量前月指示数", required = false, position = 17)
+	@Schema(description = "時間帯02_全日電力量前月指示数", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	@JsonProperty("時間帯02_全日電力量前月指示数")
 	private BigDecimal t02AdaysElcNumLstMnthIdctNum;
 	
@@ -167,7 +167,7 @@ public class InstrumentInfoHighVolt extends EntityBase {
 	 * 時間帯02_全日電力量当月指示数
 	 */
 	@Column(nullable = true, name = "t02_adays_elc_num_ths_mnth_idct_num")
-	@ApiModelProperty(value = "時間帯02_全日電力量当月指示数", required = false, position = 18)
+	@Schema(description = "時間帯02_全日電力量当月指示数", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	@JsonProperty("時間帯02_全日電力量当月指示数")
 	private BigDecimal t02AdaysElcNumThsMnthIdctNum;
 	
@@ -175,7 +175,7 @@ public class InstrumentInfoHighVolt extends EntityBase {
 	 * 時間帯03_全日電力量前月指示数
 	 */
 	@Column(nullable = true, name = "t03_adays_elc_num_lst_mnth_idct_num")
-	@ApiModelProperty(value = "時間帯03_全日電力量前月指示数", required = false, position = 19)
+	@Schema(description = "時間帯03_全日電力量前月指示数", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	@JsonProperty("時間帯03_全日電力量前月指示数")
 	private BigDecimal t03AdaysElcNumLstMnthIdctNum;
 	
@@ -183,7 +183,7 @@ public class InstrumentInfoHighVolt extends EntityBase {
 	 * 時間帯03_全日電力量当月指示数
 	 */
 	@Column(nullable = true, name = "t03_adays_elc_num_ths_mnth_idct_num")
-	@ApiModelProperty(value = "時間帯03_全日電力量当月指示数", required = false, position = 20)
+	@Schema(description = "時間帯03_全日電力量当月指示数", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	@JsonProperty("時間帯03_全日電力量当月指示数")
 	private BigDecimal t03AdaysElcNumThsMnthIdctNum;
 	
@@ -191,7 +191,7 @@ public class InstrumentInfoHighVolt extends EntityBase {
 	 * 時間帯04_全日電力量前月指示数
 	 */
 	@Column(nullable = true, name = "t04_adays_elc_num_lst_mnth_idct_num")
-	@ApiModelProperty(value = "時間帯04_全日電力量前月指示数", required = false, position = 21)
+	@Schema(description = "時間帯04_全日電力量前月指示数", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	@JsonProperty("時間帯04_全日電力量前月指示数")
 	private BigDecimal t04AdaysElcNumLstMnthIdctNum;
 	
@@ -199,7 +199,7 @@ public class InstrumentInfoHighVolt extends EntityBase {
 	 * 時間帯04_全日電力量当月指示数
 	 */
 	@Column(nullable = true, name = "t04_adays_elc_num_ths_mnth_idct_num")
-	@ApiModelProperty(value = "時間帯04_全日電力量当月指示数", required = false, position = 22)
+	@Schema(description = "時間帯04_全日電力量当月指示数", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	@JsonProperty("時間帯04_全日電力量当月指示数")
 	private BigDecimal t04AdaysElcNumThsMnthIdctNum;
 	
@@ -207,7 +207,7 @@ public class InstrumentInfoHighVolt extends EntityBase {
 	 * 時間帯05_全日電力量前月指示数
 	 */
 	@Column(nullable = true, name = "t05_adays_elc_num_lst_mnth_idct_num")
-	@ApiModelProperty(value = "時間帯05_全日電力量前月指示数", required = false, position = 23)
+	@Schema(description = "時間帯05_全日電力量前月指示数", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	@JsonProperty("時間帯05_全日電力量前月指示数")
 	private BigDecimal t05AdaysElcNumLstMnthIdctNum;
 	
@@ -215,7 +215,7 @@ public class InstrumentInfoHighVolt extends EntityBase {
 	 * 時間帯05_全日電力量当月指示数
 	 */
 	@Column(nullable = true, name = "t05_adays_elc_num_ths_mnth_idct_num")
-	@ApiModelProperty(value = "時間帯05_全日電力量当月指示数", required = false, position = 24)
+	@Schema(description = "時間帯05_全日電力量当月指示数", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	@JsonProperty("時間帯05_全日電力量当月指示数")
 	private BigDecimal t05AdaysElcNumThsMnthIdctNum;
 	
@@ -223,7 +223,7 @@ public class InstrumentInfoHighVolt extends EntityBase {
 	 * 時間帯06_全日電力量前月指示数
 	 */
 	@Column(nullable = true, name = "t06_adays_elc_num_lst_mnth_idct_num")
-	@ApiModelProperty(value = "時間帯06_全日電力量前月指示数", required = false, position = 25)
+	@Schema(description = "時間帯06_全日電力量前月指示数", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	@JsonProperty("時間帯06_全日電力量前月指示数")
 	private BigDecimal t06AdaysElcNumLstMnthIdctNum;
 	
@@ -231,7 +231,7 @@ public class InstrumentInfoHighVolt extends EntityBase {
 	 * 時間帯06_全日電力量当月指示数
 	 */
 	@Column(nullable = true, name = "t06_adays_elc_num_ths_mnth_idct_num")
-	@ApiModelProperty(value = "時間帯06_全日電力量当月指示数", required = false, position = 26)
+	@Schema(description = "時間帯06_全日電力量当月指示数", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	@JsonProperty("時間帯06_全日電力量当月指示数")
 	private BigDecimal t06AdaysElcNumThsMnthIdctNum;
 	
@@ -239,7 +239,7 @@ public class InstrumentInfoHighVolt extends EntityBase {
 	 * 時間帯07_全日電力量前月指示数
 	 */
 	@Column(nullable = true, name = "t07_adays_elc_num_lst_mnth_idct_num")
-	@ApiModelProperty(value = "時間帯07_全日電力量前月指示数", required = false, position = 27)
+	@Schema(description = "時間帯07_全日電力量前月指示数", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	@JsonProperty("時間帯07_全日電力量前月指示数")
 	private BigDecimal t07AdaysElcNumLstMnthIdctNum;
 	
@@ -247,7 +247,7 @@ public class InstrumentInfoHighVolt extends EntityBase {
 	 * 時間帯07_全日電力量当月指示数
 	 */
 	@Column(nullable = true, name = "t07_adays_elc_num_ths_mnth_idct_num")
-	@ApiModelProperty(value = "時間帯07_全日電力量当月指示数", required = false, position = 28)
+	@Schema(description = "時間帯07_全日電力量当月指示数", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	@JsonProperty("時間帯07_全日電力量当月指示数")
 	private BigDecimal t07AdaysElcNumThsMnthIdctNum;
 	
@@ -255,7 +255,7 @@ public class InstrumentInfoHighVolt extends EntityBase {
 	 * 時間帯08_全日電力量前月指示数
 	 */
 	@Column(nullable = true, name = "t08_adays_elc_num_lst_mnth_idct_num")
-	@ApiModelProperty(value = "時間帯08_全日電力量前月指示数", required = false, position = 29)
+	@Schema(description = "時間帯08_全日電力量前月指示数", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	@JsonProperty("時間帯08_全日電力量前月指示数")
 	private BigDecimal t08AdaysElcNumLstMnthIdctNum;
 	
@@ -263,7 +263,7 @@ public class InstrumentInfoHighVolt extends EntityBase {
 	 * 時間帯08_全日電力量当月指示数
 	 */
 	@Column(nullable = true, name = "t08_adays_elc_num_ths_mnth_idct_num")
-	@ApiModelProperty(value = "時間帯08_全日電力量当月指示数", required = false, position = 30)
+	@Schema(description = "時間帯08_全日電力量当月指示数", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	@JsonProperty("時間帯08_全日電力量当月指示数")
 	private BigDecimal t08AdaysElcNumThsMnthIdctNum;
 	
@@ -271,7 +271,7 @@ public class InstrumentInfoHighVolt extends EntityBase {
 	 * 時間帯09_全日電力量前月指示数
 	 */
 	@Column(nullable = true, name = "t09_adays_elc_num_lst_mnth_idct_num")
-	@ApiModelProperty(value = "時間帯09_全日電力量前月指示数", required = false, position = 31)
+	@Schema(description = "時間帯09_全日電力量前月指示数", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	@JsonProperty("時間帯09_全日電力量前月指示数")
 	private BigDecimal t09AdaysElcNumLstMnthIdctNum;
 	
@@ -279,7 +279,7 @@ public class InstrumentInfoHighVolt extends EntityBase {
 	 * 時間帯09_全日電力量当月指示数
 	 */
 	@Column(nullable = true, name = "t09_adays_elc_num_ths_mnth_idct_num")
-	@ApiModelProperty(value = "時間帯09_全日電力量当月指示数", required = false, position = 32)
+	@Schema(description = "時間帯09_全日電力量当月指示数", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	@JsonProperty("時間帯09_全日電力量当月指示数")
 	private BigDecimal t09AdaysElcNumThsMnthIdctNum;
 	
@@ -287,7 +287,7 @@ public class InstrumentInfoHighVolt extends EntityBase {
 	 * 時間帯10_全日電力量前月指示数
 	 */
 	@Column(nullable = true, name = "t10_adays_elc_num_lst_mnth_idct_num")
-	@ApiModelProperty(value = "時間帯10_全日電力量前月指示数", required = false, position = 33)
+	@Schema(description = "時間帯10_全日電力量前月指示数", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	@JsonProperty("時間帯10_全日電力量前月指示数")
 	private BigDecimal t10AdaysElcNumLstMnthIdctNum;
 	
@@ -295,7 +295,7 @@ public class InstrumentInfoHighVolt extends EntityBase {
 	 * 時間帯10_全日電力量当月指示数
 	 */
 	@Column(nullable = true, name = "t10_adays_elc_num_ths_mnth_idct_num")
-	@ApiModelProperty(value = "時間帯10_全日電力量当月指示数", required = false, position = 34)
+	@Schema(description = "時間帯10_全日電力量当月指示数", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	@JsonProperty("時間帯10_全日電力量当月指示数")
 	private BigDecimal t10AdaysElcNumThsMnthIdctNum;
 	
@@ -303,7 +303,7 @@ public class InstrumentInfoHighVolt extends EntityBase {
 	 * 力測有効電量前月指示数
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "力測有効電量前月指示数", required = false, position = 35)
+	@Schema(description = "力測有効電量前月指示数", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	@JsonProperty("力測有効電量前月指示数")
 	private BigDecimal pompMsrEfcElcNumLstMnthIdctNum;
 	
@@ -311,7 +311,7 @@ public class InstrumentInfoHighVolt extends EntityBase {
 	 * 力測有効電量当月指示数
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "力測有効電量当月指示数", required = false, position = 36)
+	@Schema(description = "力測有効電量当月指示数", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	@JsonProperty("力測有効電量当月指示数")
 	private BigDecimal pompMsrEfcElcNumThsMnthIdctNum;
 	
@@ -319,7 +319,7 @@ public class InstrumentInfoHighVolt extends EntityBase {
 	 * 力測無効電量前月指示数
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "力測無効電量前月指示数", required = false, position = 37)
+	@Schema(description = "力測無効電量前月指示数", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	@JsonProperty("力測無効電量前月指示数")
 	private BigDecimal pompMsrIvdElcNumLstMnthIdctNum;
 	
@@ -327,7 +327,7 @@ public class InstrumentInfoHighVolt extends EntityBase {
 	 * 力測無効電量当月指示数
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "力測無効電量当月指示数", required = false, position = 38)
+	@Schema(description = "力測無効電量当月指示数", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	@JsonProperty("力測無効電量当月指示数")
 	private BigDecimal pompMsrIvdElcNumThsMnthIdctNum;
 	
@@ -335,7 +335,7 @@ public class InstrumentInfoHighVolt extends EntityBase {
 	 * 仕訳後最大需要電力
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "仕訳後最大需要電力", required = false, position = 39)
+	@Schema(description = "仕訳後最大需要電力", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	@JsonProperty("仕訳後最大需要電力")
 	private Long jrnlMaxDmdElc;
 	
@@ -343,7 +343,7 @@ public class InstrumentInfoHighVolt extends EntityBase {
 	 * 仕訳後力測有効電量
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "仕訳後力測有効電量", required = false, position = 40)
+	@Schema(description = "仕訳後力測有効電量", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	@JsonProperty("仕訳後力測有効電量")
 	private Long jrnlPompMsrEfcElcNum;
 	
@@ -351,7 +351,7 @@ public class InstrumentInfoHighVolt extends EntityBase {
 	 * 仕訳後力測無効電量
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "仕訳後力測無効電量", required = false, position = 41)
+	@Schema(description = "仕訳後力測無効電量", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	@JsonProperty("仕訳後力測無効電量")
 	private Long jrnlPompMsrIvdElcNum;
 	
@@ -359,7 +359,7 @@ public class InstrumentInfoHighVolt extends EntityBase {
 	 * 力測有効電力量
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "力測有効電力量", required = false, position = 42)
+	@Schema(description = "力測有効電力量", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	@JsonProperty("力測有効電力量")
 	private BigDecimal pompMsrEfcElcNum;
 	
@@ -367,7 +367,7 @@ public class InstrumentInfoHighVolt extends EntityBase {
 	 * 力測無効電力量
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "力測無効電力量", required = false, position = 43)
+	@Schema(description = "力測無効電力量", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	@JsonProperty("力測無効電力量")
 	private BigDecimal pompMsrIvdElcNum;
 

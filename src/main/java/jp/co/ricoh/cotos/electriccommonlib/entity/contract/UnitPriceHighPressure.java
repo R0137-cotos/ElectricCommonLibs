@@ -18,7 +18,7 @@ import jakarta.validation.constraints.Min;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBase;
 import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
 import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.UnitPriceType;
@@ -39,7 +39,7 @@ public class UnitPriceHighPressure extends EntityBase {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "unit_price_high_pressure_seq")
 	@SequenceGenerator(name = "unit_price_high_pressure_seq", sequenceName = "unit_price_high_pressure_seq", allocationSize = 1)
-	@ApiModelProperty(value = "ID", required = true, position = 1, allowableValues = "range[0,9223372036854775807]")
+	@Schema(description = "ID", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,9223372036854775807]")
 	private long id;
 
 	/**
@@ -47,7 +47,7 @@ public class UnitPriceHighPressure extends EntityBase {
 	 */
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "contract_electric_id", referencedColumnName = "id")
-	@ApiModelProperty(value = "契約(電力用)", required = true, position = 2)
+	@Schema(description = "契約(電力用)", requiredMode = Schema.RequiredMode.REQUIRED)
 	@JsonIgnore
 	private ContractElectric contractElectric;
 
@@ -55,7 +55,7 @@ public class UnitPriceHighPressure extends EntityBase {
 	 * 単価種別
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "単価種別", required = true, position = 3, allowableValues = "単価(\"1\"), 仕切価格(営業)(\"2\"), 仕切価格(RJ)(\"3\")", example = "1")
+	@Schema(description = "単価種別", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "単価(\"1\"), 仕切価格(営業)(\"2\"), 仕切価格(RJ)(\"3\")", example = "1")
 	private UnitPriceType unitPriceType;
 
 	/**
@@ -64,7 +64,7 @@ public class UnitPriceHighPressure extends EntityBase {
 	@Column(nullable = true)
 	@Max(99999)
 	@Min(0)
-	@ApiModelProperty(value = "変更回数", required = false, position = 4, allowableValues = "range[0,99999]")
+	@Schema(description = "変更回数", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,99999]")
 	private Integer numberOfChanges;
 
 	/**
@@ -73,7 +73,7 @@ public class UnitPriceHighPressure extends EntityBase {
 	@Column(nullable = true)
 	@DecimalMin("0.00")
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "基本料金_定価", required = false, position = 5, allowableValues = "range[0.00,99999999999999999.99]")
+	@Schema(description = "基本料金_定価", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal basicListPrice;
 
 	/**
@@ -82,7 +82,7 @@ public class UnitPriceHighPressure extends EntityBase {
 	@Column(nullable = true)
 	@DecimalMin("0.00")
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "基本料金_売価", required = false, position = 6, allowableValues = "range[0.00,99999999999999999.99]")
+	@Schema(description = "基本料金_売価", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal basicSellingPrice;
 
 	/**
@@ -91,7 +91,7 @@ public class UnitPriceHighPressure extends EntityBase {
 	@Column(nullable = true)
 	@DecimalMin("0.00")
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "従量料金_夏季", required = false, position = 7, allowableValues = "range[0.00,99999999999999999.99]")
+	@Schema(description = "従量料金_夏季", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal usageFeeSummerPrice;
 
 	/**
@@ -100,7 +100,7 @@ public class UnitPriceHighPressure extends EntityBase {
 	@Column(nullable = true)
 	@DecimalMin("0.00")
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "従量料金_その他季", required = false, position = 8, allowableValues = "range[0.00,99999999999999999.99]")
+	@Schema(description = "従量料金_その他季", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal usageFeeOtherSeasonPrice;
 
 	/**
@@ -109,7 +109,7 @@ public class UnitPriceHighPressure extends EntityBase {
 	@Column(nullable = true)
 	@DecimalMin("0.00")
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "オプション_予備線", required = false, position = 9, allowableValues = "range[0.00,99999999999999999.99]")
+	@Schema(description = "オプション_予備線", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal spareLinePrice;
 
 	/**
@@ -118,7 +118,7 @@ public class UnitPriceHighPressure extends EntityBase {
 	@Column(nullable = true)
 	@DecimalMin("0.00")
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "オプション_予備線", required = false, position = 10, allowableValues = "range[0.00,99999999999999999.99]")
+	@Schema(description = "オプション_予備線", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal sparePowerPrice;
 
 	/**
@@ -127,14 +127,14 @@ public class UnitPriceHighPressure extends EntityBase {
 	@Column(nullable = true)
 	@DecimalMin("0.00")
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "オプション_アンシラリー", required = false, position = 11, allowableValues = "range[0.00,99999999999999999.99]")
+	@Schema(description = "オプション_アンシラリー", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal ancillaryPrice;
 
 	/**
 	 * 登録者名
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "登録者名", required = false, position = 12, allowableValues = "range[0,255]")
+	@Schema(description = "登録者名", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String createdUserName;
 
 }

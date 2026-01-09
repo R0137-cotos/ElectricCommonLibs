@@ -1,6 +1,6 @@
 package jp.co.ricoh.cotos.electriccommonlib.dto.result.contract;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 @Data
@@ -9,13 +9,13 @@ public class ReportResultDto {
 	/**
 	 * 帳票バイナリデータ
 	 */
-	@ApiModelProperty(value = "帳票バイナリデータ", required = true, position = 1)
+	@Schema(description = "帳票バイナリデータ", requiredMode = Schema.RequiredMode.REQUIRED)
 	private byte[] reportData;
 
 	/**
 	 * 帳票名
 	 */
-	@ApiModelProperty(value = "帳票名", required = true, position = 2)
+	@Schema(description = "帳票名", requiredMode = Schema.RequiredMode.REQUIRED)
 	private String fileName;
 
 }
