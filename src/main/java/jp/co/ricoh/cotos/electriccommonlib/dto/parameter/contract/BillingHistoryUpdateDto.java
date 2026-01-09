@@ -4,7 +4,7 @@ import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 @Data
@@ -15,7 +15,7 @@ public class BillingHistoryUpdateDto {
 	 */
 	@NotNull
 	@Min(0)
-	@ApiModelProperty(value = "請求実績ID", required = true, position = 1, allowableValues = "range[0,9223372036854775807]")
+	@Schema(description = "請求実績ID", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,9223372036854775807]")
 	private long billingHistoryId;
 
 	/**
@@ -23,7 +23,7 @@ public class BillingHistoryUpdateDto {
 	 */
 	@Max(9)
 	@Min(0)
-	@ApiModelProperty(value = "未回収フラグ", required = false, position = 2, allowableValues = "range[0,9]")
+	@Schema(description = "未回収フラグ", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,9]")
 	private Integer accruedFlg;
 
 	/**
@@ -31,7 +31,7 @@ public class BillingHistoryUpdateDto {
 	 */
 	@Max(9)
 	@Min(0)
-	@ApiModelProperty(value = "請求書出力フラグ", required = false, position = 3, allowableValues = "range[0,9]")
+	@Schema(description = "請求書出力フラグ", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,9]")
 	private Integer invoiceOutputFlg;
 
 }

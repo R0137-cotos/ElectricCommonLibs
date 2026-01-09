@@ -21,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBase;
 import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.ContractElectricAttachedFileRepository;
@@ -63,7 +63,7 @@ public class ContractElectricAttachedFile extends EntityBase {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "contract_electric_attached_file_seq")
 	@SequenceGenerator(name = "contract_electric_attached_file_seq", sequenceName = "contract_electric_attached_file_seq", allocationSize = 1)
-	@ApiModelProperty(value = "ID", required = true, position = 1, allowableValues = "range[0,9223372036854775807]")
+	@Schema(description = "ID", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,9223372036854775807]")
 	private long id;
 
 	/**
@@ -71,7 +71,7 @@ public class ContractElectricAttachedFile extends EntityBase {
 	 */
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "contract_electric_id", referencedColumnName = "id")
-	@ApiModelProperty(value = "契約(電力用)", required = true, position = 2)
+	@Schema(description = "契約(電力用)", requiredMode = Schema.RequiredMode.REQUIRED)
 	@JsonIgnore
 	private ContractElectric contractElectric;
 
@@ -79,55 +79,55 @@ public class ContractElectricAttachedFile extends EntityBase {
 	 * ファイル名
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "ファイル名", required = false, position = 3, allowableValues = "range[0,255]")
+	@Schema(description = "ファイル名", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String fileName;
 
 	/**
 	 * ファイル種類
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "ファイル種類", required = false, position = 4, allowableValues = "range[0,255]")
+	@Schema(description = "ファイル種類", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String fileKind;
 
 	/**
 	 * 添付ファイルID
 	 */
-	@ApiModelProperty(value = "添付ファイルID", required = false, position = 5, allowableValues = "range[0,9223372036854775807]")
+	@Schema(description = "添付ファイルID", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,9223372036854775807]")
 	private Long attachedFileId;
 
 	/**
 	 * コメント
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "コメント", required = false, position = 6, allowableValues = "range[0,1000]")
+	@Schema(description = "コメント", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,1000]")
 	private String attachedComment;
 
 	/**
 	 * 添付者MoM社員ID
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "添付者MoM社員ID", required = false, position = 7, allowableValues = "range[0,255]")
+	@Schema(description = "添付者MoM社員ID", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String attachedEmpId;
 
 	/**
 	 * 添付者氏名
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "添付者氏名", required = false, position = 8, allowableValues = "range[0,255]")
+	@Schema(description = "添付者氏名", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String attachedEmpName;
 
 	/**
 	 * 添付者組織名
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "添付者組織名", required = false, position = 9, allowableValues = "range[0,255]")
+	@Schema(description = "添付者組織名", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String attachedOrgName;
 
 	/**
 	 * 添付日時
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "添付日時", required = false, position = 10)
+	@Schema(description = "添付日時", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date attachedAt;
 
@@ -135,7 +135,7 @@ public class ContractElectricAttachedFile extends EntityBase {
 	 * 電力用ファイル種別
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "電力用ファイル種別", required = true, position = 11, allowableValues = "新規(\"1\"), 変更(\"2\"), 解約(\"3\"),その他(\"99\")", example = "1")
+	@Schema(description = "電力用ファイル種別", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "新規(\"1\"), 変更(\"2\"), 解約(\"3\"),その他(\"99\")", example = "1")
 	private ElectricDispFileType electricFileType;
 
 	/**
@@ -144,7 +144,7 @@ public class ContractElectricAttachedFile extends EntityBase {
 	@Column(nullable = false)
 	@Max(9)
 	@Min(0)
-	@ApiModelProperty(value = "添付必須フラグ", required = true, position = 12, allowableValues = "range[0,9]")
+	@Schema(description = "添付必須フラグ", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,9]")
 	private int targetRequiredFlg;
 
 	/**
@@ -153,14 +153,14 @@ public class ContractElectricAttachedFile extends EntityBase {
 	@Column(nullable = false)
 	@Max(9)
 	@Min(0)
-	@ApiModelProperty(value = "アクティブflg", required = true, position = 13, allowableValues = "range[0,9]")
+	@Schema(description = "アクティブflg", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,9]")
 	private int activeFlg;
 
 	/**
 	 * 書類名称
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "書類名称", required = true, position = 14, allowableValues = "range[0,255]")
+	@Schema(description = "書類名称", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,255]")
 	private String documentName;
 
 	/**
@@ -169,7 +169,7 @@ public class ContractElectricAttachedFile extends EntityBase {
 	@Column(nullable = false)
 	@Max(9)
 	@Min(0)
-	@ApiModelProperty(value = "マスタープリセットフラグ", required = true, position = 15, allowableValues = "range[0,9]")
+	@Schema(description = "マスタープリセットフラグ", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,9]")
 	private int masterPresetFlg;
 
 }

@@ -16,7 +16,7 @@ import jakarta.persistence.TemporalType;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBaseMaster;
 import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
 import jp.co.ricoh.cotos.electriccommonlib.repository.master.HighContractCalendarMasterRepository;
@@ -58,49 +58,49 @@ public class HighContractCalendarMaster extends EntityBaseMaster {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "high_contract_calendar_master_seq")
 	@SequenceGenerator(name = "high_contract_calendar_master_seq", sequenceName = "high_contract_calendar_master_seq", allocationSize = 1)
-	@ApiModelProperty(value = "ID", required = true, position = 1, allowableValues = "range[0,9223372036854775807]")
+	@Schema(description = "ID", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,9223372036854775807]")
 	private long id;
 
 	/**
 	 * 電力会社名
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "電力会社名", required = true, position = 2, allowableValues = "range[0,255]")
+	@Schema(description = "電力会社名", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,255]")
 	private String electricCompanyName;
 
 	/**
 	 * 供給開始月
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "供給開始月", required = true, position = 3, allowableValues = "range[0,255]")
+	@Schema(description = "供給開始月", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,255]")
 	private String supplyStartYm;
 
 	/**
 	 * 条件判定順
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "条件判定順 ", required = true, position = 4, allowableValues = "range[0,999]")
+	@Schema(description = "条件判定順 ", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,999]")
 	private int condDetermineOrder;
 
 	/**
 	 * 判定条件
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "判定条件", required = true, position = 5, allowableValues = "契約電力500kW以上(\"1\"), 部分供給_付帯外契約等(\"2\"), 契約電力500kW未満(\"3\"), 新電力から切替(\"4\"), 計量日(\"5\")", example = "1")
+	@Schema(description = "判定条件", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "契約電力500kW以上(\"1\"), 部分供給_付帯外契約等(\"2\"), 契約電力500kW未満(\"3\"), 新電力から切替(\"4\"), 計量日(\"5\")", example = "1")
 	private DetermineCondition determineCondition;
 
 	/**
 	 * 計量日
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "計量日 ", required = false, position = 6, allowableValues = "range[0,99999]")
+	@Schema(description = "計量日 ", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,99999]")
 	private Integer measurementDate;
 
 	/**
 	 * 電力会社申込期日
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "電力会社申込期日", required = true, position = 7)
+	@Schema(description = "電力会社申込期日", requiredMode = Schema.RequiredMode.REQUIRED)
 	@Temporal(TemporalType.DATE)
 	private Date electricCompanyApplyDate;
 

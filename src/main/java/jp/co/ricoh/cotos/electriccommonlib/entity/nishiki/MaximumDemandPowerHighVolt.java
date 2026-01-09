@@ -10,7 +10,7 @@ import jakarta.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBase;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -30,14 +30,14 @@ public class MaximumDemandPowerHighVolt extends EntityBase {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "maximum_demand_power_high_volt_seq")
 	@SequenceGenerator(name = "maximum_demand_power_high_volt_seq", sequenceName = "maximum_demand_power_high_volt_seq", allocationSize = 1)
-	@ApiModelProperty(value = "ID", required = true, position = 1)
+	@Schema(description = "ID", requiredMode = Schema.RequiredMode.REQUIRED)
 	private long id;
 
 	/**
 	 * 全体番号
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "全体番号", required = true, position = 2)
+	@Schema(description = "全体番号", requiredMode = Schema.RequiredMode.REQUIRED)
 	@JsonProperty("全体番号")
 	private String feeClcAllBn;
 	
@@ -45,7 +45,7 @@ public class MaximumDemandPowerHighVolt extends EntityBase {
 	 * 契約番号
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "契約番号", required = true, position = 3)
+	@Schema(description = "契約番号", requiredMode = Schema.RequiredMode.REQUIRED)
 	@JsonProperty("契約番号")
 	private String ctctBn;
 	
@@ -53,7 +53,7 @@ public class MaximumDemandPowerHighVolt extends EntityBase {
 	 * 料金メニューコード
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "料金メニューコード", required = true, position = 4)
+	@Schema(description = "料金メニューコード", requiredMode = Schema.RequiredMode.REQUIRED)
 	@JsonProperty("料金メニューコード")
 	private String feeMnuCd;
 	
@@ -61,7 +61,7 @@ public class MaximumDemandPowerHighVolt extends EntityBase {
 	 * 料金計算対象年月
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "料金計算対象年月", required = true, position = 5)
+	@Schema(description = "料金計算対象年月", requiredMode = Schema.RequiredMode.REQUIRED)
 	@JsonProperty("料金計算対象年月")
 	private String feeClcYm;
 	
@@ -69,7 +69,7 @@ public class MaximumDemandPowerHighVolt extends EntityBase {
 	 * 料金計算実行番号
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "料金計算実行番号", required = true, position = 6)
+	@Schema(description = "料金計算実行番号", requiredMode = Schema.RequiredMode.REQUIRED)
 	@JsonProperty("料金計算実行番号")
 	private String feeClcExecBn;
 	
@@ -77,7 +77,7 @@ public class MaximumDemandPowerHighVolt extends EntityBase {
 	 * 月間電力量
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "月間電力量", required = false, position = 7)
+	@Schema(description = "月間電力量", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	@JsonProperty("月間電力量")
 	private Long mnthElcNum;
 	
@@ -85,7 +85,7 @@ public class MaximumDemandPowerHighVolt extends EntityBase {
 	 * 力率
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "力率", required = false, position = 8)
+	@Schema(description = "力率", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	@JsonProperty("力率")
 	private Long powp;
 	
@@ -93,7 +93,7 @@ public class MaximumDemandPowerHighVolt extends EntityBase {
 	 * 最大需要電力実績年月
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "最大需要電力実績年月", required = false, position = 9)
+	@Schema(description = "最大需要電力実績年月", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	@JsonProperty("最大需要電力実績年月")
 	private Long maxDmdElcRsYm;
 	
@@ -101,7 +101,7 @@ public class MaximumDemandPowerHighVolt extends EntityBase {
 	 * 最大需要電力
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "最大需要電力", required = false, position = 10)
+	@Schema(description = "最大需要電力", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	@JsonProperty("最大需要電力")
 	private Long maxDmdElc;
 	
@@ -109,7 +109,7 @@ public class MaximumDemandPowerHighVolt extends EntityBase {
 	 * 訂正最大需要電力
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "訂正最大需要電力", required = false, position = 11)
+	@Schema(description = "訂正最大需要電力", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	@JsonProperty("訂正最大需要電力")
 	private Long crctMaxDmdElc;
 	
@@ -117,7 +117,7 @@ public class MaximumDemandPowerHighVolt extends EntityBase {
 	 * デマンド値
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "デマンド値", required = false, position = 12)
+	@Schema(description = "デマンド値", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	@JsonProperty("デマンド値")
 	private Long dmndNumMaxDmdElc;
 	
@@ -125,7 +125,7 @@ public class MaximumDemandPowerHighVolt extends EntityBase {
 	 * 協議デマンド
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "協議デマンド", required = false, position = 13)
+	@Schema(description = "協議デマンド", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	@JsonProperty("協議デマンド")
 	private Long cnslDmndMaxDmdElc;
 

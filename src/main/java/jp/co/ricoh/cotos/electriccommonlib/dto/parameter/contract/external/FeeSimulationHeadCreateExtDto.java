@@ -7,7 +7,7 @@ import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -19,7 +19,7 @@ public class FeeSimulationHeadCreateExtDto {
 	 * 作成日
 	 */
 	@Size(max = 255)
-	@ApiModelProperty(value = "作成日", required = false, position = 1, allowableValues = "range[0,255]")
+	@Schema(description = "作成日", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String createdDate;
 
 	/**
@@ -28,7 +28,7 @@ public class FeeSimulationHeadCreateExtDto {
 	@NotNull
 	@DecimalMin("0.00")
 	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "基本料金_定価", required = true, position = 2, allowableValues = "range[0.00,9999999999999999999.99]")
+	@Schema(description = "基本料金_定価", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0.00,9999999999999999999.99]")
 	private BigDecimal basicListPrice;
 
 	/**
@@ -37,7 +37,7 @@ public class FeeSimulationHeadCreateExtDto {
 	@NotNull
 	@DecimalMin("0.00")
 	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "基本料金_売価", required = true, position = 3, allowableValues = "range[0.00,9999999999999999999.99]")
+	@Schema(description = "基本料金_売価", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0.00,9999999999999999999.99]")
 	private BigDecimal basicSellingPrice;
 
 	/**
@@ -46,7 +46,7 @@ public class FeeSimulationHeadCreateExtDto {
 	@NotNull
 	@DecimalMin("0.00")
 	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "基本料金_仕切価格(営業)", required = true, position = 4, allowableValues = "range[0.00,9999999999999999999.99]")
+	@Schema(description = "基本料金_仕切価格(営業)", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0.00,9999999999999999999.99]")
 	private BigDecimal basicBankPriceBusiness;
 
 	/**
@@ -55,7 +55,7 @@ public class FeeSimulationHeadCreateExtDto {
 	@NotNull
 	@DecimalMin("0.00")
 	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "従量料金(従量電灯)_売価", required = true, position = 5, allowableValues = "range[0.00,9999999999999999999.99]")
+	@Schema(description = "従量料金(従量電灯)_売価", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0.00,9999999999999999999.99]")
 	private BigDecimal basicBankPriceRj;
 
 	/**
@@ -64,7 +64,7 @@ public class FeeSimulationHeadCreateExtDto {
 	@NotNull
 	@DecimalMin("0.00")
 	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "従量料金(従量電灯)_定価", required = true, position = 6, allowableValues = "range[0.00,9999999999999999999.99]")
+	@Schema(description = "従量料金(従量電灯)_定価", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0.00,9999999999999999999.99]")
 	private BigDecimal peruseLightListPrice;
 
 	/**
@@ -73,7 +73,7 @@ public class FeeSimulationHeadCreateExtDto {
 	@NotNull
 	@DecimalMin("0.00")
 	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "従量料金(従量電灯)_売価", required = true, position = 7, allowableValues = "range[0.00,9999999999999999999.99]")
+	@Schema(description = "従量料金(従量電灯)_売価", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0.00,9999999999999999999.99]")
 	private BigDecimal perUseLightSellingPrice;
 
 	/**
@@ -82,7 +82,7 @@ public class FeeSimulationHeadCreateExtDto {
 	@NotNull
 	@DecimalMin("0.00")
 	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "従量料金(従量電灯)_仕切価格(営業)", required = true, position = 8, allowableValues = "range[0.00,9999999999999999999.99]")
+	@Schema(description = "従量料金(従量電灯)_仕切価格(営業)", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0.00,9999999999999999999.99]")
 	private BigDecimal perUseLightBankPriceBusiness;
 
 	/**
@@ -91,7 +91,7 @@ public class FeeSimulationHeadCreateExtDto {
 	@NotNull
 	@DecimalMin("0.00")
 	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "従量料金(従量電灯)_仕切価格(RJ)", required = true, position = 9, allowableValues = "range[0.00,9999999999999999999.99]")
+	@Schema(description = "従量料金(従量電灯)_仕切価格(RJ)", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0.00,9999999999999999999.99]")
 	private BigDecimal perUseLightBankPriceRj;
 
 	/**
@@ -100,7 +100,7 @@ public class FeeSimulationHeadCreateExtDto {
 	@NotNull
 	@DecimalMin("0.00")
 	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "従量料金(動力)_夏季_定価", required = true, position = 10, allowableValues = "range[0.00,9999999999999999999.99]")
+	@Schema(description = "従量料金(動力)_夏季_定価", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0.00,9999999999999999999.99]")
 	private BigDecimal usageFeeSummerListPrice;
 
 	/**
@@ -109,7 +109,7 @@ public class FeeSimulationHeadCreateExtDto {
 	@NotNull
 	@DecimalMin("0.00")
 	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "従量料金(動力)_夏季_売価", required = true, position = 11, allowableValues = "range[0.00,9999999999999999999.99]")
+	@Schema(description = "従量料金(動力)_夏季_売価", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0.00,9999999999999999999.99]")
 	private BigDecimal usageFeeSummerSellingPrice;
 
 	/**
@@ -118,7 +118,7 @@ public class FeeSimulationHeadCreateExtDto {
 	@NotNull
 	@DecimalMin("0.00")
 	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "従量料金(動力)_夏季_仕切価格(営業)", required = true, position = 12, allowableValues = "range[0.00,9999999999999999999.99]")
+	@Schema(description = "従量料金(動力)_夏季_仕切価格(営業)", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0.00,9999999999999999999.99]")
 	private BigDecimal usageFeeSummerBankPriceBusiness;
 
 	/**
@@ -127,7 +127,7 @@ public class FeeSimulationHeadCreateExtDto {
 	@NotNull
 	@DecimalMin("0.00")
 	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "従量料金(動力)_夏季_仕切価格(RJ)", required = true, position = 13, allowableValues = "range[0.00,9999999999999999999.99]")
+	@Schema(description = "従量料金(動力)_夏季_仕切価格(RJ)", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0.00,9999999999999999999.99]")
 	private BigDecimal usageFeeSummerBankPriceRj;
 
 	/**
@@ -136,7 +136,7 @@ public class FeeSimulationHeadCreateExtDto {
 	@NotNull
 	@DecimalMin("0.00")
 	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "従量料金(動力)_その他季_定価", required = false, position = 14, allowableValues = "range[0.00,9999999999999999999.99]")
+	@Schema(description = "従量料金(動力)_その他季_定価", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,9999999999999999999.99]")
 	private BigDecimal usageFeeOtherSeasonListPrice;
 
 	/**
@@ -145,7 +145,7 @@ public class FeeSimulationHeadCreateExtDto {
 	@NotNull
 	@DecimalMin("0.00")
 	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "従量料金(動力)_その他夏季_売価", required = false, position = 15, allowableValues = "range[0.00,9999999999999999999.99]")
+	@Schema(description = "従量料金(動力)_その他夏季_売価", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,9999999999999999999.99]")
 	private BigDecimal usageFeeOtherSeasonSellingPrice;
 
 	/**
@@ -154,7 +154,7 @@ public class FeeSimulationHeadCreateExtDto {
 	@NotNull
 	@DecimalMin("0.00")
 	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "従量料金(動力)_その他季_仕切価格(営業)", required = false, position = 16, allowableValues = "range[0.00,9999999999999999999.99]")
+	@Schema(description = "従量料金(動力)_その他季_仕切価格(営業)", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,9999999999999999999.99]")
 	private BigDecimal usageFeeOtherSeasonBankPriceBusiness;
 
 	/**
@@ -163,6 +163,6 @@ public class FeeSimulationHeadCreateExtDto {
 	@NotNull
 	@DecimalMin("0.00")
 	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "従量料金(動力)_その他季_仕切価格(RJ)", required = false, position = 17, allowableValues = "range[0.00,9999999999999999999.99]")
+	@Schema(description = "従量料金(動力)_その他季_仕切価格(RJ)", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,9999999999999999999.99]")
 	private BigDecimal usageFeeOtherSeasonBankPriceRj;
 }

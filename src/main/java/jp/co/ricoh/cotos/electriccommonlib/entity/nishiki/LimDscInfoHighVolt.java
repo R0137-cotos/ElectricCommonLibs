@@ -12,7 +12,7 @@ import jakarta.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBase;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -32,14 +32,14 @@ public class LimDscInfoHighVolt extends EntityBase {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "lim_dsc_info_high_volt_seq")
 	@SequenceGenerator(name = "lim_dsc_info_high_volt_seq", sequenceName = "lim_dsc_info_high_volt_seq", allocationSize = 1)
-	@ApiModelProperty(value = "ID", required = true, position = 1)
+	@Schema(description = "ID", requiredMode = Schema.RequiredMode.REQUIRED)
 	private long id;
 	
 	/**
 	 * 全体番号
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "全体番号", required = true, position = 2)
+	@Schema(description = "全体番号", requiredMode = Schema.RequiredMode.REQUIRED)
 	@JsonProperty("全体番号")
 	private String feeClcAllBn;
 	
@@ -47,7 +47,7 @@ public class LimDscInfoHighVolt extends EntityBase {
 	 * 契約番号
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "契約番号", required = true, position = 3)
+	@Schema(description = "契約番号", requiredMode = Schema.RequiredMode.REQUIRED)
 	@JsonProperty("契約番号")
 	private String ctctBn;
 	
@@ -55,7 +55,7 @@ public class LimDscInfoHighVolt extends EntityBase {
 	 * 料金計算対象年月
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "料金計算対象年月", required = true, position = 4)
+	@Schema(description = "料金計算対象年月", requiredMode = Schema.RequiredMode.REQUIRED)
 	@JsonProperty("料金計算対象年月")
 	private String feeClcYm;
 	
@@ -63,7 +63,7 @@ public class LimDscInfoHighVolt extends EntityBase {
 	 * 料金メニューコード
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "料金メニューコード", required = true, position = 5)
+	@Schema(description = "料金メニューコード", requiredMode = Schema.RequiredMode.REQUIRED)
 	@JsonProperty("料金メニューコード")
 	private String feeMnuCd;
 	
@@ -71,7 +71,7 @@ public class LimDscInfoHighVolt extends EntityBase {
 	 * 託送対象年月
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "託送対象年月", required = true, position = 6)
+	@Schema(description = "託送対象年月", requiredMode = Schema.RequiredMode.REQUIRED)
 	@JsonProperty("託送対象年月")
 	private String csAplyYm;
 	
@@ -79,7 +79,7 @@ public class LimDscInfoHighVolt extends EntityBase {
 	 * 供給地点特定番号
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "供給地点特定番号", required = false, position = 7)
+	@Schema(description = "供給地点特定番号", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	@JsonProperty("供給地点特定番号")
 	private String splyPointIdntBn;
 	
@@ -87,7 +87,7 @@ public class LimDscInfoHighVolt extends EntityBase {
 	 * 算定期間開始日
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "算定期間開始日", required = false, position = 8)
+	@Schema(description = "算定期間開始日", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	@JsonProperty("算定期間開始日")
 	private Long estmStrDate;
 	
@@ -95,7 +95,7 @@ public class LimDscInfoHighVolt extends EntityBase {
 	 * 算定期間終了日
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "算定期間終了日", required = false, position = 9)
+	@Schema(description = "算定期間終了日", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	@JsonProperty("算定期間終了日")
 	private Long estmEndDate;
 	
@@ -103,7 +103,7 @@ public class LimDscInfoHighVolt extends EntityBase {
 	 * 割引対象コード
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "割引対象コード", required = false, position = 10)
+	@Schema(description = "割引対象コード", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	@JsonProperty("割引対象コード")
 	private Long dscObjCd;
 	
@@ -111,7 +111,7 @@ public class LimDscInfoHighVolt extends EntityBase {
 	 * 割引対象時間数
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "割引対象時間数", required = false, position = 11)
+	@Schema(description = "割引対象時間数", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	@JsonProperty("割引対象時間数")
 	private Long dscObjTime;
 	
@@ -119,7 +119,7 @@ public class LimDscInfoHighVolt extends EntityBase {
 	 * 割引対象日数
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "割引対象日数", required = false, position = 12)
+	@Schema(description = "割引対象日数", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	@JsonProperty("割引対象日数")
 	private Long dscObjDays;
 	
@@ -127,7 +127,7 @@ public class LimDscInfoHighVolt extends EntityBase {
 	 * 制限中止割引額
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "制限中止割引額", required = false, position = 13)
+	@Schema(description = "制限中止割引額", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	@JsonProperty("制限中止割引額")
 	private BigDecimal lmtDscntnMny;
 	

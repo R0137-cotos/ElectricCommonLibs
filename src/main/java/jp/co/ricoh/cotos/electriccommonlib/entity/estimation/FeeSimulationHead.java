@@ -17,7 +17,7 @@ import jakarta.validation.constraints.Digits;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBase;
 import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
 import jp.co.ricoh.cotos.electriccommonlib.repository.estimation.FeeSimulationHeadRepository;
@@ -40,7 +40,7 @@ public class FeeSimulationHead extends EntityBase {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "fee_simulation_head_seq")
 	@SequenceGenerator(name = "fee_simulation_head_seq", sequenceName = "fee_simulation_head_seq", allocationSize = 1)
-	@ApiModelProperty(value = "ID", required = true, position = 1)
+	@Schema(description = "ID", requiredMode = Schema.RequiredMode.REQUIRED)
 	private long id;
 
 	/**
@@ -48,7 +48,7 @@ public class FeeSimulationHead extends EntityBase {
 	 */
 	@OneToOne(optional = false)
 	@JoinColumn(name = "estimationElectricId", referencedColumnName = "id")
-	@ApiModelProperty(value = "見積（電力）ID", required = true, position = 2)
+	@Schema(description = "見積（電力）ID", requiredMode = Schema.RequiredMode.REQUIRED)
 	@JsonIgnore
 	private EstimationElectric estimationElectric;
 
@@ -56,7 +56,7 @@ public class FeeSimulationHead extends EntityBase {
 	 * 作成日
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "作成日", required = false, position = 3)
+	@Schema(description = "作成日", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private Date createdDate;
 
 	/**
@@ -64,7 +64,7 @@ public class FeeSimulationHead extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "年間電力料金 - 現状", required = false, position = 4, allowableValues = "range[0.00,99999999999999999.99]")
+	@Schema(description = "年間電力料金 - 現状", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal annualElectricityRateCurrent;
 
 	/**
@@ -72,7 +72,7 @@ public class FeeSimulationHead extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "年間電力料金 - 変更後", required = false, position = 5, allowableValues = "range[0.00,99999999999999999.99]")
+	@Schema(description = "年間電力料金 - 変更後", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal annualElectricityRateAfter;
 
 	/**
@@ -80,7 +80,7 @@ public class FeeSimulationHead extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "削減額", required = false, position = 6)
+	@Schema(description = "削減額", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal reductionAmount;
 
 	/**
@@ -88,7 +88,7 @@ public class FeeSimulationHead extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 3, fraction = 2)
-	@ApiModelProperty(value = "削減率（％）", required = false, position = 7)
+	@Schema(description = "削減率（％）", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal reductionRate;
 
 	/**
@@ -96,7 +96,7 @@ public class FeeSimulationHead extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "総合単価１", required = false, position = 8, allowableValues = "range[0.00,99999999999999999.99]")
+	@Schema(description = "総合単価１", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal overallPrice1;
 
 	/**
@@ -104,7 +104,7 @@ public class FeeSimulationHead extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "総合単価２", required = false, position = 9, allowableValues = "range[0.00,99999999999999999.99]")
+	@Schema(description = "総合単価２", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal overallPrice2;
 
 	/**
@@ -112,7 +112,7 @@ public class FeeSimulationHead extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "総合単価３", required = false, position = 10, allowableValues = "range[0.00,99999999999999999.99]")
+	@Schema(description = "総合単価３", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal overallPrice3;
 
 	/**
@@ -120,7 +120,7 @@ public class FeeSimulationHead extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 3, fraction = 2)
-	@ApiModelProperty(value = "負荷率（％）", required = false, position = 11)
+	@Schema(description = "負荷率（％）", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal loadFactor;
 
 	/**
@@ -128,7 +128,7 @@ public class FeeSimulationHead extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "基本料金_売価", required = false, position = 12, allowableValues = "range[0.00,99999999999999999.99]")
+	@Schema(description = "基本料金_売価", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal basicRateSellingPrice;
 
 	/**
@@ -136,7 +136,7 @@ public class FeeSimulationHead extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "基本料金_仕切価格（営業）", required = false, position = 13, allowableValues = "range[0.00,99999999999999999.99]")
+	@Schema(description = "基本料金_仕切価格（営業）", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal basicRateBankPriceBusiness;
 
 	/**
@@ -144,7 +144,7 @@ public class FeeSimulationHead extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "基本料金_仕切価格（ＲＪ）", required = false, position = 14, allowableValues = "range[0.00,99999999999999999.99]")
+	@Schema(description = "基本料金_仕切価格（ＲＪ）", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal basicRateBankPriceRj;
 
 	/**
@@ -152,7 +152,7 @@ public class FeeSimulationHead extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "従量料金_夏季_売価", required = false, position = 15, allowableValues = "range[0.00,99999999999999999.99]")
+	@Schema(description = "従量料金_夏季_売価", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal usageFeeSummerSellingPrice;
 
 	/**
@@ -160,7 +160,7 @@ public class FeeSimulationHead extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "従量料金_夏季_仕切価格（営業）", required = false, position = 16, allowableValues = "range[0.00,99999999999999999.99]")
+	@Schema(description = "従量料金_夏季_仕切価格（営業）", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal usageFeeSummerBankPriceBusiness;
 
 	/**
@@ -168,7 +168,7 @@ public class FeeSimulationHead extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "従量料金_夏季_仕切価格（ＲＪ）", required = false, position = 17, allowableValues = "range[0.00,99999999999999999.99]")
+	@Schema(description = "従量料金_夏季_仕切価格（ＲＪ）", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal usageFeeSummerBankPriceRj;
 
 	/**
@@ -176,7 +176,7 @@ public class FeeSimulationHead extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "従量料金_その他季_売価", required = false, position = 18, allowableValues = "range[0.00,99999999999999999.99]")
+	@Schema(description = "従量料金_その他季_売価", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal usageFeeOtherSeasonSellingPrice;
 
 	/**
@@ -184,7 +184,7 @@ public class FeeSimulationHead extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "従量料金_その他季_仕切価格（営業）", required = false, position = 19, allowableValues = "range[0.00,99999999999999999.99]")
+	@Schema(description = "従量料金_その他季_仕切価格（営業）", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal usageFeeOtherSeasonBankPriceBusiness;
 
 	/**
@@ -192,7 +192,7 @@ public class FeeSimulationHead extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "従量料金_その他季_仕切価格（ＲＪ）", required = false, position = 20, allowableValues = "range[0.00,99999999999999999.99]")
+	@Schema(description = "従量料金_その他季_仕切価格（ＲＪ）", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal usageFeeOtherSeasonBankPriceRj;
 
 	/**
@@ -200,7 +200,7 @@ public class FeeSimulationHead extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "オプション_予備線_売価", required = false, position = 21, allowableValues = "range[0.00,99999999999999999.99]")
+	@Schema(description = "オプション_予備線_売価", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal spareLineSellingPrice;
 
 	/**
@@ -208,7 +208,7 @@ public class FeeSimulationHead extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "オプション_予備線_仕切価格（営業）", required = false, position = 22, allowableValues = "range[0.00,99999999999999999.99]")
+	@Schema(description = "オプション_予備線_仕切価格（営業）", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal spareLineBankPriceBusiness;
 
 	/**
@@ -216,7 +216,7 @@ public class FeeSimulationHead extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "オプション_予備線_仕切価格（ＲＪ）", required = false, position = 23, allowableValues = "range[0.00,99999999999999999.99]")
+	@Schema(description = "オプション_予備線_仕切価格（ＲＪ）", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal spareLineBankPriceRj;
 
 	/**
@@ -224,7 +224,7 @@ public class FeeSimulationHead extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "オプション_予備電源_売価", required = false, position = 24, allowableValues = "range[0.00,99999999999999999.99]")
+	@Schema(description = "オプション_予備電源_売価", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal sparePowerSellingPrice;
 
 	/**
@@ -232,7 +232,7 @@ public class FeeSimulationHead extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "オプション_予備電源_仕切価格（営業）", required = false, position = 25, allowableValues = "range[0.00,99999999999999999.99]")
+	@Schema(description = "オプション_予備電源_仕切価格（営業）", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal sparePowerBankPriceBusiness;
 
 	/**
@@ -240,7 +240,7 @@ public class FeeSimulationHead extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "オプション_予備電源_仕切価格（ＲＪ）", required = false, position = 26, allowableValues = "range[0.00,99999999999999999.99]")
+	@Schema(description = "オプション_予備電源_仕切価格（ＲＪ）", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal sparePowerBankPriceRj;
 
 	/**
@@ -248,7 +248,7 @@ public class FeeSimulationHead extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "オプション_アンシラリー_売価", required = false, position = 27, allowableValues = "range[0.00,99999999999999999.99]")
+	@Schema(description = "オプション_アンシラリー_売価", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal ancillarySellingPrice;
 
 	/**
@@ -256,7 +256,7 @@ public class FeeSimulationHead extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "オプション_アンシラリー_仕切価格（営業）", required = false, position = 28, allowableValues = "range[0.00,99999999999999999.99]")
+	@Schema(description = "オプション_アンシラリー_仕切価格（営業）", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal ancillaryBankPriceBusiness;
 
 	/**
@@ -264,7 +264,7 @@ public class FeeSimulationHead extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "オプション_アンシラリー_仕切価格（ＲＪ）", required = false, position = 29, allowableValues = "range[0.00,99999999999999999.99]")
+	@Schema(description = "オプション_アンシラリー_仕切価格（ＲＪ）", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal ancillaryBankPriceRj;
 
 	/**
@@ -272,7 +272,7 @@ public class FeeSimulationHead extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "媒介手数料　定額（円：税込）", required = false, position = 30)
+	@Schema(description = "媒介手数料　定額（円：税込）", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal feeFixedAmountInTax;
 
 	/**
@@ -280,7 +280,7 @@ public class FeeSimulationHead extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 3, fraction = 2)
-	@ApiModelProperty(value = "媒介手数料　定率（％）", required = false, position = 31)
+	@Schema(description = "媒介手数料　定率（％）", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal feeFixedRate;
 
 	/**
@@ -288,7 +288,7 @@ public class FeeSimulationHead extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "電力料金（営業）", required = false, position = 32)
+	@Schema(description = "電力料金（営業）", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal electricityChargeBusiness;
 
 	/**
@@ -296,7 +296,7 @@ public class FeeSimulationHead extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "粗利額（営業）", required = false, position = 33)
+	@Schema(description = "粗利額（営業）", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal grossMarginBusiness;
 
 	/**
@@ -304,7 +304,7 @@ public class FeeSimulationHead extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 3, fraction = 2)
-	@ApiModelProperty(value = "粗利率（％）（営業）", required = false, position = 34)
+	@Schema(description = "粗利率（％）（営業）", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal grossProfitMarginBusiness;
 
 	/**
@@ -312,7 +312,7 @@ public class FeeSimulationHead extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "電力料金（ＲＪ）", required = false, position = 35)
+	@Schema(description = "電力料金（ＲＪ）", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal electricityChargeRj;
 
 	/**
@@ -320,7 +320,7 @@ public class FeeSimulationHead extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "粗利額（ＲＪ）", required = false, position = 36)
+	@Schema(description = "粗利額（ＲＪ）", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal grossMarginRj;
 
 	/**
@@ -328,7 +328,7 @@ public class FeeSimulationHead extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 3, fraction = 2)
-	@ApiModelProperty(value = "粗利率（％）（ＲＪ）", required = false, position = 37)
+	@Schema(description = "粗利率（％）（ＲＪ）", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal grossProfitMarginRj;
 
 	/**
@@ -337,21 +337,21 @@ public class FeeSimulationHead extends EntityBase {
 	@Column(nullable = true)
 	@DecimalMin("0.00")
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "定価", required = false, position = 38, allowableValues = "range[0.00,99999999999999999.99]")
+	@Schema(description = "定価", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal basicRateListPrice;
 
 	/**
 	 * SIM番号(主)
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "SIM番号(主)", required = false, position = 39, allowableValues = "range[0,255]")
+	@Schema(description = "SIM番号(主)", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String simNumberMain;
 
 	/**
 	 * SIM番号(従)
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "SIM番号(従)", required = false, position = 40, allowableValues = "range[0,255]")
+	@Schema(description = "SIM番号(従)", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String simNumberSub;
 
 	/**
@@ -359,7 +359,7 @@ public class FeeSimulationHead extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "取次手数料額", required = false, position = 41)
+	@Schema(description = "取次手数料額", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal agencyFeeAmount;
 
 	/**
@@ -367,7 +367,7 @@ public class FeeSimulationHead extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 3, fraction = 2)
-	@ApiModelProperty(value = "取次手数料率（％）", required = false, position = 42)
+	@Schema(description = "取次手数料率（％）", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal agencyFeeRate;
 
 	/**
@@ -375,7 +375,7 @@ public class FeeSimulationHead extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 3, fraction = 2)
-	@ApiModelProperty(value = "取次割引率", required = false, position = 43)
+	@Schema(description = "取次割引率", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal agencyDiscountRate;
 
 	/**
@@ -383,7 +383,7 @@ public class FeeSimulationHead extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "取次割引単価", required = false, position = 44)
+	@Schema(description = "取次割引単価", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal agencyDiscountPrice;
 
 	/**
@@ -391,7 +391,7 @@ public class FeeSimulationHead extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 3, fraction = 2)
-	@ApiModelProperty(value = "長期割引率", required = false, position = 45)
+	@Schema(description = "長期割引率", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal longtermDiscountRate;
 
 	/**
@@ -399,7 +399,7 @@ public class FeeSimulationHead extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "長期割引単価", required = false, position = 46, allowableValues = "range[-99999999999999999.99,99999999999999999.99]")
+	@Schema(description = "長期割引単価", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[-99999999999999999.99,99999999999999999.99]")
 	private BigDecimal longtermDiscountPrice;
 
 }

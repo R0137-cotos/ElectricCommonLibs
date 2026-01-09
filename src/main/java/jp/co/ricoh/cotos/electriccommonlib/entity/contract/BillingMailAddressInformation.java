@@ -12,7 +12,7 @@ import jakarta.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBase;
 import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.BillingMailAddressInformationRepository;
@@ -31,7 +31,7 @@ public class BillingMailAddressInformation extends EntityBase {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "billing_mail_address_information_seq")
 	@SequenceGenerator(name = "billing_mail_address_information_seq", sequenceName = "billing_mail_address_information_seq", allocationSize = 1)
-	@ApiModelProperty(value = "ID", required = true, position = 1, allowableValues = "range[0,9223372036854775807]")
+	@Schema(description = "ID", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,9223372036854775807]")
 	private long id;
 
 	/**
@@ -39,7 +39,7 @@ public class BillingMailAddressInformation extends EntityBase {
 	 */
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "client_master_id", referencedColumnName = "id")
-	@ApiModelProperty(value = "得意先情報M_ID", required = true, position = 2)
+	@Schema(description = "得意先情報M_ID", requiredMode = Schema.RequiredMode.REQUIRED)
 	@JsonIgnore
 	private ClientMaster clientMaster;
 
@@ -47,21 +47,21 @@ public class BillingMailAddressInformation extends EntityBase {
 	 * 氏名
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "氏名", required = true, position = 3, allowableValues = "range[0,255]")
+	@Schema(description = "氏名", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,255]")
 	private String name;
 
 	/**
 	 * メールアドレス
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "メールアドレス", required = true, position = 4, allowableValues = "range[0,255]")
+	@Schema(description = "メールアドレス", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,255]")
 	private String mailAddress;
 
 	/**
 	 * MyRICOHユーザーID
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "MyRICOHユーザーID", required = false, position = 5, allowableValues = "range[0,255]")
+	@Schema(description = "MyRICOHユーザーID", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String myricohId;
 
 }

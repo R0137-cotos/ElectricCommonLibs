@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Digits;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -18,7 +18,7 @@ public class LongtermDiscountEstimationInformationExtDto {
 	 */
 	@DecimalMin("0.00")
 	@Digits(integer = 3, fraction = 2)
-	@ApiModelProperty(value = "長期割引率", required = false, position = 1, allowableValues = "range[0,999.99]")
+	@Schema(description = "長期割引率", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,999.99]")
 	private BigDecimal longtermDiscountRate;
 
 	/**
@@ -26,7 +26,7 @@ public class LongtermDiscountEstimationInformationExtDto {
 	 */
 	@DecimalMin("-99999999999999999.99")
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "長期割引単価", required = false, position = 2, allowableValues = "range[-99999999999999999.99,99999999999999999.99]")
+	@Schema(description = "長期割引単価", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[-99999999999999999.99,99999999999999999.99]")
 	private BigDecimal longtermDiscountPrice;
 
 }

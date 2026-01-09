@@ -5,7 +5,7 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jp.co.ricoh.cotos.commonlib.dto.parameter.common.DtoBase;
 import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.ClientInformationRepository;
@@ -22,13 +22,13 @@ public class ClientInformationDto extends DtoBase {
 	 */
 	@NotNull
 	@Size(max = 255)
-	@ApiModelProperty(value = "得意先CD", required = true, position = 3, allowableValues = "range[0,255]")
+	@Schema(description = "得意先CD", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,255]")
 	private String clientCode;
 
 	/**
 	 * 得意先情報M_ID
 	 */
-	@ApiModelProperty(value = "得意先情報M_ID", required = false, position = 4, allowableValues = "range[0,9223372036854775807]")
+	@Schema(description = "得意先情報M_ID", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,9223372036854775807]")
 	private long clientMasterId;
 
 	/**
@@ -36,7 +36,7 @@ public class ClientInformationDto extends DtoBase {
 	 */
 	@Max(9)
 	@Min(0)
-	@ApiModelProperty(value = "アクティブflg", required = false, position = 5, allowableValues = "range[0,9]")
+	@Schema(description = "アクティブflg", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,9]")
 	private Integer activeFlg;
 
 }

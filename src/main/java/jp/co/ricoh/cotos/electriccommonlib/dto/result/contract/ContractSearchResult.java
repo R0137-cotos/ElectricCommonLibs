@@ -8,7 +8,7 @@ import jakarta.persistence.PrePersist;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jp.co.ricoh.cotos.commonlib.entity.contract.Contract.ContractType;
 import jp.co.ricoh.cotos.commonlib.entity.contract.Contract.LifecycleStatus;
 import jp.co.ricoh.cotos.commonlib.entity.contract.Contract.WorkflowStatus;
@@ -27,304 +27,304 @@ import lombok.Data;
 public class ContractSearchResult {
 
 	@Id
-	@ApiModelProperty(value = "連番", required = true, position = 1)
+	@Schema(description = "連番", requiredMode = Schema.RequiredMode.REQUIRED)
 	private long seqNo;
 
 	/**
 	 * 契約ID
 	 */
-	@ApiModelProperty(value = "契約ID", required = true, position = 2)
+	@Schema(description = "契約ID", requiredMode = Schema.RequiredMode.REQUIRED)
 	private long id;
 
 	/**
 	 * 契約番号
 	 */
-	@ApiModelProperty(value = "契約番号<br />" + "契約番号 + \"-\" + 契約番号枝番", required = false, position = 3, allowableValues = "range[0,18]")
+	@Schema(description = "契約番号<br />" + "契約番号 + \"-\" + 契約番号枝番", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,18]")
 	private String contractNumber;
 
 	/**
 	 * 契約種別
 	 */
-	@ApiModelProperty(value = "契約種別<br />" + "新規, プラン変更, 解約などの契約種別を表す。", required = false, position = 4)
+	@Schema(description = "契約種別<br />" + "新規, プラン変更, 解約などの契約種別を表す。", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private ContractType contractType;
 
 	/**
 	 * 商品名称
 	 */
-	@ApiModelProperty(value = "商品名称", required = false, position = 5, allowableValues = "range[0,255]")
+	@Schema(description = "商品名称", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String productName;
 
 	/**
 	 * お客様企業名
 	 */
-	@ApiModelProperty(value = "お客様企業名", required = false, position = 6, allowableValues = "range[0,255]")
+	@Schema(description = "お客様企業名", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String companyName;
 
 	/**
 	 * お客様事業所名
 	 */
-	@ApiModelProperty(value = "お客様事業所名", required = false, position = 7, allowableValues = "range[0,255]")
+	@Schema(description = "お客様事業所名", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String officeName;
 
 	/**
 	 * お客様部門名
 	 */
-	@ApiModelProperty(value = "お客様部門名", required = false, position = 8, allowableValues = "range[0,255]")
+	@Schema(description = "お客様部門名", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String departmentName;
 
 	/**
 	 * 担当支社名
 	 */
-	@ApiModelProperty(value = "担当支社名", required = false, position = 9, allowableValues = "range[0,255]")
+	@Schema(description = "担当支社名", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String salesCompanyName;
 
 	/**
 	 * 担当営業氏名
 	 */
-	@ApiModelProperty(value = "担当営業氏名", required = false, position = 10, allowableValues = "range[0,255]")
+	@Schema(description = "担当営業氏名", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String employeeName;
 
 	/**
 	 * 担当営業所属
 	 */
-	@ApiModelProperty(value = "担当営業所属", required = false, position = 11, allowableValues = "range[0,255]")
+	@Schema(description = "担当営業所属", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String orgName;
 
 	/**
 	 * 担当SS氏名
 	 */
-	@ApiModelProperty(value = "担当SS氏名", required = false, position = 12, allowableValues = "range[0,255]")
+	@Schema(description = "担当SS氏名", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String serviceOrgName;
 
 	/**
 	 * 担当CE氏名
 	 */
-	@ApiModelProperty(value = "担当CE氏名", required = false, position = 13, allowableValues = "range[0,255]")
+	@Schema(description = "担当CE氏名", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String employeeCeName;
 
 	/**
 	 * 契約ステータス
 	 */
-	@ApiModelProperty(value = "契約ステータス<br />" + "状態遷移上のワークフローステータスを表す。", required = false, position = 14)
+	@Schema(description = "契約ステータス<br />" + "状態遷移上のワークフローステータスを表す。", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private WorkflowStatus workflowStatus;
 
 	/**
 	 * 契約状態
 	 */
-	@ApiModelProperty(value = "契約状態<br />" + "状態遷移上のライフサイクル状態を表す。", required = false, position = 15)
+	@Schema(description = "契約状態<br />" + "状態遷移上のライフサイクル状態を表す。", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private LifecycleStatus lifecycleStatus;
 
 	/**
 	 * 見積番号
 	 */
-	@ApiModelProperty(value = "見積番号<br />" + "見積番号 + \"-\" + 見積番号枝番", required = false, position = 16, allowableValues = "range[0,18]")
+	@Schema(description = "見積番号<br />" + "見積番号 + \"-\" + 見積番号枝番", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,18]")
 	private String estimationNumber;
 
 	/**
 	 * 見積件名
 	 */
-	@ApiModelProperty(value = "見積件名", required = false, position = 17, allowableValues = "range[0,255]")
+	@Schema(description = "見積件名", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String estimationTitle;
 
 	/**
 	 * 見積ID
 	 */
-	@ApiModelProperty(value = "見積ID", required = false, position = 18)
+	@Schema(description = "見積ID", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private Long estimationId;
 
 	/**
 	 * 案件番号
 	 */
-	@ApiModelProperty(value = "案件番号", required = false, position = 19, allowableValues = "range[0,255]")
+	@Schema(description = "案件番号", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String caseNumber;
 
 	/**
 	 * 案件名
 	 */
-	@ApiModelProperty(value = "案件名", required = false, position = 20, allowableValues = "range[0,255]")
+	@Schema(description = "案件名", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String caseTitle;
 
 	/**
 	 * SIM番号
 	 */
-	@ApiModelProperty(value = "SIM番号", required = false, position = 21, allowableValues = "range[0,255]")
+	@Schema(description = "SIM番号", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String simNumber;
 
 	/**
 	 * 契約書最終作成日
 	 */
 	@JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ssZ", timezone = "Asia/Tokyo")
-	@ApiModelProperty(value = "契約書最終作成日", required = false, position = 22)
+	@Schema(description = "契約書最終作成日", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private Date contractLastCreationDate;
 
 	/**
 	 * 請求開始月
 	 */
-	@ApiModelProperty(value = "請求開始月", required = false, position = 23)
+	@Schema(description = "請求開始月", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private String billingDate;
 
 	/**
 	 * サービス開始
 	 */
 	@JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ssZ", timezone = "Asia/Tokyo")
-	@ApiModelProperty(value = "サービス開始", required = false, position = 24)
+	@Schema(description = "サービス開始", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private Date contractYmdStart;
 
 	/**
 	 * サービス終了
 	 */
 	@JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ssZ", timezone = "Asia/Tokyo")
-	@ApiModelProperty(value = "サービス終了", required = false, position = 25)
+	@Schema(description = "サービス終了", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private Date contractYmdEnd;
 
 	/**
 	 * 電力区分
 	 */
-	@ApiModelProperty(value = "電力区分", required = false, position = 26, allowableValues = "range[0,255]")
+	@Schema(description = "電力区分", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private VoltageCategory voltageCategory;
 
 	/**
 	 * お客様識別番号
 	 */
-	@ApiModelProperty(value = "お客様識別番号", required = false, position = 27, allowableValues = "range[0,255]")
+	@Schema(description = "お客様識別番号", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String customerNumber;
 
 	/**
 	 * 供給地点特定番号
 	 */
-	@ApiModelProperty(value = "供給地点特定番号", required = false, position = 28, allowableValues = "range[0,255]")
+	@Schema(description = "供給地点特定番号", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String feedPointNumber;
 
 	/**
 	 * 電力会社
 	 */
-	@ApiModelProperty(value = "電力会社", required = false, position = 29, allowableValues = "range[0,255]")
+	@Schema(description = "電力会社", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String powerCompany;
 
 	/**
 	 * 電気主任技術者
 	 */
-	@ApiModelProperty(value = "電気主任技術者", required = false, position = 30, allowableValues = "range[0,255]")
+	@Schema(description = "電気主任技術者", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String licensedEngineerName;
 
 	/**
 	 * 電気主任技術者_電話番号
 	 */
-	@ApiModelProperty(value = "電気主任技術者_電話番号", required = false, position = 31, allowableValues = "range[0,255]")
+	@Schema(description = "電気主任技術者_電話番号", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String licensedEngineerTel;
 
 	/**
 	 * 電気主任技術者_所属名
 	 */
-	@ApiModelProperty(value = "電気主任技術者_所属名", required = false, position = 32, allowableValues = "range[0,255]")
+	@Schema(description = "電気主任技術者_所属名", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String licensedEngineerDep;
 
 	/**
 	 * 電力専任
 	 */
-	@ApiModelProperty(value = "電力専任", required = false, position = 33, allowableValues = "range[0,255]")
+	@Schema(description = "電力専任", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String name;
 
 	/**
 	 * 電力専任 所属
 	 */
-	@ApiModelProperty(value = "電力専任　所属", required = false, position = 34, allowableValues = "range[0,255]")
+	@Schema(description = "電力専任　所属", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String belongs;
 
 	/**
 	 * 原子力立地給付金フラグ
 	 */
-	@ApiModelProperty(value = "原子力立地給付金フラグ", required = false, position = 35, allowableValues = "range[0,1]")
+	@Schema(description = "原子力立地給付金フラグ", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,1]")
 	private Integer atomicPaymentFlg;
 
 	/**
 	 * 備考
 	 */
-	@ApiModelProperty(value = "備考", required = false, position = 36, allowableValues = "range[0,255]")
+	@Schema(description = "備考", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String notes;
 
 	/**
 	 * 商流区分
 	 */
-	@ApiModelProperty(value = "商流区分", required = false, position = 37, allowableValues = "range[0,255]")
+	@Schema(description = "商流区分", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private ElectricCommercialFlowDiv commercialFlowDiv;
 
 	/**
 	 * 得意先CD
 	 */
-	@ApiModelProperty(value = "得意先CD", required = false, position = 38, allowableValues = "range[0,255]")
+	@Schema(description = "得意先CD", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String clientCode;
 
 	/**
 	 * 請求No
 	 */
-	@ApiModelProperty(value = "請求No", required = false, position = 39, allowableValues = "range[0,255]")
+	@Schema(description = "請求No", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String claimNumber;
 
 	/**
 	 * 請求年月
 	 */
-	@ApiModelProperty(value = "請求年月", required = false, position = 40, allowableValues = "range[0,255]")
+	@Schema(description = "請求年月", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String billingYearMonth;
 
 	/**
 	 * 請求書発送区分
 	 */
-	@ApiModelProperty(value = "請求書発送区分", required = false, position = 41, allowableValues = "range[0,255]")
+	@Schema(description = "請求書発送区分", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private SendInvoiceDiv sendInvoiceDiv;
 
 	/**
 	 * 請求書出力フラグ
 	 */
-	@ApiModelProperty(value = "請求書出力フラグ", required = false, position = 42, allowableValues = "range[0,1]")
+	@Schema(description = "請求書出力フラグ", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,1]")
 	private Integer invoiceOutputFlg;
 
 	/**
 	 * 未回収フラグ
 	 */
-	@ApiModelProperty(value = "未回収フラグ", required = false, position = 43, allowableValues = "range[0,1]")
+	@Schema(description = "未回収フラグ", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,1]")
 	private Integer accruedFlg;
 
 	/**
 	 * 手数料金額
 	 */
-	@ApiModelProperty(value = "手数料金額", required = false, position = 44, allowableValues = "range[0,255]")
+	@Schema(description = "手数料金額", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String tradingCompanyMediationFeeAmountInTax;
 
 	/**
 	 * 販売店ID
 	 */
-	@ApiModelProperty(value = "販売店ID", required = false, position = 45, allowableValues = "range[0,255]")
+	@Schema(description = "販売店ID", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String companyId;
 
 	/**
 	 * 販売店名
 	 */
-	@ApiModelProperty(value = "販売店名", required = false, position = 46, allowableValues = "range[0,255]")
+	@Schema(description = "販売店名", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String companyBusinessName;
 
 	/**
 	 * 解約月
 	 */
-	@ApiModelProperty(value = "解約月", required = false, position = 47, allowableValues = "range[0,255]")
+	@Schema(description = "解約月", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String cancellationDate;
 
 	/**
 	 * 解約金請求
 	 */
-	@ApiModelProperty(value = "解約金請求", required = false, position = 48, allowableValues = "range[0,1]")
+	@Schema(description = "解約金請求", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,1]")
 	private Integer cancellationBillingFlg;
 
 	/**
 	 * 解約金額
 	 */
-	@ApiModelProperty(value = "解約金額", required = false, position = 49, allowableValues = "range[0,20]")
+	@Schema(description = "解約金額", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,20]")
 	private String cancellationAmount;
 
 	/**
 	 * 電力メニュー
 	 */
-	@ApiModelProperty(value = "電力メニュー", required = false, position = 50, allowableValues = "range[0,255]")
+	@Schema(description = "電力メニュー", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String electricMenu;
 
 	@PrePersist

@@ -8,7 +8,7 @@ import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Size;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jp.co.ricoh.cotos.commonlib.dto.parameter.common.DtoBase;
 import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
 import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.Scale;
@@ -27,7 +27,7 @@ public class EntryContentHighPressureDto extends DtoBase {
 	 */
 	@Max(99999)
 	@Min(0)
-	@ApiModelProperty(value = "計量日(高圧)", required = false, position = 3)
+	@Schema(description = "計量日(高圧)", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private Integer measureDateHigh;
 
 	/**
@@ -35,13 +35,13 @@ public class EntryContentHighPressureDto extends DtoBase {
 	 */
 	@DecimalMin("0.00")
 	@Digits(integer = 8, fraction = 2)
-	@ApiModelProperty(value = "契約電力(高圧)", required = false, position = 4, allowableValues = "range[0.00,99999999.99]")
+	@Schema(description = "契約電力(高圧)", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999999.99]")
 	private BigDecimal contractPowerHigh;
 
 	/**
 	 * 規模
 	 */
-	@ApiModelProperty(value = "規模", required = false, position = 5, allowableValues = "500kw未満(\"1\"), 500kw以上(\"2\")", example = "1")
+	@Schema(description = "規模", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "500kw未満(\"1\"), 500kw以上(\"2\")", example = "1")
 	private Scale scale;
 
 	/**
@@ -49,7 +49,7 @@ public class EntryContentHighPressureDto extends DtoBase {
 	 */
 	@DecimalMin("0.00")
 	@Digits(integer = 5, fraction = 2)
-	@ApiModelProperty(value = "力率", required = false, position = 6, allowableValues = "range[0.00,99999.99]")
+	@Schema(description = "力率", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999.99]")
 	private BigDecimal powerRate;
 
 	/**
@@ -57,7 +57,7 @@ public class EntryContentHighPressureDto extends DtoBase {
 	 */
 	@DecimalMin("0.00")
 	@Digits(integer = 5, fraction = 2)
-	@ApiModelProperty(value = "負荷率", required = false, position = 7, allowableValues = "range[0.00,99999.99]")
+	@Schema(description = "負荷率", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999.99]")
 	private BigDecimal loadFactor;
 
 	/**
@@ -65,7 +65,7 @@ public class EntryContentHighPressureDto extends DtoBase {
 	 */
 	@Max(9)
 	@Min(0)
-	@ApiModelProperty(value = "予備線", required = false, position = 8, allowableValues = "range[0,9]")
+	@Schema(description = "予備線", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,9]")
 	private Integer spareWireFlg;
 
 	/**
@@ -73,7 +73,7 @@ public class EntryContentHighPressureDto extends DtoBase {
 	 */
 	@Max(9)
 	@Min(0)
-	@ApiModelProperty(value = "予備電源", required = false, position = 9, allowableValues = "range[0,9]")
+	@Schema(description = "予備電源", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,9]")
 	private Integer sparePowerFlg;
 
 	/**
@@ -81,7 +81,7 @@ public class EntryContentHighPressureDto extends DtoBase {
 	 */
 	@Max(9)
 	@Min(0)
-	@ApiModelProperty(value = "アンシラリーサービス", required = false, position = 10, allowableValues = "range[0,9]")
+	@Schema(description = "アンシラリーサービス", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,9]")
 	private Integer ancillaryFlg;
 
 	/**
@@ -89,7 +89,7 @@ public class EntryContentHighPressureDto extends DtoBase {
 	 */
 	@Max(9)
 	@Min(0)
-	@ApiModelProperty(value = "蓄熱計量器継続", required = false, position = 11, allowableValues = "range[0,9]")
+	@Schema(description = "蓄熱計量器継続", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,9]")
 	private Integer thermalStorageMeterFlg;
 
 	/**
@@ -97,7 +97,7 @@ public class EntryContentHighPressureDto extends DtoBase {
 	 */
 	@Max(9)
 	@Min(0)
-	@ApiModelProperty(value = "再エネ賦課金減免措置", required = false, position = 12, allowableValues = "range[0,9]")
+	@Schema(description = "再エネ賦課金減免措置", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,9]")
 	private Integer renewableEnergyExemptionFlg;
 
 	/**
@@ -105,7 +105,7 @@ public class EntryContentHighPressureDto extends DtoBase {
 	 */
 	@Max(9)
 	@Min(0)
-	@ApiModelProperty(value = "需要地内転売契約", required = false, position = 13, allowableValues = "range[0,9]")
+	@Schema(description = "需要地内転売契約", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,9]")
 	private Integer demandPlaceResales;
 
 	/**
@@ -113,7 +113,7 @@ public class EntryContentHighPressureDto extends DtoBase {
 	 */
 	@Max(9)
 	@Min(0)
-	@ApiModelProperty(value = "部分供給", required = false, position = 14, allowableValues = "range[0,9]")
+	@Schema(description = "部分供給", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,9]")
 	private Integer partialSupplyFlg;
 
 	/**
@@ -121,7 +121,7 @@ public class EntryContentHighPressureDto extends DtoBase {
 	 */
 	@Max(9)
 	@Min(0)
-	@ApiModelProperty(value = "その他", required = false, position = 15, allowableValues = "range[0,9]")
+	@Schema(description = "その他", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,9]")
 	private Integer otherFlg;
 
 	/**
@@ -129,7 +129,7 @@ public class EntryContentHighPressureDto extends DtoBase {
 	 */
 	@DecimalMin("0.00")
 	@Digits(integer = 8, fraction = 2)
-	@ApiModelProperty(value = "部分供給 設定値", required = false, position = 16, allowableValues = "range[0.00,99999999.99]")
+	@Schema(description = "部分供給 設定値", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999999.99]")
 	private BigDecimal partialSupplySettingValue;
 
 	/**
@@ -137,7 +137,7 @@ public class EntryContentHighPressureDto extends DtoBase {
 	 */
 	@DecimalMin("0.00")
 	@Digits(integer = 8, fraction = 2)
-	@ApiModelProperty(value = "ベース部", required = false, position = 17, allowableValues = "range[0.00,99999999.99]")
+	@Schema(description = "ベース部", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999999.99]")
 	private BigDecimal base;
 
 	/**
@@ -145,7 +145,7 @@ public class EntryContentHighPressureDto extends DtoBase {
 	 */
 	@DecimalMin("0.00")
 	@Digits(integer = 8, fraction = 2)
-	@ApiModelProperty(value = "変動部", required = false, position = 18, allowableValues = "range[0.00,99999999.99]")
+	@Schema(description = "変動部", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999999.99]")
 	private BigDecimal variable;
 
 	/**
@@ -153,7 +153,7 @@ public class EntryContentHighPressureDto extends DtoBase {
 	 */
 	@DecimalMin("0.00")
 	@Digits(integer = 8, fraction = 2)
-	@ApiModelProperty(value = "アンシラリーサービス契約容量(高圧)", required = false, position = 19, allowableValues = "range[0.00,99999999.99]")
+	@Schema(description = "アンシラリーサービス契約容量(高圧)", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999999.99]")
 	private BigDecimal ancillaryCapacityHighPressure;
 
 	/**
@@ -161,7 +161,7 @@ public class EntryContentHighPressureDto extends DtoBase {
 	 */
 	@Max(9)
 	@Min(0)
-	@ApiModelProperty(value = "該当なし", required = false, position = 20, allowableValues = "range[0,9]")
+	@Schema(description = "該当なし", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,9]")
 	private Integer notApplicableFlg;
 
 	/**
@@ -169,7 +169,7 @@ public class EntryContentHighPressureDto extends DtoBase {
 	 */
 	@Max(9)
 	@Min(0)
-	@ApiModelProperty(value = "東北取次（新規）", required = false, position = 21, allowableValues = "range[0,9]")
+	@Schema(description = "東北取次（新規）", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,9]")
 	private Integer tohokuAgencyNewFlg;
 
 	/**
@@ -177,7 +177,7 @@ public class EntryContentHighPressureDto extends DtoBase {
 	 */
 	@Max(9)
 	@Min(0)
-	@ApiModelProperty(value = "東北取次（RJ電力からの切り替え）", required = false, position = 22, allowableValues = "range[0,9]")
+	@Schema(description = "東北取次（RJ電力からの切り替え）", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,9]")
 	private Integer tohokuAgencySwitchFlg;
 
 	/**
@@ -185,7 +185,7 @@ public class EntryContentHighPressureDto extends DtoBase {
 	 */
 	@Max(9)
 	@Min(0)
-	@ApiModelProperty(value = "協議制で契約電力増加の場合", required = false, position = 23, allowableValues = "range[0,9]")
+	@Schema(description = "協議制で契約電力増加の場合", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,9]")
 	private Integer increaseElectricPowerFlg;
 
 	/**
@@ -193,7 +193,7 @@ public class EntryContentHighPressureDto extends DtoBase {
 	 */
 	@DecimalMin("0.00")
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "取次手数料額", required = false, position = 24, allowableValues = "range[0.00,99999999999999999.99]")
+	@Schema(description = "取次手数料額", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal agencyFeeAmount;
 
 	/**
@@ -201,13 +201,13 @@ public class EntryContentHighPressureDto extends DtoBase {
 	 */
 	@DecimalMin("0.00")
 	@Digits(integer = 3, fraction = 2)
-	@ApiModelProperty(value = "取次手数料率", required = false, position = 25, allowableValues = "range[0.00,999.99]")
+	@Schema(description = "取次手数料率", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,999.99]")
 	private BigDecimal agencyFeeRate;
 
 	/**
 	 * 備考
 	 */
 	@Size(max = 4000)
-	@ApiModelProperty(value = "備考", required = false, position = 26, allowableValues = "range[0,4000]")
+	@Schema(description = "備考", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,4000]")
 	private String notes;
 }

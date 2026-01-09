@@ -19,7 +19,7 @@ import jakarta.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBaseMaster;
 import jp.co.ricoh.cotos.commonlib.entity.master.UrlAuthMaster.Domain;
 import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
@@ -108,49 +108,49 @@ public class ElectricFormMaster extends EntityBaseMaster {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "electric_form_master_seq")
 	@SequenceGenerator(name = "electric_form_master_seq", sequenceName = "electric_form_master_seq", allocationSize = 1)
-	@ApiModelProperty(value = "ID", required = true, position = 1, allowableValues = "range[0,9223372036854775807]")
+	@Schema(description = "ID", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,9223372036854775807]")
 	private long id;
 
 	/**
 	 * 電力区分
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "電力区分", required = true, position = 2, allowableValues = "高圧(\"1\"), 低圧(\"2\")", example = "1")
+	@Schema(description = "電力区分", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "高圧(\"1\"), 低圧(\"2\")", example = "1")
 	private VoltageCategory voltageCategory;
 
 	/**
 	 * 商流区分
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "商流区分", required = true, position = 3, allowableValues = "直売(\"1\"), 代売(\"2\")", example = "1")
+	@Schema(description = "商流区分", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "直売(\"1\"), 代売(\"2\")", example = "1")
 	private ElectricCommercialFlowDiv electricCommercialFlowDiv;
 
 	/**
 	 * 電力プラン
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "電力プラン", required = true, position = 4, allowableValues = "CO2フリー(\"1\"), それ以外(\"2\"), 無し(\"99\")", example = "1")
+	@Schema(description = "電力プラン", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "CO2フリー(\"1\"), それ以外(\"2\"), 無し(\"99\")", example = "1")
 	private ElectricPlan electricPlan;
 
 	/**
 	 * 解約種別
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "解約種別", required = true, position = 5, allowableValues = "需要消滅(\"1\"), 購入先変更(\"2\"), 無し(\"99\")", example = "1")
+	@Schema(description = "解約種別", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "需要消滅(\"1\"), 購入先変更(\"2\"), 無し(\"99\")", example = "1")
 	private CancellationDiv cancellationDiv;
 
 	/**
 	 * 解約金発生フラグ
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "解約金発生フラグ", required = true, position = 6, allowableValues = "range[0,9]")
+	@Schema(description = "解約金発生フラグ", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,9]")
 	private int cancellationMoneyGeneratedFlg;
 
 	/**
 	 * 電力用ファイル種別
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "電力用ファイル種別", required = true, position = 7, allowableValues = "新規(\"1\"), 変更(\"2\"),解約(\"3\"), その他(\"99\")", example = "1")
+	@Schema(description = "電力用ファイル種別", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "新規(\"1\"), 変更(\"2\"),解約(\"3\"), その他(\"99\")", example = "1")
 	private ElectricFileType electricFileType;
 
 	/**
@@ -158,18 +158,18 @@ public class ElectricFormMaster extends EntityBaseMaster {
 	 */
 	@Column(nullable = false)
 	@Enumerated(EnumType.STRING)
-	@ApiModelProperty(value = "ドメイン", required = true, position = 8)
+	@Schema(description = "ドメイン", requiredMode = Schema.RequiredMode.REQUIRED)
 	private Domain domain;
 
 	/**
 	 * 帳票パターンID
 	 */
 	@Column
-	@ApiModelProperty(value = "帳票パターンID", required = false, position = 9)
+	@Schema(description = "帳票パターンID", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private Long formPatternId;
 
 	@ManyToMany
 	@JoinTable(name = "form_ident", joinColumns = @JoinColumn(name = "electric_form_master_id"), inverseJoinColumns = @JoinColumn(name = "electric_form_ident_master_id"))
-	@ApiModelProperty(value = "電力帳票マスタ", required = true, position = 10)
+	@Schema(description = "電力帳票マスタ", requiredMode = Schema.RequiredMode.REQUIRED)
 	private List<ElectricFormIdentMaster> electricFormIdentMasterList;
 }

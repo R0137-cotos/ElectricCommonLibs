@@ -12,7 +12,7 @@ import jakarta.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBase;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -32,14 +32,14 @@ public class SettleUssDifferrenceInfoHighVolt extends EntityBase {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "settle_uss_differrence_info_high_volt_seq")
 	@SequenceGenerator(name = "settle_uss_differrence_info_high_volt_seq", sequenceName = "settle_uss_differrence_info_high_volt_seq", allocationSize = 1)
-	@ApiModelProperty(value = "ID", required = true, position = 1)
+	@Schema(description = "ID", requiredMode = Schema.RequiredMode.REQUIRED)
 	private long id;
 
 	/**
 	 * 全体番号
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "全体番号", required = true, position = 2)
+	@Schema(description = "全体番号", requiredMode = Schema.RequiredMode.REQUIRED)
 	@JsonProperty("全体番号")
 	private String feeClcAllBn;
 
@@ -47,7 +47,7 @@ public class SettleUssDifferrenceInfoHighVolt extends EntityBase {
 	 * 料金計算実行番号
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "料金計算実行番号", required = true, position = 3)
+	@Schema(description = "料金計算実行番号", requiredMode = Schema.RequiredMode.REQUIRED)
 	@JsonProperty("料金計算実行番号")
 	private String feeClcExecBn;
 
@@ -55,7 +55,7 @@ public class SettleUssDifferrenceInfoHighVolt extends EntityBase {
 	 * 契約番号
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "契約番号", required = true, position = 4)
+	@Schema(description = "契約番号", requiredMode = Schema.RequiredMode.REQUIRED)
 	@JsonProperty("契約番号")
 	private String ctctBn;
 
@@ -63,7 +63,7 @@ public class SettleUssDifferrenceInfoHighVolt extends EntityBase {
 	 * 料金計算対象年月
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "料金計算対象年月", required = true, position = 5)
+	@Schema(description = "料金計算対象年月", requiredMode = Schema.RequiredMode.REQUIRED)
 	@JsonProperty("料金計算対象年月")
 	private String feeClcYm;
 
@@ -71,7 +71,7 @@ public class SettleUssDifferrenceInfoHighVolt extends EntityBase {
 	 * 需要家番号
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "需要家番号", required = true, position = 6)
+	@Schema(description = "需要家番号", requiredMode = Schema.RequiredMode.REQUIRED)
 	@JsonProperty("需要家番号")
 	private String cstmrBn;
 
@@ -79,7 +79,7 @@ public class SettleUssDifferrenceInfoHighVolt extends EntityBase {
 	 * 料金メニューコード
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "料金メニューコード", required = false, position = 7)
+	@Schema(description = "料金メニューコード", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	@JsonProperty("料金メニューコード")
 	private String feeMnuCd;
 
@@ -87,7 +87,7 @@ public class SettleUssDifferrenceInfoHighVolt extends EntityBase {
 	 * 差異発生年月
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "差異発生年月", required = false, position = 8)
+	@Schema(description = "差異発生年月", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	@JsonProperty("差異発生年月")
 	private String diffOcrrYm;
 
@@ -95,7 +95,7 @@ public class SettleUssDifferrenceInfoHighVolt extends EntityBase {
 	 * 契約電力差異
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "契約電力差異", required = false, position = 9)
+	@Schema(description = "契約電力差異", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	@JsonProperty("契約電力差異")
 	private Long diffCtctElc;
 
@@ -103,7 +103,7 @@ public class SettleUssDifferrenceInfoHighVolt extends EntityBase {
 	 * 力率差異
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "力率差異", required = false, position = 10)
+	@Schema(description = "力率差異", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	@JsonProperty("力率差異")
 	private Long diffPowp;
 
@@ -111,7 +111,7 @@ public class SettleUssDifferrenceInfoHighVolt extends EntityBase {
 	 * 使用電力量差異（夏季）
 	 */
 	@Column(nullable = true, name = "diff_minu30_elc_uss_summer")
-	@ApiModelProperty(value = "使用電力量差異（夏季）", required = false, position = 11)
+	@Schema(description = "使用電力量差異（夏季）", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	@JsonProperty("使用電力量差異（夏季）")
 	private Long diffMinu30ElcUssSummer;
 
@@ -119,7 +119,7 @@ public class SettleUssDifferrenceInfoHighVolt extends EntityBase {
 	 * 使用電力量差異（その他季）
 	 */
 	@Column(nullable = true, name = "diff_minu30_elc_uss_other")
-	@ApiModelProperty(value = "使用電力量差異（その他季）", required = false, position = 12)
+	@Schema(description = "使用電力量差異（その他季）", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	@JsonProperty("使用電力量差異（その他季）")
 	private Long diffMinu30ElcUssOther;
 
@@ -127,175 +127,175 @@ public class SettleUssDifferrenceInfoHighVolt extends EntityBase {
 	 * 処理年月.
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "処理年月", required = false, position = 13)
+	@Schema(description = "処理年月", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private String processingDate;
 
 	/**
 	 * 確定後_基本電力量.
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "確定後_基本電力量", required = false, position = 14)
+	@Schema(description = "確定後_基本電力量", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal confirmPowerRate;
 
 	/**
 	 * 確定後_力率.
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "確定後_力率", required = false, position = 15)
+	@Schema(description = "確定後_力率", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal confirmBasicPowerAmount;
 
 	/**
 	 * 確定後_使用電力量（夏季）.
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "確定後_使用電力量（夏季）", required = false, position = 16)
+	@Schema(description = "確定後_使用電力量（夏季）", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal confirmAmountSummer;
 
 	/**
 	 * 確定後_使用電力量（その他季）.
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "確定後_使用電力量（その他季）", required = false, position = 17)
+	@Schema(description = "確定後_使用電力量（その他季）", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal confirmAmountOtherSeason;
 
 	/**
 	 * 前月_仕入基本料金単価.
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "前月_仕入基本料金単価", required = false, position = 18)
+	@Schema(description = "前月_仕入基本料金単価", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal ultPurchaserBasicPrice;
 
 	/**
 	 * 前月_仕入従量単価（夏季）.
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "前月_仕入従量単価（夏季）", required = false, position = 19)
+	@Schema(description = "前月_仕入従量単価（夏季）", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal ultPurchaserUsagePriceSummer;
 
 	/**
 	 * 前月_仕入従量単価（その他季）.
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "前月_仕入従量単価（その他季）", required = false, position = 20)
+	@Schema(description = "前月_仕入従量単価（その他季）", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal ultPurchaserUsagePriceOtherSeason;
 
 	/**
 	 * 前月_仕切基本料金単価.
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "前月_仕切基本料金単価", required = false, position = 21)
+	@Schema(description = "前月_仕切基本料金単価", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal ultPartitionBasicPrice;
 
 	/**
 	 * 前月_仕切従量単価（夏季）.
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "前月_仕切従量単価（夏季）", required = false, position = 22)
+	@Schema(description = "前月_仕切従量単価（夏季）", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal ultPartitionUsagePriceSummer;
 
 	/**
 	 * 前月_仕切従量単価（その他季）.
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "前月_仕切従量単価（その他季）", required = false, position = 23)
+	@Schema(description = "前月_仕切従量単価（その他季）", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal ultPartitionUsagePriceOtherSeason;
 
 	/**
 	 * 前月_燃料費調整額単価.
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "前月_燃調費調整額単価", required = false, position = 24)
+	@Schema(description = "前月_燃調費調整額単価", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal ultFuelAdjustmentPrice;
 
 	/**
 	 * 前月_再エネ賦課金単価.
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "前月_再エネ賦課金単価", required = false, position = 25)
+	@Schema(description = "前月_再エネ賦課金単価", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal ultRenewableLevyPrice;
 
 	/**
 	 * 確定後_燃料費調整額.
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "確定後_燃料費調整額", required = false, position = 26)
+	@Schema(description = "確定後_燃料費調整額", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal confirmFuelAdjustmentCost;
 
 	/**
 	 * 確定後_再エネ賦課金.
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "確定後_再エネ賦課金", required = false, position = 27)
+	@Schema(description = "確定後_再エネ賦課金", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal confirmRenewableLevyCost;
 
 	/**
 	 * 確定後_仕入基本料金.
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "確定後_仕入基本料金", required = false, position = 28)
+	@Schema(description = "確定後_仕入基本料金", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal confirmPurchaserBasicCharge;
 
 	/**
 	 * 確定後_仕入電力量料金（夏季）.
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "確定後_仕入電力量料金（夏季）", required = false, position = 29)
+	@Schema(description = "確定後_仕入電力量料金（夏季）", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal confirmPurchaserAmountChargeSummer;
 
 	/**
 	 * 確定後_仕入電力量料金（その他季）.
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "確定後_仕入電力量料金（その他季）", required = false, position = 30)
+	@Schema(description = "確定後_仕入電力量料金（その他季）", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal confirmPurchaserAmountChargeOtherSeason;
 
 	/**
 	 * 確定後_仕切基本料金.
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "確定後_仕切基本料金", required = false, position = 31)
+	@Schema(description = "確定後_仕切基本料金", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal confirmPartitionBasicCharge;
 
 	/**
 	 * 確定後_仕切電力量料金（夏季）.
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "確定後_仕切電力量料金（夏季）", required = false, position = 32)
+	@Schema(description = "確定後_仕切電力量料金（夏季）", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal confirmPartitionAmountChargeSummer;
 
 	/**
 	 * 確定後_仕切電力量料金（その他季）.
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "確定後_仕切電力量料金（その他季）", required = false, position = 33)
+	@Schema(description = "確定後_仕切電力量料金（その他季）", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal confirmPartitionAmountChargeOtherSeason;
 
 	/**
 	 * 仕入前月調整.
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "仕入前月調整", required = false, position = 34)
+	@Schema(description = "仕入前月調整", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal purchaserAdjustment;
 
 	/**
 	 * 仕切前月調整.
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "仕切前月調整", required = false, position = 35)
+	@Schema(description = "仕切前月調整", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal partitionAdjustment;
 
 	/**
 	 * 前月_再エネ賦課金減免率
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "前月_再エネ賦課金減免率", required = false, position = 36)
+	@Schema(description = "前月_再エネ賦課金減免率", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal ultReExemptionRate;
 
 	/**
 	 * 確定後_再エネ賦課金減免額.
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "確定後_再エネ賦課金減免額", required = false, position = 37)
+	@Schema(description = "確定後_再エネ賦課金減免額", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal confirmReExemptionAmount;
 
 }

@@ -5,7 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBase;
 import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
 import jp.co.ricoh.cotos.electriccommonlib.repository.common.CaseManagerForUpdateRepository;
@@ -23,168 +23,168 @@ import lombok.EqualsAndHashCode;
 public class CaseManagerForUpdate extends EntityBase {
 
 	@Id
-	@ApiModelProperty(value = "ID", required = true, position = 1, allowableValues = "range[0,9999999999999999999]")
+	@Schema(description = "ID", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,9999999999999999999]")
 	private long id;
 
 	/**
 	 * 案件番号
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "案件番号", required = true, position = 2)
+	@Schema(description = "案件番号", requiredMode = Schema.RequiredMode.REQUIRED)
 	private String caseNumber;
 
 	/**
 	 * 担当SA
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "担当SA", required = false, position = 3, allowableValues = "range[0,255]")
+	@Schema(description = "担当SA", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String picSa;
 
 	/**
 	 * 電力専任
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "電力専任", required = false, position = 4, allowableValues = "range[0,255]")
+	@Schema(description = "電力専任", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String electricExpert;
 
 	/**
 	 * 追加編集者１
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "追加編集者１", required = false, position = 5, allowableValues = "range[0,255]")
+	@Schema(description = "追加編集者１", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String addedEditor1;
 
 	/**
 	 * 追加編集者２
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "追加編集者２", required = false, position = 6, allowableValues = "range[0,255]")
+	@Schema(description = "追加編集者２", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String addedEditor2;
 
 	/**
 	 * 追加編集者３
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "追加編集者３", required = false, position = 7, allowableValues = "range[0,255]")
+	@Schema(description = "追加編集者３", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String addedEditor3;
 
 	/**
 	 * 追加編集者４
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "追加編集者４", required = false, position = 8, allowableValues = "range[0,255]")
+	@Schema(description = "追加編集者４", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String addedEditor4;
 
 	/**
 	 * 追加編集者５
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "追加編集者５", required = false, position = 9, allowableValues = "range[0,255]")
+	@Schema(description = "追加編集者５", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String addedEditor5;
 
 	/**
 	 * 追加編集者６
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "追加編集者６", required = false, position = 10, allowableValues = "range[0,255]")
+	@Schema(description = "追加編集者６", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String addedEditor6;
 
 	/**
 	 * 追加編集者７
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "追加編集者７", required = false, position = 11, allowableValues = "range[0,255]")
+	@Schema(description = "追加編集者７", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String addedEditor7;
 
 	/**
 	 * 追加編集者８
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "追加編集者８", required = false, position = 12, allowableValues = "range[0,255]")
+	@Schema(description = "追加編集者８", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String addedEditor8;
 
 	/**
 	 * 追加編集者９
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "追加編集者９", required = false, position = 13, allowableValues = "range[0,255]")
+	@Schema(description = "追加編集者９", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String addedEditor9;
 
 	/**
 	 * 追加編集者１０
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "追加編集者１０", required = false, position = 14, allowableValues = "range[0,255]")
+	@Schema(description = "追加編集者１０", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String addedEditor10;
 
 	/**
 	 * 追加編集者１１
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "追加編集者１１", required = false, position = 15, allowableValues = "range[0,255]")
+	@Schema(description = "追加編集者１１", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String addedEditor11;
 
 	/**
 	 * 追加編集者１２
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "追加編集者１２", required = false, position = 16, allowableValues = "range[0,255]")
+	@Schema(description = "追加編集者１２", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String addedEditor12;
 
 	/**
 	 * 追加編集者１３
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "追加編集者１３", required = false, position = 17, allowableValues = "range[0,255]")
+	@Schema(description = "追加編集者１３", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String addedEditor13;
 
 	/**
 	 * 追加編集者１４
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "追加編集者１４", required = false, position = 18, allowableValues = "range[0,255]")
+	@Schema(description = "追加編集者１４", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String addedEditor14;
 
 	/**
 	 * 追加編集者１５
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "追加編集者１５", required = false, position = 19, allowableValues = "range[0,255]")
+	@Schema(description = "追加編集者１５", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String addedEditor15;
 
 	/**
 	 * 追加編集者１６
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "追加編集者１６", required = false, position = 20, allowableValues = "range[0,255]")
+	@Schema(description = "追加編集者１６", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String addedEditor16;
 
 	/**
 	 * 追加編集者１７
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "追加編集者１７", required = false, position = 21, allowableValues = "range[0,255]")
+	@Schema(description = "追加編集者１７", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String addedEditor17;
 
 	/**
 	 * 追加編集者１８
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "追加編集者１８", required = false, position = 22, allowableValues = "range[0,255]")
+	@Schema(description = "追加編集者１８", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String addedEditor18;
 
 	/**
 	 * 追加編集者１９
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "追加編集者１９", required = false, position = 23, allowableValues = "range[0,255]")
+	@Schema(description = "追加編集者１９", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String addedEditor19;
 
 	/**
 	 * 追加編集者２０
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "追加編集者２０", required = false, position = 24, allowableValues = "range[0,255]")
+	@Schema(description = "追加編集者２０", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String addedEditor20;
 
 }

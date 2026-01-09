@@ -5,7 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBase;
 import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.ElectricBillingMailFileRepository;
@@ -23,34 +23,34 @@ import lombok.EqualsAndHashCode;
 public class ElectricBillingMailFile extends EntityBase {
 
 	@Id
-	@ApiModelProperty(value = "ID", required = true, position = 1, allowableValues = "range[0,9223372036854775807]")
+	@Schema(description = "ID", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,9223372036854775807]")
 	private long id;
 
 	/**
 	 * 請求実績ID
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "請求実績ID", required = true, position = 2)
+	@Schema(description = "請求実績ID", requiredMode = Schema.RequiredMode.REQUIRED)
 	private Long billingHistoryId;
 
 	/**
 	 * メールテンプレートマスターID
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "メールテンプレートマスターID", required = true, position = 3)
+	@Schema(description = "メールテンプレートマスターID", requiredMode = Schema.RequiredMode.REQUIRED)
 	private Long mailTemplateMasterId;
 
 	/**
 	 * メール件名
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "メール件名", required = false, position = 4, allowableValues = "range[0,255]")
+	@Schema(description = "メール件名", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String mailSubject;
 
 	/**
 	 * メールファイルパス
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "メールファイルパス", required = false, position = 5, allowableValues = "range[0,255]")
+	@Schema(description = "メールファイルパス", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String mailPath;
 }

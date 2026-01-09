@@ -14,7 +14,7 @@ import jakarta.validation.constraints.Min;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBase;
 import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.ClientInformationRepository;
@@ -34,7 +34,7 @@ public class ClientInformation extends EntityBase {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "client_information_seq")
 	@SequenceGenerator(name = "client_information_seq", sequenceName = "client_information_seq", allocationSize = 1)
-	@ApiModelProperty(value = "ID", required = true, position = 1, allowableValues = "range[0,9223372036854775807]")
+	@Schema(description = "ID", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,9223372036854775807]")
 	private long id;
 
 	/**
@@ -42,7 +42,7 @@ public class ClientInformation extends EntityBase {
 	 */
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "contract_electric_id", referencedColumnName = "id")
-	@ApiModelProperty(value = "契約(電力用)", required = true, position = 2)
+	@Schema(description = "契約(電力用)", requiredMode = Schema.RequiredMode.REQUIRED)
 	@JsonIgnore
 	private ContractElectric contractElectric;
 
@@ -50,14 +50,14 @@ public class ClientInformation extends EntityBase {
 	 * 得意先CD
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "得意先CD", required = true, position = 3, allowableValues = "range[0,255]")
+	@Schema(description = "得意先CD", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,255]")
 	private String clientCode;
 
 	/**
 	 * 得意先情報M_ID
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "得意先情報M_ID", required = true, position = 4, allowableValues = "range[0,9223372036854775807]")
+	@Schema(description = "得意先情報M_ID", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,9223372036854775807]")
 	private long clientMasterId;
 
 	/**
@@ -66,7 +66,7 @@ public class ClientInformation extends EntityBase {
 	@Column(nullable = true)
 	@Max(9)
 	@Min(0)
-	@ApiModelProperty(value = "アクティブflg", required = false, position = 5, allowableValues = "range[0,9]")
+	@Schema(description = "アクティブflg", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,9]")
 	private Integer activeFlg;
 
 }
