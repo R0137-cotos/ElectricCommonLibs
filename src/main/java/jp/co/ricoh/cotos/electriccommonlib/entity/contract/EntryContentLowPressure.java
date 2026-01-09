@@ -19,7 +19,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBase;
 import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.EntryContentLowPressureRepository;
@@ -83,7 +83,7 @@ public class EntryContentLowPressure extends EntityBase {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "entry_content_low_pressure_seq")
 	@SequenceGenerator(name = "entry_content_low_pressure_seq", sequenceName = "entry_content_low_pressure_seq", allocationSize = 1)
-	@ApiModelProperty(value = "ID", required = true, position = 1, allowableValues = "range[0,9223372036854775807]")
+	@Schema(description = "ID", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,9223372036854775807]")
 	private long id;
 
 	/**
@@ -91,7 +91,7 @@ public class EntryContentLowPressure extends EntityBase {
 	 */
 	@OneToOne(optional = false)
 	@JoinColumn(name = "contract_electric_id", referencedColumnName = "id")
-	@ApiModelProperty(value = "契約(電力用)", required = true, position = 2)
+	@Schema(description = "契約(電力用)", requiredMode = Schema.RequiredMode.REQUIRED)
 	@JsonIgnore
 	private ContractElectric contractElectric;
 
@@ -101,7 +101,7 @@ public class EntryContentLowPressure extends EntityBase {
 	@Column(nullable = true)
 	@DecimalMin("0.00")
 	@Digits(integer = 6, fraction = 2)
-	@ApiModelProperty(value = "契約容量(従量電灯)", required = false, position = 3, allowableValues = "range[0.00,999999.99]")
+	@Schema(description = "契約容量(従量電灯)", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,999999.99]")
 	private BigDecimal contractCapacityUsage;
 
 	/**
@@ -110,7 +110,7 @@ public class EntryContentLowPressure extends EntityBase {
 	@Column(nullable = true)
 	@DecimalMin("0.00")
 	@Digits(integer = 6, fraction = 2)
-	@ApiModelProperty(value = "契約電流", required = false, position = 5, allowableValues = "range[0.00,999999.99]")
+	@Schema(description = "契約電流", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,999999.99]")
 	private BigDecimal contractElectricCurrent;
 
 	/**
@@ -119,7 +119,7 @@ public class EntryContentLowPressure extends EntityBase {
 	@Column(nullable = true)
 	@DecimalMin("0.00")
 	@Digits(integer = 6, fraction = 2)
-	@ApiModelProperty(value = "契約電力", required = false, position = 7, allowableValues = "range[0.00,999999.99]")
+	@Schema(description = "契約電力", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,999999.99]")
 	private BigDecimal contractElectricPower;
 
 	/**
@@ -128,34 +128,34 @@ public class EntryContentLowPressure extends EntityBase {
 	@Column(nullable = true)
 	@DecimalMin("0.00")
 	@Digits(integer = 3, fraction = 2)
-	@ApiModelProperty(value = "負荷率", required = false, position = 8, allowableValues = "range[0.00,999.99]")
+	@Schema(description = "負荷率", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,999.99]")
 	private BigDecimal loadFactor;
 
 	/**
 	 * 基本検針日(低圧)
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "基本検針日(低圧)", required = true, position = 9, allowableValues = "range[0,255]")
+	@Schema(description = "基本検針日(低圧)", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,255]")
 	private String basicMeterReadingDate;
 
 	/**
 	 * 備考
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "備考", required = false, position = 10, allowableValues = "range[0,4000]")
+	@Schema(description = "備考", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,4000]")
 	private String notes;
 
 	/**
 	 * 低圧種別
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "低圧種別", required = true, position = 11, allowableValues = "従量電灯1(\"1\"), 従量電灯2(\"2\"), 動力(\"3\")", example = "1")
+	@Schema(description = "低圧種別", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "従量電灯1(\"1\"), 従量電灯2(\"2\"), 動力(\"3\")", example = "1")
 	private LowPressureType lowPressureType;
 
 	/**
 	 * 契約単位
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "契約単位", required = true, position = 12, allowableValues = "A(\"1\"), KvA(\"2\"), 契約(\"3\"),　kW(\"4\")", example = "1")
+	@Schema(description = "契約単位", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "A(\"1\"), KvA(\"2\"), 契約(\"3\"),　kW(\"4\")", example = "1")
 	private ContractUnit contractUnit;
 }

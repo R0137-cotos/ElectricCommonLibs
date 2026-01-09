@@ -12,7 +12,7 @@ import jakarta.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBase;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -32,14 +32,14 @@ public class ExcsChargeInfoHighVolt extends EntityBase {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "excs_charge_info_high_volt_seq")
 	@SequenceGenerator(name = "excs_charge_info_high_volt_seq", sequenceName = "excs_charge_info_high_volt_seq", allocationSize = 1)
-	@ApiModelProperty(value = "ID", required = true, position = 1)
+	@Schema(description = "ID", requiredMode = Schema.RequiredMode.REQUIRED)
 	private long id;
 
 	/**
 	 * 全体番号
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "全体番号", required = true, position = 2)
+	@Schema(description = "全体番号", requiredMode = Schema.RequiredMode.REQUIRED)
 	@JsonProperty("全体番号")
 	private String feeClcAllBn;
 
@@ -47,7 +47,7 @@ public class ExcsChargeInfoHighVolt extends EntityBase {
 	 * 契約番号
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "契約番号", required = true, position = 3)
+	@Schema(description = "契約番号", requiredMode = Schema.RequiredMode.REQUIRED)
 	@JsonProperty("契約番号")
 	private String ctctBn;
 
@@ -55,7 +55,7 @@ public class ExcsChargeInfoHighVolt extends EntityBase {
 	 * 料金計算対象年月
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "料金計算対象年月", required = true, position = 4)
+	@Schema(description = "料金計算対象年月", requiredMode = Schema.RequiredMode.REQUIRED)
 	@JsonProperty("料金計算対象年月")
 	private String feeClcYm;
 
@@ -63,7 +63,7 @@ public class ExcsChargeInfoHighVolt extends EntityBase {
 	 * 料金メニューコード
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "料金メニューコード", required = true, position = 5)
+	@Schema(description = "料金メニューコード", requiredMode = Schema.RequiredMode.REQUIRED)
 	@JsonProperty("料金メニューコード")
 	private String feeMnuCd;
 
@@ -71,7 +71,7 @@ public class ExcsChargeInfoHighVolt extends EntityBase {
 	 * 託送対象年月
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "託送対象年月", required = true, position = 6)
+	@Schema(description = "託送対象年月", requiredMode = Schema.RequiredMode.REQUIRED)
 	@JsonProperty("託送対象年月")
 	private String csAplyYm;
 
@@ -79,7 +79,7 @@ public class ExcsChargeInfoHighVolt extends EntityBase {
 	 * 供給地点特定番号
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "供給地点特定番号", required = false, position = 7)
+	@Schema(description = "供給地点特定番号", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	@JsonProperty("供給地点特定番号")
 	private String splyPointIdntBn;
 
@@ -87,7 +87,7 @@ public class ExcsChargeInfoHighVolt extends EntityBase {
 	 * 超過電力
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "超過電力", required = false, position = 8)
+	@Schema(description = "超過電力", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	@JsonProperty("超過電力")
 	private Long excsElc;
 
@@ -95,7 +95,7 @@ public class ExcsChargeInfoHighVolt extends EntityBase {
 	 * 契約電力
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "契約電力", required = false, position = 9)
+	@Schema(description = "契約電力", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	@JsonProperty("契約電力")
 	private Long ctctElc;
 
@@ -103,7 +103,7 @@ public class ExcsChargeInfoHighVolt extends EntityBase {
 	 * 契約超過金
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "契約超過金", required = false, position = 10)
+	@Schema(description = "契約超過金", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	@JsonProperty("契約超過金")
 	private BigDecimal ctctExcsMny;
 

@@ -2,7 +2,7 @@ package jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external;
 
 import jakarta.validation.constraints.Size;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -14,6 +14,6 @@ public class ContractAddedEditorEmpChangePlanExtDto {
 	 * MoM社員ID
 	 */
 	@Size(max = 255)
-	@ApiModelProperty(value = "MoM社員ID", required = false, position = 1, allowableValues = "range[0,255]")
+	@Schema(description = "MoM社員ID", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String momEmployeeId;
 }

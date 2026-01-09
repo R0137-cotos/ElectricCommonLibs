@@ -11,7 +11,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBase;
 import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.ClientMasterRepository;
@@ -31,20 +31,20 @@ public class ClientMaster extends EntityBase {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "client_master_seq")
 	@SequenceGenerator(name = "client_master_seq", sequenceName = "client_master_seq", allocationSize = 1)
-	@ApiModelProperty(value = "ID", required = true, position = 1, allowableValues = "range[0,9223372036854775807]")
+	@Schema(description = "ID", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,9223372036854775807]")
 	private long id;
 
 	/**
 	 * 得意先CD
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "得意先CD", required = true, position = 2, allowableValues = "range[0,255]")
+	@Schema(description = "得意先CD", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,255]")
 	private String clientCode;
 
 	/**
 	 * 請求先Mailアドレス情報
 	 */
 	@OneToMany(mappedBy = "clientMaster")
-	@ApiModelProperty(value = "請求先Mailアドレス情報", required = false, position = 3)
+	@Schema(description = "請求先Mailアドレス情報", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private List<BillingMailAddressInformation> billingMailAddressInformationList;
 }

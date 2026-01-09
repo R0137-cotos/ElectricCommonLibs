@@ -7,7 +7,7 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -20,7 +20,7 @@ public class ContractElectricChangePlanExtInputDto {
 	 */
 	@NotNull
 	@Min(0)
-	@ApiModelProperty(value = "変更元契約ID", required = true, position = 1, allowableValues = "range[0,9223372036854775807]")
+	@Schema(description = "変更元契約ID", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,9223372036854775807]")
 	private long id;
 
 	/**
@@ -28,7 +28,7 @@ public class ContractElectricChangePlanExtInputDto {
 	 */
 	@NotNull
 	@Size(max = 255)
-	@ApiModelProperty(value = "案件番号", required = true, position = 2, allowableValues = "range[0,255]")
+	@Schema(description = "案件番号", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,255]")
 	private String caseNumber;
 
 	/**
@@ -36,7 +36,7 @@ public class ContractElectricChangePlanExtInputDto {
 	 */
 	@NotNull
 	@Size(max = 255)
-	@ApiModelProperty(value = "案件名", required = true, position = 3, allowableValues = "range[0,255]")
+	@Schema(description = "案件名", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,255]")
 	private String caseTitle;
 
 	/**
@@ -44,14 +44,14 @@ public class ContractElectricChangePlanExtInputDto {
 	 */
 	@NotNull
 	@Size(max = 255)
-	@ApiModelProperty(value = "得意先コード", required = true, position = 4, allowableValues = "range[0,255]")
+	@Schema(description = "得意先コード", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,255]")
 	private String clientCode;
 
 	/**
 	 * 変更希望日
 	 */
 	@Size(max = 255)
-	@ApiModelProperty(value = "変更希望日", required = false, position = 5, allowableValues = "range[0,255]")
+	@Schema(description = "変更希望日", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String changePreferredDate;
 
 	/**
@@ -59,7 +59,7 @@ public class ContractElectricChangePlanExtInputDto {
 	 */
 	@Valid
 	@NotNull
-	@ApiModelProperty(value = "契約(電力)", required = true, position = 6)
+	@Schema(description = "契約(電力)", requiredMode = Schema.RequiredMode.REQUIRED)
 	private ContractElectricChangePlanExtDto contractElectric;
 
 	/**
@@ -67,7 +67,7 @@ public class ContractElectricChangePlanExtInputDto {
 	 */
 	@Valid
 	@NotNull
-	@ApiModelProperty(value = "顧客", required = true, position = 7)
+	@Schema(description = "顧客", requiredMode = Schema.RequiredMode.REQUIRED)
 	private CustomerContractChangePlanExtDto customerContract;
 
 	/**
@@ -75,7 +75,7 @@ public class ContractElectricChangePlanExtInputDto {
 	 */
 	@Valid
 	@NotNull
-	@ApiModelProperty(value = "契約担当者メールアドレス", required = true, position = 8)
+	@Schema(description = "契約担当者メールアドレス", requiredMode = Schema.RequiredMode.REQUIRED)
 	private List<MailAddressInformationChangePlanExtDto> contractPersonMailAddressList;
 
 	/**
@@ -83,7 +83,7 @@ public class ContractElectricChangePlanExtInputDto {
 	 */
 	@Valid
 	@NotNull
-	@ApiModelProperty(value = "請求先メールアドレスリスト", required = true, position = 9)
+	@Schema(description = "請求先メールアドレスリスト", requiredMode = Schema.RequiredMode.REQUIRED)
 	private List<BillingMailAddressInformationChangePlanExtDto> billingMailAddressList;
 
 	/**
@@ -91,7 +91,7 @@ public class ContractElectricChangePlanExtInputDto {
 	 */
 	@Valid
 	@NotNull
-	@ApiModelProperty(value = "契約担当SA社員", required = true, position = 10)
+	@Schema(description = "契約担当SA社員", requiredMode = Schema.RequiredMode.REQUIRED)
 	private ContractPicSaEmpChangePlanExtDto contractPicSaEmp;
 
 	/**
@@ -99,28 +99,28 @@ public class ContractElectricChangePlanExtInputDto {
 	 */
 	@Valid
 	@NotNull
-	@ApiModelProperty(value = "電力専任情報", required = true, position = 11)
+	@Schema(description = "電力専任情報", requiredMode = Schema.RequiredMode.REQUIRED)
 	private ElectricExpertContractChangePlanExtDto electricExpertContract;
 
 	/**
 	 * 追加編集者
 	 */
 	@Valid
-	@ApiModelProperty(value = "追加編集者", required = false, position = 12)
+	@Schema(description = "追加編集者", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private List<ContractAddedEditorEmpChangePlanExtDto> contractAddedEditorEmpList;
 
 	/**
 	 * 重要項目説明者
 	 */
 	@Valid
-	@ApiModelProperty(value = "重要項目説明者", required = true, position = 13)
+	@Schema(description = "重要項目説明者", requiredMode = Schema.RequiredMode.REQUIRED)
 	private ImportantPointExplainerChangePlanExtDto importantPointExplainer;
 
 	/**
 	 * 販売店情報
 	 */
 	@Valid
-	@ApiModelProperty(value = "販売店情報", required = false, position = 14)
+	@Schema(description = "販売店情報", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private ElectricDealerContractChangePlanExtDto electricDealerContract;
 
 	/**
@@ -128,7 +128,7 @@ public class ContractElectricChangePlanExtInputDto {
 	 */
 	@Valid
 	@NotNull
-	@ApiModelProperty(value = "料金シュミレーション", required = true, position = 15)
+	@Schema(description = "料金シュミレーション", requiredMode = Schema.RequiredMode.REQUIRED)
 	private FeeSimulationHeadChangePlanExtDto feeSimulationHead;
 
 }

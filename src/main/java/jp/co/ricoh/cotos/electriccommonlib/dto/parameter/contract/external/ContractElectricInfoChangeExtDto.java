@@ -2,7 +2,7 @@ package jp.co.ricoh.cotos.electriccommonlib.dto.parameter.contract.external;
 
 import jakarta.validation.constraints.Size;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -17,6 +17,6 @@ public class ContractElectricInfoChangeExtDto {
 	 * 作成日
 	 */
 	@Size(max = 255)
-	@ApiModelProperty(value = "申込日", required = false, position = 1, allowableValues = "range[0,255]")
+	@Schema(description = "申込日", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String entryDate;
 }

@@ -16,7 +16,8 @@ import jakarta.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.media.Schema.AccessMode;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBase;
 import jp.co.ricoh.cotos.commonlib.entity.common.MailSendHistory.MailSendType;
 import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
@@ -38,7 +39,7 @@ public class ElectricMailSendHistory extends EntityBase {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "electric_mail_send_history_seq")
 	@SequenceGenerator(name = "electric_mail_send_history_seq", sequenceName = "electric_mail_send_history_seq", allocationSize = 1)
-	@ApiModelProperty(value = "電力メール送信履歴ID", required = true, position = 1, allowableValues = "range[0,9999999999999999999]")
+	@Schema(description = "電力メール送信履歴ID", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,9999999999999999999]")
 	private long id;
 
 	/**
@@ -47,42 +48,42 @@ public class ElectricMailSendHistory extends EntityBase {
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "electric_mail_control_master_id", referencedColumnName = "id")
 	@JsonIgnore
-	@ApiModelProperty(value = "電力通知メール制御マスタ", required = true, position = 2)
+	@Schema(description = "電力通知メール制御マスタ", requiredMode = Schema.RequiredMode.REQUIRED)
 	private ElectricMailControlMaster electricMailControlMaster;
 
 	/**
 	 * 対象データID
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "対象データID", required = false, position = 3)
+	@Schema(description = "対象データID", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private Long targetDataId;
 
 	/**
 	 * 宛先To
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "宛先To", required = false, position = 4, allowableValues = "range[0,255]")
+	@Schema(description = "宛先To", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String contactMailTo;
 
 	/**
 	 * 宛先Cc
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "宛先Cc", required = false, position = 5, allowableValues = "range[0,255]")
+	@Schema(description = "宛先Cc", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String contactMailCc;
 
 	/**
 	 * 宛先Bcc
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "宛先Bcc", required = false, position = 6, allowableValues = "range[0,255]")
+	@Schema(description = "宛先Bcc", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String contactMailBcc;
 
 	/**
 	 * メール送信区分
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "メール送信区分", required = false, allowableValues = "未送信(\"0\"), 完了(\"1\"), エラー(\"2\")", example = "1", position = 7)
+	@Schema(description = "メール送信区分", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "未送信(\"0\"), 完了(\"1\"), エラー(\"2\")", example = "1")
 	private MailSendType mailSendType;
 
 	/**
@@ -90,7 +91,7 @@ public class ElectricMailSendHistory extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Temporal(TemporalType.TIMESTAMP)
-	@ApiModelProperty(value = "実施日時", required = false, position = 8, readOnly = true)
+	@Schema(description = "実施日時", requiredMode = Schema.RequiredMode.NOT_REQUIRED, accessMode = AccessMode.READ_ONLY)
 	private Date sendedAt;
 
 }

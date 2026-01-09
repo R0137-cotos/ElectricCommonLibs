@@ -8,7 +8,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.reflections.Reflections;
 
-import io.swagger.util.ReflectionUtils;
+import io.swagger.v3.core.util.ReflectionUtils;
 import jp.co.ricoh.cotos.commonlib.dto.parameter.common.DtoBase;
 import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
 

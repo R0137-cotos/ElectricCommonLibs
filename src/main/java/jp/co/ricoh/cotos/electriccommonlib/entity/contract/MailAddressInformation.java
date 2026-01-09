@@ -19,7 +19,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBase;
 import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.MailAddressInformationRepository;
@@ -61,7 +61,7 @@ public class MailAddressInformation extends EntityBase {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "mail_address_information_seq")
 	@SequenceGenerator(name = "mail_address_information_seq", sequenceName = "mail_address_information_seq", allocationSize = 1)
-	@ApiModelProperty(value = "ID", required = true, position = 1, allowableValues = "range[0,9223372036854775807]")
+	@Schema(description = "ID", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,9223372036854775807]")
 	private long id;
 
 	/**
@@ -69,7 +69,7 @@ public class MailAddressInformation extends EntityBase {
 	 */
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "contract_electric_id", referencedColumnName = "id")
-	@ApiModelProperty(value = "契約(電力用)", required = true, position = 2)
+	@Schema(description = "契約(電力用)", requiredMode = Schema.RequiredMode.REQUIRED)
 	@JsonIgnore
 	private ContractElectric contractElectric;
 
@@ -77,21 +77,21 @@ public class MailAddressInformation extends EntityBase {
 	 * Mail識別
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "Mail識別", required = true, position = 3, allowableValues = "契約担当者(\"1\"), ピークアラート担当者(\"2\"), 請求先担当(\"3\"), すべて(\"4\")", example = "1")
+	@Schema(description = "Mail識別", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "契約担当者(\"1\"), ピークアラート担当者(\"2\"), 請求先担当(\"3\"), すべて(\"4\")", example = "1")
 	private MailIdentification mailIdentification;
 
 	/**
 	 * 氏名
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "氏名", required = true, position = 4, allowableValues = "range[0,255]")
+	@Schema(description = "氏名", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,255]")
 	private String name;
 
 	/**
 	 * メールアドレス
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "メールアドレス", required = true, position = 5, allowableValues = "range[0,255]")
+	@Schema(description = "メールアドレス", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,255]")
 	private String mailAddress;
 
 	/**
@@ -100,6 +100,6 @@ public class MailAddressInformation extends EntityBase {
 	@Column(nullable = true)
 	@DecimalMin("0.00")
 	@Digits(integer = 6, fraction = 2)
-	@ApiModelProperty(value = "ピークアラートしきい値", required = false, position = 6, allowableValues = "range[0.00,999999.99]")
+	@Schema(description = "ピークアラートしきい値", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,999999.99]")
 	private BigDecimal peakAlertThreshold;
 }

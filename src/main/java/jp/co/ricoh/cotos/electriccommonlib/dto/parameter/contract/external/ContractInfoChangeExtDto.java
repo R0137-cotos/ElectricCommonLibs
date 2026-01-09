@@ -5,7 +5,7 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -21,7 +21,7 @@ public class ContractInfoChangeExtDto {
 	 */
 	@NotNull
 	@Min(0)
-	@ApiModelProperty(value = "変更元契約ID", required = true, position = 1, allowableValues = "range[0,9223372036854775807]")
+	@Schema(description = "変更元契約ID", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,9223372036854775807]")
 	private long id;
 
 	/**
@@ -29,7 +29,7 @@ public class ContractInfoChangeExtDto {
 	 */
 	@NotNull
 	@Size(max = 255)
-	@ApiModelProperty(value = "作成日", required = true, position = 2, allowableValues = "range[0,255]")
+	@Schema(description = "作成日", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,255]")
 	private String changePreferredDate;
 
 	/**
@@ -37,7 +37,7 @@ public class ContractInfoChangeExtDto {
 	 */
 	@Valid
 	@NotNull
-	@ApiModelProperty(value = "契約情報（電力）", required = true, position = 3)
+	@Schema(description = "契約情報（電力）", requiredMode = Schema.RequiredMode.REQUIRED)
 	private ContractElectricInfoChangeExtDto contractElectric;
 
 }
