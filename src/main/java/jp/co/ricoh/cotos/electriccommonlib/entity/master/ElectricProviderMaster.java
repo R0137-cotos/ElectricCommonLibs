@@ -8,7 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBaseMaster;
 import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
 import jp.co.ricoh.cotos.electriccommonlib.repository.master.ElectricProviderMasterRepository;
@@ -28,20 +28,20 @@ public class ElectricProviderMaster extends EntityBaseMaster {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "electric_provider_master_seq")
 	@SequenceGenerator(name = "electric_provider_master_seq", sequenceName = "electric_provider_master_seq", allocationSize = 1)
-	@ApiModelProperty(value = "ID", required = true, position = 1, allowableValues = "range[0,9223372036854775807]")
+	@Schema(description = "ID", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,9223372036854775807]")
 	private long id;
 
 	/**
 	 * 登録番号
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "登録番号", required = false, position = 2, allowableValues = "range[0,255]")
+	@Schema(description = "登録番号", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String registrationNumber;
 
 	/**
 	 * 氏名又は名称
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "氏名又は名称", required = false, position = 3, allowableValues = "range[0,255]")
+	@Schema(description = "氏名又は名称", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String providerName;
 }

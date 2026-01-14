@@ -12,7 +12,7 @@ import jakarta.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBaseMaster;
 import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
 import jp.co.ricoh.cotos.electriccommonlib.repository.master.ElectricCompanyMasterRepository;
@@ -31,21 +31,21 @@ public class ElectricCompanyMaster extends EntityBaseMaster {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "electric_company_master_seq")
 	@SequenceGenerator(name = "electric_company_master_seq", sequenceName = "electric_company_master_seq", allocationSize = 1)
-	@ApiModelProperty(value = "ID", required = true, position = 1, allowableValues = "range[0,9223372036854775807]")
+	@Schema(description = "ID", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,9223372036854775807]")
 	private long id;
 
 	/**
 	 * 電力会社名
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "電力会社名", required = true, position = 2, allowableValues = "range[0,255]")
+	@Schema(description = "電力会社名", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,255]")
 	private String electricCompanyName;
 
 	/**
 	 * 説明
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "説明", required = false, position = 3, allowableValues = "range[0,255]")
+	@Schema(description = "説明", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String description;
 
 	/**
@@ -53,7 +53,7 @@ public class ElectricCompanyMaster extends EntityBaseMaster {
 	 */
 	@ManyToOne(optional = true)
 	@JoinColumn(name = "electric_area_master_id", referencedColumnName = "id")
-	@ApiModelProperty(value = "電力エリアマスタ", required = false, position = 4)
+	@Schema(description = "電力エリアマスタ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	@JsonIgnore
 	private ElectricAreaMaster electricAreaMaster;
 }

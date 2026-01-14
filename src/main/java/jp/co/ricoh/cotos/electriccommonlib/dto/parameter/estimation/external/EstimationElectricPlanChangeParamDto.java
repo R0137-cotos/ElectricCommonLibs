@@ -7,7 +7,7 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.AgencyEstimationInformationExtDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.CustomerEstimationExtDto;
 import jp.co.ricoh.cotos.electriccommonlib.dto.parameter.estimation.external.ElectricDealerEstimationExtDto;
@@ -29,7 +29,7 @@ public class EstimationElectricPlanChangeParamDto {
 	 */
 	@NotNull
 	@Min(0)
-	@ApiModelProperty(value = "契約ID", required = true, position = 3, allowableValues = "range[0,9223372036854775807]")
+	@Schema(description = "契約ID", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,9223372036854775807]")
 	private long id;
 
 	/**
@@ -37,7 +37,7 @@ public class EstimationElectricPlanChangeParamDto {
 	 */
 	@NotNull
 	@Size(max = 255)
-	@ApiModelProperty(value = "案件番号", required = true, position = 4, allowableValues = "range[0,255]")
+	@Schema(description = "案件番号", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,255]")
 	private String caseNumber;
 
 	/**
@@ -45,7 +45,7 @@ public class EstimationElectricPlanChangeParamDto {
 	 */
 	@NotNull
 	@Size(max = 255)
-	@ApiModelProperty(value = "案件名", required = true, position = 5, allowableValues = "range[0,255]")
+	@Schema(description = "案件名", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,255]")
 	private String caseTitle;
 
 	/**
@@ -53,7 +53,7 @@ public class EstimationElectricPlanChangeParamDto {
 	 */
 	@NotNull
 	@Size(max = 255)
-	@ApiModelProperty(value = "お客様識別番号", required = true, position = 6, allowableValues = "range[0,255]")
+	@Schema(description = "お客様識別番号", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,255]")
 	private String customerNumber;
 
 	/**
@@ -61,7 +61,7 @@ public class EstimationElectricPlanChangeParamDto {
 	 */
 	@Valid
 	@NotNull
-	@ApiModelProperty(value = "見積（電力用）", required = true, position = 7)
+	@Schema(description = "見積（電力用）", requiredMode = Schema.RequiredMode.REQUIRED)
 	private EstimationElectricExtDtoForPlanChange estimationElectric;
 
 	/**
@@ -69,7 +69,7 @@ public class EstimationElectricPlanChangeParamDto {
 	 */
 	@Valid
 	@NotNull
-	@ApiModelProperty(value = "顧客（見積用）", required = true, position = 8)
+	@Schema(description = "顧客（見積用）", requiredMode = Schema.RequiredMode.REQUIRED)
 	private CustomerEstimationExtDto customerEstimation;
 
 	/**
@@ -77,7 +77,7 @@ public class EstimationElectricPlanChangeParamDto {
 	 */
 	@Valid
 	@NotNull
-	@ApiModelProperty(value = "見積担当SA社員", required = true, position = 9)
+	@Schema(description = "見積担当SA社員", requiredMode = Schema.RequiredMode.REQUIRED)
 	private EstimationPicSaEmpExtDto estimationPicSaEmp;
 
 	/**
@@ -85,21 +85,21 @@ public class EstimationElectricPlanChangeParamDto {
 	 */
 	@Valid
 	@NotNull
-	@ApiModelProperty(value = "電力専任情報", required = true, position = 10)
+	@Schema(description = "電力専任情報", requiredMode = Schema.RequiredMode.REQUIRED)
 	private ElectricExpertEstimationExtDto electricExpertEstimation;
 
 	/**
 	 * 追加編集者
 	 */
 	@Valid
-	@ApiModelProperty(value = "追加編集者", required = false, position = 11)
+	@Schema(description = "追加編集者", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private List<EstimationAddedEditorEmpExtDto> estimationAddedEditorEmpList;
 
 	/**
 	 * 販売店情報
 	 */
 	@Valid
-	@ApiModelProperty(value = "販売店情報", required = false, position = 12)
+	@Schema(description = "販売店情報", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private ElectricDealerEstimationExtDto electricDealerEstimation;
 
 	/**
@@ -107,20 +107,20 @@ public class EstimationElectricPlanChangeParamDto {
 	 */
 	@Valid
 	@NotNull
-	@ApiModelProperty(value = "料金シミュレーション（本部用）", required = true, position = 13)
+	@Schema(description = "料金シミュレーション（本部用）", requiredMode = Schema.RequiredMode.REQUIRED)
 	private FeeSimulationHeadExtDto feeSimulationHead;
 
 	/**
 	 * 取次情報
 	 */
 	@Valid
-	@ApiModelProperty(value = "取次情報", required = false, position = 14)
+	@Schema(description = "取次情報", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	AgencyEstimationInformationExtDto agencyInformation;
 
 	/**
 	 * 長期割引情報
 	 */
 	@Valid
-	@ApiModelProperty(value = "長期割引情報", required = false, position = 15)
+	@Schema(description = "長期割引情報", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	LongtermDiscountEstimationInformationExtDto longtermDiscountInformation;
 }

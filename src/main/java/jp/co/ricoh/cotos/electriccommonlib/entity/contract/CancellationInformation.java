@@ -24,7 +24,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBase;
 import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
 import jp.co.ricoh.cotos.electriccommonlib.entity.master.ElectricFormMaster.CancellationDiv;
@@ -89,7 +89,7 @@ public class CancellationInformation extends EntityBase {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cancellation_information_seq")
 	@SequenceGenerator(name = "cancellation_information_seq", sequenceName = "cancellation_information_seq", allocationSize = 1)
-	@ApiModelProperty(value = "ID", required = true, position = 1, allowableValues = "range[0,9223372036854775807]")
+	@Schema(description = "ID", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,9223372036854775807]")
 	private long id;
 
 	/**
@@ -97,7 +97,7 @@ public class CancellationInformation extends EntityBase {
 	 */
 	@OneToOne(optional = false)
 	@JoinColumn(name = "contract_electric_id", referencedColumnName = "id")
-	@ApiModelProperty(value = "契約(電力用)", required = true, position = 2)
+	@Schema(description = "契約(電力用)", requiredMode = Schema.RequiredMode.REQUIRED)
 	@JsonIgnore
 	private ContractElectric contractElectric;
 
@@ -106,7 +106,7 @@ public class CancellationInformation extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Temporal(TemporalType.DATE)
-	@ApiModelProperty(value = "解約希望日", required = false, position = 3)
+	@Schema(description = "解約希望日", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private Date cancellationHopeDate;
 
 	/**
@@ -115,14 +115,14 @@ public class CancellationInformation extends EntityBase {
 	@Column(nullable = true)
 	@Max(9)
 	@Min(0)
-	@ApiModelProperty(value = "送電停止施行指定フラグ", required = false, position = 4, allowableValues = "range[0,9]")
+	@Schema(description = "送電停止施行指定フラグ", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,9]")
 	private Integer transmissionStopFlg;
 
 	/**
 	 * 指定時刻
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "指定時刻", required = false, position = 5, allowableValues = "range[0,255]")
+	@Schema(description = "指定時刻", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String specifiedTime;
 
 	/**
@@ -130,7 +130,7 @@ public class CancellationInformation extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Temporal(TemporalType.DATE)
-	@ApiModelProperty(value = "解約日", required = false, position = 6)
+	@Schema(description = "解約日", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private Date cancellationDate;
 
 	/**
@@ -138,14 +138,14 @@ public class CancellationInformation extends EntityBase {
 	 * ※解約理由情報エンティティに移行するため以後、未使用
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "解約理由", required = false, position = 7, allowableValues = "その他(\"1\")", example = "1")
+	@Schema(description = "解約理由", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "その他(\"1\")", example = "1")
 	private CancellationReason cancellationReason;
 
 	/**
 	 * その他備考
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "その他備考", required = false, position = 8, allowableValues = "range[0,4000]")
+	@Schema(description = "その他備考", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,4000]")
 	private String notesOther;
 
 	/**
@@ -154,7 +154,7 @@ public class CancellationInformation extends EntityBase {
 	@Column(nullable = true)
 	@DecimalMin("0.00")
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "解約金額", required = false, position = 9, allowableValues = "range[0.00,99999999999999999.99]")
+	@Schema(description = "解約金額", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal cancellationAmount;
 
 	/**
@@ -163,7 +163,7 @@ public class CancellationInformation extends EntityBase {
 	@Column(nullable = true)
 	@DecimalMin("0.00")
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "調整後金額", required = false, position = 10, allowableValues = "range[0.00,99999999999999999.99]")
+	@Schema(description = "調整後金額", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal adjustmentAmount;
 
 	/**
@@ -172,7 +172,7 @@ public class CancellationInformation extends EntityBase {
 	@Column(nullable = true)
 	@DecimalMin("0.00")
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "清算金", required = false, position = 11, allowableValues = "range[0.00,99999999999999999.99]")
+	@Schema(description = "清算金", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal liquidationAmount;
 
 	/**
@@ -181,7 +181,7 @@ public class CancellationInformation extends EntityBase {
 	@Column(nullable = true)
 	@DecimalMin("0.00")
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "調整後(清算金)", required = false, position = 12, allowableValues = "range[0.00,99999999999999999.99]")
+	@Schema(description = "調整後(清算金)", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal adjustmentLiquidationAmount;
 
 	/**
@@ -190,7 +190,7 @@ public class CancellationInformation extends EntityBase {
 	@Column(nullable = true)
 	@DecimalMin("0.00")
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "違約金", required = false, position = 13, allowableValues = "range[0.00,99999999999999999.99]")
+	@Schema(description = "違約金", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal penaltyAmount;
 
 	/**
@@ -199,7 +199,7 @@ public class CancellationInformation extends EntityBase {
 	@Column(nullable = true)
 	@DecimalMin("0.00")
 	@Digits(integer = 17, fraction = 2)
-	@ApiModelProperty(value = "調整後(違約金)", required = false, position = 14, allowableValues = "range[0.00,99999999999999999.99]")
+	@Schema(description = "調整後(違約金)", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,99999999999999999.99]")
 	private BigDecimal adjustmentPenaltyAmount;
 
 	/**
@@ -208,14 +208,14 @@ public class CancellationInformation extends EntityBase {
 	@Column(nullable = true)
 	@Max(9)
 	@Min(0)
-	@ApiModelProperty(value = "解約金請求フラグ", required = false, position = 15, allowableValues = "range[0,9]")
+	@Schema(description = "解約金請求フラグ", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,9]")
 	private Integer cancellationBillingFlg;
 
 	/**
 	 * 非請求理由
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "非請求理由", required = false, position = 16, allowableValues = "range[0,4000]")
+	@Schema(description = "非請求理由", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,4000]")
 	private String nonBillingReason;
 
 	/**
@@ -224,14 +224,14 @@ public class CancellationInformation extends EntityBase {
 	@Column(nullable = true)
 	@Max(9)
 	@Min(0)
-	@ApiModelProperty(value = "上長確認フラグ", required = false, position = 17, allowableValues = "range[0,9]")
+	@Schema(description = "上長確認フラグ", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,9]")
 	private Integer superiorConfirmFlg;
 
 	/**
 	 * 解約種別
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "解約種別", required = false, position = 18, allowableValues = "消滅(\"1\"), 他社への切り替え_お客様申込(\"2\"), 他社への切り替え_広域申込(\"3\"), 無し(\"99\")", example = "1")
+	@Schema(description = "解約種別", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "消滅(\"1\"), 他社への切り替え_お客様申込(\"2\"), 他社への切り替え_広域申込(\"3\"), 無し(\"99\")", example = "1")
 	private CancellationDiv cancellationDiv;
 
 	/**
@@ -239,7 +239,7 @@ public class CancellationInformation extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Temporal(TemporalType.DATE)
-	@ApiModelProperty(value = "手配結果登録確定日", required = false, position = 19)
+	@Schema(description = "手配結果登録確定日", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private Date registerArrangedDate;
 
 	/**
@@ -247,27 +247,27 @@ public class CancellationInformation extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Temporal(TemporalType.DATE)
-	@ApiModelProperty(value = "（解約手続時点）需給（供給）期間 終了日", required = false, position = 20)
+	@Schema(description = "（解約手続時点）需給（供給）期間 終了日", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private Date contractYmdEndAtCancellation;
 
 	/**
 	 * 解約金額分類
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "解約金額分類", required = false, position = 23, allowableValues = "満額請求(\"1\"), 減額請求(\"2\"), 免除(\"3\")")
+	@Schema(description = "解約金額分類", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "満額請求(\"1\"), 減額請求(\"2\"), 免除(\"3\")")
 	private CancellationAmountType cancellationAmountType;
 
 	/**
 	 * 解約詳細情報
 	 */
 	@OneToOne(mappedBy = "cancellationInformation")
-	@ApiModelProperty(value = "解約詳細情報", required = false, position = 24)
+	@Schema(description = "解約詳細情報", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private CancellationDetailInformation cancellationDetailInformation;
 
 	/**
 	 * 解約理由情報
 	 */
 	@OneToOne(mappedBy = "cancellationInformation")
-	@ApiModelProperty(value = "解約理由情報", required = false, position = 25)
+	@Schema(description = "解約理由情報", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private CancellationReasonInformation cancellationReasonInformation;
 }

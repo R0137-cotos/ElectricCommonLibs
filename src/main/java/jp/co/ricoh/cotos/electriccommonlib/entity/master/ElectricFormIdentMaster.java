@@ -11,7 +11,7 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBaseMaster;
 import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
 import jp.co.ricoh.cotos.electriccommonlib.repository.master.ElectricFormIdentMasterRepository;
@@ -30,52 +30,52 @@ public class ElectricFormIdentMaster extends EntityBaseMaster {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "electric_form_ident_master_seq")
 	@SequenceGenerator(name = "electric_form_ident_master_seq", sequenceName = "electric_form_ident_master_seq", allocationSize = 1)
-	@ApiModelProperty(value = "ID", required = true, position = 1, allowableValues = "range[0,9223372036854775807]")
+	@Schema(description = "ID", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,9223372036854775807]")
 	private long id;
 
 	/**
 	 * 帳票コード
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "帳票コード", required = true, position = 2, allowableValues = "range[0,255]")
+	@Schema(description = "帳票コード", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,255]")
 	private String formCode;
 
 	/**
 	 * 添付対象帳票名
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "添付対象帳票名", required = true, position = 3, allowableValues = "range[0,255]")
+	@Schema(description = "添付対象帳票名", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,255]")
 	private String targetFormName;
 
 	/**
 	 * 帳票出力テンプレート
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "帳票出力テンプレート", required = true, position = 4, allowableValues = "range[0,255]")
+	@Schema(description = "帳票出力テンプレート", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,255]")
 	private String templateFormName;
 	
 	/**
 	 * 添付必須フラグ
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "添付必須フラグ", required = true, position = 5, allowableValues = "range[0,9]")
+	@Schema(description = "添付必須フラグ", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,9]")
 	private int targetRequiredFlg;
 
 	/**
 	 * 説明
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "説明", required = false, position = 6, allowableValues = "range[0,255]")
+	@Schema(description = "説明", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String description;
 	
 	/**
 	 * 帳票テンプレート管理マスタID
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "帳票テンプレート管理マスタID", required = true, position = 7, allowableValues = "range[0,9223372036854775807]")
+	@Schema(description = "帳票テンプレート管理マスタID", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,9223372036854775807]")
 	private Long reportTemplateMasterId;
 
 	@ManyToMany(mappedBy = "electricFormIdentMasterList")
-	@ApiModelProperty(value = "電力帳票マスタ", required = true, position = 8)
+	@Schema(description = "電力帳票マスタ", requiredMode = Schema.RequiredMode.REQUIRED)
 	private List<ElectricFormMaster> electricFormMasterList;
 }

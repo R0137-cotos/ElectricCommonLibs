@@ -16,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBase;
 import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.ElectricBillingAttachedFileRepository;
@@ -58,7 +58,7 @@ public class ElectricBillingAttachedFile extends EntityBase {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "electric_billing_attached_file_seq")
 	@SequenceGenerator(name = "electric_billing_attached_file_seq", sequenceName = "electric_billing_attached_file_seq", allocationSize = 1)
-	@ApiModelProperty(value = "ID", required = true, position = 1, allowableValues = "range[0,9223372036854775807]")
+	@Schema(description = "ID", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,9223372036854775807]")
 	private long id;
 
 	/**
@@ -66,7 +66,7 @@ public class ElectricBillingAttachedFile extends EntityBase {
 	 */
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "billing_history_id", referencedColumnName = "id")
-	@ApiModelProperty(value = "請求実績ID", required = true, position = 2)
+	@Schema(description = "請求実績ID", requiredMode = Schema.RequiredMode.REQUIRED)
 	@JsonIgnore
 	private BillingHistory billingHistory;
 
@@ -74,41 +74,41 @@ public class ElectricBillingAttachedFile extends EntityBase {
 	 * ファイル名
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "ファイル名", required = true, position = 3, allowableValues = "range[0,255]")
+	@Schema(description = "ファイル名", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,255]")
 	private String fileName;
 
 	/**
 	 * ファイル種類
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "ファイル種類", required = true, position = 4, allowableValues = "請求書(\"1\"), 日別電力量明細表PDF(\"2\"), 日別電力量明細表Excel(\"3\")", example = "1")
+	@Schema(description = "ファイル種類", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "請求書(\"1\"), 日別電力量明細表PDF(\"2\"), 日別電力量明細表Excel(\"3\")", example = "1")
 	private FileKind fileKind;
 
 	/**
 	 * 物理ファイル名
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "物理ファイル名", required = true, position = 5, allowableValues = "range[0,255]")
+	@Schema(description = "物理ファイル名", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,255]")
 	private String filePhysicsName;
 
 	/**
 	 * ファイルサイズ
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "ファイルサイズ", required = true, position = 6, allowableValues = "range[0,9223372036854775807]")
+	@Schema(description = "ファイルサイズ", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,9223372036854775807]")
 	private long fileSize;
 
 	/**
 	 * コンテンツタイプ
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "コンテンツタイプ", required = true, position = 7, allowableValues = "range[0,255]")
+	@Schema(description = "コンテンツタイプ", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,255]")
 	private String contentType;
 
 	/**
 	 * サーバーパス
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "サーバーパス", required = true, position = 8, allowableValues = "range[0,1000]")
+	@Schema(description = "サーバーパス", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,1000]")
 	private String savedPath;
 }

@@ -8,7 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBaseMaster;
 import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
 import jp.co.ricoh.cotos.electriccommonlib.repository.master.ProfitTransferDepartmentMasterRepository;
@@ -28,35 +28,35 @@ public class ProfitTransferDepartmentMaster extends EntityBaseMaster {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "profit_transfer_department_master_seq")
 	@SequenceGenerator(name = "profit_transfer_department_master_seq", sequenceName = "profit_transfer_department_master_seq", allocationSize = 1)
-	@ApiModelProperty(value = "ID", required = true, position = 1, allowableValues = "range[0,9223372036854775807]")
+	@Schema(description = "ID", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,9223372036854775807]")
 	private long id;
 
 	/**
 	 * 販社コード(3桁)
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "販社コード", required = false, position = 2, allowableValues = "range[0,255]")
+	@Schema(description = "販社コード", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String hanshCode;
 
 	/**
 	 * 販社＋課所コード(7桁)
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "販社＋課所コード(7桁)", required = true, position = 3, allowableValues = "range[0,255]")
+	@Schema(description = "販社＋課所コード(7桁)", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,255]")
 	private String affiliationCode;
 
 	/**
 	 * 振替先部門コード
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "振替先部門コード", required = true, position = 4, allowableValues = "range[0,255]")
+	@Schema(description = "振替先部門コード", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,255]")
 	private String transferDepCode;
 
 	/**
 	 * 振替先部門名
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "振替先部門名", required = true, position = 5, allowableValues = "range[0,255]")
+	@Schema(description = "振替先部門名", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,255]")
 	private String transferDepName;
 
 }

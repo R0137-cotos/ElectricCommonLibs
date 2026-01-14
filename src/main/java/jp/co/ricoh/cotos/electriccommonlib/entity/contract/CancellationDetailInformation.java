@@ -18,7 +18,7 @@ import jakarta.validation.constraints.Min;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBase;
 import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
 import jp.co.ricoh.cotos.electriccommonlib.repository.contract.CancellationDetailInformationRepository;
@@ -38,7 +38,7 @@ public class CancellationDetailInformation extends EntityBase {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cancellation_detail_information_seq")
 	@SequenceGenerator(name = "cancellation_detail_information_seq", sequenceName = "cancellation_detail_information_seq", allocationSize = 1)
-	@ApiModelProperty(value = "ID", required = true, position = 1, allowableValues = "range[0,9223372036854775807]")
+	@Schema(description = "ID", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,9223372036854775807]")
 	private long id;
 
 	/**
@@ -46,7 +46,7 @@ public class CancellationDetailInformation extends EntityBase {
 	 */
 	@OneToOne(optional = false)
 	@JoinColumn(name = "cancellation_information_id", referencedColumnName = "id")
-	@ApiModelProperty(value = "解約情報", required = true, position = 2)
+	@Schema(description = "解約情報", requiredMode = Schema.RequiredMode.REQUIRED)
 	@JsonIgnore
 	private CancellationInformation cancellationInformation;
 
@@ -55,21 +55,21 @@ public class CancellationDetailInformation extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Temporal(TemporalType.DATE)
-	@ApiModelProperty(value = "廃止申込日", required = false, position = 3)
+	@Schema(description = "廃止申込日", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private Date cancellationEntryDate;
 
 	/**
 	 * 変更先電力会社-登録番号
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "変更先電力会社-登録番号", required = false, position = 4, allowableValues = "range[0,255]")
+	@Schema(description = "変更先電力会社-登録番号", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String powerCompanyAfterChangeCode;
 
 	/**
 	 * 変更先電力会社-名称
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "変更先電力会社-名称", required = false, position = 5, allowableValues = "range[0,255]")
+	@Schema(description = "変更先電力会社-名称", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String powerCompanyAfterChangeName;
 
 	/**
@@ -78,14 +78,14 @@ public class CancellationDetailInformation extends EntityBase {
 	@Column(nullable = true)
 	@Max(9)
 	@Min(0)
-	@ApiModelProperty(value = "変更先電力会社-不明フラグ", required = false, position = 6, allowableValues = "range[0,9]")
+	@Schema(description = "変更先電力会社-不明フラグ", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,9]")
 	private Integer powerCompanyAfterChangeUnknownFlg;
 
 	/**
 	 * 変更先電力会社-備考
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "変更先電力会社-備考", required = false, position = 7, allowableValues = "range[0,4000]")
+	@Schema(description = "変更先電力会社-備考", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,4000]")
 	private String powerCompanyAfterChangeNote;
 
 	/**
@@ -94,7 +94,7 @@ public class CancellationDetailInformation extends EntityBase {
 	@Column(nullable = true)
 	@Max(9)
 	@Min(0)
-	@ApiModelProperty(value = "受電設備の解体フラグ", required = false, position = 8, allowableValues = "range[0,9]")
+	@Schema(description = "受電設備の解体フラグ", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,9]")
 	private Integer equipmentDismantlingFlg;
 
 	/**
@@ -102,14 +102,14 @@ public class CancellationDetailInformation extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Temporal(TemporalType.DATE)
-	@ApiModelProperty(value = "解体予定日", required = false, position = 9)
+	@Schema(description = "解体予定日", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private Date dismantlingExpectedDate;
 
 	/**
 	 * 解体予定時刻
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "解体予定時刻", required = false, position = 10, allowableValues = "range[0,255]")
+	@Schema(description = "解体予定時刻", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String dismantlingExpectedTime;
 
 	/**
@@ -117,7 +117,7 @@ public class CancellationDetailInformation extends EntityBase {
 	 */
 	@Column(nullable = true)
 	@Temporal(TemporalType.DATE)
-	@ApiModelProperty(value = "供給設備の撤去希望日", required = false, position = 11)
+	@Schema(description = "供給設備の撤去希望日", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private Date removalHopeDate;
 
 	/**
@@ -126,14 +126,14 @@ public class CancellationDetailInformation extends EntityBase {
 	@Column(nullable = true)
 	@Max(9)
 	@Min(0)
-	@ApiModelProperty(value = "供給設備の撤去希望時刻指定有無フラグ", required = false, position = 12, allowableValues = "range[0,9]")
+	@Schema(description = "供給設備の撤去希望時刻指定有無フラグ", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,9]")
 	private Integer removalHopeTimeFlg;
 
 	/**
 	 * 供給設備の撤去希望時刻
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "供給設備の撤去希望時刻", required = false, position = 13, allowableValues = "range[0,255]")
+	@Schema(description = "供給設備の撤去希望時刻", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String removalHopeTime;
 
 	/**
@@ -142,56 +142,56 @@ public class CancellationDetailInformation extends EntityBase {
 	@Column(nullable = true)
 	@Max(9)
 	@Min(0)
-	@ApiModelProperty(value = "立会可否フラグ", required = false, position = 14, allowableValues = "range[0,9]")
+	@Schema(description = "立会可否フラグ", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,9]")
 	private Integer witnessingFlg;
 
 	/**
 	 * 立合者氏名
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "立合者氏名", required = false, position = 15, allowableValues = "range[0,255]")
+	@Schema(description = "立合者氏名", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String witnessingName;
 
 	/**
 	 * 廃止申込書用-企業名
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "廃止申込書用-企業名", required = false, position = 16, allowableValues = "range[0,255]")
+	@Schema(description = "廃止申込書用-企業名", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String reportCompanyName;
 
 	/**
 	 * 廃止申込書用-事業所名
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "廃止申込書用-事業所名", required = false, position = 17, allowableValues = "range[0,255]")
+	@Schema(description = "廃止申込書用-事業所名", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String reportOfficeName;
 
 	/**
 	 * 廃止申込書用-住所
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "廃止申込書用-住所", required = false, position = 18, allowableValues = "range[0,1000]")
+	@Schema(description = "廃止申込書用-住所", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,1000]")
 	private String reportAddress;
 
 	/**
 	 * 廃止申込書用-担当者氏名
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "廃止申込書用-担当者氏名", required = false, position = 19, allowableValues = "range[0,255]")
+	@Schema(description = "廃止申込書用-担当者氏名", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String reportPicName;
 
 	/**
 	 * 廃止申込書用-担当者部署
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "廃止申込書用-担当者部署", required = false, position = 20, allowableValues = "range[0,255]")
+	@Schema(description = "廃止申込書用-担当者部署", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String reportPicDeptName;
 
 	/**
 	 * 廃止申込書用-担当者電話番号
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "廃止申込書用-担当者電話番号", required = false, position = 21, allowableValues = "range[0,255]")
+	@Schema(description = "廃止申込書用-担当者電話番号", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String reportPicPhoneNumber;
 
 }

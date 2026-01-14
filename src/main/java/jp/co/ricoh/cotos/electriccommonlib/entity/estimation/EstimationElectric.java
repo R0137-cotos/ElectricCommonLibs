@@ -15,7 +15,7 @@ import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBase;
 import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
 import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.ElectricArea;
@@ -45,42 +45,42 @@ public class EstimationElectric extends EntityBase {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "estimation_electric_seq")
 	@SequenceGenerator(name = "estimation_electric_seq", sequenceName = "estimation_electric_seq", allocationSize = 1)
-	@ApiModelProperty(value = "ID", required = true, position = 1)
+	@Schema(description = "ID", requiredMode = Schema.RequiredMode.REQUIRED)
 	private long id;
 
 	/**
 	 * 見積ID
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "見積ID", required = true, position = 2, allowableValues = "range[0,9223372036854775807]")
+	@Schema(description = "見積ID", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,9223372036854775807]")
 	private long estimationId;
 
 	/**
 	 * 電力エリア
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "電力エリア", required = false, position = 3, allowableValues = "北日本(\"1\"), 首都圏(\"2\"), 中部(\"3\"), 関西(\"4\"), 西日本(\"5\")", example = "1")
+	@Schema(description = "電力エリア", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "北日本(\"1\"), 首都圏(\"2\"), 中部(\"3\"), 関西(\"4\"), 西日本(\"5\")", example = "1")
 	private ElectricArea electricArea;
 
 	/**
 	 * 電力会社
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "電力会社", required = false, position = 4, allowableValues = "range[0,255]")
+	@Schema(description = "電力会社", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String electricCompany;
 
 	/**
 	 * 電力区分
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "電力区分", required = true, position = 5, allowableValues = "range[0,255]")
+	@Schema(description = "電力区分", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,255]")
 	private VoltageCategory voltageCategory;
 
 	/**
 	 * 電力メニュー
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "電力メニュー", required = false, position = 6, allowableValues = "range[0,255]")
+	@Schema(description = "電力メニュー", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String electricMenu;
 
 	/**
@@ -89,14 +89,14 @@ public class EstimationElectric extends EntityBase {
 	@Column(nullable = true)
 	@DecimalMin("0.00")
 	@Digits(integer = 6, fraction = 2)
-	@ApiModelProperty(value = "契約電力", required = false, position = 7, allowableValues = "range[0.00,999999.99]")
+	@Schema(description = "契約電力", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,999999.99]")
 	private BigDecimal contractPower;
 
 	/**
 	 * 規模
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "規模", required = false, position = 8, allowableValues = "500kw未満(\"1\"), 500kw以上(\"2\")", example = "1")
+	@Schema(description = "規模", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "500kw未満(\"1\"), 500kw以上(\"2\")", example = "1")
 	private Scale scale;
 
 	/**
@@ -105,7 +105,7 @@ public class EstimationElectric extends EntityBase {
 	@Column(nullable = true)
 	@DecimalMin("0.00")
 	@Digits(integer = 3, fraction = 2)
-	@ApiModelProperty(value = "力率", required = false, position = 6, allowableValues = "range[0.00,999.99]")
+	@Schema(description = "力率", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,999.99]")
 	private BigDecimal powerRate;
 
 	/**
@@ -114,68 +114,68 @@ public class EstimationElectric extends EntityBase {
 	@Column(nullable = true)
 	@DecimalMin("0.00")
 	@Digits(integer = 3, fraction = 2)
-	@ApiModelProperty(value = "負荷率", required = false, position = 7, allowableValues = "range[0.00,999.99]")
+	@Schema(description = "負荷率", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,999.99]")
 	private BigDecimal loadFactor;
 
 	/**
 	 * 供給開始予定月
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "供給開始予定月", required = false, position = 11, allowableValues = "range[0,255]")
+	@Schema(description = "供給開始予定月", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String supplyStartScheduledDate;
 
 	/**
 	 * 備考
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "備考", required = false, position = 12, allowableValues = "range[0,255]")
+	@Schema(description = "備考", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String notes;
 
 	@OneToOne(mappedBy = "estimationElectric")
-	@ApiModelProperty(value = "電力専任情報", required = false, position = 13)
+	@Schema(description = "電力専任情報", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private ElectricExpertEstimation electricExpertEstimation;
 
 	@OneToOne(mappedBy = "estimationElectric")
-	@ApiModelProperty(value = "販売店情報", required = false, position = 14)
+	@Schema(description = "販売店情報", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private ElectricDealerEstimation electricDealerEstimation;
 
 	@OneToOne(mappedBy = "estimationElectric")
-	@ApiModelProperty(value = "料金シュミレーション(本部用)", required = false, position = 16)
+	@Schema(description = "料金シュミレーション(本部用)", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private FeeSimulationHead feeSimulationHead;
 
 	/**
 	 * 電源サイクル
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "電源サイクル", required = false, position = 17, allowableValues = "range[0,255]")
+	@Schema(description = "電源サイクル", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String powerSupplyCycle;
 
 	/**
 	 * 契約数量
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "契約数量", required = false, position = 18, allowableValues = "range[0,255]")
+	@Schema(description = "契約数量", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String contractQuantity;
 
 	/**
 	 * 契約形態
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "契約形態", required = false, position = 19, allowableValues = "range[0,255]")
+	@Schema(description = "契約形態", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String typeOfContract;
 
 	/**
 	 * 商流区分
 	 */
 	@Column(nullable = false)
-	@ApiModelProperty(value = "商流区分", required = true, position = 20, allowableValues = "直売(\"1\"), 媒介(\"2\"), 社内(\"3\"), 取次(\"4\")", example = "1")
+	@Schema(description = "商流区分", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "直売(\"1\"), 媒介(\"2\"), 社内(\"3\"), 取次(\"4\")", example = "1")
 	private ElectricCommercialFlowDiv electricCommercialFlowDiv;
 
 	/**
 	 * 品種コード
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "品種コード", required = false, position = 21, allowableValues = "range[0,255]")
+	@Schema(description = "品種コード", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String itemCode;
 
 	/**
@@ -184,7 +184,7 @@ public class EstimationElectric extends EntityBase {
 	@Column(nullable = true)
 	@Max(9)
 	@Min(0)
-	@ApiModelProperty(value = "部分供給", required = false, position = 22, allowableValues = "range[0,9]")
+	@Schema(description = "部分供給", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,9]")
 	private Integer partialSupplyFlg;
 
 	/**
@@ -193,7 +193,7 @@ public class EstimationElectric extends EntityBase {
 	@Column(nullable = true)
 	@DecimalMin("0.00")
 	@Digits(integer = 6, fraction = 2)
-	@ApiModelProperty(value = "ベース部", required = false, position = 23, allowableValues = "range[0.00,999999.99]")
+	@Schema(description = "ベース部", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,999999.99]")
 	private BigDecimal basePart;
 
 	/**
@@ -202,14 +202,14 @@ public class EstimationElectric extends EntityBase {
 	@Column(nullable = true)
 	@DecimalMin("0.00")
 	@Digits(integer = 6, fraction = 2)
-	@ApiModelProperty(value = "変動部", required = false, position = 24, allowableValues = "range[0.00,999999.99]")
+	@Schema(description = "変動部", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,999999.99]")
 	private BigDecimal fluctuatingPart;
 
 	/**
 	 * 外部キー情報
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "外部キー情報", required = false, position = 25, allowableValues = "range[0,255]")
+	@Schema(description = "外部キー情報", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String oppSysKeyBn;
 
 	/**
@@ -218,7 +218,7 @@ public class EstimationElectric extends EntityBase {
 	@Column(nullable = true)
 	@Max(9)
 	@Min(0)
-	@ApiModelProperty(value = "予備線", required = false, position = 26, allowableValues = "range[0,9]")
+	@Schema(description = "予備線", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,9]")
 	private Integer spareWireFlg;
 
 	/**
@@ -227,7 +227,7 @@ public class EstimationElectric extends EntityBase {
 	@Column(nullable = true)
 	@Max(9)
 	@Min(0)
-	@ApiModelProperty(value = "予備電源", required = false, position = 27, allowableValues = "range[0,9]")
+	@Schema(description = "予備電源", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,9]")
 	private Integer sparePowerFlg;
 
 	/**
@@ -236,42 +236,42 @@ public class EstimationElectric extends EntityBase {
 	@Column(nullable = true)
 	@Max(9)
 	@Min(0)
-	@ApiModelProperty(value = "アンシラリーサービス", required = false, position = 28, allowableValues = "range[0,9]")
+	@Schema(description = "アンシラリーサービス", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,9]")
 	private Integer ancillaryFlg;
 
 	/**
 	 * お客様識別番号
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "お客様識別番号", required = false, position = 29, allowableValues = "range[0,255]")
+	@Schema(description = "お客様識別番号", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String customerNumber;
 
 	/**
 	 * CO2排出メニュー CO2EMISSION_MENUとして読み取られるためname指定
 	 */
 	@Column(nullable = true, name = "co2_emission_menu")
-	@ApiModelProperty(value = "CO2排出メニュー", required = false, position = 30, allowableValues = "CO2フリー(\"1\"), それ以外(\"2\")", example = "1")
+	@Schema(description = "CO2排出メニュー", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "CO2フリー(\"1\"), それ以外(\"2\")", example = "1")
 	private ElectricPlan co2EmissionMenu;
 
 	/**
 	 * 電力会社コード
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "電力会社コード", required = false, position = 31, allowableValues = "range[0,255]")
+	@Schema(description = "電力会社コード", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String electricCompanyCode;
 
 	/**
 	 * 電力メニューコード
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "電力会社コード", required = false, position = 32, allowableValues = "range[0,255]")
+	@Schema(description = "電力会社コード", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String electricMenuCode;
 
 	/**
 	 * CO2排出係数
 	 */
 	@Column(nullable = true, name = "co2_emission_factor")
-	@ApiModelProperty(value = "CO2排出係数", required = false, position = 33, allowableValues = "range[0,255]")
+	@Schema(description = "CO2排出係数", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String co2EmissionFactor;
 
 	/**
@@ -280,24 +280,24 @@ public class EstimationElectric extends EntityBase {
 	@Column(nullable = true)
 	@DecimalMin("0.00")
 	@Digits(integer = 6, fraction = 2)
-	@ApiModelProperty(value = "アンシラリーサービス契約容量(高圧)", required = false, position = 34, allowableValues = "range[0.00,999999.99]")
+	@Schema(description = "アンシラリーサービス契約容量(高圧)", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,999999.99]")
 	private BigDecimal ancillaryCapacityHighPressure;
 
 	/**
 	 * 契約期間
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "契約期間", required = false, position = 35, allowableValues = "range[0,255]")
+	@Schema(description = "契約期間", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String contractPeriod;
 
 	/**
 	 * 承認ルート名
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "承認ルート名", required = false, position = 36, allowableValues = "range[0,255]")
+	@Schema(description = "承認ルート名", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String approvalRouteName;
 
 	@OneToOne(mappedBy = "estimationElectric")
-	@ApiModelProperty(value = "取次情報", required = false, position = 37)
+	@Schema(description = "取次情報", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private AgencyEstimationInformation agencyEstimationInformation;
 }

@@ -7,7 +7,7 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -20,7 +20,7 @@ public class RegisterArrangementResultExtDto {
 	 */
 	@NotNull
 	@Min(0)
-	@ApiModelProperty(value = "契約ID", required = true, position = 1, allowableValues = "range[0,9223372036854775807]")
+	@Schema(description = "契約ID", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,9223372036854775807]")
 	private long contractId;
 
 	/**
@@ -28,7 +28,7 @@ public class RegisterArrangementResultExtDto {
 	 */
 	@NotNull
 	@Size(max = 255)
-	@ApiModelProperty(value = "案件番号", required = true, position = 2, allowableValues = "range[0,255]")
+	@Schema(description = "案件番号", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,255]")
 	private String caseNumber;
 
 	/**
@@ -36,35 +36,35 @@ public class RegisterArrangementResultExtDto {
 	 */
 	@NotNull
 	@Size(max = 255)
-	@ApiModelProperty(value = "案件名", required = true, position = 3, allowableValues = "range[0,255]")
+	@Schema(description = "案件名", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "range[0,255]")
 	private String caseTitle;
 
 	/**
 	 * 変更希望日
 	 */
 	@Size(max = 255)
-	@ApiModelProperty(value = "変更希望日", required = false, position = 4, allowableValues = "range[0,255]")
+	@Schema(description = "変更希望日", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String changePreferredDate;
 
 	/**
 	 * 解約日
 	 */
 	@Size(max = 255)
-	@ApiModelProperty(value = "解約日", required = false, position = 5, allowableValues = "range[0,255]")
+	@Schema(description = "解約日", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String cancellationDate;
 
 	/**
 	 * 解約指定時刻
 	 */
 	@Size(max = 255)
-	@ApiModelProperty(value = "解約指定時刻", required = false, position = 6, allowableValues = "range[0,255]")
+	@Schema(description = "解約指定時刻", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String cancellationSpecifiedTime;
 
 	/**
 	 * 連携パターン
 	 */
 	@Size(max = 255)
-	@ApiModelProperty(value = "連携パターン", required = false, position = 7, allowableValues = "range[0,255]")
+	@Schema(description = "連携パターン", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String cooperationPattern;
 
 	/**
@@ -72,7 +72,7 @@ public class RegisterArrangementResultExtDto {
 	 */
 	@Valid
 	@NotNull
-	@ApiModelProperty(value = "契約(電力)", required = true, position = 8)
+	@Schema(description = "契約(電力)", requiredMode = Schema.RequiredMode.REQUIRED)
 	private RegisterArrangementResultContractElectricExtDto contractElectric;
 
 	/**
@@ -80,21 +80,21 @@ public class RegisterArrangementResultExtDto {
 	 */
 	@Valid
 	@NotNull
-	@ApiModelProperty(value = "顧客", required = true, position = 9)
+	@Schema(description = "顧客", requiredMode = Schema.RequiredMode.REQUIRED)
 	private RegisterArrangementResultCustomerContractExtDto customerContract;
 
 	/**
 	 * 契約担当者メールアドレス
 	 */
 	@Valid
-	@ApiModelProperty(value = "契約担当者メールアドレス", required = false, position = 10)
+	@Schema(description = "契約担当者メールアドレス", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private List<RegisterArrangementResultMailAddressInfoExtDto> contractPersonMailAddressList;
 
 	/**
 	 * 請求先メールアドレスリスト
 	 */
 	@Valid
-	@ApiModelProperty(value = "請求先メールアドレスリスト", required = false, position = 11)
+	@Schema(description = "請求先メールアドレスリスト", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private List<RegisterArrangementResultBillingMailAddressInfoExtDto> billingMailAddressList;
 
 	/**
@@ -102,7 +102,7 @@ public class RegisterArrangementResultExtDto {
 	 */
 	@Valid
 	@NotNull
-	@ApiModelProperty(value = "契約担当SA社員", required = true, position = 12)
+	@Schema(description = "契約担当SA社員", requiredMode = Schema.RequiredMode.REQUIRED)
 	private RegisterArrangementResultContractPicSaEmpExtDto contractPicSaEmp;
 
 	/**
@@ -110,20 +110,20 @@ public class RegisterArrangementResultExtDto {
 	 */
 	@Valid
 	@NotNull
-	@ApiModelProperty(value = "電力専任情報", required = true, position = 13)
+	@Schema(description = "電力専任情報", requiredMode = Schema.RequiredMode.REQUIRED)
 	private RegisterArrangementResultElectricExpertContractExtDto electricExpertContract;
 
 	/**
 	 * 追加編集者
 	 */
 	@Valid
-	@ApiModelProperty(value = "追加編集者", required = false, position = 14)
+	@Schema(description = "追加編集者", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private List<RegisterArrangementResultContractAddedEditorEmpExtDto> contractAddedEditorEmpList;
 
 	/**
 	 * 販売店情報
 	 */
 	@Valid
-	@ApiModelProperty(value = "販売店情報", required = false, position = 15)
+	@Schema(description = "販売店情報", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private RegisterArrangementResultElectricDealerContractExtDto electricDealerContract;
 }

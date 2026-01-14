@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 /**
@@ -20,162 +20,162 @@ public class AppropriationSearchResult {
 	 * No.
 	 */
 	@Id
-	@ApiModelProperty(value = "No.", required = false, position = 1)
+	@Schema(description = "No.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private long no;
 
 	/**
 	 * 請求年月
 	 */
-	@ApiModelProperty(value = "請求年月", required = false, position = 2)
+	@Schema(description = "請求年月", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private String billingYearMonth;
 
 	/**
 	 * お客様識別番号
 	 */
-	@ApiModelProperty(value = "お客様識別番号", required = false, position = 3)
+	@Schema(description = "お客様識別番号", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private String customerNumber;
 
 	/**
 	 * 供給地点特定番号
 	 */
-	@ApiModelProperty(value = "供給地点特定番号", required = false, position = 4)
+	@Schema(description = "供給地点特定番号", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private String feedPointNumber;
 
 	/**
 	 * 上流顧客コード
 	 */
-	@ApiModelProperty(value = "上流顧客コード", required = false, position = 5)
+	@Schema(description = "上流顧客コード", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private String clientCode;
 
 	/**
 	 * 企業・事業所
 	 */
-	@ApiModelProperty(value = "企業・事業所", required = false, position = 6)
+	@Schema(description = "企業・事業所", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private String companyName;
 
 	/**
 	 * 契約者・需要場所
 	 */
-	@ApiModelProperty(value = "契約者・需要場所", required = false, position = 7)
+	@Schema(description = "契約者・需要場所", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private String customerName;
 
 	/**
 	 * 販売店名
 	 */
-	@ApiModelProperty(value = "販売店名", required = false, position = 8)
+	@Schema(description = "販売店名", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private String dealerName;
 
 	/**
 	 * 請求金額(税抜)
 	 */
-	@ApiModelProperty(value = "請求金額(税抜)", required = false, position = 9)
+	@Schema(description = "請求金額(税抜)", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal proceedsOutTax;
 
 	/**
 	 * 消費税額
 	 */
-	@ApiModelProperty(value = "消費税額", required = false, position = 10)
+	@Schema(description = "消費税額", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal proceedsTax;
 
 	/**
 	 * 請求金額(税込)
 	 */
-	@ApiModelProperty(value = "請求金額(税込)", required = false, position = 11)
+	@Schema(description = "請求金額(税込)", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal proceedsInTax;
 
 	/**
 	 * 契約電力kW
 	 */
-	@ApiModelProperty(value = "契約電力kW", required = false, position = 12)
+	@Schema(description = "契約電力kW", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal basicPowerAmount;
 
 	/**
 	 * 使用電力夏季kWh
 	 */
-	@ApiModelProperty(value = "使用電力夏季kWh", required = false, position = 13)
+	@Schema(description = "使用電力夏季kWh", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal monthlyTotalpowerAmountSummer;
 
 	/**
 	 * 使用電力他季kWh
 	 */
-	@ApiModelProperty(value = "使用電力他季kWh", required = false, position = 14)
+	@Schema(description = "使用電力他季kWh", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal monthlyTotalpowerAmountOtherSeason;
 
 	/**
 	 * 使用電力従量kWh
 	 */
-	@ApiModelProperty(value = "使用電力従量kWh", required = false, position = 15)
+	@Schema(description = "使用電力従量kWh", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal monthlyTotalpowerAmountCommon;
 
 	/**
 	 * 仕入金額(税抜)
 	 */
-	@ApiModelProperty(value = "仕入金額(税抜)", required = false, position = 16)
+	@Schema(description = "仕入金額(税抜)", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal purchaserTotalChargeOutTax;
 
 	/**
 	 * 仕入金額(税額)
 	 */
-	@ApiModelProperty(value = "仕入金額(税額)", required = false, position = 17)
+	@Schema(description = "仕入金額(税額)", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal purchaserTax;
 
 	/**
 	 * 仕入金額(税込)
 	 */
-	@ApiModelProperty(value = "仕入金額(税込)", required = false, position = 18)
+	@Schema(description = "仕入金額(税込)", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal purchaserTotalChargeInTax;
 
 	/**
 	 * 仲介区分
 	 */
-	@ApiModelProperty(value = "仲介区分", required = false, position = 19)
+	@Schema(description = "仲介区分", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private String paymentDiv;
 
 	/**
 	 * 手数料率
 	 */
-	@ApiModelProperty(value = "手数料率", required = false, position = 20)
+	@Schema(description = "手数料率", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal tradingCompanyFeeFixedRate;
 
 	/**
 	 * 手数料金額
 	 */
-	@ApiModelProperty(value = "手数料金額", required = false, position = 21)
+	@Schema(description = "手数料金額", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal tradingCompanyFeeFixedAmountInTax;
 
 	/**
 	 * 支社粗利
 	 */
-	@ApiModelProperty(value = "支社粗利", required = false, position = 22)
+	@Schema(description = "支社粗利", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal rjGrossProfit;
 
 	/**
 	 * SA粗利
 	 */
-	@ApiModelProperty(value = "SA粗利", required = false, position = 23)
+	@Schema(description = "SA粗利", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal salesSectionGrossProfit;
 
 	/**
 	 * 本部粗利
 	 */
-	@ApiModelProperty(value = "本部粗利", required = false, position = 24)
+	@Schema(description = "本部粗利", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal headofficeGrossProfit;
 
 	/**
 	 * 取次手数料金率
 	 */
-	@ApiModelProperty(value = "取次手数料金率", required = false, position = 25)
+	@Schema(description = "取次手数料金率", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal agencyFeeRate;
 
 	/**
 	 * 取次手数料金額
 	 */
-	@ApiModelProperty(value = "取次手数料金額", required = false, position = 26)
+	@Schema(description = "取次手数料金額", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private BigDecimal agencyFeeAmount;
 
 	/**
 	 * 供給年月
 	 */
-	@ApiModelProperty(value = "供給年月", required = false, position = 27)
+	@Schema(description = "供給年月", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private String supplyYearMonth;
 }

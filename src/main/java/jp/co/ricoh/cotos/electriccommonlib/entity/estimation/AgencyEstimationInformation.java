@@ -16,7 +16,7 @@ import jakarta.validation.constraints.Digits;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jp.co.ricoh.cotos.commonlib.entity.EntityBase;
 import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
 import jp.co.ricoh.cotos.electriccommonlib.repository.estimation.AgencyEstimationInformationRepository;
@@ -39,7 +39,7 @@ public class AgencyEstimationInformation extends EntityBase {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "agency_estimation_information_seq")
 	@SequenceGenerator(name = "agency_estimation_information_seq", sequenceName = "agency_estimation_information_seq", allocationSize = 1)
-	@ApiModelProperty(value = "ID", required = true, position = 1)
+	@Schema(description = "ID", requiredMode = Schema.RequiredMode.REQUIRED)
 	private long id;
 
 	/**
@@ -47,7 +47,7 @@ public class AgencyEstimationInformation extends EntityBase {
 	 */
 	@OneToOne(optional = false)
 	@JoinColumn(name = "estimationElectricId", referencedColumnName = "id")
-	@ApiModelProperty(value = "見積（電力）ID", required = true, position = 2)
+	@Schema(description = "見積（電力）ID", requiredMode = Schema.RequiredMode.REQUIRED)
 	@JsonIgnore
 	private EstimationElectric estimationElectric;
 
@@ -55,21 +55,21 @@ public class AgencyEstimationInformation extends EntityBase {
 	 * MOM顧客ID企業ID
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "MOM顧客ID企業ID", required = false, position = 3, allowableValues = "range[0,9223372036854775807]")
+	@Schema(description = "MOM顧客ID企業ID", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,9223372036854775807]")
 	private long momCustomerIdCompanyId;
 
 	/**
 	 * 取次会社
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "取次会社", required = false, position = 4, allowableValues = "range[0,255]")
+	@Schema(description = "取次会社", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String agencyName;
 
 	/**
 	 * 仕入先CD
 	 */
 	@Column(nullable = true)
-	@ApiModelProperty(value = "仕入先CD", required = false, position = 5, allowableValues = "range[0,255]")
+	@Schema(description = "仕入先CD", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String supplierCode;
 
 	/**
@@ -78,6 +78,6 @@ public class AgencyEstimationInformation extends EntityBase {
 	@Column(nullable = true)
 	@DecimalMin("0.00")
 	@Digits(integer = 3, fraction = 2)
-	@ApiModelProperty(value = "手数料率", required = false, position = 6, allowableValues = "range[0.00,999.99]")
+	@Schema(description = "手数料率", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,999.99]")
 	private BigDecimal feeRate;
 }

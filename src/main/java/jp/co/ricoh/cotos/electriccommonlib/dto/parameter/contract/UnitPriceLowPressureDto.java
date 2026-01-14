@@ -10,7 +10,7 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jp.co.ricoh.cotos.commonlib.dto.parameter.common.DtoBase;
 import jp.co.ricoh.cotos.commonlib.security.complement.CotosComplementTarget;
 import jp.co.ricoh.cotos.electriccommonlib.entity.EnumType.UnitPriceType;
@@ -28,7 +28,7 @@ public class UnitPriceLowPressureDto extends DtoBase {
 	 * 単価種別
 	 */
 	@NotNull
-	@ApiModelProperty(value = "単価種別", required = true, position = 3, allowableValues = "単価(\"1\"), 仕切価格(営業)(\"2\"), 仕切価格(RJ)(\"3\")", example = "1")
+	@Schema(description = "単価種別", requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "単価(\"1\"), 仕切価格(営業)(\"2\"), 仕切価格(RJ)(\"3\")", example = "1")
 	private UnitPriceType unitPriceType;
 
 	/**
@@ -36,7 +36,7 @@ public class UnitPriceLowPressureDto extends DtoBase {
 	 */
 	@Max(99999)
 	@Min(0)
-	@ApiModelProperty(value = "変更回数", required = false, position = 4, allowableValues = "range[0,99999]")
+	@Schema(description = "変更回数", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,99999]")
 	private Integer numberOfChanges;
 
 	/**
@@ -44,7 +44,7 @@ public class UnitPriceLowPressureDto extends DtoBase {
 	 */
 	@DecimalMin("0.00")
 	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "従量料金(従量電灯)_定価", required = false, position = 5, allowableValues = "range[0.00,9999999999999999999.99]")
+	@Schema(description = "従量料金(従量電灯)_定価", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,9999999999999999999.99]")
 	private BigDecimal perUseLightListPrice;
 
 	/**
@@ -52,7 +52,7 @@ public class UnitPriceLowPressureDto extends DtoBase {
 	 */
 	@DecimalMin("0.00")
 	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "従量料金(従量電灯)_売価", required = false, position = 6, allowableValues = "range[0.00,9999999999999999999.99]")
+	@Schema(description = "従量料金(従量電灯)_売価", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,9999999999999999999.99]")
 	private BigDecimal perUseLightSellingPrice;
 
 	/**
@@ -60,7 +60,7 @@ public class UnitPriceLowPressureDto extends DtoBase {
 	 */
 	@DecimalMin("0.00")
 	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "従量料金(動力)_夏季_定価", required = false, position = 7, allowableValues = "range[0.00,9999999999999999999.99]")
+	@Schema(description = "従量料金(動力)_夏季_定価", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,9999999999999999999.99]")
 	private BigDecimal usageFeeSummerListPrice;
 
 	/**
@@ -68,7 +68,7 @@ public class UnitPriceLowPressureDto extends DtoBase {
 	 */
 	@DecimalMin("0.00")
 	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "従量料金(動力)_夏季_売価", required = false, position = 8, allowableValues = "range[0.00,9999999999999999999.99]")
+	@Schema(description = "従量料金(動力)_夏季_売価", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,9999999999999999999.99]")
 	private BigDecimal usageFeeSummerSellingPrice;
 
 	/**
@@ -76,7 +76,7 @@ public class UnitPriceLowPressureDto extends DtoBase {
 	 */
 	@DecimalMin("0.00")
 	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "従量料金(動力)_その他季_定価", required = false, position = 9, allowableValues = "range[0.00,9999999999999999999.99]")
+	@Schema(description = "従量料金(動力)_その他季_定価", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,9999999999999999999.99]")
 	private BigDecimal usageFeeOtherSeasonListPrice;
 
 	/**
@@ -84,14 +84,14 @@ public class UnitPriceLowPressureDto extends DtoBase {
 	 */
 	@DecimalMin("0.00")
 	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "従量料金(動力)_その他夏季_売価", required = false, position = 10, allowableValues = "range[0.00,9999999999999999999.99]")
+	@Schema(description = "従量料金(動力)_その他夏季_売価", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,9999999999999999999.99]")
 	private BigDecimal usageFeeOtherSeasonSellingPrice;
 
 	/**
 	 * 登録者名
 	 */
 	@Size(max = 255)
-	@ApiModelProperty(value = "登録者名", required = false, position = 11, allowableValues = "range[0,255]")
+	@Schema(description = "登録者名", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0,255]")
 	private String createdUserName;
 
 	/**
@@ -99,7 +99,7 @@ public class UnitPriceLowPressureDto extends DtoBase {
 	 */
 	@DecimalMin("0.00")
 	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "基本料金_定価", required = false, position = 12, allowableValues = "range[0.00,9999999999999999999.99]")
+	@Schema(description = "基本料金_定価", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,9999999999999999999.99]")
 	private BigDecimal basicListPrice;
 
 	/**
@@ -107,12 +107,12 @@ public class UnitPriceLowPressureDto extends DtoBase {
 	 */
 	@DecimalMin("0.00")
 	@Digits(integer = 19, fraction = 2)
-	@ApiModelProperty(value = "基本料金_売価", required = false, position = 13, allowableValues = "range[0.00,9999999999999999999.99]")
+	@Schema(description = "基本料金_売価", requiredMode = Schema.RequiredMode.NOT_REQUIRED, allowableValues = "range[0.00,9999999999999999999.99]")
 	private BigDecimal basicSellingPrice;
 
 	/**
 	 * 作成日
 	 */
-	@ApiModelProperty(value = "作成日", required = false, position = 14)
+	@Schema(description = "作成日", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
 	private Date createdDate;
 }
