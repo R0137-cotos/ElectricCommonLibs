@@ -29,7 +29,7 @@ java {
 
 repositories {
     mavenCentral()
-    maven { url = 'https://mygithub.ritscm.xyz/raw/cotos/Dentos_LibsRepo/release/20260109/repository/Dentos_CommonLibs' }
+    maven { url = 'https://mygithub.ritscm.xyz/raw/cotos/Dentos_LibsRepo/master/repository/Dentos_CommonLibs' }
 }
 
 dependencies {
